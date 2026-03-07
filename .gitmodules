@@ -1,0 +1,3 @@
+[submodule "themes/IgnIt"]
+	path = themes/IgnIt
+	url = https://github.com/hakula139/IgnIt.git
