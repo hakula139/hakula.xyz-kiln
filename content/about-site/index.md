@@ -7,13 +7,11 @@ weight = -2
 
 <!-- markdownlint-disable MD053 -->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [Prism Castle - @c.c.R](https://www.pixiv.net/artworks/70180757)
 :::
 
 ## 技术选型
-
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; th, td { white-space: nowrap; } }" >}} -->
 
 | 项目   | 方案                             |
 | :----- | :------------------------------- |
@@ -43,8 +41,6 @@ weight = -2
 [PeerTube]: https://joinpeertube.org
 [PicList]: https://piclist.cn
 [Twikoo]: https://twikoo.js.org
-
-<!-- /style -->
 
 ## 更新日志
 

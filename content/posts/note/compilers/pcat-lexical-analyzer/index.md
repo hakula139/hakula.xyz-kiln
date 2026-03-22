@@ -19,11 +19,11 @@ Compilers @ Fudan University, fall 2021.
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [季節を抱きしめて - @DSマイル](https://www.pixiv.net/artworks/88865174)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / pcat_lexical_analyzer](https://github.com/hakula139/pcat_lexical_analyzer)
 :::
 

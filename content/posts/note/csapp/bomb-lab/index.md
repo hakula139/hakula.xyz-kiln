@@ -16,7 +16,7 @@ Introduction to Computer Systems I (H) @ Fudan University, fall 2019.
 
 ## 实验简介
 
-::: callout {type=info title="参见"}
+::: callout { type=info title="参见" }
 [CS:APP3e, Bryant and O'Hallaron - CMU](http://csapp.cs.cmu.edu/3e/labs.html)
 :::
 
@@ -81,7 +81,7 @@ gdb bomb
 
 `400e37`: `mov %rax,%rdi` 将函数 `read_line` 的返回值（即 `input`）传给了 `%rdi` 寄存器。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rdi` = `input`
 :::
 
@@ -109,7 +109,7 @@ gdb bomb
 
 `400ee4`: `mov $0x402400,%esi` 将地址 `0x402400` 传给了 `%esi` 寄存器。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%esi` = `0x402400`
 :::
 
@@ -167,7 +167,7 @@ gdb bomb
 
 `40133c`: `mov %rdi,%rbx` 和 `40133f`: `mov %rsi,%rbp` 将 `%rdi` 和 `%rsi` 寄存器保存的地址分别传给了 `%rbx` 和 `%rbp` 寄存器。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rbx` = `%rdi` = `input`  
 `%rbp` = `%rsi` = `0x402400`
 :::
@@ -228,7 +228,7 @@ return result;
 
 由上一节的分析，我们知道 `401342`: `callq 40131b <string_length>` 的返回值就是字符串 `input` 的长度。`401347`: `mov %eax,%r12d` 将该返回值传给了 `%r12d` 寄存器。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%r12d` = `%eax` = `strlen(input)`
 :::
 
@@ -239,13 +239,13 @@ return result;
 
 `40134a`: `mov %rbp,%rdi` 将 `%rbp` 寄存器保存的地址（`0x402400`）传给了 `%rdi` 寄存器。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rdi` = `%rbp` = `0x402400`
 :::
 
 于是我们知道，`0x402400` 这个地址指向的是一个字符串，而 `40134d`: `callq 40131b <string_length>` 返回的就是这个字符串的长度。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%eax` = `strlen(0x402400)`
 :::
 
@@ -284,7 +284,7 @@ return result;
 
 `40135c`: `movzbl (%rbx),%eax` 将 `%rbx` 寄存器指向的内容（字符串 `input` 的第一个字符）传递给 `%eax` 寄存器（做零扩展）。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%eax` = `*input`
 :::
 
@@ -360,7 +360,7 @@ return 0;
 
 由之前的分析，我们确定了函数 `strings_not_equal` 的具体作用。此时寄存器内保存的信息为：
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rdi` = `input`  
 `%esi` = `0x402400`
 :::
@@ -403,7 +403,7 @@ Phase 1 defused. How about the next one?
 
 #### 2.2 解题过程
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rdi` = `input`
 :::
 
@@ -442,7 +442,7 @@ Phase 1 defused. How about the next one?
 
 `400efe`: `sub $0x28,%rsp` 和 `400f02`: `mov %rsp,%rsi` 分配了一块 40 bytes 大小的空间，并将其地址传给了 `%rsi` 寄存器。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rsi` = `%rsp`
 :::
 
@@ -505,14 +505,14 @@ num2_pos = start_pos + 2;           // num2_pos in %r8
 
 于是得到各地址保存的位置：
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rdx` = `%rsi`  
 `%rcx` = `%rsi + 4`  
 `%r8` = `%rsi + 8`  
 `%r9` = `%rsi + 12`  
 :::
 
-::: callout {type=note title="栈状态"}
+::: callout { type=note title="栈状态" }
 `0x0(%rsp)` = `%rsi + 16`  
 `0x8(%rsp)` = `%rsi + 20`
 :::
@@ -566,7 +566,7 @@ num2_pos = start_pos + 2;           // num2_pos in %r8
 
 由之前的分析，我们确定了函数 `read_six_numbers` 的具体作用。此时栈内保存的信息为：
 
-::: callout {type=note title="栈状态"}
+::: callout { type=note title="栈状态" }
 `0x0(%rsp)` = `nums[0]`  
 `0x4(%rsp)` = `nums[1]`  
 `0x8(%rsp)` = `nums[2]`  
@@ -667,7 +667,7 @@ That's number 2.  Keep going!
 
 #### 3.2 解题过程
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rdi` = `input`
 :::
 
@@ -717,7 +717,7 @@ That's number 2.  Keep going!
 
 `400f43`: `sub $0x18,%rsp`, `400f47`: `lea 0xc(%rsp),%rcx` 和 `400f4c`: `lea 0x8(%rsp),%rdx` 分配了一块 24 bytes 大小的空间，并将 `%rsp + 0xc` 和 `%rsp + 0x8` 的地址分别传给了 `%rcx` 和 `%rdx` 寄存器。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rdx` = `%rsp + 8`  
 `%rcx` = `%rsp + 12`
 :::
@@ -738,7 +738,7 @@ That's number 2.  Keep going!
 
 因此读取完毕后，栈内保存的信息为：
 
-::: callout {type=note title="栈状态"}
+::: callout { type=note title="栈状态" }
 `0x8(%rsp)` = `nums[0]`  
 `0xc(%rsp)` = `nums[1]`
 :::
@@ -753,7 +753,7 @@ That's number 2.  Keep going!
 
 `400f71`: `mov 0x8(%rsp),%eax` 将 `0x8(%rsp)` 的值传给了 `%eax` 寄存器。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%eax` = `0x8(%rsp)` = `nums[0]`
 :::
 
@@ -848,7 +848,7 @@ Halfway there!
 
 #### 4.2 解题过程
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rdi` = `input`
 :::
 
@@ -884,7 +884,7 @@ Halfway there!
 
 `40100c` ~ `401024` 与函数 `phase_3` 中的 `400f43` ~ `400f5b` 完全一致，这里不再赘述。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rdx` = `%rsp + 8`  
 `%rcx` = `%rsp + 12`
 :::
@@ -893,7 +893,7 @@ Halfway there!
 
 因此读取完毕后，栈内保存的信息为：
 
-::: callout {type=note title="栈状态"}
+::: callout { type=note title="栈状态" }
 `0x8(%rsp)` = `nums[0]`  
 `0xc(%rsp)` = `nums[1]`
 :::
@@ -908,7 +908,7 @@ Halfway there!
 
 `40103a`: `mov $0xe,%edx`, `40103f`: `mov $0x0,%esi` 和 `401044`: `mov 0x8(%rsp),%edi` 将 `%edx`, `%esi`, `%edi` 寄存器分别赋值为 `0xe`, `0x0`, `0x8(%rsp)`。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%edi` = `0x8(%rsp)` = `nums[0]`  
 `%esi` = `0`  
 `%edx` = `14`
@@ -976,7 +976,7 @@ int func4(int key, int low, int high) {
 
 ##### 4.2.3 回到函数 `phase_4`
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%eax` = `func4(nums[0], 0, 14)`
 :::
 
@@ -1047,7 +1047,7 @@ So you got that one.  Try this one.
 
 #### 5.2 解题过程
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rdi` = `input`
 :::
 
@@ -1101,7 +1101,7 @@ So you got that one.  Try this one.
 
 `401067`: `mov %rdi,%rbx` 将 `%rdi` 寄存器上保存的地址传给了 `%rbx` 寄存器。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rbx` = `%rdi` = `input`
 :::
 
@@ -1134,7 +1134,7 @@ So you got that one.  Try this one.
 
 `401078`: `xor %eax,%eax` 将 `%eax` 寄存器设置为 `0`。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%eax` = `0`
 :::
 
@@ -1262,7 +1262,7 @@ Good work!  On to the next...
 
 #### 6.2 解题过程
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rdi` = `input`
 :::
 
@@ -1380,11 +1380,11 @@ Good work!  On to the next...
 
 首先读入 6 个整数（详见 [2.2.2](#222-观察函数-read_six_numbers) 节），保存到栈中。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rsi` = `%r13` = `%r14` = `%rsp`
 :::
 
-::: callout {type=note title="栈状态"}
+::: callout { type=note title="栈状态" }
 `0x00(%rsp)` = `nums[0]`  
 `0x04(%rsp)` = `nums[1]`  
 `0x08(%rsp)` = `nums[2]`  
@@ -1520,7 +1520,7 @@ for (i = 0; i != 6; ++i) {          // i in %rsi
 
 可以看出这实际就是将链表的 6 个结点以 `nums[i]` 为索引顺序存到栈中。每次操作就是将 `p_node` 指向下一个结点，因此经过 `nums[i] - 1` 次操作得到的 `p_node` 就是 `nums[i]` 号结点的地址 `p_node(nums[i])`。
 
-::: callout {type=note title="栈状态"}
+::: callout { type=note title="栈状态" }
 `ptrs[i]` = `p_node(nums[i])`
 :::
 
@@ -1542,7 +1542,7 @@ for (i = 0; i != 6; ++i) {          // i in %rsi
 
 用同样的方式得到 6 个结点的地址：
 
-::: callout {type=note title="结点地址"}
+::: callout { type=note title="结点地址" }
 `p_node1` = `0x6032d0`  
 `p_node2` = `0x6032e0`  
 `p_node3` = `0x6032f0`  
@@ -1638,7 +1638,7 @@ return next_node;
 
 用同样的方式得到链表 6 个结点的数据：
 
-::: callout {type=note title="结点数据"}
+::: callout { type=note title="结点数据" }
 `p_node1->val` = `332`  
 `p_node2->val` = `168`  
 `p_node3->val` = `924`  
@@ -1830,7 +1830,7 @@ Breakpoint 3, 0x0000000000400efc in phase_2 ()
 
 读取完毕后，栈内保存的信息为：
 
-::: callout {type=note title="栈状态"}
+::: callout { type=note title="栈状态" }
 `0x8(%rsp)` = `nums[0]`  
 `0xc(%rsp)` = `nums[1]`  
 `0x10(%rsp)` = `password`
@@ -1883,7 +1883,7 @@ Breakpoint 3, 0x0000000000400efc in phase_2 ()
   ...
 ```
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rdi` = `0x10(%rsp)` = `password`  
 `%esi` = `0x402622`
 :::
@@ -1979,20 +1979,20 @@ But finding it and solving it are quite different...
 
 `401243`: `callq 40149e <read_line>` 调用函数 `read_line`，其返回值（即输入的一行字符串 `str`）保存在 `%rax` 寄存器。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rax` = `str`
 :::
 
 `401248`: `mov $0xa,%edx` 和 `40124d`: `mov $0x0,%esi` 将 `%edx` 和 `%esi` 寄存器分别设置为 `10` 和 `0`。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%esi` = `0`  
 `%edx` = `10`
 :::
 
 `400e37`: `mov %rax,%rdi` 将 `%rax` 寄存器保存的地址传给了 `%rdi` 寄存器。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rdi` = `%rax` = `str`
 :::
 
@@ -2000,7 +2000,7 @@ But finding it and solving it are quite different...
 
 总之，这部分的作用就是读入一个多位的整数。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rax` = `num`
 :::
 
@@ -2008,7 +2008,7 @@ But finding it and solving it are quite different...
 
 `400e37`: `mov %rax,%rbx` 和 `40125d`: `lea -0x1(%rax),%eax` 将 `%rax` 的值传给了 `%rbx` 寄存器，然后 `%rax` 的值减 1。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%rbx` = `%rax` = `num`  
 `%eax` = `%rax - 1` = `num - 1`
 :::
@@ -2019,7 +2019,7 @@ But finding it and solving it are quite different...
 
 `40126c`: `mov %ebx,%esi` 和 `40126e`: `mov $0x6030f0,%edi` 将 `%ebx` 的值传给了 `%esi` 寄存器，将地址 `0x6030f0` 传给了 `%edi` 寄存器。
 
-::: callout {type=note title="寄存器状态"}
+::: callout { type=note title="寄存器状态" }
 `%edi` = `0x6030f0`  
 `%esi` = `%ebx` = `num`
 :::

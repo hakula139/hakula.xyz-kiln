@@ -20,11 +20,11 @@ Natural Language Processing (H) @ Fudan University, fall 2020.
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [キラキラを集めよう　Twitterの絵もまとめよう - @MISSILE228](https://www.pixiv.net/artworks/87013646)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / Trump-bot](https://github.com/hakula139/Trump-bot)
 :::
 

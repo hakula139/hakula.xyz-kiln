@@ -11,7 +11,7 @@ license = "CC BY-NC-SA 4.0"
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [PAPERCUT 4.0 - @Miv4t](https://www.pixiv.net/artworks/104923272)
 :::
 

@@ -19,17 +19,17 @@ Distributed Systems (H) @ Fudan University, fall 2021.
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [雨で垂れるネオン街 - @輪廻（りんね）](https://www.pixiv.net/artworks/94278235)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / woogle](https://github.com/hakula139/woogle)
 :::
 
 ## 1 任务说明与描述
 
-::: callout {type=info title="参见"}
+::: callout { type=info title="参见" }
 [Hadoop 平台使用及 PJ 要求 - 腾讯文档](https://docs.qq.com/doc/DUnJVS0R6dURQU0lB)
 :::
 

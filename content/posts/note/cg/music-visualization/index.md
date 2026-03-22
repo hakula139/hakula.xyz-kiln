@@ -18,11 +18,11 @@ Computer Graphics @ Fudan University, fall 2021.
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [届け！僕らの願い事 - @輪廻（りんね）](https://www.pixiv.net/artworks/94278235)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / music-visualization](https://github.com/hakula139/music-visualization)
 :::
 

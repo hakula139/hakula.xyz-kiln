@@ -20,11 +20,11 @@ Digital Signal Processing @ Fudan University, fall 2021.
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [雪化粧 - @Hiten](https://www.pixiv.net/artworks/94819769)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / naive-speech-recognizer](https://github.com/hakula139/naive-speech-recognizer)
 :::
 

@@ -13,7 +13,7 @@ license = "CC BY-NC-SA 4.0"
 
 <!--more-->
 
-::: callout {type=warning title="写在前面"}
+::: callout { type=warning title="写在前面" }
 
 笔者非哲学相关专业，对哲学也着实是门都没入的程度。本文更多只是阅读过程中的一些摘抄、笔记与个人思考，可能存在各种误读和概念混淆。请谨慎参考，也欢迎批评指正。
 
@@ -21,7 +21,7 @@ license = "CC BY-NC-SA 4.0"
 
 ## 导言
 
-::: callout {type=abstract title="章节"}
+::: callout { type=abstract title="章节" }
 [《纯粹理性批判》笔记 - 导言](./introduction/)
 :::
 
@@ -29,7 +29,7 @@ license = "CC BY-NC-SA 4.0"
 
 ### 第一部分 先验感性论
 
-::: callout {type=abstract title="章节"}
+::: callout { type=abstract title="章节" }
 [《纯粹理性批判》笔记 - 先验感性论](./transcendental-aesthetic/)
 :::
 
@@ -37,7 +37,7 @@ license = "CC BY-NC-SA 4.0"
 
 #### 导言 先验逻辑的理念
 
-::: callout {type=abstract title="章节"}
+::: callout { type=abstract title="章节" }
 [《纯粹理性批判》笔记 - 先验逻辑 导言](./transcendental-logic-introduction/)
 :::
 

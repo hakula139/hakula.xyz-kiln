@@ -5,7 +5,7 @@ featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-c
 weight = -3
 +++
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [log3 - @凪白みと](https://www.pixiv.net/artworks/67767892)
 :::
 

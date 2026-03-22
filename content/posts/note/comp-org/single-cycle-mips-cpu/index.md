@@ -18,11 +18,11 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [Moment - @望月しいな](https://www.pixiv.net/artworks/78398601)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / MIPS-CPU / Single-Cycle](https://github.com/hakula139/MIPS-CPU/tree/master/Single-Cycle)
 :::
 
@@ -156,7 +156,7 @@ end
 
 主译码器，完整真值表如下[^about-nop]：
 
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; th, td { padding: .3rem .5rem; white-space: nowrap; } }" >}} -->
+::: { .dense-table }
 
 |  指令  | `opcode` | `funct`  | `rw`  | `rd`  | `alu_s` | `alu_op` |  `j`  |  `b`  | `mw`  | `mr`  |
 | :----: | :------: | :------: | :---: | :---: | :-----: | :------: | :---: | :---: | :---: | :---: |
@@ -180,7 +180,7 @@ end
 | `beq`  | `000100` |          |  `0`  |       |  `00`   |  `001`   | `000` | `01`  |  `0`  |       |
 | `bne`  | `000101` |          |  `0`  |       |  `00`   |  `001`   | `000` | `10`  |  `0`  |       |
 
-<!-- /style -->
+:::
 
 其中：
 
@@ -205,7 +205,7 @@ end
 
 ALU 译码器，完整真值表如下：
 
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; th, td { padding: .3rem .5rem; white-space: nowrap; } }" >}} -->
+::: { .dense-table }
 
 |        指令        | `alu_op` | `funct`  | `alu_control` |
 | :----------------: | :------: | :------: | :-----------: |
@@ -223,7 +223,7 @@ ALU 译码器，完整真值表如下：
 |       `ori`        |  `110`   |          |    `0001`     |
 |       `slti`       |  `111`   |          |    `0111`     |
 
-<!-- /style -->
+:::
 
 ### 2.5 `datapath`
 
@@ -316,7 +316,7 @@ ALU 译码器，完整真值表如下：
 
 ALU 根据 $\textrm{ALU\\_CONTROL}$ 信号决定对操作数 $\textrm{A}$ 和 $\textrm{B}$ 进行何种运算，从 $\textrm{RESULT}$ 输出运算结果，从 $\textrm{ZERO}$ 输出结果是否为 $0$。其中 $\textrm{ALU\\_CONTROL}$ 由控制单元根据 $\textrm{ALU\\_OP}$ 和 $\textrm{FUNCT}$ 决定（详见 [2.4.2](#242-alu_dec) 节）。具体映射表如下：
 
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; th, td { padding: .3rem .5rem; white-space: nowrap; } }" >}} -->
+::: { .dense-table }
 
 | `alu_control` |    `result`     |           指令            |
 | :-----------: | :-------------: | :-----------------------: |
@@ -331,7 +331,7 @@ ALU 根据 $\textrm{ALU\\_CONTROL}$ 信号决定对操作数 $\textrm{A}$ 和 $\
 |    `1000`     |    `b >> a`     |           `srl`           |
 |    `1001`     |    `b >>> a`    |           `sra`           |
 
-<!-- /style -->
+:::
 
 代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Single-Cycle/src/alu.sv)。
 

@@ -17,17 +17,17 @@ Digital Signal Processing @ Fudan University, fall 2021.
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [I DON'T LOVE YOU - @Miv4t](https://www.pixiv.net/artworks/102257565)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / naive-speech-recognizer at dev-spectrogram](https://github.com/hakula139/naive-speech-recognizer/tree/dev-spectrogram)
 :::
 
 ## 实验简介
 
-::: callout {type=quote}
+::: callout { type=quote }
 
 1. 语音录制：三个单词发音 one, two, six；建议用 8 kHz 采样。
 2. 代码编写：要求使用你自己编写的 FFT 代码，不能调研已有函数库。

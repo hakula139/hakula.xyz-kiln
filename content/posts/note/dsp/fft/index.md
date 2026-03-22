@@ -17,17 +17,17 @@ Digital Signal Processing @ Fudan University, fall 2021.
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [秋のイベント - @NEKO](https://www.pixiv.net/artworks/102184125)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / naive-speech-recognizer at dev-fft](https://github.com/hakula139/naive-speech-recognizer/tree/dev-fft)
 :::
 
 ## 实验简介
 
-::: callout {type=quote}
+::: callout { type=quote }
 
 1. 录⾳，⽤ 8 kHz 采样，朗读单词 signal。
 2. 截取 1024 点语⾳信号。
