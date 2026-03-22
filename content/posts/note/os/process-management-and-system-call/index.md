@@ -866,7 +866,7 @@ sys_exit: in exit.
 1. [xv6: a simple, Unix-like teaching operating system - MIT][xv6-book]
 2. [mit-pdos / xv6-public: xv6 OS - GitHub][xv6]
 3. [mit-pdos / xv6-riscv: Xv6 for RISC-V - GitHub][xv6-riscv]
-4. [Procedure Call Standard - Documantation - Arm Developer][proc-call-std]
+4. [Procedure Call Standard - Documentation - Arm Developer][proc-call-std]
 
 [xv6-book]: https://pdos.csail.mit.edu/6.828/2020/xv6/book-riscv-rev1.pdf
 [xv6]: https://github.com/mit-pdos/xv6-public

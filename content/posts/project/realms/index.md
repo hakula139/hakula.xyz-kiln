@@ -28,7 +28,7 @@ Introduction to Database Systems (H) @ Fudan University, spring 2020.
 
 ## Getting started
 
-### 0 Prerequisities
+### 0 Prerequisites
 
 To set up the environment, you need to have the following dependencies installed.
 
