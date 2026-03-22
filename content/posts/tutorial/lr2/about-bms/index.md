@@ -11,13 +11,13 @@ license = "CC BY-NC-SA 4.0"
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [翔鶴 - @藤原](https://www.pixiv.net/artworks/70937229)
 :::
 
 ## BMS 介绍
 
-::: callout {type=quote title="参考"}
+::: callout { type=quote title="参考" }
 
 - [BMS - 萌娘百科](https://zh.moegirl.org.cn/BMS)
 - [Be-Music Source - Wikipedia](https://en.wikipedia.org/wiki/Be-Music_Source)
@@ -52,7 +52,7 @@ license = "CC BY-NC-SA 4.0"
 
 以下是一些推荐的下载途径（欢迎补充）：
 
-::: callout {type=example title="本站 BMS 区 @ Cloudreve"}
+::: callout { type=example title="本站 BMS 区 @ Cloudreve" }
 
 [:(fas fa-cloud):  HAKULA†BMS](https://bms.hakula.xyz)
 
@@ -64,7 +64,7 @@ license = "CC BY-NC-SA 4.0"
 
 :::
 
-::: callout {type=example title="QQ 群"}
+::: callout { type=example title="QQ 群" }
 
 [:(fab fa-qq):  Be-Music Source (176763307)](https://jq.qq.com/?_wv=1027&k=5L8MRvF)
 
@@ -72,7 +72,7 @@ license = "CC BY-NC-SA 4.0"
 
 :::
 
-::: callout {type=example title="段位 - Course 文件 @ GitHub" open=false}
+::: callout { type=example title="段位 - Course 文件 @ GitHub" open=false }
 
 [:(fas fa-list):  LR2IRCourses](https://github.com/MsrLab-org/LR2IRCourses)
 
@@ -82,7 +82,7 @@ license = "CC BY-NC-SA 4.0"
 
 :::
 
-::: callout {type=example title="发狂表 - 散包 @ 百度云" open=false}
+::: callout { type=example title="发狂表 - 散包 @ 百度云" open=false }
 
 [:(fas fa-cloud):  発狂 BMS 難易度表 (SP)](https://pan.baidu.com/s/1pLNgqBh) - **hcvn**
 
@@ -92,7 +92,7 @@ license = "CC BY-NC-SA 4.0"
 
 :::
 
-::: callout {type=example title="Overjoy 表 - 散包 @ 百度云" open=false}
+::: callout { type=example title="Overjoy 表 - 散包 @ 百度云" open=false }
 
 [:(fas fa-dizzy):  Overjoy 難易度表 (SP)](https://pan.baidu.com/s/1__S0VsK0sbfYWBNmwYCrpw)
 
@@ -103,7 +103,7 @@ license = "CC BY-NC-SA 4.0"
 
 :::
 
-::: callout {type=example title="更多社区资源" open=false}
+::: callout { type=example title="更多社区资源" open=false }
 
 [:(fas fa-list):  BMS Community Resources](https://bms-community.github.io/resources/)
 
@@ -121,7 +121,7 @@ license = "CC BY-NC-SA 4.0"
 
 以下是**不推荐**的下载途径：
 
-::: callout {type=warning title="百度贴吧"}
+::: callout { type=warning title="百度贴吧" }
 
 `DEPRECATED` [:(fas fa-comments):  LR2 吧](https://tieba.baidu.com/f?kw=lr2)
 
@@ -129,7 +129,7 @@ license = "CC BY-NC-SA 4.0"
 
 :::
 
-::: callout {type=warning title="种子"}
+::: callout { type=warning title="种子" }
 
 `DEPRECATED` :(fas fa-project-diagram):  Insane BMS Torrent
 
@@ -143,7 +143,7 @@ license = "CC BY-NC-SA 4.0"
 
 最后，本站**不提供**以下资源：
 
-::: callout {type=failure title="商业音游的解析 BMS"}
+::: callout { type=failure title="商业音游的解析 BMS" }
 
 包括但不限于以下游戏：
 
@@ -155,7 +155,7 @@ license = "CC BY-NC-SA 4.0"
 
 :::
 
-::: callout {type=failure title="osu!mania 转谱"}
+::: callout { type=failure title="osu!mania 转谱" }
 
 来都来了，别惦记你的 osu!mania 了！
 

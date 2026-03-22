@@ -5,7 +5,7 @@ featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-c
 weight = -1
 +++
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [そらたび - @凪白みと](https://www.pixiv.net/artworks/64035231)
 :::
 
@@ -77,8 +77,6 @@ weight = -1
 
 ### 家用
 
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; th, td { white-space: nowrap; } }" >}} -->
-
 | 硬件   | 设备                                      |
 | :----- | :---------------------------------------- |
 | PC     | MacBook Pro (14-inch, Apple M1 Pro, 2021) |
@@ -88,26 +86,18 @@ weight = -1
 | 音响   | Dynaudio Emit 20 + NAD C 338              |
 | 椅子   | Herman Miller Aeron 2                     |
 
-<!-- /style -->
-
 ### 公司
-
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; th, td { white-space: nowrap; } }" >}} -->
 
 | 硬件 | 设备                                 |
 | :--- | :----------------------------------- |
 | 键盘 | NiZ Plum X108 EC-Bluetooth 35G Black |
 | 鼠标 | Razer Basilisk V3                    |
 
-<!-- /style -->
-
 ## :video_game: 游戏
 
 ![不为所动，做更专业的自己](assets/you-need-more-practice.webp)
 
 ### 音游
-
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; th, td { white-space: nowrap; } }" >}} -->
 
 | 游戏名                 | ID                             | 段位 / 实力                                               |              时间 |
 | :--------------------- | :----------------------------- | :-------------------------------------------------------- | ----------------: |
@@ -125,8 +115,6 @@ weight = -1
 [beatstage]: https://www.beatstage.com
 [beatstage-me]: https://www.beatstage.com/profile/16666
 
-<!-- /style -->
-
 ### Galgame
 
 - [AVG 个人评测数据](/posts/avg/impressions)
@@ -135,8 +123,6 @@ weight = -1
 
 ### 立直麻将
 
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; th, td { white-space: nowrap; } }" >}} -->
-
 | 游戏名               | ID                              | 段位                      |              时间 |
 | :------------------- | :------------------------------ | :------------------------ | ----------------: |
 | [雀魂 :cn:][majsoul] | [Hakula (68993162)][majsoul-me] | 四麻 雀圣一 / 三麻 雀豪二 | 2019-01 ~ 2022-10 |
@@ -144,11 +130,7 @@ weight = -1
 [majsoul]: https://www.maj-soul.net
 [majsoul-me]: https://amae-koromo.sapk.ch/player/697658
 
-<!-- /style -->
-
 ### 手游
-
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; th, td { white-space: nowrap; } }" >}} -->
 
 | 游戏名                       | ID             |           时间 |
 | :--------------------------- | :------------- | -------------: |
@@ -156,14 +138,10 @@ weight = -1
 
 [arkn]: https://ak.hypergryph.com
 
-<!-- /style -->
-
 ## :headphones: 音乐
 
-::: apple-music name="favorite-songs" id="pl.u-AkAmPlpf2YvL2d9" country="jp"
+::: music { server="apple" name="favorite-songs" id="pl.u-AkAmPlpf2YvL2d9" country="jp" }
 :::
-
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; th, td { white-space: nowrap; } }" >}} -->
 
 | 平台             | 账号                     |
 | :--------------- | :----------------------- |
@@ -172,8 +150,6 @@ weight = -1
 
 [apple-music]: https://music.apple.com/profile/hakula139
 [listenbrainz]: https://listenbrainz.org/user/Hakula
-
-<!-- /style -->
 
 ## :crystal_ball: 赛博算命
 

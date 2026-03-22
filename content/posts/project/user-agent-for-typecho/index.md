@@ -14,11 +14,11 @@ license = "CC BY-NC-SA 4.0"
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [クロス・ホエン - @おにねこ](https://www.pixiv.net/artworks/39186698)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / UserAgent-for-Typecho](https://github.com/hakula139/UserAgent-for-Typecho)
 :::
 
@@ -34,20 +34,16 @@ license = "CC BY-NC-SA 4.0"
 
 ## 版本历史
 
-<!-- TODO: style shortcode not yet supported: {{< style "table td { min-width: 7rem; }" >}} -->
-
 | 版本     | 完成日期   | 更新内容                                                             |
 | :------- | :--------- | :------------------------------------------------------------------- |
 | `v0.2.0` | 2019‑01‑28 | 将 UserAgent 的识别逻辑转移至本地，移植了 WordPress 插件的识别方法。 |
 | `v0.1.0` | 2019‑01‑27 | 第一个版本，尚处于测试阶段，请勿用于生产环境。                       |
 
-<!-- /style -->
-
 ## 致谢
 
 ### 原项目
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  ennnnny / typecho / UserAgent](https://github.com/ennnnny/typecho/tree/master/UserAgent)
 :::
 

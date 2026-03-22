@@ -16,17 +16,17 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [LAST WORDS - @Miv4t](https://www.pixiv.net/artworks/60181142)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / xv6-armv8 at lab6](https://github.com/hakula139/xv6-armv8/tree/lab6)
 :::
 
 ## 实验简介
 
-::: callout {type=info title="参见"}
+::: callout { type=info title="参见" }
 [hakula139 / xv6-armv8 / docs / lab6.md - GitHub](https://github.com/hakula139/xv6-armv8/blob/lab6/docs/lab6.md)
 :::
 
@@ -36,7 +36,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 #### 1.1 请求队列
 
-::: callout {type=quote title="实验目标"}
+::: callout { type=quote title="实验目标" }
 请补全 `inc/buf.h` 以便于 SD 卡驱动中请求队列的实现，即每个请求都是一个 `buf`，所有请求排成一队。
 :::
 
@@ -240,7 +240,7 @@ bunpin(struct buf* b)
 
 #### 2.1 Sleep 实现
 
-::: callout {type=quote title="实验目标"}
+::: callout { type=quote title="实验目标" }
 请完成 `kern/proc.c` 中的 `sleep` 和 `wakeup` 函数，并简要描述并分析你的设计。
 :::
 
@@ -308,7 +308,7 @@ wakeup(void* chan)
 
 #### 2.2 SD 卡初始化
 
-::: callout {type=quote title="实验目标"}
+::: callout { type=quote title="实验目标" }
 请完成 `kern/sd.c` 中的 `sd_init`, `sd_intr`, `sd_rw`，然后分别在合适的地方调用 `sd_init` 和 `sd_test` 完成 SD 卡初始化并通过测试。
 :::
 
@@ -581,7 +581,7 @@ main()
 
 #### 3.1 获取分区信息
 
-::: callout {type=quote title="实验目标"}
+::: callout { type=quote title="实验目标" }
 请在 `sd_init` 中解析 MBR 获得第二分区起始块的 LBA 和分区大小以便后续使用。
 :::
 

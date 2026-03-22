@@ -11,7 +11,7 @@ license = "CC BY-NC-SA 4.0"
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [江風 - @凪白みと](https://www.pixiv.net/artworks/75778049)
 :::
 
@@ -35,7 +35,7 @@ license = "CC BY-NC-SA 4.0"
 
 ## 版权问题
 
-::: callout {type=failure title="注意"}
+::: callout { type=failure title="注意" }
 
 由于版权问题，**禁止**使用 LR2 游玩 Beatmania IIDX 等商业音游的解析 BMS。如果你一定要游玩，**请不要：**
 
@@ -48,7 +48,7 @@ license = "CC BY-NC-SA 4.0"
 
 ## 开发者原说明
 
-::: callout {type=quote}
+::: callout { type=quote }
 
 This software is free.
 
@@ -66,7 +66,7 @@ Support will not be provided for non-Japanese OS users.
 
 :::
 
-::: callout {type=quote title="中文翻译" open=false}
+::: callout { type=quote title="中文翻译" open=false }
 
 本软件是免费软件。
 

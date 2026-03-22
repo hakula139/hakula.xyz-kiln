@@ -18,11 +18,11 @@ Introduction to Database Systems (H) @ Fudan University, spring 2020.
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [19 - @Aer7o](https://www.pixiv.net/artworks/69321889)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / REALMS](https://github.com/hakula139/REALMS)
 :::
 
@@ -752,15 +752,11 @@ Enter Privilege Level: 1
 
 The username should be unique. As for the privilege level:
 
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; }" >}} -->
-
 | Level |  Privilege  |
 | :---: | :---------: |
 |   1   |    User     |
 |   2   |    Admin    |
 |   3   | Super Admin |
-
-<!-- /style -->
 
 The following message will be written to log.
 
@@ -1467,8 +1463,6 @@ There're currently 3 tables in database `library`, namely, `books`, `users` and 
 
 #### 4.1 books
 
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: 25rem; }" >}} -->
-
 | Field     | Type             | Null  |  Key  |
 | :-------- | :--------------- | :---: | :---: |
 | id        | int(10) unsigned |  NO   |  PRI  |
@@ -1477,11 +1471,7 @@ There're currently 3 tables in database `library`, namely, `books`, `users` and 
 | publisher | varchar(255)     |  YES  |   /   |
 | isbn      | varchar(255)     |  YES  |   /   |
 
-<!-- /style -->
-
 #### 4.2 users
-
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: 25rem; }" >}} -->
 
 | Field    | Type             | Null  |  Key  |
 | :------- | :--------------- | :---: | :---: |
@@ -1490,11 +1480,7 @@ There're currently 3 tables in database `library`, namely, `books`, `users` and 
 | password | varchar(255)     |  NO   |   /   |
 | level    | int(10) unsigned |  NO   |   /   |
 
-<!-- /style -->
-
 #### 4.3 records
-
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: 27rem; }" >}} -->
 
 | Field        | Type             | Null  |  Key  |
 | :----------- | :--------------- | :---: | :---: |
@@ -1504,8 +1490,6 @@ There're currently 3 tables in database `library`, namely, `books`, `users` and 
 | return_date  | datetime         |  NO   |   /   |
 | extend_times | int(10) unsigned |  NO   |   /   |
 | deleted_at   | datetime         |  YES  |   /   |
-
-<!-- /style -->
 
 ## TODOs
 

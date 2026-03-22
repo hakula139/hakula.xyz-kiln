@@ -11,7 +11,7 @@ license = "CC BY-NC-SA 4.0"
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [Infinity Red - @MISSILE228](https://www.pixiv.net/artworks/62549069)
 :::
 
@@ -70,7 +70,7 @@ license = "CC BY-NC-SA 4.0"
 | GAUGE COLOR          | 血槽的颜色                                     |
 | CLOSE                | STAGE FAILED 时的闭店动画                      |
 
-::: callout {type=bug}
+::: callout { type=bug }
 游玩界面的 GAUGE COLOR 和 CLOSE 在重启游戏 / 重进设置界面后可能会被误改成其他选项。
 :::
 

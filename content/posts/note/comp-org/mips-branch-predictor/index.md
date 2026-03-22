@@ -19,11 +19,11 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [LL - @SWAV](https://www.pixiv.net/artworks/78954079)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / MIPS-CPU / Branch-Predictor](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor)
 :::
 
@@ -154,20 +154,14 @@ assign flush_d_o = predict_miss_i || jump_d_i[1];  // wrong prediction or JR
 
 Tournament Predictor miss 时优先选择哪种预测模式？
 
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; }" >}} -->
-
 | 预测模式 |   CPI    |
 | :------: | :------: |
 |  Local   | 1.794349 |
 |  Global  | 1.794741 |
 
-<!-- /style -->
-
 似乎 Local Predictor 在冷启动阶段的短时间内表现稍好一点。
 
 BPB 默认使用哪种预测模式？
-
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; }" >}} -->
 
 | 预测模式 |   CPI    |
 | :------: | :------: |
@@ -177,21 +171,15 @@ BPB 默认使用哪种预测模式？
 |  Static  | 1.849294 |
 |   None   | 1.997842 |
 
-<!-- /style -->
-
 可见动态分支预测显著优于静态分支预测。但为什么 Tournament Predictor 的表现没有只使用 Global Predictor 时好呢？可能原因是测试样例整体都偏向于 Global Predictor 的优势区，而 Tournament Predictor 在冷启动阶段需要调整预测模式的选择，这需要一定的时间，在这段时间里其表现就不如 Global Predictor。如果个别测试样例对 Local Predictor 或 Global Predictor 有明显偏好，但整体而言没有呈现明显偏向性，这种情况下 Tournament Predictor 可能会有较好的发挥。
 
 Static Predictor 采用哪种策略？
-
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: initial; }" >}} -->
 
 | 预测策略  |   CPI    |
 | :-------: | :------: |
 | Not Taken | 1.990190 |
 |   Taken   | 1.793962 |
 |   BTFNT   | 1.849294 |
-
-<!-- /style -->
 
 对于静态分支预测，预测效果 Taken > BTFNT > Not Taken，比较意外。通常来说应该是 BTFNT 的效果较好，可能比较依赖于测试样例的具体构造。
 

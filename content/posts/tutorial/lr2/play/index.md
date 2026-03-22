@@ -11,7 +11,7 @@ license = "CC BY-NC-SA 4.0"
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [和洋折衷ライブラリー - @藤原](https://www.pixiv.net/artworks/61930743)
 :::
 
@@ -23,7 +23,7 @@ license = "CC BY-NC-SA 4.0"
 
 此后我们就进入了 WMIX 的游玩界面。你看到的界面很可能与图中有许多不同，这是因为 WMIX 有很多可以自定义的地方，详见 [WMIX](../wmix) 篇。
 
-::: callout {type=warning title="注意"}
+::: callout { type=warning title="注意" }
 
 **中途退出时，只要当前有非 POOR 的判定就将进入结算界面。如果谱面尚未打完，则直接判定为 FAILED。**
 
@@ -33,7 +33,7 @@ license = "CC BY-NC-SA 4.0"
 
 :::
 
-::: callout {type=tip title="关于暂停"}
+::: callout { type=tip title="关于暂停" }
 不同于许多音游，LR2 **不存在**暂停功能。
 :::
 
@@ -41,7 +41,7 @@ license = "CC BY-NC-SA 4.0"
 
 如图所示，`GREAT 489` 即当前的判定指示和连击数，`-0003` 即与 [目标分数](../select/#target) 的分差[^ghost-position]，`+007` 即当前的 [判定延迟](../select/#judge-timing)。在皮肤设置里可以开启 Fast / Slow 指示，开启后将显示在 `-0003` 的右侧。
 
-::: callout {type=bug}
+::: callout { type=bug }
 回放模式下不显示 Fast / Slow 指示。
 :::
 
@@ -64,15 +64,13 @@ license = "CC BY-NC-SA 4.0"
 
 ## 进阶
 
-::: callout {type=tip title="提示"}
+::: callout { type=tip title="提示" }
 以下内容为进阶部分，不了解也不影响游玩。
 :::
 
 ### 数字键
 
 按住数字键后，按 :arrow_up: :arrow_down: :arrow_left: :arrow_right: 键调整。
-
-<!-- TODO: style shortcode not yet supported: {{< style "table { min-width: 20rem; }" >}} -->
 
 | 按键 | 作用                                     |
 | :--- | :--------------------------------------- |
@@ -83,8 +81,6 @@ license = "CC BY-NC-SA 4.0"
 | `5`  | 开启 [DARK 模式](#dark-模式)             |
 | `6`  | 平移 1P 谱面显示区域，**可以当 LIFT 用** |
 | `7`  | 平移 2P 谱面显示区域                     |
-
-<!-- /style -->
 
 ### DARK 模式
 

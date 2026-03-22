@@ -20,11 +20,11 @@ Computer Networks @ Fudan University, fall 2020.
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [カラスの集め物 - @MISSILE228](https://www.pixiv.net/artworks/86286793)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / Naive-FTP](https://github.com/hakula139/Naive-FTP)
 :::
 

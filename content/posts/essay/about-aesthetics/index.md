@@ -11,7 +11,7 @@ license = "CC BY-NC-SA 4.0"
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [海底の路地 - @輪廻狐（りんねこ）](https://www.pixiv.net/artworks/94175799)
 :::
 

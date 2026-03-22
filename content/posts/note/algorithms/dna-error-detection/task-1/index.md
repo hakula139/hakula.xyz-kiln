@@ -17,17 +17,17 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 <!--more-->
 
-::: callout {type=info title="封面出处"}
+::: callout { type=info title="封面出处" }
 [大渓谷 - @藤原](https://www.pixiv.net/artworks/90380296)
 :::
 
-::: callout {type=success title="源码地址"}
+::: callout { type=success title="源码地址" }
 [:(fab fa-github):  hakula139 / dna-error-detection at task-1-sv-chain](https://github.com/hakula139/dna-error-detection/tree/task-1-sv-chain)
 :::
 
 ## 题目简介
 
-::: callout {type=info title="参见"}
+::: callout { type=info title="参见" }
 [hakula139 / dna-error-detection / docs / README.pdf - GitHub](https://github.com/hakula139/dna-error-detection/blob/master/docs/README.pdf)
 :::
 

@@ -1,0 +1,136 @@
+{%- set csv_text = read_file(positional_args[0]) -%}
+{%- set data = parse_csv(csv_text) -%}
+{%- set headers = data[0] -%}
+{%- set rows = data[1:] -%}
+{#- Column type registry (header -> type) -#}
+{%- set col_types = {
+  "作品名称": "text",
+  "年份": "number",
+  "剧本": "score",
+  "系统": "score",
+  "画面": "score",
+  "音乐": "score",
+  "总评": "score",
+  "评级": "rating",
+  "个人差": "heatmap",
+  "分级": "age-rating",
+  "EGS": "ext-score",
+  "BGM": "ext-score",
+  "Δ": "delta",
+  "完成日期": "date",
+  "初次完成日期": "date",
+} -%}
+{#- Column type -> CSS class -#}
+{%- set col_classes = {
+  "text": "col-title",
+  "number": "col-number",
+  "score": "col-score",
+  "rating": "col-rating",
+  "heatmap": "col-heatmap",
+  "age-rating": "col-age-rating",
+  "ext-score": "col-ext-score",
+  "delta": "col-delta",
+  "date": "col-date",
+} -%}
+{#- Score bar colors (header -> RGB) -#}
+{%- set col_colors = {
+  "剧本": "0,176,240",
+  "系统": "255,182,40",
+  "画面": "99,195,132",
+  "音乐": "99,142,198",
+  "总评": "255,85,90",
+} -%}
+{#- Find 总评 column index for rating cells -#}
+{%- set total_idx = namespace(value=-1) -%}
+{%- for h in headers -%}
+  {%- if h == "总评" -%}
+    {%- set total_idx.value = loop.index0 -%}
+  {%- endif -%}
+{%- endfor -%}
+<link rel="stylesheet" href="/css/score-table.css">
+<div class="score-table-wrapper">
+  <table class="score-table">
+    <thead>
+      <tr>
+        <th class="col-rownum">#</th>
+{%- for h in headers -%}
+  {%- set type = col_types[h] | default("text") -%}
+  {%- set cls = col_classes[type] | default("col-text") -%}
+        <th class="{{ cls }}" data-col-type="{{ type }}" data-sort-value="{{ h }}">{{ h }}</th>
+{%- endfor -%}
+      </tr>
+    </thead>
+    <tbody>
+{%- for row in rows -%}
+      <tr>
+        <td class="col-rownum"></td>
+{%- for val in row -%}
+  {%- set h = headers[loop.index0] -%}
+  {%- set type = col_types[h] | default("text") -%}
+  {%- set cls = col_classes[type] | default("col-text") -%}
+  {%- if type == "text" -%}
+        <td class="{{ cls }}" title="{{ val }}" data-sort-value="{{ val }}">{{ val }}</td>
+  {%- elif type == "score" -%}
+    {%- set color = col_colors[h] | default("128,128,128") -%}
+    {%- set pct = val | float -%}
+    {%- if pct > 100 %}{% set pct = 100 %}{% endif -%}
+        <td class="{{ cls }}" style="background: linear-gradient(to right, rgba({{ color }}, 0.4) {{ pct }}%, transparent {{ pct }}%)" data-sort-value="{{ val }}">{{ val }}</td>
+  {%- elif type == "rating" -%}
+    {%- set total_val = "" -%}
+    {%- if total_idx.value >= 0 -%}
+      {%- set total_val = row[total_idx.value] -%}
+    {%- endif -%}
+        <td class="{{ cls }}" data-type="rating" data-score="{{ total_val }}" data-sort-value="{{ val }}">{{ val }}</td>
+  {%- elif type == "heatmap" -%}
+        <td class="{{ cls }}" data-type="heatmap" data-score="{{ val }}" data-sort-value="{{ val }}">{{ val }}</td>
+  {%- elif type == "age-rating" -%}
+    {%- set display = val -%}
+    {%- set tier = 0 -%}
+    {%- if val is endingwith("G!!") -%}
+      {%- set display = val | replace("G!!", "") -%}
+      {%- set tier = 6 -%}
+    {%- elif val is endingwith("G!") -%}
+      {%- set display = val | replace("G!", "") -%}
+      {%- set tier = 5 -%}
+    {%- elif val is endingwith("G") and not val is endingwith("G!") -%}
+      {%- set display = val | replace("G", "") -%}
+      {%- set tier = 4 -%}
+    {%- elif val is endingwith("!!") -%}
+      {%- set display = val | replace("!!", "") -%}
+      {%- set tier = 3 -%}
+    {%- elif val is endingwith("!") and not val is endingwith("!!") -%}
+      {%- set display = val | replace("!", "") -%}
+      {%- set tier = 2 -%}
+    {%- endif -%}
+    {%- set age = 0 -%}
+    {%- if display is endingwith("+") -%}
+      {%- set age = display | replace("+", "") | int -%}
+    {%- endif -%}
+    {%- if tier == 0 and age >= 18 -%}
+      {%- set tier = 1 -%}
+    {%- endif -%}
+    {%- set sort_val = tier * 100 + age -%}
+        <td class="{{ cls }}" data-type="age-rating" data-tier="{{ tier }}" data-sort-value="{{ sort_val }}">{{ display }}</td>
+  {%- elif type == "ext-score" -%}
+    {%- set is_approx = val is startingwith("~") -%}
+    {%- set sort_val = val -%}
+    {%- if is_approx -%}
+      {%- set sort_val = val[1:] -%}
+    {%- endif -%}
+        <td class="{{ cls }}{% if is_approx %} ext-score-approx{% endif %}" data-sort-value="{{ sort_val }}">{{ val }}</td>
+  {%- elif type == "delta" -%}
+    {%- set sort_val = val -%}
+    {%- if val is startingwith("+") -%}
+      {%- set sort_val = val[1:] -%}
+    {%- endif -%}
+        <td class="{{ cls }}" data-type="delta" data-score="{{ sort_val }}" data-sort-value="{{ sort_val }}">{{ val }}</td>
+  {%- else -%}
+        <td class="{{ cls }}" data-sort-value="{{ val }}">{{ val }}</td>
+  {%- endif -%}
+{%- endfor -%}
+      </tr>
+{%- endfor -%}
+    </tbody>
+  </table>
+</div>
+<script src="/js/score-table.js"></script>
