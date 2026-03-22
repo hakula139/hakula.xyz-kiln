@@ -1,0 +1,50 @@
+{
+  "version": "0.2",
+  "language": "en,en-GB",
+  "useGitignore": true,
+  "allowCompoundWords": true,
+  "import": [
+    "@cspell/dict-de-de/cspell-ext.json",
+    "@cspell/dict-fr-fr/cspell-ext.json",
+    "@cspell/dict-grc/cspell-ext.json",
+    "@cspell/dict-it-it/cspell-ext.json",
+    "@cspell/dict-la/cspell-ext.json"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "project-words",
+      "path": "./.cspell/words.txt",
+      "addWords": true
+    }
+  ],
+  "dictionaries": ["project-words", "de-de", "fr-fr", "grc", "it-it", "la"],
+  "patterns": [
+    {
+      "name": "code_fenced",
+      "pattern": "/^```[\\w]*\\n[\\s\\S]*?^```/gm"
+    },
+    {
+      "name": "code_inline",
+      "pattern": "/`[^`\\n]+`/g"
+    },
+    {
+      "name": "math_inline",
+      "pattern": "/\\$[^$\\n]+\\$/g"
+    },
+    {
+      "name": "math_display",
+      "pattern": "/\\$\\$[\\s\\S]*?\\$\\$/gm"
+    },
+    {
+      "name": "html_comments",
+      "pattern": "/<!--[\\s\\S]*?-->/gm"
+    }
+  ],
+  "ignoreRegExpList": [
+    "code_fenced",
+    "code_inline",
+    "math_inline",
+    "math_display",
+    "html_comments"
+  ]
+}

@@ -1,6 +1,9 @@
 # Build output
 /public/
 
+# Dependencies
+/node_modules/
+
 # OS files
 .DS_Store
 
