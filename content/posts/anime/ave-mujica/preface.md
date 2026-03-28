@@ -1,6 +1,6 @@
 +++
 title = "「Ave Mujica」：循此苦旅，终抵群星？- 前言"
-date = "2025-09-29T19:25:00Z"
+date = 2025-09-30T03:25:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/786d1d4a-9944-4349-b26e-22eeae039b94_ave-mujica.webp"
 tags = [
     "动画",

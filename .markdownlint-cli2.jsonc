@@ -1,0 +1,49 @@
+{
+  // Match TOML frontmatter (+++ delimiters)
+  "frontMatter": "^\\+\\+\\+$[\\s\\S]*?^\\+\\+\\+$",
+
+  "config": {
+    "default": true,
+
+    // Heading style: atx
+    "MD003": { "style": "atx" },
+
+    // Unordered list style: dash
+    "MD004": { "style": "dash" },
+
+    // Unordered list indent: 2 spaces
+    "MD007": { "indent": 2 },
+
+    // Allow hard tabs in code blocks
+    "MD010": { "code_blocks": false },
+
+    // Disable line length for Chinese content
+    "MD013": false,
+
+    // Heading trailing punctuation: only flag .,;:
+    "MD026": { "punctuation": ".,;:" },
+
+    // Disable no-inline-html — we use <!--more--> and cspell comments
+    "MD033": false,
+
+    // Disable bare URL check — false positives from TOML frontmatter URLs
+    "MD034": false,
+
+    // Disable first-line heading (frontmatter handles this)
+    "MD041": false,
+
+    // Code block style: fenced
+    "MD046": { "style": "fenced" },
+
+    // Code fence style: backtick
+    "MD048": { "style": "backtick" },
+
+    // Emphasis style: underscore for italic
+    "MD049": { "style": "underscore" },
+
+    // Strong style: asterisk for bold
+    "MD050": { "style": "asterisk" }
+  },
+
+  "ignores": []
+}

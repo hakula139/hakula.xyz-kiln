@@ -1,6 +1,6 @@
 +++
 title = "LR2 配置教程 - 目录结构"
-date = "2018-09-26T06:31:00Z"
+date = 2018-09-26T14:31:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/9bb276cd-6da6-42b1-ae5d-921e2e96e6c1_66385542.webp"
 tags = ["LR2"]
 categories = ["tutorial"]

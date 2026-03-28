@@ -1,6 +1,6 @@
 +++
 title = "算法 - Project: DNA 测序错误检测 - Task 2: 有噪音分段比对"
-date = "2021-06-28T15:59:00Z"
+date = 2021-06-28T23:59:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/bedbbd30-894e-407d-8a7f-02a665b60bdf_89979147.webp"
 tags = [
     "算法",

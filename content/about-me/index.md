@@ -1,6 +1,6 @@
 +++
 title = "关于我"
-date = "2019-04-15T16:05:00Z"
+date = 2019-04-16T00:05:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/6812f313-b403-405a-935a-dba056687a0e_64035231.webp"
 weight = -1
 +++
@@ -140,7 +140,7 @@ weight = -1
 
 ## :headphones: 音乐
 
-::: music { server="apple" name="favorite-songs" id="pl.u-AkAmPlpf2YvL2d9" country="jp" }
+::: music { server="apple" name="favorite-songs" id="pl.u-AkAmPlpf2YvL2d9" country="jp" } <!-- cspell:disable-line -->
 :::
 
 | 平台             | 账号                     |

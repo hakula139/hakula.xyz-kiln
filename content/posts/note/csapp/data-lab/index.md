@@ -1,6 +1,6 @@
 +++
 title = "CS:APP - Data Lab"
-date = "2019-10-09T03:15:00Z"
+date = 2019-10-09T11:15:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/dfd7d134-79e7-4e48-963d-913c120ea22f_csapp.webp"
 tags = [
     "CS:APP",
@@ -206,7 +206,7 @@ int fitsBits(int x, int n) {
 }
 ```
 
-### 8 divpwr2
+### 8 divpwr2 <!-- cspell:disable-line -->
 
 ::: callout { type=quote title="题目" }
 Compute $x / 2^n$, for $0\le n\le 30$.
@@ -310,7 +310,7 @@ int isLessOrEqual(int x, int y) {
 }
 ```
 
-### 12 ilog2
+### 12 ilog2 <!-- cspell:disable-line -->
 
 ::: callout { type=quote title="题目" }
 Return $\lfloor \log_2{x}\rfloor$, where $x>0$.

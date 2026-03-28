@@ -1,6 +1,6 @@
 +++
 title = "LR2 配置教程 - 关于 BMS"
-date = "2018-09-09T02:37:00Z"
+date = 2018-09-09T10:37:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/254a5dc4-a44d-4b1b-8f8b-b26dbcc81af4_70937229.webp"
 tags = ["BMS"]
 categories = ["tutorial"]
@@ -84,7 +84,7 @@ license = "CC BY-NC-SA 4.0"
 
 ::: callout { type=example title="发狂表 - 散包 @ 百度云" open=false }
 
-[:(fas fa-cloud):  発狂 BMS 難易度表 (SP)](https://pan.baidu.com/s/1pLNgqBh) - **hcvn**
+[:(fas fa-cloud):  発狂 BMS 難易度表 (SP)](https://pan.baidu.com/s/1pLNgqBh) - **hcvn** <!-- cspell:disable-line -->
 
 由 @Udon, @Mikezom, @MsrButterfly 整理，最后更新：2019-02-03
 

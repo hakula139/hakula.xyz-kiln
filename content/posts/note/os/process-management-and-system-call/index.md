@@ -1,6 +1,6 @@
 +++
 title = "OS - Lab 5: Process Management and System Call"
-date = "2020-12-08T18:08:00Z"
+date = 2020-12-09T02:08:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/48bd0a45-15a1-40d1-bbeb-afcca7c8beee_85995104.webp"
 tags = [
     "操作系统",
@@ -89,7 +89,7 @@ Context switch 主要做了以下几件事情[^xv6]：
 3. 将 `new` 的值覆盖当前栈指针的地址，切换到（将被调入的）新进程的 context。其中 `new` 是函数调用传入的第二个参数，位于寄存器 X1。
 4. 将新进程的 callee-saved 寄存器弹栈，函数 `swtch` 返回（`ret`，等价于 `mov pc, x30`）。
 
-```armasm
+```asm
 /* kern/swtch.S */
 
 /*
@@ -515,7 +515,7 @@ forkret()
 
 接下来函数 `forkret` 应该返回到函数 `trapret`。这里一个非常 tricky 的点在于，如何返回？关于这点我研究了 7 个多小时，阅读了大量手册和源码。这项工作的难点在于，如果直接返回，那么由于 [1.2.2](#122-context-switch-实现) 节我们设置的 context 中寄存器 X30 的值为函数 `forkret` 的地址，而且后续没有地方修改过，因此这里 `forkret` 还是会返回到 `forkret`，导致死循环。那如果直接调用 `trapret` 呢？由于当前栈指针 SP 保存的地址指向函数 `forkret` 目前栈帧的栈顶，显然不是进程 trap frame 的地址 `p->tf`。然而 `trapret` 在还原寄存器时需要用到 SP 的值，且该值应当为 `p->tf`，错误的 SP 值将导致 `trapret` 无法正常工作。
 
-```armasm
+```asm
 /* kern/trapasm.S */
 
 /* Return falls through to trapret. */
@@ -583,7 +583,7 @@ uint64 fn = TRAMPOLINE + (userret - trampoline);
 ((void (*)(uint64,uint64))fn)(TRAPFRAME, satp);
 ```
 
-```armasm
+```asm
 /* https://github.com/mit-pdos/xv6-riscv/blob/riscv/kernel/trampoline.S */
 
 .globl userret
@@ -599,7 +599,7 @@ userret:
 
 思来想去，最后还是没能想到什么优雅的解决方案（能用 C 语言解决就算优雅）。因此我就暴力地用汇编写了个辅助函数 `usertrapret`，本质是对 `trapret` 的重载，区别在于可以接受一个 trap frame 指针作为参数。
 
-```armasm
+```asm
 /* kern/trapasm.S */
 
 /* Help forkret to call trapret in an expected way. */

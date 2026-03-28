@@ -1,6 +1,6 @@
 +++
 title = "OS - Lab 7: File System and Shell"
-date = "2021-03-07T15:30:00Z"
+date = 2021-03-07T23:30:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/1469105a-6c21-4d9d-a1fe-ea05288a4e93_88070709.webp"
 tags = [
     "操作系统",
@@ -1261,7 +1261,7 @@ file_write(struct file* f, char* addr, ssize_t n)
 
 对于 AArch64 架构来说，发起系统调用时，用户程序先将参数地址保存到通用寄存器 X0 ~ X5 里，再将系统调用对应的 system call number 保存到寄存器 X8 里，最后通过 `svc` 指令陷入内核态。[^syscall]
 
-```armasm
+```asm
 /* user/initcode.S */
 
 /* exec(init, argv) */
@@ -1288,7 +1288,7 @@ argv:
 
 陷入内核态前，需要先构建 trap frame 结构。这里我们在原有寄存器的基础上，新增了 musl 需要用到的两个寄存器 Q0 和 TPIDR_EL0。
 
-```armasm
+```asm
 /* kern/trapasm.S */
 
 /* Save Q0 and TPIDR_EL0 to placate musl. */

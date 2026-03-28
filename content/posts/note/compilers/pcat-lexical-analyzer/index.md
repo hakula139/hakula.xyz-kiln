@@ -1,6 +1,6 @@
 +++
 title = "编译 - Lab 1: PCAT 词法分析器"
-date = "2021-11-05T06:57:00Z"
+date = 2021-11-05T14:57:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/f1e75217-9fa7-4af4-8760-8b66d4373af5_88865174.webp"
 tags = [
     "编译",
@@ -457,7 +457,7 @@ make INPUT="tests/case_1.pcat"
 
 例如对于这样的输入（`tests/case_1.pcat`）：
 
-```pcat
+```text
 PROGRAM IS
     VAR i, j : INTEGER := 1; 
     VAR x : REAL := 2.0;

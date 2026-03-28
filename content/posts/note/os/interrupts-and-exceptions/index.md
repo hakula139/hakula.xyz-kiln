@@ -1,6 +1,6 @@
 +++
 title = "OS - Lab 3: Interrupts and Exceptions"
-date = "2020-10-31T10:19:00Z"
+date = 2020-10-31T18:19:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/8394d690-73e8-45c7-854a-47e27d2b45af_71199279.webp"
 tags = [
     "操作系统",
@@ -110,7 +110,7 @@ struct trapframe {
 
 将所有通用寄存器和 3 个特殊寄存器 SP_EL0, SPSR_EL1, ELR_EL1 压入堆栈，然后跳转到中断函数 `trap` 入口。
 
-```armasm
+```asm
 /* kern/trapasm.S */
 
 /* vectors.S sends all traps here. */
@@ -148,7 +148,7 @@ alltraps:
 
 将所有通用寄存器和 3 个特殊寄存器 SP_EL0, SPSR_EL1, ELR_EL1 弹栈还原，然后中断返回（`eret`）。
 
-```armasm
+```asm
 /* kern/trapasm.S */
 
 /* Return falls through to trapret. */

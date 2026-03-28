@@ -1,6 +1,6 @@
 +++
 title = "LR2 配置教程（第 2 版）"
-date = "2018-09-04T08:15:00Z"
+date = 2018-09-04T16:15:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/3aa7fa74-687a-4e72-93ff-d430cebddb50_lr2.webp"
 tags = [
     "BMS",

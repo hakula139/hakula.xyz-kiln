@@ -1,6 +1,6 @@
 +++
 title = "算法 - Project: DNA 测序错误检测 - Task 1: 无噪音整段比对"
-date = "2021-05-16T10:00:00Z"
+date = 2021-05-16T18:00:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/c581e0a2-a818-4a5c-9f5e-be43b40cd861_90380296.webp"
 tags = [
     "算法",
