@@ -206,7 +206,7 @@ int fitsBits(int x, int n) {
 }
 ```
 
-### 8 divpwr2
+### 8 divpwr2 <!-- cspell:disable-line -->
 
 ::: callout { type=quote title="题目" }
 Compute $x / 2^n$, for $0\le n\le 30$.
@@ -310,7 +310,7 @@ int isLessOrEqual(int x, int y) {
 }
 ```
 
-### 12 ilog2
+### 12 ilog2 <!-- cspell:disable-line -->
 
 ::: callout { type=quote title="题目" }
 Return $\lfloor \log_2{x}\rfloor$, where $x>0$.

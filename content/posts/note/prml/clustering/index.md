@@ -313,7 +313,7 @@ GMM 模型（Gaussian Mixture Model）的算法思路类似于 K-Means 模型，
    - `scales`：对于一维的情形，初始化每个高斯分布的标准差为 $1$。
    - `weights`：初始化任一数据点被分配到每个聚簇的先验概率为 $1/k$。
 
-2. EM 算法的 E(xpectation) 步骤：通过目前的参数计算每个数据点被分配到每个聚簇的概率。
+2. EM 算法的 E(xpectation) 步骤：通过目前的参数计算每个数据点被分配到每个聚簇的概率。 <!-- cspell:disable-line -->
 
    先计算给定参数的高斯分布的概率密度函数。
 
@@ -343,7 +343,7 @@ GMM 模型（Gaussian Mixture Model）的算法思路类似于 K-Means 模型，
 
    其中 $i$ 表示第 $i$ 个聚簇，$\phi$ 表示 `weights`，$k$ 表示 $k$ 值。
 
-3. EM 算法的 M(aximization) 步骤：根据当前每个聚簇的概率矩阵，更新模型的各个参数。
+3. EM 算法的 M(aximization) 步骤：根据当前每个聚簇的概率矩阵，更新模型的各个参数。 <!-- cspell:disable-line -->
 
    - `means`：
 

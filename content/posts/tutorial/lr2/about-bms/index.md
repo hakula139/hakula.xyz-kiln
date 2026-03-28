@@ -84,7 +84,7 @@ license = "CC BY-NC-SA 4.0"
 
 ::: callout { type=example title="发狂表 - 散包 @ 百度云" open=false }
 
-[:(fas fa-cloud):  発狂 BMS 難易度表 (SP)](https://pan.baidu.com/s/1pLNgqBh) - **hcvn**
+[:(fas fa-cloud):  発狂 BMS 難易度表 (SP)](https://pan.baidu.com/s/1pLNgqBh) - **hcvn** <!-- cspell:disable-line -->
 
 由 @Udon, @Mikezom, @MsrButterfly 整理，最后更新：2019-02-03
 

@@ -140,7 +140,7 @@ weight = -1
 
 ## :headphones: 音乐
 
-::: music { server="apple" name="favorite-songs" id="pl.u-AkAmPlpf2YvL2d9" country="jp" }
+::: music { server="apple" name="favorite-songs" id="pl.u-AkAmPlpf2YvL2d9" country="jp" } <!-- cspell:disable-line -->
 :::
 
 | 平台             | 账号                     |
