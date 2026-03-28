@@ -1,6 +1,6 @@
 +++
 title = "LLM Intro: From the Basics to Context Engineering (Part 2)"
-date = "2026-03-13T07:30:00Z"
+date = 2026-03-13T15:30:00+08:00
 tags = [
     "AI",
     "LLM",

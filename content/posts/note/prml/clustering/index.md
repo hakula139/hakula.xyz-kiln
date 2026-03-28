@@ -1,6 +1,6 @@
 +++
 title = "PRML - Lab 3: 聚类算法"
-date = "2021-06-13T19:00:00Z"
+date = 2021-06-14T03:00:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/bd34cb2a-2392-4817-ae41-e2c37b5ab971_87631904.webp"
 tags = [
     "PRML",

@@ -1,6 +1,6 @@
 +++
 title = "「我是谁？」——基于 Gemini 2.5 Pro，对自己做一次精神分析"
-date = "2025-06-25T14:26:00Z"
+date = 2025-06-25T22:26:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/314642b3-b328-4520-b4b9-aae9ab7f5baa_123273147.webp"
 tags = [
     "AI",

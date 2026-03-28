@@ -1,6 +1,6 @@
 +++
 title = "LLM Intro: From the Basics to Context Engineering (Part 1)"
-date = "2026-03-13T07:25:00Z"
+date = 2026-03-13T15:25:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/7a0fae46-7783-4156-b223-ebf72d081e80_136849830.webp"
 tags = [
     "AI",

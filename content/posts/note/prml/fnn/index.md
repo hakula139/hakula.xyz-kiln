@@ -1,6 +1,6 @@
 +++
 title = "PRML - Lab 2: FNN 模型"
-date = "2021-05-02T11:30:00Z"
+date = 2021-05-02T19:30:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/b61460f5-786b-4041-9aae-bb993a1011c1_88775351.webp"
 tags = [
     "PRML",

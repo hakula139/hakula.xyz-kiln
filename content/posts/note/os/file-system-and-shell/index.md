@@ -1,6 +1,6 @@
 +++
 title = "OS - Lab 7: File System and Shell"
-date = "2021-03-07T15:30:00Z"
+date = 2021-03-07T23:30:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/1469105a-6c21-4d9d-a1fe-ea05288a4e93_88070709.webp"
 tags = [
     "操作系统",

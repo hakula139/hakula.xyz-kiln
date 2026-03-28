@@ -1,6 +1,6 @@
 +++
 title = "LR2 配置教程 - Result"
-date = "2019-02-10T12:31:00Z"
+date = 2019-02-10T20:31:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/6be82e09-fb04-4d9a-a83c-5cec542f4f81_59521621.webp"
 tags = ["LR2"]
 categories = ["tutorial"]

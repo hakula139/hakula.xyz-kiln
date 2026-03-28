@@ -1,6 +1,6 @@
 +++
 title = "MCP Server Guide: Building a Documentation Server for LLM Agents"
-date = "2026-03-13T09:36:00Z"
+date = 2026-03-13T17:36:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/21256a36-9d48-4447-862f-2ea8c59b8e39_129339284.webp"
 tags = [
     "AI",

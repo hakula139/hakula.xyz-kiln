@@ -1,6 +1,6 @@
 +++
 title = "AVG - 「他人世界末」评测"
-date = "2020-07-21T09:45:00Z"
+date = 2020-07-21T17:45:00+08:00
 featured_image = "assets/cg-mzy-te.webp"
 tags = [
     "AVG",

@@ -1,6 +1,6 @@
 +++
 title = "AVG 个人评测数据"
-date = "2016-07-04T19:48:00Z"
+date = 2016-07-05T03:48:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/2a3d1542-e872-4a6b-9b4c-4cf898469e0a_yuki.webp"
 tags = [
     "AVG",

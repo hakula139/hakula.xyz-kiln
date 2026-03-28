@@ -1,6 +1,6 @@
 +++
 title = "LR2 配置教程 - 启动器"
-date = "2018-09-30T05:09:00Z"
+date = 2018-09-30T13:09:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/96864293-4d16-458d-955b-746a1795d3ba_66360679.webp"
 tags = ["LR2"]
 categories = ["tutorial"]

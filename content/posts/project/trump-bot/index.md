@@ -1,6 +1,6 @@
 +++
 title = "Trump-bot: 一个特朗普风格的文本生成 AI"
-date = "2021-01-18T19:28:00Z"
+date = 2021-01-19T03:28:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/24a5e969-09b5-4da6-95a4-06984cde5c6f_87013646.webp"
 tags = [
     "NLP",

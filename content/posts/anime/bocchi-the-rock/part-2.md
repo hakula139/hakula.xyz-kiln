@@ -1,6 +1,6 @@
 +++
 title = "批判「孤独摇滚」的时候，我们是在批判什么？（二）"
-date = "2023-01-16T15:31:00Z"
+date = 2023-01-16T23:31:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/0bb913d8-a8e5-467b-837e-3bb79f09904e_btr.webp"
 tags = [
     "动画",

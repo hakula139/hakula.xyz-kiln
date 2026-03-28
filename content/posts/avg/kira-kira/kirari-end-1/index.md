@@ -1,7 +1,7 @@
 +++
 title = "AVG - 「KIRA☆KIRA」绮良里线 End 1"
 description = "「向这狗娘养的世界，献出我全部的爱。」"
-date = "2023-01-27T14:33:00Z"
+date = 2023-01-27T22:33:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/da2fc714-0aa1-47be-87af-06d897037e47_kira-kira.webp"
 tags = [
     "AVG",
