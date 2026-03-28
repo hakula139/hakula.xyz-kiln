@@ -457,7 +457,7 @@ make INPUT="tests/case_1.pcat"
 
 例如对于这样的输入（`tests/case_1.pcat`）：
 
-```pcat
+```text
 PROGRAM IS
     VAR i, j : INTEGER := 1; 
     VAR x : REAL := 2.0;
