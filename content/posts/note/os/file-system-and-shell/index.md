@@ -10,7 +10,6 @@ tags = [
     "Shell",
     "C",
 ]
-categories = ["note"]
 license = "CC BY-NC-SA 4.0"
 +++
 

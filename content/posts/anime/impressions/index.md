@@ -6,7 +6,6 @@ tags = [
     "动画",
     "评测",
 ]
-categories = ["anime"]
 weight = 3
 license = "CC BY-NC-SA 4.0"
 +++

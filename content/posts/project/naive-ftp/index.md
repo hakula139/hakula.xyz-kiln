@@ -10,7 +10,6 @@ tags = [
     "Vue",
     "TypeScript",
 ]
-categories = ["project"]
 license = "CC BY-NC-SA 4.0"
 +++
 

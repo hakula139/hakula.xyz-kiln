@@ -9,7 +9,6 @@ tags = [
     "评测",
     "文艺批评",
 ]
-categories = ["avg"]
 license = "CC BY-NC-SA 4.0"
 +++
 

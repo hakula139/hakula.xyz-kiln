@@ -6,7 +6,6 @@ tags = [
     "PHP",
     "Typecho",
 ]
-categories = ["project"]
 license = "CC BY-NC-SA 4.0"
 +++
 

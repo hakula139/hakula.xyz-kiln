@@ -9,7 +9,6 @@ tags = [
     "分支预测",
     "SystemVerilog",
 ]
-categories = ["note"]
 license = "CC BY-NC-SA 4.0"
 +++
 

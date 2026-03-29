@@ -10,7 +10,6 @@ tags = [
     "PyTorch",
     "Python",
 ]
-categories = ["project"]
 license = "CC BY-NC-SA 4.0"
 +++
 

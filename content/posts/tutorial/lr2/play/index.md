@@ -3,7 +3,6 @@ title = "LR2 配置教程 - Play"
 date = 2019-01-20T21:46:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/200bc1d7-4d74-4f49-ab4e-76260094cc61_61930743.webp"
 tags = ["LR2"]
-categories = ["tutorial"]
 license = "CC BY-NC-SA 4.0"
 +++
 

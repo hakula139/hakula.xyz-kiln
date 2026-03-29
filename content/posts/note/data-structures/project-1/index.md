@@ -6,7 +6,6 @@ tags = [
     "数据结构",
     "排序",
 ]
-categories = ["note"]
 license = "CC BY-NC-SA 4.0"
 +++
 

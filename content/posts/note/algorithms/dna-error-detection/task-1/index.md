@@ -9,7 +9,6 @@ tags = [
     "差分算法",
     "C++",
 ]
-categories = ["note"]
 license = "CC BY-NC-SA 4.0"
 +++
 
