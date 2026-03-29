@@ -10,7 +10,6 @@ tags = [
     "拉康",
     "精神分析",
 ]
-categories = ["essay"]
 license = "禁止转载"
 +++
 

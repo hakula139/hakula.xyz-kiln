@@ -7,7 +7,6 @@ tags = [
     "Galgame",
     "评测",
 ]
-categories = ["avg"]
 weight = 2
 license = "CC BY-NC-SA 4.0"
 +++

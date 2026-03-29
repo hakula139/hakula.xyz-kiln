@@ -7,7 +7,6 @@ tags = [
     "Vagex",
     "挂机",
 ]
-categories = ["tutorial"]
 license = "CC BY-NC-SA 4.0"
 +++
 

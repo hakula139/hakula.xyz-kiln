@@ -8,7 +8,6 @@ tags = [
     "文艺批评",
     "Ave Mujica",
 ]
-categories = ["anime"]
 license = "CC BY-NC-SA 4.0"
 +++
 

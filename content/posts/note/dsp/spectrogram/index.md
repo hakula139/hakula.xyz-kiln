@@ -7,7 +7,6 @@ tags = [
     "语谱图",
     "Python",
 ]
-categories = ["note"]
 license = "CC BY-NC-SA 4.0"
 +++
 

@@ -6,7 +6,6 @@ tags = [
     "CS:APP",
     "汇编",
 ]
-categories = ["note"]
 license = "CC BY-NC-SA 4.0"
 +++
 

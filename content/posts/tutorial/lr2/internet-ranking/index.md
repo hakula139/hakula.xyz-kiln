@@ -6,7 +6,6 @@ tags = [
     "BMS",
     "LR2",
 ]
-categories = ["tutorial"]
 license = "CC BY-NC-SA 4.0"
 +++
 

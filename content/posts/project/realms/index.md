@@ -8,7 +8,6 @@ tags = [
     "Go",
     "REST",
 ]
-categories = ["project"]
 license = "CC BY-NC-SA 4.0"
 +++
 

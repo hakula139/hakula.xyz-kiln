@@ -3,7 +3,6 @@ title = "CloudCone VPS"
 date = 2020-01-31T03:21:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/f2df41d3-0d79-4676-9bd1-caa44241875a_cloudcone.webp"
 tags = ["VPS"]
-categories = ["vps"]
 license = "CC BY-NC-SA 4.0"
 +++
 

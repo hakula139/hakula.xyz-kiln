@@ -6,7 +6,6 @@ tags = [
     "建站",
     "VPS",
 ]
-categories = ["essay"]
 license = "CC BY-NC-SA 4.0"
 +++
 

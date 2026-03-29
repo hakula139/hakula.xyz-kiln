@@ -2,6 +2,7 @@ base_url = "https://hakula.xyz"
 title = "HAKULA†CHANNEL"
 description = "Hakula's personal site"
 language = "zh-CN"
+timezone = "Asia/Shanghai"
 output_dir = "public"
 theme = "IgnIt"
 
@@ -9,3 +10,14 @@ theme = "IgnIt"
 name = "Hakula"
 email = "i@hakula.xyz"
 link = "https://hakula.xyz"
+
+[params.home]
+paginate = 8
+
+[params.home.profile]
+avatar = "/images/hotlink-ok/avatar-lite.webp"
+title = "HAKULA†CHANNEL"
+subtitle = "让我们一直谈论变革，以确保事实上什么都没改变。"
+
+[params.section]
+paginate = 16

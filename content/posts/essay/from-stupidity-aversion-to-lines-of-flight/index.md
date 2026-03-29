@@ -10,7 +10,6 @@ tags = [
     "葛兰西",
     "后现代主义",
 ]
-categories = ["essay"]
 license = "CC BY-NC-SA 4.0"
 +++
 

@@ -7,7 +7,6 @@ tags = [
     "模糊匹配",
     "C++",
 ]
-categories = ["note"]
 license = "CC BY-NC-SA 4.0"
 +++
 

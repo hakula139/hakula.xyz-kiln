@@ -3,7 +3,6 @@ title = "LR2 配置教程 - Select"
 date = 2019-01-14T21:42:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/7af3b622-5de0-46c4-a5c0-c5556881a0f9_65262289.webp"
 tags = ["LR2"]
-categories = ["tutorial"]
 license = "CC BY-NC-SA 4.0"
 +++
 

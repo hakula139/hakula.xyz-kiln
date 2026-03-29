@@ -3,7 +3,6 @@ title = "LR2 配置教程 - 主界面"
 date = 2018-10-11T01:31:00+08:00
 featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/f9301174-041c-4d47-8d02-00c526fdafe6_65835281.webp"
 tags = ["LR2"]
-categories = ["tutorial"]
 license = "CC BY-NC-SA 4.0"
 +++
 

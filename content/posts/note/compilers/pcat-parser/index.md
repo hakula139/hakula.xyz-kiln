@@ -11,7 +11,6 @@ tags = [
     "PCAT",
     "C++",
 ]
-categories = ["note"]
 license = "CC BY-NC-SA 4.0"
 +++
 

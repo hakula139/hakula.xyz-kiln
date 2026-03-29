@@ -7,7 +7,6 @@ tags = [
     "哲学",
     "康德",
 ]
-categories = ["note"]
 license = "CC BY-NC-SA 4.0"
 +++
 
