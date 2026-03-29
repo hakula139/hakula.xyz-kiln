@@ -2,6 +2,7 @@ base_url = "https://hakula.xyz"
 title = "HAKULA†CHANNEL"
 description = "Hakula's personal site"
 language = "zh-CN"
+timezone = "Asia/Shanghai"
 output_dir = "public"
 theme = "IgnIt"
 
