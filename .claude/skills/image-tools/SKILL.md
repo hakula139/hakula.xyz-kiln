@@ -15,23 +15,23 @@ Download, compress, and inspect images for article covers and site assets. Use w
 
 1. Download the original from Pixiv:
 
-```bash
-./image-tools.sh download <PIXIV_ID>
-```
+   ```bash
+   ./image-tools.sh download <PIXIV_ID>
+   ```
 
 2. Compress to WebP at 1920px wide (default):
 
-```bash
-./image-tools.sh compress <PIXIV_ID>_p0.png
-```
+   ```bash
+   ./image-tools.sh compress <PIXIV_ID>_p0.png
+   ```
 
-Output goes to `static/images/article-covers/<PIXIV_ID>_p0.webp` by default. Rename to `<PIXIV_ID>.webp` if needed.
+   Output goes to `static/images/article-covers/<PIXIV_ID>_p0.webp` by default. Rename to `<PIXIV_ID>.webp` if needed.
 
 3. Reference in frontmatter:
 
-```toml
-featured_image = "/images/article-covers/<PIXIV_ID>.webp"
-```
+   ```toml
+   featured_image = "/images/article-covers/<PIXIV_ID>.webp"
+   ```
 
 ### Upgrading the Background Image
 

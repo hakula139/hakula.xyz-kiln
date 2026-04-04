@@ -8,6 +8,9 @@
     // Heading style: atx
     "MD003": { "style": "atx" },
 
+    // Ordered list style: incremental (1. 2. 3.)
+    "MD029": { "style": "ordered" },
+
     // Unordered list style: dash
     "MD004": { "style": "dash" },
 
