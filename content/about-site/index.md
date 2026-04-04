@@ -1,7 +1,7 @@
 +++
 title = "关于本站"
 date = 2022-10-14T15:30:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/4010eeb1-bb77-4b22-a57d-1faeeaff57f8_70180757.webp"
+featured_image = "/images/article-covers/70180757.webp"
 weight = -2
 +++
 

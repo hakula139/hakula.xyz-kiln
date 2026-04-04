@@ -1,7 +1,7 @@
 +++
 title = "DSP - Lab 2: 语谱图"
 date = 2022-05-12T08:50:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/83b43957-3908-4479-9350-68bcd4edeec4_102257565.webp"
+featured_image = "/images/article-covers/102257565.webp"
 tags = [
     "数字信号处理",
     "语谱图",

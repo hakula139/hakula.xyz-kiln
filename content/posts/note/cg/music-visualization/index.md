@@ -1,7 +1,7 @@
 +++
 title = "CG - Project 1: 音乐可视化"
 date = 2022-01-01T21:18:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/56755a37-2944-4e25-9c5a-966148ead1d9_82818849.webp"
+featured_image = "/images/article-covers/82818849.webp"
 tags = [
     "可视化",
     "HTML5",

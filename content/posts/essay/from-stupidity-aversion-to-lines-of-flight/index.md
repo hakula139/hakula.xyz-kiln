@@ -1,7 +1,7 @@
 +++
 title = "AI 思辨录：从「厌蠢症」到「逃逸线」"
 date = 2025-07-19T19:54:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/5266dfef-54dd-4c19-b257-29092ec750c4_91419407.webp"
+featured_image = "/images/article-covers/91419407.webp"
 tags = [
     "AI",
     "LLM",

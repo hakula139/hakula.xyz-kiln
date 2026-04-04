@@ -1,7 +1,7 @@
 +++
 title = "数据结构 - Project 1: 有序数组还原"
 date = 2019-11-25T00:22:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/46498178-d30b-4493-8558-7a06e906b5ff_77359441.webp"
+featured_image = "/images/article-covers/77359441.webp"
 tags = [
     "数据结构",
     "排序",

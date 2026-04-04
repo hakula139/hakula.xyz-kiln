@@ -9,7 +9,6 @@ tags = [
     "Subagent",
     "Agent Team",
 ]
-categories = ["tutorial"]
 draft = true
 license = "CC BY-NC-SA 4.0"
 +++

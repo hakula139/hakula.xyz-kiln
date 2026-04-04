@@ -1,7 +1,7 @@
 +++
 title = "OS - Lab 2: Memory Management"
 date = 2020-10-24T16:31:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/8ad3f38d-4e95-4cb3-8016-5eb97e5cb68e_83708256.webp"
+featured_image = "/images/article-covers/83708256.webp"
 tags = [
     "操作系统",
     "ARM",

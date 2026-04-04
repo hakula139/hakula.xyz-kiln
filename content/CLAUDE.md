@@ -10,15 +10,13 @@
 +++
 title = "文章标题"
 date = 2025-01-15T20:30:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/{image}.webp"
+featured_image = "/images/article-covers/{image}.webp"
 tags = ["标签 1", "标签 2"]
-categories = ["分类名称"]
 license = "CC BY-NC-SA 4.0"
 +++
 ```
 
 - `date`：ISO 8601，时区 `+08:00`，可初始化为当前日期和时间。
-- `categories`：通常为 `content/posts/` 下的第一层目录名。
 - 路径含 `_` 开头目录的内部文档无需 frontmatter。
 
 ## 2. 文章结构

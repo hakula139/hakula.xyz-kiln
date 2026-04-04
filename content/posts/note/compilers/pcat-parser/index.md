@@ -1,7 +1,7 @@
 +++
 title = "编译 - Lab 2: PCAT 语法分析器"
 date = 2021-12-07T02:16:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/eff4b84a-7563-4d31-a7ff-5b8681d5cbdb_94538258.webp"
+featured_image = "/images/article-covers/94538258.webp"
 tags = [
     "编译",
     "语法分析",
