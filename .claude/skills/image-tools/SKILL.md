@@ -2,7 +2,7 @@
 
 Download, compress, and inspect images for article covers and site assets. Use when adding new article covers (from Pixiv or other sources), upgrading existing images to higher quality, or checking image dimensions / file sizes.
 
-**Script**: `.claude/skills/image-tools.sh` — all operations are implemented as subcommands. Run with `help` for full usage.
+**Script**: `.claude/skills/image-tools/image-tools.sh` — all operations are implemented as subcommands. Run with `help` for full usage.
 
 ## Prerequisites
 
