@@ -30,10 +30,16 @@ Output is written to `public/`.
 .
 ├── config.toml         # Site configuration
 ├── content/            # Markdown content (posts, standalone pages)
+├── scripts/            # Utility scripts
+│   └── compress-image.sh  # ImageMagick 7 image → WebP converter
+├── static/             # Static assets
+│   └── images/
+│       ├── article-covers/   # Featured images for posts (WebP)
+│       ├── hotlink-ok/       # Avatar images (publicly linkable)
+│       └── bg.webp           # Background image (4K)
 ├── templates/          # Site-level template overrides
 ├── themes/             # Themes (git submodules)
 │   └── IgnIt/          # Active theme
-├── static/             # Static assets (favicons, images)
 └── public/             # Build output
 ```
 
