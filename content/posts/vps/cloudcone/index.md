@@ -1,7 +1,7 @@
 +++
 title = "CloudCone VPS"
 date = 2020-01-31T03:21:00+08:00
-featured_image = "/images/article-covers/cloudcone_p0.webp"
+featured_image = "/images/article-covers/cloudcone.webp"
 tags = ["VPS"]
 license = "CC BY-NC-SA 4.0"
 +++

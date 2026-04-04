@@ -2,7 +2,7 @@
 title = "「Ave Mujica」：循此苦旅，终抵群星？- 文本细读 - 第 1 集"
 description = "Sub rosa."
 date = 2025-11-09T16:30:00+08:00
-featured_image = "/images/article-covers/ave-mujica_p0.webp"
+featured_image = "/images/article-covers/ave-mujica.webp"
 tags = [
     "动画",
     "文艺批评",

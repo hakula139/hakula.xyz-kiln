@@ -2,7 +2,7 @@
 title = "「Ave Mujica」：循此苦旅，终抵群星？- 文本细读 - 第 2 集"
 description = "Exitus acta probat."
 date = 2026-02-08T18:58:00+08:00
-featured_image = "/images/article-covers/ave-mujica_p0.webp"
+featured_image = "/images/article-covers/ave-mujica.webp"
 tags = [
     "动画",
     "文艺批评",

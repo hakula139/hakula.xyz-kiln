@@ -2,7 +2,7 @@
 title = "《纯粹理性批判》笔记"
 description = "康德. 纯粹理性批判[M]. 邓晓芒译, 杨祖陶校. 北京: 人民出版社, 2004."
 date = 2023-04-18T16:37:00+08:00
-featured_image = "/images/article-covers/critique-of-pure-reason_p0.webp"
+featured_image = "/images/article-covers/critique-of-pure-reason.webp"
 tags = [
     "哲学",
     "康德",

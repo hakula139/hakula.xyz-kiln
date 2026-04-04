@@ -1,7 +1,7 @@
 +++
 title = "AVG 个人评测数据"
 date = 2016-07-05T03:48:00+08:00
-featured_image = "/images/article-covers/yuki_p0.webp"
+featured_image = "/images/article-covers/yuki.webp"
 tags = [
     "AVG",
     "Galgame",
