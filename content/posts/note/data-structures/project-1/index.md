@@ -1,7 +1,7 @@
 +++
 title = "数据结构 - Project 1: 有序数组还原"
 date = 2019-11-25T00:22:00+08:00
-featured_image = "/images/article-covers/77359441.webp"
+featured_image = "/images/article-covers/77359441_p0.webp"
 tags = [
     "数据结构",
     "排序",

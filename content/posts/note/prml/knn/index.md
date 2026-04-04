@@ -1,7 +1,7 @@
 +++
 title = "PRML - Lab 1: KNN 算法"
 date = 2021-04-02T01:50:00+08:00
-featured_image = "/images/article-covers/90743556.webp"
+featured_image = "/images/article-covers/90743556_p0.webp"
 tags = [
     "PRML",
     "机器学习",

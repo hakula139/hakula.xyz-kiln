@@ -1,7 +1,7 @@
 +++
 title = "Hello, World!"
 date = 2018-08-23T12:15:00+08:00
-featured_image = "/images/article-covers/66372748.webp"
+featured_image = "/images/article-covers/66372748_p0.webp"
 tags = [
     "建站",
     "VPS",

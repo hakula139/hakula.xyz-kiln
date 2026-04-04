@@ -1,7 +1,7 @@
 +++
 title = "OS - Lab 4: Multiprocessor and Lock"
 date = 2020-11-15T23:54:00+08:00
-featured_image = "/images/article-covers/69514736.webp"
+featured_image = "/images/article-covers/69514736_p0.webp"
 tags = [
     "操作系统",
     "ARM",

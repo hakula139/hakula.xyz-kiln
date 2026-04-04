@@ -1,7 +1,7 @@
 +++
 title = "计组 - Lab 4: 分支预测"
 date = 2020-06-08T05:46:00+08:00
-featured_image = "/images/article-covers/78954079.webp"
+featured_image = "/images/article-covers/78954079_p0.webp"
 tags = [
     "计组",
     "MIPS",

@@ -1,7 +1,7 @@
 +++
 title = "动画个人评测数据"
 date = 2023-05-11T14:31:00+08:00
-featured_image = "/images/article-covers/95611645.webp"
+featured_image = "/images/article-covers/95611645_p0.webp"
 tags = [
     "动画",
     "评测",

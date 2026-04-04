@@ -1,7 +1,7 @@
 +++
 title = "DSP - Project: 语音识别"
 date = 2022-06-03T15:14:00+08:00
-featured_image = "/images/article-covers/94819769.webp"
+featured_image = "/images/article-covers/94819769_p0.webp"
 tags = [
     "数字信号处理",
     "语音识别",

@@ -1,7 +1,7 @@
 +++
 title = "LLM Intro: From the Basics to Context Engineering (Part 1)"
 date = 2026-03-13T15:25:00+08:00
-featured_image = "/images/article-covers/136849830.webp"
+featured_image = "/images/article-covers/136849830_p0.webp"
 tags = [
     "AI",
     "LLM",

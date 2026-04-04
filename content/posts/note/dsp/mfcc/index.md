@@ -1,7 +1,7 @@
 +++
 title = "DSP - Lab 3: MFCC: Mel 频率的倒谱系数"
 date = 2022-05-27T04:29:00+08:00
-featured_image = "/images/article-covers/95680357.webp"
+featured_image = "/images/article-covers/95680357_p0.webp"
 tags = [
     "数字信号处理",
     "端点检测",

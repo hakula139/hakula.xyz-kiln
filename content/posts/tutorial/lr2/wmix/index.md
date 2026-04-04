@@ -1,7 +1,7 @@
 +++
 title = "LR2 配置教程 - WMIX"
 date = 2019-02-11T21:29:00+08:00
-featured_image = "/images/article-covers/62549069.webp"
+featured_image = "/images/article-covers/62549069_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
 +++

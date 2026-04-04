@@ -1,7 +1,7 @@
 +++
 title = "Trump-bot: 一个特朗普风格的文本生成 AI"
 date = 2021-01-19T03:28:00+08:00
-featured_image = "/images/article-covers/87013646.webp"
+featured_image = "/images/article-covers/87013646_p0.webp"
 tags = [
     "NLP",
     "文本生成",

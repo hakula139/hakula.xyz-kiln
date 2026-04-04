@@ -1,7 +1,7 @@
 +++
 title = "PRML - Lab 2: FNN 模型"
 date = 2021-05-02T19:30:00+08:00
-featured_image = "/images/article-covers/88775351.webp"
+featured_image = "/images/article-covers/88775351_p0.webp"
 tags = [
     "PRML",
     "机器学习",

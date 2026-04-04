@@ -1,7 +1,7 @@
 +++
 title = "OS - Lab 6: Driver and LibC"
 date = 2021-01-24T00:26:00+08:00
-featured_image = "/images/article-covers/60181142.webp"
+featured_image = "/images/article-covers/60181142_p0.webp"
 tags = [
     "操作系统",
     "ARM",

@@ -1,7 +1,7 @@
 +++
 title = "CS:APP - Data Lab"
 date = 2019-10-09T11:15:00+08:00
-featured_image = "/images/article-covers/csapp.webp"
+featured_image = "/images/article-covers/csapp_p0.webp"
 tags = [
     "CS:APP",
     "位运算",

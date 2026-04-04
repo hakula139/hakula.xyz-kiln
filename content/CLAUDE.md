@@ -10,7 +10,7 @@
 +++
 title = "文章标题"
 date = 2025-01-15T20:30:00+08:00
-featured_image = "/images/article-covers/{image}.webp"
+featured_image = "/images/article-covers/{pixiv_id}_p0.webp"
 tags = ["标签 1", "标签 2"]
 license = "CC BY-NC-SA 4.0"
 +++

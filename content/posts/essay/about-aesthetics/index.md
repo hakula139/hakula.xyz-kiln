@@ -1,7 +1,7 @@
 +++
 title = "谈谈审美：我的立场、观点"
 date = 2023-12-22T19:18:00+08:00
-featured_image = "/images/article-covers/94175799.webp"
+featured_image = "/images/article-covers/94175799_p0.webp"
 tags = ["美学"]
 license = "CC BY-NC-SA 4.0"
 +++

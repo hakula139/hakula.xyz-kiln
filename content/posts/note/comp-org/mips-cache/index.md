@@ -1,7 +1,7 @@
 +++
 title = "计组 - Lab 3: Cache"
 date = 2020-05-24T16:36:00+08:00
-featured_image = "/images/article-covers/78302689.webp"
+featured_image = "/images/article-covers/78302689_p0.webp"
 tags = [
     "计组",
     "MIPS",

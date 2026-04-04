@@ -1,7 +1,7 @@
 +++
 title = "链接库"
 date = 2018-11-15T18:46:00+08:00
-featured_image = "/images/article-covers/95120332.webp"
+featured_image = "/images/article-covers/95120332_p1.webp"
 weight = -4
 +++
 

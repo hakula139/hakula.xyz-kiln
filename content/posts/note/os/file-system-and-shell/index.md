@@ -1,7 +1,7 @@
 +++
 title = "OS - Lab 7: File System and Shell"
 date = 2021-03-07T23:30:00+08:00
-featured_image = "/images/article-covers/88070709.webp"
+featured_image = "/images/article-covers/88070709_p0.webp"
 tags = [
     "操作系统",
     "ARM",

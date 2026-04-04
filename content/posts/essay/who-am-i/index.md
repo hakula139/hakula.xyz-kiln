@@ -1,7 +1,7 @@
 +++
 title = "「我是谁？」——基于 Gemini 2.5 Pro，对自己做一次精神分析"
 date = 2025-06-25T22:26:00+08:00
-featured_image = "/images/article-covers/123273147.webp"
+featured_image = "/images/article-covers/123273147_p0.webp"
 tags = [
     "AI",
     "LLM",

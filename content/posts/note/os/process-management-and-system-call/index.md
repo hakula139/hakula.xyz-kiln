@@ -1,7 +1,7 @@
 +++
 title = "OS - Lab 5: Process Management and System Call"
 date = 2020-12-09T02:08:00+08:00
-featured_image = "/images/article-covers/85995104.webp"
+featured_image = "/images/article-covers/85995104_p0.webp"
 tags = [
     "操作系统",
     "ARM",

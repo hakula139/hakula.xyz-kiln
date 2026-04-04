@@ -1,7 +1,7 @@
 +++
 title = "算法 - Project: DNA 测序错误检测 - Task 1: 无噪音整段比对"
 date = 2021-05-16T18:00:00+08:00
-featured_image = "/images/article-covers/90380296.webp"
+featured_image = "/images/article-covers/90380296_p0.webp"
 tags = [
     "算法",
     "编辑距离",

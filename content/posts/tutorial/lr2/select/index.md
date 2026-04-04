@@ -1,7 +1,7 @@
 +++
 title = "LR2 配置教程 - Select"
 date = 2019-01-14T21:42:00+08:00
-featured_image = "/images/article-covers/65262289.webp"
+featured_image = "/images/article-covers/65262289_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
 +++

@@ -1,7 +1,7 @@
 +++
 title = "LR2 配置教程 - Play"
 date = 2019-01-20T21:46:00+08:00
-featured_image = "/images/article-covers/61930743.webp"
+featured_image = "/images/article-covers/61930743_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
 +++

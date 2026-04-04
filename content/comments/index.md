@@ -1,7 +1,7 @@
 +++
 title = "留言板"
 date = 2018-08-27T23:58:00+08:00
-featured_image = "/images/article-covers/67767892.webp"
+featured_image = "/images/article-covers/67767892_p0.webp"
 weight = -3
 +++
 

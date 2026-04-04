@@ -1,7 +1,7 @@
 +++
 title = "必须保卫战争"
 date = 2023-08-10T22:17:00+08:00
-featured_image = "/images/article-covers/104923272.webp"
+featured_image = "/images/article-covers/104923272_p0.webp"
 tags = ["意识形态批判"]
 license = "CC BY-NC-SA 4.0"
 +++

@@ -1,7 +1,7 @@
 +++
 title = "LR2 配置教程 - 关于 LR2"
 date = 2018-09-14T23:15:00+08:00
-featured_image = "/images/article-covers/70624369.webp"
+featured_image = "/images/article-covers/70624369_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
 +++

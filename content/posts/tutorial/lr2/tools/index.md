@@ -1,7 +1,7 @@
 +++
 title = "LR2 配置教程 - 辅助工具"
 date = 2019-07-20T02:47:00+08:00
-featured_image = "/images/article-covers/72296053.webp"
+featured_image = "/images/article-covers/72296053_p0.webp"
 tags = [
     "BMS",
     "LR2",

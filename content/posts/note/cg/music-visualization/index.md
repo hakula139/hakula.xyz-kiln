@@ -1,7 +1,7 @@
 +++
 title = "CG - Project 1: 音乐可视化"
 date = 2022-01-01T21:18:00+08:00
-featured_image = "/images/article-covers/82818849.webp"
+featured_image = "/images/article-covers/82818849_p0.webp"
 tags = [
     "可视化",
     "HTML5",

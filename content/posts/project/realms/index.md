@@ -1,7 +1,7 @@
 +++
 title = "REALMS: 一个图书管理系统"
 date = 2020-05-12T22:37:00+08:00
-featured_image = "/images/article-covers/69321889.webp"
+featured_image = "/images/article-covers/69321889_p0.webp"
 tags = [
     "数据库",
     "MySQL",

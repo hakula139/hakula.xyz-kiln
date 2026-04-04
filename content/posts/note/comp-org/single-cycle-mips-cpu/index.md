@@ -1,7 +1,7 @@
 +++
 title = "计组 - Lab 1: 单周期 MIPS CPU"
 date = 2020-04-07T23:14:00+08:00
-featured_image = "/images/article-covers/78398601.webp"
+featured_image = "/images/article-covers/78398601_p0.webp"
 tags = [
     "计组",
     "MIPS",

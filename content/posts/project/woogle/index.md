@@ -1,7 +1,7 @@
 +++
 title = "Woogle: 一个基于倒排索引的简易搜索引擎"
 date = 2021-12-17T16:45:00+08:00
-featured_image = "/images/article-covers/94278235.webp"
+featured_image = "/images/article-covers/94278235_p0.webp"
 tags = [
     "分布式系统",
     "倒排索引",

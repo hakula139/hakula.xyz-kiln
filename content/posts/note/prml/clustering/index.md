@@ -1,7 +1,7 @@
 +++
 title = "PRML - Lab 3: 聚类算法"
 date = 2021-06-14T03:00:00+08:00
-featured_image = "/images/article-covers/87631904.webp"
+featured_image = "/images/article-covers/87631904_p0.webp"
 tags = [
     "PRML",
     "机器学习",

@@ -1,7 +1,7 @@
 +++
 title = "Naive-FTP: 一个简易的 FTP 服务端 & 客户端"
 date = 2021-01-11T03:08:00+08:00
-featured_image = "/images/article-covers/86286793.webp"
+featured_image = "/images/article-covers/86286793_p0.webp"
 tags = [
     "计网",
     "FTP",

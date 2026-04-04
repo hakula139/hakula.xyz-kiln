@@ -1,7 +1,7 @@
 +++
 title = "关于我"
 date = 2019-04-16T00:05:00+08:00
-featured_image = "/images/article-covers/64035231.webp"
+featured_image = "/images/article-covers/64035231_p0.webp"
 weight = -1
 +++
 
