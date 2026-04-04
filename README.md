@@ -30,8 +30,6 @@ Output is written to `public/`.
 .
 ├── config.toml         # Site configuration
 ├── content/            # Markdown content (posts, standalone pages)
-├── scripts/            # Utility scripts
-│   └── compress-image.sh  # ImageMagick 7 image → WebP converter
 ├── static/             # Static assets
 │   └── images/
 │       ├── article-covers/   # Featured images for posts (WebP)

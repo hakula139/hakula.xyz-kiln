@@ -49,6 +49,7 @@ llmstxt
 LLSIF
 LNMP
 LSTM
+magick
 MAIR
 Matmul
 MBTI
