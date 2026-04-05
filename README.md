@@ -28,13 +28,17 @@ Output is written to `public/`.
 
 ```text
 .
-├── config.toml         # Site configuration
-├── content/            # Markdown content (posts, standalone pages)
-├── templates/          # Site-level template overrides
-├── themes/             # Themes (git submodules)
-│   └── IgnIt/          # Active theme
-├── static/             # Static assets (favicons, images)
-└── public/             # Build output
+├── config.toml               # Site configuration
+├── content/                  # Markdown content (posts, standalone pages)
+├── static/                   # Static assets
+│   └── images/
+│       ├── article-covers/   # Featured images for posts (WebP)
+│       ├── hotlink-ok/       # Avatar images (publicly linkable)
+│       └── bg.webp           # Background image (4K)
+├── templates/                # Site-level template overrides
+├── themes/                   # Themes (git submodules)
+│   └── IgnIt/                # Active theme
+└── public/                   # Build output
 ```
 
 ## License

@@ -1,7 +1,7 @@
 +++
 title = "UserAgent for Typecho"
 date = 2019-01-27T21:58:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/77a35a51-7664-46a3-aa46-4ba353b7cff9_39186698.webp"
+featured_image = "/images/article-covers/39186698_p0.webp"
 tags = [
     "PHP",
     "Typecho",

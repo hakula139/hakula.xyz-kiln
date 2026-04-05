@@ -1,7 +1,7 @@
 +++
 title = "LR2 配置教程 - WMIX"
 date = 2019-02-11T21:29:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/bdf0f7e8-a41e-4bbd-b13e-91df138cbac9_62549069.webp"
+featured_image = "/images/article-covers/62549069_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
 +++

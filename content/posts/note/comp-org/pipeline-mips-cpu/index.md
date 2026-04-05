@@ -1,7 +1,7 @@
 +++
 title = "计组 - Lab 2: 流水线 MIPS CPU"
 date = 2020-04-25T04:37:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/8743ce77-9e13-40f5-9040-dcfa901db1d9_75293213.webp"
+featured_image = "/images/article-covers/75293213_p0.webp"
 tags = [
     "计组",
     "MIPS",

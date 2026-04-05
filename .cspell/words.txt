@@ -15,6 +15,7 @@ Cazotte
 Cepstral
 Chihaya
 cinkai
+csapp
 CSDN
 Csikszentmihalyi
 CUDA
@@ -49,6 +50,7 @@ llmstxt
 LLSIF
 LNMP
 LSTM
+magick
 MAIR
 Matmul
 MBTI
@@ -73,7 +75,6 @@ PGREAT
 pixiv
 prml
 PTSD
-Rāna
 rclone
 realmsd
 Rikki
@@ -81,6 +82,7 @@ riscv
 Ritsuki
 rownum
 Rushkoff
+Rāna
 Sadaharu
 Sakiko
 sakura
@@ -118,9 +120,10 @@ woogle
 XDMCP
 Xshell
 YangMame
-Yūtenji
+yuki
 Yuutenji
 yyds
 yytext
-Žižek
+Yūtenji
 Zygmunt
+Žižek

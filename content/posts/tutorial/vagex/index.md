@@ -1,7 +1,7 @@
 +++
 title = "Vagex 折腾记"
 date = 2019-04-11T17:48:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/19568a71-6cf0-49f2-b1df-a6ebb69bfceb_74046731.webp"
+featured_image = "/images/article-covers/74046731_p0.webp"
 tags = [
     "VPS",
     "Vagex",

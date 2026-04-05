@@ -1,7 +1,7 @@
 +++
 title = "计组 - Lab 3: Cache"
 date = 2020-05-24T16:36:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/46dfc5c0-b5e8-4228-bd48-5dfeed2c2a17_78302689.webp"
+featured_image = "/images/article-covers/78302689_p0.webp"
 tags = [
     "计组",
     "MIPS",

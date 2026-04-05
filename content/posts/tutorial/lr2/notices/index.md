@@ -1,7 +1,7 @@
 +++
 title = "LR2 配置教程 - 注意事项"
 date = 2019-07-19T02:29:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/2f3f9778-cfcf-4b8e-8dbf-f4cb25f38a67_75778049.webp"
+featured_image = "/images/article-covers/75778049_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
 +++

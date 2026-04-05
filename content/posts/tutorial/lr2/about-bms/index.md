@@ -1,7 +1,7 @@
 +++
 title = "LR2 配置教程 - 关于 BMS"
 date = 2018-09-09T10:37:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/254a5dc4-a44d-4b1b-8f8b-b26dbcc81af4_70937229.webp"
+featured_image = "/images/article-covers/70937229_p0.webp"
 tags = ["BMS"]
 license = "CC BY-NC-SA 4.0"
 +++

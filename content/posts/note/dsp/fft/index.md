@@ -1,7 +1,7 @@
 +++
 title = "DSP - Lab 1: FFT: 快速傅立叶变换"
 date = 2022-03-26T01:37:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/d6012c5f-1973-467d-9fba-4ac6a11f4a53_102184125.webp"
+featured_image = "/images/article-covers/102184125_p0.webp"
 tags = [
     "数字信号处理",
     "FFT",

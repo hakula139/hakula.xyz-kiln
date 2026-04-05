@@ -23,6 +23,9 @@
     // Heading trailing punctuation: only flag .,;:
     "MD026": { "punctuation": ".,;:" },
 
+    // Ordered list style: incremental (1. 2. 3.)
+    "MD029": { "style": "ordered" },
+
     // Disable no-inline-html — we use <!--more--> and cspell comments
     "MD033": false,
 

@@ -1,7 +1,7 @@
 +++
 title = "LR2 配置教程 - LR2IR"
 date = 2019-04-02T16:26:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/ef3f299c-00e3-432c-9cb7-4221cc7a05d0_59288952.webp"
+featured_image = "/images/article-covers/59288952_p0.webp"
 tags = [
     "BMS",
     "LR2",

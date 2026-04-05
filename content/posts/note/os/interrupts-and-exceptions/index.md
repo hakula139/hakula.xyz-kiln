@@ -1,7 +1,7 @@
 +++
 title = "OS - Lab 3: Interrupts and Exceptions"
 date = 2020-10-31T18:19:00+08:00
-featured_image = "https://hakula-1257872502.file.myqcloud.com/images/3/article-covers/8394d690-73e8-45c7-854a-47e27d2b45af_71199279.webp"
+featured_image = "/images/article-covers/71199279_p0.webp"
 tags = [
     "操作系统",
     "ARM",
