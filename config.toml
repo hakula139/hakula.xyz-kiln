@@ -16,7 +16,7 @@ fontawesome = true
 
 [params.background]
 image = "/images/bg.webp"
-position = "right center"
+position = "70% center"
 
 [params.home]
 paginate = 8
