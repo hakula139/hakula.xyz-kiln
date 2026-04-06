@@ -35,6 +35,9 @@ importers:
       esbuild:
         specifier: ^0.28.0
         version: 0.28.0
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
       markdownlint-cli2:
         specifier: ^0.22.0
         version: 0.22.0
@@ -873,6 +876,11 @@ packages:
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   ignore@7.0.5:
     resolution: {integrity: sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg==}
@@ -1975,6 +1983,8 @@ snapshots:
       unicorn-magic: 0.4.0
 
   graceful-fs@4.2.11: {}
+
+  husky@9.1.7: {}
 
   ignore@7.0.5: {}
 
