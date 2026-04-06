@@ -1,5 +1,6 @@
 {
   "private": true,
+  "packageManager": "pnpm@10.30.3",
   "scripts": {
     "build:css": "tailwindcss -i assets/css/main.css -o static/css/style.min.css --minify",
     "build:js": "esbuild assets/js/*.js --outdir=static/js --minify --out-extension:.js=.min.js",
