@@ -11,23 +11,18 @@
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem;
-  border: 1px solid #e0e5eb;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   transition: box-shadow 0.2s, border-color 0.2s;
 }
 
-[theme='dark'] .site-card {
-  border-color: #3d4450;
-}
-
 .site-card:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-color: #c0c5cb;
+  border-color: var(--color-text-tertiary);
 }
 
-[theme='dark'] .site-card:hover {
+[data-theme='dark'] .site-card:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  border-color: #555;
 }
 
 .site-logo-wrapper {
@@ -54,14 +49,10 @@
 }
 
 .site-desc {
-  color: #666;
+  color: var(--color-text-secondary);
   font-size: 0.85rem;
   line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-[theme='dark'] .site-desc {
-  color: #999;
 }
