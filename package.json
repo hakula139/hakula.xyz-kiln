@@ -5,7 +5,8 @@
     "build:js": "esbuild assets/js/*.js --outdir=static/js --minify --out-extension:.js=.min.js",
     "build": "pnpm build:css && pnpm build:js",
     "lint": "markdownlint-cli2 \"content/**/*.md\"",
-    "spellcheck": "cspell --no-progress \"content/**/*.md\""
+    "spellcheck": "cspell --no-progress \"content/**/*.md\"",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@cspell/dict-de-de": "^4.1.2",
