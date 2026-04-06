@@ -22,7 +22,7 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / MIPS-CPU / Pipeline](https://github.com/hakula139/MIPS-CPU/tree/master/Pipeline)
+[:(fab fa-github): hakula139 / MIPS-CPU / Pipeline](https://github.com/hakula139/MIPS-CPU/tree/master/Pipeline)
 :::
 
 ## 1 MIPS 指令集
@@ -363,4 +363,4 @@ assign flush_d_o = pc_src_d_i || jump_d_i;
 
 ## 参考资料
 
-1. David Money Harris, Sarah L. Harris: *Digital Design and Computer Architecture Second Edition*
+1. David Money Harris, Sarah L. Harris: _Digital Design and Computer Architecture Second Edition_

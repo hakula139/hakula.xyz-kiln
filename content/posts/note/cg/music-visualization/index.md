@@ -22,7 +22,7 @@ Computer Graphics @ Fudan University, fall 2021.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / music-visualization](https://github.com/hakula139/music-visualization)
+[:(fab fa-github): hakula139 / music-visualization](https://github.com/hakula139/music-visualization)
 :::
 
 ![音乐可视化](assets/screenshot.webp)
@@ -135,14 +135,23 @@ const render = (): void => {
     const step = spectrum.length / barCount;
     const scale = height / FFT_SIZE;
     for (let i = 0; i < barCount; i += 1) {
-      const barValue = average(Array.from(spectrum), Math.floor(i * step), Math.ceil((i + 1) * step));
+      const barValue = average(
+        Array.from(spectrum),
+        Math.floor(i * step),
+        Math.ceil((i + 1) * step),
+      );
       const barHeight = Math.max(barValue * scale, MIN_HEIGHT);
-      canvasContext.value.fillRect(i * (BAR_WIDTH + BAR_GAP), height - barHeight, BAR_WIDTH, barHeight);
+      canvasContext.value.fillRect(
+        i * (BAR_WIDTH + BAR_GAP),
+        height - barHeight,
+        BAR_WIDTH,
+        barHeight,
+      );
     }
 
     requestAnimationFrame(render);
   }
-}
+};
 ```
 
 首先我们在页面上生成一个铺满窗口的 canvas，然后根据这个 canvas 的宽度 $w$ 和高度 $h$ 决定生成多少个柱形、每个柱形的高度缩放比以及在 canvas 中的位置。这里我们设置每个柱形的宽度为 $w_0$（即 `BAR_WIDTH`，此处为 $16$）、间隔为 $\Delta w$（即 `BAR_GAP`，此处为 $5$）、最小高度为 $h_{\min}$（即 `MIN_HEIGHT`，此处为 $2$）。
@@ -201,5 +210,7 @@ const setFillStyle = (): void => {
 [MusicVisualizer.vue]: https://github.com/hakula139/music-visualization/blob/master/src/components/MusicVisualizer.vue
 
 [^cors]: 可能存在跨域问题（CORS），请提供允许跨域的地址。
+
 [^about-freq]: 取 $f_s=44100$，则有 $44100/2/128 = 172.27$。
+
 [^about-loudness]: 当然，也可以利用函数 `AnalyserNode.getFloatFrequencyData()` 直接得到原始响度，但最后还是要映射回去。

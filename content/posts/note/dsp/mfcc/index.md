@@ -22,7 +22,7 @@ Digital Signal Processing @ Fudan University, fall 2021.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / naive-speech-recognizer at dev-mfcc](https://github.com/hakula139/naive-speech-recognizer/tree/dev-mfcc)
+[:(fab fa-github): hakula139 / naive-speech-recognizer at dev-mfcc](https://github.com/hakula139/naive-speech-recognizer/tree/dev-mfcc)
 :::
 
 ## 实验简介
@@ -346,11 +346,11 @@ def dct(x: np.ndarray, d: int) -> np.ndarray:
 {{< style `
 .details .details-content,
 .admonition .admonition-content {
-  padding: 0;
+padding: 0;
 }
 
 .table-wrapper {
-  margin: 0;
+margin: 0;
 }
 ` >}}
 

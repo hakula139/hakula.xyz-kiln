@@ -260,11 +260,11 @@ Return $1$ if $x > 0$, return $0$ otherwise.
 
 我们发现：
 
-|              | 正数  | 负数  |   0   |
-| :----------- | :---: | :---: | :---: |
-| `!(x >> 31)` |   1   |   0   |   1   |
-| `!x`         |   0   |   0   |   1   |
-| 期望结果     |   1   |   0   |   0   |
+|              | 正数 | 负数 |  0  |
+| :----------- | :--: | :--: | :-: |
+| `!(x >> 31)` |  1   |  0   |  1  |
+| `!x`         |  0   |  0   |  1  |
+| 期望结果     |  1   |  0   |  0  |
 
 可见这里存在一个 $\mathrm{XOR}$ 的关系，于是就得到解答。
 
@@ -511,5 +511,7 @@ unsigned float_twice(unsigned uf) {
 [float-wiki]: https://en.wikipedia.org/wiki/Single-precision_floating-point_format
 
 [^codinfox]: 参考了 [@codinfox][bits.c] 的思路。
+
 [^float-wiki]: 参见 [IEEE 二进制浮点数算术标准][float-wiki]。
+
 [^float-twice]: 无需担心溢出到 exponent bits 的问题，这是 IEEE 标准所保证的。

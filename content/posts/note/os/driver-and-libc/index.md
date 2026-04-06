@@ -20,7 +20,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / xv6-armv8 at lab6](https://github.com/hakula139/xv6-armv8/tree/lab6)
+[:(fab fa-github): hakula139 / xv6-armv8 at lab6](https://github.com/hakula139/xv6-armv8/tree/lab6)
 :::
 
 ## 实验简介
@@ -614,28 +614,28 @@ user_init: proc 1 (initproc) success.
 - Divisor selected = 2, shift count = 0
 - EMMC: Set clock, status 0x1ff0000 CONTROL1: 0xe0207
 - EMMC: SD Card Type 2 SC 128Mb UHS-I 0 mfr 170 'XY:QEMU!' r0.1 2/2006, #deadbeef RCA 4567
-sd_init: Partition 1: 00 20 21 00 0c 49 01 08 00 08 00 00 00 00 02 00 
+sd_init: Partition 1: 00 20 21 00 0c 49 01 08 00 08 00 00 00 00 02 00
 - Status: 0
 - CHS address of first absolute sector: head=32, sector=33, cylinder=0
 - Partition type: 12
 - CHS address of last absolute sector: head=73, sector=1, cylinder=8
 - LBA of first absolute sector: 0x800
 - Number of sectors: 131072
-sd_init: Partition 2: 00 49 02 08 83 51 01 10 00 08 02 00 00 f8 01 00 
+sd_init: Partition 2: 00 49 02 08 83 51 01 10 00 08 02 00 00 f8 01 00
 - Status: 0
 - CHS address of first absolute sector: head=73, sector=2, cylinder=8
 - Partition type: 131
 - CHS address of last absolute sector: head=81, sector=1, cylinder=16
 - LBA of first absolute sector: 0x20800
 - Number of sectors: 129024
-sd_init: Partition 3: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+sd_init: Partition 3: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 - Status: 0
 - CHS address of first absolute sector: head=0, sector=0, cylinder=0
 - Partition type: 0
 - CHS address of last absolute sector: head=0, sector=0, cylinder=0
 - LBA of first absolute sector: 0x0
 - Number of sectors: 0
-sd_init: Partition 4: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+sd_init: Partition 4: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 - Status: 0
 - CHS address of first absolute sector: head=0, sector=0, cylinder=0
 - Partition type: 0
@@ -660,7 +660,7 @@ timer_init: success at CPU 1.
 scheduler: switch to proc 1 at CPU 3.
 main: [CPU 1] init success.
 syscall: proc 1 calls syscall 0.
-sys_exec: executing /init with parameters: /init 
+sys_exec: executing /init with parameters: /init
 syscall: proc 1 calls syscall 1.
 sys_exit: in exit.
 ```

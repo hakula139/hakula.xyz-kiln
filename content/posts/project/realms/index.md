@@ -22,7 +22,7 @@ Introduction to Database Systems (H) @ Fudan University, spring 2020.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / REALMS](https://github.com/hakula139/REALMS)
+[:(fab fa-github): hakula139 / REALMS](https://github.com/hakula139/REALMS)
 :::
 
 ## Getting started
@@ -75,7 +75,7 @@ build: realmsd done.
 
 #### 2.1 realmsd - the backend
 
-Run *realmsd* using the command below, and the server will listen to port `7274` by default.
+Run _realmsd_ using the command below, and the server will listen to port `7274` by default.
 
 ```bash
 ./bin/realmsd
@@ -85,7 +85,7 @@ Realmsd will open a database connection to a MySQL database, originally at `root
 
 #### 2.2 realms - the frontend
 
-To interact with the backend, here's a simple CLI tool, namely, *realms*. Though, it's not necessarily required, since you can easily build another frontend with the RESTful APIs, a guide for which will be provided later.
+To interact with the backend, here's a simple CLI tool, namely, _realms_. Though, it's not necessarily required, since you can easily build another frontend with the RESTful APIs, a guide for which will be provided later.
 
 Run realms using the command below.
 
@@ -337,7 +337,7 @@ You'll be required to input the necessary information of the book, and the `titl
 On the server-side, the following message will be written to log using [zap]. The default path to the log file is `./logs/realmsd.log`, which can be modified in the config file `./configs/log_config.json`.
 
 ```json
-{"level":"info","time":"2020-05-04T01:19:11.206+0800","msg":"Added book 20"}
+{ "level": "info", "time": "2020-05-04T01:19:11.206+0800", "msg": "Added book 20" }
 ```
 
 [zap]: https://pkg.go.dev/mod/go.uber.org/zap
@@ -382,7 +382,7 @@ CLI command: `update book`
 ```json
 {
   "title": "Computer Systems",
-  "author": "Randal E. Bryant, David R. O'Hallaron",
+  "author": "Randal E. Bryant, David R. O'Hallaron"
 }
 ```
 
@@ -406,7 +406,7 @@ Simply sending a request including just the fields that you want to update is fi
 The following message will be written to log.
 
 ```json
-{"level":"info","time":"2020-05-04T01:41:57.908+0800","msg":"Updated book 20"}
+{ "level": "info", "time": "2020-05-04T01:41:57.908+0800", "msg": "Updated book 20" }
 ```
 
 ##### 3.6.2 Response
@@ -466,13 +466,17 @@ The `message` field is optional, which is the explanation why you remove the boo
 The following message will be written to log.
 
 ```json
-{"level":"info","time":"2020-05-04T02:13:00.956+0800","msg":"Removed book 5 with explanation: Book lost"}
+{
+  "level": "info",
+  "time": "2020-05-04T02:13:00.956+0800",
+  "msg": "Removed book 5 with explanation: Book lost"
+}
 ```
 
 Or if there's no explanation:
 
 ```json
-{"level":"info","time":"2020-05-04T02:13:00.956+0800","msg":"Removed book 5"}
+{ "level": "info", "time": "2020-05-04T02:13:00.956+0800", "msg": "Removed book 5" }
 ```
 
 ##### 3.7.2 Response
@@ -760,7 +764,7 @@ The username should be unique. As for the privilege level:
 The following message will be written to log.
 
 ```json
-{"level":"info","time":"2020-05-05T14:44:18.319+0800","msg":"Added user 11"}
+{ "level": "info", "time": "2020-05-05T14:44:18.319+0800", "msg": "Added user 11" }
 ```
 
 ##### 3.11.2 Response
@@ -825,7 +829,7 @@ Here `:id` refers to the user ID. The `level` field is optional.
 The following message will be written to log.
 
 ```json
-{"level":"info","time":"2020-05-05T15:11:07.467+0800","msg":"Updated user 11"}
+{ "level": "info", "time": "2020-05-05T15:11:07.467+0800", "msg": "Updated user 11" }
 ```
 
 ##### 3.12.2 Response
@@ -876,7 +880,7 @@ User ID: 11
 The following message will be written to log.
 
 ```json
-{"level":"info","time":"2020-05-05T15:20:12.451+0800","msg":"Removed user 11"}
+{ "level": "info", "time": "2020-05-05T15:20:12.451+0800", "msg": "Removed user 11" }
 ```
 
 ##### 3.13.2 Response
@@ -1041,7 +1045,7 @@ Here we add a debug mode for testing purpose, since it's impossible to keep wait
 The following message will be written to log.
 
 ```json
-{"level":"info","time":"2020-05-05T15:50:00.395+0800","msg":"User 5 borrowed book 20"}
+{ "level": "info", "time": "2020-05-05T15:50:00.395+0800", "msg": "User 5 borrowed book 20" }
 ```
 
 ##### 3.16.2 Response
@@ -1109,7 +1113,7 @@ In the implementation of realmsd, the record is soft deleted, which means it wil
 The following message will be written to log.
 
 ```json
-{"level":"info","time":"2020-05-05T17:18:07.279+0800","msg":"User 5 returned book 20"}
+{ "level": "info", "time": "2020-05-05T17:18:07.279+0800", "msg": "User 5 returned book 20" }
 ```
 
 ##### 3.17.2 Response
@@ -1462,33 +1466,33 @@ There're currently 3 tables in database `library`, namely, `books`, `users` and 
 
 #### 4.1 books
 
-| Field     | Type             | Null  |  Key  |
-| :-------- | :--------------- | :---: | :---: |
-| id        | int(10) unsigned |  NO   |  PRI  |
-| title     | varchar(255)     |  NO   |   /   |
-| author    | varchar(255)     |  YES  |   /   |
-| publisher | varchar(255)     |  YES  |   /   |
-| isbn      | varchar(255)     |  YES  |   /   |
+| Field     | Type             | Null | Key |
+| :-------- | :--------------- | :--: | :-: |
+| id        | int(10) unsigned |  NO  | PRI |
+| title     | varchar(255)     |  NO  |  /  |
+| author    | varchar(255)     | YES  |  /  |
+| publisher | varchar(255)     | YES  |  /  |
+| isbn      | varchar(255)     | YES  |  /  |
 
 #### 4.2 users
 
-| Field    | Type             | Null  |  Key  |
-| :------- | :--------------- | :---: | :---: |
-| id       | int(10) unsigned |  NO   |  PRI  |
-| username | varchar(255)     |  NO   |  UNI  |
-| password | varchar(255)     |  NO   |   /   |
-| level    | int(10) unsigned |  NO   |   /   |
+| Field    | Type             | Null | Key |
+| :------- | :--------------- | :--: | :-: |
+| id       | int(10) unsigned |  NO  | PRI |
+| username | varchar(255)     |  NO  | UNI |
+| password | varchar(255)     |  NO  |  /  |
+| level    | int(10) unsigned |  NO  |  /  |
 
 #### 4.3 records
 
-| Field        | Type             | Null  |  Key  |
-| :----------- | :--------------- | :---: | :---: |
-| id           | int(10) unsigned |  NO   |  PRI  |
-| user_id      | int(10) unsigned |  NO   |   /   |
-| book_id      | int(10) unsigned |  NO   |   /   |
-| return_date  | datetime         |  NO   |   /   |
-| extend_times | int(10) unsigned |  NO   |   /   |
-| deleted_at   | datetime         |  YES  |   /   |
+| Field        | Type             | Null | Key |
+| :----------- | :--------------- | :--: | :-: |
+| id           | int(10) unsigned |  NO  | PRI |
+| user_id      | int(10) unsigned |  NO  |  /  |
+| book_id      | int(10) unsigned |  NO  |  /  |
+| return_date  | datetime         |  NO  |  /  |
+| extend_times | int(10) unsigned |  NO  |  /  |
+| deleted_at   | datetime         | YES  |  /  |
 
 ## TODOs
 

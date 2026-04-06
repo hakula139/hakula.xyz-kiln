@@ -175,12 +175,21 @@ Custom Folder 在目前语境下通常表示第三方难易度表，导入方式
 [asio4all]: https://www.asio4all.org
 
 [^config]: 其位置参见 [目录结构](../directory-structure/#config) 篇。
+
 [^bms]: 注意曲包目录的 [层次结构](../directory-structure/#bms)。
+
 [^base-speed]: 480P / 720P / 1080P 版应分别为 100 / 150 / 225，如此设置即可保持各版本的 HI-SPEED 同步。
+
 [^input-interval]: 调高此值可在一定程度上缓解一些老键盘连键的情况。
+
 [^music-list]: 参考键盘设置里的重复延迟和重复速度。
+
 [^pm-controller]: 启用后，选曲界面采用 pop'n 手台的交互逻辑，游玩界面强制使用 9K 模式。
+
 [^folder-lamp]: 根据文件夹内所有歌曲的最低通过情况决定，例如大白灯表示该文件夹内全曲 Hard Clear。
+
 [^preview]: 启用后，在选曲界面选中歌曲停留若干秒，将自动播放选中歌曲的预览片段。该选项默认开启，但关闭后能有效降低 LR2 的崩溃概率，可以视情况自行决定是否开启。
+
 [^output-type]: DirectSound 比较接近街机延迟；ASIO / WASAPI 能有效降低音频延迟，但需要进行额外配置，这里就不展开了。不了解的话可以从 [ASIO4ALL][asio4all] 开始了解。
+
 [^buffer-size]: 此值越大则音频延迟越高，但过小的话会导致爆音。可以自行调低到一个不会爆音的临界值。

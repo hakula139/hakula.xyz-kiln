@@ -23,7 +23,7 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / MIPS-CPU / Branch-Predictor](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor)
+[:(fab fa-github): hakula139 / MIPS-CPU / Branch-Predictor](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor)
 :::
 
 ## 1 参数
@@ -184,6 +184,6 @@ Static Predictor 采用哪种策略？
 
 ## 参考资料
 
-1. David A. Patterson, John L. Hennessy: *Computer Architecture: A Quantitative Approach Sixth Edition*
+1. David A. Patterson, John L. Hennessy: _Computer Architecture: A Quantitative Approach Sixth Edition_
 2. [18-740/640 Computer Architecture Lecture 5: Advanced Branch Prediction - CMU](https://course.ece.cmu.edu/~ece740/f15/lib/exe/fetch.php?media=18-740-fall15-lecture05-branch-prediction-afterlecture.pdf)
 3. [Branch predictor - Wikipedia](https://en.wikipedia.org/wiki/Branch_predictor)

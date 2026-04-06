@@ -23,7 +23,7 @@ Compilers @ Fudan University, fall 2021.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / pcat_lexical_analyzer](https://github.com/hakula139/pcat_lexical_analyzer)
+[:(fab fa-github): hakula139 / pcat_lexical_analyzer](https://github.com/hakula139/pcat_lexical_analyzer)
 :::
 
 ## 1 Flex 使用方法
@@ -458,10 +458,10 @@ make INPUT="tests/case_1.pcat"
 
 ```text
 PROGRAM IS
-    VAR i, j : INTEGER := 1; 
+    VAR i, j : INTEGER := 1;
     VAR x : REAL := 2.0;
     VAR y : REAL := 3.0;
-BEGIN 
+BEGIN
     WRITE ("i = ", i, ", j = ", j);
     WRITE ("x = ", x, ", y = ", y);
 END;

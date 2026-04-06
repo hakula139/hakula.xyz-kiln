@@ -23,7 +23,7 @@ Distributed Systems (H) @ Fudan University, fall 2021.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / woogle](https://github.com/hakula139/woogle)
+[:(fab fa-github): hakula139 / woogle](https://github.com/hakula139/woogle)
 :::
 
 ## 1 任务说明与描述
@@ -35,9 +35,9 @@ Distributed Systems (H) @ Fudan University, fall 2021.
 在服务器上的 `/corpus/wiki` 目录下有 `0, 1, ..., 63.txt` 等 64 个文本文件，每个文件大小约为 300 MB，其内容格式为分行、无标点的英文文本，示例如下：
 
 ```text
-lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam quis nostrud exercitation 
-ullamco laboris nisi ut aliquip ex ea commodo consequat Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
-eu fugiat nulla pariatur Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum 
+lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam quis nostrud exercitation
+ullamco laboris nisi ut aliquip ex ea commodo consequat Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+eu fugiat nulla pariatur Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum
 ...
 ```
 
@@ -858,4 +858,5 @@ public class Woogle extends Configured implements Tool {
 当然有了索引文件，想写个前端界面啦，或者对结果按 TF-IDF 的大小排个序啦都很容易。主要还是期末季太忙了，实在没时间，不然都好做。
 
 [^lineno-so]: [java - Get unique line number from a input file in MapReduce mapper - Stack Overflow](https://stackoverflow.com/questions/29786397/get-unique-line-number-from-a-input-file-in-mapreduce-mapper)
+
 [^jvm-so]: [java - Static variable value is not changing in mapper function - Stack Overflow](https://stackoverflow.com/questions/41280397/static-variable-value-is-not-changing-in-mapper-function)
