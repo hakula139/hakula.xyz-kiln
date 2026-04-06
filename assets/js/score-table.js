@@ -1,6 +1,6 @@
-(function () {
-  'use strict';
+'use strict';
 
+(() => {
   const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
 
   const getCellValue = (row, idx) => {
@@ -9,45 +9,47 @@
   };
 
   const forEachScored = (container, type, fn) => {
-    container.querySelectorAll(`td[data-type="${type}"]`).forEach((td) => {
+    for (const td of container.querySelectorAll(`td[data-type="${type}"]`)) {
       const score = parseFloat(td.getAttribute('data-score'));
-      if (!isNaN(score)) fn(td, score);
-    });
+      if (!isNaN(score)) {
+        fn(td, score);
+      }
+    }
   };
 
   // Grade rank: base letter * 3 + modifier (+/none/-)
-  const gradeBase = { F: 0, E: 1, D: 2, C: 3, B: 4, A: 5, S: 6, SS: 7 };
-  const gradeRank = (g) => {
+  const GRADE_BASE = { F: 0, E: 1, D: 2, C: 3, B: 4, A: 5, S: 6, SS: 7 };
+
+  const gradeRank = (grade) => {
     let mod = 1;
-    if (g.endsWith('+')) {
+    if (grade.endsWith('+')) {
       mod = 2;
-      g = g.slice(0, -1);
-    } else if (g.endsWith('-')) {
+      grade = grade.slice(0, -1);
+    } else if (grade.endsWith('-')) {
       mod = 0;
-      g = g.slice(0, -1);
+      grade = grade.slice(0, -1);
     }
-    return (gradeBase[g] || 0) * 3 + mod;
+    return (GRADE_BASE[grade] || 0) * 3 + mod;
   };
 
-  const comparators = {
+  const COMPARATORS = {
     text: (a, b) => a.localeCompare(b, 'ja'),
     date: (a, b) => a.localeCompare(b),
     rating: (a, b) => gradeRank(a) - gradeRank(b),
   };
   const numericCmp = (a, b) => (parseFloat(a) || 0) - (parseFloat(b) || 0);
 
-  // Column types that sort ascending on first click.
-  const ascByDefault = new Set(['text', 'age-rating', 'heatmap']);
+  // Column types that sort ascending on first click
+  const ASC_BY_DEFAULT = new Set(['text', 'age-rating', 'heatmap']);
 
-  // Color strategies keyed by data-type; each receives (td, score, dark).
+  // ── Color Strategies ──
+
   const colorStrategies = {
     // Rating: continuous HSL scale from total score (theme-adaptive lightness)
     rating(td, score, dark) {
       const c = Math.max(0, Math.min(score, 100));
       const hue = (1 - c / 100) * 240;
-      const l = dark
-        ? 15 + (c / 100) * 20 // dark: 15% -> 35%
-        : 85 - (c / 100) * 25; // light: 85% -> 60%
+      const l = dark ? 15 + (c / 100) * 20 : 85 - (c / 100) * 25;
       td.style.background = `hsl(${hue},70%,${l}%)`;
     },
 
@@ -64,7 +66,7 @@
       }
     },
 
-    // Delta: blue (positive) -> neutral -> orange (negative)
+    // Delta: blue (positive) → neutral → orange (negative)
     delta(td, score) {
       if (score > 0) {
         const t = Math.min(score / 3, 1);
@@ -76,21 +78,27 @@
     },
   };
 
-  document.querySelectorAll('.score-table').forEach((table) => {
+  // ── Table Init ──
+
+  for (const table of document.querySelectorAll('.score-table')) {
     const thead = table.querySelector('thead');
     const tbody = table.querySelector('tbody');
     const ths = Array.from(thead.querySelectorAll('th'));
 
     // Column sorting
-    ths.forEach((th, domIdx) => {
-      if (th.classList.contains('col-rownum')) return;
+    for (const [domIdx, th] of ths.entries()) {
+      if (th.classList.contains('col-rownum')) {
+        continue;
+      }
       const colType = th.getAttribute('data-col-type') || 'text';
-      const compare = comparators[colType] || numericCmp;
+      const compare = COMPARATORS[colType] || numericCmp;
 
       th.addEventListener('click', () => {
         const current = th.getAttribute('data-sort');
-        const isAsc = current ? current === 'desc' : ascByDefault.has(colType);
-        ths.forEach((h) => h.removeAttribute('data-sort'));
+        const isAsc = current ? current === 'desc' : ASC_BY_DEFAULT.has(colType);
+        for (const h of ths) {
+          h.removeAttribute('data-sort');
+        }
         th.setAttribute('data-sort', isAsc ? 'asc' : 'desc');
 
         const rows = Array.from(tbody.querySelectorAll('tr'));
@@ -105,10 +113,12 @@
         });
 
         const frag = document.createDocumentFragment();
-        rows.forEach((row) => frag.appendChild(row));
+        for (const row of rows) {
+          frag.appendChild(row);
+        }
         tbody.appendChild(frag);
       });
-    });
+    }
 
     // Apply dynamic colors (called on init and theme change)
     const applyColors = () => {
@@ -124,5 +134,5 @@
       attributes: true,
       attributeFilter: ['data-theme'],
     });
-  });
+  }
 })();
