@@ -34,6 +34,6 @@
   }
 
   .site-desc {
-    @apply text-text-secondary text-sm leading-snug overflow-hidden text-ellipsis whitespace-nowrap;
+    @apply overflow-hidden text-text-secondary text-sm leading-snug text-ellipsis whitespace-nowrap;
   }
 }

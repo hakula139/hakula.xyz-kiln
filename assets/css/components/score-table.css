@@ -2,7 +2,7 @@
   /* ── Score Table ── */
 
   .score-table-wrapper {
-    @apply overflow-x-auto my-4;
+    @apply my-4 overflow-x-auto;
   }
 
   .score-table {
@@ -16,7 +16,7 @@
 
   .score-table th,
   .score-table td {
-    @apply py-1 px-2 border-0 border-r border-b border-gray-300 text-center align-middle;
+    @apply px-2 py-1 text-center align-middle border-0 border-r border-b border-gray-300;
   }
 
   [data-theme='dark'] .score-table th,
@@ -33,7 +33,7 @@
   }
 
   .score-table thead th {
-    @apply sticky top-0 z-2 border-t border-gray-300 font-bold bg-gray-200 cursor-pointer select-none;
+    @apply sticky top-0 z-2 font-bold border-t border-gray-300 bg-gray-200 cursor-pointer select-none;
   }
 
   [data-theme='dark'] .score-table thead th {
@@ -117,7 +117,7 @@
   }
 
   .score-table .col-title {
-    @apply sticky left-12 z-1 overflow-hidden min-w-72 max-w-80 border-l border-gray-300 text-left text-ellipsis bg-white;
+    @apply sticky left-12 z-1 min-w-72 max-w-80 overflow-hidden text-left text-ellipsis border-l border-gray-300 bg-white;
   }
 
   [data-theme='dark'] .score-table .col-title {
