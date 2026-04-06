@@ -1,0 +1,39 @@
+@layer components {
+  /* ── Site Link Card ── */
+
+  .site-link {
+    @apply block my-2 no-underline text-inherit;
+  }
+
+  .site-card {
+    @apply flex items-center py-3 px-4 border border-border rounded-lg transition-[box-shadow,border-color];
+  }
+
+  .site-card:hover {
+    @apply border-text-tertiary shadow-[0_2px_8px_rgba(0,0,0,0.1)];
+  }
+
+  [data-theme='dark'] .site-card:hover {
+    @apply shadow-[0_2px_8px_rgba(0,0,0,0.3)];
+  }
+
+  .site-logo-wrapper {
+    @apply shrink-0 mr-4;
+  }
+
+  .site-logo {
+    @apply size-12 rounded-full object-cover;
+  }
+
+  .site-content-wrapper {
+    @apply flex-1 min-w-0;
+  }
+
+  .site-name {
+    @apply font-semibold text-base leading-snug;
+  }
+
+  .site-desc {
+    @apply text-text-secondary text-sm leading-snug overflow-hidden text-ellipsis whitespace-nowrap;
+  }
+}

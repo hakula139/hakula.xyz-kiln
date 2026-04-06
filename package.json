@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "build:css": "esbuild assets/css/*.css --outdir=static/css --minify --out-extension:.css=.min.css",
+    "build:css": "tailwindcss -i assets/css/main.css -o static/css/style.min.css --minify",
     "build:js": "esbuild assets/js/*.js --outdir=static/js --minify --out-extension:.js=.min.js",
     "build": "pnpm build:css && pnpm build:js",
     "lint": "markdownlint-cli2 \"content/**/*.md\"",
@@ -13,8 +13,11 @@
     "@cspell/dict-grc": "^1.0.7",
     "@cspell/dict-it-it": "^3.1.6",
     "@cspell/dict-la": "^1.1.2",
+    "@tailwindcss/cli": "^4.2.2",
+    "@tailwindcss/typography": "^0.5.19",
     "cspell": "^9.7.0",
     "esbuild": "^0.28.0",
-    "markdownlint-cli2": "^0.22.0"
+    "markdownlint-cli2": "^0.22.0",
+    "tailwindcss": "^4.2.2"
   }
 }
