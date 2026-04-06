@@ -2,7 +2,7 @@
 {%- set url = positional_args[1] | default("") -%}
 {%- set desc = positional_args[2] | default(name) -%}
 {%- set logo = positional_args[3] | default("/images/default-avatar.webp") -%}
-<link rel="stylesheet" href="/css/site-card.css">
+<link rel="stylesheet" href="/css/site-card.min.css">
 <a href="{{ url }}"{% if url is startingwith("http") %} rel="noopener" target="_blank"{% endif %} class="site-link">
   <div class="site-card">
     <div class="site-logo-wrapper">

@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const isDark = () => document.body.getAttribute('theme') === 'dark';
+  const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
 
   const getCellValue = (row, idx) => {
     const cell = row.cells[idx];
@@ -120,9 +120,9 @@
 
     applyColors();
 
-    new MutationObserver(applyColors).observe(document.body, {
+    new MutationObserver(applyColors).observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['theme'],
+      attributeFilter: ['data-theme'],
     });
   });
 })();
