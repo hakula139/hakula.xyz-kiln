@@ -369,61 +369,33 @@ Beyond CLAUDE.md, the agent's behavior is governed by `settings.json`, which inc
 
 My configuration defines over 250 auto-approved patterns spanning filesystem navigation, text processing, Git operations, development tools, network utilities, and container management. Destructive operations (`rm`, `kill`, `git push`) require explicit confirmation. Some operations are unconditionally blocked. Here is an excerpt:
 
+<!-- prettier-ignore -->
 ```json
 {
   "permissions": {
     "defaultMode": "acceptEdits",
     "allow": [
-      "Bash(* --version)",
-      "Bash(* --help)",
-      "Bash(man *)",
-      "Bash(cat *)",
-      "Bash(head *)",
-      "Bash(tail *)",
-      "Bash(stat *)",
-      "Bash(fd *)",
-      "Bash(find *)",
-      "Bash(grep *)",
-      "Bash(rg *)",
-      "Bash(cp *)",
-      "Bash(mkdir *)",
-      "Bash(mv *)",
-      "Bash(touch *)",
-      "Bash(awk *)",
-      "Bash(jq *)",
-      "Bash(sed *)",
-      "Bash(sort *)",
-      "Bash(curl *)",
-      "Bash(dig *)",
-      "Bash(ping *)",
-      "Bash(wget *)",
-      "Bash(git add *)",
-      "Bash(git diff *)",
-      "Bash(git log *)",
-      "Bash(git status *)",
-      "Bash(cargo *)",
-      "Bash(node *)",
-      "Bash(python3 *)",
-      "Bash(go *)",
-      "Bash(docker ps *)",
-      "Bash(kubectl get *)",
-      "Bash(systemctl status *)",
-      "mcp__Filesystem",
-      "mcp__Git",
-      "WebFetch",
-      "WebSearch"
+      "Bash(* --version)", "Bash(* --help)", "Bash(man *)",
+      "Bash(cat *)", "Bash(head *)", "Bash(tail *)", "Bash(stat *)",
+      "Bash(fd *)", "Bash(find *)", "Bash(grep *)", "Bash(rg *)",
+      "Bash(cp *)", "Bash(mkdir *)", "Bash(mv *)", "Bash(touch *)",
+      "Bash(awk *)", "Bash(jq *)", "Bash(sed *)", "Bash(sort *)",
+      "Bash(curl *)", "Bash(dig *)", "Bash(ping *)", "Bash(wget *)",
+      "Bash(git add *)", "Bash(git diff *)", "Bash(git log *)", "Bash(git status *)",
+      "Bash(cargo *)", "Bash(node *)", "Bash(python3 *)", "Bash(go *)",
+      "Bash(docker ps *)", "Bash(kubectl get *)", "Bash(systemctl status *)",
+      "mcp__Filesystem", "mcp__Git",
+      "WebFetch", "WebSearch"
     ],
     "ask": [
-      "Bash(rm *)",
-      "Bash(kill *)",
-      "Bash(sudo *)",
-      "Bash(git push *)",
-      "Bash(git reset *)",
-      "Bash(git branch -D *)",
+      "Bash(rm *)", "Bash(kill *)", "Bash(sudo *)",
+      "Bash(git push *)", "Bash(git reset *)", "Bash(git branch -D *)",
       "Bash(docker push *)",
       "mcp__Git__git_reset"
     ],
-    "deny": ["Bash(agenix -r *)", "Bash(agenix --rekey *)"]
+    "deny": [
+      "Bash(agenix -r *)", "Bash(agenix --rekey *)"
+    ]
   }
 }
 ```
