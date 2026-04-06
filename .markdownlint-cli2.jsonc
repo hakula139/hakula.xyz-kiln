@@ -45,8 +45,8 @@
     "MD049": { "style": "underscore" },
 
     // Strong style: asterisk for bold
-    "MD050": { "style": "asterisk" }
+    "MD050": { "style": "asterisk" },
   },
 
-  "ignores": []
+  "ignores": [],
 }

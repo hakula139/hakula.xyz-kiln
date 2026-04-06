@@ -40,17 +40,6 @@
       "pattern": "/<!--[\\s\\S]*?-->/gm"
     }
   ],
-  "ignorePaths": [
-    "pnpm-lock.yaml",
-    "**/LICENSE",
-    "**/*.svg",
-    "**/*.csv"
-  ],
-  "ignoreRegExpList": [
-    "code_fenced",
-    "code_inline",
-    "math_inline",
-    "math_display",
-    "html_comments"
-  ]
+  "ignorePaths": ["pnpm-lock.yaml", "**/LICENSE", "**/*.svg", "**/*.csv"],
+  "ignoreRegExpList": ["code_fenced", "code_inline", "math_inline", "math_display", "html_comments"]
 }
