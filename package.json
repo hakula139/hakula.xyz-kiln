@@ -4,6 +4,7 @@
     "build:css": "tailwindcss -i assets/css/main.css -o static/css/style.min.css --minify",
     "build:js": "esbuild assets/js/*.js --outdir=static/js --minify --out-extension:.js=.min.js",
     "build": "pnpm build:css && pnpm build:js",
+    "format": "prettier --check .",
     "lint": "markdownlint-cli2 \"content/**/*.md\"",
     "spellcheck": "cspell --no-progress \"content/**/*.md\"",
     "prepare": "husky"
@@ -20,6 +21,7 @@
     "esbuild": "^0.28.0",
     "husky": "^9.1.7",
     "markdownlint-cli2": "^0.22.0",
+    "prettier": "^3.8.1",
     "tailwindcss": "^4.2.2"
   }
 }

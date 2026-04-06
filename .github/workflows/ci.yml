@@ -34,6 +34,9 @@ jobs:
       - name: Verify compiled output is up to date
         run: git diff --exit-code static/
 
+      - name: Format
+        run: pnpm format
+
       - name: Lint Markdown
         run: pnpm lint
 
