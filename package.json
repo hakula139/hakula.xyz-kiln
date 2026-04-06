@@ -20,7 +20,7 @@
     "@cspell/dict-la": "^1.1.2",
     "@tailwindcss/cli": "^4.2.2",
     "@tailwindcss/typography": "^0.5.19",
-    "cspell": "^9.7.0",
+    "cspell": "^10.0.0",
     "esbuild": "^0.28.0",
     "husky": "^9.1.7",
     "markdownlint-cli2": "^0.22.0",
