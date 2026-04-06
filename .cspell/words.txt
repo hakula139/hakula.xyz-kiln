@@ -24,6 +24,7 @@ Cytus
 différance
 DIGGY
 DMIT
+elif
 Ennea
 ennnnny
 epoché
@@ -66,6 +67,7 @@ mujica
 Mutsumi
 mygo
 neko
+noopener
 Nosctis
 NVLINK
 Nyamu
@@ -75,14 +77,15 @@ PGREAT
 pixiv
 prml
 PTSD
+Rāna
 rclone
 realmsd
+rgba
 Rikki
 riscv
 Ritsuki
 rownum
 Rushkoff
-Rāna
 Sadaharu
 Sakiko
 sakura
@@ -121,9 +124,9 @@ XDMCP
 Xshell
 YangMame
 yuki
+Yūtenji
 Yuutenji
 yyds
 yytext
-Yūtenji
-Zygmunt
 Žižek
+Zygmunt
