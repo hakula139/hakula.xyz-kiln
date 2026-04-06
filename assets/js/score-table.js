@@ -20,16 +20,17 @@
   // Grade rank: base letter * 3 + modifier (+/none/-)
   const GRADE_BASE = { F: 0, E: 1, D: 2, C: 3, B: 4, A: 5, S: 6, SS: 7 };
 
-  const gradeRank = (grade) => {
+  const gradeRank = (input) => {
+    let base = input;
     let mod = 1;
-    if (grade.endsWith('+')) {
+    if (base.endsWith('+')) {
       mod = 2;
-      grade = grade.slice(0, -1);
-    } else if (grade.endsWith('-')) {
+      base = base.slice(0, -1);
+    } else if (base.endsWith('-')) {
       mod = 0;
-      grade = grade.slice(0, -1);
+      base = base.slice(0, -1);
     }
-    return (GRADE_BASE[grade] || 0) * 3 + mod;
+    return (GRADE_BASE[base] || 0) * 3 + mod;
   };
 
   const COMPARATORS = {
@@ -43,8 +44,9 @@
   const ASC_BY_DEFAULT = new Set(['text', 'age-rating', 'heatmap']);
 
   // ── Color Strategies ──
+  // Computed inline — these colors are dynamic and cannot use CSS tokens
 
-  const colorStrategies = {
+  const COLOR_STRATEGIES = {
     // Rating: continuous HSL scale from total score (theme-adaptive lightness)
     rating(td, score, dark) {
       const c = Math.max(0, Math.min(score, 100));
@@ -80,59 +82,67 @@
 
   // ── Table Init ──
 
-  for (const table of document.querySelectorAll('.score-table')) {
-    const thead = table.querySelector('thead');
-    const tbody = table.querySelector('tbody');
-    const ths = Array.from(thead.querySelectorAll('th'));
+  const initScoreTables = () => {
+    for (const table of document.querySelectorAll('.score-table')) {
+      const thead = table.querySelector('thead');
+      const tbody = table.querySelector('tbody');
+      const ths = Array.from(thead.querySelectorAll('th'));
 
-    // Column sorting
-    for (const [domIdx, th] of ths.entries()) {
-      if (th.classList.contains('col-rownum')) {
-        continue;
-      }
-      const colType = th.getAttribute('data-col-type') || 'text';
-      const compare = COMPARATORS[colType] || numericCmp;
-
-      th.addEventListener('click', () => {
-        const current = th.getAttribute('data-sort');
-        const isAsc = current ? current === 'desc' : ASC_BY_DEFAULT.has(colType);
-        for (const h of ths) {
-          h.removeAttribute('data-sort');
+      // Column sorting
+      for (const [domIdx, th] of ths.entries()) {
+        if (th.classList.contains('col-rownum')) {
+          continue;
         }
-        th.setAttribute('data-sort', isAsc ? 'asc' : 'desc');
+        const colType = th.getAttribute('data-col-type') || 'text';
+        const compare = COMPARATORS[colType] || numericCmp;
 
-        const rows = Array.from(tbody.querySelectorAll('tr'));
-        rows.sort((a, b) => {
-          let cmp = compare(getCellValue(a, domIdx), getCellValue(b, domIdx));
-          if (cmp === 0) {
-            const sa = parseFloat(a.cells[domIdx].getAttribute('data-score')) || 0;
-            const sb = parseFloat(b.cells[domIdx].getAttribute('data-score')) || 0;
-            cmp = sa - sb;
+        th.addEventListener('click', () => {
+          const current = th.getAttribute('data-sort');
+          const isAsc = current ? current === 'desc' : ASC_BY_DEFAULT.has(colType);
+          for (const h of ths) {
+            h.removeAttribute('data-sort');
           }
-          return isAsc ? cmp : -cmp;
-        });
+          th.setAttribute('data-sort', isAsc ? 'asc' : 'desc');
 
-        const frag = document.createDocumentFragment();
-        for (const row of rows) {
-          frag.appendChild(row);
+          const rows = Array.from(tbody.querySelectorAll('tr'));
+          rows.sort((a, b) => {
+            let cmp = compare(getCellValue(a, domIdx), getCellValue(b, domIdx));
+            if (cmp === 0) {
+              const sa = parseFloat(a.cells[domIdx].getAttribute('data-score')) || 0;
+              const sb = parseFloat(b.cells[domIdx].getAttribute('data-score')) || 0;
+              cmp = sa - sb;
+            }
+            return isAsc ? cmp : -cmp;
+          });
+
+          const frag = document.createDocumentFragment();
+          for (const row of rows) {
+            frag.appendChild(row);
+          }
+          tbody.appendChild(frag);
+        });
+      }
+
+      // Apply dynamic colors (called on init and theme change)
+      const applyColors = () => {
+        const dark = isDark();
+        for (const type of Object.keys(COLOR_STRATEGIES)) {
+          forEachScored(table, type, (td, score) => COLOR_STRATEGIES[type](td, score, dark));
         }
-        tbody.appendChild(frag);
+      };
+
+      applyColors();
+
+      new MutationObserver(applyColors).observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme'],
       });
     }
+  };
 
-    // Apply dynamic colors (called on init and theme change)
-    const applyColors = () => {
-      const dark = isDark();
-      for (const type in colorStrategies) {
-        forEachScored(table, type, (td, score) => colorStrategies[type](td, score, dark));
-      }
-    };
-
-    applyColors();
-
-    new MutationObserver(applyColors).observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme'],
-    });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScoreTables);
+  } else {
+    initScoreTables();
   }
 })();
