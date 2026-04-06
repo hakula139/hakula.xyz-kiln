@@ -1,0 +1,8 @@
+/* Import theme source — tokens, base, and all theme components */
+@import '../../themes/IgnIt/assets/css/main.css';
+
+@source "../../templates/**/*.html";
+
+/* Site-specific components */
+@import './components/score-table.css';
+@import './components/site-card.css';

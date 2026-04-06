@@ -70,9 +70,9 @@ CloudCone 直接开出来的 IP 有可能是被墙的（或许能 ping 通，但
 
 ::: callout { type=success title="官网地址" }
 
-[:(fas fa-right-to-bracket):  官网注册（已被墙）](/links/cloudcone)
+[:(fas fa-right-to-bracket): 官网注册（已被墙）](/links/cloudcone)
 
-[:(fas fa-right-to-bracket):  官网注册 - 国内镜像](/links/cloudcone-cn)
+[:(fas fa-right-to-bracket): 官网注册 - 国内镜像](/links/cloudcone-cn)
 
 :::
 

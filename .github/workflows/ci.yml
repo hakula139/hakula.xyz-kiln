@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Verify compiled output is up to date
+        run: git diff --exit-code static/
+
+      - name: Format
+        run: pnpm format
+
+      - name: Lint Markdown
+        run: pnpm lint
+
+      - name: Spell check
+        run: pnpm spellcheck

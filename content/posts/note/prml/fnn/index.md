@@ -24,7 +24,7 @@ Pattern Recognition and Machine Learning (H) @ Fudan University, spring 2021.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-git-alt):  Hakula / prml-21-spring / assignment-2](https://gitee.com/hakula139/prml-21-spring/tree/master/assignment-2/submission/18307130003)
+[:(fab fa-git-alt): Hakula / prml-21-spring / assignment-2](https://gitee.com/hakula139/prml-21-spring/tree/master/assignment-2/submission/18307130003)
 :::
 
 ## 实验简介

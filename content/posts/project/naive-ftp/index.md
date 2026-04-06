@@ -24,7 +24,7 @@ Computer Networks @ Fudan University, fall 2020.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / Naive-FTP](https://github.com/hakula139/Naive-FTP)
+[:(fab fa-github): hakula139 / Naive-FTP](https://github.com/hakula139/Naive-FTP)
 :::
 
 ![Naive-FTP](assets/gui.webp)
@@ -132,7 +132,7 @@ To get started, try the command `help` to show all available commands. All comma
 Currently, we support the commands as follows.
 
 ```text
-HELP                         Show a list of available commands.      
+HELP                         Show a list of available commands.
 OPEN                         Open a connection to server.
 QUIT                         Close all connections and quit.
 EXIT                         Close all connections and quit.
@@ -189,17 +189,17 @@ By far, we support these features in our GUI:
 - List the files in a directory.
   - Along with their names, sizes, types, last modified time, permissions and owners.
   - Hidden files will not be displayed.
-  - *FTP command*: `LIST /dir_path`
+  - _FTP command_: `LIST /dir_path`
 - Change working directory to another path.
-  - *FTP command sequence*: `CWD /dir_path`, `LIST /dir_path`
+  - _FTP command sequence_: `CWD /dir_path`, `LIST /dir_path`
 - Upload a file to server.
-  - *FTP command*: `STOR /file_path`
+  - _FTP command_: `STOR /file_path`
 - Download a file from server.
-  - *FTP command*: `RETR /file_path`
+  - _FTP command_: `RETR /file_path`
 - Create a new directory (recursively).
-  - *FTP command*: `MKDIR /dir_path`
+  - _FTP command_: `MKDIR /dir_path`
 - Batch delete files and directories (recursively).
-  - *FTP commands*: `DELE /file_path` or `RMDA /dir_path`
+  - _FTP commands_: `DELE /file_path` or `RMDA /dir_path`
 
 ## How it works
 

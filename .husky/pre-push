@@ -1,0 +1,5 @@
+pnpm build
+git diff --exit-code static/ || {
+  echo "error: static/ is out of sync with source — run 'pnpm build' and commit"
+  exit 1
+}

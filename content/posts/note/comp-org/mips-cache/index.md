@@ -22,12 +22,12 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / MIPS-CPU / Cache](https://github.com/hakula139/MIPS-CPU/tree/master/Cache)
+[:(fab fa-github): hakula139 / MIPS-CPU / Cache](https://github.com/hakula139/MIPS-CPU/tree/master/Cache)
 :::
 
 ## 1 参数
 
-![Cache 的整体结构（引自 *CS:APP*）](assets/cache-csapp.webp)
+![Cache 的整体结构（引自 _CS:APP_）](assets/cache-csapp.webp)
 
 本缓存（Cache）在实现中默认使用 4 路组相联映射：总共 4 个 set，每个 set 中包含 4 个 line，每个 line 中存储 4 个 word。默认采用 LRU（Least Recently Used）替换策略，写内存时采用写回法（write-back）。
 
@@ -219,8 +219,8 @@ assign dcen = memwrite | mem_to_reg_m;
 
 ## 参考资料
 
-1. David A. Patterson, John L. Hennessy: *Computer Organization and Design Fifth Edition*
-2. Randal E. Bryant, David R. O'Hallaron: *Computer Systems: A Programmer's Perspective Third Edition*
+1. David A. Patterson, John L. Hennessy: _Computer Organization and Design Fifth Edition_
+2. Randal E. Bryant, David R. O'Hallaron: _Computer Systems: A Programmer's Perspective Third Edition_
 3. [Cache replacement policies - Wikipedia](https://en.wikipedia.org/wiki/Cache_replacement_policies)
 
 [cache.svh]: https://github.com/hakula139/MIPS-CPU/blob/master/Cache/src/cache/cache.svh

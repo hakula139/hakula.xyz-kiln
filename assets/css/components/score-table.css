@@ -1,0 +1,153 @@
+@layer components {
+  /* ── Score Table ── */
+
+  .score-table-wrapper {
+    @apply my-4 overflow-x-auto;
+  }
+
+  .score-table {
+    --st-bg: white;
+    --st-bg-header: theme(colors.gray.200);
+    --st-border: theme(colors.gray.300);
+    --st-hover: rgba(0, 0, 0, 0.04);
+    --st-muted: theme(colors.gray.400);
+    --st-age-warning-bg: #fff3a0;
+
+    @apply w-auto border-separate border-spacing-0 text-[0.8rem] leading-snug whitespace-nowrap;
+    background: var(--st-bg);
+    counter-reset: row-num;
+  }
+
+  [data-theme='dark'] .score-table {
+    --st-bg: #272c34;
+    --st-bg-header: #3d4450;
+    --st-border: #3d4450;
+    --st-hover: rgba(255, 255, 255, 0.04);
+    --st-muted: theme(colors.gray.500);
+    --st-age-warning-bg: #443e00;
+  }
+
+  .score-table th,
+  .score-table td {
+    @apply px-2 py-1 text-center align-middle border-0 border-r border-b;
+    border-color: var(--st-border);
+  }
+
+  .score-table thead {
+    background: var(--st-bg-header);
+  }
+
+  .score-table thead th {
+    @apply sticky top-0 z-2 font-bold border-t cursor-pointer select-none;
+    border-top-color: var(--st-border);
+    background: var(--st-bg-header);
+  }
+
+  .score-table thead th[data-sort]::after {
+    @apply text-[0.6rem];
+  }
+
+  .score-table thead th[data-sort='asc']::after {
+    content: ' \25B2';
+  }
+
+  .score-table thead th[data-sort='desc']::after {
+    content: ' \25BC';
+  }
+
+  .score-table tbody tr {
+    counter-increment: row-num;
+  }
+
+  .score-table tbody tr:hover,
+  .score-table tbody tr:hover .col-rownum,
+  .score-table tbody tr:hover .col-title {
+    box-shadow: inset 0 0 0 9999px var(--st-hover);
+  }
+
+  /* ── Column Sizing ── */
+
+  .score-table .col-rownum {
+    @apply w-12 min-w-12;
+  }
+
+  .score-table
+    :where(.col-number, .col-rating, .col-heatmap, .col-age-rating, .col-ext-score, .col-delta) {
+    @apply w-14 min-w-14;
+  }
+
+  .score-table .col-score {
+    @apply w-20 min-w-20 text-left;
+  }
+
+  .score-table .col-date {
+    @apply w-24 min-w-24 text-right;
+  }
+
+  /* ── Sticky Columns ── */
+
+  .score-table .col-rownum {
+    @apply sticky left-0 z-1 box-border border-r-0 border-l;
+    border-left-color: var(--st-border);
+    background: var(--st-bg);
+  }
+
+  .score-table .col-title {
+    @apply sticky left-12 z-1 min-w-72 max-w-80 overflow-hidden text-left text-ellipsis border-l;
+    border-left-color: var(--st-border);
+    background: var(--st-bg);
+  }
+
+  @media only screen and (max-width: 768px) {
+    .score-table .col-title {
+      @apply static z-auto min-w-40 max-w-none bg-transparent;
+    }
+  }
+
+  .score-table thead .col-rownum,
+  .score-table thead .col-title {
+    @apply z-3;
+    background: var(--st-bg-header);
+  }
+
+  @media only screen and (max-width: 768px) {
+    .score-table thead .col-title {
+      @apply z-2;
+    }
+  }
+
+  .score-table td.col-rownum::before {
+    content: counter(row-num);
+  }
+
+  /* ── Age Rating Tiers ── */
+
+  .score-table td[data-type='age-rating'][data-tier='0'] {
+    color: var(--st-muted);
+  }
+
+  .score-table td[data-type='age-rating'][data-tier='2'] {
+    @apply text-red-600;
+  }
+
+  .score-table td[data-type='age-rating'][data-tier='3'] {
+    @apply font-bold text-red-600;
+  }
+
+  .score-table td[data-type='age-rating'][data-tier='4'] {
+    @apply font-bold text-red-600;
+    background: var(--st-age-warning-bg);
+  }
+
+  .score-table td[data-type='age-rating'][data-tier='5'] {
+    @apply font-bold text-black bg-red-600;
+  }
+
+  .score-table td[data-type='age-rating'][data-tier='6'] {
+    @apply font-bold text-red-600 bg-[#1a1a1a];
+  }
+
+  .score-table .ext-score-approx {
+    color: var(--st-muted);
+  }
+}

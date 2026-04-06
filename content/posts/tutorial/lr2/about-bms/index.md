@@ -33,7 +33,7 @@ license = "CC BY-NC-SA 4.0"
 
 感兴趣的话，可以看看下面这个视频里有没有你认识的曲子，它们都出自 BMS。
 
-> [:(fas fa-play-circle):  街机音游收录的著名 BMS 曲合集](https://www.bilibili.com/video/BV1bW411Y7yi)
+> [:(fas fa-play-circle): 街机音游收录的著名 BMS 曲合集](https://www.bilibili.com/video/BV1bW411Y7yi)
 
 ## 下载途径
 
@@ -53,9 +53,9 @@ license = "CC BY-NC-SA 4.0"
 
 ::: callout { type=example title="本站 BMS 区 @ Cloudreve" }
 
-[:(fas fa-cloud):  HAKULA†BMS](https://bms.hakula.xyz)
+[:(fas fa-cloud): HAKULA†BMS](https://bms.hakula.xyz)
 
-感谢 BMS 社区所有资源整理者的付出！:heart:  
+感谢 BMS 社区所有资源整理者的付出！:heart:
 
 基于 Cloudreve & Backblaze B2 自建，不限流量、不限速。
 
@@ -65,7 +65,7 @@ license = "CC BY-NC-SA 4.0"
 
 ::: callout { type=example title="QQ 群" }
 
-[:(fab fa-qq):  Be-Music Source (176763307)](https://jq.qq.com/?_wv=1027&k=5L8MRvF)
+[:(fab fa-qq): Be-Music Source (176763307)](https://jq.qq.com/?_wv=1027&k=5L8MRvF)
 
 见 群文件 - BMS 下载资源集合，遇到问题可以在群里提问。
 
@@ -73,7 +73,7 @@ license = "CC BY-NC-SA 4.0"
 
 ::: callout { type=example title="段位 - Course 文件 @ GitHub" open=false }
 
-[:(fas fa-list):  LR2IRCourses](https://github.com/MsrLab-org/LR2IRCourses)
+[:(fas fa-list): LR2IRCourses](https://github.com/MsrLab-org/LR2IRCourses)
 
 由 @MsrButterfly 整理，最后更新：2021-09-28
 
@@ -83,7 +83,7 @@ license = "CC BY-NC-SA 4.0"
 
 ::: callout { type=example title="发狂表 - 散包 @ 百度云" open=false }
 
-[:(fas fa-cloud):  発狂 BMS 難易度表 (SP)](https://pan.baidu.com/s/1pLNgqBh) - **hcvn** <!-- cspell:disable-line -->
+[:(fas fa-cloud): 発狂 BMS 難易度表 (SP)](https://pan.baidu.com/s/1pLNgqBh) - **hcvn** <!-- cspell:disable-line -->
 
 由 @Udon, @Mikezom, @MsrButterfly 整理，最后更新：2019-02-03
 
@@ -93,7 +93,7 @@ license = "CC BY-NC-SA 4.0"
 
 ::: callout { type=example title="Overjoy 表 - 散包 @ 百度云" open=false }
 
-[:(fas fa-dizzy):  Overjoy 難易度表 (SP)](https://pan.baidu.com/s/1__S0VsK0sbfYWBNmwYCrpw)
+[:(fas fa-dizzy): Overjoy 難易度表 (SP)](https://pan.baidu.com/s/1__S0VsK0sbfYWBNmwYCrpw)
 
 由 @雪凛 整理，最后更新：2017-07-12
 
@@ -104,7 +104,7 @@ license = "CC BY-NC-SA 4.0"
 
 ::: callout { type=example title="更多社区资源" open=false }
 
-[:(fas fa-list):  BMS Community Resources](https://bms-community.github.io/resources/)
+[:(fas fa-list): BMS Community Resources](https://bms-community.github.io/resources/)
 
 由外网社区维护的资源列表，作为一个详尽的补充。
 
@@ -122,7 +122,7 @@ license = "CC BY-NC-SA 4.0"
 
 ::: callout { type=warning title="百度贴吧" }
 
-`DEPRECATED` [:(fas fa-comments):  LR2 吧](https://tieba.baidu.com/f?kw=lr2)
+`DEPRECATED` [:(fas fa-comments): LR2 吧](https://tieba.baidu.com/f?kw=lr2)
 
 诚然，贴吧在过去很长一段时间里都是一个比较主要的 BMS 资源获取途径，我们的很多资源可能最早都是来自贴吧。然而时代变了，贴吧的黄金时期早已过去，如今贴吧里的很多资源和信息都已经过时、没人维护。现在在贴吧里搜索、下载资源成为了一件性价比很低的事情，遇到问题估计也没什么人解答。不推荐使用。
 
@@ -130,7 +130,7 @@ license = "CC BY-NC-SA 4.0"
 
 ::: callout { type=warning title="种子" }
 
-`DEPRECATED` :(fas fa-project-diagram):  Insane BMS Torrent
+`DEPRECATED` :(fas fa-project-diagram): Insane BMS Torrent
 
 包括与其相关的压缩包，俗称 18G 或 55G 包（可以通过压缩包的大小大致判别，创建时间大约在 2013 ~ 2014 年），贴吧里应该很容易遇见它。
 
@@ -168,4 +168,5 @@ license = "CC BY-NC-SA 4.0"
 [jiriki]: http://blog.sina.com.cn/s/blog_878b21b40101izh6.html
 
 [^1]: BMS 通常九段 / Beatmania IIDX 九段 / osu!mania 7K Regular 1 Dan 及以上
+
 [^2]: BMS 発狂六段 / Beatmania IIDX 皆伝 / osu!mania 7K Regular 6 Dan 及以上

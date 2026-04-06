@@ -369,6 +369,7 @@ Beyond CLAUDE.md, the agent's behavior is governed by `settings.json`, which inc
 
 My configuration defines over 250 auto-approved patterns spanning filesystem navigation, text processing, Git operations, development tools, network utilities, and container management. Destructive operations (`rm`, `kill`, `git push`) require explicit confirmation. Some operations are unconditionally blocked. Here is an excerpt:
 
+<!-- prettier-ignore -->
 ```json
 {
   "permissions": {

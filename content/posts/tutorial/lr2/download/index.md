@@ -20,8 +20,8 @@ license = "CC BY-NC-SA 4.0"
 
 ::: callout { type=success title="LR2 整合包" }
 
-- [:(fas fa-download):  本地下载](https://bms.hakula.xyz) - 新人请进 /【启动器】Lunatic Rave 2
-- [:(fas fa-cloud):  百度云](https://pan.baidu.com/s/17J8SD82VemKUS0OW2c3y-w) - **fcn6**
+- [:(fas fa-download): 本地下载](https://bms.hakula.xyz) - 新人请进 /【启动器】Lunatic Rave 2
+- [:(fas fa-cloud): 百度云](https://pan.baidu.com/s/17J8SD82VemKUS0OW2c3y-w) - **fcn6**
 
 由 @Hakula 整合，最后更新：2018-09-23
 
@@ -50,8 +50,8 @@ license = "CC BY-NC-SA 4.0"
 - 東方ハードコアβ 背景音乐 + 音效
   - 如无法正常使用请转区
 - 测试用 BMS
-  - *started* - Ym1024 feat. lamie*
-  - *紅月夜想 ～Scarlet Nocturne～* - nmk feat. °Ciel
+  - _started_ - Ym1024 feat. lamie\*
+  - _紅月夜想 ～Scarlet Nocturne～_ - nmk feat. °Ciel
 
 :::
 

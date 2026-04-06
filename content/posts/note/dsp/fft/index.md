@@ -21,7 +21,7 @@ Digital Signal Processing @ Fudan University, fall 2021.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / naive-speech-recognizer at dev-fft](https://github.com/hakula139/naive-speech-recognizer/tree/dev-fft)
+[:(fab fa-github): hakula139 / naive-speech-recognizer at dev-fft](https://github.com/hakula139/naive-speech-recognizer/tree/dev-fft)
 :::
 
 ## 实验简介

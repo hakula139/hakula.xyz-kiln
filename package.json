@@ -1,8 +1,16 @@
 {
   "private": true,
+  "packageManager": "pnpm@10.30.3",
   "scripts": {
+    "build:css": "tailwindcss -i assets/css/main.css -o static/css/style.min.css --minify",
+    "build:js": "esbuild assets/js/*.js --outdir=static/js --minify --out-extension:.js=.min.js",
+    "build": "pnpm build:css && pnpm build:js",
+    "dev:css": "tailwindcss -i assets/css/main.css -o static/css/style.min.css --watch",
+    "dev": "pnpm dev:css",
+    "format": "prettier --check .",
     "lint": "markdownlint-cli2 \"content/**/*.md\"",
-    "spellcheck": "cspell --no-progress \"content/**/*.md\""
+    "spellcheck": "cspell --no-progress \"content/**/*.md\"",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@cspell/dict-de-de": "^4.1.2",
@@ -10,7 +18,13 @@
     "@cspell/dict-grc": "^1.0.7",
     "@cspell/dict-it-it": "^3.1.6",
     "@cspell/dict-la": "^1.1.2",
-    "cspell": "^9.7.0",
-    "markdownlint-cli2": "^0.22.0"
+    "@tailwindcss/cli": "^4.2.2",
+    "@tailwindcss/typography": "^0.5.19",
+    "cspell": "^10.0.0",
+    "esbuild": "^0.28.0",
+    "husky": "^9.1.7",
+    "markdownlint-cli2": "^0.22.0",
+    "prettier": "^3.8.1",
+    "tailwindcss": "^4.2.2"
   }
 }

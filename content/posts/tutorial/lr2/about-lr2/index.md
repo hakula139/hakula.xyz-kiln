@@ -30,16 +30,16 @@ Lunatic Rave 2 是目前使用人数最多的 BMS 本体。尽管，它未必是
 
 关于 LR2 的游戏界面，其实在 B 站上可以搜到很多视频。值得一提的是，LR2 的可自定义程度可以说是目前所有音游中最高的。只要你愿意花时间研究，LR2 从选曲界面、游玩界面到结算界面都可以完全自定义，你甚至可以把它改得像个 osu!mania。同时，背景音乐、效果音也都是可以自定义的。
 
-以下是一些皮肤的示例 *（如果您不希望自己的视频出现在这里，可以在下方留言，我看到后就会移除）*：
+以下是一些皮肤的示例 _（如果您不希望自己的视频出现在这里，可以在下方留言，我看到后就会移除）_：
 
 ::: callout { type=example }
 
-- [:(fas fa-play-circle):  WMIX - @MsrButterfly 改](https://www.bilibili.com/video/BV1Sx411b7uH)
-- [:(fas fa-play-circle):  WMIX - @Ennea 改](https://www.bilibili.com/video/BV1hs411L7YY)
-- [:(fas fa-play-circle):  蓝白块 - @雪凛 制作](https://www.bilibili.com/video/BV1d44y1Y7sC)
-- [:(fas fa-play-circle):  Seraphic + REMI-S](https://www.bilibili.com/video/BV15s411J7oi)
-- [:(fas fa-play-circle):  LITONE](https://www.bilibili.com/video/BV1Q4411n7gv)
-- [:(fas fa-play-circle):  RED BELT](https://www.bilibili.com/video/BV1RW411N7yh)
+- [:(fas fa-play-circle): WMIX - @MsrButterfly 改](https://www.bilibili.com/video/BV1Sx411b7uH)
+- [:(fas fa-play-circle): WMIX - @Ennea 改](https://www.bilibili.com/video/BV1hs411L7YY)
+- [:(fas fa-play-circle): 蓝白块 - @雪凛 制作](https://www.bilibili.com/video/BV1d44y1Y7sC)
+- [:(fas fa-play-circle): Seraphic + REMI-S](https://www.bilibili.com/video/BV15s411J7oi)
+- [:(fas fa-play-circle): LITONE](https://www.bilibili.com/video/BV1Q4411n7gv)
+- [:(fas fa-play-circle): RED BELT](https://www.bilibili.com/video/BV1RW411N7yh)
 
 :::
 

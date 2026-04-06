@@ -53,6 +53,7 @@ gdb bomb
 ```
 
 [^objdump]: [objdump 二进制文件分析 - Linux Tools Quick Tutorial](https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/objdump.html)
+
 [^gdb]: [用 GDB 调试程序 - Ubuntu 中文](https://wiki.ubuntu.org.cn/%E7%94%A8GDB%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F)
 
 ### Phase 1: string comparison
@@ -559,6 +560,7 @@ num2_pos = start_pos + 2;           // num2_pos in %r8
 由于系统函数 `sscanf` 的返回值为其成功解析并读取（converted and assigned）的次数[^sscanf]，这部分的作用即检查是否成功读入了超过 5 个整数，如果不成功则直接引爆炸弹。
 
 [^size-of-ptr]: 实际上，`int*` 的大小是 4 / 8 bytes 取决于环境。使用 gdb 查看 `sizeof(int*)` 在当前环境下的值，输出为 `8`，可知在当前环境下 `int*` 的大小确实为 8 bytes。当然如果是 4 bytes 题目也就出问题了。
+
 [^sscanf]: [sscanf() - Read Data - IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_72/rtref/sscanf.htm)
 
 ##### 2.2.3 回到函数 `phase_2`
@@ -1197,6 +1199,7 @@ return result;
 因此，由 `0x40245e` 指向的字符串倒推得对应的 6 个索引 `index`，再根据这些 `index` 得到输入的字符串 `input` 的 6 个字符，就可以得到本关的密码。
 
 [^fs-so]: [c - Why does this memory address %fs:0x28 ( fs[0x28] ) have a random value? - Stack Overflow](https://stackoverflow.com/questions/10325713/why-does-this-memory-address-fs0x28-fs0x28-have-a-random-value)
+
 [^fs-se]: [linux - What sets fs:[0x28] (stack canary)? - Unix & Linux Stack Exchange](https://unix.stackexchange.com/questions/453749/what-sets-fs0x28-stack-canary)
 
 ##### 5.2.2 确定目标字符串 `word`

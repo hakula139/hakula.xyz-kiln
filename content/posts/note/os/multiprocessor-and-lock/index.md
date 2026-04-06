@@ -20,7 +20,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / xv6-armv8 at lab4](https://github.com/hakula139/xv6-armv8/tree/lab4)
+[:(fab fa-github): hakula139 / xv6-armv8 at lab4](https://github.com/hakula139/xv6-armv8/tree/lab4)
 :::
 
 ## 实验简介

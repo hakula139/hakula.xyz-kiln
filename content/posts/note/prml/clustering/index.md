@@ -26,7 +26,7 @@ Pattern Recognition and Machine Learning (H) @ Fudan University, spring 2021.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-git-alt):  Hakula / prml-21-spring / assignment-3](https://gitee.com/hakula139/prml-21-spring/tree/master/assignment-3/submission/18307130003)
+[:(fab fa-git-alt): Hakula / prml-21-spring / assignment-3](https://gitee.com/hakula139/prml-21-spring/tree/master/assignment-3/submission/18307130003)
 :::
 
 ## 实验简介
@@ -306,7 +306,6 @@ size = 500
 GMM 模型（Gaussian Mixture Model）的算法思路类似于 K-Means 模型，区别在于 GMM 模型不再以到聚簇中心的距离为参考标准，而是用 $k$ 个单一高斯分布的线性组合来拟合原数据集。我们将使用 EM 算法（Expectation-Maximization algorithm）进行迭代，具体训练过程如下：
 
 1. 给定 $k$ 值（需要将数据集聚成几个簇），初始化各个参数：
-
    - `means`：从数据集中随机选择 $k$ 个点，作为每个高斯分布的初始中心点。
    - `covs`：对于多维的情形，初始化每个高斯分布的协方差为一个单位矩阵。
    - `scales`：对于一维的情形，初始化每个高斯分布的标准差为 $1$。
@@ -318,70 +317,83 @@ GMM 模型（Gaussian Mixture Model）的算法思路类似于 K-Means 模型，
 
    对于多维的情形，
 
-   $${
+   $$
+   {
    p(\mathbf{x})
    = \frac{1}{\sqrt{(2\pi)^d |\mathbf{\Sigma}\_i|}}
      \exp(-\frac{1}{2}(\mathbf{x}-\mathbf{\mu}\_i)^\mathrm{T} \mathbf{\Sigma}\_i^{-1} (\mathbf{x}-\mathbf{\mu}\_i))
-   }$$
+   }
+   $$
 
    其中 $i$ 表示第 $i$ 个聚簇，$d$ 表示数据点的维度，$\mathbf{\mu}$ 表示 `means`，$\mathbf{\Sigma}$ 表示 `covs`。
 
    对于一维的情形，
 
-   $${
+   $$
+   {
    p(x) = \frac{1}{\sqrt{2\pi\sigma\_i^2}} \exp(-\frac{(x-\mu\_i)^2}{2\sigma\_i^2})
-   }$$
+   }
+   $$
 
    其中 $i$ 表示第 $i$ 个聚簇，$\mu$ 表示 `means`，$\sigma$ 表示 `scales`。
 
    然后利用 Bayes' Theorem，计算每个数据点被分配到每个聚簇的概率
 
-   $${
+   $$
+   {
    f\_i(\mathbf{x}) = \frac{p(\mathbf{x})\phi\_i}{\sum\limits\_{i=1}^k p(\mathbf{x})\phi\_i}
-   }$$
+   }
+   $$
 
    其中 $i$ 表示第 $i$ 个聚簇，$\phi$ 表示 `weights`，$k$ 表示 $k$ 值。
 
 3. EM 算法的 M(aximization) 步骤：根据当前每个聚簇的概率矩阵，更新模型的各个参数。 <!-- cspell:disable-line -->
-
    - `means`：
 
-      $${
-      \mathbf{\mu}\_i
-      = \frac
-        {\sum\limits\_{i=1}^k(f\_i(\mathbf{x})\cdot \mathbf{x})}
-        {\sum\limits\_{i=1}^k f\_i(\mathbf{x})}
-      }$$
+     $$
+     {
+     \mathbf{\mu}\_i
+     = \frac
+       {\sum\limits\_{i=1}^k(f\_i(\mathbf{x})\cdot \mathbf{x})}
+       {\sum\limits\_{i=1}^k f\_i(\mathbf{x})}
+     }
+     $$
 
    - `covs`：对于多维的情形，
 
-      $${
-      \mathbf{\Sigma}\_i
-      = \frac
-        {\sum\limits\_{i=1}^k(
-          f\_i(\mathbf{x})\cdot
-          (\mathbf{x}-\mathbf{\mu}\_i)^\mathrm{T}
-          (\mathbf{x}-\mathbf{\mu}\_i)
-        )}
-        {\sum\limits\_{i=1}^k f\_i(\mathbf{x})}
-      }$$
+     $$
+     {
+     \mathbf{\Sigma}\_i
+     = \frac
+       {\sum\limits\_{i=1}^k(
+         f\_i(\mathbf{x})\cdot
+         (\mathbf{x}-\mathbf{\mu}\_i)^\mathrm{T}
+         (\mathbf{x}-\mathbf{\mu}\_i)
+       )}
+       {\sum\limits\_{i=1}^k f\_i(\mathbf{x})}
+     }
+     $$
 
    - `scales`：对于一维的情形，
 
-      $${
-      \sigma\_i
-      = \sqrt{
-          \frac
-          {\sum\limits\_{i=1}^k(f\_i(x)\cdot (x-\mu\_i)^2)}
-          {\sum\limits\_{i=1}^k f\_i(x)}
-        }
-      }$$
+     $$
+     {
+     \sigma\_i
+     = \sqrt{
+         \frac
+         {\sum\limits\_{i=1}^k(f\_i(x)\cdot (x-\mu\_i)^2)}
+         {\sum\limits\_{i=1}^k f\_i(x)}
+       }
+     }
+     $$
 
    - `weights`：
 
-      $${
-      \phi\_i = \frac{1}{N} \sum\limits\_{i=1}^k f\_i(\mathbf{x})
-      }$$
+     $$
+     {
+     \phi\_i = \frac{1}{N} \sum\limits\_{i=1}^k f\_i(\mathbf{x})
+     }
+     $$
 
 4. 重复 EM 算法，直到满足终止条件。GMM 模型的终止条件与 K-Means 模型一致。
 

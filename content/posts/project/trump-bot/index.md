@@ -24,7 +24,7 @@ Natural Language Processing (H) @ Fudan University, fall 2020.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / Trump-bot](https://github.com/hakula139/Trump-bot)
+[:(fab fa-github): hakula139 / Trump-bot](https://github.com/hakula139/Trump-bot)
 :::
 
 ## 1 选题动机

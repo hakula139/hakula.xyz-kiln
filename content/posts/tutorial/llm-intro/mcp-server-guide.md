@@ -440,8 +440,8 @@ MkDocs with [mike](https://github.com/jimporter/mike) (the versioning plugin) pu
 
 ```json
 [
-  {"version": "2.0.0", "title": "2.0.0", "aliases": ["latest"]},
-  {"version": "1.2.3", "title": "1.2.3", "aliases": []}
+  { "version": "2.0.0", "title": "2.0.0", "aliases": ["latest"] },
+  { "version": "1.2.3", "title": "1.2.3", "aliases": [] }
 ]
 ```
 

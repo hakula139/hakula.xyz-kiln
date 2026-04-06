@@ -22,7 +22,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 :::
 
 ::: callout { type=success title="源码地址" }
-[:(fab fa-github):  hakula139 / xv6-armv8 at lab7](https://github.com/hakula139/xv6-armv8/tree/lab7)
+[:(fab fa-github): hakula139 / xv6-armv8 at lab7](https://github.com/hakula139/xv6-armv8/tree/lab7)
 :::
 
 ## 实验简介
@@ -41,7 +41,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 #### 1.0 总览
 
-![xv6 文件系统的整体架构（引自 *xv6*）](assets/file-system.webp){width=500}
+![xv6 文件系统的整体架构（引自 _xv6_）](assets/file-system.webp){width=500}
 
 文件系统的整体架构参考 xv6 的设计，其 7 层架构如图所示。以下我们将自底向上依次进行阐述。
 
@@ -479,7 +479,7 @@ struct {
 
 `inode` 的结构如下所示：
 
-![文件在磁盘中的表示（引自 *xv6*）](assets/dinode.webp){width=500}
+![文件在磁盘中的表示（引自 _xv6_）](assets/dinode.webp){width=500}
 
 ```c
 // inc/file.h
@@ -1567,28 +1567,28 @@ binit: success.
 - Divisor selected = 2, shift count = 0
 - EMMC: Set clock, status 0x1ff0000 CONTROL1: 0xe0207
 - EMMC: SD Card Type 2 SC 128Mb UHS-I 0 mfr 170 'XY:QEMU!' r0.1 2/2006, #deadbeef RCA 4567
-sd_init: Partition 1: 00 20 21 00 0c 49 01 08 00 08 00 00 00 00 02 00 
+sd_init: Partition 1: 00 20 21 00 0c 49 01 08 00 08 00 00 00 00 02 00
 - Status: 0
 - CHS address of first absolute sector: head=32, sector=33, cylinder=0
 - Partition type: 12
 - CHS address of last absolute sector: head=73, sector=1, cylinder=8
 - LBA of first absolute sector: 0x800
 - Number of sectors: 131072
-sd_init: Partition 2: 00 49 02 08 83 51 01 10 00 08 02 00 00 f8 01 00 
+sd_init: Partition 2: 00 49 02 08 83 51 01 10 00 08 02 00 00 f8 01 00
 - Status: 0
 - CHS address of first absolute sector: head=73, sector=2, cylinder=8
 - Partition type: 131
 - CHS address of last absolute sector: head=81, sector=1, cylinder=16
 - LBA of first absolute sector: 0x20800
 - Number of sectors: 129024
-sd_init: Partition 3: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+sd_init: Partition 3: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 - Status: 0
 - CHS address of first absolute sector: head=0, sector=0, cylinder=0
 - Partition type: 0
 - CHS address of last absolute sector: head=0, sector=0, cylinder=0
 - LBA of first absolute sector: 0x0
 - Number of sectors: 0
-sd_init: Partition 4: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+sd_init: Partition 4: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 - Status: 0
 - CHS address of first absolute sector: head=0, sector=0, cylinder=0
 - Partition type: 0
@@ -1643,5 +1643,7 @@ sys_exec: failed to fetch argument.
 [cat.c]: https://github.com/mit-pdos/xv6-public/blob/master/cat.c
 
 [^syscall]: 参考了 Stack Overflow 上的回答 [[3]][syscall-so-1] [[4]][syscall-so-2]。
+
 [^about-cat]: 不过本项目里仅支持普通文件，参见 [1.7](#17-file-descriptor) 节。
+
 [^cat.c]: [mit-pdos / xv6-public / cat.c - GitHub][cat.c]

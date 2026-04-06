@@ -38,6 +38,7 @@ license = "CC BY-NC-SA 4.0"
 | banner                 | 是否显示歌曲的横幅图（如果有）         |
 
 [^bg]: 自定义方式参见 [目录](../directory-structure/#wmix_hd) 篇 WMIX_HD 部分。
+
 [^movie]: 可能需要与 Wallpaper transparency 选项结合使用，感谢评论区 @MatrixSunny 指出！
 
 ## 游玩界面
@@ -119,4 +120,5 @@ license = "CC BY-NC-SA 4.0"
 | CLEAR / FAILED BGM | CLEAR / FAILED 时进入结算界面的音效[^clear-bgm] |
 
 [^bgm]: 自定义方式参见 [目录](../directory-structure/#bgm) 篇 Bgm 部分。
+
 [^clear-bgm]: 自定义方式参见 [目录](../directory-structure/#sound) 篇 Sound 部分。
