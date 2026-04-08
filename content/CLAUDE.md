@@ -10,11 +10,20 @@
 +++
 title = "文章标题"
 date = 2025-01-15T20:30:00+08:00
-featured_image = "/images/article-covers/{pixiv_id}_p0.webp"
 tags = ["标签 1", "标签 2"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/{pixiv_id}_p0.webp"
+
+[featured_image.credit]
+title = "作品标题"
+author = "作者"
+url = "https://www.pixiv.net/artworks/{pixiv_id}"
 +++
 ```
+
+`featured_image` 为 TOML 表，含 `src`（图片路径）、可选 `position`（CSS `object-position`）和可选 `credit` 子表（`title`、`author`、`url`）。
 
 - `date`：ISO 8601，时区 `+08:00`，可初始化为当前日期和时间。
 - 路径含 `_` 开头目录的内部文档无需 frontmatter。
@@ -29,10 +38,6 @@ license = "CC BY-NC-SA 4.0"
 摘要（不超过 200 字）。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[Title - @Author](https://www.pixiv.net/artworks/{image-id})
-:::
 
 ## 二级标题
 
