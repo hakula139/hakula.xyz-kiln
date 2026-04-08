@@ -1,18 +1,22 @@
 +++
 title = "谈谈审美：我的立场、观点"
 date = 2023-12-22T19:18:00+08:00
-featured_image = "/images/article-covers/94175799_p0.webp"
+
 tags = ["美学"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/94175799_p0.webp"
+
+[featured_image.credit]
+title = "海底の路地"
+author = "輪廻狐（りんねこ）"
+url = "https://www.pixiv.net/artworks/94175799"
 +++
 
 最近似乎经常陷入一些围绕审美或者具体某部作品评价的争论，让我感到自己有必要写篇文章阐述一下我的立场、观点，避免每次都要以各种形式重申一遍。今后有需要时我就直接贴这篇文章的链接了，希望能澄清不必要的误解，也让我省点口舌。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[海底の路地 - @輪廻狐（りんねこ）](https://www.pixiv.net/artworks/94175799)
-:::
 
 ## 我的立场
 

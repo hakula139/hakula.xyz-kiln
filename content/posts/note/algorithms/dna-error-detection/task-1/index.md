@@ -1,7 +1,7 @@
 +++
 title = "算法 - Project: DNA 测序错误检测 - Task 1: 无噪音整段比对"
 date = 2021-05-16T18:00:00+08:00
-featured_image = "/images/article-covers/90380296_p0.webp"
+
 tags = [
     "算法",
     "编辑距离",
@@ -11,15 +11,19 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/90380296_p0.webp"
+
+[featured_image.credit]
+title = "大渓谷"
+author = "藤原"
+url = "https://www.pixiv.net/artworks/90380296"
 +++
 
 Algorithms (H) @ Fudan University, spring 2021.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[大渓谷 - @藤原](https://www.pixiv.net/artworks/90380296)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / dna-error-detection at task-1-sv-chain](https://github.com/hakula139/dna-error-detection/tree/task-1-sv-chain)

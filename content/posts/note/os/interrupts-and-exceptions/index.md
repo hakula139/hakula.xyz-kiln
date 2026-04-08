@@ -1,7 +1,7 @@
 +++
 title = "OS - Lab 3: Interrupts and Exceptions"
 date = 2020-10-31T18:19:00+08:00
-featured_image = "/images/article-covers/71199279_p0.webp"
+
 tags = [
     "操作系统",
     "ARM",
@@ -9,15 +9,19 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/71199279_p0.webp"
+
+[featured_image.credit]
+title = "little nemo"
+author = "cinkai"
+url = "https://www.pixiv.net/artworks/71199279"
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[little nemo - @cinkai](https://www.pixiv.net/artworks/71199279)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / xv6-armv8 at lab3](https://github.com/hakula139/xv6-armv8/tree/lab3)

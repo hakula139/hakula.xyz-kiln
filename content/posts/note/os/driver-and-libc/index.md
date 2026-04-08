@@ -1,7 +1,7 @@
 +++
 title = "OS - Lab 6: Driver and LibC"
 date = 2021-01-24T00:26:00+08:00
-featured_image = "/images/article-covers/60181142_p0.webp"
+
 tags = [
     "操作系统",
     "ARM",
@@ -9,15 +9,19 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/60181142_p0.webp"
+
+[featured_image.credit]
+title = "LAST WORDS"
+author = "Miv4t"
+url = "https://www.pixiv.net/artworks/60181142"
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[LAST WORDS - @Miv4t](https://www.pixiv.net/artworks/60181142)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / xv6-armv8 at lab6](https://github.com/hakula139/xv6-armv8/tree/lab6)

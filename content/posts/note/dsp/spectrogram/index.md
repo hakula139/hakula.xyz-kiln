@@ -1,7 +1,7 @@
 +++
 title = "DSP - Lab 2: 语谱图"
 date = 2022-05-12T08:50:00+08:00
-featured_image = "/images/article-covers/102257565_p0.webp"
+
 tags = [
     "数字信号处理",
     "语谱图",
@@ -9,6 +9,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/102257565_p0.webp"
+
+[featured_image.credit]
+title = "I DON'T LOVE YOU"
+author = "Miv4t"
+url = "https://www.pixiv.net/artworks/102257565"
 +++
 
 本实验中，我们利用之前实现的 FFT 算法，生成了不同语音片段在不同窗口宽度下的语谱图。
@@ -16,10 +24,6 @@ math = true
 Digital Signal Processing @ Fudan University, fall 2021.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[I DON'T LOVE YOU - @Miv4t](https://www.pixiv.net/artworks/102257565)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / naive-speech-recognizer at dev-spectrogram](https://github.com/hakula139/naive-speech-recognizer/tree/dev-spectrogram)

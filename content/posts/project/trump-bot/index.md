@@ -1,7 +1,7 @@
 +++
 title = "Trump-bot: 一个特朗普风格的文本生成 AI"
 date = 2021-01-19T03:28:00+08:00
-featured_image = "/images/article-covers/87013646_p0.webp"
+
 tags = [
     "NLP",
     "文本生成",
@@ -12,6 +12,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/87013646_p0.webp"
+
+[featured_image.credit]
+title = "キラキラを集めよう　Twitterの絵もまとめよう"
+author = "MISSILE228"
+url = "https://www.pixiv.net/artworks/87013646"
 +++
 
 一个模仿特朗普 Twitter 账号 [@realDonaldTrump] 语言风格的简易文本生成 AI，基于 GRU 模型实现。
@@ -19,10 +27,6 @@ math = true
 Natural Language Processing (H) @ Fudan University, fall 2020.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[キラキラを集めよう　Twitterの絵もまとめよう - @MISSILE228](https://www.pixiv.net/artworks/87013646)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / Trump-bot](https://github.com/hakula139/Trump-bot)

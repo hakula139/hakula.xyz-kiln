@@ -1,13 +1,17 @@
 +++
 title = "留言板"
 date = 2018-08-27T23:58:00+08:00
-featured_image = "/images/article-covers/67767892_p0.webp"
-weight = -3
-+++
 
-::: callout { type=info title="封面出处" }
-[log3 - @凪白みと](https://www.pixiv.net/artworks/67767892)
-:::
+weight = -3
+
+[featured_image]
+src = "/images/article-covers/67767892_p0.webp"
+
+[featured_image.credit]
+title = "log3"
+author = "凪白みと"
+url = "https://www.pixiv.net/artworks/67767892"
++++
 
 ## 留言板
 

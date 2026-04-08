@@ -1,21 +1,25 @@
 +++
 title = "UserAgent for Typecho"
 date = 2019-01-27T21:58:00+08:00
-featured_image = "/images/article-covers/39186698_p0.webp"
+
 tags = [
     "PHP",
     "Typecho",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/39186698_p0.webp"
+
+[featured_image.credit]
+title = "クロス・ホエン"
+author = "おにねこ"
+url = "https://www.pixiv.net/artworks/39186698"
 +++
 
 一个 Typecho 插件，用于在评论区显示用户使用的操作系统、浏览器信息及相应图标。自己动手，丰衣足食！
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[クロス・ホエン - @おにねこ](https://www.pixiv.net/artworks/39186698)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / UserAgent-for-Typecho](https://github.com/hakula139/UserAgent-for-Typecho)

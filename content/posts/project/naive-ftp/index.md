@@ -1,7 +1,7 @@
 +++
 title = "Naive-FTP: 一个简易的 FTP 服务端 & 客户端"
 date = 2021-01-11T03:08:00+08:00
-featured_image = "/images/article-covers/86286793_p0.webp"
+
 tags = [
     "计网",
     "FTP",
@@ -11,6 +11,14 @@ tags = [
     "TypeScript",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/86286793_p0.webp"
+
+[featured_image.credit]
+title = "カラスの集め物"
+author = "MISSILE228"
+url = "https://www.pixiv.net/artworks/86286793"
 +++
 
 Naive-FTP is a simple FTP server & client, written in Python and TypeScript.
@@ -18,10 +26,6 @@ Naive-FTP is a simple FTP server & client, written in Python and TypeScript.
 Computer Networks @ Fudan University, fall 2020.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[カラスの集め物 - @MISSILE228](https://www.pixiv.net/artworks/86286793)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / Naive-FTP](https://github.com/hakula139/Naive-FTP)

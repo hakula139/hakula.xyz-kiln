@@ -1,15 +1,19 @@
 +++
 title = "链接库"
 date = 2018-11-15T18:46:00+08:00
-featured_image = "/images/article-covers/95120332_p1.webp"
+
 weight = -4
+
+[featured_image]
+src = "/images/article-covers/95120332_p1.webp"
+
+[featured_image.credit]
+title = "私だけの舞台"
+author = "MISSILE228"
+url = "https://www.pixiv.net/artworks/95120332"
 +++
 
 <!-- markdownlint-disable MD034 -->
-
-::: callout { type=info title="封面出处" }
-[私だけの舞台 - @MISSILE228](https://www.pixiv.net/artworks/95120332)
-:::
 
 ## 友情链接
 

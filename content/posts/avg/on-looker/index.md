@@ -1,13 +1,16 @@
 +++
 title = "AVG - 「他人世界末」评测"
 date = 2020-07-21T17:45:00+08:00
-featured_image = "assets/cg-mzy-te.webp"
+
 tags = [
     "AVG",
     "Galgame",
     "评测",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "assets/cg-mzy-te.webp"
 +++
 
 「不是命运把我推回了你的身边，是我自己走过来的。」

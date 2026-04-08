@@ -1,12 +1,15 @@
 +++
 title = "批判「孤独摇滚」的时候，我们是在批判什么？（三）"
 date = 2023-03-05T00:14:04+08:00
-featured_image = "/images/article-covers/btr.webp"
+
 tags = [
     "动画",
     "文艺批评",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/btr.webp"
 +++
 
 这个时代，我们到底需要怎样的文艺作品？

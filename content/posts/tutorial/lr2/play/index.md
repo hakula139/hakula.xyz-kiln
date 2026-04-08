@@ -1,18 +1,22 @@
 +++
 title = "LR2 配置教程 - Play"
 date = 2019-01-20T21:46:00+08:00
-featured_image = "/images/article-covers/61930743_p0.webp"
+
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/61930743_p0.webp"
+
+[featured_image.credit]
+title = "和洋折衷ライブラリー"
+author = "藤原"
+url = "https://www.pixiv.net/artworks/61930743"
 +++
 
 本部分将介绍 LR2 的游玩界面。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[和洋折衷ライブラリー - @藤原](https://www.pixiv.net/artworks/61930743)
-:::
 
 ![决定界面](assets/decide.webp)
 

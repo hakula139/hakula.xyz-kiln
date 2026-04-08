@@ -1,19 +1,23 @@
 +++
 title = "LR2 配置教程 - Select"
 date = 2019-01-14T21:42:00+08:00
-featured_image = "/images/article-covers/65262289_p0.webp"
+
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/65262289_p0.webp"
+
+[featured_image.credit]
+title = "あなたがいる世界に私も生きてる"
+author = "藤原"
+url = "https://www.pixiv.net/artworks/65262289"
 +++
 
 本部分将介绍 LR2 的选曲界面。很大一部分游戏内设置都位于这个界面，其中也包括游玩界面的键位设置。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[あなたがいる世界に私も生きてる - @藤原](https://www.pixiv.net/artworks/65262289)
-:::
 
 ![目录列表](assets/folder-list.webp)
 

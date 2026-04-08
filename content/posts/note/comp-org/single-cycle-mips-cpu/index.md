@@ -1,7 +1,7 @@
 +++
 title = "计组 - Lab 1: 单周期 MIPS CPU"
 date = 2020-04-07T23:14:00+08:00
-featured_image = "/images/article-covers/78398601_p0.webp"
+
 tags = [
     "计组",
     "MIPS",
@@ -10,6 +10,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/78398601_p0.webp"
+
+[featured_image.credit]
+title = "Moment"
+author = "望月しいな"
+url = "https://www.pixiv.net/artworks/78398601"
 +++
 
 32 位单周期 MIPS 指令集 CPU，使用 SystemVerilog 编写。
@@ -17,10 +25,6 @@ math = true
 Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[Moment - @望月しいな](https://www.pixiv.net/artworks/78398601)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / MIPS-CPU / Single-Cycle](https://github.com/hakula139/MIPS-CPU/tree/master/Single-Cycle)

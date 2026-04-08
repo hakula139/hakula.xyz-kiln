@@ -1,7 +1,7 @@
 +++
 title = "MCP Server Guide: Building a Documentation Server for LLM Agents"
 date = 2026-03-13T17:36:00+08:00
-featured_image = "/images/article-covers/129339284_p0.webp"
+
 tags = [
     "AI",
     "LLM",
@@ -13,15 +13,19 @@ tags = [
     "Claude Code",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/129339284_p0.webp"
+
+[featured_image.credit]
+title = "月の繭"
+author = "佐々"
+url = "https://www.pixiv.net/artworks/129339284"
 +++
 
 A practical, end-to-end guide to building a custom MCP server that turns your documentation site into structured tools for LLM agents. Covers the llms.txt standard, FastMCP, caching, search, packaging, and LLM agents integration. Written for teams that have internal docs (Confluence pages, Markdown files) and want their agents to read them instead of hallucinating.
 
 <!--more-->
-
-::: callout { type=info title="Banner Image" }
-[月の繭 - @佐々](https://www.pixiv.net/artworks/129339284)
-:::
 
 ## Introduction
 
@@ -235,7 +239,6 @@ async def list_versions() -> list[dict[str, Any]]:
     """List all available documentation versions with their aliases."""
     return await fetcher.get_versions()
 
-
 @mcp.tool
 async def get_docs_index(version: str = "latest") -> str:
     """Get the documentation index (page titles and URLs) for a version.
@@ -300,7 +303,6 @@ def _normalize_path(path: str) -> str:
     path = re.sub(r"/?index\.md$", "", path)
     return path
 
-
 def _resolve_title(llms_txt: str, path: str) -> str | None:
     """Resolve a page path to its title using llms.txt entries."""
     for match in re.finditer(
@@ -310,7 +312,6 @@ def _resolve_title(llms_txt: str, path: str) -> str | None:
         if _normalize_path(url_path) == path:
             return title
     return None
-
 
 def _extract_page(llms_txt: str, full_text: str, path: str) -> str:
     """Extract a single page from llms-full.txt by matching its title."""
@@ -396,7 +397,6 @@ The fetcher is a thin async HTTP client that caches responses for 5 minutes. Eve
 ```python
 DEFAULT_BASE_URL = "https://docs.example.com"
 CACHE_TTL = 300  # 5 minutes
-
 
 class CachedFetcher:
     def __init__(
@@ -708,14 +708,12 @@ from typing import Any
 from my_docs_mcp.fetcher import CachedFetcher
 from my_docs_mcp.search import search
 
-
 async def test() -> None:
     f: CachedFetcher = CachedFetcher(base_url="https://docs.example.com")
     index: list[dict[str, Any]] = await f.get_search_index("latest")
     results: list[dict[str, Any]] = search(index, "dataset creation")
     for r in results[:3]:
         print(r["title"], r["score"])
-
 
 asyncio.run(test())
 ```

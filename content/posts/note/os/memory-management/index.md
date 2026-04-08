@@ -1,7 +1,7 @@
 +++
 title = "OS - Lab 2: Memory Management"
 date = 2020-10-24T16:31:00+08:00
-featured_image = "/images/article-covers/83708256_p0.webp"
+
 tags = [
     "操作系统",
     "ARM",
@@ -9,15 +9,19 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/83708256_p0.webp"
+
+[featured_image.credit]
+title = "紅茶とスコーンと特製ケーキとTwitterまとめでございます"
+author = "MISSILE228"
+url = "https://www.pixiv.net/artworks/83708256"
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[紅茶とスコーンと特製ケーキとTwitterまとめでございます - @MISSILE228](https://www.pixiv.net/artworks/83708256)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / xv6-armv8 at lab2](https://github.com/hakula139/xv6-armv8/tree/lab2)

@@ -1,22 +1,26 @@
 +++
 title = "数据结构 - Project 1: 有序数组还原"
 date = 2019-11-25T00:22:00+08:00
-featured_image = "/images/article-covers/77359441_p0.webp"
+
 tags = [
     "数据结构",
     "排序",
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/77359441_p0.webp"
+
+[featured_image.credit]
+title = "内緒"
+author = "MISSILE228"
+url = "https://www.pixiv.net/artworks/77359441"
 +++
 
 Data Structures (H) @ Fudan University, fall 2019.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[内緒 - @MISSILE228](https://www.pixiv.net/artworks/77359441)
-:::
 
 ## 题目简介
 

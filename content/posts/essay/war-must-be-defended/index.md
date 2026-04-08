@@ -1,18 +1,22 @@
 +++
 title = "必须保卫战争"
 date = 2023-08-10T22:17:00+08:00
-featured_image = "/images/article-covers/104923272_p0.webp"
+
 tags = ["意识形态批判"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/104923272_p0.webp"
+
+[featured_image.credit]
+title = "PAPERCUT 4.0"
+author = "Miv4t"
+url = "https://www.pixiv.net/artworks/104923272"
 +++
 
 近期读马尔库塞《单向度的人》有感。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[PAPERCUT 4.0 - @Miv4t](https://www.pixiv.net/artworks/104923272)
-:::
 
 之前在浏览「少女终末旅行」的评论时，有一个现象令我印象很深，就是一些评论「一针见血」地指认出「少终」的反战主题（这里暂且不论反战是否是作品的主题，或者占据作品多大的比重），并仅仅因此给出好评：「不说别的，就凭这个反战主题，这部作品就已在我心中占据最高的地位。」这种现象不仅出现在 ACGN 作品中，在一些经典文学作品的评论里也屡见不鲜。这个评价的结果当然无可指摘，每个人都有评价的自由，但得出这个评价的思考过程背后所反映的鲜明的意识形态性却值得反思。反战就够了，似乎不需要什么理由，而正是每一种看似不容置疑、无须解释的观点，都暗含了意识形态所具备的欺骗性——正因深信不疑，才是一种虚假意识。
 

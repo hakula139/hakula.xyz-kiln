@@ -1,22 +1,26 @@
 +++
 title = "Vagex 折腾记"
 date = 2019-04-11T17:48:00+08:00
-featured_image = "/images/article-covers/74046731_p0.webp"
+
 tags = [
     "VPS",
     "Vagex",
     "挂机",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/74046731_p0.webp"
+
+[featured_image.credit]
+title = "グリーンホール"
+author = "mocha"
+url = "https://www.pixiv.net/artworks/74046731"
 +++
 
 近些天折腾了会儿 Vagex，本文整理了一下部署的过程，并解释为什么不建议继续使用 Vagex 挂机。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[グリーンホール - @mocha](https://www.pixiv.net/artworks/74046731)
-:::
 
 本站建立时间较短，知名度也很低。如果你碰巧点进了这篇文章，那么你很幸运，因为你将节省你人生中宝贵的几个小时，无论你看完本文后还是否打算使用 Vagex。
 

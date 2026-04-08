@@ -1,7 +1,7 @@
 +++
 title = "DSP - Lab 3: MFCC: Mel 频率的倒谱系数"
 date = 2022-05-27T04:29:00+08:00
-featured_image = "/images/article-covers/95680357_p0.webp"
+
 tags = [
     "数字信号处理",
     "端点检测",
@@ -10,6 +10,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/95680357_p0.webp"
+
+[featured_image.credit]
+title = "NUMB"
+author = "Miv4t"
+url = "https://www.pixiv.net/artworks/95680357"
 +++
 
 本实验中，我们实现了一个端点检测算法，并构造了一个 Mel 滤波器组处理信号的能量谱，最后利用离散余弦变换（DCT）得到了信号的 MFCC 系数。
@@ -17,10 +25,6 @@ math = true
 Digital Signal Processing @ Fudan University, fall 2021.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[NUMB - @Miv4t](https://www.pixiv.net/artworks/95680357)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / naive-speech-recognizer at dev-mfcc](https://github.com/hakula139/naive-speech-recognizer/tree/dev-mfcc)

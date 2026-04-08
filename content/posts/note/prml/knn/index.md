@@ -1,7 +1,7 @@
 +++
 title = "PRML - Lab 1: KNN 算法"
 date = 2021-04-02T01:50:00+08:00
-featured_image = "/images/article-covers/90743556_p0.webp"
+
 tags = [
     "PRML",
     "机器学习",
@@ -11,6 +11,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/90743556_p0.webp"
+
+[featured_image.credit]
+title = "行くよ。"
+author = "SWAV"
+url = "https://www.pixiv.net/artworks/90743556"
 +++
 
 本次作业利用 NumPy 实现了一个 KNN 模型。
@@ -18,10 +26,6 @@ math = true
 Pattern Recognition and Machine Learning (H) @ Fudan University, spring 2021.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[行くよ。 - @SWAV](https://www.pixiv.net/artworks/90743556)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-git-alt): Hakula / prml-21-spring / assignment-1](https://gitee.com/hakula139/prml-21-spring/tree/master/assignment-1/submission/18307130003)

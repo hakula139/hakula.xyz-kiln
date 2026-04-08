@@ -1,7 +1,7 @@
 +++
 title = "CG - Project 1: 音乐可视化"
 date = 2022-01-01T21:18:00+08:00
-featured_image = "/images/article-covers/82818849_p0.webp"
+
 tags = [
     "可视化",
     "HTML5",
@@ -10,6 +10,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/82818849_p0.webp"
+
+[featured_image.credit]
+title = "届け！僕らの願い事"
+author = "輪廻（りんね）"
+url = "https://www.pixiv.net/artworks/94278235"
 +++
 
 本项目利用 HTML5 Canvas，实现了对音乐旋律的可视化，使用 TypeScript 编写。
@@ -17,10 +25,6 @@ math = true
 Computer Graphics @ Fudan University, fall 2021.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[届け！僕らの願い事 - @輪廻（りんね）](https://www.pixiv.net/artworks/94278235)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / music-visualization](https://github.com/hakula139/music-visualization)

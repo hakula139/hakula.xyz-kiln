@@ -1,7 +1,7 @@
 +++
 title = "计组 - Lab 4: 分支预测"
 date = 2020-06-08T05:46:00+08:00
-featured_image = "/images/article-covers/78954079_p0.webp"
+
 tags = [
     "计组",
     "MIPS",
@@ -11,6 +11,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/78954079_p0.webp"
+
+[featured_image.credit]
+title = "LL"
+author = "SWAV"
+url = "https://www.pixiv.net/artworks/78954079"
 +++
 
 动态分支预测器，实现了一个 2 位 Tournament Predictor，其中包含一个 Global Predictor、一个 Local Predictor 和一个 Static Predictor，使用 SystemVerilog 编写。
@@ -18,10 +26,6 @@ math = true
 Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[LL - @SWAV](https://www.pixiv.net/artworks/78954079)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / MIPS-CPU / Branch-Predictor](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor)

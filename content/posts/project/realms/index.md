@@ -1,7 +1,7 @@
 +++
 title = "REALMS: 一个图书管理系统"
 date = 2020-05-12T22:37:00+08:00
-featured_image = "/images/article-covers/69321889_p0.webp"
+
 tags = [
     "数据库",
     "MySQL",
@@ -9,6 +9,14 @@ tags = [
     "REST",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/69321889_p0.webp"
+
+[featured_image.credit]
+title = "19"
+author = "Aer7o"
+url = "https://www.pixiv.net/artworks/69321889"
 +++
 
 REALMS Establishes A Library Management System, written in Go, using a MySQL database.
@@ -16,10 +24,6 @@ REALMS Establishes A Library Management System, written in Go, using a MySQL dat
 Introduction to Database Systems (H) @ Fudan University, spring 2020.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[19 - @Aer7o](https://www.pixiv.net/artworks/69321889)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / REALMS](https://github.com/hakula139/REALMS)

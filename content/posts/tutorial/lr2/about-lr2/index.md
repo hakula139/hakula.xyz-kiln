@@ -1,18 +1,22 @@
 +++
 title = "LR2 配置教程 - 关于 LR2"
 date = 2018-09-14T23:15:00+08:00
-featured_image = "/images/article-covers/70624369_p0.webp"
+
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/70624369_p0.webp"
+
+[featured_image.credit]
+title = "奥座敷の人魚姫"
+author = "藤原"
+url = "https://www.pixiv.net/artworks/70624369"
 +++
 
 本部分将对 LR2 作一个简单的介绍，并提供一些皮肤的示例。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[奥座敷の人魚姫 - @藤原](https://www.pixiv.net/artworks/70624369)
-:::
 
 ## LR2 介绍
 

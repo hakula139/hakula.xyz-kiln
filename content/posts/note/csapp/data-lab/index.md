@@ -1,13 +1,16 @@
 +++
 title = "CS:APP - Data Lab"
 date = 2019-10-09T11:15:00+08:00
-featured_image = "/images/article-covers/csapp.webp"
+
 tags = [
     "CS:APP",
     "位运算",
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/csapp.webp"
 +++
 
 Introduction to Computer Systems I (H) @ Fudan University, fall 2019.

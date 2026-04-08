@@ -1,7 +1,7 @@
 +++
 title = "动画个人评测数据"
 date = 2023-05-11T14:31:00+08:00
-featured_image = "/images/article-covers/95611645_p0.webp"
+
 tags = [
     "动画",
     "评测",
@@ -9,15 +9,19 @@ tags = [
 weight = 3
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/95611645_p0.webp"
+
+[featured_image.credit]
+title = "月のある地底界"
+author = "輪廻狐（りんねこ）"
+url = "https://www.pixiv.net/artworks/95611645"
 +++
 
 个人看过的动画评测数据。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[月のある地底界 - @輪廻狐（りんねこ）](https://www.pixiv.net/artworks/95611645)
-:::
 
 ## 评测数据
 

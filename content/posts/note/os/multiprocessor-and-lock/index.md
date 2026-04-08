@@ -1,7 +1,7 @@
 +++
 title = "OS - Lab 4: Multiprocessor and Lock"
 date = 2020-11-15T23:54:00+08:00
-featured_image = "/images/article-covers/69514736_p0.webp"
+
 tags = [
     "操作系统",
     "ARM",
@@ -9,15 +9,19 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/69514736_p0.webp"
+
+[featured_image.credit]
+title = "半夢半醒之間"
+author = "Paindude"
+url = "https://www.pixiv.net/artworks/69514736"
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[半夢半醒之間 - @Paindude](https://www.pixiv.net/artworks/69514736)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / xv6-armv8 at lab4](https://github.com/hakula139/xv6-armv8/tree/lab4)

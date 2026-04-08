@@ -1,13 +1,16 @@
 +++
 title = "「Ave Mujica」：循此苦旅，终抵群星？- 前言"
 date = 2025-09-30T03:25:00+08:00
-featured_image = "/images/article-covers/ave-mujica.webp"
+
 tags = [
     "动画",
     "文艺批评",
     "Ave Mujica",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/ave-mujica.webp"
 +++
 
 为什么写作？为什么是「Ave Mujica」？为什么是现在？

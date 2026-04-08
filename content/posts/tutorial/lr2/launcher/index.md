@@ -1,18 +1,22 @@
 +++
 title = "LR2 配置教程 - 启动器"
 date = 2018-09-30T13:09:00+08:00
-featured_image = "/images/article-covers/66360679_p0.webp"
+
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/66360679_p0.webp"
+
+[featured_image.credit]
+title = "水鏡桜"
+author = "藤原"
+url = "https://www.pixiv.net/artworks/66360679"
 +++
 
 本部分将介绍 LR2 启动器的相关配置。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[水鏡桜 - @藤原](https://www.pixiv.net/artworks/66360679)
-:::
 
 ## 注册
 

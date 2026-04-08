@@ -1,13 +1,16 @@
 +++
 title = "CS:APP - Bomb Lab"
 date = 2019-10-23T01:27:00+08:00
-featured_image = "/images/article-covers/csapp.webp"
+
 tags = [
     "CS:APP",
     "汇编",
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/csapp.webp"
 +++
 
 Introduction to Computer Systems I (H) @ Fudan University, fall 2019.
