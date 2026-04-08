@@ -13,6 +13,7 @@ license = "CC BY-NC-SA 4.0"
 
 [featured_image]
 src = "/images/article-covers/86286793_p0.webp"
+position = "top"
 
 [featured_image.credit]
 title = "カラスの集め物"

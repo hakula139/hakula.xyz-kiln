@@ -12,6 +12,7 @@ license = "CC BY-NC-SA 4.0"
 
 [featured_image]
 src = "/images/article-covers/85995104_p0.webp"
+position = "top"
 
 [featured_image.credit]
 title = "猫の街"
