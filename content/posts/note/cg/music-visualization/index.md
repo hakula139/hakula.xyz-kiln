@@ -16,7 +16,7 @@ src = "/images/article-covers/82818849_p0.webp"
 [featured_image.credit]
 title = "届け！僕らの願い事"
 author = "輪廻（りんね）"
-url = "https://www.pixiv.net/artworks/94278235"
+url = "https://www.pixiv.net/artworks/82818849"
 +++
 
 本项目利用 HTML5 Canvas，实现了对音乐旋律的可视化，使用 TypeScript 编写。
