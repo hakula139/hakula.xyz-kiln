@@ -10,6 +10,7 @@ tags = [
     "C++",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 本项目利用 Flex (fast lexical analyzer generator)，实现了对给定 PCAT 语言样例的词法分析。

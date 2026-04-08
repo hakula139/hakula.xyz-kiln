@@ -9,6 +9,7 @@ tags = [
     "SystemVerilog",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 32 位流水线 MIPS 指令集 CPU，使用 SystemVerilog 编写。

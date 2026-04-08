@@ -8,6 +8,7 @@ tags = [
     "C++",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 Algorithms (H) @ Fudan University, spring 2021.
@@ -35,7 +36,7 @@ Algorithms (H) @ Fudan University, spring 2021.
 在 Task 1 的基础上，本题的主要难点分为两部分：
 
 1. 如何将 `long.fasta` 中的 $\textrm{read}$ 片段快速匹配到参考字符串 $\textrm{ref}$ 上。
-2. 如何在 $\textrm{read}$ 片段平均 $15\\%$ 的噪音干扰下，准确找到 SV 片段。
+2. 如何在 $\textrm{read}$ 片段平均 $15\%$ 的噪音干扰下，准确找到 SV 片段。
 
 这里我们参考了 [Minimap2][minimap2] 的论文思路，根据实际情况进行了简化和调整。算法核心分为以下三个步骤：
 
@@ -81,9 +82,9 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 在 [`src/utils/config.cpp`][config.cpp] 中调整 `LOG_LEVEL` 为 `DEBUG`，即可在日志 `logs/output.log` 中看到 $\textrm{minimizer}$ 的覆盖率（搜索 `cover rate`）。对于本题的正式数据，我们的覆盖率分别达到了：
 
-- `NC_010513.1`: $99.01\\%$ ($\textrm{S1}$)
-- `NC_014752.1`: $98.07\\%$ ($\textrm{S2}$)
-- `NC_017999.1`: $99.05\\%$ ($\textrm{S3}$)
+- `NC_010513.1`: $99.01\%$ ($\textrm{S1}$)
+- `NC_014752.1`: $98.07\%$ ($\textrm{S2}$)
+- `NC_017999.1`: $99.05\%$ ($\textrm{S3}$)
 
 具体代码可参见 [`src/common/dna_overlap.cpp`][dna_overlap.cpp:116] 中函数 `DnaOverlap::SelectChain` 和 `DnaOverlap::CheckCoverage` 的实现。
 
@@ -93,7 +94,7 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 但是，由于 Task 2 的数据含有一定量的噪声，原先对 Task 1 的数据处理方式不再适用于 Task 2，我们需要重新研究如何处理通过 `Dna::FindDeltasChunk` 函数得到的 SV。
 
-具体来说，由于噪声的存在，SV 变得更加零散，同时我们难以区分一个 SV 是真正的 SV 还是噪声。我尝试过利用 SV 的间隔来判断一个 SV 是否是噪声，也尝试过魔改 Myers 差分算法来消除部分噪声，但效果都不理想。最后经过助教的提示，我调整了方案，使用一定范围内 SV 的密度来估计 SV 可能存在的范围。这是因为如果是纯噪声，SV 的密度大约会在 $15\\%$ 左右，而对于真实的 SV，其密度往往在 $50\\%$ 以上。通过观察 SV 密度的变化，就有可能判断 SV 的位置。参见 [`src/common/dna_delta.cpp`][dna_delta.cpp:125] 中函数 `DnaDelta::GetDensity` 的实现。
+具体来说，由于噪声的存在，SV 变得更加零散，同时我们难以区分一个 SV 是真正的 SV 还是噪声。我尝试过利用 SV 的间隔来判断一个 SV 是否是噪声，也尝试过魔改 Myers 差分算法来消除部分噪声，但效果都不理想。最后经过助教的提示，我调整了方案，使用一定范围内 SV 的密度来估计 SV 可能存在的范围。这是因为如果是纯噪声，SV 的密度大约会在 $15\%$ 左右，而对于真实的 SV，其密度往往在 $50\%$ 以上。通过观察 SV 密度的变化，就有可能判断 SV 的位置。参见 [`src/common/dna_delta.cpp`][dna_delta.cpp:125] 中函数 `DnaDelta::GetDensity` 的实现。
 
 具体代码可参见 [`src/common/dna.cpp`][dna.cpp:368] 中函数 `Dna::FindDeltasFromSegments` 的实现。
 

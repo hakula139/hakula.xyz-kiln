@@ -4,6 +4,7 @@ date = 2019-02-10T20:31:00+08:00
 featured_image = "/images/article-covers/59521621_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 本部分将介绍 LR2 的结算界面。
@@ -124,7 +125,7 @@ $$\mathrm{MISS\ COUNT} = \mathrm{BAD} + \mathrm{POOR}$$
 
 #### RATE
 
-$$\mathrm{SCORE\ RATE} = \mathrm{PGREAT}\times 100\\% + \mathrm{GREAT}\times 50\\%$$
+$$\mathrm{SCORE\ RATE} = \mathrm{PGREAT}\times 100\% + \mathrm{GREAT}\times 50\%$$
 
 其实就是 [EX SCORE](#ex-score) 的百分比表示，决定了你的 [DJ LEVEL](#dj-level)。
 

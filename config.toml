@@ -27,7 +27,7 @@ title = "HAKULA†CHANNEL"
 subtitle = "让我们一直谈论变革，以确保事实上什么都没改变。"
 
 [params.section]
-paginate = 16
+paginate = 10
 
 [params.footer]
 since = 2018

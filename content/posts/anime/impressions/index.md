@@ -8,6 +8,7 @@ tags = [
 ]
 weight = 3
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 个人看过的动画评测数据。
@@ -34,7 +35,7 @@ license = "CC BY-NC-SA 4.0"
 ### 评分公式
 
 $$
-\textrm{总评} = \textrm{剧本}\times 55\\% + \textrm{画面}\times 30\\% + \textrm{音乐}\times 15\\%
+\textrm{总评} = \textrm{剧本}\times 55\% + \textrm{画面}\times 30\% + \textrm{音乐}\times 15\%
 $$
 
 ::: callout { type=question title="关于评分项目" }

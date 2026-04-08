@@ -9,6 +9,7 @@ tags = [
 ]
 weight = 2
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 个人推过的 AVG 评测数据。
@@ -36,7 +37,7 @@ license = "CC BY-NC-SA 4.0"
 ### 评分公式
 
 $$
-\textrm{总评} = \textrm{剧本}\times 70\\% + \textrm{系统}\times 15\\% + \textrm{画面}\times 8\\% + \textrm{音乐}\times 7\\%
+\textrm{总评} = \textrm{剧本}\times 70\% + \textrm{系统}\times 15\% + \textrm{画面}\times 8\% + \textrm{音乐}\times 7\%
 $$
 
 ::: callout { type=question title="关于评分项目" }

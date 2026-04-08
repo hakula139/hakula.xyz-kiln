@@ -7,6 +7,7 @@ tags = [
     "汇编",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 Introduction to Computer Systems I (H) @ Fudan University, fall 2019.

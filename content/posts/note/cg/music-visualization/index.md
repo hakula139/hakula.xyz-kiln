@@ -9,6 +9,7 @@ tags = [
     "TypeScript",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 本项目利用 HTML5 Canvas，实现了对音乐旋律的可视化，使用 TypeScript 编写。
@@ -176,7 +177,7 @@ $$A = \frac{1}{\lceil \Delta N \rceil} \sum\limits\_{k=\lfloor i\Delta N \rfloor
 
 $$h_i = \phi A$$
 
-当这个频域内的响度达到最大值时，柱形就可以有 $100\\%$ 的 canvas 高度 $h$。
+当这个频域内的响度达到最大值时，柱形就可以有 $100\%$ 的 canvas 高度 $h$。
 
 柱形的位置即为
 

@@ -10,6 +10,7 @@ tags = [
     "SystemVerilog",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 动态分支预测器，实现了一个 2 位 Tournament Predictor，其中包含一个 Global Predictor、一个 Local Predictor 和一个 Static Predictor，使用 SystemVerilog 编写。
@@ -149,7 +150,7 @@ assign flush_d_o = predict_miss_i || jump_d_i[1];  // wrong prediction or JR
 
 ### 4.3 测试分析
 
-同等条件下，未使用动态分支预测时 CPI 为 `1.997842`。可见，动态分支预测将 CPI 降低了 $10\\%$ 左右，这个优化效果还是比较可观的。以下调整不同参数，进行了一些测试。
+同等条件下，未使用动态分支预测时 CPI 为 `1.997842`。可见，动态分支预测将 CPI 降低了 $10\%$ 左右，这个优化效果还是比较可观的。以下调整不同参数，进行了一些测试。
 
 Tournament Predictor miss 时优先选择哪种预测模式？
 
