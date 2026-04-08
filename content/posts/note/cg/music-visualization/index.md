@@ -177,7 +177,7 @@ $$A = \frac{1}{\lceil \Delta N \rceil} \sum\limits\_{k=\lfloor i\Delta N \rfloor
 
 $$h_i = \phi A$$
 
-当这个频域内的响度达到最大值时，柱形就可以有 $100\\%$ 的 canvas 高度 $h$。
+当这个频域内的响度达到最大值时，柱形就可以有 $100\%$ 的 canvas 高度 $h$。
 
 柱形的位置即为
 

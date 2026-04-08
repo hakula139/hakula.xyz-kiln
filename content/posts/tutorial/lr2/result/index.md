@@ -125,7 +125,7 @@ $$\mathrm{MISS\ COUNT} = \mathrm{BAD} + \mathrm{POOR}$$
 
 #### RATE
 
-$$\mathrm{SCORE\ RATE} = \mathrm{PGREAT}\times 100\\% + \mathrm{GREAT}\times 50\\%$$
+$$\mathrm{SCORE\ RATE} = \mathrm{PGREAT}\times 100\% + \mathrm{GREAT}\times 50\%$$
 
 其实就是 [EX SCORE](#ex-score) 的百分比表示，决定了你的 [DJ LEVEL](#dj-level)。
 
