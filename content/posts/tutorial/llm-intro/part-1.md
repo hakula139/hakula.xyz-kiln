@@ -1,7 +1,6 @@
 +++
 title = "LLM Intro: From the Basics to Context Engineering (Part 1)"
 date = 2026-03-13T15:25:00+08:00
-featured_image = "/images/article-covers/136849830_p0.webp"
 tags = [
     "AI",
     "LLM",
@@ -11,15 +10,19 @@ tags = [
     "Plugin",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/136849830_p0.webp"
+
+[featured_image.credit]
+title = "Luminous"
+author = "アシマ"
+url = "https://www.pixiv.net/artworks/136849830"
 +++
 
 A practical guide to LLM agents, from foundational concepts to building a production-ready agent configuration. Part 1 of a two-part series: what an LLM actually is, how it becomes an agent, and the layered system (CLAUDE.md, hooks, MCP, skills, plugins) that makes it useful in practice. Part 2 covers subagents, agent teams, and more advanced topics. Written for everyone, regardless of technical background.
 
 <!--more-->
-
-::: callout { type=info title="Banner Image" }
-[Luminous - @アシマ](https://www.pixiv.net/artworks/136849830)
-:::
 
 ## Introduction
 

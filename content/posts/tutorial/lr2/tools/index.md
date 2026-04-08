@@ -1,22 +1,25 @@
 +++
 title = "LR2 配置教程 - 辅助工具"
 date = 2019-07-20T02:47:00+08:00
-featured_image = "/images/article-covers/72296053_p0.webp"
 tags = [
     "BMS",
     "LR2",
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/72296053_p0.webp"
+
+[featured_image.credit]
+title = "レミリア"
+author = "吉岡よしこ"
+url = "https://www.pixiv.net/artworks/72296053"
 +++
 
 一些辅助工具 / 网站的介绍及使用说明。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[レミリア - @吉岡よしこ](https://www.pixiv.net/artworks/72296053)
-:::
 
 ## Walkure
 

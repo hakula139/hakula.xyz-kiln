@@ -1,7 +1,6 @@
 +++
 title = "DSP - Lab 1: FFT: 快速傅立叶变换"
 date = 2022-03-26T01:37:00+08:00
-featured_image = "/images/article-covers/102184125_p0.webp"
 tags = [
     "数字信号处理",
     "FFT",
@@ -9,6 +8,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/102184125_p0.webp"
+
+[featured_image.credit]
+title = "秋のイベント"
+author = "NEKO"
+url = "https://www.pixiv.net/artworks/102184125"
 +++
 
 本实验中，我们实现了一个基础的 FFT 算法，使用 Python 编写。
@@ -16,10 +23,6 @@ math = true
 Digital Signal Processing @ Fudan University, fall 2021.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[秋のイベント - @NEKO](https://www.pixiv.net/artworks/102184125)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / naive-speech-recognizer at dev-fft](https://github.com/hakula139/naive-speech-recognizer/tree/dev-fft)
@@ -48,7 +51,6 @@ fig_time_path = 'assets/fft/time_domain.png'
 fig_freq_path = 'assets/fft/freq_domain.png'
 sample_rate = 8000
 n_samples = 1024
-
 
 def main() -> None:
     # Resample to required sample_rate.

@@ -1,9 +1,11 @@
 +++
 title = "CloudCone VPS"
 date = 2020-01-31T03:21:00+08:00
-featured_image = "/images/article-covers/cloudcone.webp"
 tags = ["VPS"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/cloudcone.webp"
 +++
 
 本站选择的 VPS 商家。低配机年付 15 刀，月流量 1 TB 起，1 Gbps 端口，部署于洛杉矶 Multacom 机房，CN2 GIA 线路，支持支付宝。

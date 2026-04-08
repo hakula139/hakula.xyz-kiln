@@ -1,7 +1,6 @@
 +++
 title = "PRML - Lab 2: FNN 模型"
 date = 2021-05-02T19:30:00+08:00
-featured_image = "/images/article-covers/88775351_p0.webp"
 tags = [
     "PRML",
     "机器学习",
@@ -12,6 +11,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/88775351_p0.webp"
+
+[featured_image.credit]
+title = "封鎖"
+author = "SWAV"
+url = "https://www.pixiv.net/artworks/88775351"
 +++
 
 本次作业完成了选题 1 的实验内容，利用 NumPy 实现了一个 FNN 模型，并在 MNIST 数据集上进行了训练。
@@ -19,10 +26,6 @@ math = true
 Pattern Recognition and Machine Learning (H) @ Fudan University, spring 2021.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[封鎖 - @SWAV](https://www.pixiv.net/artworks/88775351)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-git-alt): Hakula / prml-21-spring / assignment-2](https://gitee.com/hakula139/prml-21-spring/tree/master/assignment-2/submission/18307130003)

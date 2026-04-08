@@ -1,7 +1,6 @@
 +++
 title = "AI 思辨录：从「厌蠢症」到「逃逸线」"
 date = 2025-07-19T19:54:00+08:00
-featured_image = "/images/article-covers/91419407_p0.webp"
 tags = [
     "AI",
     "LLM",
@@ -11,6 +10,14 @@ tags = [
     "后现代主义",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/91419407_p0.webp"
+
+[featured_image.credit]
+title = "無人列車"
+author = "ワベマ"
+url = "https://www.pixiv.net/artworks/91419407"
 +++
 
 和 Gemini 聊爽了，以后直接开这么个栏目得了，类似 [@AI-Talk] 之前做的[「艾尔文团长对话谏山创」][bili-BV1HN4y1D7j7]，不过性质上可能更接近《理想国》。毕竟时间有限，就像我现在 > 95% 的代码都是 LLM 生成的一样，AI 时代的写作思路也应该转变了。好比中泽工「I/O」的文本填充也不是自己亲自完成的，以后我就是我文章的「总策划」，而不必要是「写手」。
@@ -21,10 +28,6 @@ license = "CC BY-NC-SA 4.0"
 <!--more-->
 
 <!-- markdownlint-disable MD024 -->
-
-::: callout { type=info title="封面出处" }
-[無人列車 - @ワベマ](https://www.pixiv.net/artworks/91419407)
-:::
 
 ## 第一圈：潜入自我，「厌蠢症」心理解析
 

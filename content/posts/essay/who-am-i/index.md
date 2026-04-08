@@ -1,7 +1,6 @@
 +++
 title = "「我是谁？」——基于 Gemini 2.5 Pro，对自己做一次精神分析"
 date = 2025-06-25T22:26:00+08:00
-featured_image = "/images/article-covers/123273147_p0.webp"
 tags = [
     "AI",
     "LLM",
@@ -11,6 +10,15 @@ tags = [
     "精神分析",
 ]
 license = "禁止转载"
+
+[featured_image]
+src = "/images/article-covers/123273147_p0.webp"
+position = "top"
+
+[featured_image.credit]
+title = "「さよなら…」"
+author = "MISSILE228"
+url = "https://www.pixiv.net/artworks/123273147"
 +++
 
 故事的开始是今天下班后随手打了一段文字，准备发个动态，分享下我此刻尽管百般劳累、但在看到工资条后阴霾仿佛一扫而空的喜悦心情。正所谓「打工人一天最爽的时候是下班时，一周最爽的时候是周末开始时，一个月最爽的时候是发工资时，一年最爽的时候是发年终奖时」——今天可谓是连占三样。然而写到一半时我自我审视了下，即使作为无需费心遣词造句的日常吐槽，这种字里行间不经意流露的高傲态度也很让人不适。这最多只能作为私人的日记，而不适合在公开场合发表。本质上除了满足自己表达欲的宣泄，对他人而言这种文字有什么看的意义呢？于是我决定拉倒，反正文字在写完的瞬间就已经达到了原来的目的。
@@ -20,10 +28,6 @@ license = "禁止转载"
 <!--more-->
 
 <!-- markdownlint-disable MD024 -->
-
-::: callout { type=info title="封面出处" }
-[「さよなら…」- @MISSILE228](https://www.pixiv.net/artworks/123273147)
-:::
 
 ## 开端：未发表的日常吐槽
 

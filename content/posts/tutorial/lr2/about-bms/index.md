@@ -1,18 +1,21 @@
 +++
 title = "LR2 配置教程 - 关于 BMS"
 date = 2018-09-09T10:37:00+08:00
-featured_image = "/images/article-covers/70937229_p0.webp"
 tags = ["BMS"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/70937229_p0.webp"
+
+[featured_image.credit]
+title = "翔鶴"
+author = "藤原"
+url = "https://www.pixiv.net/artworks/70937229"
 +++
 
 本部分将对 BMS 作一个简单的介绍，并提供一些推荐的下载方式。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[翔鶴 - @藤原](https://www.pixiv.net/artworks/70937229)
-:::
 
 ## BMS 介绍
 

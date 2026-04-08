@@ -1,18 +1,21 @@
 +++
 title = "LR2 配置教程 - 主界面"
 date = 2018-10-11T01:31:00+08:00
-featured_image = "/images/article-covers/65835281_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/65835281_p0.webp"
+
+[featured_image.credit]
+title = "猫が 2 匹"
+author = "藤原"
+url = "https://www.pixiv.net/artworks/65835281"
 +++
 
 本部分将介绍 LR2 游戏内的相关配置。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[猫が 2 匹 - @藤原](https://www.pixiv.net/artworks/65835281)
-:::
 
 ## 进入游戏
 

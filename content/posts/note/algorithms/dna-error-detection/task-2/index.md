@@ -1,7 +1,6 @@
 +++
 title = "算法 - Project: DNA 测序错误检测 - Task 2: 有噪音分段比对"
 date = 2021-06-28T23:59:00+08:00
-featured_image = "/images/article-covers/89979147_p0.webp"
 tags = [
     "算法",
     "模糊匹配",
@@ -9,15 +8,19 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/89979147_p0.webp"
+
+[featured_image.credit]
+title = "夕凪"
+author = "mocha"
+url = "https://www.pixiv.net/artworks/89979147"
 +++
 
 Algorithms (H) @ Fudan University, spring 2021.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[夕凪 - @mocha](https://www.pixiv.net/artworks/89979147)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / dna-error-detection at task-2-segments](https://github.com/hakula139/dna-error-detection/tree/task-2-segments)

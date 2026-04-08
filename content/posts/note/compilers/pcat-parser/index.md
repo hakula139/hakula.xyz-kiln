@@ -1,7 +1,6 @@
 +++
 title = "编译 - Lab 2: PCAT 语法分析器"
 date = 2021-12-07T02:16:00+08:00
-featured_image = "/images/article-covers/94538258_p0.webp"
 tags = [
     "编译",
     "语法分析",
@@ -13,6 +12,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/94538258_p0.webp"
+
+[featured_image.credit]
+title = "紅葉から生まれた天の川"
+author = "輪廻（りんね）"
+url = "https://www.pixiv.net/artworks/94538258"
 +++
 
 本项目利用 Bison 和 Flex，实现了对给定 PCAT 语言样例的语法分析。
@@ -20,10 +27,6 @@ math = true
 Compilers @ Fudan University, fall 2021.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[紅葉から生まれた天の川 - @輪廻（りんね）](https://www.pixiv.net/artworks/94538258)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / pcat_parser](https://github.com/hakula139/pcat_parser)
@@ -137,7 +140,6 @@ END;
 
 ```text
 # tests/case_1.pcat
-
 
 program <1:1-8:5>
   body <1:11-8:4>

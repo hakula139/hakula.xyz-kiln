@@ -1,21 +1,24 @@
 +++
 title = "LR2 配置教程 - LR2IR"
 date = 2019-04-02T16:26:00+08:00
-featured_image = "/images/article-covers/59288952_p0.webp"
 tags = [
     "BMS",
     "LR2",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/59288952_p0.webp"
+
+[featured_image.credit]
+title = "Juliet"
+author = "CinEraLiA"
+url = "https://www.pixiv.net/artworks/59288952"
 +++
 
 本部分将介绍 LR2IR，LR2 的线上排行榜。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[Juliet - @CinEraLiA](https://www.pixiv.net/artworks/59288952) @ [BOFU2016](https://manbow.nothing.sh/event/event.cgi?action=More_def&num=461&event=110)
-:::
 
 得益于此，LR2 存活至今。
 

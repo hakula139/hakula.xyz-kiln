@@ -9,8 +9,8 @@ tags = [
     "Subagent",
     "Agent Team",
 ]
-draft = true
 license = "CC BY-NC-SA 4.0"
+draft = true
 +++
 
 The second part of the context engineering series. [Part 1](../part-1/) covered the foundations: what an LLM is, how it becomes an agent, and the seven layers of configuration (CLAUDE.md, hooks, MCP, skills, plugins) that make it production-ready. This part picks up where we left off — with subagents, agent teams, and the orchestration patterns that enable full parallel coordination.

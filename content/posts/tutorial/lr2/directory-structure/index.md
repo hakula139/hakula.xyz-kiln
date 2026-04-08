@@ -1,18 +1,21 @@
 +++
 title = "LR2 配置教程 - 目录结构"
 date = 2018-09-26T14:31:00+08:00
-featured_image = "/images/article-covers/66385542_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/66385542_p0.webp"
+
+[featured_image.credit]
+title = "神饌神輿"
+author = "藤原"
+url = "https://www.pixiv.net/artworks/66385542"
 +++
 
 本部分将介绍 LR2 游戏文件夹的目录结构。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[神饌神輿 - @藤原](https://www.pixiv.net/artworks/66385542)
-:::
 
 解压后，你看到的目录结构应该是这样的：
 

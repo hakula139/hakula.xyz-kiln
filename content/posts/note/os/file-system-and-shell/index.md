@@ -1,7 +1,6 @@
 +++
 title = "OS - Lab 7: File System and Shell"
 date = 2021-03-07T23:30:00+08:00
-featured_image = "/images/article-covers/88070709_p0.webp"
 tags = [
     "操作系统",
     "ARM",
@@ -11,15 +10,19 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/88070709_p0.webp"
+
+[featured_image.credit]
+title = "猫とひより"
+author = "ももこ"
+url = "https://www.pixiv.net/artworks/88070709"
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[猫とひより - @ももこ](https://www.pixiv.net/artworks/88070709)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / xv6-armv8 at lab7](https://github.com/hakula139/xv6-armv8/tree/lab7)

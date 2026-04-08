@@ -1,13 +1,16 @@
 +++
 title = "关于我"
 date = 2019-04-16T00:05:00+08:00
-featured_image = "/images/article-covers/64035231_p0.webp"
 weight = -1
-+++
 
-::: callout { type=info title="封面出处" }
-[そらたび - @凪白みと](https://www.pixiv.net/artworks/64035231)
-:::
+[featured_image]
+src = "/images/article-covers/64035231_p0.webp"
+
+[featured_image.credit]
+title = "そらたび"
+author = "凪白みと"
+url = "https://www.pixiv.net/artworks/64035231"
++++
 
 ## :briefcase: 工作经历
 

@@ -1,18 +1,21 @@
 +++
 title = "LR2 配置教程 - 下载"
 date = 2018-09-19T14:15:00+08:00
-featured_image = "/images/article-covers/69065999_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/69065999_p0.webp"
+
+[featured_image.credit]
+title = "魔女の彩の庭"
+author = "藤原"
+url = "https://www.pixiv.net/artworks/69065999"
 +++
 
 本部分将提供 LR2 的下载方式。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[魔女の彩の庭 - @藤原](https://www.pixiv.net/artworks/69065999)
-:::
 
 ## 立即下载
 

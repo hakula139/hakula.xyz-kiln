@@ -1,7 +1,6 @@
 +++
 title = "编译 - Lab 1: PCAT 词法分析器"
 date = 2021-11-05T14:57:00+08:00
-featured_image = "/images/article-covers/88865174_p0.webp"
 tags = [
     "编译",
     "词法分析",
@@ -11,6 +10,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/88865174_p0.webp"
+
+[featured_image.credit]
+title = "季節を抱きしめて"
+author = "DSマイル"
+url = "https://www.pixiv.net/artworks/88865174"
 +++
 
 本项目利用 Flex (fast lexical analyzer generator)，实现了对给定 PCAT 语言样例的词法分析。
@@ -18,10 +25,6 @@ math = true
 Compilers @ Fudan University, fall 2021.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[季節を抱きしめて - @DSマイル](https://www.pixiv.net/artworks/88865174)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / pcat_lexical_analyzer](https://github.com/hakula139/pcat_lexical_analyzer)

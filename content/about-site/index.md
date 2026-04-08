@@ -1,15 +1,18 @@
 +++
 title = "关于本站"
 date = 2022-10-14T15:30:00+08:00
-featured_image = "/images/article-covers/70180757_p0.webp"
 weight = -2
+
+[featured_image]
+src = "/images/article-covers/70180757_p0.webp"
+
+[featured_image.credit]
+title = "Prism Castle"
+author = "c.c.R"
+url = "https://www.pixiv.net/artworks/70180757"
 +++
 
 <!-- markdownlint-disable MD053 -->
-
-::: callout { type=info title="封面出处" }
-[Prism Castle - @c.c.R](https://www.pixiv.net/artworks/70180757)
-:::
 
 ## 技术选型
 

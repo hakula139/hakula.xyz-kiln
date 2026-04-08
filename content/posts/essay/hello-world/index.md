@@ -1,21 +1,24 @@
 +++
 title = "Hello, World!"
 date = 2018-08-23T12:15:00+08:00
-featured_image = "/images/article-covers/66372748_p0.webp"
 tags = [
     "建站",
     "VPS",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/66372748_p0.webp"
+
+[featured_image.credit]
+title = "ARCANA"
+author = "MISSILE228"
+url = "https://www.pixiv.net/artworks/66372748"
 +++
 
 建站以来第一篇文章，主要是建站后的一点感想，以及建站的整个大致流程。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[ARCANA - @MISSILE228](https://www.pixiv.net/artworks/66372748)
-:::
 
 ## 一些感想
 

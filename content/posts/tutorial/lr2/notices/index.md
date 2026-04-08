@@ -1,18 +1,22 @@
 +++
 title = "LR2 配置教程 - 注意事项"
 date = 2019-07-19T02:29:00+08:00
-featured_image = "/images/article-covers/75778049_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/75778049_p0.webp"
+position = "50% 25%"
+
+[featured_image.credit]
+title = "江風"
+author = "凪白みと"
+url = "https://www.pixiv.net/artworks/75778049"
 +++
 
 一些你或许有必要了解的注意事项，包括 LR2 的各种 bug，以及 Beatmania IIDX 相关的版权问题。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[江風 - @凪白みと](https://www.pixiv.net/artworks/75778049)
-:::
 
 ## 一些已知的 bug
 

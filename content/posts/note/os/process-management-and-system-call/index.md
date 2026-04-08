@@ -1,7 +1,6 @@
 +++
 title = "OS - Lab 5: Process Management and System Call"
 date = 2020-12-09T02:08:00+08:00
-featured_image = "/images/article-covers/85995104_p0.webp"
 tags = [
     "操作系统",
     "ARM",
@@ -10,15 +9,20 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/85995104_p0.webp"
+position = "top"
+
+[featured_image.credit]
+title = "猫の街"
+author = "MISSILE228"
+url = "https://www.pixiv.net/artworks/85995104"
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[猫の街 - @MISSILE228](https://www.pixiv.net/artworks/85995104)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / xv6-armv8 at lab5](https://github.com/hakula139/xv6-armv8/tree/lab5)

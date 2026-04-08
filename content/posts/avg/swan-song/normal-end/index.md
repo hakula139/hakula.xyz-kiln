@@ -2,7 +2,6 @@
 title = "AVG - 「SWAN SONG」Normal End"
 description = "传说中天鹅在临死前会发出一声最凄美的啼鸣。那只是个谎言。"
 date = 2023-06-23T22:53:00+08:00
-featured_image = "/images/article-covers/swan-song.webp"
 tags = [
     "AVG",
     "Galgame",
@@ -10,6 +9,9 @@ tags = [
     "文艺批评",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/swan-song.webp"
 +++
 
 <!--more-->

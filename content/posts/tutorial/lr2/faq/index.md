@@ -1,18 +1,21 @@
 +++
 title = "LR2 配置教程 - FAQ"
 date = 2019-07-19T02:43:00+08:00
-featured_image = "/images/article-covers/73473821_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/73473821_p0.webp"
+
+[featured_image.credit]
+title = "膕"
+author = "神岡ちろる"
+url = "https://www.pixiv.net/artworks/73473821"
 +++
 
 一些常见问题及参考解决方案。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[膕 - @神岡ちろる](https://www.pixiv.net/artworks/73473821)
-:::
 
 欢迎在评论区继续提问。
 

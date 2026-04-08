@@ -1,18 +1,21 @@
 +++
 title = "LR2 配置教程 - WMIX"
 date = 2019-02-11T21:29:00+08:00
-featured_image = "/images/article-covers/62549069_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/62549069_p0.webp"
+
+[featured_image.credit]
+title = "Infinity Red"
+author = "MISSILE228"
+url = "https://www.pixiv.net/artworks/62549069"
 +++
 
 本部分将介绍 LR2 的皮肤设置（WMIX）。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[Infinity Red - @MISSILE228](https://www.pixiv.net/artworks/62549069)
-:::
 
 在 [Select](../select/#skin--soundset) 篇里我留了一个坑，现在我们来把它填掉。
 

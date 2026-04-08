@@ -1,7 +1,6 @@
 +++
 title = "计组 - Lab 3: Cache"
 date = 2020-05-24T16:36:00+08:00
-featured_image = "/images/article-covers/78302689_p0.webp"
 tags = [
     "计组",
     "MIPS",
@@ -10,6 +9,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/78302689_p0.webp"
+
+[featured_image.credit]
+title = "離去"
+author = "Qi==Qi"
+url = "https://www.pixiv.net/artworks/78302689"
 +++
 
 32 位 256 bytes 4 路组相联（参数可调节）高速缓存，使用 SystemVerilog 编写。
@@ -17,10 +24,6 @@ math = true
 Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[離去 - @Qi==Qi](https://www.pixiv.net/artworks/78302689)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / MIPS-CPU / Cache](https://github.com/hakula139/MIPS-CPU/tree/master/Cache)

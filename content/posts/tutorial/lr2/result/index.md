@@ -1,19 +1,22 @@
 +++
 title = "LR2 配置教程 - Result"
 date = 2019-02-10T20:31:00+08:00
-featured_image = "/images/article-covers/59521621_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/59521621_p0.webp"
+
+[featured_image.credit]
+title = "織の檻"
+author = "藤原"
+url = "https://www.pixiv.net/artworks/59521621"
 +++
 
 本部分将介绍 LR2 的结算界面。
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[織の檻 - @藤原](https://www.pixiv.net/artworks/59521621)
-:::
 
 游玩结束，进入结算界面。按鼠标左键 / 键盘回车键 / 手台黑白键退出。
 

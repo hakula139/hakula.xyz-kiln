@@ -1,7 +1,6 @@
 +++
 title = "DSP - Project: 语音识别"
 date = 2022-06-03T15:14:00+08:00
-featured_image = "/images/article-covers/94819769_p0.webp"
 tags = [
     "数字信号处理",
     "语音识别",
@@ -12,6 +11,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/94819769_p0.webp"
+
+[featured_image.credit]
+title = "雪化粧"
+author = "Hiten"
+url = "https://www.pixiv.net/artworks/94819769"
 +++
 
 本项目实现了一个基础的语音识别系统，可以从 20 个给定单词中识别一段语音是其中的哪个单词。识别系统基于深度学习，以音频信号的 Mel 频率倒谱系数（MFCC）作为特征，通过一个卷积神经网络（CNN）进行训练。
@@ -19,10 +26,6 @@ math = true
 Digital Signal Processing @ Fudan University, fall 2021.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[雪化粧 - @Hiten](https://www.pixiv.net/artworks/94819769)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / naive-speech-recognizer](https://github.com/hakula139/naive-speech-recognizer)

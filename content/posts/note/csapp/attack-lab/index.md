@@ -1,13 +1,15 @@
 +++
 title = "CS:APP - Attack Lab"
 date = 2019-10-26T22:16:00+08:00
-featured_image = "/images/article-covers/csapp.webp"
 tags = [
     "CS:APP",
     "汇编",
     "缓冲区溢出",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/csapp.webp"
 +++
 
 Introduction to Computer Systems I (H) @ Fudan University, fall 2019.

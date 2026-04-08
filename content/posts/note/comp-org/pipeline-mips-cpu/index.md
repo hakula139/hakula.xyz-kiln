@@ -1,7 +1,6 @@
 +++
 title = "计组 - Lab 2: 流水线 MIPS CPU"
 date = 2020-04-25T04:37:00+08:00
-featured_image = "/images/article-covers/75293213_p0.webp"
 tags = [
     "计组",
     "MIPS",
@@ -10,6 +9,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/75293213_p0.webp"
+
+[featured_image.credit]
+title = "ねこ聖女さま"
+author = "和武はざの"
+url = "https://www.pixiv.net/artworks/75293213"
 +++
 
 32 位流水线 MIPS 指令集 CPU，使用 SystemVerilog 编写。
@@ -17,10 +24,6 @@ math = true
 Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[ねこ聖女さま - @和武はざの](https://www.pixiv.net/artworks/75293213)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / MIPS-CPU / Pipeline](https://github.com/hakula139/MIPS-CPU/tree/master/Pipeline)

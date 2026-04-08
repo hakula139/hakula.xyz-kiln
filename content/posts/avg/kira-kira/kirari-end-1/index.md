@@ -2,13 +2,15 @@
 title = "AVG - 「KIRA☆KIRA」绮良里线 End 1"
 description = "「向这狗娘养的世界，献出我全部的爱。」"
 date = 2023-01-27T22:33:00+08:00
-featured_image = "/images/article-covers/kira-kira.webp"
 tags = [
     "AVG",
     "Galgame",
     "评测",
 ]
 license = "CC BY-NC-SA 4.0"
+
+[featured_image]
+src = "/images/article-covers/kira-kira.webp"
 +++
 
 <!--more-->

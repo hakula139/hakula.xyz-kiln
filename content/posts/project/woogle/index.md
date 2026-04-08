@@ -1,7 +1,6 @@
 +++
 title = "Woogle: 一个基于倒排索引的简易搜索引擎"
 date = 2021-12-17T16:45:00+08:00
-featured_image = "/images/article-covers/94278235_p0.webp"
 tags = [
     "分布式系统",
     "倒排索引",
@@ -11,6 +10,14 @@ tags = [
 ]
 license = "CC BY-NC-SA 4.0"
 math = true
+
+[featured_image]
+src = "/images/article-covers/94278235_p0.webp"
+
+[featured_image.credit]
+title = "雨で垂れるネオン街"
+author = "輪廻（りんね）"
+url = "https://www.pixiv.net/artworks/94278235"
 +++
 
 本项目利用 Hadoop MapReduce，构建了对 Wikipedia 语料库的倒排索引，并实现了一个简易的搜索引擎，可根据检索的关键词返回相应的索引信息，使用 Java 编写。
@@ -18,10 +25,6 @@ math = true
 Distributed Systems (H) @ Fudan University, fall 2021.
 
 <!--more-->
-
-::: callout { type=info title="封面出处" }
-[雨で垂れるネオン街 - @輪廻（りんね）](https://www.pixiv.net/artworks/94278235)
-:::
 
 ::: callout { type=success title="源码地址" }
 [:(fab fa-github): hakula139 / woogle](https://github.com/hakula139/woogle)
