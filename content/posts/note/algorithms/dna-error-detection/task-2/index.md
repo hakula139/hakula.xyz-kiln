@@ -8,6 +8,7 @@ tags = [
     "C++",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 Algorithms (H) @ Fudan University, spring 2021.

@@ -8,6 +8,7 @@ tags = [
 ]
 weight = 3
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 个人看过的动画评测数据。

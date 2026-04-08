@@ -10,6 +10,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 本次作业利用 NumPy 实现了一个 KNN 模型。

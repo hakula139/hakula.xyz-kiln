@@ -9,6 +9,7 @@ tags = [
 ]
 weight = 2
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 个人推过的 AVG 评测数据。

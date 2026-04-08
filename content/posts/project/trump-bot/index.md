@@ -11,6 +11,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 一个模仿特朗普 Twitter 账号 [@realDonaldTrump] 语言风格的简易文本生成 AI，基于 GRU 模型实现。

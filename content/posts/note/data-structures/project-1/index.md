@@ -7,6 +7,7 @@ tags = [
     "排序",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 Data Structures (H) @ Fudan University, fall 2019.

@@ -4,6 +4,7 @@ date = 2019-01-14T21:42:00+08:00
 featured_image = "/images/article-covers/65262289_p0.webp"
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 本部分将介绍 LR2 的选曲界面。很大一部分游戏内设置都位于这个界面，其中也包括游玩界面的键位设置。
