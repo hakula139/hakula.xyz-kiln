@@ -9,6 +9,7 @@ tags = [
     "SystemVerilog",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 32 位 256 bytes 4 路组相联（参数可调节）高速缓存，使用 SystemVerilog 编写。

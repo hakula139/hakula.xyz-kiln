@@ -10,6 +10,7 @@ tags = [
     "SystemVerilog",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 动态分支预测器，实现了一个 2 位 Tournament Predictor，其中包含一个 Global Predictor、一个 Local Predictor 和一个 Static Predictor，使用 SystemVerilog 编写。

@@ -9,6 +9,7 @@ tags = [
     "TypeScript",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 本项目利用 HTML5 Canvas，实现了对音乐旋律的可视化，使用 TypeScript 编写。

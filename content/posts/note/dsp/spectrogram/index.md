@@ -8,6 +8,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 本实验中，我们利用之前实现的 FFT 算法，生成了不同语音片段在不同窗口宽度下的语谱图。

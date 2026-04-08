@@ -13,6 +13,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 本次作业利用 NumPy 实现了一个 K-Means 模型和一个 GMM 模型，并利用 Gap Statistic 方法实现了数据集中聚簇数量的自动推测。

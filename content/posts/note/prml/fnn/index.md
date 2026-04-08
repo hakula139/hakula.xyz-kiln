@@ -11,6 +11,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 本次作业完成了选题 1 的实验内容，利用 NumPy 实现了一个 FNN 模型，并在 MNIST 数据集上进行了训练。

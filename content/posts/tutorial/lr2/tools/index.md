@@ -7,6 +7,7 @@ tags = [
     "LR2",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 一些辅助工具 / 网站的介绍及使用说明。

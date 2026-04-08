@@ -8,6 +8,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+math = true
 +++
 
 本实验中，我们实现了一个基础的 FFT 算法，使用 Python 编写。
