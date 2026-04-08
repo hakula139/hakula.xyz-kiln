@@ -1,0 +1,13 @@
+{
+  "files.associations": {
+    "*.html": "jinja-html"
+  },
+  "json.schemas": [
+    {
+      "fileMatch": ["*.jsonc"],
+      "schema": {
+        "allowTrailingCommas": true
+      }
+    }
+  ]
+}
