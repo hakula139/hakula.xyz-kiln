@@ -1,7 +1,6 @@
 +++
 title = "计组 - Lab 2: 流水线 MIPS CPU"
 date = 2020-04-25T04:37:00+08:00
-
 tags = [
     "计组",
     "MIPS",

@@ -1,7 +1,6 @@
 +++
 title = "LR2 配置教程 - Play"
 date = 2019-01-20T21:46:00+08:00
-
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
 

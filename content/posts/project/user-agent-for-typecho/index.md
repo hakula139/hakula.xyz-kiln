@@ -1,7 +1,6 @@
 +++
 title = "UserAgent for Typecho"
 date = 2019-01-27T21:58:00+08:00
-
 tags = [
     "PHP",
     "Typecho",

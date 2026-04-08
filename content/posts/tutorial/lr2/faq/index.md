@@ -1,7 +1,6 @@
 +++
 title = "LR2 配置教程 - FAQ"
 date = 2019-07-19T02:43:00+08:00
-
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
 

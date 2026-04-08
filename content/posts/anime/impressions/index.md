@@ -1,14 +1,13 @@
 +++
 title = "动画个人评测数据"
 date = 2023-05-11T14:31:00+08:00
-
 tags = [
     "动画",
     "评测",
 ]
-weight = 3
 license = "CC BY-NC-SA 4.0"
 math = true
+weight = 3
 
 [featured_image]
 src = "/images/article-covers/95611645_p0.webp"

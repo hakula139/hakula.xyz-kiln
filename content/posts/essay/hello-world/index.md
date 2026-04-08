@@ -1,7 +1,6 @@
 +++
 title = "Hello, World!"
 date = 2018-08-23T12:15:00+08:00
-
 tags = [
     "建站",
     "VPS",

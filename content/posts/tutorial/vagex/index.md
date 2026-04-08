@@ -1,7 +1,6 @@
 +++
 title = "Vagex 折腾记"
 date = 2019-04-11T17:48:00+08:00
-
 tags = [
     "VPS",
     "Vagex",

@@ -1,7 +1,6 @@
 +++
 title = "计组 - Lab 3: Cache"
 date = 2020-05-24T16:36:00+08:00
-
 tags = [
     "计组",
     "MIPS",

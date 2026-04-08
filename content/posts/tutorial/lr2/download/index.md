@@ -1,7 +1,6 @@
 +++
 title = "LR2 配置教程 - 下载"
 date = 2018-09-19T14:15:00+08:00
-
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
 

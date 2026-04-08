@@ -1,7 +1,6 @@
 +++
 title = "LR2 配置教程 - 关于 BMS"
 date = 2018-09-09T10:37:00+08:00
-
 tags = ["BMS"]
 license = "CC BY-NC-SA 4.0"
 

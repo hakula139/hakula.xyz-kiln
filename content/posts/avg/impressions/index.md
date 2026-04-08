@@ -1,15 +1,14 @@
 +++
 title = "AVG 个人评测数据"
 date = 2016-07-05T03:48:00+08:00
-
 tags = [
     "AVG",
     "Galgame",
     "评测",
 ]
-weight = 2
 license = "CC BY-NC-SA 4.0"
 math = true
+weight = 2
 
 [featured_image]
 src = "/images/article-covers/yuki.webp"

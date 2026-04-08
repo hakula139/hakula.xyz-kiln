@@ -1,7 +1,6 @@
 +++
 title = "OS - Lab 4: Multiprocessor and Lock"
 date = 2020-11-15T23:54:00+08:00
-
 tags = [
     "操作系统",
     "ARM",

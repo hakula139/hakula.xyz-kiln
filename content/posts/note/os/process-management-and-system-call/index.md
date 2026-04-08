@@ -1,7 +1,6 @@
 +++
 title = "OS - Lab 5: Process Management and System Call"
 date = 2020-12-09T02:08:00+08:00
-
 tags = [
     "操作系统",
     "ARM",

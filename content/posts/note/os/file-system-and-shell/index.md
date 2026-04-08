@@ -1,7 +1,6 @@
 +++
 title = "OS - Lab 7: File System and Shell"
 date = 2021-03-07T23:30:00+08:00
-
 tags = [
     "操作系统",
     "ARM",

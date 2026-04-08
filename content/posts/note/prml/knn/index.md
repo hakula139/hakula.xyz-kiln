@@ -1,7 +1,6 @@
 +++
 title = "PRML - Lab 1: KNN 算法"
 date = 2021-04-02T01:50:00+08:00
-
 tags = [
     "PRML",
     "机器学习",
