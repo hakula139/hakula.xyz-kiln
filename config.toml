@@ -41,34 +41,40 @@ icon = "fas fa-archive"
 weight = 1
 
 [[menu.main]]
+name = "Sections"
+url = "/sections/"
+icon = "fas fa-th-large"
+weight = 2
+
+[[menu.main]]
 name = "Tags"
 url = "/tags/"
 icon = "fas fa-tags"
-weight = 2
+weight = 3
 
 [[menu.main]]
 name = "About Me"
 url = "/about-me/"
 icon = "fas fa-user"
-weight = 3
+weight = 4
 
 [[menu.main]]
 name = "About Site"
 url = "/about-site/"
 icon = "fas fa-house"
-weight = 4
+weight = 5
 
 [[menu.main]]
 name = "Comments"
 url = "/comments/"
 icon = "fas fa-comment"
-weight = 5
+weight = 6
 
 [[menu.main]]
 name = "Links"
 url = "/links/"
 icon = "fas fa-link"
-weight = 6
+weight = 7
 
 [[menu.main]]
 name = "Status"
