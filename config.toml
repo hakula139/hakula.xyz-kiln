@@ -41,26 +41,58 @@ icon = "fas fa-archive"
 weight = 1
 
 [[menu.main]]
-name = "Tags"
-url = "/tags/"
-icon = "fas fa-tags"
+name = "Sections"
+url = "/sections/"
+icon = "fas fa-th-large"
 weight = 2
 
 [[menu.main]]
-name = "About"
-url = "/about-me/"
-icon = "fas fa-user"
+name = "Tags"
+url = "/tags/"
+icon = "fas fa-tags"
 weight = 3
 
 [[menu.main]]
-name = "Sites"
-url = "/sites/"
-icon = "fas fa-link"
+name = "About Me"
+url = "/about-me/"
+icon = "fas fa-user"
 weight = 4
+
+[[menu.main]]
+name = "About Site"
+url = "/about-site/"
+icon = "fas fa-house"
+weight = 5
+
+[[menu.main]]
+name = "Comments"
+url = "/comments/"
+icon = "fas fa-comment"
+weight = 6
+
+[[menu.main]]
+name = "Links"
+url = "/links/"
+icon = "fas fa-link"
+weight = 7
+
+[[menu.main]]
+name = "Status"
+url = "https://status.hakula.xyz"
+icon = "fas fa-heart-pulse"
+weight = 10
+external = true
+
+[[menu.main]]
+name = "Metrics"
+url = "https://metrics-us-4.hakula.xyz"
+icon = "fas fa-chart-bar"
+weight = 11
+external = true
 
 [[menu.main]]
 name = "GitHub"
 url = "https://github.com/hakula139/hakula.xyz-kiln"
 icon = "fab fa-github"
-weight = 10
+weight = 12
 external = true
