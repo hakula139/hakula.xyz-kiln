@@ -5,6 +5,7 @@ weight = -1
 
 [featured_image]
 src = "/images/article-covers/64035231_p0.webp"
+position = "top"
 
 [featured_image.credit]
 title = "そらたび"
