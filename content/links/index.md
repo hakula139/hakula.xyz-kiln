@@ -22,7 +22,7 @@ url = "https://www.pixiv.net/artworks/95120332"
 ::: site { "Ramen's Box" "https://blog.lxdlam.com" "Hi, here is Ramen!" "https://gravatar.loli.net/avatar/4d675e65920d5b1eca1f5b9079ea3bf5?s=200&d=identicon" }
 :::
 
-::: site { "Izumi 的个人主页" "https://izumimorin.xyz" "Izumi 的个人主页" "/images/links/izumi.webp" }
+::: site { "Izumi 的个人主页" "https://izumimorin.xyz" "Izumi 的个人主页" "assets/izumi.webp" }
 :::
 
 ::: site { "帕琪的小屋" "https://pakiknowledge.pages.dev" "不为所动，做更专业的自己" "https://pakiknowledge.pages.dev/img/FlEQiGPaAAEqovl.jpg" }
@@ -31,7 +31,7 @@ url = "https://www.pixiv.net/artworks/95120332"
 ::: site { "Cyorage's Blog" "https://cyorage.com" "君の夢のために。" "https://gravatar.loli.net/avatar/2720a87a7d01cfd6834de39d5735b73a?s=200&d=identicon" }
 :::
 
-::: site { "迷鹿屋" "https://lostdeer.xyz" "一个思想中转站" "/images/links/lostdeer.webp" }
+::: site { "迷鹿屋" "https://lostdeer.xyz" "一个思想中转站" "assets/lostdeer.webp" }
 :::
 
 ## 本站链接
@@ -45,25 +45,25 @@ url = "https://www.pixiv.net/artworks/95120332"
 
 :::
 
-::: site { "HAKULA†BMS" "https://bms.hakula.xyz" "🎶 BMS 区 - Cloudreve" "/images/links/94964162.webp" }
+::: site { "HAKULA†BMS" "https://bms.hakula.xyz" "🎶 BMS 区 - Cloudreve" "assets/94964162.webp" }
 :::
 
-::: site { "HAKULA†CLOUD" "https://files.hakula.xyz" "📦 文件库 - Cloudreve" "/images/links/94991375.webp" }
+::: site { "HAKULA†CLOUD" "https://files.hakula.xyz" "📦 文件库 - Cloudreve" "assets/94991375.webp" }
 :::
 
-::: site { "HAKULA†METRICS (US-4)" "https://metrics-us-4.hakula.xyz" "🇺🇸 服务器资源监控 - Netdata" "/images/links/98722302.webp" }
+::: site { "HAKULA†METRICS (US-4)" "https://metrics-us-4.hakula.xyz" "🇺🇸 服务器资源监控 - Netdata" "assets/98722302.webp" }
 :::
 
-::: site { "HAKULA†STATUS" "https://status.hakula.xyz" "👀 服务可用性监控 - Better Stack" "/images/links/78435677.webp" }
+::: site { "HAKULA†STATUS" "https://status.hakula.xyz" "👀 服务可用性监控 - Better Stack" "assets/78435677.webp" }
 :::
 
-::: site { "HAKULA†VIDEOS" "https://v.hakula.xyz" "🎥 视频站 - PeerTube" "/images/links/92260989.webp" }
+::: site { "HAKULA†VIDEOS" "https://v.hakula.xyz" "🎥 视频站 - PeerTube" "assets/92260989.webp" }
 :::
 
 ## 其他
 
-::: site { "赞助本站" "https://afdian.com/a/hakula" "如果本站对你有帮助的话 😙" "/images/links/100018857.webp" }
+::: site { "赞助本站" "https://afdian.com/a/hakula" "如果本站对你有帮助的话 😙" "assets/100018857.webp" }
 :::
 
-::: site { "提问的智慧" "https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md" "如果你还没看过，那提问前建议先看看" "/images/links/95578205.webp" }
+::: site { "提问的智慧" "https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md" "如果你还没看过，那提问前建议先看看" "assets/95578205.webp" }
 :::
