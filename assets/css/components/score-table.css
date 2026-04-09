@@ -13,7 +13,8 @@
     --st-muted: theme(colors.gray.400);
     --st-age-warning-bg: #fff3a0;
 
-    @apply w-auto border-separate border-spacing-0 text-[0.8rem] leading-snug whitespace-nowrap;
+    @apply w-auto border-separate border-spacing-0
+      text-[0.8rem] leading-snug whitespace-nowrap;
     background: var(--st-bg);
     counter-reset: row-num;
 
@@ -93,7 +94,9 @@
   }
 
   .score-table .col-title {
-    @apply sticky left-12 z-1 min-w-72 max-w-80 overflow-hidden text-left text-ellipsis border-l;
+    @apply sticky left-12 z-1
+      min-w-72 max-w-80 overflow-hidden
+      text-left text-ellipsis border-l;
     border-left-color: var(--st-border);
     background: var(--st-bg);
   }
