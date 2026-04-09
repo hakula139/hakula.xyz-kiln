@@ -53,10 +53,16 @@ icon = "fas fa-user"
 weight = 3
 
 [[menu.main]]
-name = "Sites"
-url = "/sites/"
-icon = "fas fa-link"
+name = "Comments"
+url = "/comments/"
+icon = "fas fa-comment"
 weight = 4
+
+[[menu.main]]
+name = "Links"
+url = "/links/"
+icon = "fas fa-link"
+weight = 5
 
 [[menu.main]]
 name = "GitHub"
