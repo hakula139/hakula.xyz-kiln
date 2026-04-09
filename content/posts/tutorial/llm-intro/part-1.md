@@ -97,11 +97,11 @@ The 2026 landscape for AI coding tools is crowded. Here is an opinionated compar
 |              | Claude Code | Codex CLI | Gemini CLI | OpenCode | Cursor     |
 | ------------ | ----------- | --------- | ---------- | -------- | ---------- |
 | Intelligence | ★★★★★       | ★★★★      | ★★         | ★★★★     | ★★★★       |
-| Tool Using   | ★★★★★       | ★★★★      | ★★         | ★★★      | ★★★        |
-| Reliability  | ★★★★★       | ★★★★      | ★★★        | ★★★      | ★★★        |
+| Tool Using   | ★★★★★       | ★★        | ★★         | ★★★★     | ★★★        |
+| Reliability  | ★★★★★       | ★★★★      | ★★★        | ★★★★     | ★★★        |
 | Ecosystem    | ★★★★★       | ★★        | ★★         | ★★★★     | ★★★★       |
 | Speed        | ★★★★★       | ★★★★      | ★★★        | ★★★★★    | ★★★★★      |
-| Cost         | ＄＄＄      | ＄＄      | ＄         | Depends  | ＄＄＄＄＄ |
+| Cost         | ＄＄＄      | ＄＄      | ＄         | ＄       | ＄＄＄＄＄ |
 
 [^tool-ratings]: Ratings reflect practical experience across multiple production setups. Intelligence and reliability depend on the model: OpenCode with Opus 4.6 or GPT 5.4 approaches top-tier reasoning, but tool calling reliability suffers compared to native integrations. Gemini's model is capable on paper, but tool calling and code generation lag behind in practice.
 
@@ -576,7 +576,7 @@ This matters for context engineering. Structured output is denser and more predi
 
 ### Configuring MCP servers
 
-MCP servers are configured in `~/.claude/settings.json` (global) or `.claude/settings.json` (project). Here is an excerpt from my configuration:
+MCP servers are configured in `~/.claude.json` (global) or `.mcp.json` (project). Here is an excerpt from my configuration:
 
 ```json
 {
