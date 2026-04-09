@@ -16,6 +16,8 @@ url = "https://www.pixiv.net/artworks/95120332"
 
 ## 友情链接
 
+:::: { .link-grid .not-prose }
+
 ::: link { name="Hanaki 花期语织" url="https://yoro.xyz" desc="桃子汽水味的夏天女孩" logo="https://yoro.xyz/image/YodaMoe_v2.png" }
 :::
 
@@ -34,6 +36,8 @@ url = "https://www.pixiv.net/artworks/95120332"
 ::: link { name="迷鹿屋" url="https://lostdeer.xyz" desc="一个思想中转站" logo="assets/lostdeer.webp" }
 :::
 
+::::
+
 ## 本站链接
 
 ::: callout { type=note title="本站信息" }
@@ -44,6 +48,8 @@ url = "https://www.pixiv.net/artworks/95120332"
 - **图标：** <https://hakula.xyz/images/hotlink-ok/avatar-lite.webp>
 
 :::
+
+:::: { .link-grid .not-prose }
 
 ::: link { name="HAKULA†BMS" url="https://bms.hakula.xyz" desc="🎶 BMS 区 - Cloudreve" logo="assets/94964162.webp" }
 :::
@@ -60,10 +66,16 @@ url = "https://www.pixiv.net/artworks/95120332"
 ::: link { name="HAKULA†VIDEOS" url="https://v.hakula.xyz" desc="🎥 视频站 - PeerTube" logo="assets/92260989.webp" }
 :::
 
+::::
+
 ## 其他
+
+:::: { .link-grid .not-prose }
 
 ::: link { name="赞助本站" url="https://afdian.com/a/hakula" desc="如果本站对你有帮助的话 😙" logo="assets/100018857.webp" }
 :::
 
 ::: link { name="提问的智慧" url="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md" desc="如果你还没看过，那提问前建议先看看" logo="assets/95578205.webp" }
 :::
+
+::::
