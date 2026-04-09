@@ -47,22 +47,28 @@ icon = "fas fa-tags"
 weight = 2
 
 [[menu.main]]
-name = "About"
+name = "About Me"
 url = "/about-me/"
 icon = "fas fa-user"
 weight = 3
 
 [[menu.main]]
+name = "About Site"
+url = "/about-site/"
+icon = "fas fa-house"
+weight = 4
+
+[[menu.main]]
 name = "Comments"
 url = "/comments/"
 icon = "fas fa-comment"
-weight = 4
+weight = 5
 
 [[menu.main]]
 name = "Links"
 url = "/links/"
 icon = "fas fa-link"
-weight = 5
+weight = 6
 
 [[menu.main]]
 name = "Status"
