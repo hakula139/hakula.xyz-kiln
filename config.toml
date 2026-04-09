@@ -65,8 +65,22 @@ icon = "fas fa-link"
 weight = 5
 
 [[menu.main]]
+name = "Status"
+url = "https://status.hakula.xyz"
+icon = "fas fa-heart-pulse"
+weight = 10
+external = true
+
+[[menu.main]]
+name = "Metrics"
+url = "https://metrics-us-4.hakula.xyz"
+icon = "fas fa-chart-bar"
+weight = 11
+external = true
+
+[[menu.main]]
 name = "GitHub"
 url = "https://github.com/hakula139/hakula.xyz-kiln"
 icon = "fab fa-github"
-weight = 10
+weight = 12
 external = true
