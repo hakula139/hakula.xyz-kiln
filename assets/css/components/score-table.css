@@ -16,15 +16,15 @@
     @apply w-auto border-separate border-spacing-0 text-[0.8rem] leading-snug whitespace-nowrap;
     background: var(--st-bg);
     counter-reset: row-num;
-  }
 
-  [data-theme='dark'] .score-table {
-    --st-bg: #272c34;
-    --st-bg-header: #3d4450;
-    --st-border: #3d4450;
-    --st-hover: rgba(255, 255, 255, 0.04);
-    --st-muted: theme(colors.gray.500);
-    --st-age-warning-bg: #443e00;
+    @variant dark {
+      --st-bg: #272c34;
+      --st-bg-header: #3d4450;
+      --st-border: #3d4450;
+      --st-hover: rgba(255, 255, 255, 0.04);
+      --st-muted: theme(colors.gray.500);
+      --st-age-warning-bg: #443e00;
+    }
   }
 
   .score-table th,

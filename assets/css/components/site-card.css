@@ -11,10 +11,10 @@
 
   .site-card:hover {
     @apply border-text-tertiary shadow-[0_2px_8px_rgba(0,0,0,0.1)];
-  }
 
-  [data-theme='dark'] .site-card:hover {
-    @apply shadow-[0_2px_8px_rgba(0,0,0,0.3)];
+    @variant dark {
+      @apply shadow-[0_2px_8px_rgba(0,0,0,0.3)];
+    }
   }
 
   .site-logo-wrapper {
