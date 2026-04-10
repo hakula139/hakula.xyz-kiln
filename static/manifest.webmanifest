@@ -1,0 +1,12 @@
+{
+  "name": "HAKULA†CHANNEL",
+  "short_name": "Hakula",
+  "icons": [
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "theme_color": "#000a12",
+  "background_color": "#263238",
+  "start_url": "/",
+  "display": "standalone"
+}
