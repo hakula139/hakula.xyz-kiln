@@ -6,6 +6,9 @@ timezone = "Asia/Shanghai"
 output_dir = "public"
 theme = "IgnIt"
 
+[search]
+enabled = true
+
 [author]
 name = "Hakula"
 email = "i@hakula.xyz"
@@ -16,7 +19,7 @@ fontawesome = true
 
 [params.background]
 image = "/images/bg.webp"
-position = "70% center"
+position = "70% 50%"
 
 [params.home]
 paginate = 8
