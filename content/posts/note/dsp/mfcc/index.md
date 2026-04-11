@@ -347,17 +347,6 @@ def dct(x: np.ndarray, d: int) -> np.ndarray:
 
 ![shop - MFCC（0 ~ 12 阶）](assets/shop/mfcc.webp)
 
-{{< style `
-.details .details-content,
-.admonition .admonition-content {
-padding: 0;
-}
-
-.table-wrapper {
-margin: 0;
-}
-` >}}
-
 ::: callout { type=abstract title="MFCC 系数表" open=false }
 
 | 窗口 \ 阶数 |    0     |    1    |    2    |    3    |    4    |    5    |    6    |   7    |    8    |   9    |   10   |   11   |   12   |

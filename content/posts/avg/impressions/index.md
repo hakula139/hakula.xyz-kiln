@@ -85,19 +85,6 @@ $$
 
 文字和背景的颜色是我自行设定的，标准如下：
 
-{{< style `
-table {
-  min-width: 30rem;
-  tr:nth-child(1) > td:nth-child(1) { color: silver; background: white; }
-  tr:nth-child(2) > td:nth-child(1) { color: black; background: white; }
-  tr:nth-child(3) > td:nth-child(1) { color: red; background: white; }
-  tr:nth-child(4) > td:nth-child(1) { color: red; background: white; font-weight: 700; }
-  tr:nth-child(5) > td:nth-child(1) { color: red; background: yellow; font-weight: 700; }
-  tr:nth-child(6) > td:nth-child(1) { color: black; background: red; font-weight: 700; }
-  tr:nth-child(7) > td:nth-child(1) { color: red; background: black; font-weight: 700; }
-}
-` >}}
-
 | 分级 | 含义                              |
 | :--: | :-------------------------------- |
 | All  | 本质全年龄（包括 15+ 等）         |
@@ -107,8 +94,6 @@ table {
 | 18+  | **R-18G** 入门级                  |
 | 18+  | **R-18G**                         |
 | 18+  | **R-18G 地雷**                    |
-
-<!-- /style -->
 
 ::: callout { type=danger title="警告" }
 
