@@ -1,3 +1,1 @@
-pnpm format
-pnpm lint
-pnpm spellcheck
+pnpm lint-staged
