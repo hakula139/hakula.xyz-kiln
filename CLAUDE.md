@@ -76,14 +76,17 @@ pnpm dev:css                 # Watch mode for CSS
 ### Git Conventions
 
 - Commit messages: `type(scope): description`
-  - Types: `feat`, `fix`, `refactor`, `docs`, `chore`, `style`
+  - Types: `feat`, `fix`, `refactor`, `docs`, `ci`, `chore`, `style`
   - Scope: topic area (e.g., content file name without extension, `config`, `template`)
 - PRs: assign to `hakula139`.
 
+### Pre-commit
+
+The husky pre-commit hook runs `lint-staged`, which auto-formats staged files with Prettier, lints Markdown with markdownlint, and spell-checks with cspell. The pre-push hook runs `pnpm build` and verifies `static/` is in sync.
+
 ### Spell Checking
 
-- Run `pnpm spellcheck` before committing. Config in `cspell.json`.
-- Add project-specific words to `.cspell/words.txt` (one word per line, sorted alphabetically).
+- Config in `cspell.json`. Add project-specific words to `.cspell/words.txt` (one word per line, sorted alphabetically).
 
 ## Verification
 
@@ -91,8 +94,5 @@ Before pushing:
 
 ```bash
 pnpm build                   # Compile site-level CSS / JS
-pnpm format                  # Check Prettier formatting
-pnpm lint                    # Check markdownlint
-pnpm spellcheck              # Check spelling
 kiln build                   # Full site build
 ```
