@@ -76,7 +76,7 @@ pnpm dev:css                 # Watch mode for CSS
 ### Git Conventions
 
 - Commit messages: `type(scope): description`
-  - Types: `feat`, `fix`, `refactor`, `docs`, `chore`, `style`
+  - Types: `feat`, `fix`, `refactor`, `docs`, `ci`, `chore`, `style`
   - Scope: topic area (e.g., content file name without extension, `config`, `template`)
 - PRs: assign to `hakula139`.
 
