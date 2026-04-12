@@ -1,38 +1,53 @@
-/* Rating severity color scale (first column of the rating-levels table) */
-.rating-levels tr:nth-child(1) > td:first-child {
-  color: silver;
-  background: white;
+/*
+ * Rating severity color scale — matches the score-table age-rating tiers.
+ *
+ *   Row 1 (All)    → tier 0: muted
+ *   Row 2 (18+)    → tier 1: default
+ *   Row 3 (18+!)   → tier 2: red
+ *   Row 4 (18+!!)  → tier 3: bold red
+ *   Row 5 (18G)    → tier 4: bold red on warning yellow
+ *   Row 6 (18G!)   → tier 5: bold black on red
+ *   Row 7 (18G!!)  → tier 6: bold red on dark
+ */
+
+.rating-levels tr > td:first-child {
+  text-align: center;
 }
-.rating-levels tr:nth-child(2) > td:first-child {
-  color: black;
-  background: white;
-}
-.rating-levels tr:nth-child(3) > td:first-child {
-  color: red;
-  background: white;
-}
-.rating-levels tr:nth-child(4) > td:first-child {
-  color: red;
-  background: white;
-  font-weight: 700;
-}
-.rating-levels tr:nth-child(5) > td:first-child {
-  color: red;
-  background: yellow;
-  font-weight: 700;
-}
-.rating-levels tr:nth-child(6) > td:first-child {
-  color: black;
-  background: red;
-  font-weight: 700;
-}
-.rating-levels tr:nth-child(7) > td:first-child {
-  color: red;
-  background: black;
+
+/* Tiers 3–6 share bold weight */
+.rating-levels tr:nth-child(n + 4) > td:first-child {
   font-weight: 700;
 }
 
+.rating-levels tr:nth-child(1) > td:first-child {
+  color: #9ca3af;
+}
+.rating-levels tr:nth-child(3) > td:first-child {
+  color: #dc2626;
+}
+.rating-levels tr:nth-child(4) > td:first-child {
+  color: #dc2626;
+}
+.rating-levels tr:nth-child(5) > td:first-child {
+  color: #dc2626;
+  background: #fff3a0;
+}
+.rating-levels tr:nth-child(6) > td:first-child {
+  color: #000;
+  background: #dc2626;
+}
+.rating-levels tr:nth-child(7) > td:first-child {
+  color: #dc2626;
+  background: #1a1a1a;
+}
+
+[data-theme='dark'] .rating-levels tr:nth-child(1) > td:first-child {
+  color: #6b7280;
+}
+[data-theme='dark'] .rating-levels tr:nth-child(5) > td:first-child {
+  background: #443e00;
+}
+
 .inline-rating {
-  color: red;
-  background: white;
+  color: #dc2626;
 }
