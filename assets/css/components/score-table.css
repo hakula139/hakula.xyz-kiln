@@ -111,8 +111,12 @@
 
   @media only screen and (max-width: 768px) {
     .score-table .col-title {
-      @apply static z-auto min-w-40 max-w-none bg-transparent;
+      @apply static z-auto min-w-40 max-w-none border-r bg-transparent;
       box-shadow: none;
+    }
+
+    .score-table tbody tr:hover .col-title {
+      box-shadow: inset 0 0 0 9999px var(--st-hover);
     }
 
     .score-table thead .col-title {

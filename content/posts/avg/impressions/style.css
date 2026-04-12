@@ -23,9 +23,7 @@
 .rating-levels tr:nth-child(1) > td:first-child {
   color: #9ca3af;
 }
-.rating-levels tr:nth-child(3) > td:first-child {
-  color: #dc2626;
-}
+.rating-levels tr:nth-child(3) > td:first-child,
 .rating-levels tr:nth-child(4) > td:first-child {
   color: #dc2626;
 }
