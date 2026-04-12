@@ -61,16 +61,17 @@
   }
 
   .score-table tbody tr:hover,
-  .score-table tbody tr:hover .col-rownum,
-  .score-table tbody tr:hover .col-title {
+  .score-table tbody tr:hover .col-rownum {
     box-shadow: inset 0 0 0 9999px var(--st-hover);
   }
 
-  /* ── Column Sizing ── */
-
-  .score-table .col-rownum {
-    @apply w-12 min-w-12;
+  .score-table tbody tr:hover .col-title {
+    box-shadow:
+      1px 0 0 var(--st-border),
+      inset 0 0 0 9999px var(--st-hover);
   }
+
+  /* ── Column Sizing ── */
 
   .score-table
     :where(.col-number, .col-rating, .col-heatmap, .col-age-rating, .col-ext-score, .col-delta) {
@@ -88,7 +89,7 @@
   /* ── Sticky Columns ── */
 
   .score-table .col-rownum {
-    @apply sticky left-0 z-1 box-border border-r-0 border-l;
+    @apply sticky left-0 z-1 w-12 min-w-12 border-r-0 border-l;
     border-left-color: var(--st-border);
     background: var(--st-bg);
   }
@@ -96,15 +97,10 @@
   .score-table .col-title {
     @apply sticky left-12 z-1
       min-w-72 max-w-80 overflow-hidden
-      text-left text-ellipsis border-l;
+      text-left text-ellipsis border-l border-r-0;
     border-left-color: var(--st-border);
     background: var(--st-bg);
-  }
-
-  @media only screen and (max-width: 768px) {
-    .score-table .col-title {
-      @apply static z-auto min-w-40 max-w-none bg-transparent;
-    }
+    box-shadow: 1px 0 0 var(--st-border);
   }
 
   .score-table thead .col-rownum,
@@ -114,6 +110,11 @@
   }
 
   @media only screen and (max-width: 768px) {
+    .score-table .col-title {
+      @apply static z-auto min-w-40 max-w-none bg-transparent;
+      box-shadow: none;
+    }
+
     .score-table thead .col-title {
       @apply z-2;
     }
