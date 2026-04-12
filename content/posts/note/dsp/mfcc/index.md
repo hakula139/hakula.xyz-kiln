@@ -415,8 +415,6 @@ def dct(x: np.ndarray, d: int) -> np.ndarray:
 
 :::
 
-<!-- /style -->
-
 ### 6 运行代码
 
 #### 6.1 安装
