@@ -10,8 +10,9 @@
  *   Row 7 (18G!!)  → tier 6: bold red on dark
  */
 
-.rating-levels tr > td:first-child {
+.rating-levels tr > :first-child {
   text-align: center;
+  padding-inline: 1em;
 }
 
 /* Tiers 3–6 share bold weight */
