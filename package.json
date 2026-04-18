@@ -2,10 +2,10 @@
   "private": true,
   "packageManager": "pnpm@10.30.3",
   "scripts": {
-    "build:css": "tailwindcss -i assets/css/main.css -o static/css/style.min.css --minify",
+    "build:css": "tailwindcss -i static/css/_src/main.css -o static/css/style.min.css --minify",
     "build:js": "esbuild assets/js/*.js --outdir=static/js --minify --out-extension:.js=.min.js",
     "build": "pnpm build:css && pnpm build:js",
-    "dev:css": "tailwindcss -i assets/css/main.css -o static/css/style.min.css --watch",
+    "dev:css": "tailwindcss -i static/css/_src/main.css -o static/css/style.min.css --watch",
     "dev": "pnpm dev:css",
     "format": "prettier --check .",
     "lint": "markdownlint-cli2 \"content/**/*.md\"",
