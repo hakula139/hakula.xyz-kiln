@@ -4,5 +4,5 @@
   "singleQuote": true,
   "trailingComma": "all",
   "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindStylesheet": "./assets/css/main.css"
+  "tailwindStylesheet": "./static/css/_src/main.css"
 }

@@ -1,5 +1,4 @@
 pnpm-lock.yaml
-static/css/
-static/js/
+static/css/style.css
 templates/
 themes/

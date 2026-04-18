@@ -30,7 +30,11 @@ Output is written to `public/`.
 .
 ├── config.toml               # Site configuration
 ├── content/                  # Markdown content (posts, standalone pages)
-├── static/                   # Static assets
+├── static/                   # Shipped assets
+│   ├── css/
+│   │   ├── _src/             # Tailwind sources (private, skipped by kiln)
+│   │   └── style.css         # Compiled Tailwind output
+│   ├── js/                   # JS sources, shipped as-is
 │   └── images/
 │       ├── article-covers/   # Featured images for posts (WebP)
 │       ├── hotlink-ok/       # Avatar images (publicly linkable)
