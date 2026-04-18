@@ -8,20 +8,21 @@ Migrated from a Hugo + LoveIt stack. The original Hugo site lives at `../hakula.
 
 ### Site Structure
 
+All site-owned assets live under `static/`. Files and directories whose names start with `_` are private build inputs (kiln's `copy_static` skips them).
+
 ```text
 .
-├── assets/                           # Site-level CSS / JS source (overrides theme)
-│   ├── css/
-│   │   ├── main.css                  # Entry: imports theme + site-level partials
-│   │   └── components/
-│   │       └── score-table.css
-│   └── js/
-│       └── score-table.js
 ├── config.toml                       # Site configuration
 ├── content/                          # Markdown content (posts, standalone pages)
-├── static/                           # Static files copied to output root
-│   ├── css/style.min.css             # Compiled site-level CSS
-│   ├── js/score-table.min.js
+├── static/                           # Shipped assets
+│   ├── css/
+│   │   ├── _src/                     # Tailwind sources (private, not shipped)
+│   │   │   ├── main.css              # Entry: imports theme + site-level partials
+│   │   │   └── components/
+│   │   │       └── score-table.css
+│   │   └── style.css                 # Compiled Tailwind output (shipped)
+│   ├── js/
+│   │   └── score-table.js            # JS source, shipped as-is
 │   ├── images/                       # Article covers, avatars, background
 │   ├── favicon.ico
 │   ├── apple-touch-icon.png
@@ -56,14 +57,14 @@ kiln serve --open            # Dev server with live reload
 
 ### Site-level CSS / JS
 
-The site has its own CSS / JS assets (e.g., `score-table`) compiled separately from the theme. **Run `pnpm build` before committing** to keep `static/css/style.min.css` and `static/js/*.min.js` in sync with source.
+Site Tailwind sources live in `static/css/_src/`; the entry `main.css` `@import`s the theme's own `_src/main.css` plus any site-specific partials (e.g., `score-table`). Site JS lives in `static/js/` and is shipped as-is (no build step). **Run `pnpm build` before committing CSS changes** to keep `static/css/style.css` in sync with source.
 
 ```bash
-pnpm build                   # Compile CSS + JS
-pnpm build:css               # CSS only (Tailwind)
-pnpm build:js                # JS only (esbuild)
-pnpm dev:css                 # Watch mode for CSS
+pnpm build                   # One-shot Tailwind build to static/css/style.css
+pnpm dev                     # Tailwind watch mode
 ```
+
+Compression for both CSS and JS is handled at deploy time by `kiln build --minify`, so shipped files stay readable during development.
 
 ## Coding Conventions
 
