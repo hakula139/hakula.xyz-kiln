@@ -37,64 +37,66 @@ since = 2018
 license = "CC BY-NC-SA 4.0"
 license_url = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 
+# `name` fields are i18n keys resolved by the theme via `t(item.name)`.
+# Labels live in `i18n/<language>.toml`.
 [[menu.main]]
-name = "Posts"
+name = "menu_posts"
 url = "/posts/"
 icon = "fas fa-archive"
 weight = 1
 
 [[menu.main]]
-name = "Sections"
+name = "menu_sections"
 url = "/sections/"
 icon = "fas fa-th-large"
 weight = 2
 
 [[menu.main]]
-name = "Tags"
+name = "menu_tags"
 url = "/tags/"
 icon = "fas fa-tags"
 weight = 3
 
 [[menu.main]]
-name = "About Me"
+name = "menu_about_me"
 url = "/about-me/"
 icon = "fas fa-user"
 weight = 4
 
 [[menu.main]]
-name = "About Site"
+name = "menu_about_site"
 url = "/about-site/"
 icon = "fas fa-house"
 weight = 5
 
 [[menu.main]]
-name = "Comments"
+name = "menu_comments"
 url = "/comments/"
 icon = "fas fa-comment"
 weight = 6
 
 [[menu.main]]
-name = "Links"
+name = "menu_links"
 url = "/links/"
 icon = "fas fa-link"
 weight = 7
 
 [[menu.main]]
-name = "Status"
+name = "menu_status"
 url = "https://status.hakula.xyz"
 icon = "fas fa-heart-pulse"
 weight = 10
 external = true
 
 [[menu.main]]
-name = "Metrics"
+name = "menu_metrics"
 url = "https://metrics-us-4.hakula.xyz"
 icon = "fas fa-chart-bar"
 weight = 11
 external = true
 
 [[menu.main]]
-name = "GitHub"
+name = "menu_github"
 url = "https://github.com/hakula139/hakula.xyz-kiln"
 icon = "fab fa-github"
 weight = 12
