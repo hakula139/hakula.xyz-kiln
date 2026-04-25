@@ -1,0 +1,19 @@
+# hakula.xyz 站点级翻译 —— 简体中文
+#
+# 站点级键会覆盖 IgnIt 主题中的同名键；缺失的键回退至主题翻译，
+# 再回退至 en.toml。请仅在此处保留站点专属字符串（如菜单项）。
+#
+# 菜单项名称通过 t(item.name) 翻译，请为 config.toml 中
+# [[menu.main]] 的每一项添加键。
+
+# 导航菜单
+menu_posts = "文章"
+menu_sections = "栏目"
+menu_tags = "标签"
+menu_about_me = "关于我"
+menu_about_site = "关于本站"
+menu_comments = "留言板"
+menu_links = "链接库"
+menu_status = "可用性监控"
+menu_metrics = "资源监控"
+menu_github = "网站源码"
