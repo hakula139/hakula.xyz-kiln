@@ -2564,6 +2564,31 @@ html.theme-transition, html.theme-transition *, html.theme-transition *::before,
       opacity: 100%;
     }
   }
+  .home-card-pin {
+    pointer-events: none;
+    position: absolute;
+    top: calc(var(--spacing) * 3);
+    right: calc(var(--spacing) * 3);
+    z-index: 10;
+    display: flex;
+    height: calc(var(--spacing) * 7);
+    width: calc(var(--spacing) * 7);
+    align-items: center;
+    justify-content: center;
+    border-radius: calc(infinity * 1px);
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+    color: var(--color-text-secondary);
+  }
+  .home-card-pin i {
+    rotate: calc(45deg * -1);
+  }
+  .post-entry-pin {
+    margin-right: calc(var(--spacing) * 2);
+    display: inline-block;
+    rotate: calc(45deg * -1);
+    color: var(--color-text-secondary);
+  }
   .profile-avatar {
     margin-inline: auto;
     margin-bottom: calc(var(--spacing) * 4);
