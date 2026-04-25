@@ -36,6 +36,8 @@ All site-owned assets live under `static/`. Files and directories whose names st
     └── IgnIt/                        # Theme (git submodule)
 ```
 
+Any file under `templates/` shadows the same-path file in `themes/IgnIt/templates/`. Site-only directives (e.g., `score-table`) live in `templates/directives/<name>.html` and are picked up by kiln's directive renderer without further wiring.
+
 ### Theme Submodule
 
 IgnIt is pinned as a git submodule. After cloning, run `git submodule update --init`. To update the theme:
@@ -77,13 +79,17 @@ Compression for both CSS and JS is handled at deploy time by `kiln build --minif
 ### Git Conventions
 
 - Commit messages: `type(scope): description`
-  - Types: `feat`, `fix`, `refactor`, `docs`, `ci`, `chore`, `style`
+  - Types: `feat`, `fix`, `refactor`, `docs`, `test`, `ci`, `chore`, `style`, `perf`
   - Scope: topic area (e.g., content file name without extension, `config`, `template`)
 - PRs: assign to `hakula139`.
 
 ### Pre-commit
 
-The husky pre-commit hook runs `lint-staged`, which auto-formats staged files with Prettier (including Tailwind class sorting in HTML attributes and CSS `@apply` via `prettier-plugin-tailwindcss`), lints Markdown with markdownlint, and spell-checks with cspell. The pre-push hook runs `pnpm build` and verifies `static/css/style.css` is in sync with its Tailwind source.
+The husky pre-commit hook runs `lint-staged`, which auto-formats staged files with Prettier (including Tailwind class sorting in HTML attributes and CSS `@apply` via `prettier-plugin-tailwindcss`), lints Markdown with markdownlint, and spell-checks with cspell. The pre-push hook runs `pnpm build` to verify `static/css/style.css` is in sync with its Tailwind source, then `git lfs pre-push` to push tracked LFS objects.
+
+### Git LFS
+
+Image binaries (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are stored via Git LFS — see `.gitattributes`. Install Git LFS (`git lfs install`) before cloning, otherwise pointer files are checked out instead of real images.
 
 ### Spell Checking
 
