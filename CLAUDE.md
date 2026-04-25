@@ -25,7 +25,7 @@ hakula.xyz-kiln is the [kiln](https://github.com/hakula139/kiln) site source for
     └── IgnIt/                        # Theme (git submodule)
 ```
 
-Files under `templates/` shadow the same-path file in `themes/IgnIt/templates/`. Site-only directives live in `templates/directives/<name>.html` and are picked up by kiln's directive renderer without further wiring. Files and directories whose names start with `_` are private build inputs (kiln's `copy_static` skips them).
+Files under `templates/` override the same-path file in `themes/IgnIt/templates/`. Site-only directives live in `templates/directives/<name>.html` and are picked up by kiln's directive renderer without further wiring. Files and directories whose names start with `_` are private build inputs (kiln's `copy_static` skips them).
 
 ### Theme Submodule
 
