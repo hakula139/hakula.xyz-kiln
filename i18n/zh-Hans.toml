@@ -1,12 +1,14 @@
-# Site-level translations for hakula.xyz (简体中文).
+# hakula.xyz 站点级翻译 —— 简体中文
 #
-# Site values override theme and English fallbacks. Keep this file
-# focused on site-specific strings (e.g., menu labels); generic UI
-# chrome lives in IgnIt's `i18n/zh-Hans.toml`.
+# 站点级键会覆盖 IgnIt 主题中的同名键；缺失的键回退至主题翻译，
+# 再回退至 en.toml。请仅在此处保留站点专属字符串（如菜单项）。
+#
+# 菜单项名称通过 t(item.name) 翻译，请为 config.toml 中
+# [[menu.main]] 的每一项添加键。
 
-# 导航菜单（键与 config.toml 中 [[menu.main]] 的 name 对应）
+# 导航菜单
 menu_posts = "文章"
-menu_sections = "分类"
+menu_sections = "栏目"
 menu_tags = "标签"
 menu_about_me = "关于我"
 menu_about_site = "关于站点"
