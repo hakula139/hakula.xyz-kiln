@@ -2578,10 +2578,7 @@ html.theme-transition, html.theme-transition *, html.theme-transition *::before,
     border-radius: calc(infinity * 1px);
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
-    color: var(--color-white);
-    background: var(--surface-glass-overlay);
-    border: 1px solid var(--surface-glass-border);
-    backdrop-filter: blur(8px) saturate(125%);
+    color: var(--color-text-secondary);
   }
   .home-card-pin i {
     rotate: calc(45deg * -1);
@@ -2590,7 +2587,7 @@ html.theme-transition, html.theme-transition *, html.theme-transition *::before,
     margin-right: calc(var(--spacing) * 2);
     display: inline-block;
     rotate: calc(45deg * -1);
-    color: var(--color-link);
+    color: var(--color-text-secondary);
   }
   .profile-avatar {
     margin-inline: auto;
