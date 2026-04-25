@@ -2,6 +2,9 @@
 @import '../../../themes/IgnIt/static/css/_src/main.css';
 
 @source '../../../templates/**/*.html';
+/* Exclude markdown — Tailwind's auto-detection treats prose words like
+   `shadow`, `block`, `flex` as class candidates. */
+@source not '../../../**/*.md';
 
 /* Site-specific components */
 @import './components/score-table.css';
