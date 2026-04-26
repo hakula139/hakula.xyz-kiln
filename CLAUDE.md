@@ -2,39 +2,30 @@
 
 ## Project Overview
 
-hakula.xyz-kiln is the [kiln](https://github.com/hakula139/kiln) site source for [hakula.xyz](https://hakula.xyz), using the [IgnIt](https://github.com/hakula139/IgnIt) theme (git submodule at `themes/IgnIt/`).
-
-Migrated from a Hugo + LoveIt stack. The original Hugo site lives at `../hakula.xyz/` for reference.
+hakula.xyz-kiln is the [kiln](https://github.com/hakula139/kiln) site source for [hakula.xyz](https://hakula.xyz), using the [IgnIt](https://github.com/hakula139/IgnIt) theme (git submodule at `themes/IgnIt/`). Migrated from a Hugo + LoveIt stack.
 
 ### Site Structure
-
-All site-owned assets live under `static/`. Files and directories whose names start with `_` are private build inputs (kiln's `copy_static` skips them).
 
 ```text
 .
 ├── config.toml                       # Site configuration
 ├── content/                          # Markdown content (posts, standalone pages)
+├── i18n/                             # Translation overrides (merged on top of theme keys)
 ├── static/                           # Shipped assets
 │   ├── css/
 │   │   ├── _src/                     # Tailwind sources (private, not shipped)
 │   │   │   ├── main.css              # Entry: imports theme + site-level partials
-│   │   │   └── components/
-│   │   │       └── score-table.css
+│   │   │   └── components/           # Site-only Tailwind partials
 │   │   └── style.css                 # Compiled Tailwind output (shipped)
-│   ├── js/
-│   │   └── score-table.js            # JS source, shipped as-is
-│   ├── images/                       # Article covers, avatars, background
-│   ├── favicon.ico
-│   ├── apple-touch-icon.png
-│   ├── icon-192.png
-│   ├── icon-512.png
-│   └── manifest.webmanifest
-├── templates/                        # Site-level template overrides
+│   ├── js/                           # Site-only JS, shipped as-is (no build step)
+│   └── images/                       # Article covers, hotlink-ok mirrors, background
+├── templates/                        # Site-only directives & template overrides
 │   └── directives/
-│       └── score-table.html
 └── themes/
     └── IgnIt/                        # Theme (git submodule)
 ```
+
+Files under `templates/` override the same-path file in `themes/IgnIt/templates/`. Site-only directives live in `templates/directives/<name>.html` and are picked up by kiln's directive renderer without further wiring. Files and directories whose names start with `_` are private build inputs (kiln's `copy_static` skips them).
 
 ### Theme Submodule
 
@@ -57,14 +48,14 @@ kiln serve --open            # Dev server with live reload
 
 ### Site-level CSS / JS
 
-Site Tailwind sources live in `static/css/_src/`; the entry `main.css` `@import`s the theme's own `_src/main.css` plus any site-specific partials (e.g., `score-table`). Site JS lives in `static/js/` and is shipped as-is (no build step). **Run `pnpm build` before committing CSS changes** to keep `static/css/style.css` in sync with source.
+Tailwind sources live in `static/css/_src/`; the entry `main.css` imports the theme's own `_src/main.css` plus any site-specific partials. Site JS ships as-is. The pre-push hook fails if `static/css/style.css` is out of sync with source — run `pnpm build` after editing CSS.
 
 ```bash
-pnpm build                   # One-shot Tailwind build to static/css/style.css
+pnpm build                   # Compile to static/css/style.css
 pnpm dev                     # Tailwind watch mode
 ```
 
-Compression for both CSS and JS is handled at deploy time by `kiln build --minify`, so shipped files stay readable during development.
+Minification for both CSS and JS happens at deploy time via `kiln build --minify`, so shipped files stay readable during development.
 
 ## Coding Conventions
 
@@ -77,13 +68,17 @@ Compression for both CSS and JS is handled at deploy time by `kiln build --minif
 ### Git Conventions
 
 - Commit messages: `type(scope): description`
-  - Types: `feat`, `fix`, `refactor`, `docs`, `ci`, `chore`, `style`
+  - Types: `feat`, `fix`, `refactor`, `docs`, `test`, `ci`, `chore`, `style`, `perf`
   - Scope: topic area (e.g., content file name without extension, `config`, `template`)
 - PRs: assign to `hakula139`.
 
-### Pre-commit
+### Git hooks
 
 The husky pre-commit hook runs `lint-staged`, which auto-formats staged files with Prettier (including Tailwind class sorting in HTML attributes and CSS `@apply` via `prettier-plugin-tailwindcss`), lints Markdown with markdownlint, and spell-checks with cspell. The pre-push hook runs `pnpm build` and verifies `static/css/style.css` is in sync with its Tailwind source.
+
+### Git LFS
+
+Image binaries (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are stored via Git LFS — see `.gitattributes`. Install Git LFS (`git lfs install`) before cloning, otherwise pointer files are checked out instead of real images.
 
 ### Spell Checking
 
@@ -91,9 +86,8 @@ The husky pre-commit hook runs `lint-staged`, which auto-formats staged files wi
 
 ## Verification
 
-Before pushing:
-
 ```bash
-pnpm build                   # Compile site-level CSS / JS
-kiln build                   # Full site build
+kiln build                   # Full site build smoke test
 ```
+
+The dev server (`kiln serve`) catches most local errors during development.
