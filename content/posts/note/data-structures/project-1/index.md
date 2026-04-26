@@ -6,7 +6,6 @@ tags = [
     "排序",
 ]
 license = "CC BY-NC-SA 4.0"
-math = true
 
 [featured_image]
 src = "/images/article-covers/77359441_p0.webp"

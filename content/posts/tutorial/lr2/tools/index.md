@@ -6,7 +6,6 @@ tags = [
     "LR2",
 ]
 license = "CC BY-NC-SA 4.0"
-math = true
 
 [featured_image]
 src = "/images/article-covers/72296053_p0.webp"

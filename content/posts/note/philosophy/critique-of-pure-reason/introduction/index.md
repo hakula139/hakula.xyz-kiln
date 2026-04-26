@@ -7,7 +7,6 @@ tags = [
     "康德",
 ]
 license = "CC BY-NC-SA 4.0"
-math = true
 
 [featured_image]
 src = "/images/article-covers/critique-of-pure-reason.webp"

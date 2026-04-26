@@ -6,7 +6,6 @@ tags = [
     "评测",
 ]
 license = "CC BY-NC-SA 4.0"
-math = true
 weight = 3
 
 [featured_image]

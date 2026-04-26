@@ -7,7 +7,6 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
-math = true
 
 [featured_image]
 src = "/images/article-covers/102257565_p0.webp"

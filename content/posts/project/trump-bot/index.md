@@ -10,7 +10,6 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
-math = true
 
 [featured_image]
 src = "/images/article-covers/87013646_p0.webp"
