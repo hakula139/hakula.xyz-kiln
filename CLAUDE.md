@@ -48,7 +48,7 @@ kiln serve --open            # Dev server with live reload
 
 ### Site-level CSS / JS
 
-Tailwind sources live in `static/css/_src/`; the entry `main.css` imports the theme's own `_src/main.css` plus any site-specific partials. Site JS ships as-is. The pre-push hook fails if `static/css/style.css` is out of sync with source — run `pnpm build` after editing CSS.
+Tailwind sources live in `static/css/_src/`; the entry `main.css` imports the theme's own `_src/main.css` plus any site-specific partials. Site JS ships as-is. CI fails if `static/css/style.css` is out of sync with source — run `pnpm build` after editing CSS.
 
 ```bash
 pnpm build                   # Compile to static/css/style.css
@@ -56,6 +56,15 @@ pnpm dev                     # Tailwind watch mode
 ```
 
 Minification for both CSS and JS happens at deploy time via `kiln build --minify`, so shipped files stay readable during development.
+
+### Dev shell (Nix)
+
+`flake.nix` pins Node.js, pnpm, pagefind, and the pre-commit hook toolchain. `direnv` auto-activates it via `.envrc`.
+
+```bash
+nix develop                  # interactive shell (auto-installs hooks)
+nix flake check              # run Nix-side hooks (also gated in CI)
+```
 
 ## Deploy
 
@@ -82,7 +91,7 @@ Local manual deploy: `pnpm wrangler login` once, then `pnpm wrangler deploy`. CI
 
 ### Git hooks
 
-The husky pre-commit hook runs `lint-staged`, which auto-formats staged files with Prettier (including Tailwind class sorting in HTML attributes and CSS `@apply` via `prettier-plugin-tailwindcss`), lints Markdown with markdownlint, and spell-checks with cspell. The pre-push hook runs `pnpm build` and verifies `static/css/style.css` is in sync with its Tailwind source.
+Pre-commit hooks are driven by [git-hooks-nix](https://github.com/cachix/git-hooks.nix), wired in `flake.nix`. Entering the dev shell (`nix develop` or via direnv) installs `.git/hooks/pre-commit` automatically. Hooks: Prettier (with `prettier-plugin-tailwindcss` for class sorting), markdownlint, cspell, nixfmt / statix / deadnix, and basic file hygiene. Node-side hooks no-op when `node_modules/` is absent (e.g., inside the Nix sandbox); CI's `check` job runs the equivalent commands directly via `pnpm`, so coverage is preserved.
 
 ### Git LFS
 

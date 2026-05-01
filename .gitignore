@@ -4,6 +4,12 @@
 # Dependencies
 /node_modules/
 
+# Nix
+.direnv/
+.pre-commit-config.yaml
+result
+result-*
+
 # Wrangler
 .wrangler/
 

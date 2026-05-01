@@ -1,18 +1,11 @@
 {
   "private": true,
-  "packageManager": "pnpm@10.30.3",
   "scripts": {
     "build": "tailwindcss -i static/css/_src/main.css -o static/css/style.css",
     "dev": "tailwindcss -i static/css/_src/main.css -o static/css/style.css --watch",
     "format": "prettier --check .",
     "lint": "markdownlint-cli2 \"content/**/*.md\"",
-    "spellcheck": "cspell --no-progress \"content/**/*.md\"",
-    "prepare": "husky"
-  },
-  "lint-staged": {
-    "*.{css,js,json,md}": "prettier --write",
-    "*.md": "markdownlint-cli2",
-    "*": "cspell --no-must-find-files --no-progress"
+    "spellcheck": "cspell --no-progress \"content/**/*.md\""
   },
   "devDependencies": {
     "@cspell/dict-de-de": "^4.1.2",
@@ -23,8 +16,6 @@
     "@tailwindcss/cli": "^4.2.2",
     "@tailwindcss/typography": "^0.5.19",
     "cspell": "^10.0.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
     "markdownlint-cli2": "^0.22.0",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
