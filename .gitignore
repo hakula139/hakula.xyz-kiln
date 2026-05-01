@@ -4,6 +4,9 @@
 # Dependencies
 /node_modules/
 
+# Wrangler
+.wrangler/
+
 # OS files
 .DS_Store
 

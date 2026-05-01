@@ -1,0 +1,15 @@
+name = "hakula-xyz-kiln"
+compatibility_date = "2026-04-01"
+
+routes = [{ pattern = "dev.hakula.xyz", custom_domain = true }]
+
+# When the new site replaces hakula.xyz, append:
+#   { pattern = "hakula.xyz", custom_domain = true }
+# to `routes`, and remove hakula.xyz from the legacy Pages project first.
+
+[assets]
+directory = "./public"
+not_found_handling = "404-page"
+
+[observability.logs]
+enabled = true
