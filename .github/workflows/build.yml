@@ -41,6 +41,9 @@ jobs:
           sudo mv kiln /usr/local/bin/
           kiln --help > /dev/null
 
+      - name: Install Pagefind
+        run: npm install -g pagefind
+
       - name: Build CSS
         run: pnpm build
 
