@@ -1023,6 +1023,13 @@
     outline-offset: 2px;
     outline-color: var(--color-link);
   }
+  html.image-fade-enabled img:not(.loaded) {
+    visibility: hidden;
+  }
+  html.image-fade-enabled img.loaded {
+    visibility: visible;
+    animation: var(--animate-image-fade-in);
+  }
 }
 @layer components {
   :where(.glass-glow, [data-glow-target]) {
@@ -2214,13 +2221,6 @@
     margin-inline: auto;
     border-radius: var(--radius-lg);
   }
-  html.image-fade-enabled :where(.prose img, .post-featured-image) {
-    visibility: hidden;
-  }
-  html.image-fade-enabled :where(.prose img, .post-featured-image).loaded {
-    visibility: visible;
-    animation: var(--animate-image-fade-in);
-  }
   .prose figure {
     border-radius: var(--radius-lg);
     text-align: center;
@@ -2294,8 +2294,9 @@
   .home-card-image {
     position: absolute;
     inset: calc(var(--spacing) * 0);
-    animation: var(--animate-image-fade-in);
-    background-size: cover;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
     transition-property: scale,filter;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
