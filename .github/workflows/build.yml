@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 env:
-  KILN_VERSION: 0.1.0
+  KILN_VERSION: 0.2.0-rc.1
 
 jobs:
   build:

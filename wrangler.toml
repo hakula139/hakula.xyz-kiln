@@ -2,6 +2,7 @@ name = "hakula-xyz-kiln"
 compatibility_date = "2026-04-01"
 
 routes = [{ pattern = "dev.hakula.xyz", custom_domain = true }]
+preview_urls = true
 
 # When the new site replaces hakula.xyz, append:
 #   { pattern = "hakula.xyz", custom_domain = true }
