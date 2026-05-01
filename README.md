@@ -24,6 +24,23 @@ kiln build
 
 Output is written to `public/`.
 
+## Deploy
+
+The site auto-deploys to [dev.hakula.xyz](https://dev.hakula.xyz) on every push to `main` via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow builds with `kiln build --minify` and ships `public/` to a Cloudflare Worker (config in [`wrangler.toml`](wrangler.toml)) using the static-assets binding.
+
+For manual deploys (and one-time provisioning of the Worker + custom domain):
+
+```bash
+pnpm install
+pnpm wrangler login           # one-time OAuth
+pnpm wrangler deploy
+```
+
+CI deploys require two repository secrets:
+
+- `CLOUDFLARE_API_TOKEN` — scoped to: Account → Workers Scripts: Edit; Zone (`hakula.xyz`) → DNS: Edit + Workers Routes: Edit.
+- `CLOUDFLARE_ACCOUNT_ID`.
+
 ## Site Structure
 
 ```text
