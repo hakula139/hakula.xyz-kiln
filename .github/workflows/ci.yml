@@ -7,6 +7,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -28,10 +31,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
+      - name: Build CSS
         run: pnpm build
 
-      - name: Verify compiled output is up to date
+      - name: Verify compiled CSS is up to date
         run: git diff --exit-code static/
 
       - name: Format
@@ -42,3 +45,6 @@ jobs:
 
       - name: Spell check
         run: pnpm spellcheck
+
+  build:
+    uses: ./.github/workflows/build.yml
