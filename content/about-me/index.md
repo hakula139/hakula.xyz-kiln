@@ -17,7 +17,7 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 | 公司 / 部门           | 岗位             | Base |              时间 |
 | :-------------------- | :--------------- | :--- | ----------------: |
-| 佳期投资 / Tech       | DevOps           | 上海 |    2024-05 ~ 至今 |
+| 佳期投资              | Tech             | 上海 |    2024-05 ~ 至今 |
 | 腾讯 / IEG / 天美 T1  | 后台开发         | 上海 | 2021-07 ~ 2024-05 |
 | 字节跳动 / 飞书 / RTC | 后台开发（实习） | 上海 | 2021-03 ~ 2021-06 |
 
@@ -46,6 +46,7 @@ url = "https://www.pixiv.net/artworks/64035231"
 [![C++](assets/icons/cplusplus.svg){width=50 height=50}](https://www.cplusplus.com)
 [![Python](assets/icons/python.svg){width=50 height=50}](https://www.python.org)
 [![TypeScript](assets/icons/typescript.svg){width=50 height=50}](https://www.typescriptlang.org)
+[![Rust](assets/icons/rust.svg){width=50 height=50}](https://www.rust-lang.org)
 [![Go](assets/icons/go.svg){width=50 height=50}](https://golang.org)
 [![Java](assets/icons/java.svg){width=50 height=50}](https://www.java.com)
 
@@ -69,10 +70,9 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 ### 开发环境
 
-[![Cursor](assets/icons/cursor.svg){width=50 height=50}](https://cursor.com)
 [![Claude](assets/icons/claude.svg){width=50 height=50}](https://claude.ai)
+[![Cursor](assets/icons/cursor.svg){width=50 height=50}](https://cursor.com)
 [![NixOS](assets/icons/nixos.svg){width=50 height=50}](https://nixos.org)
-[![Ubuntu](assets/icons/ubuntu.svg){width=50 height=50}](https://ubuntu.com)
 [![macOS](assets/icons/apple.svg){width=50 height=50}](https://www.apple.com/macos)
 [![Zsh](assets/icons/zsh.svg){width=50 height=50}](https://zsh.sourceforge.io)
 [![Starship](assets/icons/starship.svg){width=50 height=50}](https://starship.rs)
@@ -136,11 +136,11 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 ### 手游
 
-| 游戏名                       | ID             |           时间 |
-| :--------------------------- | :------------- | -------------: |
-| [明日方舟 :cn: (官服)][arkn] | Hakula (#2397) | 2019-06 ~ 至今 |
+| 游戏名                            | ID             |              时间 |
+| :-------------------------------- | :------------- | ----------------: |
+| [明日方舟 :cn: (官服)][arknights] | Hakula (#2397) | 2019-06 ~ 2026-04 |
 
-[arkn]: https://ak.hypergryph.com
+[arknights]: https://ak.hypergryph.com
 
 ## :headphones: 音乐
 
