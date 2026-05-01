@@ -39,7 +39,7 @@ jobs:
         run: |
           curl -fsSL "https://github.com/hakula139/kiln/releases/download/v${KILN_VERSION}/kiln-x86_64-unknown-linux-gnu.tar.gz" | tar -xz
           sudo mv kiln /usr/local/bin/
-          kiln --version
+          kiln --help > /dev/null
 
       - name: Build CSS
         run: pnpm build
