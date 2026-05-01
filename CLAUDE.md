@@ -57,6 +57,14 @@ pnpm dev                     # Tailwind watch mode
 
 Minification for both CSS and JS happens at deploy time via `kiln build --minify`, so shipped files stay readable during development.
 
+## Deploy
+
+The site is hosted on Cloudflare Workers (Static Assets binding) at [dev.hakula.xyz](https://dev.hakula.xyz) — `wrangler.toml` at the repo root pins the worker name, custom domain, and `not_found_handling`. The apex `hakula.xyz` is still served by the legacy Pages project; cutover is planned later by appending the apex pattern to `wrangler.toml`'s `routes` array and removing it from Pages.
+
+`.github/workflows/build.yml` is a reusable workflow (`workflow_call`) that installs the kiln binary at the version pinned in `KILN_VERSION` (currently `0.1.0`) from <https://github.com/hakula139/kiln/releases>, runs `pnpm build` (Tailwind) + `kiln build --minify`, and optionally uploads `public/` as a CI artifact. Both `ci.yml` (PR validation) and `deploy.yml` (push to main → Cloudflare) call into it, keeping the build path single-sourced.
+
+Local manual deploy: `pnpm wrangler login` once, then `pnpm wrangler deploy`. CI deploy needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets configured at the repository level.
+
 ## Coding Conventions
 
 ### Content

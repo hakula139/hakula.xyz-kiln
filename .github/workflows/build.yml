@@ -1,0 +1,60 @@
+name: Build site
+
+on:
+  workflow_call:
+    inputs:
+      upload-artifact:
+        description: Upload public/ as a workflow artifact
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+env:
+  KILN_VERSION: 0.1.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install kiln
+        run: |
+          curl -fsSL "https://github.com/hakula139/kiln/releases/download/v${KILN_VERSION}/kiln-x86_64-unknown-linux-gnu.tar.gz" | tar -xz
+          sudo mv kiln /usr/local/bin/
+          kiln --help > /dev/null
+
+      - name: Install Pagefind
+        run: npm install -g pagefind
+
+      - name: Build CSS
+        run: pnpm build
+
+      - name: Build site
+        run: kiln build --minify
+
+      - name: Upload artifact
+        if: ${{ inputs.upload-artifact }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-public
+          path: public/
+          retention-days: 7
+          if-no-files-found: error
