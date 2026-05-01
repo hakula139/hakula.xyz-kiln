@@ -1024,16 +1024,6 @@
     outline-color: var(--color-link);
   }
 }
-@property --glow-x {
-  syntax: '<length>';
-  inherits: false;
-  initial-value: -9999px;
-}
-@property --glow-y {
-  syntax: '<length>';
-  inherits: false;
-  initial-value: -9999px;
-}
 @layer components {
   :where(.glass-glow, [data-glow-target]) {
     position: relative;
@@ -1052,49 +1042,40 @@
       --glow-border-color: rgba(255, 255, 255, 0.7);
     }
   }
-  :where(.glass-glow, [data-glow-target])::before {
-    --tw-content: none;
-    content: none;
-    --glow-x: inherit;
-    --glow-y: inherit;
+  .glow-ambient {
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+    border-radius: calc(infinity * 1px);
+    will-change: transform;
+    width: calc(var(--glow-size) * 2);
+    height: calc(var(--glow-size) * 2);
+    top: calc(var(--glow-size) * -1);
+    left: calc(var(--glow-size) * -1);
+    background: radial-gradient(closest-side circle, var(--glow-color), transparent);
+    transform: translate3d(-9999px, -9999px, 0);
   }
-  &:where([data-theme="dark"], [data-theme="dark"] *) {
-    :where(.glass-glow, [data-glow-target])::before {
-      pointer-events: none;
-      position: absolute;
-      z-index: 1;
-      border-radius: calc(infinity * 1px);
-      will-change: transform;
-      --tw-content: '';
-      content: var(--tw-content);
-      width: calc(var(--glow-size) * 2);
-      height: calc(var(--glow-size) * 2);
-      top: calc(var(--glow-size) * -1);
-      left: calc(var(--glow-size) * -1);
-      background: radial-gradient(closest-side circle, var(--glow-color), transparent);
-      transform: translate3d(var(--glow-x, -9999px), var(--glow-y, -9999px), 0);
-    }
+  .glow-border {
+    pointer-events: none;
+    position: absolute;
+    inset: calc(var(--spacing) * 0);
+    z-index: 2;
+    border-radius: inherit;
+    padding: 1px;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
   }
-  :where(.glass-glow, [data-glow-target])::after {
-    --tw-content: none;
-    content: none;
-    --glow-x: inherit;
-    --glow-y: inherit;
-  }
-  &:where([data-theme="dark"], [data-theme="dark"] *) {
-    :where(.glass-glow, [data-glow-target])::after {
-      pointer-events: none;
-      position: absolute;
-      inset: calc(var(--spacing) * 0);
-      z-index: 2;
-      border-radius: inherit;
-      padding: 1px;
-      --tw-content: '';
-      content: var(--tw-content);
-      background: radial-gradient( var(--glow-border-size) circle at var(--glow-x, -9999px) var(--glow-y, -9999px), var(--glow-border-color), 8%, transparent );
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-    }
+  .glow-border-spot {
+    pointer-events: none;
+    position: absolute;
+    border-radius: calc(infinity * 1px);
+    will-change: transform;
+    width: calc(var(--glow-border-size) * 2);
+    height: calc(var(--glow-border-size) * 2);
+    top: calc(var(--glow-border-size) * -1);
+    left: calc(var(--glow-border-size) * -1);
+    background: radial-gradient(closest-side circle, var(--glow-border-color), 8%, transparent);
+    transform: translate3d(-9999px, -9999px, 0);
   }
   .glass-panel {
     position: relative;
@@ -1381,7 +1362,7 @@
     border: none !important;
     border-radius: 0 !important;
   }
-  .glass-glow::before, .glass-glow::after, [data-glow-target]::before, [data-glow-target]::after {
+  .glow-ambient, .glow-border {
     display: none !important;
   }
   .glass-glow:has(.header-nav), #mobile-menu, .site-footer,  .toc-sidebar-wrapper, .toc-collapse, .post-banner-credit,  .pagination-link, .pagination-ellipsis, .pagination-input,  .back-to-top, pagefind-modal {
@@ -3332,8 +3313,6 @@
       --tw-leading: initial;
       --tw-content: "";
       --tw-outline-style: solid;
-      --glow-x: -9999px;
-      --glow-y: -9999px;
       --tw-shadow: 0 0 #0000;
       --tw-shadow-color: initial;
       --tw-shadow-alpha: 100%;
