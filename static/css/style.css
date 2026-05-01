@@ -66,7 +66,6 @@
     --surface-glass-scroll-shadow: rgba(0, 0, 0, 0.06);
     --surface-overlay-backdrop: rgba(0, 0, 0, 0.35);
     --scale-card-hover: 135%;
-    --animate-image-fade-in: image-fade-in 0.6s ease;
     --animate-menu-fade-in: menu-fade-in 200ms ease both;
     --animate-menu-slide-down: menu-slide-down 250ms ease-out both;
     --animate-menu-item-fade-in: menu-item-fade-in 200ms ease both;
@@ -1022,13 +1021,6 @@
     outline-width: 2px;
     outline-offset: 2px;
     outline-color: var(--color-link);
-  }
-  html.image-fade-enabled img:not(.loaded) {
-    visibility: hidden;
-  }
-  html.image-fade-enabled img.loaded {
-    visibility: visible;
-    animation: var(--animate-image-fade-in);
   }
 }
 @layer components {
@@ -2270,12 +2262,6 @@
   }
 }
 @layer components {
-  @keyframes image-fade-in {
-    from {
-      opacity: 0;
-      transform: scale(1.03);
-    }
-  }
   .home-card {
     position: relative;
     height: calc(var(--spacing) * 88);
