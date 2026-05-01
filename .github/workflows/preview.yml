@@ -22,6 +22,8 @@ jobs:
     env:
       PR_NUMBER: ${{ github.event.pull_request.number }}
       PR_SHA: ${{ github.event.pull_request.head.sha }}
+      WORKER_NAME: hakula-xyz-kiln
+      WORKERS_DEV_SUBDOMAIN: hakula.workers.dev
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -53,10 +55,32 @@ jobs:
             --preview-alias pr-${{ env.PR_NUMBER }}
             --message "PR #${{ env.PR_NUMBER }} @ ${{ env.PR_SHA }}"
 
-      - name: Comment preview URL
+      - name: Extract preview metadata
+        id: meta
+        env:
+          UPLOAD_OUTPUT: ${{ steps.upload.outputs.command-output }}
+        run: |
+          version_id=$(awk '/Worker Version ID:/ {print $NF; exit}' <<<"$UPLOAD_OUTPUT")
+          version_prefix="${version_id:0:8}"
+          {
+            echo "short_sha=${PR_SHA:0:7}"
+            echo "version_url=https://${version_prefix}-${WORKER_NAME}.${WORKERS_DEV_SUBDOMAIN}"
+            echo "alias_url=https://pr-${PR_NUMBER}-${WORKER_NAME}.${WORKERS_DEV_SUBDOMAIN}"
+            echo "deploy_time=$(date -u +'%Y-%m-%d %H:%M UTC')"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Comment preview
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: preview-url
           message: |
-            Preview deployed: ${{ steps.upload.outputs.deployment-url }}
-            Commit: `${{ env.PR_SHA }}`
+            ## ⚡ Cloudflare Workers preview
+
+            |  |  |
+            | --- | --- |
+            | **Preview** | <${{ steps.meta.outputs.version_url }}> |
+            | **Branch preview** | <${{ steps.meta.outputs.alias_url }}> |
+            | **Commit** | `${{ steps.meta.outputs.short_sha }}` |
+            | **Updated** | ${{ steps.meta.outputs.deploy_time }} |
+
+            [View deploy logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
