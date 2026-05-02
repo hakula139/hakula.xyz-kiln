@@ -2068,13 +2068,13 @@
     transition-property: filter;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
-    --tw-duration: 300ms;
-    transition-duration: 300ms;
+    --tw-duration: 500ms;
+    transition-duration: 500ms;
     --tw-ease: var(--ease-out);
     transition-timing-function: var(--ease-out);
   }
   .lqip-fade-enabled .lqip-loaded {
-    --tw-blur: blur(0.01px);
+    --tw-blur:  ;
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
   .prose figure > .lqip {
