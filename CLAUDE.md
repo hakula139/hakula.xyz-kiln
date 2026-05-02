@@ -94,6 +94,7 @@ Local manual deploy: `pnpm wrangler login` once, then `pnpm wrangler deploy`. CI
 - Frontmatter uses TOML (`+++` delimiters).
 - Article covers go in `static/images/article-covers/`.
 - Co-located assets (diagrams, data files) live alongside `index.md` in page bundles.
+- Markdown prose is **not hard-wrapped** — paragraphs are single long lines and flow with the reader's viewport. Match the surrounding style; do not introduce 80-column line breaks inside paragraphs.
 
 ### Git Conventions
 
