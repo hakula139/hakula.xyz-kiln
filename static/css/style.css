@@ -993,7 +993,11 @@
     z-index: calc(10 * -1);
     --tw-content: '';
     content: var(--tw-content);
-    background: var(--bg-image, var(--color-bg)) var(--bg-position-mobile, var(--bg-position, center)) / cover no-repeat;
+    background-color: var(--color-bg);
+    background-image: var(--bg-image, none), var(--bg-lqip, none);
+    background-position: var(--bg-position-mobile, var(--bg-position, center));
+    background-size: cover;
+    background-repeat: no-repeat;
   }
   @media (min-width: 640px) {
     body::before {

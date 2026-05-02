@@ -19,6 +19,8 @@ fontawesome = true
 
 [params.background]
 image = "/images/bg.webp"
+# Hand-rolled 16x8 LQIP — kiln only stamps `<img>`, not CSS backgrounds.
+lqip_uri = "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAgABIByJYwAAjuRI6+m6AAA/vGdTVlvPFRSsRiSc/Pgld5k7oUI2bfXkLCKpotCEX2jctQ+PaCoAAA="
 position = "70% 50%"
 
 [params.home]
