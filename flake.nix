@@ -5,8 +5,8 @@
 # Provides Tailwind toolchain, pagefind, and pre-commit hooks. kiln itself is
 # brought in externally.
 #
-#   nix develop                            # interactive shell (auto-installs hooks)
-#   nix flake check                        # Nix-side hooks (Node-side run in CI's `check` job)
+#   nix develop        # interactive shell (auto-installs hooks)
+#   nix flake check    # Nix-side hooks (Node-side run in CI's `check` job)
 
 {
   description = "hakula.xyz-kiln — site source for hakula.xyz (dev environment)";
@@ -91,8 +91,6 @@
               enable = true;
               name = "prettier";
               entry = nodeHook "prettier-write" "prettier --write --ignore-unknown";
-              # Markdown is opinionated; markdownlint covers structure. CSS /
-              # JS / JSON are safe to auto-format.
               files = "\\.(css|js|json)$";
               pass_filenames = true;
             };
