@@ -4,19 +4,6 @@
 
 hakula.xyz-kiln is the [kiln](https://github.com/hakula139/kiln) site source for [hakula.xyz](https://hakula.xyz), using the [IgnIt](https://github.com/hakula139/IgnIt) theme (git submodule at `themes/IgnIt/`). Migrated from a Hugo + LoveIt stack.
 
-### Image Pipeline
-
-kiln stamps natural pixel `width` / `height` plus a base64 WebP `lqip_uri` (low-quality image placeholder) onto every locally-resolvable `<img>` and featured image at build time. Disable or tune via the `[image]` section of `config.toml`:
-
-```toml
-[image]
-lqip = true            # set false to skip LQIP encoding (dimensions still emitted)
-lqip_size = 16         # max LQIP dimension in pixels
-lqip_quality = 25      # WebP quality (0-100); lower = smaller backdrop
-```
-
-Defaults are on, so the section is optional. Remote URLs and unresolvable paths leave `width` / `height` / `lqip_uri` unset, and templates handle that gracefully.
-
 ### Site Structure
 
 ```text
@@ -42,7 +29,7 @@ Files under `templates/` override the same-path file in `themes/IgnIt/templates/
 
 ### Theme Submodule
 
-IgnIt is pinned as a git submodule. After cloning, run `git submodule update --init`. To update the theme:
+IgnIt is pinned as a git submodule. To update the theme:
 
 ```bash
 git submodule update --remote themes/IgnIt
@@ -116,11 +103,3 @@ Image binaries (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are stored via Gi
 ### Spell Checking
 
 - Config in `cspell.json`. Add project-specific words to `.cspell/words.txt` (one word per line, sorted alphabetically).
-
-## Verification
-
-```bash
-kiln build                   # Full site build smoke test
-```
-
-The dev server (`kiln serve`) catches most local errors during development.
