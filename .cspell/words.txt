@@ -23,6 +23,7 @@ Csikszentmihalyi
 CUDA
 Cyorage
 Cytus
+dav1d
 différance
 DIGGY
 direnv
@@ -50,6 +51,7 @@ kaze
 Kiyotsugu
 kstack
 libc
+libdav1d
 llms
 llmstxt
 LLSIF
@@ -71,6 +73,7 @@ Morfonica
 mujica
 Mutsumi
 mygo
+nasm
 neko
 nixfmt
 nixpkgs
