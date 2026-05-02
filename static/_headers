@@ -1,44 +1,56 @@
 # Override Workers Static Assets' default of `max-age=0, must-revalidate`
-# per content-stability tier.
+# per content-stability tier. Specific rules clear the catch-all with
+# `! Cache-Control` because Cloudflare otherwise merges header values.
+
+# ── Catch-all default (HTML and anything not overridden below) ──
+
+/*
+  Cache-Control: public, max-age=300, stale-while-revalidate=3600
 
 # ── Content-stable: images, fonts, icons ──
 
 /*.avif
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
 /*.webp
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
 /*.png
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
 /*.jpg
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
 /*.gif
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
 /*.ico
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
 /*.svg
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
 /*.woff2
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
 /manifest.webmanifest
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
 # ── CSS / JS: not content-hashed, so cache short with SWR ──
 
 /*.css
+  ! Cache-Control
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
 /*.js
+  ! Cache-Control
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
-
-# ── HTML and catch-all ──
-
-/*
-  Cache-Control: public, max-age=300, stale-while-revalidate=3600
