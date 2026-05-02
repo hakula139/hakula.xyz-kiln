@@ -15,10 +15,13 @@
   # Inputs
   # ----------------------------------------------------------------------------
   inputs = {
+    # Nixpkgs - NixOS 25.11 stable release
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
+    # Per-system flake outputs
     flake-utils.url = "github:numtide/flake-utils";
 
+    # Pre-commit hooks
     git-hooks-nix.url = "github:cachix/git-hooks.nix";
   };
 
@@ -50,7 +53,7 @@
             wrapper = pkgs.writeShellApplication {
               inherit name;
               runtimeInputs = [
-                pkgs.nodejs_22
+                pkgs.nodejs_24
                 pkgs.pnpm
               ];
               text = ''
@@ -84,13 +87,13 @@
             statix.enable = true;
             deadnix.enable = true;
 
-            # Mirrors the previous `lint-staged` config — same tools, same
-            # globs, same on-disk effects (Prettier writes, others lint).
             prettier-write = {
               enable = true;
               name = "prettier";
               entry = nodeHook "prettier-write" "prettier --write --ignore-unknown";
-              files = "\\.(css|js|json|md)$";
+              # Markdown is opinionated; markdownlint covers structure. CSS /
+              # JS / JSON are safe to auto-format.
+              files = "\\.(css|js|json)$";
               pass_filenames = true;
             };
 
@@ -121,7 +124,7 @@
           packages =
             preCommitCheck.enabledPackages
             ++ (with pkgs; [
-              nodejs_22
+              nodejs_24
               pnpm
               pagefind
             ]);
@@ -136,7 +139,7 @@
         # Checks (`nix flake check`)
         # ----------------------------------------------------------------------
         checks = {
-          inherit preCommitCheck;
+          pre-commit = preCommitCheck;
         };
 
         # ----------------------------------------------------------------------
