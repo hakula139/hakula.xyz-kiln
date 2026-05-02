@@ -66,6 +66,7 @@
     --surface-glass-scroll-shadow: rgba(0, 0, 0, 0.06);
     --surface-overlay-backdrop: rgba(0, 0, 0, 0.35);
     --scale-card-hover: 135%;
+    --animate-lqip-fade-in: lqip-fade-in 500ms ease both;
     --animate-menu-fade-in: menu-fade-in 200ms ease both;
     --animate-menu-slide-down: menu-slide-down 250ms ease-out both;
     --animate-menu-item-fade-in: menu-item-fade-in 200ms ease both;
@@ -2062,6 +2063,44 @@
   max-width: 100%;
   height: auto;
 }
+@layer components {
+  .lqip {
+    display: inline-block;
+    overflow: hidden;
+    background-image: var(--lqip-uri);
+    background-size: cover;
+    background-position: center;
+  }
+  .lqip > img {
+    margin: calc(var(--spacing) * 0) !important;
+    display: block;
+  }
+  .lqip-fade-enabled .lqip:not(.lqip-loaded) > img {
+    visibility: hidden;
+  }
+  .lqip-fade-enabled .lqip-loaded > img {
+    visibility: visible;
+    animation: var(--animate-lqip-fade-in);
+  }
+  .prose figure > .lqip {
+    margin-inline: auto;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    border-radius: var(--radius-lg);
+  }
+  .post-banner-media > .lqip {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  .home-card > .lqip {
+    position: absolute;
+    inset: calc(var(--spacing) * 0);
+    height: 100%;
+    width: 100%;
+  }
+}
 .prose {
   --tw-prose-body: var(--color-text);
   --tw-prose-headings: var(--color-text);
@@ -3272,6 +3311,12 @@
   syntax: "<length>";
   inherits: false;
   initial-value: 0;
+}
+@keyframes lqip-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
 }
 @keyframes menu-fade-in {
   from {
