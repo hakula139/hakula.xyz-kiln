@@ -66,7 +66,7 @@
     --surface-glass-scroll-shadow: rgba(0, 0, 0, 0.06);
     --surface-overlay-backdrop: rgba(0, 0, 0, 0.35);
     --scale-card-hover: 135%;
-    --animate-lqip-fade-in: lqip-fade-in 1s ease both;
+    --animate-lqip-fade-in: lqip-fade-in 500ms ease-out both;
     --animate-menu-fade-in: menu-fade-in 200ms ease both;
     --animate-menu-slide-down: menu-slide-down 250ms ease-out both;
     --animate-menu-item-fade-in: menu-item-fade-in 200ms ease both;
@@ -2067,8 +2067,6 @@
   }
   .lqip-fade-enabled .lqip-loaded > img {
     visibility: visible;
-  }
-  .lqip-fade-enabled .lqip-loaded.lqip-fade-in > img {
     animation: var(--animate-lqip-fade-in);
   }
   .prose figure > .lqip {
@@ -3320,8 +3318,7 @@
 }
 @keyframes lqip-fade-in {
   from {
-    opacity: 0;
-    transform: scale(1.02);
+    filter: blur(8px);
   }
 }
 @keyframes menu-fade-in {
