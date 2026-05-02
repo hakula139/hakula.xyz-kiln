@@ -2061,6 +2061,7 @@
   .lqip > img {
     margin: calc(var(--spacing) * 0) !important;
     display: block;
+    filter: blur(0);
   }
   .lqip-fade-enabled .lqip:not(.lqip-loaded) > img {
     visibility: hidden;
