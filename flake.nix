@@ -77,6 +77,7 @@
           hooks = {
             check-added-large-files.enable = true;
             check-yaml.enable = true;
+            end-of-file-fixer.enable = true;
             # Preserve Markdown's two-trailing-space hard-break syntax.
             trim-trailing-whitespace = {
               enable = true;
