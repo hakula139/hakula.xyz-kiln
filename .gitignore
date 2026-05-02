@@ -4,6 +4,12 @@
 # Dependencies
 /node_modules/
 
+# Nix
+.direnv/
+.pre-commit-config.yaml
+result
+result-*
+
 # Wrangler
 .wrangler/
 
@@ -15,5 +21,6 @@
 .env.local
 
 # Claude Code
+.claude/agent-memory-local/
 .claude/plans/
 .claude/settings.local.json

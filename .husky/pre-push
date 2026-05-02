@@ -1,6 +1,0 @@
-pnpm build
-git diff --exit-code static/css/style.css || {
-  echo "error: static/css/style.css is out of sync with source — run 'pnpm build' and commit"
-  exit 1
-}
-git lfs pre-push "$@"

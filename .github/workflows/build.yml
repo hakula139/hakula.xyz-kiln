@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 env:
-  KILN_VERSION: 0.2.0-rc.1
+  KILN_VERSION: 0.2.0-rc.2
 
 jobs:
   build:
@@ -35,6 +35,10 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Install libdav1d
+        # Required by the `image` crate's `avif-native` decoder via dav1d-sys.
+        run: sudo apt-get update && sudo apt-get install -y libdav1d-dev nasm
 
       - name: Install kiln
         run: |
