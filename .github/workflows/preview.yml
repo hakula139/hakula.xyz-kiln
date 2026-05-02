@@ -76,11 +76,23 @@ jobs:
           message: |
             ## ⚡ Cloudflare Workers preview
 
-            |  |  |
-            | --- | --- |
-            | **Preview** | <${{ steps.meta.outputs.version_url }}> |
-            | **Branch preview** | <${{ steps.meta.outputs.alias_url }}> |
-            | **Commit** | `${{ steps.meta.outputs.short_sha }}` |
-            | **Updated** | ${{ steps.meta.outputs.deploy_time }} |
+            <table>
+              <tr>
+                <td><strong>Preview</strong></td>
+                <td><a href="${{ steps.meta.outputs.version_url }}">${{ steps.meta.outputs.version_url }}</a></td>
+              </tr>
+              <tr>
+                <td><strong>Branch preview</strong></td>
+                <td><a href="${{ steps.meta.outputs.alias_url }}">${{ steps.meta.outputs.alias_url }}</a></td>
+              </tr>
+              <tr>
+                <td><strong>Commit</strong></td>
+                <td><code>${{ steps.meta.outputs.short_sha }}</code></td>
+              </tr>
+              <tr>
+                <td><strong>Updated</strong></td>
+                <td>${{ steps.meta.outputs.deploy_time }}</td>
+              </tr>
+            </table>
 
             [View deploy logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
