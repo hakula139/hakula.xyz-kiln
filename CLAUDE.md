@@ -4,6 +4,19 @@
 
 hakula.xyz-kiln is the [kiln](https://github.com/hakula139/kiln) site source for [hakula.xyz](https://hakula.xyz), using the [IgnIt](https://github.com/hakula139/IgnIt) theme (git submodule at `themes/IgnIt/`). Migrated from a Hugo + LoveIt stack.
 
+### Image Pipeline
+
+kiln stamps natural pixel `width` / `height` plus a base64 WebP `lqip_uri` (low-quality image placeholder) onto every locally-resolvable `<img>` and featured image at build time. Disable or tune via the `[image]` section of `config.toml`:
+
+```toml
+[image]
+lqip = true            # set false to skip LQIP encoding (dimensions still emitted)
+lqip_size = 16         # max LQIP dimension in pixels
+lqip_quality = 25      # WebP quality (0-100); lower = smaller backdrop
+```
+
+Defaults are on, so the section is optional. Remote URLs and unresolvable paths leave `width` / `height` / `lqip_uri` unset, and templates handle that gracefully.
+
 ### Site Structure
 
 ```text
@@ -70,7 +83,7 @@ nix flake check              # run Nix-side hooks (also gated in CI)
 
 The site is hosted on Cloudflare Workers (Static Assets binding) at [dev.hakula.xyz](https://dev.hakula.xyz) — `wrangler.toml` at the repo root pins the worker name, custom domain, and `not_found_handling`. The apex `hakula.xyz` is still served by the legacy Pages project; cutover is planned later by appending the apex pattern to `wrangler.toml`'s `routes` array and removing it from Pages.
 
-`.github/workflows/build.yml` is a reusable workflow (`workflow_call`) that installs the kiln binary at the version pinned in `KILN_VERSION` (currently `0.1.0`) from <https://github.com/hakula139/kiln/releases>, runs `pnpm build` (Tailwind) + `kiln build --minify`, and optionally uploads `public/` as a CI artifact. Both `ci.yml` (PR validation) and `deploy.yml` (push to main → Cloudflare) call into it, keeping the build path single-sourced.
+`.github/workflows/build.yml` is a reusable workflow (`workflow_call`) that installs the kiln binary at the version pinned in `KILN_VERSION` (currently `0.2.0-rc.2`) from <https://github.com/hakula139/kiln/releases>, runs `pnpm build` (Tailwind) + `kiln build --minify`, and optionally uploads `public/` as a CI artifact. Both `ci.yml` (PR validation) and `deploy.yml` (push to main → Cloudflare) call into it, keeping the build path single-sourced.
 
 Local manual deploy: `pnpm wrangler login` once, then `pnpm wrangler deploy`. CI deploy needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets configured at the repository level.
 
