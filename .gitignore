@@ -21,5 +21,6 @@ result-*
 .env.local
 
 # Claude Code
+.claude/agent-memory-local/
 .claude/plans/
 .claude/settings.local.json
