@@ -106,6 +106,8 @@ Local manual deploy: `pnpm wrangler login` once, then `pnpm wrangler deploy`. CI
 
 Pre-commit hooks are driven by [git-hooks-nix](https://github.com/cachix/git-hooks.nix), wired in `flake.nix`. Entering the dev shell (`nix develop` or via direnv) installs `.git/hooks/pre-commit` automatically. Hooks: Prettier (with `prettier-plugin-tailwindcss` for class sorting), markdownlint, cspell, nixfmt / statix / deadnix, and basic file hygiene. Node-side hooks no-op when `node_modules/` is absent (e.g., inside the Nix sandbox); CI's `check` job runs the equivalent commands directly via `pnpm`, so coverage is preserved.
 
+The compiled CSS sync gate (`git diff --exit-code static/`) used to live in a `pre-push` hook; it now runs only in CI's `check` job. A push of a feature branch with a stale `static/css/style.css` lands on the remote unblocked — the PR check catches it before merge.
+
 ### Git LFS
 
 Image binaries (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are stored via Git LFS — see `.gitattributes`. Install Git LFS (`git lfs install`) before cloning, otherwise pointer files are checked out instead of real images.
