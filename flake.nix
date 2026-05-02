@@ -6,7 +6,13 @@
 # brought in externally.
 #
 #   nix develop                            # interactive shell (auto-installs hooks)
-#   nix flake check                        # run hooks in CI
+#   nix flake check                        # run Nix-side hooks in CI
+#
+# `nix flake check` only fires the Nix-side hooks (nixfmt, statix, deadnix,
+# basic file hygiene). Node-side hooks (prettier, markdownlint, cspell)
+# no-op when `node_modules/` is absent — CI's `check` job runs the Node
+# equivalents directly via `pnpm`, so coverage is preserved without
+# duplicating `pnpm install` in the `nix-check` job.
 
 {
   description = "hakula.xyz-kiln — site source for hakula.xyz (dev environment)";
