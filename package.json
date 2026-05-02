@@ -1,5 +1,6 @@
 {
   "private": true,
+  "packageManager": "pnpm@10.30.3",
   "scripts": {
     "build": "tailwindcss -i static/css/_src/main.css -o static/css/style.css",
     "dev": "tailwindcss -i static/css/_src/main.css -o static/css/style.css --watch",
