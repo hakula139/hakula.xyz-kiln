@@ -2066,7 +2066,7 @@
     visibility: hidden;
   }
   @media (prefers-reduced-motion: no-preference) {
-    .lqip-fade-enabled .lqip.lqip-loaded > img {
+    .lqip-fade-enabled .lqip:not(.body-bg).lqip-loaded > img {
       animation: var(--animate-lqip-fade-in);
     }
   }
