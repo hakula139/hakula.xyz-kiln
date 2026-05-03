@@ -2062,11 +2062,13 @@
     margin: calc(var(--spacing) * 0) !important;
     display: block;
   }
-  .lqip-fade-enabled .lqip-fade-in:not(.lqip-loaded) > img {
+  .lqip-fade-enabled .lqip:not(.lqip-loaded) > img {
     visibility: hidden;
   }
-  .lqip-fade-enabled .lqip-fade-in.lqip-loaded > img {
-    animation: var(--animate-lqip-fade-in);
+  @media (prefers-reduced-motion: no-preference) {
+    .lqip-fade-enabled .lqip.lqip-loaded > img {
+      animation: var(--animate-lqip-fade-in);
+    }
   }
   .prose figure > .lqip {
     margin-inline: auto;
