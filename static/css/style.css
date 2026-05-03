@@ -2075,7 +2075,7 @@
     max-width: 100%;
     border-radius: var(--radius-lg);
   }
-  .post-banner-media > .lqip {
+  .post-banner-media .lqip {
     display: block;
     height: 100%;
     width: 100%;
