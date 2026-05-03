@@ -12,6 +12,7 @@ jobs:
     uses: ./.github/workflows/build.yml
     with:
       upload-artifact: true
+      base-url: https://pr-${{ github.event.pull_request.number }}-hakula-xyz-kiln.hakula.workers.dev
 
   deploy:
     needs: build
