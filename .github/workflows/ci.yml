@@ -11,6 +11,22 @@ permissions:
   contents: read
 
 jobs:
+  flake-check:
+    name: Nix Flake Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
+        with:
+          cachix_name: hakula
+          cachix_skip_push: 'true'
+
+      - name: Run flake check
+        run: nix flake check --no-build
+
   check:
     runs-on: ubuntu-latest
     steps:
@@ -19,47 +35,29 @@ jobs:
         with:
           submodules: true
 
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v5
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
         with:
-          node-version: lts/*
-          cache: pnpm
+          cachix_name: hakula
+          cachix_skip_push: 'true'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: nix develop -c pnpm install --frozen-lockfile
 
       - name: Build CSS
-        run: pnpm build
+        run: nix develop -c pnpm build
 
       - name: Verify compiled CSS is up to date
         run: git diff --exit-code static/
 
       - name: Format
-        run: pnpm format
+        run: nix develop -c pnpm format
 
       - name: Lint Markdown
-        run: pnpm lint
+        run: nix develop -c pnpm lint
 
       - name: Spell check
-        run: pnpm spellcheck
-
-  nix-check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Install Nix
-        uses: cachix/install-nix-action@v31
-        with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-
-      - name: Run flake check
-        run: nix flake check --no-build
+        run: nix develop -c pnpm spellcheck
 
   build:
     uses: ./.github/workflows/build.yml

@@ -15,9 +15,6 @@ on:
 permissions:
   contents: read
 
-env:
-  KILN_VERSION: 0.2.0-rc.3
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,38 +25,22 @@ jobs:
           submodules: true
           lfs: true
 
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v5
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
         with:
-          node-version: lts/*
-          cache: pnpm
+          cachix_name: hakula
+          cachix_skip_push: 'true'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Install libdav1d
-        # Required by the `image` crate's `avif-native` decoder via dav1d-sys.
-        run: sudo apt-get update && sudo apt-get install -y libdav1d-dev nasm
-
-      - name: Install kiln
-        run: |
-          curl -fsSL "https://github.com/hakula139/kiln/releases/download/v${KILN_VERSION}/kiln-x86_64-unknown-linux-gnu.tar.gz" | tar -xz
-          sudo mv kiln /usr/local/bin/
-          kiln --version
-
-      - name: Install Pagefind
-        run: pnpm add -g pagefind
+        run: nix develop -c pnpm install --frozen-lockfile
 
       - name: Build CSS
-        run: pnpm build
+        run: nix develop -c pnpm build
 
       - name: Build site
         env:
           KILN_BASE_URL: ${{ inputs.base-url }}
-        run: kiln build --minify
+        run: nix develop -c kiln build --minify
 
       - name: Upload artifact
         if: ${{ inputs.upload-artifact }}
