@@ -66,6 +66,7 @@
     --surface-glass-scroll-shadow: rgba(0, 0, 0, 0.06);
     --surface-overlay-backdrop: rgba(0, 0, 0, 0.35);
     --scale-card-hover: 135%;
+    --animate-lqip-fade-in: lqip-fade-in 1s ease both;
     --animate-menu-fade-in: menu-fade-in 200ms ease both;
     --animate-menu-slide-down: menu-slide-down 250ms ease-out both;
     --animate-menu-item-fade-in: menu-item-fade-in 200ms ease both;
@@ -2061,18 +2062,13 @@
     margin: calc(var(--spacing) * 0) !important;
     display: block;
   }
-  .lqip-fade-enabled .lqip {
-    --tw-blur: blur(var(--blur-md));
-    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-    transition-property: filter;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-    --tw-duration: 500ms;
-    transition-duration: 500ms;
+  .lqip-fade-enabled .lqip:not(.lqip-loaded) > img {
+    visibility: hidden;
   }
-  .lqip-fade-enabled .lqip-loaded {
-    --tw-blur:  ;
-    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  @media (prefers-reduced-motion: no-preference) {
+    .lqip-fade-enabled .lqip:not(.body-bg).lqip-loaded > img {
+      animation: var(--animate-lqip-fade-in);
+    }
   }
   .prose figure > .lqip {
     margin-inline: auto;
@@ -2081,7 +2077,7 @@
     max-width: 100%;
     border-radius: var(--radius-lg);
   }
-  .post-banner-media > .lqip {
+  .post-banner-media .lqip {
     display: block;
     height: 100%;
     width: 100%;
@@ -3161,59 +3157,6 @@
   syntax: "*";
   inherits: false;
 }
-@property --tw-blur {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-brightness {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-contrast {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-grayscale {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-hue-rotate {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-invert {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-opacity {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-saturate {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-sepia {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-drop-shadow {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-drop-shadow-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-drop-shadow-alpha {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 100%;
-}
-@property --tw-drop-shadow-size {
-  syntax: "*";
-  inherits: false;
-}
 @property --tw-gradient-position {
   syntax: "*";
   inherits: false;
@@ -3271,6 +3214,59 @@
   inherits: false;
   initial-value: 0;
 }
+@property --tw-blur {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-brightness {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-contrast {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-grayscale {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-hue-rotate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-invert {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-opacity {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-saturate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-sepia {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-drop-shadow-size {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-content {
   syntax: "*";
   inherits: false;
@@ -3320,6 +3316,12 @@
   syntax: "<length>";
   inherits: false;
   initial-value: 0;
+}
+@keyframes lqip-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
 }
 @keyframes menu-fade-in {
   from {
@@ -3371,6 +3373,18 @@
       --tw-backdrop-saturate: initial;
       --tw-backdrop-sepia: initial;
       --tw-tracking: initial;
+      --tw-gradient-position: initial;
+      --tw-gradient-from: #0000;
+      --tw-gradient-via: #0000;
+      --tw-gradient-to: #0000;
+      --tw-gradient-stops: initial;
+      --tw-gradient-via-stops: initial;
+      --tw-gradient-from-position: 0%;
+      --tw-gradient-via-position: 50%;
+      --tw-gradient-to-position: 100%;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-translate-z: 0;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;
@@ -3384,18 +3398,6 @@
       --tw-drop-shadow-color: initial;
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
-      --tw-gradient-position: initial;
-      --tw-gradient-from: #0000;
-      --tw-gradient-via: #0000;
-      --tw-gradient-to: #0000;
-      --tw-gradient-stops: initial;
-      --tw-gradient-via-stops: initial;
-      --tw-gradient-from-position: 0%;
-      --tw-gradient-via-position: 50%;
-      --tw-gradient-to-position: 100%;
-      --tw-translate-x: 0;
-      --tw-translate-y: 0;
-      --tw-translate-z: 0;
       --tw-content: "";
       --tw-scale-x: 1;
       --tw-scale-y: 1;
