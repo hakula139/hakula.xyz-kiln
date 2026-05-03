@@ -5,16 +5,14 @@
 
 My personal website, built with [kiln](https://github.com/hakula139/kiln) and the [IgnIt](https://github.com/hakula139/IgnIt) theme.
 
-## Prerequisites
-
-- [kiln](https://github.com/hakula139/kiln) binary (Rust 1.85+)
-
 ## Setup
 
 ```bash
 git clone --recurse-submodules https://github.com/hakula139/hakula.xyz-kiln.git
 cd hakula.xyz-kiln
 ```
+
+[Nix](https://nixos.org/download/) (with flakes) is the recommended path — `nix develop` enters a shell with kiln, pagefind, Node, and pnpm preinstalled, all pulled from the [`hakula` cachix cache](https://app.cachix.org/cache/hakula). Without Nix, install [kiln](https://github.com/hakula139/kiln#installation) (Rust 1.85+) and [pagefind](https://pagefind.app/docs/installation/) yourself.
 
 ## Usage
 
