@@ -12,9 +12,6 @@ jobs:
     uses: ./.github/workflows/build.yml
     with:
       upload-artifact: true
-      # Internal links must resolve to the per-PR alias so navigating from one
-      # preview page to another stays on the same preview (and doesn't hop
-      # back to dev.hakula.xyz from config.toml). PR number is an integer.
       base-url: https://pr-${{ github.event.pull_request.number }}-hakula-xyz-kiln.hakula.workers.dev
 
   deploy:
