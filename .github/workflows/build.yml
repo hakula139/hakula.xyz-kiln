@@ -17,6 +17,7 @@ permissions:
 
 jobs:
   build:
+    name: Build Site
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

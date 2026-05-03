@@ -28,6 +28,7 @@ jobs:
         run: nix flake check --no-build
 
   check:
+    name: Site Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
