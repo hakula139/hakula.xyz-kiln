@@ -7,6 +7,10 @@ on:
         description: Upload public/ as a workflow artifact
         type: boolean
         default: false
+      base-url:
+        description: Override `base_url` from config.toml (used by PR previews so links stay on the preview origin)
+        type: string
+        default: ''
 
 permissions:
   contents: read
@@ -53,6 +57,8 @@ jobs:
         run: pnpm build
 
       - name: Build site
+        env:
+          KILN_BASE_URL: ${{ inputs.base-url }}
         run: kiln build --minify
 
       - name: Upload artifact
