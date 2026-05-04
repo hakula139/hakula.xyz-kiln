@@ -59,7 +59,7 @@ Minification for both CSS and JS happens at deploy time via `kiln build --minify
 
 ### Dev shell (Nix)
 
-`flake.nix` pins Node.js, pnpm, pagefind, and the pre-commit hook toolchain. `direnv` auto-activates it via `.envrc`.
+`flake.nix` pulls Node.js, pnpm, pagefind, and kiln from the [kiln flake](https://github.com/hakula139/kiln/tree/main/flake.nix), plus the pre-commit hook toolchain. `direnv` auto-activates it via `.envrc`. kiln + pagefind are built once by kiln's CI and served from `hakula.cachix.org`, so `nix develop` doesn't compile kiln from source on first entry.
 
 ```bash
 nix develop                  # interactive shell (auto-installs hooks)
@@ -70,7 +70,7 @@ nix flake check              # run Nix-side hooks (also gated in CI)
 
 The site is hosted on Cloudflare Workers (Static Assets binding) at [dev.hakula.xyz](https://dev.hakula.xyz) — `wrangler.toml` at the repo root pins the worker name, custom domain, and `not_found_handling`. The apex `hakula.xyz` is still served by the legacy Pages project; cutover is planned later by appending the apex pattern to `wrangler.toml`'s `routes` array and removing it from Pages.
 
-`.github/workflows/build.yml` is a reusable workflow (`workflow_call`) that installs the kiln binary at the version pinned in `KILN_VERSION` (currently `0.2.0-rc.2`) from <https://github.com/hakula139/kiln/releases>, runs `pnpm build` (Tailwind) + `kiln build --minify`, and optionally uploads `public/` as a CI artifact. Both `ci.yml` (PR validation) and `deploy.yml` (push to main → Cloudflare) call into it, keeping the build path single-sourced.
+`.github/workflows/build.yml` is a reusable workflow (`workflow_call`) that enters the Nix dev shell and runs `pnpm build` (Tailwind) + `kiln build --minify`, then optionally uploads `public/` as a CI artifact. kiln + pagefind come from the `hakula` cachix substituter (pinned via the `kiln` flake input). Both `ci.yml` (PR validation) and `deploy.yml` (push to main → Cloudflare) call into it, keeping the build path single-sourced.
 
 Local manual deploy: `pnpm wrangler login` once, then `pnpm wrangler deploy`. CI deploy needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets configured at the repository level.
 

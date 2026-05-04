@@ -2,8 +2,8 @@
 # hakula.xyz-kiln Site Development Flake
 # ==============================================================================
 #
-# Provides Tailwind toolchain, pagefind, and pre-commit hooks. kiln itself is
-# brought in externally.
+# Provides Tailwind toolchain, kiln, pagefind, and pre-commit hooks. `kiln`
+# (source-built) and `pagefind` (1.5+ prebuilt) come from kiln's flake.
 #
 #   nix develop        # interactive shell (auto-installs hooks)
 #   nix flake check    # Nix-side hooks (Node-side run in CI's `check` job)
@@ -21,6 +21,13 @@
     # Per-system flake outputs
     flake-utils.url = "github:numtide/flake-utils";
 
+    # kiln + pagefind (the kiln flake exposes both as `packages.${system}.*`).
+    kiln = {
+      url = "github:hakula139/kiln/feat/nix-package-binaries";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
     # Pre-commit hooks
     git-hooks-nix.url = "github:cachix/git-hooks.nix";
   };
@@ -32,13 +39,15 @@
     {
       nixpkgs,
       flake-utils,
+      kiln,
       git-hooks-nix,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = nixpkgs.legacyPackages.${system};
+        kilnPkgs = kiln.packages.${system};
 
         # ----------------------------------------------------------------------
         # Node Hook Wrapper
@@ -122,10 +131,13 @@
 
           packages =
             preCommitCheck.enabledPackages
+            ++ [
+              kilnPkgs.kiln
+              kilnPkgs.pagefind
+            ]
             ++ (with pkgs; [
               nodejs_24
               pnpm
-              pagefind
             ]);
 
           # `pre-commit install` writes `.git/hooks/pre-commit` so direnv
