@@ -39,7 +39,7 @@ Compilers @ Fudan University, fall 2021.
 
 三个部分之间使用一个单行的 `%%` 分隔。
 
-```cpp
+```cpp {title="src/lexer.cpp"}
 // Definitions
 %%
 // Rules
@@ -230,7 +230,7 @@ COMMENTS_END          "*)"
 
 核心思路实际上就是维护 Flex 当前扫描到的位置。由于 Flex 会自行维护当前所在的行号，因此我们的重点在于维护当前所在的列号。当然，对于多行注释，我们也需要手动维护注释起始位置的行号。
 
-```cpp
+```cpp {title="src/main.cpp"}
 // src/main.cpp
 
 std::tuple<int, int> UpdatePosition(const yyFlexLexer& lexer) {

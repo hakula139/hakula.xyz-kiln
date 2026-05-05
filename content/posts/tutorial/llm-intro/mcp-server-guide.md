@@ -44,7 +44,7 @@ The idea is simple. A website places a file at `/llms.txt` that contains a struc
 
 Here is what a typical `llms.txt` looks like:
 
-```markdown
+```markdown {title="/llms-full.txt"}
 # My API Documentation
 
 > API reference and guides for the My API platform.
@@ -71,7 +71,7 @@ The Python API exposes the core functionality through...
 
 If your docs are already on [MkDocs](https://www.mkdocs.org), generating these files is a one-line plugin addition. The [mkdocs-llmstxt](https://github.com/pawamoy/mkdocs-llmstxt) plugin scans your pages at build time and produces both files automatically. Add it to `mkdocs.yml`:
 
-```yaml
+```yaml {title="mkdocs.yml"}
 plugins:
   - llmstxt
 ```
@@ -211,7 +211,7 @@ Here is `server.py`, the core of the MCP server. We will walk through it piece b
 
 ### FastMCP instantiation
 
-```python
+```python {title="server.py"}
 from fastmcp import FastMCP
 
 mcp = FastMCP(
@@ -265,7 +265,7 @@ The most complex tool is `get_page`, because it needs to resolve a URL path to a
 1. **Primary**: Look up the page title from `llms.txt` (which maps paths to titles), then find the corresponding `# Title` section in `llms-full.txt`.
 2. **Fallback**: If the page is not in `llms.txt` (some pages, like auto-generated API references, may be excluded), assemble it from the MkDocs search index, which stores one entry per section.
 
-```python
+```python {title="llms.txt"}
 @mcp.tool
 async def get_page(path: str, version: str = "latest") -> str:
     """Get a single documentation page's content in markdown.
@@ -338,7 +338,7 @@ If all your pages are already included in `llms-full.txt`, you can safely skip t
 
 :::
 
-```python
+```python {title="llms-full.txt"}
 def _assemble_from_search_index(
     index: list[dict[str, Any]], path: str
 ) -> str | None:
@@ -437,7 +437,7 @@ The `verify_ssl=False` default is intentional for internal deployments where doc
 
 MkDocs with [mike](https://github.com/jimporter/mike) (the versioning plugin) publishes a `versions.json` that maps version numbers to aliases:
 
-```json
+```json {title="versions.json"}
 [
   { "version": "2.0.0", "title": "2.0.0", "aliases": ["latest"] },
   { "version": "1.2.3", "title": "1.2.3", "aliases": [] }
@@ -548,7 +548,7 @@ Add the server to your agent's MCP configuration. The syntax varies by agent:
 
 **Claude Code** — add to `.mcp.json` (project) or `~/.claude.json` (global):
 
-```json
+```json {title=".mcp.json"}
 {
   "mcpServers": {
     "my-docs": {
@@ -641,7 +641,7 @@ Where to place the skill file depends on the agent:
 
 A [plugin](https://code.claude.com/docs/en/discover-plugins) bundles the MCP server config _and_ the skill file so it can be installed with a single command. Create a `.claude-plugin/` directory:
 
-```text
+```text {title=".cursor/skills/my-docs/SKILL.md"}
 .claude-plugin/
 ├── plugin.json
 └── skills/

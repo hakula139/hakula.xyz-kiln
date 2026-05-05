@@ -1263,7 +1263,7 @@ file_write(struct file* f, char* addr, ssize_t n)
 
 对于 AArch64 架构来说，发起系统调用时，用户程序先将参数地址保存到通用寄存器 X0 ~ X5 里，再将系统调用对应的 system call number 保存到寄存器 X8 里，最后通过 `svc` 指令陷入内核态。[^syscall]
 
-```asm
+```asm {title="syscall.h"}
 /* user/initcode.S */
 
 /* exec(init, argv) */
@@ -1356,7 +1356,7 @@ struct trapframe {
 
 随后跳转到函数 `trap` 入口。在函数 `trap` 中，我们根据寄存器 ESR (Exception Syndrome Register) 判断当前为系统调用，随后调用函数 `syscall1`，传入 trap frame，并将返回值保存在 trap frame 的寄存器 X0 中。
 
-```c
+```c {title="trap.c"}
 // kern/trap.c
 
 void
@@ -1383,7 +1383,7 @@ trap(struct trapframe* tf)
 
 我们根据之前保存在寄存器 X8 的值，可以得到当前的 system call number。随后利用函数指针表 `syscalls`，即可进行相应的系统调用。
 
-```c
+```c {title="syscall.c"}
 // kern/syscall.c
 
 int
@@ -1495,7 +1495,7 @@ int sys_chdir();
 
 `cat` 命令的实质就是从一个文件读取数据，然后写入到另一个文件（默认为终端）。至于文件类型是管道、终端还是普通文件，我们并不关心，因为系统调用的底层已经针对不同的文件类型进行了相应的处理[^about-cat]。`cat` 命令的完整实现如下[^cat.c]：
 
-```c
+```c {title="fcntl.h"}
 // user/src/cat/main.c
 
 #include <fcntl.h>

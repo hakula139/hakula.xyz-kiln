@@ -139,7 +139,7 @@ swtch:
 
 在 `kern/proc.c` 中将 `swtch` 声明为：
 
-```c
+```c {title="kern/proc.c"}
 void swtch(struct context**, struct context*);
 ```
 

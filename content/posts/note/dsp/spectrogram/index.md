@@ -245,7 +245,7 @@ python3 main.py
 
 本实验中，我们使用了预录制的音频文件 `one.dat`, `two.dat`, `six.dat`，其内容分别是单词 one, two, six 的单词发音，按 8000 Hz 采样。如果你的测试音频不是按 8000 Hz 采样的，可以使用 `resample.py` 进行重采样，使用方法：
 
-```bash
+```bash {title="resample.py"}
 python3 resample.py "path/to/foobar.wav" 8000  # 单个文件
 python3 resample.py "path/to/directory" 8000    # 目录下所有 .wav 文件递归批处理
 ```

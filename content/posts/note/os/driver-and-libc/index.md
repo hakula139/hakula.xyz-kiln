@@ -44,7 +44,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 这里直接参考了 xv6 和 xv6-riscv 的设计，具体作用参见注释：
 
-```c
+```c {title="inc/buf.h"}
 // inc/buf.h
 
 struct buf {
@@ -248,7 +248,7 @@ bunpin(struct buf* b)
 
 函数 `sleep` 的工作是释放进程所持有的锁，设置进程状态为 SLEEPING，并在 `chan` 上睡眠，然后调用函数 `sched` 回到 `scheduler`，决定下一个运行的程序。当进程被唤醒且再次轮到本进程执行时，重新获取进程本来持有的锁。由于我们在执行 `sleep` 前会先获取进程锁 `p->lock`，而执行 `wakeup` 时同样需要先获取进程锁，因此我们可以确定在执行 `sleep` 的过程中，进程不会被意外 `wakeup`，导致这个 `wakeup` 没有被捕获到，进程永远不再醒来。
 
-```c
+```c {title="kern/proc.c"}
 // kern/proc.c
 
 /*

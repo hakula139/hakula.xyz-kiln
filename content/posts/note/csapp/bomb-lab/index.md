@@ -23,7 +23,7 @@ Introduction to Computer Systems I (H) @ Fudan University, fall 2019.
 
 浏览 `bomb.c` 文件可知，Bomb Lab 总共有 6 个关卡，每个关卡的流程如下所示（以 Phase 1 为例）：
 
-```c
+```c {title="bomb.c"}
 /* Hmm...  Six phases must be more secure than one phase! */
 input = read_line();             /* Get input                    */
 phase_1(input);                  /* Run the phase                */
@@ -1677,7 +1677,7 @@ Congratulations! You've defused the bomb!
 
 在 `bomb.c` 文件的最后，留下了这样一句耐人寻味的话：
 
-```c
+```c {title="bomb.c"}
 /* Wow, they got it!  But isn't something... missing?  Perhaps
  * something they overlooked?  Mua ha ha ha ha! */
 ```

@@ -40,7 +40,7 @@ Computer Graphics @ Fudan University, fall 2021.
 
 执行 `./scripts/prebuild.sh` 安装所有依赖，然后执行 `./scripts/build.sh` 构建本项目。如果你使用的是 Windows，一种选择是使用 WSL，或者你也可以手动下载安装 [Node.js][nodejs]，然后执行以下指令：
 
-```bash
+```bash {title="./scripts/prebuild.sh"}
 npm install -g yarn
 yarn global add pm2
 yarn && yarn build
@@ -50,7 +50,7 @@ yarn && yarn build
 
 执行 `./scripts/start.sh` 启动本地服务器，然后在浏览器打开 <http://localhost:7070> 即可访问。如果出现端口冲突，可以在 [`server.mjs`][server.mjs] 里指定 `listenPort` 为其他可用端口。如果你使用的是 Windows，则执行以下指令：
 
-```bash
+```bash {title="./scripts/start.sh"}
 pm2 start server.mjs --watch
 ```
 
@@ -58,7 +58,7 @@ pm2 start server.mjs --watch
 
 执行 `./scripts/stop.sh` 停止本地服务器。如果你使用的是 Windows，则执行以下指令：
 
-```bash
+```bash {title="./scripts/stop.sh"}
 pm2 stop server
 ```
 

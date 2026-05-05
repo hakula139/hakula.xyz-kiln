@@ -186,7 +186,7 @@ Here is a concrete example from my own configuration.
 
 **Global** (`~/.claude/CLAUDE.md`) covers communication style, code quality principles, commenting guidelines, and MCP server usage patterns:
 
-```markdown
+```markdown {title="~/.claude/CLAUDE.md"}
 ## Communication Style
 
 Be direct, honest, and skeptical. Criticism is valuable.
@@ -261,7 +261,7 @@ The global file also defines the entire agent team workflow: available agent typ
 
 **Project** (`CLAUDE.md` in a Rust static site generator repo) covers project structure, coding conventions, and verification workflow:
 
-````markdown
+````markdown {title="CLAUDE.md"}
 ## Project Overview
 
 kiln is a custom static site generator (SSG) written in Rust.
@@ -373,7 +373,7 @@ Beyond CLAUDE.md, the agent's behavior is governed by `settings.json`, which inc
 My configuration defines over 250 auto-approved patterns spanning filesystem navigation, text processing, Git operations, development tools, network utilities, and container management. Destructive operations (`rm`, `kill`, `git push`) require explicit confirmation. Some operations are unconditionally blocked. Here is an excerpt:
 
 <!-- prettier-ignore -->
-```json
+```json {title="settings.json"}
 {
   "permissions": {
     "defaultMode": "acceptEdits",
@@ -459,7 +459,7 @@ Hooks can be defined at global scope (`~/.claude/settings.json`) or project scop
 
 **Auto-formatting (PostToolUse):** After every file edit or write, this hook runs [Prettier](https://prettier.io) on the changed file:
 
-```json
+```json {title="~/.claude/settings.json"}
 {
   "hooks": {
     "PostToolUse": [
@@ -578,7 +578,7 @@ This matters for context engineering. Structured output is denser and more predi
 
 MCP servers are configured in `~/.claude.json` (global) or `.mcp.json` (project). Here is an excerpt from my configuration:
 
-```json
+```json {title="~/.claude.json"}
 {
   "mcpServers": {
     "Git": {
@@ -697,7 +697,7 @@ MCP gives the agent structured access to tools, but it does not tell the agent _
 
 Here is the official `/commit` skill from Anthropic's [commit-commands](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/commit-commands) plugin:
 
-```markdown
+```markdown {title=".claude/skills/"}
 ---
 description: Create a git commit
 allowed-tools:

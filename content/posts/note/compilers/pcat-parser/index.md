@@ -124,7 +124,7 @@ make INPUT="tests/case_1.pcat"
 
 例如对于这样的输入（`tests/case_1.pcat`）：
 
-```text
+```text {title="scripts/test.sh"}
 PROGRAM IS
     VAR i, j : INTEGER := 1;
     VAR x : REAL := 2.0;
@@ -201,7 +201,7 @@ program <1:1-8:5>
 
 首先，我们通过此 recipe 利用 Flex 生成词法分析器的源文件 `lexer.cpp`。
 
-```makefile
+```makefile {title="lexer.cpp"}
 SRC_DIR   := src
 
 LEX_IN    := $(SRC_DIR)/lexer.lex
@@ -295,7 +295,7 @@ Bison 文件的结构和 Flex 文件类似，总体分为四个部分[^bison-3.1
 - Grammar rules：定义了语法分析的具体规则，即每个非终结符有哪些产生式，匹配到相应产生式时需要采取什么操作等等。
 - Epilogue：用户可以在这里定义一些辅助函数，此部分代码会被直接复制到 `src/parser.cpp` 里。
 
-```cpp
+```cpp {title="src/parser.cpp"}
 %{
 // Prologue
 %}
