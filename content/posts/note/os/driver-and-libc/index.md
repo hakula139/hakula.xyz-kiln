@@ -75,7 +75,7 @@ struct {
 
 在使用前，我们先对 `bcache` 进行初始化，也就是创建一个双向循环链表，并初始化每个 `buf` 的锁。
 
-```c {title="kern/bio.c"}
+```c
 void
 binit()
 {
@@ -96,7 +96,7 @@ binit()
 
 当我们需要进行读操作时，我们先调用函数 `bget` 在 `bcache` 中获取一个可用的 `buf`。如果这个请求已经在 `bcache` 里了，那么就将相应的 `buf` 的 `refcnt` 加 `1`，然后加锁并返回。否则，我们回收一个最早使用过的（Least Recently Used, LRU）且当前不在使用中的 `buf`，将其 `refcnt` 设置为 `1`，然后加锁并返回。
 
-```c {title="kern/bio.c"}
+```c
 /*
  * Look through buffer cache for block on device dev.
  * If not found, allocate a buffer.
@@ -137,7 +137,7 @@ bget(uint32_t dev, uint32_t blockno)
 
 随后，我们调用函数 `bread` 对这个 `buf` 进行读操作。
 
-```c {title="kern/bio.c"}
+```c
 /*
  * Return a locked buf with the contents of the indicated block.
  */
@@ -157,7 +157,7 @@ bread(uint32_t dev, uint32_t blockno)
 
 当我们需要进行写操作时，我们调用函数 `bwrite` 对这个 `buf` 进行写操作。
 
-```c {title="kern/bio.c"}
+```c
 /*
  * Write b's contents to disk. Must be locked.
  */
@@ -172,7 +172,7 @@ bwrite(struct buf* b)
 
 最后，当我们需要释放一个 `buf` 时，我们调用函数 `brelse` 将它的 `refcnt` 减 `1`。如果此时 `refcnt` 的值为 `0`，说明已经没有设备在等待这个 `buf` 了，那么我们就将这个 `buf` 移动到 `bcache` 的头部（实际上是 `head->next`），表示这是一个最晚使用过的（Most Recently Used, MRU）`buf`。
 
-```c {title="kern/bio.c"}
+```c
 /*
  * Release a locked buffer.
  * Move to the head of the most-recently-used list.
@@ -200,7 +200,7 @@ brelse(struct buf* b)
 
 此外，我们还定义了函数 `bpin` 和 `bunpin`，分别用于将一个 `buf` 的 `refcnt` 加 `1` 或减 `1`。
 
-```c {title="kern/bio.c"}
+```c
 void
 bpin(struct buf* b)
 {
@@ -210,7 +210,7 @@ bpin(struct buf* b)
 }
 ```
 
-```c {title="kern/bio.c"}
+```c
 void
 bunpin(struct buf* b)
 {
@@ -266,7 +266,7 @@ sleep(void* chan, struct spinlock* lk)
 
 函数 `wakeup` 的工作是将指定 `chan` 上睡眠的进程全部唤醒，设置进程状态为 RUNNABLE，从而可以被 `scheduler` 调度。
 
-```c {title="kern/proc.c"}
+```c
 /*
  * Wake up all processes sleeping on chan.
  * Must be called without any p->lock.
@@ -363,7 +363,7 @@ _sd_start(struct buf* b)
 
 在函数 `sd_rw` 里，我们先调用函数 `_sd_start` 对 `buf` 进行 I/O 操作，然后将其 `flags` 的 `B_DIRTY` 位设置为 `0`、`B_VALID` 位设置为 `1`，最后调用函数 `brelse` 释放 `buf`（见 [1.1](#11-请求队列) 节）。
 
-```c {title="kern/sd.c"}
+```c
 /*
  * Sync buf with disk.
  * If B_DIRTY is set, write buf to disk, clear B_DIRTY, set B_VALID.
@@ -382,7 +382,7 @@ sd_rw(struct buf* b)
 
 函数 `sd_intr` 的工作是处理设备中断。具体来说，检查请求是否已执行完毕，然后清空中断信息。
 
-```c {title="kern/sd.c"}
+```c
 /*
  * The interrupt handler.
  */
@@ -424,7 +424,7 @@ sd_intr()
 
 对于第二部分，我们先从磁盘地址 `0x0` 处读取 MBR 到 `buf`，然后利用函数 `_parse_partition_entry` 解析每条磁盘分区表项（partition table entry, PTE）并输出其内容，其中 4 条分区表的地址分别为 `0x1BE`, `0x1CE`, `0x1DE`, `0x1EE`，最后输出 2 字节的结束标志（若为 `55`, `AA` 则表示 MBR 有效）[^mbr]。
 
-```c {title="kern/sd.c"}
+```c
 /*
  * Initialize SD card and parse MBR.
  * 1. The first partition should be FAT and is used for booting.
@@ -475,7 +475,7 @@ sd_init()
 5. 分区内第一个扇区的逻辑区块地址（logical block address, LBA）
 6. 分区内的总扇区数（number of sectors）
 
-```c {title="kern/sd.c"}
+```c
 static void
 _parse_partition_entry(uint8_t* entry, int id)
 {
@@ -516,7 +516,7 @@ _parse_partition_entry(uint8_t* entry, int id)
 
 这里函数 `_parse_uint32_t` 用于将 4 个字节（`uint8_t`）按照小端法（little-endian）合并为一个 32 位的整数（`uint32_t`）。
 
-```c {title="kern/sd.c"}
+```c
 static uint32_t
 _parse_uint32_t(uint8_t* bytes)
 {

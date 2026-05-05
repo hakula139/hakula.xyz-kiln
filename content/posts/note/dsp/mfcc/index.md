@@ -64,7 +64,7 @@ $$y(n) = x(n)-\alpha x(n-1)$$
 
 ### 2 端点检测
 
-```python {title="main.py"}
+```python
 # Get the window length for FFT.
 n_window = t_window * sr // 1000
 n_window = utils.next_pow2(n_window)
@@ -79,7 +79,7 @@ ranges, i_starts, zcr = detect_voice_activity(y, n_window)
 
 首先将信号分帧，同之前讲过的 STFT 过程，这里不再赘述。
 
-```python {title="main.py"}
+```python
 n_samples = y.shape[0]
 i_starts = np.arange(0, n_samples, n_window // 2, dtype=int)
 i_starts: np.ndarray = i_starts[i_starts + n_window < n_samples]
@@ -111,7 +111,7 @@ avg_zcrs = [np.sum(np.abs(
 
 #### 2.2 利用短时平均幅度（高阈值）初步判断区间
 
-```python {title="main.py"}
+```python
 # Step 1: Find the ranges by judging whether the average amplitude is
 # higher than threshold `amp_th[1]`.
 ranges_1: List[List[int]] = []
@@ -129,7 +129,7 @@ for k, avg_amp in enumerate(avg_amps):
 
 #### 2.3 利用短时平均幅度（低阈值）扩展区间
 
-```python {title="main.py"}
+```python
 # Step 2: Expand the ranges by judging whether the average amplitude is
 # higher than threshold `amp_th[0]`.
 ranges_2: List[List[int]] = []
@@ -152,7 +152,7 @@ for r in ranges_1:
 
 #### 2.4 利用短时过零率扩展区间
 
-```python {title="main.py"}
+```python
 # Step 3: Expand the ranges by judging whether the average zero-crossing
 # rate (ZCR) is higher than threshold `zcr_th`.
 ranges_3: List[List[int]] = []
@@ -179,7 +179,7 @@ for r in ranges_2:
 
 通过这一步，我们就确定了语音段的范围。
 
-```python {title="main.py"}
+```python
 ranges = [[i_starts[r[0]], i_starts[r[1]] + n_window] for r in ranges_3]
 ```
 
@@ -187,7 +187,7 @@ ranges = [[i_starts[r[0]], i_starts[r[1]] + n_window] for r in ranges_3]
 
 ### 3 构造 Mel 滤波器组
 
-```python {title="main.py"}
+```python
 # Obtain the Mel filter banks.
 f_min, f_max = 20, sr // 2
 filters = get_mel_filters(
@@ -219,7 +219,7 @@ $$f(m) = \frac{N}{f_s} B^{-1}(B(f_{\min}) + \frac{m}{M+1}(B(f_{\max})-B(f_{\min}
 
 其中 $N$ 为窗口宽度，$f_s$ 为采样频率。本实验中 $M$ 的取值为 $14$。
 
-```python {title="mfcc.py"}
+```python
 mel_f = np.linspace(mel_f_min, mel_f_max, n_filters + 2)
 f = np.floor(i_mel_freq(mel_f) * n_window / sr).astype(int)
 ```
@@ -236,7 +236,7 @@ H_m(k) =
 \end{cases}
 $$
 
-```python {title="mfcc.py"}
+```python
 filter_len = n_window // 2
 filters = np.array([np.concatenate([
     np.zeros(f[i - 1]),
@@ -275,7 +275,7 @@ log_filtered_spec = 10 * np.log10(filtered_spec)
 
 ### 5 生成 MFCC 系数
 
-```python {title="main.py"}
+```python
 # Generate the MFCC.
 cc = dct(log_filtered_spec, dim_mfcc + 1)[1:]
 ```
