@@ -1672,6 +1672,9 @@
     font-weight: var(--font-weight-semibold);
     color: var(--color-text-secondary);
   }
+  .code-header:has(.code-title) .chevron {
+    color: var(--color-text-secondary);
+  }
   .copy-btn {
     margin-left: auto;
     cursor: pointer;
