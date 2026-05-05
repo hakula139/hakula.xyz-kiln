@@ -18,7 +18,7 @@ Introduction to Computer Systems I (H) @ Fudan University, fall 2019.
 
 ## 实验简介
 
-::: callout { type=info title="参见" }
+::: callout {type=info title="参见"}
 [CS:APP3e, Bryant and O'Hallaron - CMU](http://csapp.cs.cmu.edu/3e/labs.html)
 :::
 

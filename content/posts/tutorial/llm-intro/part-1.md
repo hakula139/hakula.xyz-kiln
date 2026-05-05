@@ -56,7 +56,7 @@ Training is pattern extraction at massive scale. The model processes billions of
 
 The **context window** is the fundamental constraint, and the concept that frames everything in this article. Think of it as working memory, or RAM. When you interact with an LLM, everything it can "see" (your message, the system instructions, any files it has read, any tool results it has received) must fit within this window. The window has grown dramatically (from 4K tokens in early GPT 3 to 1M in today's flagship models), but it remains finite, and the advertised number overstates what you actually get. A model with a 1M-token input capacity does not reason equally well over all of it: effective attention degrades well before the limit, with most models losing track of instructions and details beyond roughly 128K tokens. The input window is wide, but the reasoning window is narrow. Every piece of context you load displaces something else. This is the bottleneck for everything that follows.
 
-::: callout { type=warning title="Known limitations" }
+::: callout {type=warning title="Known limitations"}
 
 LLMs hallucinate: they generate confident-sounding text that is factually wrong. Their knowledge has a training cutoff date. They have no mechanism for verifying their own output against ground truth. These are not bugs to be fixed in the next release; they are structural properties of the architecture. Any serious use of LLMs must account for them.
 
@@ -82,7 +82,7 @@ Take the human out of the loop and you get what practitioners call the **agentic
 
 But there is a cost. Every tool call result, every file read, every command output goes into the context window. A ten-step investigation that reads five files and runs three commands has consumed a significant chunk of the model's working memory before it even starts reasoning about the answer. This is where the concept of **context engineering** becomes central. "Prompt engineering" (writing good instructions) is one piece. But managing the full contents of the context window across a multi-step agentic session, deciding what to load and what to discard, keeping the model focused on relevant information as the window fills up. That is the whole game. The 2025 framing of this field was "prompt engineering". The 2026 framing is "context engineering".
 
-::: callout { type=quote title="Context Engineering" }
+::: callout {type=quote title="Context Engineering"}
 
 Andrej Karpathy, the former head of AI at Tesla, coined the shift: "The hottest new programming language is English." By 2026, the community has refined this further: it is not just about the words you type, but about the entire information environment the model operates in. Context engineering is the discipline of constructing and managing that environment.
 
@@ -115,7 +115,7 @@ The positive side is depth of control. Claude Code supports a full configuration
 
 The negative side is real. The learning curve is steeper than an IDE plugin. The CLI interface is a barrier for people who live in graphical editors. Costs scale with usage; opus-tier models are expensive, and running agent teams multiplies that cost by the number of agents. If your primary need is inline code completion while typing, Cursor or Copilot will serve you better with less friction. That said, the learning curve is not as steep as it looks — the core workflow (type a prompt, review the diff, accept or reject) is something most people internalize within a few sessions, and the productivity gain from full agentic automation compounds fast enough to justify the investment.
 
-::: callout { type=tip title="Tool selection" }
+::: callout {type=tip title="Tool selection"}
 
 These tools are not mutually exclusive. Many practitioners use Cursor for line-level completion in their editor and Claude Code for multi-file tasks, architecture decisions, and agent orchestration from the terminal. The question is not "which one" but "which one for what". If Claude Code access is difficult to obtain, Codex CLI is a strong fallback with comparable reasoning; OpenCode with a capable model (GPT or open-source models like GLM 5) is another option, though with weaker tool calling reliability.
 
@@ -411,7 +411,7 @@ Claude Code's **auto memory** system (introduced in 2026) lets the agent save us
 
 This is the machine equivalent of a senior engineer's institutional knowledge: "we tried X last quarter and it broke because of Y" or "the data team prefers Parquet over CSV for anything over 100MB".
 
-::: callout { type=tip title="CLAUDE.md best practice" }
+::: callout {type=tip title="CLAUDE.md best practice"}
 
 A community best practice that has emerged through 2026: keep CLAUDE.md under 150 lines. If Claude already does something correctly without being told, do not document it. Do not duplicate what linters and formatters already enforce; use hooks for that instead (covered in the next section). Every line in CLAUDE.md is a line that cannot be used for actual work.
 

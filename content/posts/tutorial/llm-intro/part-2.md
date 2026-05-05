@@ -176,7 +176,7 @@ Picture a manager who insists that every message between team members goes throu
 
 ## Agent Teams
 
-::: callout { type=warning title="Experimental" }
+::: callout {type=warning title="Experimental"}
 
 As of this writing (April 2026), agent teams are experimental and disabled by default. Enable them by setting `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` in your environment or `settings.json`. The feature has known limitations around session resumption, task coordination, and shutdown behavior.
 
@@ -261,7 +261,7 @@ For subagents, worktree isolation can be declared directly in the agent definiti
 
 Agents can also enter and exit worktrees mid-session via the `EnterWorktree` and `ExitWorktree` tools. In a team context, the lead assigns each teammate to a distinct worktree at the start, eliminating the need for careful file partitioning. The implementer working on `src/api/` and the implementer working on `src/models/` no longer need to stay out of each other's way; they each have their own copy of the entire repository.
 
-::: callout { type=tip title="Parallel sessions" }
+::: callout {type=tip title="Parallel sessions"}
 
 A common pattern: open three terminals, each with a worktree session. One implements a feature, one fixes a bug, one updates documentation. Each works at full speed with no coordination overhead. The merges happen at the end, on your schedule, through the same PR review process you already use.
 

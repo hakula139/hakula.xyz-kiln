@@ -22,13 +22,13 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / xv6-armv8 at lab2](https://github.com/hakula139/xv6-armv8/tree/lab2)
 :::
 
 ## 实验简介
 
-::: callout { type=info title="参见" }
+::: callout {type=info title="参见"}
 [hakula139 / xv6-armv8 / docs / lab2.md - GitHub](https://github.com/hakula139/xv6-armv8/blob/lab2/docs/lab2.md)
 :::
 
@@ -36,7 +36,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ### 1 物理内存分配器
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 完成物理内存分配器的分配函数 `kalloc` 以及回收函数 `kfree`。
 :::
 
@@ -95,7 +95,7 @@ kfree(char* v)
 
 ### 2 页表管理
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 完成物理地址的映射函数 `map_region` 以及回收页表物理空间函数 `vm_free`。
 :::
 

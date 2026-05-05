@@ -21,7 +21,7 @@ url = "https://www.pixiv.net/artworks/69065999"
 
 **不推荐**从官网下载，要求新人从最原始的版本开始配置实在有点强人所难。总之，我们已经制作好了开箱即用的 LR2 整合包，内置了所有你应该会需要的东西。
 
-::: callout { type=success title="LR2 整合包" }
+::: callout {type=success title="LR2 整合包"}
 
 - [:(fas fa-download): 本地下载](https://bms.hakula.xyz) - 新人请进 /【启动器】Lunatic Rave 2
 - [:(fas fa-cloud): 百度云](https://pan.baidu.com/s/17J8SD82VemKUS0OW2c3y-w) - **fcn6**
@@ -32,11 +32,11 @@ url = "https://www.pixiv.net/artworks/69065999"
 
 如遇到链接失效等问题或者有任何疑问，请直接在本文评论区留言。
 
-::: callout { type=warning title="注意" }
+::: callout {type=warning title="注意"}
 放置 LR2 的路径不能包含中文等全角字符。
 :::
 
-::: callout { type=example title="本整合包已内置" }
+::: callout {type=example title="本整合包已内置"}
 
 - 4 GB 内存补丁
   - 缓解 4 GB 及以上内存的电脑可能遇到的程序崩溃问题
@@ -64,7 +64,7 @@ url = "https://www.pixiv.net/artworks/69065999"
 
 在打开游戏前，推荐先使用 Locale Emulator 将 LR2 转到日本区（可选）。
 
-::: callout { type=tip title="参考" }
+::: callout {type=tip title="参考"}
 [Locale Emulator 使用教程](https://xupefei.github.io/Locale-Emulator)
 :::
 

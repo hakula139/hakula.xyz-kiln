@@ -24,7 +24,7 @@ Computer Graphics @ Fudan University, fall 2021.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / music-visualization](https://github.com/hakula139/music-visualization)
 :::
 

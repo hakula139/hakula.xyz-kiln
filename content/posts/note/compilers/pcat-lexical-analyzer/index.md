@@ -25,7 +25,7 @@ Compilers @ Fudan University, fall 2021.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / pcat_lexical_analyzer](https://github.com/hakula139/pcat_lexical_analyzer)
 :::
 

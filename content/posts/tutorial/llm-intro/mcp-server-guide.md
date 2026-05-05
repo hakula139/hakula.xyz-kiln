@@ -120,13 +120,13 @@ These are mostly mechanical fixes — a good candidate for LLM-assisted batch pr
 
 Start with a minimal working demo (a handful of pages, correct links, proper formatting) before migrating the full space. Quality over coverage: a small set of verified, well-formatted pages is more useful to the agent than a bulk import full of broken links and garbled formatting.
 
-::: callout { type=tip title="Markdown linting" }
+::: callout {type=tip title="Markdown linting"}
 
 Install [markdownlint](https://github.com/DavidAnson/markdownlint) (or its CLI / IDE plugin) and configure a `.markdownlint.json` at the project root. This catches formatting issues (inconsistent list markers, missing blank lines, trailing spaces) before they reach the build. The specific rules are worth discussing with your team — what matters is that _some_ standard is enforced consistently.
 
 :::
 
-::: callout { type=tip title="Why not just dump files into context?" }
+::: callout {type=tip title="Why not just dump files into context?"}
 
 You _could_ skip all of this and paste your entire documentation into the user prompt, or have the agent read every file at the start of each session. For small doc sets (< 50 pages), this might even work, but it scales terribly. A 200-page API reference might consume most of the context window before the agent starts doing actual work. The MCP approach is surgical: the agent loads only the pages it needs, when it needs them, and the rest stays out of context. This is the context engineering principle from [Part 1](../part-1/#what-is-an-llm): the window is finite, and every token you load displaces something else.
 
@@ -330,7 +330,7 @@ def _extract_page(llms_txt: str, full_text: str, path: str) -> str:
 
 The path normalization matters because agents are inconsistent about trailing slashes and `index.md` suffixes. The regex in `_resolve_title` parses the Markdown link format that `llms.txt` uses — `- [Title](https://host/version/path/)` — and captures two groups: the page title and the path segment after the version component. If your docs site uses a different URL structure (e.g., no version prefix, or a different path layout), you will need to adjust this pattern.
 
-::: callout { type=note title="The search index fallback" }
+::: callout {type=note title="The search index fallback"}
 
 MkDocs generates a `search_index.json` that contains one entry per _section_ (each heading within a page). When a page is missing from `llms-full.txt`, the fallback collects all search index entries whose base path matches the requested page and concatenates them into a synthetic document. The result is not as clean as the original Markdown, but it is good enough that the agent can extract the information it needs. This is particularly useful for auto-generated API reference pages that some MkDocs setups exclude from `llms.txt`.
 
@@ -727,7 +727,7 @@ The real test is using it. Start a session with the MCP server configured, and a
 
 Watch the tool calls in the output. The agent should call `search_docs(...)`, identify the relevant page from the results, then call `get_page` to read it. If it hallucinates instead of calling the tools, your skill's `description` might not be triggering auto-invocation — make the description more specific about when the skill applies.
 
-::: callout { type=warning title="Stdio transport and stdout" }
+::: callout {type=warning title="Stdio transport and stdout"}
 
 When running as a local MCP server (the default for most agents), the server communicates with the agent over stdio using JSON-RPC. Any `print()` statements, logging to stdout, or library output on stdout will corrupt the protocol and crash the server. Use `logging` (which defaults to stderr) or explicitly write to `sys.stderr`. This is the single most common cause of "MCP server failed to start" errors.
 

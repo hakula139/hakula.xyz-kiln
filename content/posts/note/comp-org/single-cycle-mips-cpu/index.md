@@ -24,7 +24,7 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / MIPS-CPU / Single-Cycle](https://github.com/hakula139/MIPS-CPU/tree/master/Single-Cycle)
 :::
 

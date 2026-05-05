@@ -17,7 +17,7 @@ Introduction to Computer Systems I (H) @ Fudan University, fall 2019.
 
 ## 实验简介
 
-::: callout { type=info title="参见" }
+::: callout {type=info title="参见"}
 [CS:APP3e, Bryant and O'Hallaron - CMU](http://csapp.cs.cmu.edu/3e/labs.html)
 :::
 
@@ -25,7 +25,7 @@ Introduction to Computer Systems I (H) @ Fudan University, fall 2019.
 
 ### 1 bitAnd
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 `x & y` using only `~` and `|`.
 :::
 
@@ -44,7 +44,7 @@ int bitAnd(int x, int y) {
 
 ### 2 getByte
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 Extract byte $n$ from word $x$.
 Bytes numbered from $0$ (LSB) to $3$ (MSB).
 :::
@@ -64,7 +64,7 @@ int getByte(int x, int n) {
 
 ### 3 logicalShift
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 Shift $x$ to the right by $n$, using a logical shift.
 Can assume that $0\le n\le 31$.
 :::
@@ -88,7 +88,7 @@ int logicalShift(int x, int n) {
 
 ### 4 bitCount
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 Returns count of number of $1$'s in word.
 :::
 
@@ -137,7 +137,7 @@ int bitCount(int x) {
 
 ### 5 bang
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 Compute `!x` without using `!`.
 :::
 
@@ -161,7 +161,7 @@ int bang(int x) {
 
 ### 6 tmin
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 Return minimum two's complement integer.
 :::
 
@@ -180,7 +180,7 @@ int tmin(void) {
 
 ### 7 fitsBits
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 Return $1$ if $x$ can be represented as an $n$-bit, two's complement integer. $(1\le n\le 32)$
 :::
 
@@ -209,7 +209,7 @@ int fitsBits(int x, int n) {
 
 ### 8 divpwr2 <!-- cspell:disable-line -->
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 Compute $x / 2^n$, for $0\le n\le 30$.
 Round toward zero.
 :::
@@ -234,7 +234,7 @@ int divpwr2(int x, int n) {
 
 ### 9 negate
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 Return $-x$.
 :::
 
@@ -252,7 +252,7 @@ int negate(int x) {
 
 ### 10 isPositive
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 Return $1$ if $x > 0$, return $0$ otherwise.
 :::
 
@@ -285,7 +285,7 @@ int isPositive(int x) {
 
 ### 11 isLessOrEqual
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 If $x\le y$ then return $1$, else return $0$.
 :::
 
@@ -313,7 +313,7 @@ int isLessOrEqual(int x, int y) {
 
 ### 12 ilog2 <!-- cspell:disable-line -->
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 Return $\lfloor \log_2{x}\rfloor$, where $x>0$.
 :::
 
@@ -339,7 +339,7 @@ int ilog2(int x) {
 
 ### 13 float_neg
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 
 Return bit-level equivalent of expression $-f$ for floating point argument $f$.
 
@@ -375,7 +375,7 @@ unsigned float_neg(unsigned uf) {
 
 ### 14 float_i2f
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 
 Return bit-level equivalent of expression `(float) x`.
 
@@ -440,7 +440,7 @@ unsigned float_i2f(int x) {
 
 ### 15 float_twice
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 
 Return bit-level equivalent of expression $2f$ for floating point argument $f$.
 

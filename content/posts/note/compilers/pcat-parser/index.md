@@ -27,7 +27,7 @@ Compilers @ Fudan University, fall 2021.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / pcat_parser](https://github.com/hakula139/pcat_parser)
 :::
 
@@ -1301,7 +1301,7 @@ void Body::Print(std::ostream& os) const {
 
 对函数 `UpdateDepth()`, `Print()`, `name()` 进行了覆盖（override），同时修改节点名 `name_` 为 `body`。这里为什么需要覆盖 `name()` 函数，是因为基类的 `name()` 只能访问到基类的 `name_`，而不能访问派生类的 `name_`（没有虚成员变量的概念），所以即使 `name()` 的定义是一样的，仍然需要重新定义一遍。
 
-::: callout { type=quote title="笔者注（2022-10-05）" }
+::: callout {type=quote title="笔者注（2022-10-05）"}
 现在看来，这里的实现是有问题的。不应该在派生类重新定义一个 `name_` 隐藏基类的 `name_`，而应该在派生类的构造函数里给基类的 `name_` 赋一个新的值。这样就不需要在派生类里重新定义 `name()` 了，同时 `name()` 也不再需要声明为虚函数。
 :::
 

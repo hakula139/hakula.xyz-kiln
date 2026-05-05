@@ -35,7 +35,7 @@ Lunatic Rave 2 是目前使用人数最多的 BMS 本体。尽管，它未必是
 
 以下是一些皮肤的示例 _（如果您不希望自己的视频出现在这里，可以在下方留言，我看到后就会移除）_：
 
-::: callout { type=example }
+::: callout {type=example}
 
 - [:(fas fa-play-circle): WMIX - @MsrButterfly 改](https://www.bilibili.com/video/BV1Sx411b7uH)
 - [:(fas fa-play-circle): WMIX - @Ennea 改](https://www.bilibili.com/video/BV1hs411L7YY)

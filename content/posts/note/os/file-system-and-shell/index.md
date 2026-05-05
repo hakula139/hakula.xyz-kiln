@@ -24,13 +24,13 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / xv6-armv8 at lab7](https://github.com/hakula139/xv6-armv8/tree/lab7)
 :::
 
 ## 实验简介
 
-::: callout { type=info title="参见" }
+::: callout {type=info title="参见"}
 [hakula139 / xv6-armv8 / docs / lab7.md - GitHub](https://github.com/hakula139/xv6-armv8/blob/lab7/docs/lab7.md)
 :::
 
@@ -38,7 +38,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ### 1 文件系统
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 请实现文件系统，本实验中的文件系统遵循 xv6 的设计，你也可以从 0 开始设计属于你的文件系统。如果你的文件系统不同于 xv6 的话，请修改 `user/src/mkfs`。你需要添加测试证明你实现的文件系统可以读取到你打包的文件，在数量、内容上是正确的。
 :::
 
@@ -1251,7 +1251,7 @@ file_write(struct file* f, char* addr, ssize_t n)
 
 ### 2 系统调用
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 请修改 `syscall.c` 以及 `trapasm.S` 来接上 musl，或者修改 Makefile 并搬运 xv6 的简易 libc，从而允许用户态程序通过调用系统调用来操作文件系统。
 :::
 
@@ -1481,7 +1481,7 @@ int sys_chdir();
 
 ### 3 Shell
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 我们已经把 xv6 的 shell 搬运到了 `user/src/sh` 目录下，但需要实现 `brk` 系统调用来使用 `malloc`，你也可以自行实现一个简单的 shell。请在 `user/src/cat` 中实现 `cat` 命令并在你的 shell 中执行。
 :::
 

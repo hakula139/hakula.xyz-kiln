@@ -24,13 +24,13 @@ Digital Signal Processing @ Fudan University, fall 2021.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / naive-speech-recognizer at dev-mfcc](https://github.com/hakula139/naive-speech-recognizer/tree/dev-mfcc)
 :::
 
 ## 实验简介
 
-::: callout { type=quote }
+::: callout {type=quote}
 
 1. 录音，用 8 kHz 采样，朗读单词 shop。
 2. 端点检测（画出语音波形，标出起点和终点）。
@@ -346,7 +346,7 @@ def dct(x: np.ndarray, d: int) -> np.ndarray:
 
 ![shop - MFCC（0 ~ 12 阶）](assets/shop/mfcc.webp)
 
-::: callout { type=abstract title="MFCC 系数表" open=false }
+::: callout {type=abstract title="MFCC 系数表" open=false}
 
 | 窗口 \ 阶数 |    0     |    1    |    2    |    3    |    4    |    5    |    6    |   7    |    8    |   9    |   10   |   11   |   12   |
 | :---------: | :------: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :----: | :-----: | :----: | :----: | :----: | :----: |

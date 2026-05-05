@@ -22,13 +22,13 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / xv6-armv8 at lab4](https://github.com/hakula139/xv6-armv8/tree/lab4)
 :::
 
 ## 实验简介
 
-::: callout { type=info title="参见" }
+::: callout {type=info title="参见"}
 [hakula139 / xv6-armv8 / docs / lab4.md - GitHub](https://github.com/hakula139/xv6-armv8/blob/lab4/docs/lab4.md)
 :::
 
@@ -36,7 +36,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ### 1 多核启动流程
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 为了确保你完全掌握了多核的启动流程，请简要描述一下 `kern/entry.S` 中各个 CPU 的初始状态如何、经历了哪些变化？至少包括对 PC、栈指针、页表的描述。
 :::
 
@@ -50,7 +50,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ### 2 自旋锁时为什么要关中断
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 请阅读 `kern/spinlock.c` 并思考一下，如果我们在内核中没有关中断的话，`kern/spinlock.c` 是否有问题？如果有的话，应该如何修改呢？
 :::
 
@@ -60,7 +60,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ### 3 给主循环加锁
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 注意到所有 CPU 都会并行进入 `kern/main.c:main`，而其中有些初始化函数是只能被调用一次的，请简单描述一下你的判断和理由，并在 `kern/main.c` 中加锁来保证这一点。
 :::
 

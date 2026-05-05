@@ -22,11 +22,11 @@ Data Structures (H) @ Fudan University, fall 2019.
 
 ## 题目简介
 
-::: callout { type=info title="参见" }
+::: callout {type=info title="参见"}
 [zyr17 / DataStructure2019-PJ1: 2019 秋季数据结构 PJ1 - GitHub](https://github.com/zyr17/DataStructure2019-PJ1)
 :::
 
-::: callout { type=quote }
+::: callout {type=quote}
 
 数组 $a$ 有 $n$ 个元素 $a[1]$, $a[2]$, …, $a[n]$.
 
@@ -45,7 +45,7 @@ Data Structures (H) @ Fudan University, fall 2019.
 
 ### 评分标准
 
-::: callout { type=quote }
+::: callout {type=quote}
 
 每个数据的得分由 Solver 执行 $\textrm{ask}$ 的次数决定，执行 $\textrm{ask}$ 的次数越少得分越高。
 
@@ -61,7 +61,7 @@ Data Structures (H) @ Fudan University, fall 2019.
 
 ### 限制
 
-::: callout { type=quote }
+::: callout {type=quote}
 
 规模：$n\le 10000$, $k\le 100$
 
