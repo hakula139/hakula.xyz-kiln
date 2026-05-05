@@ -65,8 +65,8 @@
     --surface-glass-hover: rgba(255, 255, 255, 0.72);
     --surface-glass-scroll-shadow: rgba(0, 0, 0, 0.06);
     --surface-overlay-backdrop: rgba(0, 0, 0, 0.35);
-    --color-syntax-highlight-bg: rgba(255, 235, 59, 0.1);
-    --color-syntax-highlight-border: rgba(255, 193, 7, 0.5);
+    --color-line-highlight-bg: rgba(255, 235, 59, 0.1);
+    --color-line-highlight-border: rgba(255, 193, 7, 0.5);
     --scale-card-hover: 135%;
     --animate-lqip-fade-in: lqip-fade-in 1s ease both;
     --animate-menu-fade-in: menu-fade-in 200ms ease both;
@@ -956,8 +956,8 @@
     --surface-glass-hover: rgba(255, 255, 255, 0.08);
     --surface-glass-scroll-shadow: rgba(255, 255, 255, 0.06);
     --surface-overlay-backdrop: rgba(0, 0, 0, 0.55);
-    --color-syntax-highlight-bg: rgba(255, 235, 59, 0.15);
-    --color-syntax-highlight-border: rgba(255, 193, 7, 0.6);
+    --color-line-highlight-bg: rgba(255, 235, 59, 0.15);
+    --color-line-highlight-border: rgba(255, 193, 7, 0.6);
   }
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -1688,9 +1688,6 @@
   .code-block.collapsed .code-body {
     grid-template-rows: 0fr;
   }
-  .code-block.expanded .code-body[data-max-lines] > .highlight {
-    max-height: none;
-  }
   .code-body {
     display: grid;
     grid-template-rows: 1fr;
@@ -1752,11 +1749,10 @@
   .highlight .line.hl, .highlight .line-number.hl {
     display: inline-block;
     width: 100%;
-    background: var(--color-syntax-highlight-bg);
+    background: var(--color-line-highlight-bg);
   }
   .highlight .line.hl {
-    border-left: 2px solid var(--color-syntax-highlight-border);
-    padding-left: calc(0.75rem - 2px);
+    box-shadow: inset 2px 0 0 var(--color-line-highlight-border);
   }
 }
 @layer components {
