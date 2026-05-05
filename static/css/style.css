@@ -1737,18 +1737,6 @@
   .highlight .line.hl {
     box-shadow: inset 2px 0 0 var(--color-line-highlight-border);
   }
-  .code-header .chevron, .callout-title::after {
-    font-size: var(--text-xs);
-    line-height: var(--tw-leading, var(--text-xs--line-height));
-    transition-property: transform, translate, scale, rotate;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-    --tw-duration: 200ms;
-    transition-duration: 200ms;
-  }
-  .code-block.collapsed .code-header .chevron, .callout.collapsed .callout-title::after {
-    rotate: calc(90deg * -1);
-  }
 }
 @layer components {
   .highlight {
@@ -1961,6 +1949,20 @@
   .callout.warning {
     --callout-color: #ff9100;
     --callout-icon: '\f071';
+  }
+}
+@layer components {
+  .code-header .chevron, .callout-title::after {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+    transition-property: transform, translate, scale, rotate;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    --tw-duration: 200ms;
+    transition-duration: 200ms;
+  }
+  .code-block.collapsed .code-header .chevron, .callout.collapsed .callout-title::after {
+    rotate: calc(90deg * -1);
   }
 }
 @layer components {
