@@ -1666,7 +1666,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-family: var(--font-mono);
     color: var(--color-text-secondary);
   }
   .copy-btn {
