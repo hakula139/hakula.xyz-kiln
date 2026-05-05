@@ -70,7 +70,7 @@ gdb bomb
 
 在 `bomb.asm` 中找到函数 `main` 对应的汇编语句，注意到其中片段：
 
-```text
+```text {title="bomb.asm"}
   400e32:   e8 67 06 00 00          callq  40149e <read_line>
   400e37:   48 89 c7                mov    %rax,%rdi
   400e3a:   e8 a1 00 00 00          callq  400ee0 <phase_1>
@@ -91,7 +91,7 @@ gdb bomb
 
 在 `bomb.asm` 中找到函数 `phase_1` 对应的汇编语句：
 
-```text
+```text {title="bomb.asm"}
 0000000000400ee0 <phase_1>:
   400ee0:   48 83 ec 08             sub    $0x8,%rsp
   400ee4:   be 00 24 40 00          mov    $0x402400,%esi
@@ -125,7 +125,7 @@ gdb bomb
 
 在 `bomb.asm` 中找到函数 `strings_not_equal` 对应的汇编语句：
 
-```text
+```text {title="bomb.asm"}
 0000000000401338 <strings_not_equal>:
   401338:   41 54                   push   %r12
   40133a:   55                      push   %rbp
@@ -178,7 +178,7 @@ gdb bomb
 
 ##### 1.2.4 观察函数 `string_length`
 
-```text
+```text {title="bomb.asm"}
 000000000040131b <string_length>:
   40131b:   80 3f 00                cmpb   $0x0,(%rdi)
   40131e:   74 12                   je     401332 <string_length+0x17>
@@ -195,7 +195,7 @@ gdb bomb
 
 `40131b`: `cmpb $0x0,(%rdi)` 和 `40131e`: `je 401332 <string_length+0x17>` 判断 `%rdi` 寄存器指向的内容是否为 `'\0'`（字符串结束符），是则直接跳到 `401332`: `mov $0x0,%eax` 将 `%eax` 寄存器（即函数返回值）设置为 `0` 后返回，否则继续执行之后的语句。
 
-```text
+```text {title="bomb.asm"}
   401320:   48 89 fa                mov    %rdi,%rdx
   401323:   48 83 c2 01             add    $0x1,%rdx
   401327:   89 d0                   mov    %edx,%eax
@@ -221,7 +221,7 @@ return result;
 
 ##### 1.2.5 回到函数 `strings_not_equal`
 
-```text
+```text {title="bomb.asm"}
   40133c:   48 89 fb                mov    %rdi,%rbx
   40133f:   48 89 f5                mov    %rsi,%rbp
   401342:   e8 d4 ff ff ff          callq  40131b <string_length>
@@ -234,7 +234,7 @@ return result;
 `%r12d` = `%eax` = `strlen(input)`
 :::
 
-```text
+```text {title="bomb.asm"}
   40134a:   48 89 ef                mov    %rbp,%rdi
   40134d:   e8 c9 ff ff ff          callq  40131b <string_length>
 ```
@@ -251,7 +251,7 @@ return result;
 `%eax` = `strlen(0x402400)`
 :::
 
-```text
+```text {title="bomb.asm"}
   401352:   ba 01 00 00 00          mov    $0x1,%edx
   401357:   41 39 c4                cmp    %eax,%r12d
   40135a:   75 3f                   jne    40139b <strings_not_equal+0x63>
@@ -269,7 +269,7 @@ return result;
 
 从这里可以看出，函数 `strings_not_equal` 在两个字符串不相等时将返回 `1`。
 
-```text
+```text {title="bomb.asm"}
   40135c:   0f b6 03                movzbl (%rbx),%eax
   40135f:   84 c0                   test   %al,%al
   401361:   74 25                   je     401388 <strings_not_equal+0x50>
@@ -292,7 +292,7 @@ return result;
 
 `40135f`: `test %al,%al` 和 `401361`: `je 401388 <strings_not_equal+0x50>` 判断 `%al` 寄存器保存的内容（字符串 `input` 的第一个字符）是否为 `'\0'`（字符串结束符），是则直接跳到 `401388`: `mov $0x0,%edx` 将 `%edx` 寄存器赋值为 `0`（从之后的语句可以看出函数将返回，返回值为 `0`），否则继续执行之后的语句。
 
-```text
+```text {title="bomb.asm"}
   401363:   3a 45 00                cmp    0x0(%rbp),%al
   401366:   74 0a                   je     401372 <strings_not_equal+0x3a>
   401368:   eb 25                   jmp    40138f <strings_not_equal+0x57>
@@ -311,7 +311,7 @@ return result;
 
 `401363`: `cmp 0x0(%rbp),%al`, `401366`: `je 401372 <strings_not_equal+0x3a>` 和 `401368`: `jmp 40138f <strings_not_equal+0x57>` 比较 `%rbp` 寄存器指向的内容（`0x402400` 指向的字符串的第一个字符）和 `%al` 寄存器保存的内容（字符串 `input` 的第一个字符）是否相等，是则跳到 `401372`: `add $0x1,%rbx`，否则跳到 `40138f`: `mov $0x1,%edx` 将 `%edx` 寄存器赋值为 `1`（从之后的语句可以看出函数将返回，返回值为 `1`）。
 
-```text
+```text {title="bomb.asm"}
   40136a:   3a 45 00                cmp    0x0(%rbp),%al
   40136d:   0f 1f 00                nopl   (%rax)
   401370:   75 24                   jne    401396 <strings_not_equal+0x5e>
@@ -348,7 +348,7 @@ return 0;
 
 ##### 1.2.6 回到函数 `phase_1`
 
-```text
+```text {title="bomb.asm"}
 0000000000400ee0 <phase_1>:
   400ee0:   48 83 ec 08             sub    $0x8,%rsp
   400ee4:   be 00 24 40 00          mov    $0x402400,%esi
@@ -413,7 +413,7 @@ Phase 1 defused. How about the next one?
 
 在 `bomb.asm` 中找到函数 `phase_2` 对应的汇编语句：
 
-```text
+```text {title="bomb.asm"}
 0000000000400efc <phase_2>:
   400efc:   55                      push   %rbp
   400efd:   53                      push   %rbx
@@ -456,7 +456,7 @@ Phase 1 defused. How about the next one?
 
 在 `bomb.asm` 中找到函数 `read_six_numbers` 对应的汇编语句：
 
-```text
+```text {title="bomb.asm"}
 000000000040145c <read_six_numbers>:
   40145c:   48 83 ec 18             sub    $0x18,%rsp
   401460:   48 89 f2                mov    %rsi,%rdx
@@ -479,7 +479,7 @@ Phase 1 defused. How about the next one?
 
 先看开始的部分（`40145c` ~ `40147c`）：
 
-```text
+```text {title="bomb.asm"}
   40145c:   48 83 ec 18             sub    $0x18,%rsp
   401460:   48 89 f2                mov    %rsi,%rdx
   401463:   48 8d 4e 04             lea    0x4(%rsi),%rcx
@@ -523,7 +523,7 @@ num2_pos = start_pos + 2;           // num2_pos in %r8
 
 再看中间的部分（`401480` ~ `40148a`）：
 
-```text
+```text {title="bomb.asm"}
   401480:   be c3 25 40 00          mov    $0x4025c3,%esi
   401485:   b8 00 00 00 00          mov    $0x0,%eax
   40148a:   e8 61 f7 ff ff          callq  400bf0 <__isoc99_sscanf@plt>
@@ -549,7 +549,7 @@ num2_pos = start_pos + 2;           // num2_pos in %r8
 
 最后看结尾的部分（`40148f` ~ `40149d`）：
 
-```text
+```text {title="bomb.asm"}
   40148f:   83 f8 05                cmp    $0x5,%eax
   401492:   7f 05                   jg     401499 <read_six_numbers+0x3d>
   401494:   e8 a1 ff ff ff          callq  40143a <explode_bomb>
@@ -580,7 +580,7 @@ num2_pos = start_pos + 2;           // num2_pos in %r8
 
 其中，`nums[0]` ... `nums[5]` 表示输入的字符串中解析得到的（前）6 个整数。
 
-```text
+```text {title="bomb.asm"}
   400f0a:   83 3c 24 01             cmpl   $0x1,(%rsp)
   400f0e:   74 20                   je     400f30 <phase_2+0x34>
   400f10:   e8 25 05 00 00          callq  40143a <explode_bomb>
@@ -678,7 +678,7 @@ That's number 2.  Keep going!
 
 在 `bomb.asm` 中找到函数 `phase_3` 对应的汇编语句：
 
-```text
+```text {title="bomb.asm"}
 0000000000400f43 <phase_3>:
   400f43:   48 83 ec 18             sub    $0x18,%rsp
   400f47:   48 8d 4c 24 0c          lea    0xc(%rsp),%rcx
@@ -762,7 +762,7 @@ That's number 2.  Keep going!
 
 观察之后的片段：
 
-```text
+```text {title="bomb.asm"}
   400f75:   ff 24 c5 70 24 40 00    jmpq   *0x402470(,%rax,8)
   400f7c:   b8 cf 00 00 00          mov    $0xcf,%eax
   400f81:   eb 3b                   jmp    400fbe <phase_3+0x7b>
@@ -859,7 +859,7 @@ Halfway there!
 
 在 `bomb.asm` 中找到函数 `phase_4` 对应的汇编语句：
 
-```text
+```text {title="bomb.asm"}
 000000000040100c <phase_4>:
   40100c:   48 83 ec 18             sub    $0x18,%rsp
   401010:   48 8d 4c 24 0c          lea    0xc(%rsp),%rcx
@@ -923,7 +923,7 @@ Halfway there!
 
 在 `bomb.asm` 中找到函数 `func4` 对应的汇编语句：
 
-```text
+```text {title="bomb.asm"}
 0000000000400fce <func4>:
   400fce:   48 83 ec 08             sub    $0x8,%rsp
   400fd2:   89 d0                   mov    %edx,%eax
@@ -983,7 +983,7 @@ int func4(int key, int low, int high) {
 `%eax` = `func4(nums[0], 0, 14)`
 :::
 
-```text
+```text {title="bomb.asm"}
   40104d:   85 c0                   test   %eax,%eax
   40104f:   75 07                   jne    401058 <phase_4+0x4c>
   401051:   83 7c 24 0c 00          cmpl   $0x0,0xc(%rsp)
@@ -1058,7 +1058,7 @@ So you got that one.  Try this one.
 
 在 `bomb.asm` 中找到函数 `phase_5` 对应的汇编语句：
 
-```text
+```text {title="bomb.asm"}
 0000000000401062 <phase_5>:
   401062:   53                      push   %rbx
   401063:   48 83 ec 20             sub    $0x20,%rsp
@@ -1108,7 +1108,7 @@ So you got that one.  Try this one.
 `%rbx` = `%rdi` = `input`
 :::
 
-```text
+```text {title="bomb.asm"}
   401063:   48 83 ec 20             sub    $0x20,%rsp
   ...
   40106a:   64 48 8b 04 25 28 00    mov    %fs:0x28,%rax
@@ -1127,7 +1127,7 @@ So you got that one.  Try this one.
 
 这里的 `%fs:0x28` 是 FS 段寄存器（segment register）上偏移地址 `0x28` 上的数据。这是一个随机量，在这里起到 stack canary 的作用[^fs-so] [^fs-se]。这部分代码即利用这个 stack canary 来确保 `0x18(%rsp)` 的数值（即栈底的 8 bytes）在函数前后没有发生改动，如果发生改动则执行 `4010e9`: `callq 400b30 <__stack_chk_fail@plt>` 调用系统函数 `__stack_chk_fail` 跳出，从而防止栈溢出（stack overflow）的问题。事实上，这段代码与本关的关系不大，这里就不做更多阐述了。
 
-```text
+```text {title="bomb.asm"}
   401078:   31 c0                   xor    %eax,%eax
   40107a:   e8 9c 02 00 00          callq  40131b <string_length>
   40107f:   83 f8 06                cmp    $0x6,%eax
@@ -1147,7 +1147,7 @@ So you got that one.  Try this one.
 
 可见，输入的字符串的长度应当为 `6`。
 
-```text
+```text {title="bomb.asm"}
   401089:   eb 47                   jmp    4010d2 <phase_5+0x70>
   40108b:   0f b6 0c 03             movzbl (%rbx,%rax,1),%ecx
   40108f:   88 0c 24                mov    %cl,(%rsp)
@@ -1274,7 +1274,7 @@ Good work!  On to the next...
 
 在 `bomb.asm` 中找到函数 `phase_6` 对应的汇编语句：
 
-```text
+```text {title="bomb.asm"}
 00000000004010f4 <phase_6>:
   4010f4:   41 56                   push   %r14
   4010f6:   41 55                   push   %r13
@@ -1369,7 +1369,7 @@ Good work!  On to the next...
 
 ##### 6.2.1 第一部分（`4010f4` ~ `40110b`）
 
-```text
+```text {title="bomb.asm"}
   4010f4:   41 56                   push   %r14
   4010f6:   41 55                   push   %r13
   4010f8:   41 54                   push   %r12
@@ -1401,7 +1401,7 @@ Good work!  On to the next...
 
 ##### 6.2.2 第二部分（`40110e` ~ `401151`）
 
-```text
+```text {title="bomb.asm"}
   40110e:   41 bc 00 00 00 00       mov    $0x0,%r12d
   401114:   4c 89 ed                mov    %r13,%rbp
   401117:   41 8b 45 00             mov    0x0(%r13),%eax
@@ -1457,7 +1457,7 @@ while (true) {
 
 ##### 6.2.3 第三部分（`401153` ~ `40116d`）
 
-```text
+```text {title="bomb.asm"}
   401153:   48 8d 74 24 18          lea    0x18(%rsp),%rsi
   401158:   4c 89 f0                mov    %r14,%rax
   40115b:   b9 07 00 00 00          mov    $0x7,%ecx
@@ -1485,7 +1485,7 @@ for (i = begin_pos; i != end_pos; ++i) {        // i in %rax
 
 ##### 6.2.4 第四部分（`40116f` ~ `4011a9`）
 
-```text
+```text {title="bomb.asm"}
   40116f:   be 00 00 00 00          mov    $0x0,%esi
   401174:   eb 21                   jmp    401197 <phase_6+0xa3>
   401176:   48 8b 52 08             mov    0x8(%rdx),%rdx
@@ -1557,7 +1557,7 @@ for (i = 0; i != 6; ++i) {          // i in %rsi
 
 ##### 6.2.5 第五部分（`4011ab` ~ `4011d0`）
 
-```text
+```text {title="bomb.asm"}
   4011ab:   48 8b 5c 24 20          mov    0x20(%rsp),%rbx
   4011b0:   48 8d 44 24 28          lea    0x28(%rsp),%rax
   4011b5:   48 8d 74 24 50          lea    0x50(%rsp),%rsi
@@ -1594,7 +1594,7 @@ for (cur_node = begin_node; next_pos != end_pos;
 
 ##### 6.2.6 第六部分（`4011da` ~ `401203`）
 
-```text
+```text {title="bomb.asm"}
   4011da:   bd 05 00 00 00          mov    $0x5,%ebp
   4011df:   48 8b 43 08             mov    0x8(%rbx),%rax
   4011e3:   8b 00                   mov    (%rax),%eax
@@ -1708,7 +1708,7 @@ Congratulations! You've defused the bomb!
 
 在 `bomb.asm` 搜索关键词 `secret_phase`，可以发现在函数 `phase_defused` 中出现了调用函数 `secret_phase` 的语句 `401630`: `callq 401242 <secret_phase>`。其中函数 `phase_defused` 就是每关通过后都会调用的函数。
 
-```text
+```text {title="bomb.asm"}
 00000000004015c4 <phase_defused>:
   4015c4:   48 83 ec 78             sub    $0x78,%rsp
   4015c8:   64 48 8b 04 25 28 00    mov    %fs:0x28,%rax
@@ -1756,7 +1756,7 @@ Congratulations! You've defused the bomb!
 
 注意到以下片段：
 
-```text
+```text {title="bomb.asm"}
   4015d6:   31 c0                   xor    %eax,%eax
   4015d8:   83 3d 81 21 20 00 06    cmpl   $0x6,0x202181(%rip)        # 603760 <num_input_strings>
   4015df:   75 5e                   jne    40163f <phase_defused+0x7b>
@@ -1809,7 +1809,7 @@ Breakpoint 3, 0x0000000000400efc in phase_2 ()
 
 剩下的片段也就是本函数与隐藏关相关的主体部分。
 
-```text
+```text {title="bomb.asm"}
   4015e1:   4c 8d 44 24 10          lea    0x10(%rsp),%r8
   4015e6:   48 8d 4c 24 0c          lea    0xc(%rsp),%rcx
   4015eb:   48 8d 54 24 08          lea    0x8(%rsp),%rdx
@@ -1862,7 +1862,7 @@ Breakpoint 3, 0x0000000000400efc in phase_2 ()
 
 可见，`0x603870` 指向的是 Phase 4 中输入的字符串 `7 0`。
 
-```text
+```text {title="bomb.asm"}
   4015ff:   83 f8 03                cmp    $0x3,%eax
   401602:   75 31                   jne    401635 <phase_defused+0x71>
   ...
@@ -1875,7 +1875,7 @@ Breakpoint 3, 0x0000000000400efc in phase_2 ()
 
 于是我们知道，在 Phase 4 中除了需要输入作为密码的 2 个整数外，还需要再额外输入 1 个字符串。这是开启隐藏关的前提条件。
 
-```text
+```text {title="bomb.asm"}
   401604:   be 22 26 40 00          mov    $0x402622,%esi
   401609:   48 8d 7c 24 10          lea    0x10(%rsp),%rdi
   40160e:   e8 25 fd ff ff          callq  401338 <strings_not_equal>
@@ -1910,7 +1910,7 @@ Breakpoint 3, 0x0000000000400efc in phase_2 ()
 
 因此，在 Phase 4 中需要额外输入的 1 个字符串就是 `DrEvil`。
 
-```text
+```text {title="bomb.asm"}
   401617:   bf f8 24 40 00          mov    $0x4024f8,%edi
   40161c:   e8 ef f4 ff ff          callq  400b10 <puts@plt>
   401621:   bf 20 25 40 00          mov    $0x402520,%edi
@@ -1942,7 +1942,7 @@ But finding it and solving it are quite different...
 
 在 `bomb.asm` 中找到函数 `secret_phase` 对应的汇编语句：
 
-```text
+```text {title="bomb.asm"}
 0000000000401242 <secret_phase>:
   401242:   53                      push   %rbx
   401243:   e8 56 02 00 00          callq  40149e <read_line>
@@ -2042,7 +2042,7 @@ But finding it and solving it are quite different...
 
 在 `bomb.asm` 中找到函数 `fun7` 对应的汇编语句：
 
-```text
+```text {title="bomb.asm"}
 0000000000401204 <fun7>:
   401204:   48 83 ec 08             sub    $0x8,%rsp
   401208:   48 85 ff                test   %rdi,%rdi

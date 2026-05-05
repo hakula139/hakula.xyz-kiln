@@ -502,9 +502,8 @@ This is context engineering through subtraction: instead of writing "always form
 }
 ```
 
-```bash
+```bash {title=".claude/hooks/notify-permission.sh"}
 #!/usr/bin/env bash
-# .claude/hooks/notify-permission.sh
 tool_name="$(jq -r '.tool_name // empty')"
 case "$tool_name" in
   AskUserQuestion)
@@ -641,9 +640,8 @@ With both hooks and MCP in place, they reinforce each other. Here is a `PreToolU
 
 The script reads the JSON input from stdin, checks the command, and returns a `permissionDecision` of `"deny"` with a redirect message:
 
-```bash
+```bash {title=".claude/hooks/enforce-mcp.sh"}
 #!/usr/bin/env bash
-# .claude/hooks/enforce-mcp.sh
 COMMAND=$(jq -r '.tool_input.command')
 
 deny() {

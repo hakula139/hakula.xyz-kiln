@@ -44,7 +44,7 @@ Claude Code ships with several built-in subagents: **Explore** (haiku, read-only
 
 My configuration defines eight additional custom agent types on top of these, each with a specific role, behavioral constraints, and (in some cases) a different model tier. Each agent type is a separate Markdown file. Here is the `tester` agent, which overrides the default model to `sonnet`:
 
-```markdown
+```markdown {title="~/.claude/agents/tester.md"}
 ---
 name: tester
 description: |
@@ -85,7 +85,7 @@ The overall orchestration rules — when to use agents, model selection guidelin
 
 Access constraints here are behavioral: agents are instructed to operate read-only through their system prompts, not through hard tool restrictions. This lets an agent break the boundary when genuinely needed — a read-only researcher might need to create a temporary file for an intermediate computation. The exception is the `codex-worker`, whose narrower tool set physically prevents it from doing work directly, forcing it to delegate to Codex instead:
 
-```markdown
+```markdown {title="~/.claude/agents/codex-worker.md"}
 ---
 name: codex-worker
 description: |

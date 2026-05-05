@@ -102,7 +102,7 @@ sudo apt install vnc4server -y
 
 将 `~/.vnc/xstartup` 文件的内容修改为：
 
-```bash
+```bash {title="~/.vnc/xstartup"}
 #!/bin/sh
 
 unset SESSION_MANAGER
@@ -295,7 +295,7 @@ sudo free -h
 
 修改 `/etc/fstab` 文件以设置开机自启动。在结尾附加以下内容：
 
-```bash
+```bash {title="/etc/fstab"}
 /swapfile none swap defaults 0 0
 ```
 

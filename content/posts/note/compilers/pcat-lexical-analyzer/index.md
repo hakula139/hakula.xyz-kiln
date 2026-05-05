@@ -39,7 +39,7 @@ Compilers @ Fudan University, fall 2021.
 
 三个部分之间使用一个单行的 `%%` 分隔。
 
-```cpp {title="src/lexer.cpp"}
+```cpp
 // Definitions
 %%
 // Rules
@@ -56,8 +56,6 @@ Compilers @ Fudan University, fall 2021.
 ### 1.1 定义区
 
 ```cpp
-// src/lexer.lex
-
 %{
 #include "lexer.hpp"
 %}
@@ -65,9 +63,7 @@ Compilers @ Fudan University, fall 2021.
 
 我们首先 include 了一个 `lexer.hpp`，其中以枚举的形式定义了所有我们需要用到的 token 类型。这样我们之后就可以在不失可读性的前提下，通过 `switch` 语句对每个 token 类型分别进行处理。这里被 `%{` 和 `%}` 包围的内容也会被直接复制到 `src/lexer.cpp` 里。
 
-```cpp
-// src/lexer.hpp
-
+```cpp {title="src/lexer.hpp"}
 #ifndef SRC_LEXER_HPP_
 #define SRC_LEXER_HPP_
 
@@ -99,8 +95,6 @@ enum Errors {
 随后，我们对 Flex 进行了一些设置。
 
 ```cpp
-// src/lexer.lex
-
 %option c++
 %option noyywrap
 %option yylineno
@@ -115,8 +109,6 @@ enum Errors {
 然后，我们声明了一个初始状态 `COMMENT`。
 
 ```cpp
-// src/lexer.lex
-
 %x      COMMENT
 ```
 
@@ -125,8 +117,6 @@ enum Errors {
 最后，我们声明了一些名称（name），用来对一些正则表达式片段以 `${name}` 的形式进行复用。
 
 ```cpp
-// src/lexer.lex
-
 WS                    ([ \t]+)
 NEWLINE               (\r?\n)
 
@@ -177,8 +167,6 @@ COMMENTS_END          "*)"
 然后就是 Flex 程序中的关键部分——规则区。这里我们利用先前在 `src/lexer.hpp` 中定义好的 token 类型，将扫描过程中读取到的 token 进行分类。
 
 ```cpp
-// src/lexer.lex
-
 <INITIAL><<EOF>>              return T_EOF;
 <INITIAL>{WS}                 return T_WS;
 <INITIAL>{NEWLINE}            return T_NEWLINE;
@@ -230,9 +218,7 @@ COMMENTS_END          "*)"
 
 核心思路实际上就是维护 Flex 当前扫描到的位置。由于 Flex 会自行维护当前所在的行号，因此我们的重点在于维护当前所在的列号。当然，对于多行注释，我们也需要手动维护注释起始位置的行号。
 
-```cpp {title="src/main.cpp"}
-// src/main.cpp
-
+```cpp
 std::tuple<int, int> UpdatePosition(const yyFlexLexer& lexer) {
   static int cur_row = 1;     // self-maintained current row number
   static int cur_column = 1;  // self-maintained current column number
@@ -265,8 +251,6 @@ std::tuple<int, int> UpdatePosition(const yyFlexLexer& lexer) {
 这个很简单，直接调用函数 `yylex()` 得到当前 token 的类型，然后用一个 `switch` 语句还原成一个字符串就可以了。例如：
 
 ```cpp
-// src/main.cpp
-
 auto t = lexer.yylex();
 
 auto [type, error_msg] =
@@ -302,8 +286,6 @@ auto [type, error_msg] =
 整数的越界错误我们是留到用户代码区再处理的，因为这样比较方便。具体来说，当 token 类型是整数时，我们先检查它的位数（十进制）是否超过 $10$。因为如果位数超过 $10$ 了，就一定大于 $2147483647$ 了。这样做是为了防止类型转换时发生越界。对于 $10$ 位以内的整数，我们就可以放心地利用函数 `std::stoull()` 转换为 64 位整型 `uint64_t` 了，然后简单地和 `INT32_MAX` 比一下大小即可。
 
 ```cpp
-// src/main.cpp
-
 case T_INTEGER: {
   if (token.size() > 10 || std::stoull(token) > INT32_MAX) {
     return {"error", "RangeError: out of range"};
@@ -317,8 +299,6 @@ case T_INTEGER: {
 字符串的错误分为 3 种。对于字符串值相关的 2 种错误，我们可以简单地留到用户代码区解决。具体来说，先判断一下总长度（含引号）是否超过 $257$，然后查找一下字符串中是否包含 tab 就可以了。
 
 ```cpp
-// src/main.cpp
-
 case T_STRING: {
   if (token.size() > 257) {
     return {"error", "ValueError: string literal is too long"};
@@ -332,8 +312,6 @@ case T_STRING: {
 而对于字符串未闭合的错误，由于未闭合的字符串从定义上来说就不是字符串了，因此需要在规则区解决。之前我们在 token 分类时有一个对应未闭合字符串的 `E_UNTERM_STRING` 类别，就是用于这种情况的报错实现。
 
 ```cpp
-// src/main.cpp
-
 case E_UNTERM_STRING:
   return {"error", "SyntaxError: unterminated string literal"};
 ```
@@ -343,8 +321,6 @@ case E_UNTERM_STRING:
 标识符过长的报错处理和字符串是一样的，这里不再赘述。
 
 ```cpp
-// src/main.cpp
-
 case T_IDENTIFIER: {
   if (token.size() > 255) {
     return {"error", "CompileError: identifier is too long"};
@@ -356,8 +332,6 @@ case T_IDENTIFIER: {
 出现未知字符或许也可以算标识符错误吧。处理方式之前已经提到了，就是在规则区利用一个兜底规则，将所有未成功匹配的字符都判定为未知字符。
 
 ```cpp
-// src/main.cpp
-
 case E_UNKNOWN_CHAR:
   return {"error", "CompileError: unknown character"};
 ```
@@ -369,8 +343,6 @@ case E_UNKNOWN_CHAR:
 先看代码（只保留了注释处理相关的部分）：
 
 ```cpp
-// src/main.cpp
-
 static std::string buf;  // self-maintained buffer for comments
 static int start_row_bak = 1;
 static int start_column_bak = 1;
@@ -459,7 +431,7 @@ make INPUT="tests/case_1.pcat"
 
 例如对于这样的输入（`tests/case_1.pcat`）：
 
-```text
+```text {title="tests/case_1.pcat"}
 PROGRAM IS
     VAR i, j : INTEGER := 1;
     VAR x : REAL := 2.0;

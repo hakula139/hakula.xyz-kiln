@@ -73,9 +73,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 这里我们通过一个静态变量 `started` 来确保以上初始化函数只会在 CPU0 (BSP) 启动过程中被调用一次。当 CPU0 启动完成后，将 `started` 设置为 `1`，允许其他 CPU (APs) 启动。具体代码如下：
 
-```c
-// kern/main.c
-
+```c {title="kern/main.c"}
 volatile static int started = 0;
 
 void

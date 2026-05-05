@@ -45,9 +45,7 @@ Digital Signal Processing @ Fudan University, fall 2021.
 
 ### 1 预加重
 
-```python
-# main.py
-
+```python {title="main.py"}
 # Load audio signal from disk.
 y, sr = load_audio(p)
 
@@ -66,9 +64,7 @@ $$y(n) = x(n)-\alpha x(n-1)$$
 
 ### 2 端点检测
 
-```python
-# main.py
-
+```python {title="main.py"}
 # Get the window length for FFT.
 n_window = t_window * sr // 1000
 n_window = utils.next_pow2(n_window)
@@ -83,9 +79,7 @@ ranges, i_starts, zcr = detect_voice_activity(y, n_window)
 
 首先将信号分帧，同之前讲过的 STFT 过程，这里不再赘述。
 
-```python
-# main.py
-
+```python {title="main.py"}
 n_samples = y.shape[0]
 i_starts = np.arange(0, n_samples, n_window // 2, dtype=int)
 i_starts: np.ndarray = i_starts[i_starts + n_window < n_samples]
@@ -117,9 +111,7 @@ avg_zcrs = [np.sum(np.abs(
 
 #### 2.2 利用短时平均幅度（高阈值）初步判断区间
 
-```python
-# main.py
-
+```python {title="main.py"}
 # Step 1: Find the ranges by judging whether the average amplitude is
 # higher than threshold `amp_th[1]`.
 ranges_1: List[List[int]] = []
@@ -137,9 +129,7 @@ for k, avg_amp in enumerate(avg_amps):
 
 #### 2.3 利用短时平均幅度（低阈值）扩展区间
 
-```python
-# main.py
-
+```python {title="main.py"}
 # Step 2: Expand the ranges by judging whether the average amplitude is
 # higher than threshold `amp_th[0]`.
 ranges_2: List[List[int]] = []
@@ -162,9 +152,7 @@ for r in ranges_1:
 
 #### 2.4 利用短时过零率扩展区间
 
-```python
-# main.py
-
+```python {title="main.py"}
 # Step 3: Expand the ranges by judging whether the average zero-crossing
 # rate (ZCR) is higher than threshold `zcr_th`.
 ranges_3: List[List[int]] = []
@@ -191,9 +179,7 @@ for r in ranges_2:
 
 通过这一步，我们就确定了语音段的范围。
 
-```python
-# main.py
-
+```python {title="main.py"}
 ranges = [[i_starts[r[0]], i_starts[r[1]] + n_window] for r in ranges_3]
 ```
 
@@ -201,9 +187,7 @@ ranges = [[i_starts[r[0]], i_starts[r[1]] + n_window] for r in ranges_3]
 
 ### 3 构造 Mel 滤波器组
 
-```python
-# main.py
-
+```python {title="main.py"}
 # Obtain the Mel filter banks.
 f_min, f_max = 20, sr // 2
 filters = get_mel_filters(
@@ -222,9 +206,7 @@ $$
 
 因此，首先我们将实际频域映射到 Mel 频域。这里我们取频域下限 $f_{\min}$ 为 $20\ \mathrm{Hz}$，也就是人类能听到的最低频率；取频域上限 $f_{\max}$ 为 $4000\ \mathrm{Hz}$，也就是采样频率 $f_s$ 的一半（由 Nyquist 定理可知）。
 
-```python
-# mfcc.py
-
+```python {title="mfcc.py"}
 def mel_freq(f: np.ndarray) -> np.ndarray:
     return 2595 * np.log10(1 + f / 700)
 
@@ -237,9 +219,7 @@ $$f(m) = \frac{N}{f_s} B^{-1}(B(f_{\min}) + \frac{m}{M+1}(B(f_{\max})-B(f_{\min}
 
 其中 $N$ 为窗口宽度，$f_s$ 为采样频率。本实验中 $M$ 的取值为 $14$。
 
-```python
-# mfcc.py
-
+```python {title="mfcc.py"}
 mel_f = np.linspace(mel_f_min, mel_f_max, n_filters + 2)
 f = np.floor(i_mel_freq(mel_f) * n_window / sr).astype(int)
 ```
@@ -256,9 +236,7 @@ H_m(k) =
 \end{cases}
 $$
 
-```python
-# mfcc.py
-
+```python {title="mfcc.py"}
 filter_len = n_window // 2
 filters = np.array([np.concatenate([
     np.zeros(f[i - 1]),
@@ -274,9 +252,7 @@ filters = np.array([np.concatenate([
 
 ### 4 使用 Mel 滤波器组处理能量谱
 
-```python
-# main.py
-
+```python {title="main.py"}
 # Get the spectrogram using STFT.
 r = ranges[0]
 spec, i_starts = create_spectrogram(y[r[0]:r[1]], n_window)
@@ -299,9 +275,7 @@ log_filtered_spec = 10 * np.log10(filtered_spec)
 
 ### 5 生成 MFCC 系数
 
-```python
-# main.py
-
+```python {title="main.py"}
 # Generate the MFCC.
 cc = dct(log_filtered_spec, dim_mfcc + 1)[1:]
 ```
@@ -317,9 +291,7 @@ $$
 
 其中 $M$ 为 Mel 滤波器的个数，$D$ 为 MFCC 的维度。本实验中 $D$ 的取值为 $13$，即取计算结果的 $0$ ~ $12$ 阶 MFCC。
 
-```python
-# mfcc.py
-
+```python {title="mfcc.py"}
 def dct(x: np.ndarray, d: int) -> np.ndarray:
     '''
     Perform a Discrete Cosine Transform of a 1D / 2D array.

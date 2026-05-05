@@ -448,7 +448,7 @@ delete[] array;
 
 ### 5 完整代码
 
-```cpp
+```cpp {title="solver_random.cpp"}
 #include <iostream>
 #include <utility>
 

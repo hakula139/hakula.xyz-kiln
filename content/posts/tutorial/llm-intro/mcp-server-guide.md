@@ -44,7 +44,7 @@ The idea is simple. A website places a file at `/llms.txt` that contains a struc
 
 Here is what a typical `llms.txt` looks like:
 
-```markdown {title="/llms-full.txt"}
+```markdown {title="llms.txt"}
 # My API Documentation
 
 > API reference and guides for the My API platform.
@@ -57,7 +57,7 @@ Here is what a typical `llms.txt` looks like:
 
 And `llms-full.txt` is simply every page's content, concatenated with `# Title` headings as separators:
 
-```markdown
+```markdown {title="llms-full.txt"}
 # Getting Started
 
 Welcome to the API. This guide walks you through...
@@ -174,7 +174,7 @@ my-docs-mcp/
 
 The `pyproject.toml`:
 
-```toml
+```toml {title="pyproject.toml"}
 [project]
 name = "my-docs-mcp"
 version = "0.1.0"
@@ -232,7 +232,7 @@ The first argument is the server name (shown in the agent's MCP server list). Th
 
 Each tool is an async function decorated with `@mcp.tool`. FastMCP reads the function's type hints and docstring to generate the JSON Schema that the agent sees. This means your docstring _is_ the tool's documentation — if it is vague, the agent will use the tool incorrectly.
 
-```python
+```python {title="server.py"}
 @mcp.tool
 async def list_versions() -> list[dict[str, Any]]:
     """List all available documentation versions with their aliases."""
@@ -265,7 +265,7 @@ The most complex tool is `get_page`, because it needs to resolve a URL path to a
 1. **Primary**: Look up the page title from `llms.txt` (which maps paths to titles), then find the corresponding `# Title` section in `llms-full.txt`.
 2. **Fallback**: If the page is not in `llms.txt` (some pages, like auto-generated API references, may be excluded), assemble it from the MkDocs search index, which stores one entry per section.
 
-```python {title="llms.txt"}
+```python {title="server.py"}
 @mcp.tool
 async def get_page(path: str, version: str = "latest") -> str:
     """Get a single documentation page's content in markdown.
@@ -295,7 +295,7 @@ async def get_page(path: str, version: str = "latest") -> str:
 
 The extraction helpers are straightforward string operations:
 
-```python
+```python {title="server.py"}
 def _normalize_path(path: str) -> str:
     """Normalize a page path for consistent comparison."""
     path = path.strip("/")
@@ -338,7 +338,7 @@ If all your pages are already included in `llms-full.txt`, you can safely skip t
 
 :::
 
-```python {title="llms-full.txt"}
+```python {title="server.py"}
 def _assemble_from_search_index(
     index: list[dict[str, Any]], path: str
 ) -> str | None:
@@ -372,7 +372,7 @@ The reconstructed document only uses two heading levels (`#` for the page title,
 
 ### The entry point
 
-```python
+```python {title="server.py"}
 def main() -> None:
     parser = argparse.ArgumentParser(description="My Docs MCP Server")
     parser.add_argument(
@@ -393,7 +393,7 @@ The base URL is configurable through a CLI argument or an environment variable, 
 
 The fetcher is a thin async HTTP client that caches responses for 5 minutes. Every tool call hits the fetcher, and without caching, a typical agent session (which might call `search_docs`, then `get_page` three times, then `get_docs_index`) would make a dozen HTTP requests to the same URLs within seconds.
 
-```python
+```python {title="fetcher.py"}
 DEFAULT_BASE_URL = "https://docs.example.com"
 CACHE_TTL = 300  # 5 minutes
 
@@ -446,7 +446,7 @@ MkDocs with [mike](https://github.com/jimporter/mike) (the versioning plugin) pu
 
 The fetcher resolves aliases before fetching:
 
-```python
+```python {title="fetcher.py"}
 async def resolve_version(self, version: str) -> str:
     """Resolve 'latest' or other aliases to actual version identifiers."""
     versions = await self.get_versions()
@@ -464,7 +464,7 @@ This means `get_page("guides/getting-started/", version="latest")` transparently
 
 The search module is deliberately simple: keyword matching with title weighting. No vector embeddings, no semantic search, no external dependencies.
 
-```python
+```python {title="search.py"}
 def search(
     docs: list[dict[str, Any]],
     query: str,
@@ -564,7 +564,7 @@ Add the server to your agent's MCP configuration. The syntax varies by agent:
 
 **Codex CLI** — add to `.codex/config.toml` (project) or `~/.codex/config.toml` (global):
 
-```toml
+```toml {title=".codex/config.toml"}
 [mcp_servers.my-docs]
 command = "uvx"
 args = ["my-docs-mcp@latest"]
@@ -574,7 +574,7 @@ enabled = true
 
 **Cursor** — add to `.cursor/mcp.json` (project) or `~/.cursor/mcp.json` (global):
 
-```json
+```json {title=".cursor/mcp.json"}
 {
   "mcpServers": {
     "my-docs": {
@@ -594,7 +594,7 @@ The `@latest` version specifier ensures `uvx` always fetches the latest version 
 
 A skill file teaches the agent _how_ to use the tools effectively. This is the difference between giving someone a set of wrenches and giving them a repair manual.
 
-```markdown
+```markdown {title=".claude/skills/my-docs/SKILL.md"}
 ---
 name: my-docs
 description: >-
@@ -641,7 +641,7 @@ Where to place the skill file depends on the agent:
 
 A [plugin](https://code.claude.com/docs/en/discover-plugins) bundles the MCP server config _and_ the skill file so it can be installed with a single command. Create a `.claude-plugin/` directory:
 
-```text {title=".cursor/skills/my-docs/SKILL.md"}
+```text {title=".claude-plugin/"}
 .claude-plugin/
 ├── plugin.json
 └── skills/
@@ -650,7 +650,7 @@ A [plugin](https://code.claude.com/docs/en/discover-plugins) bundles the MCP ser
 
 The `plugin.json`:
 
-```json
+```json {title=".claude-plugin/plugin.json"}
 {
   "name": "my-docs",
   "version": "0.1.0",

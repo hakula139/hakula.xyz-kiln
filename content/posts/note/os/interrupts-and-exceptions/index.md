@@ -58,9 +58,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 为什么要保存这 3 个特殊寄存器？因为中断返回（`eret`）时需要还原用户态栈指针 SP（保存在 SP_EL0）、中断前 PSTATE（保存在 SPSR_EL1）以及中断前 PC（保存在 ELR_EL1）。
 
-```c
-// inc/trap.h
-
+```c {title="inc/trap.h"}
 struct trapframe {
     // Special Registers
     uint64_t sp_el0;    // Stack Pointer
@@ -112,9 +110,7 @@ struct trapframe {
 
 将所有通用寄存器和 3 个特殊寄存器 SP_EL0, SPSR_EL1, ELR_EL1 压入堆栈，然后跳转到中断函数 `trap` 入口。
 
-```asm
-/* kern/trapasm.S */
-
+```asm {title="kern/trapasm.S"}
 /* vectors.S sends all traps here. */
 .global alltraps
 alltraps:
@@ -150,9 +146,7 @@ alltraps:
 
 将所有通用寄存器和 3 个特殊寄存器 SP_EL0, SPSR_EL1, ELR_EL1 弹栈还原，然后中断返回（`eret`）。
 
-```asm
-/* kern/trapasm.S */
-
+```asm {title="kern/trapasm.S"}
 /* Return falls through to trapret. */
 .global trapret
 trapret:

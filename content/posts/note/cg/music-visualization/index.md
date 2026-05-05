@@ -70,9 +70,7 @@ pm2 stop server
 
 首先是初始化音频分析器 `audioAnalyser`，将其绑定到我们的音频源上，并设置一些参数。
 
-```ts
-// ./src/components/MusicVisualizer.vue
-
+```ts {title="src/components/MusicVisualizer.vue"}
 const { FFT_SIZE, SMOOTHING_TIME_CONST } = ANALYZER;
 
 const audioPlayerRef = ref<HTMLAudioElement>();
@@ -102,9 +100,7 @@ const setupAudioAnalyser = (): void => {
 
 对于每一帧的音频，我们利用函数 `AnalyserNode.getByteFrequencyData()` 按频率将 $[0,f_s/2]$ 范围的音频**线性**地切割成 $N/2$ 个频域，同时得到每个频域上音频的响度（默认范围为 $[-100,-30]\ \mathrm{Db}$）**线性**映射到整数域 $[0,255]$ 上的值。其中 $f_s$ 即 `context.sampleRate` 为采样频率，其默认值取决于音频设备的系统设置，通常为 $44100\ \mathrm{Hz}$。$N$ 即 `FFT_SIZE` 为 FFT 时的采样点数，本项目中取值为 $256$。
 
-```ts
-// ./src/components/MusicVisualizer.vue
-
+```ts {title="src/components/MusicVisualizer.vue"}
 const spectrum = new Uint8Array(audioAnalyser.value.frequencyBinCount);
 audioAnalyser.value.getByteFrequencyData(spectrum);
 ```
@@ -121,9 +117,7 @@ audioAnalyser.value.getByteFrequencyData(spectrum);
 
 由于期末时间过于紧张，这里我们就简单生成一个柱状图。
 
-```ts
-// ./src/components/MusicVisualizer.vue
-
+```ts {title="src/components/MusicVisualizer.vue"}
 const render = (): void => {
   if (canvasRef.value && canvasContext.value && audioAnalyser.value) {
     const { clientWidth: width, clientHeight: height } = canvasRef.value;
@@ -191,9 +185,7 @@ $$(x_i,\ y_i) = (i(w_0+\Delta w),\ h-h_i)$$
 
 这里我们调用函数 `setFillStyle()` 美化了一下输出，设定柱形的填充色为渐变的橙色。
 
-```ts
-// ./src/components/MusicVisualizer.vue
-
+```ts {title="src/components/MusicVisualizer.vue"}
 const setFillStyle = (): void => {
   if (canvasRef.value && canvasContext.value) {
     const gradient = canvasContext.value.createLinearGradient(0, 0, 0, canvasRef.value.height);
