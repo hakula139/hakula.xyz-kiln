@@ -56,6 +56,8 @@
     --color-border: #e8e8ed;
     --color-card: #2a2a2e;
     --color-selection: rgba(53, 166, 247, 0.25);
+    --color-line-highlight-bg: rgba(255, 235, 59, 0.1);
+    --color-line-highlight-border: rgba(255, 193, 7, 0.5);
     --radius-card: 1.25rem;
     --shadow-card: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
     --drop-shadow-text: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -65,8 +67,6 @@
     --surface-glass-hover: rgba(255, 255, 255, 0.72);
     --surface-glass-scroll-shadow: rgba(0, 0, 0, 0.06);
     --surface-overlay-backdrop: rgba(0, 0, 0, 0.35);
-    --color-line-highlight-bg: rgba(255, 235, 59, 0.1);
-    --color-line-highlight-border: rgba(255, 193, 7, 0.5);
     --scale-card-hover: 135%;
     --animate-lqip-fade-in: lqip-fade-in 1s ease both;
     --animate-menu-fade-in: menu-fade-in 200ms ease both;
@@ -950,14 +950,14 @@
     --color-border: #3a3a42;
     --color-card: #1a1a1e;
     --color-selection: rgba(50, 112, 194, 0.4);
+    --color-line-highlight-bg: rgba(255, 235, 59, 0.15);
+    --color-line-highlight-border: rgba(255, 193, 7, 0.6);
     --surface-glass-panel: rgba(41, 42, 45, 0.7);
     --surface-glass-overlay: rgba(41, 42, 45, 0.55);
     --surface-glass-border: rgba(255, 255, 255, 0.08);
     --surface-glass-hover: rgba(255, 255, 255, 0.08);
     --surface-glass-scroll-shadow: rgba(255, 255, 255, 0.06);
     --surface-overlay-backdrop: rgba(0, 0, 0, 0.55);
-    --color-line-highlight-bg: rgba(255, 235, 59, 0.15);
-    --color-line-highlight-border: rgba(255, 193, 7, 0.6);
   }
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -1749,7 +1749,7 @@
   .highlight .line.hl, .highlight .line-number.hl {
     display: inline-block;
     width: 100%;
-    background: var(--color-line-highlight-bg);
+    background-color: var(--color-line-highlight-bg);
   }
   .highlight .line.hl {
     box-shadow: inset 2px 0 0 var(--color-line-highlight-border);
