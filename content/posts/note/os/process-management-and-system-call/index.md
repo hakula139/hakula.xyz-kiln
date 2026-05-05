@@ -135,7 +135,7 @@ swtch:
 
 在 `kern/proc.c` 中将 `swtch` 声明为：
 
-```c
+```c {title="kern/proc.c"}
 void swtch(struct context**, struct context*);
 ```
 
@@ -284,7 +284,7 @@ proc_alloc()
 
 其中，函数 `proc_free` 的作用是清空进程的 PCB，并利用函数 `kfree` 和 `vm_free` 释放申请的内存。
 
-```c
+```c {title="kern/proc.c"}
 /*
  * Free a proc structure and the data hanging from it,
  * including user pages.
@@ -382,7 +382,7 @@ pgdir_init()
 
 函数 `uvm_init` 则用于将二进制码加载到页表地址 `0x0` 的位置。
 
-```c
+```c {title="kern/vm.c"}
 /*
  * Load binary code into address 0 of pgdir.
  * sz must be less than a page.
@@ -526,7 +526,7 @@ trapret:
 
 由于 x86 下函数返回时要先弹栈，而此前栈底预先保存的值即为函数返回地址。因此 xv6 的解决方案是，在 kstack 中 context 部分的上方保存 `trapret` 的地址[^xv6]。由于之前函数是直接跳转到 `forkret` 的，而没有进行正常函数调用前必要的将函数返回地址压栈的操作，因此利用这个 trick，可以使得 `forkret` 返回时弹栈得到的返回地址为 `trapret` 的地址，从而实现跳转。同时这样的好处是，弹栈后位于返回地址上方的地址正好就是 trap frame 的地址，因此栈指针 SP 的值也是正确的，恰好指向 `p->tf`。
 
-```c {title="mit-pdos/xv6-public proc.c"}
+```c
 // https://github.com/mit-pdos/xv6-public/blob/master/proc.c
 
 sp = p->kstack + KSTACKSIZE;
@@ -550,7 +550,7 @@ p->context->eip = (uint)forkret;
 
 Xv6-riscv 的解决方案是，不采用 x86 下直接返回的方式，而是调用函数 `usertrapret`[^xv6-riscv]。在 `usertrapret` 的最后，其实是调用了函数 `userret`，有点类似于我们的 `trapret`。
 
-```c {title="mit-pdos/xv6-riscv kernel/trap.c"}
+```c
 // https://github.com/mit-pdos/xv6-riscv/blob/riscv/kernel/trap.c
 
 // jump to trampoline.S at the top of memory, which
@@ -560,7 +560,7 @@ uint64 fn = TRAMPOLINE + (userret - trampoline);
 ((void (*)(uint64,uint64))fn)(TRAPFRAME, satp);
 ```
 
-```asm {title="mit-pdos/xv6-riscv kernel/trampoline.S"}
+```asm
 /* https://github.com/mit-pdos/xv6-riscv/blob/riscv/kernel/trampoline.S */
 
 .globl userret
@@ -576,7 +576,7 @@ userret:
 
 思来想去，最后还是没能想到什么优雅的解决方案（能用 C 语言解决就算优雅）。因此我就暴力地用汇编写了个辅助函数 `usertrapret`，本质是对 `trapret` 的重载，区别在于可以接受一个 trap frame 指针作为参数。
 
-```asm
+```asm {title="kern/trapasm.S"}
 /* Help forkret to call trapret in an expected way. */
 .global usertrapret
 usertrapret:
@@ -613,7 +613,7 @@ yield()
 
 函数 `sched` 的工作也很简单，就是调用函数 `swtch` 切换 context，执行权回到函数 `scheduler`，然后由 `scheduler` 来决定下一个执行的程序，如此循环。
 
-```c
+```c {title="kern/proc.c"}
 /*
  * Enter scheduler. Must hold only p->lock
  * and have changed p->state.
