@@ -109,7 +109,7 @@ $$
 
 ##### 1.1.2 代码实现
 
-```python
+```python {title="numpy_fnn.py"}
 class Matmul(NumpyOp):
     '''
     Matrix multiplication unit.
@@ -197,7 +197,7 @@ $$
 
 ##### 1.2.2 代码实现
 
-```python
+```python {title="numpy_fnn.py"}
 class Relu(NumpyOp):
     '''
     Rectified Linear Unit.
@@ -267,7 +267,7 @@ $$
 
 为了防止 $X\_{ij} = 0$ 时出现 $\log X\_{ij}\rightarrow -\infty$ 导致溢出，这里我们给 $X\_{ij}$ 附加了一个 $\epsilon = 10^{-12}$ 的修正。
 
-```python
+```python {title="numpy_fnn.py"}
 class Log(NumpyOp):
     '''
     Natural logarithm unit.
@@ -354,7 +354,7 @@ $$
 
 ##### 1.4.2 代码实现
 
-```python
+```python {title="numpy_fnn.py"}
 class Softmax(NumpyOp):
     '''
     Softmax over last dimension.

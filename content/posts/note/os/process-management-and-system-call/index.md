@@ -526,9 +526,7 @@ trapret:
 
 由于 x86 下函数返回时要先弹栈，而此前栈底预先保存的值即为函数返回地址。因此 xv6 的解决方案是，在 kstack 中 context 部分的上方保存 `trapret` 的地址[^xv6]。由于之前函数是直接跳转到 `forkret` 的，而没有进行正常函数调用前必要的将函数返回地址压栈的操作，因此利用这个 trick，可以使得 `forkret` 返回时弹栈得到的返回地址为 `trapret` 的地址，从而实现跳转。同时这样的好处是，弹栈后位于返回地址上方的地址正好就是 trap frame 的地址，因此栈指针 SP 的值也是正确的，恰好指向 `p->tf`。
 
-```c
-// https://github.com/mit-pdos/xv6-public/blob/master/proc.c
-
+```c {title="mit-pdos/xv6-public:proc.c"}
 sp = p->kstack + KSTACKSIZE;
 
 // Leave room for trap frame.
@@ -550,9 +548,7 @@ p->context->eip = (uint)forkret;
 
 Xv6-riscv 的解决方案是，不采用 x86 下直接返回的方式，而是调用函数 `usertrapret`[^xv6-riscv]。在 `usertrapret` 的最后，其实是调用了函数 `userret`，有点类似于我们的 `trapret`。
 
-```c
-// https://github.com/mit-pdos/xv6-riscv/blob/riscv/kernel/trap.c
-
+```c {title="mit-pdos/xv6-riscv:kernel/trap.c"}
 // jump to trampoline.S at the top of memory, which
 // switches to the user page table, restores user registers,
 // and switches to user mode with sret.
@@ -560,9 +556,7 @@ uint64 fn = TRAMPOLINE + (userret - trampoline);
 ((void (*)(uint64,uint64))fn)(TRAPFRAME, satp);
 ```
 
-```asm
-/* https://github.com/mit-pdos/xv6-riscv/blob/riscv/kernel/trampoline.S */
-
+```asm {title="mit-pdos/xv6-riscv:kernel/trampoline.S"}
 .globl userret
 userret:
         # userret(TRAPFRAME, pagetable)

@@ -864,9 +864,7 @@ void skip_COMMENTS(const std::string& s, const location_type& loc) {
 
 此外，[之前](#41-prologue) 我们提到 Lexer 现在需要返回一个 `symbol_type` 而不是 `int`，这部分逻辑我们是通过 Bison 的 token constructor 接口实现的。具体来说，原本我们是以枚举的形式定义所有的 token 类型：
 
-```cpp
-// https://github.com/hakula139/pcat_lexical_analyzer/blob/master/src/lexer.hpp
-
+```cpp {title="hakula139/pcat_lexical_analyzer:src/lexer.hpp"}
 enum Tokens {
   T_EOF = 0,
   T_WS,

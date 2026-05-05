@@ -79,7 +79,7 @@ $$
 
 我们利用以下函数生成数据集：
 
-```python {title="source.py"}
+```python
 class TestSuite:
     '''
     Multiple testing data for models.
