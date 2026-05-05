@@ -1633,14 +1633,14 @@
     cursor: pointer;
     align-items: center;
     gap: calc(var(--spacing) * 2);
-    background-color: color-mix(in srgb, #f5f5f7 70%, transparent);
+    background-color: color-mix(in srgb, #f5f5f7 60%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-bg-muted) 70%, transparent);
+      background-color: color-mix(in oklab, var(--color-bg-muted) 60%, transparent);
     }
     padding-inline: calc(var(--spacing) * 4);
     padding-block: calc(var(--spacing) * 2);
-    font-size: var(--text-xs);
-    line-height: var(--tw-leading, var(--text-xs--line-height));
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
     -webkit-user-select: none;
     user-select: none;
   }
@@ -1654,6 +1654,8 @@
     transition-duration: 200ms;
   }
   .code-lang {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
     --tw-tracking: var(--tracking-wider);
@@ -1666,6 +1668,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    --tw-font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text-secondary);
   }
   .copy-btn {
