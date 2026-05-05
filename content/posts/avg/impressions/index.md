@@ -19,11 +19,11 @@ src = "/images/article-covers/yuki.webp"
 
 ## 评测数据
 
-::: callout { type=tip title="提示" }
+::: callout {type=tip title="提示"}
 使用 `Shift` + `鼠标滚轮` 横向滚动，点击表头进行排序。
 :::
 
-::: score-table { "scores.csv" }
+::: score-table {"scores.csv"}
 :::
 
 主观评价，仅供参考。已抛弃作品不会出现在表中。
@@ -41,7 +41,7 @@ $$
 \textrm{总评} = \textrm{剧本}\times 70\% + \textrm{系统}\times 15\% + \textrm{画面}\times 8\% + \textrm{音乐}\times 7\%
 $$
 
-::: callout { type=question title="关于评分项目" }
+::: callout {type=question title="关于评分项目"}
 
 - **剧本**：作为一部 AVG 作品，剧本当然是作品的绝对核心，其他一切都只是**辅助**，因此在总评中有着最高的权重。本项会综合考量作品的思想深度、情绪渲染、叙事结构、行文文笔、人物塑造、世界观构建、氛围感、完成度、逻辑缜密度等各种方面。只要全作在任何一处存在亮点就会得到较高的评价，即评分考虑**峰值**而非平均值。本评测不要求作品必须面面俱到、完美无缺，对缺陷的容忍度较高（但对**平庸**的容忍度极低）。这是为了鼓励作品勇于创新、敢于挑战困难的主题或复杂的叙事结构，而非致力于做出一部中规中矩、不出错、但无趣的作品。制作组当然可以出于现实的考量做一部迎合观众的纯商业向作品，这是制作组的权利，我同样作为一名内容创作者表示理解、尊重，但不会在评分中留情面——这毕竟是我的**主观**评分表。
 
@@ -78,13 +78,13 @@ $$
 
 ## 关于分级体系
 
-::: callout { type=info title="数据来源" }
+::: callout {type=info title="数据来源"}
 [The Visual Novel Database | vndb](https://vndb.org/v/all?q=;fil=tagspoil-0;rfil=;o=d;s=rating)
 :::
 
 文字和背景的颜色是我自行设定的，标准如下：
 
-::: { .rating-levels }
+::: {.rating-levels}
 
 | 分级 | 含义                              |
 | :--: | :-------------------------------- |
@@ -98,7 +98,7 @@ $$
 
 :::
 
-::: callout { type=danger title="警告" }
+::: callout {type=danger title="警告"}
 
 [R-18G][r18g] 作品包含怪诞、猎奇题材，不适合大多数玩家。
 
@@ -112,7 +112,7 @@ $$
 
 ## 关于 EGS 评分
 
-::: callout { type=info title="数据来源" }
+::: callout {type=info title="数据来源"}
 [ErogameScape -エロゲー批評空間-](https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/toukei_median.php?count=500)
 :::
 
@@ -126,7 +126,7 @@ $$
 
 ## 关于 BGM 评分
 
-::: callout { type=info title="数据来源" }
+::: callout {type=info title="数据来源"}
 [Bangumi 番组计划](https://bgm.tv/game/tag/galgame/?sort=rank)
 :::
 

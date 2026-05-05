@@ -21,7 +21,7 @@
   "patterns": [
     {
       "name": "code_fenced",
-      "pattern": "/^```[\\w]*\\n[\\s\\S]*?^```/gm"
+      "pattern": "/^(`{3,})[^\\n]*\\n[\\s\\S]*?^\\1/gm"
     },
     {
       "name": "code_inline",

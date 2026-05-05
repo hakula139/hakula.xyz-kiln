@@ -26,7 +26,7 @@ url = "https://www.pixiv.net/artworks/72296053"
 
 Walkure 是一个基于 LR2IR 的辅助网站，提供了谱面难度推定、玩家实力值推定等实用功能。
 
-::: callout { type=warning title="注意" }
+::: callout {type=warning title="注意"}
 SP 発狂 BMS 玩家限定，「实力值推定」需要达成至少一个 SP★01 Easy Clear 及以上的成绩才能使用。
 :::
 
@@ -36,7 +36,7 @@ SP 発狂 BMS 玩家限定，「实力值推定」需要达成至少一个 SP★
 
 基于 LR2IR 上的玩家成绩大数据，对发狂表内谱面、Overjoy 表内谱面和发狂段位的难度进行了相对更精确的推定。不定时更新，仅供参考。
 
-::: callout { type=note title="说明" }
+::: callout {type=note title="说明"}
 
 - 如果无人通过，难度推定处将留空。
 - 已达成 Hard Clear 的谱面将被同时判定为已达成 Normal Clear，但实际上 Normal Clear 比 Hard Clear 更难的情况是可能发生的（例如 SP★★6 unhappy century），此时 Normal Clear 的难度推定将不准确。对于个别 Normal Clear 比 Full Combo 更难的情况同理（例如 SP★★4 Heart To Heart -collect sky blue-）。
@@ -47,7 +47,7 @@ SP 発狂 BMS 玩家限定，「实力值推定」需要达成至少一个 SP★
 
 「难度」指的是以 Easy Clear 为基准的推定通过难度。例如，一个谱面 Hard Clear 的推定难度为 ★4.00，即表示其难度与 Easy Clear 一个标准 ★4 谱面的难度相同。
 
-::: callout { type=tip title="题外话" }
+::: callout {type=tip title="题外话"}
 
 - 发狂表的评级以 Normal Clear 为基准
 - Satellite / Stella 表的评级以 Easy Clear 为基准
@@ -68,7 +68,7 @@ SP 発狂 BMS 玩家限定，「实力值推定」需要达成至少一个 SP★
 
 基于玩家已通过和未通过[^2]的谱面，推定玩家的实力值。**仅供参考。**
 
-::: callout { type=note title="说明" }
+::: callout {type=note title="说明"}
 
 - 未游玩的谱面不会参与实力推定
 - 地力谱面度越高的谱面权重越大
@@ -124,7 +124,7 @@ javascript: (function () {
 
 ##### 推荐度
 
-::: callout { type=note title="推荐度模型介绍" open=false }
+::: callout {type=note title="推荐度模型介绍" open=false}
 
 Walkure 的推荐度模型基于 [项目反应理论][irt-wiki]：
 
@@ -168,11 +168,11 @@ BMS 谱面在线预览，支持上传谱面 / 搜索已上传的谱面。
 
 BeMusicSeeker 是一个用于管理 BMS 曲包、导入第三方表的辅助工具。别再用 GLAssist 啦！
 
-::: callout { type=success title="安装包" }
+::: callout {type=success title="安装包"}
 [:(fas fa-download): 本地下载](https://cloud.hakula.xyz/f/d/jZ5I1/BeMusicSeeker.exe)
 :::
 
-::: callout { type=tip title="阅读" }
+::: callout {type=tip title="阅读"}
 
 [使用 BeMusicSeeker 导入各类表的方法 - 腾讯文档](https://docs.qq.com/doc/DUkV2cFRlTUh2SG94)
 

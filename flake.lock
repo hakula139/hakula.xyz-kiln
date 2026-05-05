@@ -145,16 +145,16 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1777829273,
-        "narHash": "sha256-pJh2TlShA5gmIvR2hsQqBz1CJi3ugGU6WURd60NmaKk=",
+        "lastModified": 1777999970,
+        "narHash": "sha256-uwjqBR4bNPcwNyjSxK8kMFg20ynb6eKjT2y6DimxURk=",
         "owner": "hakula139",
         "repo": "kiln",
-        "rev": "ca4a5c8e5fe5449c7fe03889c7752abb6c13686a",
+        "rev": "2ac461a762c58b0fd73ecceeff24797ee8d70705",
         "type": "github"
       },
       "original": {
         "owner": "hakula139",
-        "ref": "feat/nix-package-binaries",
+        "ref": "v0.2.0-rc.4",
         "repo": "kiln",
         "type": "github"
       }

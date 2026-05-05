@@ -44,7 +44,7 @@ The idea is simple. A website places a file at `/llms.txt` that contains a struc
 
 Here is what a typical `llms.txt` looks like:
 
-```markdown
+```markdown {title="llms.txt"}
 # My API Documentation
 
 > API reference and guides for the My API platform.
@@ -57,7 +57,7 @@ Here is what a typical `llms.txt` looks like:
 
 And `llms-full.txt` is simply every page's content, concatenated with `# Title` headings as separators:
 
-```markdown
+```markdown {title="llms-full.txt"}
 # Getting Started
 
 Welcome to the API. This guide walks you through...
@@ -71,7 +71,7 @@ The Python API exposes the core functionality through...
 
 If your docs are already on [MkDocs](https://www.mkdocs.org), generating these files is a one-line plugin addition. The [mkdocs-llmstxt](https://github.com/pawamoy/mkdocs-llmstxt) plugin scans your pages at build time and produces both files automatically. Add it to `mkdocs.yml`:
 
-```yaml
+```yaml {title="mkdocs.yml"}
 plugins:
   - llmstxt
 ```
@@ -120,13 +120,13 @@ These are mostly mechanical fixes — a good candidate for LLM-assisted batch pr
 
 Start with a minimal working demo (a handful of pages, correct links, proper formatting) before migrating the full space. Quality over coverage: a small set of verified, well-formatted pages is more useful to the agent than a bulk import full of broken links and garbled formatting.
 
-::: callout { type=tip title="Markdown linting" }
+::: callout {type=tip title="Markdown linting"}
 
 Install [markdownlint](https://github.com/DavidAnson/markdownlint) (or its CLI / IDE plugin) and configure a `.markdownlint.json` at the project root. This catches formatting issues (inconsistent list markers, missing blank lines, trailing spaces) before they reach the build. The specific rules are worth discussing with your team — what matters is that _some_ standard is enforced consistently.
 
 :::
 
-::: callout { type=tip title="Why not just dump files into context?" }
+::: callout {type=tip title="Why not just dump files into context?"}
 
 You _could_ skip all of this and paste your entire documentation into the user prompt, or have the agent read every file at the start of each session. For small doc sets (< 50 pages), this might even work, but it scales terribly. A 200-page API reference might consume most of the context window before the agent starts doing actual work. The MCP approach is surgical: the agent loads only the pages it needs, when it needs them, and the rest stays out of context. This is the context engineering principle from [Part 1](../part-1/#what-is-an-llm): the window is finite, and every token you load displaces something else.
 
@@ -174,7 +174,7 @@ my-docs-mcp/
 
 The `pyproject.toml`:
 
-```toml
+```toml {title="pyproject.toml"}
 [project]
 name = "my-docs-mcp"
 version = "0.1.0"
@@ -211,7 +211,7 @@ Here is `server.py`, the core of the MCP server. We will walk through it piece b
 
 ### FastMCP instantiation
 
-```python
+```python {title="server.py"}
 from fastmcp import FastMCP
 
 mcp = FastMCP(
@@ -232,7 +232,7 @@ The first argument is the server name (shown in the agent's MCP server list). Th
 
 Each tool is an async function decorated with `@mcp.tool`. FastMCP reads the function's type hints and docstring to generate the JSON Schema that the agent sees. This means your docstring _is_ the tool's documentation — if it is vague, the agent will use the tool incorrectly.
 
-```python
+```python {title="server.py"}
 @mcp.tool
 async def list_versions() -> list[dict[str, Any]]:
     """List all available documentation versions with their aliases."""
@@ -265,7 +265,7 @@ The most complex tool is `get_page`, because it needs to resolve a URL path to a
 1. **Primary**: Look up the page title from `llms.txt` (which maps paths to titles), then find the corresponding `# Title` section in `llms-full.txt`.
 2. **Fallback**: If the page is not in `llms.txt` (some pages, like auto-generated API references, may be excluded), assemble it from the MkDocs search index, which stores one entry per section.
 
-```python
+```python {title="server.py"}
 @mcp.tool
 async def get_page(path: str, version: str = "latest") -> str:
     """Get a single documentation page's content in markdown.
@@ -295,7 +295,7 @@ async def get_page(path: str, version: str = "latest") -> str:
 
 The extraction helpers are straightforward string operations:
 
-```python
+```python {title="server.py"}
 def _normalize_path(path: str) -> str:
     """Normalize a page path for consistent comparison."""
     path = path.strip("/")
@@ -330,7 +330,7 @@ def _extract_page(llms_txt: str, full_text: str, path: str) -> str:
 
 The path normalization matters because agents are inconsistent about trailing slashes and `index.md` suffixes. The regex in `_resolve_title` parses the Markdown link format that `llms.txt` uses — `- [Title](https://host/version/path/)` — and captures two groups: the page title and the path segment after the version component. If your docs site uses a different URL structure (e.g., no version prefix, or a different path layout), you will need to adjust this pattern.
 
-::: callout { type=note title="The search index fallback" }
+::: callout {type=note title="The search index fallback"}
 
 MkDocs generates a `search_index.json` that contains one entry per _section_ (each heading within a page). When a page is missing from `llms-full.txt`, the fallback collects all search index entries whose base path matches the requested page and concatenates them into a synthetic document. The result is not as clean as the original Markdown, but it is good enough that the agent can extract the information it needs. This is particularly useful for auto-generated API reference pages that some MkDocs setups exclude from `llms.txt`.
 
@@ -338,7 +338,7 @@ If all your pages are already included in `llms-full.txt`, you can safely skip t
 
 :::
 
-```python
+```python {title="server.py"}
 def _assemble_from_search_index(
     index: list[dict[str, Any]], path: str
 ) -> str | None:
@@ -372,7 +372,7 @@ The reconstructed document only uses two heading levels (`#` for the page title,
 
 ### The entry point
 
-```python
+```python {title="server.py"}
 def main() -> None:
     parser = argparse.ArgumentParser(description="My Docs MCP Server")
     parser.add_argument(
@@ -393,7 +393,7 @@ The base URL is configurable through a CLI argument or an environment variable, 
 
 The fetcher is a thin async HTTP client that caches responses for 5 minutes. Every tool call hits the fetcher, and without caching, a typical agent session (which might call `search_docs`, then `get_page` three times, then `get_docs_index`) would make a dozen HTTP requests to the same URLs within seconds.
 
-```python
+```python {title="fetcher.py"}
 DEFAULT_BASE_URL = "https://docs.example.com"
 CACHE_TTL = 300  # 5 minutes
 
@@ -437,7 +437,7 @@ The `verify_ssl=False` default is intentional for internal deployments where doc
 
 MkDocs with [mike](https://github.com/jimporter/mike) (the versioning plugin) publishes a `versions.json` that maps version numbers to aliases:
 
-```json
+```json {title="versions.json"}
 [
   { "version": "2.0.0", "title": "2.0.0", "aliases": ["latest"] },
   { "version": "1.2.3", "title": "1.2.3", "aliases": [] }
@@ -446,7 +446,7 @@ MkDocs with [mike](https://github.com/jimporter/mike) (the versioning plugin) pu
 
 The fetcher resolves aliases before fetching:
 
-```python
+```python {title="fetcher.py"}
 async def resolve_version(self, version: str) -> str:
     """Resolve 'latest' or other aliases to actual version identifiers."""
     versions = await self.get_versions()
@@ -464,7 +464,7 @@ This means `get_page("guides/getting-started/", version="latest")` transparently
 
 The search module is deliberately simple: keyword matching with title weighting. No vector embeddings, no semantic search, no external dependencies.
 
-```python
+```python {title="search.py"}
 def search(
     docs: list[dict[str, Any]],
     query: str,
@@ -548,7 +548,7 @@ Add the server to your agent's MCP configuration. The syntax varies by agent:
 
 **Claude Code** — add to `.mcp.json` (project) or `~/.claude.json` (global):
 
-```json
+```json {title=".mcp.json"}
 {
   "mcpServers": {
     "my-docs": {
@@ -564,7 +564,7 @@ Add the server to your agent's MCP configuration. The syntax varies by agent:
 
 **Codex CLI** — add to `.codex/config.toml` (project) or `~/.codex/config.toml` (global):
 
-```toml
+```toml {title=".codex/config.toml"}
 [mcp_servers.my-docs]
 command = "uvx"
 args = ["my-docs-mcp@latest"]
@@ -574,7 +574,7 @@ enabled = true
 
 **Cursor** — add to `.cursor/mcp.json` (project) or `~/.cursor/mcp.json` (global):
 
-```json
+```json {title=".cursor/mcp.json"}
 {
   "mcpServers": {
     "my-docs": {
@@ -594,7 +594,7 @@ The `@latest` version specifier ensures `uvx` always fetches the latest version 
 
 A skill file teaches the agent _how_ to use the tools effectively. This is the difference between giving someone a set of wrenches and giving them a repair manual.
 
-```markdown
+```markdown {title=".claude/skills/my-docs/SKILL.md"}
 ---
 name: my-docs
 description: >-
@@ -641,7 +641,7 @@ Where to place the skill file depends on the agent:
 
 A [plugin](https://code.claude.com/docs/en/discover-plugins) bundles the MCP server config _and_ the skill file so it can be installed with a single command. Create a `.claude-plugin/` directory:
 
-```text
+```text {title=".claude-plugin/"}
 .claude-plugin/
 ├── plugin.json
 └── skills/
@@ -650,7 +650,7 @@ A [plugin](https://code.claude.com/docs/en/discover-plugins) bundles the MCP ser
 
 The `plugin.json`:
 
-```json
+```json {title=".claude-plugin/plugin.json"}
 {
   "name": "my-docs",
   "version": "0.1.0",
@@ -727,7 +727,7 @@ The real test is using it. Start a session with the MCP server configured, and a
 
 Watch the tool calls in the output. The agent should call `search_docs(...)`, identify the relevant page from the results, then call `get_page` to read it. If it hallucinates instead of calling the tools, your skill's `description` might not be triggering auto-invocation — make the description more specific about when the skill applies.
 
-::: callout { type=warning title="Stdio transport and stdout" }
+::: callout {type=warning title="Stdio transport and stdout"}
 
 When running as a local MCP server (the default for most agents), the server communicates with the agent over stdio using JSON-RPC. Any `print()` statements, logging to stdout, or library output on stdout will corrupt the protocol and crash the server. Use `logging` (which defaults to stderr) or explicitly write to `sys.stderr`. This is the single most common cause of "MCP server failed to start" errors.
 

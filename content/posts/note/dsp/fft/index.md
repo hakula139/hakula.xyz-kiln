@@ -23,13 +23,13 @@ Digital Signal Processing @ Fudan University, fall 2021.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / naive-speech-recognizer at dev-fft](https://github.com/hakula139/naive-speech-recognizer/tree/dev-fft)
 :::
 
 ## 实验简介
 
-::: callout { type=quote }
+::: callout {type=quote}
 
 1. 录⾳，⽤ 8 kHz 采样，朗读单词 signal。
 2. 截取 1024 点语⾳信号。
@@ -41,9 +41,7 @@ Digital Signal Processing @ Fudan University, fall 2021.
 
 ### 0 总览
 
-```python
-# main.py
-
+```python {title="main.py"}
 # Parameters
 wav_path = 'data/signal.wav'
 fig_time_path = 'assets/fft/time_domain.png'
@@ -72,9 +70,7 @@ def main() -> None:
 
 ### 1 重采样
 
-```python
-# main.py
-
+```python {title="main.py"}
 # Resample to required sample_rate.
 y, sr = librosa.load(wav_path, sr=sample_rate)
 ```
@@ -87,9 +83,7 @@ y, sr = librosa.load(wav_path, sr=sample_rate)
 
 由于音频信号可能很长，我们在分析前需要先将信号分割成若干个帧。这里实验没有进一步要求，我们就简单截取了前 1024 个采样。
 
-```python
-# main.py
-
+```python {title="main.py"}
 # Extract n_samples points.
 t0 = np.arange(n_samples) / sr
 y0 = y[:n_samples]
@@ -98,9 +92,7 @@ plot_time_domain(fig_time_path, t0, y0)
 
 顺便输出一下信号在时域的幅度图。
 
-```python
-# utils.py
-
+```python {title="utils.py"}
 def plot_time_domain(output_path: str, t: np.ndarray, y: np.ndarray) -> None:
     '''
     Plot the amplitudes of a wave in time domain.
@@ -129,9 +121,7 @@ def plot_time_domain(output_path: str, t: np.ndarray, y: np.ndarray) -> None:
 
 然后我们就对这段信号进行 FFT。这里为了验证我们手写的 FFT 是否正确，我们先使用 `numpy` 库的 FFT 实现输出一个幅度谱。
 
-```python
-# main.py
-
+```python {title="main.py"}
 import numpy as np
 import numpy.fft as nf
 
@@ -147,9 +137,7 @@ plot_freq_domain(
 
 然后将其替换成我们自己的实现。
 
-```python
-# main.py
-
+```python {title="main.py"}
 # Compute FFT.
 y0_freqs = fft_freq(n_samples, sr)
 y0_fft = np.abs(fft(y0))
@@ -166,9 +154,7 @@ plot_freq_domain(
 
 本实验中我们实现的是经典的 2 基底 Cooley-Tukey FFT 算法，利用了分治法的思想。算法的输入是信号在时域的幅度数组 $A$，输出是信号在频域的幅度数组 $Y$。
 
-```python
-# fft.py
-
+```python {title="fft.py"}
 def fft(a: np.ndarray) -> np.ndarray:
     '''
     Compute the one-dimensional Discrete Fourier Transform.
@@ -216,9 +202,7 @@ $$
 
 当然，返回的 $Y$ 只有幅度数据，我们需要一个辅助函数返回 $Y$ 每个点所对应的频率，也就是其在频域的横坐标。
 
-```python
-# fft.py
-
+```python {title="fft.py"}
 def fft_freq(n: int, sr: float) -> np.ndarray:
     '''
     Return the Discrete Fourier Transform sample frequencies.

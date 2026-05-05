@@ -24,13 +24,13 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / xv6-armv8 at lab7](https://github.com/hakula139/xv6-armv8/tree/lab7)
 :::
 
 ## 实验简介
 
-::: callout { type=info title="参见" }
+::: callout {type=info title="参见"}
 [hakula139 / xv6-armv8 / docs / lab7.md - GitHub](https://github.com/hakula139/xv6-armv8/blob/lab7/docs/lab7.md)
 :::
 
@@ -38,7 +38,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ### 1 文件系统
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 请实现文件系统，本实验中的文件系统遵循 xv6 的设计，你也可以从 0 开始设计属于你的文件系统。如果你的文件系统不同于 xv6 的话，请修改 `user/src/mkfs`。你需要添加测试证明你实现的文件系统可以读取到你打包的文件，在数量、内容上是正确的。
 :::
 
@@ -86,9 +86,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 函数 `initlog` 的主要工作是根据 super block 中的信息对 `log` 进行初始化，然后调用函数 `recover_from_log`，根据 log header 恢复崩溃前未写入到磁盘的数据。
 
-```c
-// kern/log.c
-
+```c {title="kern/log.c"}
 void
 initlog(int dev)
 {
@@ -108,9 +106,7 @@ initlog(int dev)
 
 其中，super block 保存了磁盘的布局信息，详见注释：
 
-```c
-// inc/fs.h
-
+```c {title="inc/fs.h"}
 /*
  * Disk layout:
  * [boot block | super block | log | inode blocks | free bit map | data blocks]
@@ -131,9 +127,7 @@ struct superblock {
 
 我们先调用函数 `readsb` 读取 super block。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Read the super block.
  */
@@ -148,9 +142,7 @@ readsb(int dev, struct superblock* sb)
 
 然后我们利用 super block 中的信息初始化 `log`，其中 `log` 的结构如下所示：
 
-```c
-// kern/log.c
-
+```c {title="kern/log.c"}
 /*
  * Contents of the header block, used for both the on-disk header block
  * and to keep track in memory of logged block # before commit.
@@ -177,9 +169,7 @@ struct log {
 
 函数 `recover_from_log` 首先调用函数 `read_head` 将磁盘中的 log header 读取到内存，然后调用函数 `install_trans` 根据 log header 将已 commit 的 block 写入到磁盘，最后清空内存中的 log header，并调用函数 `write_head` 清空磁盘中的 log header。
 
-```c
-// kern/log.c
-
+```c {title="kern/log.c"}
 static void
 recover_from_log()
 {
@@ -192,9 +182,7 @@ recover_from_log()
 
 具体来说，函数 `read_head` 先读取磁盘中的 log header，并将其复制到内存中的 `log` 结构里。
 
-```c
-// kern/log.c
-
+```c {title="kern/log.c"}
 /*
  * Read the log header from disk into the in-memory log header.
  */
@@ -211,9 +199,7 @@ read_head()
 
 随后，函数 `install_trans` 根据 log header 中 block 的标号，将磁盘中已 commit 但还未写入到磁盘的 block 的内容复制到一个 `buf` 里，然后将它写入到磁盘。
 
-```c
-// kern/log.c
-
+```c {title="kern/log.c"}
 /*
  * Copy committed blocks from log to their home location.
  */
@@ -233,9 +219,7 @@ install_trans()
 
 最后，将内存中的 log header 清空，并调用函数 `write_head` 将其写入到磁盘，从而将磁盘中的 log header 也清空。
 
-```c
-// kern/log.c
-
+```c {title="kern/log.c"}
 /*
  * Write in-memory log header to disk.
  * This is the true point at which the
@@ -257,9 +241,7 @@ write_head()
 
 函数 `log_write` 的主要工作是在内存中的 log header 里记录需要被写入磁盘的 block 的标号，并标记这个 block 对应的 `buf` 为 dirty，以固定在 `bcache` 中，不会因 LRU 算法被意外淘汰。这些 block 将在之后被统一连续写入磁盘，从而提高效率。
 
-```c
-// kern/log.c
-
+```c {title="kern/log.c"}
 /*
  * Caller has modified b->data and is done with the buffer.
  * Record the block number and pin in the cache with B_DIRTY.
@@ -298,9 +280,7 @@ log_write(struct buf* b)
 
 函数 `begin_op` 的主要工作是在事务开始前，等待 `log` 空闲（不处于正在 commit 的状态）且可用（log header 有足够的空间保存新的待写 block 的标号），然后才允许开始本次文件系统调用。
 
-```c
-// kern/log.c
-
+```c {title="kern/log.c"}
 /*
  * Called at the start of each FS system call.
  */
@@ -327,9 +307,7 @@ begin_op()
 
 函数 `end_op` 的主要工作是在事务结束后，将 log header 中标记的 block 统一连续写入磁盘，并唤醒函数 `begin_op` 中等待 `log` 空闲且可用的文件系统调用。
 
-```c
-// kern/log.c
-
+```c {title="kern/log.c"}
 /*
  * Called at the end of each FS system call.
  * Commits if this was the last outstanding operation.
@@ -366,9 +344,7 @@ end_op()
 
 函数 `commit` 首先调用函数 `write_log` 将待 commit 的 block 写入到磁盘中 `log` 对应的位置，接着调用函数 `write_head` 将内存中的 log header 写入到磁盘，然后调用函数 `install_trans` 根据 log header 将已 commit 的 block 写入到磁盘，最后清空内存中的 log header，并调用函数 `write_head` 清空磁盘中的 log header。
 
-```c
-// kern/log.c
-
+```c {title="kern/log.c"}
 static void
 commit()
 {
@@ -384,9 +360,7 @@ commit()
 
 具体来说，函数 `write_log` 根据 log header 中 block 的标号，将待 commit 的 block 写入到磁盘中 `log` 对应的位置。
 
-```c
-// kern/log.c
-
+```c {title="kern/log.c"}
 /*
  * Copy modified blocks from cache to log.
  */
@@ -406,9 +380,7 @@ write_log()
 
 随后，函数 `write_head` 将内存中的 log header 写入到磁盘，此时事务被 commit。
 
-```c
-// kern/log.c
-
+```c {title="kern/log.c"}
 /*
  * Write in-memory log header to disk.
  * This is the true point at which the
@@ -450,9 +422,7 @@ write_head()
 
 函数 `iinit` 的主要工作是初始化 `icache` 和 `inode` 的锁。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 void
 iinit(int dev)
 {
@@ -471,9 +441,7 @@ iinit(int dev)
 
 其中，`icache` 的结构如下所示：
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 struct {
     struct spinlock lock;
     struct inode inode[NINODE];
@@ -484,9 +452,7 @@ struct {
 
 ![文件在磁盘中的表示（引自 _xv6_）](assets/dinode.webp){width=500}
 
-```c
-// inc/file.h
-
+```c {title="inc/file.h"}
 /*
  * In-memory copy of an inode.
  */
@@ -510,9 +476,7 @@ struct inode {
 
 函数 `ialloc` 的主要工作是在磁盘中找到一个未分配的 `inode`（`type` 为 `0`），然后将它的 `type` 设置为给定的文件类型，表示已分配，最后调用函数 `iget`，返回这个 `inode` 在内存中的拷贝。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Allocate an inode on device dev.
  *
@@ -541,9 +505,7 @@ ialloc(uint32_t dev, uint16_t type)
 
 其中，函数 `iget` 先在 `icache` 中根据标号（`inum`）寻找对应的 `inode`。如果找到，则将其引用数（`ref`）加 `1` 并返回，否则在 `icache` 中回收一个空闲的 cache entry 给这个 `inode`，将其引用数（`ref`）设置为 `1` 并返回。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Find the inode with number inum on device dev
  * and return the in-memory copy. Does not lock
@@ -583,9 +545,7 @@ iget(uint32_t dev, uint32_t inum)
 
 函数 `iupdate` 的主要工作是将内存中的 `inode` 写入到磁盘。由于我们的 `icache` 采用直写（write-through）模式，因此每当 `inode` 有字段被修改，就需要调用一次函数 `iupdate` 进行写回操作。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Copy a modified in-memory inode to disk.
  *
@@ -613,9 +573,7 @@ iupdate(struct inode* ip)
 
 函数 `idup` 的主要工作是将 `inode` 的引用数加 `1`，其中引用数表示当前内存中指向这个 `inode` 的指针数量。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Increment reference count for ip.
  * Returns ip to enable ip = idup(ip1) idiom.
@@ -634,9 +592,7 @@ idup(struct inode* ip)
 
 函数 `ilock` 的主要工作是给指定的 `inode` 加锁。如果当前 `inode` 不在内存中（即 `valid` 为 `0`），则从磁盘中读取，并将 `valid` 设置为 `1`。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Lock the given inode.
  * Reads the inode from disk if necessary.
@@ -670,9 +626,7 @@ ilock(struct inode* ip)
 
 函数 `iunlock` 的主要工作是给指定的 `inode` 解锁。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Unlock the given inode.
  */
@@ -689,9 +643,7 @@ iunlock(struct inode* ip)
 
 函数 `iput` 的主要工作是当 `inode` 的引用数为 `1` 时，调用函数 `itrunc` 清空并释放该 `inode` 的内容，然后调用函数 `iupdate` 更新磁盘中的 `inode`。否则将其引用数减 `1`。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Drop a reference to an in-memory inode.
  *
@@ -729,9 +681,7 @@ iput(struct inode* ip)
 
 这里函数 `itrunc` 用于清空 `inode` 的内容，包括 `NDIRECT` 个直接索引磁盘块（direct block）和 `NINDIRECT` 个间接索引磁盘块（indirect block）。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Truncate inode (discard contents).
  *
@@ -768,9 +718,7 @@ itrunc(struct inode* ip)
 
 其中，函数 `bfree` 用于释放一个 block，将其在 bitmap 中标记为未使用。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Free a disk block.
  */
@@ -791,9 +739,7 @@ bfree(int dev, uint32_t b)
 
 函数 `iunlockput` 是 `iunlock` + `iput` 的别名。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Common idiom: unlock, then put.
  */
@@ -809,9 +755,7 @@ iunlockput(struct inode* ip)
 
 函数 `stati` 的主要工作是复制 `inode` 的元数据（metadata）到 `stat` 结构，届时用户程序可以通过 `stat` 系统调用读取。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Copy stat information from inode.
  * Caller must hold ip->lock.
@@ -838,9 +782,7 @@ stati(struct inode* ip, struct stat* st)
 
 函数 `readi` 的主要工作是从 `inode` 中读取数据。具体来说，先确保数据的读取范围在文件内，然后利用函数 `bmap` 定位文件中 block 的地址并读取到 `buf`，接着将数据从 `buf` 复制到目标地址 `dst`，最后返回成功读取的 block 数量。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Read data from inode.
  * Caller must hold ip->lock.
@@ -869,9 +811,7 @@ readi(struct inode* ip, char* dst, size_t off, size_t n)
 
 这里函数 `bmap` 根据 block 的标号找到其对应的地址并返回，其中 direct block 的地址位于数组 `ip->addrs` 中，indirect block 的地址位于 `ip->addrs[NDIRECT]` 指向的 block 所保存的数组中。如果发现找不到对应的 block，则调用函数 `balloc` 分配一个新的 block。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Inode content
  *
@@ -915,9 +855,7 @@ bmap(struct inode* ip, uint32_t bn)
 
 其中，函数 `balloc` 根据 block 在 bitmap 中所对应的位，遍历所有 block 找到一个可用的 block，将其在 bitmap 中标记为使用中，并调用函数 `bzero` 清空此 block。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Allocate a zeroed disk block.
  */
@@ -945,9 +883,7 @@ balloc(uint32_t dev)
 
 函数 `bzero` 用于清空一个 block。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Zero a block.
  */
@@ -965,9 +901,7 @@ bzero(int dev, int bno)
 
 函数 `writei` 的主要工作是写入数据到 `inode`。具体来说，先确保数据的写入起始地址在文件内，且写入结束地址不超过最大文件大小 `MAXFILE * BSIZE`，然后利用函数 `bmap` 定位文件中 block 的地址并读取到 `buf`，接着将数据从源地址 `src` 复制到 `buf`，并调用函数 `log_write` 加入写磁盘队列，最后返回成功写入的 block 数量。其中，如果写入的 block 数量超过文件大小，文件将自动扩容，最后需要更新此文件的大小，并调用函数 `iupdate` 写入到磁盘。
 
-```c
-// kern/fs.c
-
+```c {title="kern/fs.c"}
 /*
  * Write data to inode.
  * Caller must hold ip->lock.
@@ -1037,9 +971,7 @@ writei(struct inode* ip, char* src, size_t off, size_t n)
 
 函数 `file_init` 的主要工作是初始化 `ftable` 的锁。
 
-```c
-// kern/file.c
-
+```c {title="kern/file.c"}
 void
 file_init()
 {
@@ -1049,9 +981,7 @@ file_init()
 
 其中，`ftable` 的结构如下所示：
 
-```c
-// kern/file.c
-
+```c {title="kern/file.c"}
 struct {
     struct spinlock lock;
     struct file file[NFILE];
@@ -1060,9 +990,7 @@ struct {
 
 `file` 的结构如下所示：
 
-```c
-// inc/file.h
-
+```c {title="inc/file.h"}
 struct file {
     enum { FD_NONE, FD_PIPE, FD_INODE } type;
     int ref;
@@ -1078,9 +1006,7 @@ struct file {
 
 函数 `file_alloc` 的主要工作是在 `ftable` 中找到一个未使用的文件（`ref` 为 `0`），然后将它标记为使用中并返回。
 
-```c
-// kern/file.c
-
+```c {title="kern/file.c"}
 /*
  * Allocate a file structure.
  */
@@ -1104,9 +1030,7 @@ file_alloc()
 
 函数 `file_dup` 的主要工作是将文件的引用数加 `1`，表示创建一个此文件的引用拷贝。
 
-```c
-// kern/file.c
-
+```c {title="kern/file.c"}
 /*
  * Increment ref count for file f.
  */
@@ -1125,9 +1049,7 @@ file_dup(struct file* f)
 
 函数 `file_close` 的主要工作是将文件的引用数减 `1`，当引用数降到 `0` 时，对于普通文件，调用函数 `iput` 关闭文件。
 
-```c
-// kern/file.c
-
+```c {title="kern/file.c"}
 /*
  * Close file f. (Decrement ref count, close when reaches 0.)
  */
@@ -1160,9 +1082,7 @@ file_close(struct file* f)
 
 函数 `file_stat` 的主要工作是调用函数 `stati` 读取文件的元数据。
 
-```c
-// kern/file.c
-
+```c {title="kern/file.c"}
 /*
  * Get metadata about file f.
  */
@@ -1183,9 +1103,7 @@ file_stat(struct file* f, struct stat* st)
 
 函数 `file_read` 的主要工作是对于普通文件，调用函数 `readi` 从文件中读取数据。
 
-```c
-// kern/file.c
-
+```c {title="kern/file.c"}
 /*
  * Read from file f.
  */
@@ -1209,9 +1127,7 @@ file_read(struct file* f, char* addr, ssize_t n)
 
 函数 `file_write` 的主要工作是对于普通文件，调用函数 `writei` 写入数据到文件。
 
-```c
-// kern/file.c
-
+```c {title="kern/file.c"}
 /*
  * Write to file f.
  */
@@ -1251,7 +1167,7 @@ file_write(struct file* f, char* addr, ssize_t n)
 
 ### 2 系统调用
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 请修改 `syscall.c` 以及 `trapasm.S` 来接上 musl，或者修改 Makefile 并搬运 xv6 的简易 libc，从而允许用户态程序通过调用系统调用来操作文件系统。
 :::
 
@@ -1263,9 +1179,7 @@ file_write(struct file* f, char* addr, ssize_t n)
 
 对于 AArch64 架构来说，发起系统调用时，用户程序先将参数地址保存到通用寄存器 X0 ~ X5 里，再将系统调用对应的 system call number 保存到寄存器 X8 里，最后通过 `svc` 指令陷入内核态。[^syscall]
 
-```asm
-/* user/initcode.S */
-
+```asm {title="user/initcode.S"}
 /* exec(init, argv) */
 start:
     ldr     x0, =init
@@ -1290,9 +1204,7 @@ argv:
 
 陷入内核态前，需要先构建 trap frame 结构。这里我们在原有寄存器的基础上，新增了 musl 需要用到的两个寄存器 Q0 和 TPIDR_EL0。
 
-```asm
-/* kern/trapasm.S */
-
+```asm {title="kern/trapasm.S"}
 /* Save Q0 and TPIDR_EL0 to placate musl. */
 str q0, [sp, #-16]!
 mrs x4, tpidr_el0
@@ -1303,9 +1215,7 @@ stp xzr, x4, [sp, #-16]!
 
 新的 trap frame 结构如下所示：
 
-```c
-// inc/trap.h
-
+```c {title="inc/trap.h"}
 struct trapframe {
     // Additional registers used to support musl
     uint64_t _padding;  // for 16-byte aligned
@@ -1356,9 +1266,7 @@ struct trapframe {
 
 随后跳转到函数 `trap` 入口。在函数 `trap` 中，我们根据寄存器 ESR (Exception Syndrome Register) 判断当前为系统调用，随后调用函数 `syscall1`，传入 trap frame，并将返回值保存在 trap frame 的寄存器 X0 中。
 
-```c
-// kern/trap.c
-
+```c {title="kern/trap.c"}
 void
 trap(struct trapframe* tf)
 {
@@ -1383,9 +1291,7 @@ trap(struct trapframe* tf)
 
 我们根据之前保存在寄存器 X8 的值，可以得到当前的 system call number。随后利用函数指针表 `syscalls`，即可进行相应的系统调用。
 
-```c
-// kern/syscall.c
-
+```c {title="kern/syscall.c"}
 int
 syscall1(struct trapframe* tf)
 {
@@ -1407,15 +1313,11 @@ syscall1(struct trapframe* tf)
 
 函数指针表 `syscalls` 包含了我们目前已实现的所有系统调用：
 
-```c
-// inc/types.h
-
+```c {title="inc/types.h"}
 typedef int (*func)();
 ```
 
-```c
-// kern/syscall.c
-
+```c {title="kern/syscall.c"}
 static func syscalls[] = {
     [SYS_set_tid_address] = sys_gettid,
     [SYS_gettid] = sys_gettid,
@@ -1444,9 +1346,7 @@ static func syscalls[] = {
 
 由于时间有限，这些系统调用的功能和具体实现这里就不细讲了。函数定义的位置可以参见 `syscall1.h` 里的注释。
 
-```c
-// inc/syscall1.h
-
+```c {title="inc/syscall1.h"}
 // kern/syscall1.c
 
 int sys_gettid();
@@ -1481,7 +1381,7 @@ int sys_chdir();
 
 ### 3 Shell
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 我们已经把 xv6 的 shell 搬运到了 `user/src/sh` 目录下，但需要实现 `brk` 系统调用来使用 `malloc`，你也可以自行实现一个简单的 shell。请在 `user/src/cat` 中实现 `cat` 命令并在你的 shell 中执行。
 :::
 
@@ -1495,9 +1395,7 @@ int sys_chdir();
 
 `cat` 命令的实质就是从一个文件读取数据，然后写入到另一个文件（默认为终端）。至于文件类型是管道、终端还是普通文件，我们并不关心，因为系统调用的底层已经针对不同的文件类型进行了相应的处理[^about-cat]。`cat` 命令的完整实现如下[^cat.c]：
 
-```c
-// user/src/cat/main.c
-
+```c {title="user/src/cat/main.c"}
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>

@@ -29,7 +29,7 @@ url = "https://www.pixiv.net/artworks/65835281"
 
 关于 IR 的详细介绍参见 [之后](../internet-ranking) 的文章，我们先进行 LR2 的游戏内配置。按任意键进入游戏，之后按 `Esc` 键退出游戏。
 
-::: callout { type=bug }
+::: callout {type=bug}
 全屏模式下，部分玩家可能遇到有声音但没有画面的情况，参见 [FAQ](../faq/#27-全屏有声音但没有画面)。
 :::
 
@@ -37,24 +37,24 @@ url = "https://www.pixiv.net/artworks/65835281"
 
 ## 选曲界面
 
-::: callout { type=abstract title="章节" }
+::: callout {type=abstract title="章节"}
 [LR2 配置教程 - Select](../select/)
 :::
 
 ## 游玩界面
 
-::: callout { type=abstract title="章节" }
+::: callout {type=abstract title="章节"}
 [LR2 配置教程 - Play](../play/)
 :::
 
 ## 结算界面
 
-::: callout { type=abstract title="章节" }
+::: callout {type=abstract title="章节"}
 [LR2 配置教程 - Result](../result/)
 :::
 
 ## 皮肤设置 - WMIX
 
-::: callout { type=abstract title="章节" }
+::: callout {type=abstract title="章节"}
 [LR2 配置教程 - WMIX](../wmix/)
 :::

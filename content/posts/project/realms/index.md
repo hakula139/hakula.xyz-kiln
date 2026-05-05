@@ -24,7 +24,7 @@ Introduction to Database Systems (H) @ Fudan University, spring 2020.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / REALMS](https://github.com/hakula139/REALMS)
 :::
 

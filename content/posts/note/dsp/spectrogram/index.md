@@ -23,13 +23,13 @@ Digital Signal Processing @ Fudan University, fall 2021.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / naive-speech-recognizer at dev-spectrogram](https://github.com/hakula139/naive-speech-recognizer/tree/dev-spectrogram)
 :::
 
 ## 实验简介
 
-::: callout { type=quote }
+::: callout {type=quote}
 
 1. 语音录制：三个单词发音 one, two, six；建议用 8 kHz 采样。
 2. 代码编写：要求使用你自己编写的 FFT 代码，不能调研已有函数库。
@@ -41,9 +41,7 @@ Digital Signal Processing @ Fudan University, fall 2021.
 
 ### 1 语音波形图
 
-```python
-# main.py
-
+```python {title="main.py"}
 def plot_waveform(filename: str, y: np.ndarray, sr: int) -> None:
     '''
     Plot the waveform of the audio signal.
@@ -69,9 +67,7 @@ def plot_waveform(filename: str, y: np.ndarray, sr: int) -> None:
 
 对于整段音频，我们预设一帧的窗口宽度，每次对这个窗口内的信号进行 FFT，将结果保存下来，然后将窗口向后滑动一段距离。这里窗口滑动的距离小于一个窗口宽度，从而确保与原来的窗口存在一定重叠，是为了尽量减少在边缘处由于窗口函数值趋近于零所导致的信息损失。通过不断滑动窗口逐帧进行 FFT，最后我们就得到了完整的语谱图。
 
-```python
-# main.py
-
+```python {title="main.py"}
 def create_spectrogram(y: np.ndarray, n_window: int) -> Tuple[np.ndarray, np.ndarray]:
     '''
     Create the spectrogram of the audio signal.
@@ -100,7 +96,7 @@ def create_spectrogram(y: np.ndarray, n_window: int) -> Tuple[np.ndarray, np.nda
 
 此处 `i_starts` 即每个窗口的开始位置（采样的索引），每次窗口向后滑动的距离为半个窗口宽度，直到剩余信号长度不足一个窗口宽度为止。这里由于我们自行实现的 FFT 算法仅支持处理 2 的幂的信号长度，因此对需要处理的信号进行了补零操作。
 
-```python
+```python {title="main.py"}
 spec = np.array([np.abs(fft(
     np.concatenate((hamming(n_window) * y[i:i+n_window], zero_padding))
 )[:n_fft // 2]) for i in i_starts])
@@ -114,9 +110,7 @@ $$w(n) = 0.54 - 0.46\cos(\frac{2\pi n}{M-1})\qquad (0\le n\le M-1)$$
 
 其实现如下：
 
-```python
-# windows.py
-
+```python {title="windows.py"}
 def hamming(m: int) -> np.ndarray:
     '''
     Return the Hamming window.
@@ -144,9 +138,7 @@ def hamming(m: int) -> np.ndarray:
 
 生成完语谱图后，我们将其绘制出来。
 
-```python
-# main.py
-
+```python {title="main.py"}
 fig_path = Path('assets/spectrogram/dev_set')
 
 def plot_spectrogram(
@@ -179,9 +171,7 @@ def plot_spectrogram(
 
 最后就是调用 `matplotlib.pyplot` 库的 API 进行绘制了。
 
-```python
-# utils.py
-
+```python {title="utils.py"}
 def plot_spectrogram(
     output_path,
     spec: np.ndarray,
@@ -245,7 +235,7 @@ python3 main.py
 
 本实验中，我们使用了预录制的音频文件 `one.dat`, `two.dat`, `six.dat`，其内容分别是单词 one, two, six 的单词发音，按 8000 Hz 采样。如果你的测试音频不是按 8000 Hz 采样的，可以使用 `resample.py` 进行重采样，使用方法：
 
-```bash
+```bash {title="resample.py"}
 python3 resample.py "path/to/foobar.wav" 8000  # 单个文件
 python3 resample.py "path/to/directory" 8000    # 目录下所有 .wav 文件递归批处理
 ```

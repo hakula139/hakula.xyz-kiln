@@ -55,10 +55,10 @@ src = "/images/article-covers/kira-kira.webp"
 
 谨以本线的 ED 歌词作为本文的结尾。
 
-::: music { server="tencent" type="song" id="235624751" }
+::: music {server="tencent" type="song" id="235624751"}
 :::
 
-::: callout { type=note title="A Song for..." }
+::: callout {type=note title="A Song for..."}
 
 ♪ 朦胧的世界 / 在屏住呼吸的黑暗里  
 ♪ 只有真实划破天际  

@@ -34,7 +34,7 @@ url = "https://www.pixiv.net/artworks/66372748"
 
 ## 建站流程
 
-::: callout { type=quote title="笔者注（2020-01-25）" }
+::: callout {type=quote title="笔者注（2020-01-25）"}
 原文写于 2018-08-23，那时候其实基本啥都不会。在进入本科学习一年半后，有了一些新的理解，对此部分内容进行了大幅修改。
 :::
 
@@ -51,7 +51,7 @@ url = "https://www.pixiv.net/artworks/66372748"
 [vps-wiki]: https://en.wikipedia.org/wiki/Virtual_private_server
 [vhost-wiki]: https://en.wikipedia.org/wiki/Virtual_hosting
 
-::: callout { type=tip title="参考" }
+::: callout {type=tip title="参考"}
 
 - [VPS，云服务器（云主机），虚拟主机有什么异同？ - 知乎](https://www.zhihu.com/question/19856629)
 - [VPS 有什么有趣的用途？ - 知乎](https://www.zhihu.com/question/24284566)
@@ -71,7 +71,7 @@ url = "https://www.pixiv.net/artworks/66372748"
 [cn2-wiki]: https://www.vultrblog.com/what-is-a-cn2-line
 [CloudCone]: /links/cloudcone-cn
 
-::: callout { type=tip title="参考" }
+::: callout {type=tip title="参考"}
 [分享我对于 VPS 主机的一些经验给入坑萌新 - 初行博客](https://www.zrj96.com/post-762.html)
 :::
 
@@ -88,7 +88,7 @@ Windows 下推荐使用 [Xshell]，免费的 Home & School 版其实就完全够
 [Xshell]: https://www.netsarang.com/products/xsh_overview.html
 [Termius]: https://termius.com
 
-::: callout { type=tip title="参考" }
+::: callout {type=tip title="参考"}
 [Xshell 6 安装和使用教程 - CSDN](https://blog.csdn.net/qq_32653877/article/details/81984745)
 :::
 
@@ -96,7 +96,7 @@ Windows 下推荐使用 [Xshell]，免费的 Home & School 版其实就完全够
 
 不推荐国内域名商，**强烈**不推荐 Freenom（切记，**免费的永远是最贵的**）。推荐使用 [Cloudflare Registrar][cf-registrar]，仅收取 [ICANN] 的成本价，十分良心。你也可以考虑先在其他地方注册（例如 [namecheap] 和 [namesilo]），蹭个首年优惠，然后再迁移到 Cloudflare。
 
-::: callout { type=warning title="关于付款方式" }
+::: callout {type=warning title="关于付款方式"}
 目前 Cloudflare 不支持支付宝，可以使用 [PayPal](https://www.paypal.com/us/home)，然后绑定国内银行卡。注意别注册成国内版的 贝宝。
 :::
 
@@ -111,7 +111,7 @@ Windows 下推荐使用 [Xshell]，免费的 Home & School 版其实就完全够
 
 本文推荐使用 Cloudflare，主要是因为免费、配置方便、功能全面（可以说是一条龙服务了）。实际上对于个人网站来说，Cloudflare 的免费套餐已经完全够用：**无限** CDN 流量、自带抗 DDoS 防护、自带 SSL 证书。而且因为是海外服务，不需要备案。只能说，Cloudflare yyds！
 
-::: callout { type=tip title="参考" }
+::: callout {type=tip title="参考"}
 [Set up Cloudflare - Cloudflare Fundamentals docs](https://developers.cloudflare.com/fundamentals/get-started/setup)
 :::
 
@@ -119,7 +119,7 @@ Windows 下推荐使用 [Xshell]，免费的 Home & School 版其实就完全够
 
 ### 4 开始建站
 
-::: callout { type=tip title="阅读" }
+::: callout {type=tip title="阅读"}
 [极限建站 - YangMame](https://blog.yangmame.org/%E6%9E%81%E9%99%90%E5%BB%BA%E7%AB%99.html)
 :::
 

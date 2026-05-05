@@ -25,7 +25,7 @@ url = "https://www.pixiv.net/artworks/73473821"
 
 编码问题，参见 [为什么要转区](../download/#为什么要转区)。
 
-::: callout { type=tip title="解决方案" }
+::: callout {type=tip title="解决方案"}
 修改读取失败的曲包目录名，确保其路径里不包含中文等全角字符。然后在选曲界面的对应目录里按 `F8` 更新，或者在启动器里设置曲包更新模式为 [Auto reload](../launcher/#song-reload)。
 :::
 
@@ -33,7 +33,7 @@ url = "https://www.pixiv.net/artworks/73473821"
 
 原因同上。具体如何精确定位到出错的曲包，热心网友 @MsrButterfly 提供了以下方案：
 
-::: callout { type=tip title="解决方案" }
+::: callout {type=tip title="解决方案"}
 不要关闭弹出的「引数不正」错误提示，尝试在资源管理器里移动曲包目录（推荐使用二分法，即每次移动出错曲包目录里的一半）。如果某些目录无法被移动，那么出错的曲包就在其中。按 [#1.1](#11-部分曲包没有读取到) 的方案修改后，重复上述步骤直到所有目录均可正常移动。
 :::
 
@@ -41,7 +41,7 @@ url = "https://www.pixiv.net/artworks/73473821"
 
 ### 1.3 导入大量曲包时闪退
 
-::: callout { type=tip title="解决方案" }
+::: callout {type=tip title="解决方案"}
 调整 `LR2_HD.exe` 或 `LRHbody.exe` 属性，勾选「兼容性 - 以兼容模式运行这个程序」选项，选择 Windows 7。
 :::
 
@@ -59,7 +59,7 @@ url = "https://www.pixiv.net/artworks/73473821"
 
 编码问题，一般是启动过游戏后又转区导致。本站整合包也可能存在这个问题。
 
-::: callout { type=tip title="解决方案" }
+::: callout {type=tip title="解决方案"}
 先 [转区](../download/#准备工作---转区) 或者始终不转区，此后不再调整编码设置。然后按当前编码重新解压 LR2 压缩包，并重新配置。
 :::
 
@@ -69,7 +69,7 @@ LR2 的编码问题确实比较折腾，历史遗留问题。
 
 这是一个已知 [bug](../notices/#一些已知的-bug)，新回放无法覆盖旧回放。在没有源码的情况下，我们当然无法从根本上修复这个问题，只能提供一个替代方案尝试恢复段位回放文件。
 
-::: callout { type=tip title="解决方案" }
+::: callout {type=tip title="解决方案"}
 
 首先，**确保游玩段位后没有再游玩其他段位（或者重试本段位）**，否则到此结束，下面的内容也不用看了。
 
@@ -83,7 +83,7 @@ LR2 的编码问题确实比较折腾，历史遗留问题。
 
 ### 2.4 笔记本全屏锁帧
 
-::: callout { type=tip title="解决方案" }
+::: callout {type=tip title="解决方案"}
 
 调整 `LRHbody.exe` 属性，勾选「兼容性 - 禁用全屏优化」选项。
 
@@ -93,13 +93,13 @@ LR2 的编码问题确实比较折腾，历史遗留问题。
 
 ### 2.5 游玩时偶尔卡顿
 
-::: callout { type=tip title="解决方案" }
+::: callout {type=tip title="解决方案"}
 关闭输入法，使用英语（美国）键盘。
 :::
 
 ### 2.6 BGA 黑屏或报错
 
-::: callout { type=tip title="解决方案" }
+::: callout {type=tip title="解决方案"}
 
 下载并安装 [Shark007][shark007] 或 [K-Lite][k-lite] 解码器。
 
@@ -112,7 +112,7 @@ LR2 的编码问题确实比较折腾，历史遗留问题。
 
 ### 2.7 全屏有声音但没有画面
 
-::: callout { type=tip title="解决方案" }
+::: callout {type=tip title="解决方案"}
 
 一般是显卡设置的问题，每个人情况不同也不好排查。可以先试试调整各种显卡设置，比如原来用核显运行的改成用独显（反之亦然）。实在不行的话就用窗口模式吧，可以尝试使用 [Borderless Gaming][borderless] 之类的工具来模拟全屏。
 
@@ -126,11 +126,11 @@ LR2 的编码问题确实比较折腾，历史遗留问题。
 
 这是因为 LR2 在结算界面会尝试拉取本谱的 IR 排行榜数据，阻塞了退出操作。
 
-::: callout { type=tip title="解决方案" }
+::: callout {type=tip title="解决方案"}
 在 LR2IR 关闭 [成绩缓存](../internet-ranking/#player-status)。
 :::
 
-::: callout { type=warning title="注意" }
+::: callout {type=warning title="注意"}
 关闭成绩缓存后，将无法使用 [G-BATTLE](../select/#g-battle) 模式。
 :::
 
@@ -138,6 +138,6 @@ LR2 的编码问题确实比较折腾，历史遗留问题。
 
 ### 3.1 Walkure 不更新
 
-::: callout { type=tip title="解决方案" }
+::: callout {type=tip title="解决方案"}
 按 `Ctrl` + `F5` 键强制刷新，不行就清空缓存再试。
 :::

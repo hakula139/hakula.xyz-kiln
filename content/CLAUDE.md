@@ -52,7 +52,7 @@ url = "https://www.pixiv.net/artworks/{pixiv_id}"
 ## 3. Directives
 
 ```markdown
-::: callout { type=quote title="标题" }
+::: callout {type=quote title="标题"}
 
 内容
 

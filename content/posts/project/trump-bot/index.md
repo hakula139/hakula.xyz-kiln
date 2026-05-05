@@ -26,7 +26,7 @@ Natural Language Processing (H) @ Fudan University, fall 2020.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / Trump-bot](https://github.com/hakula139/Trump-bot)
 :::
 
@@ -62,9 +62,7 @@ Natural Language Processing (H) @ Fudan University, fall 2020.
 
 完整代码可参见 [`corpus.py`][corpus.py]，其中主要代码如下：
 
-```python
-# trump_bot/corpus.py
-
+```python {title="trump_bot/corpus.py"}
 class dictionary():
     '''
     A dictionary which contains all words in the training set.
@@ -138,9 +136,7 @@ class dictionary():
                 i += 1
 ```
 
-```python
-# trump_bot/corpus.py
-
+```python {title="trump_bot/corpus.py"}
 class corpus():
     '''
     A corpus built with the training set.
@@ -301,9 +297,7 @@ class corpus():
 
 模型利用 [PyTorch][pytorch] 框架建立，完整代码可参见 [`model.py`][model.py]，其中主要代码如下：
 
-```python
-# trump_bot/model.py
-
+```python {title="trump_bot/model.py"}
 class rnn(nn.Module):
     '''
     Build an RNN model.
@@ -373,9 +367,7 @@ class rnn(nn.Module):
 
 具体代码可参见 [`main.py`][main.py] 的 `train_model` 函数，其中主要代码如下：
 
-```python
-# trump_bot/main.py
-
+```python {title="trump_bot/main.py"}
 def train_model() -> Tuple[List[float], List[float]]:
     '''
     The main training function.
@@ -419,9 +411,7 @@ def train_model() -> Tuple[List[float], List[float]]:
     return all_train_losses, all_valid_losses
 ```
 
-```python
-# trump_bot/main.py
-
+```python {title="trump_bot/main.py"}
 def get_random_pair(dataset: str = 'train') -> Tuple[Tensor, Tensor]:
     '''
     Return a random pair of input and target from the dataset.
@@ -448,9 +438,7 @@ def get_random_pair(dataset: str = 'train') -> Tuple[Tensor, Tensor]:
     return inp, tar
 ```
 
-```python
-# trump_bot/main.py
-
+```python {title="trump_bot/main.py"}
 def train(inp: Tensor, tar: Tensor) -> float:
     '''
     Train the model using a pair of input and target.
@@ -477,9 +465,7 @@ def train(inp: Tensor, tar: Tensor) -> float:
     return loss.item() / chunk_size
 ```
 
-```python
-# trump_bot/main.py
-
+```python {title="trump_bot/main.py"}
 def validate(inp: Tensor, tar: Tensor) -> float:
     '''
     Validate the model using a pair of input and target.
@@ -508,9 +494,7 @@ def validate(inp: Tensor, tar: Tensor) -> float:
 
 具体代码可参见 [`main.py`][main.py] 的 `generate` 函数，其中主要代码如下：
 
-```python
-# trump_bot/main.py
-
+```python {title="trump_bot/main.py"}
 def generate() -> None:
     '''
     Generate new sentences using the best model, and save to local file.
@@ -523,9 +507,7 @@ def generate() -> None:
         evaluate_model(save=True)
 ```
 
-```python
-# trump_bot/main.py
-
+```python {title="trump_bot/main.py"}
 def evaluate_model(save: bool = False) -> None:
     '''
     The main evaluating function.
@@ -547,9 +529,7 @@ def evaluate_model(save: bool = False) -> None:
         print(output)
 ```
 
-```python
-# trump_bot/main.py
-
+```python {title="trump_bot/main.py"}
 def get_random_words(count: int = 1, dataset: str = 'dev') -> List[str]:
     '''
     Return a sequence of random words from the dataset.
@@ -572,9 +552,7 @@ def get_random_words(count: int = 1, dataset: str = 'dev') -> List[str]:
     return words
 ```
 
-```python
-# trump_bot/main.py
-
+```python {title="trump_bot/main.py"}
 def evaluate(prime_words: List[str] = None, predict_len: int = 30,
              temperature: float = 0.8) -> List[str]:
     '''

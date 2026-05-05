@@ -26,13 +26,13 @@ Pattern Recognition and Machine Learning (H) @ Fudan University, spring 2021.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-git-alt): Hakula / prml-21-spring / assignment-2](https://gitee.com/hakula139/prml-21-spring/tree/master/assignment-2/submission/18307130003)
 :::
 
 ## 实验简介
 
-::: callout { type=info title="参见" }
+::: callout {type=info title="参见"}
 [Hakula / prml-21-spring / assignment-2 / README.md - Gitee](https://gitee.com/hakula139/prml-21-spring/blob/master/assignment-2/README.md)
 :::
 
@@ -109,9 +109,7 @@ $$
 
 ##### 1.1.2 代码实现
 
-```python
-# numpy_fnn.py
-
+```python {title="numpy_fnn.py"}
 class Matmul(NumpyOp):
     '''
     Matrix multiplication unit.
@@ -199,9 +197,7 @@ $$
 
 ##### 1.2.2 代码实现
 
-```python
-# numpy_fnn.py
-
+```python {title="numpy_fnn.py"}
 class Relu(NumpyOp):
     '''
     Rectified Linear Unit.
@@ -271,9 +267,7 @@ $$
 
 为了防止 $X\_{ij} = 0$ 时出现 $\log X\_{ij}\rightarrow -\infty$ 导致溢出，这里我们给 $X\_{ij}$ 附加了一个 $\epsilon = 10^{-12}$ 的修正。
 
-```python
-# numpy_fnn.py
-
+```python {title="numpy_fnn.py"}
 class Log(NumpyOp):
     '''
     Natural logarithm unit.
@@ -360,9 +354,7 @@ $$
 
 ##### 1.4.2 代码实现
 
-```python
-# numpy_fnn.py
-
+```python {title="numpy_fnn.py"}
 class Softmax(NumpyOp):
     '''
     Softmax over last dimension.
@@ -398,9 +390,7 @@ class Softmax(NumpyOp):
 
 我们使用 NumPy 重写了函数 `mini_batch`，用于之后的训练。
 
-```python
-# numpy_mnist.py
-
+```python {title="numpy_mnist.py"}
 def mini_batch(dataset: List[Tuple[Any, int]], batch_size=128) -> np.ndarray:
     '''
     Align the data and labels from the given dataset into batches.

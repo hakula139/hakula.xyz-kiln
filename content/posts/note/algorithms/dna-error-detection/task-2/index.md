@@ -21,13 +21,13 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / dna-error-detection at task-2-segments](https://github.com/hakula139/dna-error-detection/tree/task-2-segments)
 :::
 
 ## 题目简介
 
-::: callout { type=info title="参见" }
+::: callout {type=info title="参见"}
 [hakula139 / dna-error-detection / docs / README.pdf - GitHub](https://github.com/hakula139/dna-error-detection/blob/master/docs/README.pdf)
 :::
 

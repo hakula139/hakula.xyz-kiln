@@ -22,13 +22,13 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / xv6-armv8 at lab6](https://github.com/hakula139/xv6-armv8/tree/lab6)
 :::
 
 ## 实验简介
 
-::: callout { type=info title="参见" }
+::: callout {type=info title="参见"}
 [hakula139 / xv6-armv8 / docs / lab6.md - GitHub](https://github.com/hakula139/xv6-armv8/blob/lab6/docs/lab6.md)
 :::
 
@@ -38,15 +38,13 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 #### 1.1 请求队列
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 请补全 `inc/buf.h` 以便于 SD 卡驱动中请求队列的实现，即每个请求都是一个 `buf`，所有请求排成一队。
 :::
 
 这里直接参考了 xv6 和 xv6-riscv 的设计，具体作用参见注释：
 
-```c
-// inc/buf.h
-
+```c {title="inc/buf.h"}
 struct buf {
     int flags;
     uint32_t dev;           // device
@@ -61,9 +59,7 @@ struct buf {
 
 对于一个请求（`buf`）队列，我们在 `kern/bio.c` 中定义了 `bcache`。
 
-```c
-// kern/bio.c
-
+```c {title="kern/bio.c"}
 struct {
     struct spinlock lock;
     struct buf buf[NBUF];
@@ -79,9 +75,7 @@ struct {
 
 在使用前，我们先对 `bcache` 进行初始化，也就是创建一个双向循环链表，并初始化每个 `buf` 的锁。
 
-```c
-// kern/bio.c
-
+```c {title="kern/bio.c"}
 void
 binit()
 {
@@ -102,9 +96,7 @@ binit()
 
 当我们需要进行读操作时，我们先调用函数 `bget` 在 `bcache` 中获取一个可用的 `buf`。如果这个请求已经在 `bcache` 里了，那么就将相应的 `buf` 的 `refcnt` 加 `1`，然后加锁并返回。否则，我们回收一个最早使用过的（Least Recently Used, LRU）且当前不在使用中的 `buf`，将其 `refcnt` 设置为 `1`，然后加锁并返回。
 
-```c
-// kern/bio.c
-
+```c {title="kern/bio.c"}
 /*
  * Look through buffer cache for block on device dev.
  * If not found, allocate a buffer.
@@ -145,9 +137,7 @@ bget(uint32_t dev, uint32_t blockno)
 
 随后，我们调用函数 `bread` 对这个 `buf` 进行读操作。
 
-```c
-// kern/bio.c
-
+```c {title="kern/bio.c"}
 /*
  * Return a locked buf with the contents of the indicated block.
  */
@@ -167,9 +157,7 @@ bread(uint32_t dev, uint32_t blockno)
 
 当我们需要进行写操作时，我们调用函数 `bwrite` 对这个 `buf` 进行写操作。
 
-```c
-// kern/bio.c
-
+```c {title="kern/bio.c"}
 /*
  * Write b's contents to disk. Must be locked.
  */
@@ -184,9 +172,7 @@ bwrite(struct buf* b)
 
 最后，当我们需要释放一个 `buf` 时，我们调用函数 `brelse` 将它的 `refcnt` 减 `1`。如果此时 `refcnt` 的值为 `0`，说明已经没有设备在等待这个 `buf` 了，那么我们就将这个 `buf` 移动到 `bcache` 的头部（实际上是 `head->next`），表示这是一个最晚使用过的（Most Recently Used, MRU）`buf`。
 
-```c
-// kern/bio.c
-
+```c {title="kern/bio.c"}
 /*
  * Release a locked buffer.
  * Move to the head of the most-recently-used list.
@@ -214,9 +200,7 @@ brelse(struct buf* b)
 
 此外，我们还定义了函数 `bpin` 和 `bunpin`，分别用于将一个 `buf` 的 `refcnt` 加 `1` 或减 `1`。
 
-```c
-// kern/bio.c
-
+```c {title="kern/bio.c"}
 void
 bpin(struct buf* b)
 {
@@ -226,9 +210,7 @@ bpin(struct buf* b)
 }
 ```
 
-```c
-// kern/bio.c
-
+```c {title="kern/bio.c"}
 void
 bunpin(struct buf* b)
 {
@@ -242,15 +224,13 @@ bunpin(struct buf* b)
 
 #### 2.1 Sleep 实现
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 请完成 `kern/proc.c` 中的 `sleep` 和 `wakeup` 函数，并简要描述并分析你的设计。
 :::
 
 函数 `sleep` 的工作是释放进程所持有的锁，设置进程状态为 SLEEPING，并在 `chan` 上睡眠，然后调用函数 `sched` 回到 `scheduler`，决定下一个运行的程序。当进程被唤醒且再次轮到本进程执行时，重新获取进程本来持有的锁。由于我们在执行 `sleep` 前会先获取进程锁 `p->lock`，而执行 `wakeup` 时同样需要先获取进程锁，因此我们可以确定在执行 `sleep` 的过程中，进程不会被意外 `wakeup`，导致这个 `wakeup` 没有被捕获到，进程永远不再醒来。
 
-```c
-// kern/proc.c
-
+```c {title="kern/proc.c"}
 /*
  * Atomically release lock and sleep on chan.
  * Reacquires lock when awakened.
@@ -286,9 +266,7 @@ sleep(void* chan, struct spinlock* lk)
 
 函数 `wakeup` 的工作是将指定 `chan` 上睡眠的进程全部唤醒，设置进程状态为 RUNNABLE，从而可以被 `scheduler` 调度。
 
-```c
-// kern/proc.c
-
+```c {title="kern/proc.c"}
 /*
  * Wake up all processes sleeping on chan.
  * Must be called without any p->lock.
@@ -310,7 +288,7 @@ wakeup(void* chan)
 
 #### 2.2 SD 卡初始化
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 请完成 `kern/sd.c` 中的 `sd_init`, `sd_intr`, `sd_rw`，然后分别在合适的地方调用 `sd_init` 和 `sd_test` 完成 SD 卡初始化并通过测试。
 :::
 
@@ -322,9 +300,7 @@ wakeup(void* chan)
 
 这里我们就直接在函数 `_sd_start` 里修改了，因为它其实已经实现了 SD 卡的写操作，我们只需在它的基础上增加一个读操作即可（**直接读到** `buf->data`）。根据 `buf` 的 `flags` 中 `B_DIRTY` 位的值，我们可以判断此时应当采取读操作（`0`）还是写操作（`1`）。
 
-```c
-// kern/sd.c
-
+```c {title="kern/sd.c"}
 /*
  * Start the request for b. Caller must hold sdlock.
  */
@@ -387,9 +363,7 @@ _sd_start(struct buf* b)
 
 在函数 `sd_rw` 里，我们先调用函数 `_sd_start` 对 `buf` 进行 I/O 操作，然后将其 `flags` 的 `B_DIRTY` 位设置为 `0`、`B_VALID` 位设置为 `1`，最后调用函数 `brelse` 释放 `buf`（见 [1.1](#11-请求队列) 节）。
 
-```c
-// kern/sd.c
-
+```c {title="kern/sd.c"}
 /*
  * Sync buf with disk.
  * If B_DIRTY is set, write buf to disk, clear B_DIRTY, set B_VALID.
@@ -408,9 +382,7 @@ sd_rw(struct buf* b)
 
 函数 `sd_intr` 的工作是处理设备中断。具体来说，检查请求是否已执行完毕，然后清空中断信息。
 
-```c
-// kern/sd.c
-
+```c {title="kern/sd.c"}
 /*
  * The interrupt handler.
  */
@@ -452,9 +424,7 @@ sd_intr()
 
 对于第二部分，我们先从磁盘地址 `0x0` 处读取 MBR 到 `buf`，然后利用函数 `_parse_partition_entry` 解析每条磁盘分区表项（partition table entry, PTE）并输出其内容，其中 4 条分区表的地址分别为 `0x1BE`, `0x1CE`, `0x1DE`, `0x1EE`，最后输出 2 字节的结束标志（若为 `55`, `AA` 则表示 MBR 有效）[^mbr]。
 
-```c
-// kern/sd.c
-
+```c {title="kern/sd.c"}
 /*
  * Initialize SD card and parse MBR.
  * 1. The first partition should be FAT and is used for booting.
@@ -505,9 +475,7 @@ sd_init()
 5. 分区内第一个扇区的逻辑区块地址（logical block address, LBA）
 6. 分区内的总扇区数（number of sectors）
 
-```c
-// kern/sd.c
-
+```c {title="kern/sd.c"}
 static void
 _parse_partition_entry(uint8_t* entry, int id)
 {
@@ -548,9 +516,7 @@ _parse_partition_entry(uint8_t* entry, int id)
 
 这里函数 `_parse_uint32_t` 用于将 4 个字节（`uint8_t`）按照小端法（little-endian）合并为一个 32 位的整数（`uint32_t`）。
 
-```c
-// kern/sd.c
-
+```c {title="kern/sd.c"}
 static uint32_t
 _parse_uint32_t(uint8_t* bytes)
 {
@@ -563,9 +529,7 @@ _parse_uint32_t(uint8_t* bytes)
 
 在函数 `main` 中，调用函数 `sd_init` 完成 SD 卡初始化，调用函数 `sd_test` 进行测试。
 
-```c
-// kern/main.c
-
+```c {title="kern/main.c"}
 void
 main()
 {
@@ -583,7 +547,7 @@ main()
 
 #### 3.1 获取分区信息
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 请在 `sd_init` 中解析 MBR 获得第二分区起始块的 LBA 和分区大小以便后续使用。
 :::
 

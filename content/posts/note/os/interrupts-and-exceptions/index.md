@@ -22,13 +22,13 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 <!--more-->
 
-::: callout { type=success title="源码地址" }
+::: callout {type=success title="源码地址"}
 [:(fab fa-github): hakula139 / xv6-armv8 at lab3](https://github.com/hakula139/xv6-armv8/tree/lab3)
 :::
 
 ## 实验简介
 
-::: callout { type=info title="参见" }
+::: callout {type=info title="参见"}
 [hakula139 / xv6-armv8 / docs / lab3.md - GitHub](https://github.com/hakula139/xv6-armv8/blob/lab3/docs/lab3.md)
 :::
 
@@ -36,7 +36,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ### 1 中断流程
 
-::: callout { type=quote title="题目" }
+::: callout {type=quote title="题目"}
 请简要描述一下在你实现的操作系统中，中断时 CPU 进行了哪些操作。
 :::
 
@@ -48,7 +48,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ### 2 Trap Frame 设计
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 请在 `inc/trap.h` 中设计你自己的 trap frame，并简要说明为什么这么设计。
 :::
 
@@ -58,9 +58,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 为什么要保存这 3 个特殊寄存器？因为中断返回（`eret`）时需要还原用户态栈指针 SP（保存在 SP_EL0）、中断前 PSTATE（保存在 SPSR_EL1）以及中断前 PC（保存在 ELR_EL1）。
 
-```c
-// inc/trap.h
-
+```c {title="inc/trap.h"}
 struct trapframe {
     // Special Registers
     uint64_t sp_el0;    // Stack Pointer
@@ -104,7 +102,7 @@ struct trapframe {
 
 ### 3 Trap Frame 构建与恢复
 
-::: callout { type=quote title="实验目标" }
+::: callout {type=quote title="实验目标"}
 请补全 `kern/trapasm.S` 中的代码，完成 trap frame 的构建、恢复。
 :::
 
@@ -112,9 +110,7 @@ struct trapframe {
 
 将所有通用寄存器和 3 个特殊寄存器 SP_EL0, SPSR_EL1, ELR_EL1 压入堆栈，然后跳转到中断函数 `trap` 入口。
 
-```asm
-/* kern/trapasm.S */
-
+```asm {title="kern/trapasm.S"}
 /* vectors.S sends all traps here. */
 .global alltraps
 alltraps:
@@ -150,9 +146,7 @@ alltraps:
 
 将所有通用寄存器和 3 个特殊寄存器 SP_EL0, SPSR_EL1, ELR_EL1 弹栈还原，然后中断返回（`eret`）。
 
-```asm
-/* kern/trapasm.S */
-
+```asm {title="kern/trapasm.S"}
 /* Return falls through to trapret. */
 .global trapret
 trapret:
