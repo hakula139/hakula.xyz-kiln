@@ -53,6 +53,7 @@
     --color-link: #1d84a8;
     --color-link-hover: #14607d;
     --color-border: #e8e8ed;
+    --color-border-overlay: rgba(255, 255, 255, 0.2);
     --color-card: #2a2a2e;
     --color-selection: rgba(53, 166, 247, 0.25);
     --color-line-highlight-bg: rgba(255, 235, 59, 0.1);
@@ -947,6 +948,7 @@
     --color-link: #55bde2;
     --color-link-hover: #bdebfc;
     --color-border: #3a3a42;
+    --color-border-overlay: rgba(255, 255, 255, 0.08);
     --color-card: #1a1a1e;
     --color-selection: rgba(50, 112, 194, 0.4);
     --color-line-highlight-bg: rgba(255, 235, 59, 0.15);
@@ -1184,16 +1186,7 @@
     margin-inline: calc(var(--spacing) * 1);
     height: calc(var(--spacing) * 5);
     width: 1px;
-    background-color: color-mix(in srgb, #fff 20%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-white) 20%, transparent);
-    }
-    &:where([data-theme="dark"], [data-theme="dark"] *) {
-      background-color: color-mix(in srgb, #fff 8%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        background-color: color-mix(in oklab, var(--color-white) 8%, transparent);
-      }
-    }
+    background-color: var(--color-border-overlay);
   }
   .header-icon {
     display: inline-flex;
@@ -1470,19 +1463,10 @@
     border-left-color: var(--callout-color);
   }
   .callout-title {
-    display: flex;
-    cursor: pointer;
     list-style-type: none;
-    align-items: center;
-    gap: calc(var(--spacing) * 2);
-    padding-inline: calc(var(--spacing) * 4);
     padding-block: calc(var(--spacing) * 2);
-    font-size: var(--text-sm);
-    line-height: var(--tw-leading, var(--text-sm--line-height));
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
-    -webkit-user-select: none;
-    user-select: none;
     color: var(--callout-color);
   }
   .callout-title::-webkit-details-marker {
@@ -1570,20 +1554,11 @@
     line-height: var(--leading-normal);
   }
   .code-header {
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    gap: calc(var(--spacing) * 2);
     background-color: color-mix(in srgb, #f5f5f7 60%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-bg-muted) 60%, transparent);
     }
-    padding-inline: calc(var(--spacing) * 4);
     padding-block: calc(var(--spacing) * 2);
-    font-size: var(--text-sm);
-    line-height: var(--tw-leading, var(--text-sm--line-height));
-    -webkit-user-select: none;
-    user-select: none;
   }
   .code-header::before {
     color: var(--color-text-secondary);
@@ -1669,6 +1644,17 @@
   }
 }
 @layer components {
+  .code-header, .callout-title, .toc-trigger {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    gap: calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 4);
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+    -webkit-user-select: none;
+    user-select: none;
+  }
   .code-header::before, .callout-title::after, .toc-trigger::after {
     flex-shrink: 0;
     font-size: var(--text-xs);
@@ -1929,10 +1915,7 @@
   content: none;
 }
 .prose :where(hr, blockquote, th, td, thead, tr) {
-  border-color: rgb(255 255 255 / 0.2);
-  &:where([data-theme="dark"], [data-theme="dark"] *) {
-    border-color: rgb(255 255 255 / 0.08);
-  }
+  border-color: var(--color-border-overlay);
 }
 .prose :where(li) {
   margin-block: calc(var(--spacing) * 0.5);
@@ -2019,20 +2002,11 @@
     gap: calc(var(--spacing) * 2);
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
-    border-color: color-mix(in srgb, #fff 20%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      border-color: color-mix(in oklab, var(--color-white) 20%, transparent);
-    }
+    border-color: var(--color-border-overlay);
     padding-top: calc(var(--spacing) * 4);
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
     color: var(--color-text-tertiary);
-    &:where([data-theme="dark"], [data-theme="dark"] *) {
-      border-color: color-mix(in srgb, #fff 8%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        border-color: color-mix(in oklab, var(--color-white) 8%, transparent);
-      }
-    }
   }
   .prose .footnote-definition-label {
     flex-shrink: 0;
@@ -2189,19 +2163,10 @@
     }
   }
   .toc-trigger {
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    gap: calc(var(--spacing) * 2);
-    padding-inline: calc(var(--spacing) * 4);
     padding-block: calc(var(--spacing) * 2.5);
-    font-size: var(--text-sm);
-    line-height: var(--tw-leading, var(--text-sm--line-height));
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
     color: var(--color-text-secondary);
-    -webkit-user-select: none;
-    user-select: none;
   }
   .toc-trigger::before {
     flex-shrink: 0;
@@ -2573,22 +2538,13 @@
     margin-bottom: calc(var(--spacing) * 3);
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
-    border-color: color-mix(in srgb, #fff 20%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      border-color: color-mix(in oklab, var(--color-white) 20%, transparent);
-    }
+    border-color: var(--color-border-overlay);
     padding-bottom: calc(var(--spacing) * 1);
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
     color: var(--color-text-secondary);
-    &:where([data-theme="dark"], [data-theme="dark"] *) {
-      border-color: color-mix(in srgb, #fff 8%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        border-color: color-mix(in oklab, var(--color-white) 8%, transparent);
-      }
-    }
   }
   .tag-pill {
     display: inline-block;
