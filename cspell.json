@@ -21,11 +21,7 @@
   "patterns": [
     {
       "name": "code_fenced",
-      "pattern": "/^````[^\\n]*\\n[\\s\\S]*?^````/gm"
-    },
-    {
-      "name": "code_fenced_3",
-      "pattern": "/^```[\\w]*[^\\n]*\\n[\\s\\S]*?^```/gm"
+      "pattern": "/^(`{3,})[^\\n]*\\n[\\s\\S]*?^\\1/gm"
     },
     {
       "name": "code_inline",
@@ -45,12 +41,5 @@
     }
   ],
   "ignorePaths": ["pnpm-lock.yaml", "static/css/style.css", "**/LICENSE", "**/*.svg", "**/*.csv"],
-  "ignoreRegExpList": [
-    "code_fenced",
-    "code_fenced_3",
-    "code_inline",
-    "math_inline",
-    "math_display",
-    "html_comments"
-  ]
+  "ignoreRegExpList": ["code_fenced", "code_inline", "math_inline", "math_display", "html_comments"]
 }
