@@ -1644,13 +1644,7 @@
     user-select: none;
   }
   .code-header .chevron {
-    font-size: 0.625rem;
     color: var(--color-text-secondary);
-    transition-property: transform, translate, scale, rotate;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-    --tw-duration: 200ms;
-    transition-duration: 200ms;
   }
   .code-lang, .code-title {
     flex: 1;
@@ -1673,9 +1667,6 @@
   }
   .copy-btn:hover {
     color: var(--color-link-hover);
-  }
-  .code-block.collapsed .code-header .chevron {
-    rotate: calc(90deg * -1);
   }
   .code-block.collapsed .code-body {
     grid-template-rows: 0fr;
@@ -1745,6 +1736,18 @@
   }
   .highlight .line.hl {
     box-shadow: inset 2px 0 0 var(--color-line-highlight-border);
+  }
+  .code-header .chevron, .callout-title::after {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+    transition-property: transform, translate, scale, rotate;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    --tw-duration: 200ms;
+    transition-duration: 200ms;
+  }
+  .code-block.collapsed .code-header .chevron, .callout.collapsed .callout-title::after {
+    rotate: calc(90deg * -1);
   }
 }
 @layer components {
@@ -1879,12 +1882,6 @@
   .callout-title::after {
     margin-left: auto;
     flex-shrink: 0;
-    font-size: 0.625rem;
-    transition-property: transform, translate, scale, rotate;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-    --tw-duration: 200ms;
-    transition-duration: 200ms;
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     content: '\f078';
@@ -1897,9 +1894,6 @@
     transition-duration: var(--tw-duration, var(--default-transition-duration));
     --tw-duration: 300ms;
     transition-duration: 300ms;
-  }
-  .callout.collapsed .callout-title::after {
-    rotate: calc(90deg * -1);
   }
   .callout.collapsed .callout-body {
     grid-template-rows: 0fr;
