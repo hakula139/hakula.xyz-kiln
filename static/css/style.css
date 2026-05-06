@@ -1868,6 +1868,7 @@
     margin: calc(var(--spacing) * 0);
     display: inline-block;
     height: calc(var(--spacing) * 6);
+    width: auto;
     vertical-align: middle;
   }
 }
