@@ -1118,7 +1118,6 @@
     transform: translate3d(-9999px, -9999px, 0);
   }
   .glass-panel {
-    position: relative;
     border-radius: var(--radius-card);
     --tw-shadow: 0 0.25rem 1rem var(--tw-shadow-color, rgba(0, 0, 0, 0.2));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
