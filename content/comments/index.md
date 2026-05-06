@@ -18,5 +18,8 @@ url = "https://www.pixiv.net/artworks/67767892"
 
 目前暂时没有严格的评论审核机制，**请勿**在评论区发布广告或其他垃圾信息，违者没有警告，直接封禁 IP。评论收到回复后，你将在之前填写的邮箱地址收到邮件通知。
 
+:::comments-recent
+:::
+
 [Gravatar]: https://en.gravatar.com
 [identicon]: https://www.npmjs.com/package/identicon

@@ -37,18 +37,9 @@ paginate = 10
 [params.comments]
 enabled = true
 provider = "twikoo"
-# Site-wide recent-comments view mounts where url == base_url ~ recent_url.
-# Per-post mount auto-suppresses on this URL.
-recent_url = "/comments/"
 
 [params.comments.twikoo]
 env_id = "https://twikoo-api.hakula.xyz"
-version = "1.7.7"
-sri = "sha384-CXhXF3hh7LQyBPKnwgq/KgbcvoQcedpFyE4YuV8GLc+pKO1vCqQpuyNQ60/UblNE"
-
-[params.comments.features]
-math = true
-mermaid = false
 
 [params.footer]
 since = 2018
