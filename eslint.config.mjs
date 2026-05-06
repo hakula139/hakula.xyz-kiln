@@ -13,8 +13,8 @@ export default [
       },
     },
     rules: {
-      curly: ['error', 'all'],
-      eqeqeq: ['error', 'always'],
+      'curly': ['error', 'all'],
+      'eqeqeq': ['error', 'always'],
       'no-throw-literal': 'error',
       'prefer-const': 'error',
     },
