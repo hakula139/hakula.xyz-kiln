@@ -1731,7 +1731,7 @@
   --tw-outline-style: none;
   outline-style: none;
 }
-.prose .tk-avatar {
+.prose .tk-comments-container .tk-avatar {
   height: calc(var(--spacing) * 10);
   width: calc(var(--spacing) * 10);
   border-radius: calc(infinity * 1px);
@@ -1773,7 +1773,9 @@
   vertical-align: middle;
 }
 .prose .tk-owo-emotion {
-  vertical-align: -0.25em;
+  height: calc(var(--spacing) * 6);
+  width: auto;
+  vertical-align: middle;
 }
 .prose .tk-action {
   border-bottom-style: var(--tw-border-style);
