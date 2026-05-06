@@ -39,7 +39,7 @@ enabled = true
 provider = "twikoo"
 
 [params.comments.twikoo]
-env_id = "https://twikoo-api.hakula.xyz"
+api_url = "https://twikoo-api.hakula.xyz"
 
 [params.footer]
 since = 2018

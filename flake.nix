@@ -22,8 +22,10 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     # kiln + pagefind (the kiln flake exposes both as `packages.${system}.*`).
+    # Tracking feat/directive-template-config until merge — the comments-recent
+    # directive needs the engine fix that exposes `config` to directive templates.
     kiln = {
-      url = "github:hakula139/kiln/v0.2.0-rc.4";
+      url = "github:hakula139/kiln/feat/directive-template-config";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
