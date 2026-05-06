@@ -110,7 +110,7 @@
             markdownlint = {
               enable = true;
               name = "markdownlint-cli2";
-              entry = nodeHook "markdownlint" "markdownlint-cli2";
+              entry = nodeHook "markdownlint" "markdownlint-cli2 --fix";
               files = "\\.md$";
               pass_filenames = true;
             };
