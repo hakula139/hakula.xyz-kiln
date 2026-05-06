@@ -950,15 +950,8 @@
   font-family: 'Maple Mono';
   font-style: normal;
   font-display: swap;
-  font-weight: 400;
-  src: url('../fonts/maple-mono-latin-400.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Maple Mono';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 700;
-  src: url('../fonts/maple-mono-latin-700.woff2') format('woff2');
+  font-weight: 100 800;
+  src: url('../fonts/maple-mono-variable.woff2') format('woff2-variations');
 }
 @layer base {
   [data-theme='dark'] {
