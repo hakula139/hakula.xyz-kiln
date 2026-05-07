@@ -1039,11 +1039,10 @@
   }
 }
 @layer components {
-  .back-to-top {
+  .float-btn {
     pointer-events: none;
     position: fixed;
     right: calc(var(--spacing) * 6);
-    bottom: calc(var(--spacing) * 40);
     z-index: 40;
     display: flex;
     height: calc(var(--spacing) * 11);
@@ -1062,13 +1061,19 @@
     --glow-size: 80px;
     --glow-border-size: 60px;
   }
-  .back-to-top:hover {
+  .float-btn:hover {
     color: var(--color-link-hover);
     background: var(--surface-glass-hover);
   }
-  .back-to-top.visible {
+  .float-btn.visible {
     pointer-events: auto;
     opacity: 100%;
+  }
+  .back-to-top {
+    bottom: calc(var(--spacing) * 44);
+  }
+  .jump-to-comments {
+    bottom: calc(var(--spacing) * 28);
   }
 }
 @layer components {
@@ -1325,7 +1330,7 @@
   .glow-ambient, .glow-border {
     display: none !important;
   }
-  .glass-glow:has(.header-nav), #mobile-menu, .site-footer,  .toc-sidebar-wrapper, .toc-collapse, .post-banner-credit,  .pagination-link, .pagination-ellipsis, .pagination-input,  .back-to-top, pagefind-modal {
+  .glass-glow:has(.header-nav), #mobile-menu, .site-footer,  .toc-sidebar-wrapper, .toc-collapse, .post-banner-credit,  .pagination-link, .pagination-ellipsis, .pagination-input,  .float-btn, pagefind-modal {
     display: none !important;
   }
   .prose a[href^='http']::after {
