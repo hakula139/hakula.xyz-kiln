@@ -5,7 +5,9 @@
     "build": "tailwindcss -i static/css/_src/main.css -o static/css/style.css",
     "dev": "tailwindcss -i static/css/_src/main.css -o static/css/style.css --watch",
     "format": "prettier --check .",
-    "lint": "markdownlint-cli2 \"content/**/*.md\"",
+    "lint": "pnpm lint:md && pnpm lint:js",
+    "lint:js": "eslint .",
+    "lint:md": "markdownlint-cli2 \"content/**/*.md\"",
     "spellcheck": "cspell --no-progress \"content/**/*.md\""
   },
   "devDependencies": {
@@ -14,9 +16,12 @@
     "@cspell/dict-grc": "^1.0.7",
     "@cspell/dict-it-it": "^3.1.6",
     "@cspell/dict-la": "^1.1.2",
+    "@eslint/js": "^9.0.0",
     "@tailwindcss/cli": "^4.2.2",
     "@tailwindcss/typography": "^0.5.19",
     "cspell": "^10.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
     "markdownlint-cli2": "^0.22.0",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
