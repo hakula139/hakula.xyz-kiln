@@ -1712,10 +1712,12 @@
     grid-template-rows: 0fr;
   }
 }
-.prose .tk-avatar-img, .prose .tk-owo-emotion {
+.prose .tk-avatar-img {
   margin-block: calc(var(--spacing) * 0);
+  display: block;
 }
 .prose .tk-owo-emotion {
+  margin-block: calc(var(--spacing) * 0);
   vertical-align: -0.3em;
 }
 .tk-comments-container > .tk-comment + .tk-comment {
