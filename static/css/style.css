@@ -994,7 +994,7 @@
 }
 @layer base {
   @media (prefers-reduced-motion: no-preference) {
-    html {
+    html, .toc-sidebar-scroll {
       scroll-behavior: smooth;
     }
   }
@@ -1717,8 +1717,6 @@
   margin-block: calc(var(--spacing) * 0);
 }
 .prose .tk-owo-emotion {
-  height: 1.4em;
-  width: auto;
   vertical-align: -0.3em;
 }
 .twikoo .tk-comments-container .el-loading-mask {
@@ -2247,11 +2245,6 @@
   .toc-sidebar-scroll {
     max-height: calc(100vh - 10rem);
     overflow-y: auto;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .toc-sidebar-scroll {
-      scroll-behavior: smooth;
-    }
   }
   .toc-sidebar-title {
     margin-bottom: calc(var(--spacing) * 2);
