@@ -1718,7 +1718,7 @@
 .prose .tk-owo-emotion {
   vertical-align: -0.3em;
 }
-.tk-comments > .tk-comment + .tk-comment {
+.tk-comments-container > .tk-comment + .tk-comment {
   margin-top: calc(var(--spacing) * 6);
   border-top-style: var(--tw-border-style);
   border-top-width: 1px;
