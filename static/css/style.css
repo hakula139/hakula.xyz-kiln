@@ -1718,6 +1718,26 @@
 .prose .tk-owo-emotion {
   vertical-align: -0.3em;
 }
+.tk-comments > .tk-comment + .tk-comment {
+  margin-top: calc(var(--spacing) * 6);
+  border-top-style: var(--tw-border-style);
+  border-top-width: 1px;
+  border-color: var(--color-border);
+  padding-top: calc(var(--spacing) * 6);
+}
+.twikoo .OwO .OwO-body {
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  color: var(--color-text);
+  --tw-shadow: 0 0.25rem 1rem var(--tw-shadow-color, rgba(0, 0, 0, 0.2));
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  --tw-backdrop-blur: blur(var(--blur-lg));
+  --tw-backdrop-saturate: saturate(125%);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+  backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+  background: var(--surface-glass-panel);
+  border: 1px solid var(--surface-glass-border);
+}
 .twikoo .tk-comments-container .el-loading-mask {
   backdrop-filter: none;
 }
