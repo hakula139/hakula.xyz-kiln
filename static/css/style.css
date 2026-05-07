@@ -1725,6 +1725,12 @@
   border-color: var(--color-border);
   padding-top: calc(var(--spacing) * 6);
 }
+.twikoo .tk-comments-container .el-loading-mask {
+  backdrop-filter: none;
+}
+.twikoo .el-loading-spinner .circular {
+  display: inline-block;
+}
 .twikoo .OwO .OwO-body {
   overflow: hidden;
   border-radius: var(--radius-card);
@@ -1737,12 +1743,6 @@
   backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
   background: var(--surface-glass-panel);
   border: 1px solid var(--surface-glass-border);
-}
-.twikoo .tk-comments-container .el-loading-mask {
-  backdrop-filter: none;
-}
-.twikoo .el-loading-spinner .circular {
-  display: inline-block;
 }
 @layer components {
   .link-grid {
