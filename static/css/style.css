@@ -45,6 +45,7 @@
     --default-transition-timing-function: ease;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
+    --default-mono-font-feature-settings: 'calt';
     --color-bg: #fff;
     --color-bg-muted: #f5f5f7;
     --color-text: #161209;
@@ -979,6 +980,13 @@
   font-display: swap;
   font-weight: 100 800;
   src: url('../fonts/maple-mono-variable.woff2') format('woff2-variations');
+}
+@font-face {
+  font-family: 'Maple Mono';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('../fonts/maple-mono-italic-variable.woff2') format('woff2-variations');
 }
 @layer base {
   [data-theme='dark'] {
