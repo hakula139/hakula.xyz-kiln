@@ -1,6 +1,6 @@
 {
   "private": true,
-  "packageManager": "pnpm@10.30.3",
+  "packageManager": "pnpm@11.0.8",
   "scripts": {
     "build": "tailwindcss -i static/css/_src/main.css -o static/css/style.css",
     "dev": "tailwindcss -i static/css/_src/main.css -o static/css/style.css --watch",
@@ -16,16 +16,16 @@
     "@cspell/dict-grc": "^1.0.7",
     "@cspell/dict-it-it": "^3.1.6",
     "@cspell/dict-la": "^1.1.2",
-    "@eslint/js": "^9.0.0",
-    "@tailwindcss/cli": "^4.2.2",
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/cli": "^4.2.4",
     "@tailwindcss/typography": "^0.5.19",
     "cspell": "^10.0.0",
-    "eslint": "^9.0.0",
-    "globals": "^15.0.0",
-    "markdownlint-cli2": "^0.22.0",
-    "prettier": "^3.8.1",
-    "prettier-plugin-tailwindcss": "^0.7.2",
-    "tailwindcss": "^4.2.2",
-    "wrangler": "^4.87.0"
+    "eslint": "^10.3.0",
+    "globals": "^17.6.0",
+    "markdownlint-cli2": "^0.22.1",
+    "prettier": "^3.8.3",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "tailwindcss": "^4.2.4",
+    "wrangler": "^4.90.0"
   }
 }

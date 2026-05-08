@@ -32,6 +32,7 @@ elif
 Ennea
 ennnnny
 epoché
+esbuild
 gdrive
 gitee
 hakula
@@ -133,6 +134,7 @@ Wakaba
 webp
 WMIX
 woogle
+workerd
 XDMCP
 Xshell
 YangMame
