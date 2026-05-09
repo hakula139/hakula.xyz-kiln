@@ -116,83 +116,88 @@ external = true
 [[menu.social]]
 name = "menu_social_qq"
 url = "/images/social/qq.webp"
-icon = "fab fa-qq"
+icon = "svg:qq"
 weight = 1
 
 [[menu.social]]
 name = "menu_social_github"
 url = "https://github.com/hakula139"
-icon = "fab fa-github"
+icon = "svg:github"
 weight = 2
 external = true
 
 [[menu.social]]
 name = "menu_social_linkedin"
 url = "https://linkedin.com/in/hakula"
-icon = "fab fa-linkedin"
+icon = "svg:linkedin"
 weight = 3
 external = true
 
 [[menu.social]]
 name = "menu_social_telegram"
 url = "https://t.me/hakulaTG"
-icon = "fab fa-telegram"
+icon = "svg:telegram"
 weight = 4
 external = true
 
 [[menu.social]]
 name = "menu_social_listenbrainz"
 url = "https://listenbrainz.org/user/Hakula"
-icon = "fas fa-music"
+icon = "svg:listenbrainz"
 weight = 5
 external = true
 
 [[menu.social]]
 name = "menu_social_steam"
 url = "https://steamcommunity.com/id/hakula139"
-icon = "fab fa-steam"
+icon = "svg:steam"
 weight = 6
 external = true
 
 [[menu.social]]
 name = "menu_social_zhihu"
 url = "https://www.zhihu.com/people/hakula139"
-icon = "fab fa-zhihu"
+icon = "svg:zhihu"
 weight = 7
 external = true
 
-# FontAwesome 6 free has no Douban brand icon — `fas fa-book` placeholder
-# until a better option lands (or until Simple Icons is wired into IgnIt).
 [[menu.social]]
 name = "menu_social_douban"
 url = "https://www.douban.com/people/hakula139"
-icon = "fas fa-book"
+icon = "svg:douban"
 weight = 8
+external = true
+
+[[menu.social]]
+name = "menu_social_bangumi"
+url = "https://bgm.tv/user/hakula_1234567"
+icon = "svg:bangumi"
+weight = 9
 external = true
 
 [[menu.social]]
 name = "menu_social_neodb"
 url = "https://neodb.social/users/hakula139@mastodon.social"
-icon = "fab fa-mastodon"
-weight = 9
+icon = "svg:fediverse"
+weight = 10
 external = true
 
 [[menu.social]]
 name = "menu_social_bilibili"
 url = "https://space.bilibili.com/3507112"
-icon = "fab fa-bilibili"
-weight = 10
+icon = "svg:bilibili"
+weight = 11
 external = true
 
 [[menu.social]]
 name = "menu_social_email"
 url = "mailto:i@hakula.xyz"
 icon = "fas fa-envelope"
-weight = 11
+weight = 12
 
 [[menu.social]]
 name = "menu_social_rss"
 url = "/index.xml"
 icon = "fas fa-rss"
-weight = 12
+weight = 13
 external = true
