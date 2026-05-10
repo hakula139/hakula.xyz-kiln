@@ -20,12 +20,14 @@ hakula.xyz-kiln is the [kiln](https://github.com/hakula139/kiln) site source for
 │   ├── js/                           # Site-only JS, shipped as-is (no build step)
 │   └── images/                       # Article covers, hotlink-ok mirrors, background
 ├── templates/                        # Site-only directives & template overrides
+│   ├── _partials/
+│   │   └── icons/                    # Site-side SVG icon overrides resolved by IgnIt's icon dispatcher
 │   └── directives/
 └── themes/
     └── IgnIt/                        # Theme (git submodule)
 ```
 
-Files under `templates/` override the same-path file in `themes/IgnIt/templates/`. Site-only directives live in `templates/directives/<name>.html` and are picked up by kiln's directive renderer without further wiring. Files and directories whose names start with `_` are private build inputs (kiln's `copy_static` skips them).
+Files under `templates/` override the same-path file in `themes/IgnIt/templates/`. Site-only directives live in `templates/directives/<name>.html` and are picked up by kiln's directive renderer without further wiring. Same precedence applies to icon SVGs: a file at `templates/_partials/icons/<slug>.svg` shadows the theme's bundle for that slug (or adds a new one). Files and directories whose names start with `_` are private build inputs (kiln's `copy_static` skips them).
 
 ### Theme Submodule
 

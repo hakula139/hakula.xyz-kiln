@@ -110,3 +110,88 @@ url = "https://github.com/hakula139/hakula.xyz-kiln"
 icon = "fab fa-github"
 weight = 12
 external = true
+
+# Social icons rendered under the home profile subtitle, in `weight` order.
+
+[[menu.social]]
+name = "menu_social_qq"
+url = "/images/social/qq.webp"
+icon = "svg:qq"
+weight = 1
+external = true
+
+[[menu.social]]
+name = "menu_social_telegram"
+url = "https://t.me/hakulaTG"
+icon = "svg:telegram"
+weight = 2
+external = true
+
+[[menu.social]]
+name = "menu_social_email"
+url = "mailto:i@hakula.xyz"
+icon = "fas fa-envelope"
+weight = 3
+
+[[menu.social]]
+name = "menu_social_github"
+url = "https://github.com/hakula139"
+icon = "svg:github"
+weight = 4
+external = true
+
+[[menu.social]]
+name = "menu_social_linkedin"
+url = "https://linkedin.com/in/hakula"
+icon = "svg:linkedin"
+weight = 5
+external = true
+
+[[menu.social]]
+name = "menu_social_bilibili"
+url = "https://space.bilibili.com/3507112"
+icon = "svg:bilibili"
+weight = 6
+external = true
+
+[[menu.social]]
+name = "menu_social_bangumi"
+url = "https://bgm.tv/user/hakula_1234567"
+icon = "svg:bangumi"
+weight = 7
+external = true
+
+[[menu.social]]
+name = "menu_social_douban"
+url = "https://www.douban.com/people/hakula139"
+icon = "svg:douban"
+weight = 8
+external = true
+
+[[menu.social]]
+name = "menu_social_neodb"
+url = "https://neodb.social/users/hakula139@mastodon.social"
+icon = "svg:fediverse"
+weight = 9
+external = true
+
+[[menu.social]]
+name = "menu_social_steam"
+url = "https://steamcommunity.com/id/hakula139"
+icon = "svg:steam"
+weight = 10
+external = true
+
+[[menu.social]]
+name = "menu_social_listenbrainz"
+url = "https://listenbrainz.org/user/Hakula"
+icon = "svg:listenbrainz"
+weight = 11
+external = true
+
+[[menu.social]]
+name = "menu_social_rss"
+url = "/index.xml"
+icon = "fas fa-rss"
+weight = 12
+external = true

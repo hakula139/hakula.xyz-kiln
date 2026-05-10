@@ -53,6 +53,7 @@ Kiyotsugu
 kstack
 libc
 libdav1d
+listenbrainz
 llms
 llmstxt
 LLSIF
@@ -76,6 +77,7 @@ Mutsumi
 mygo
 nasm
 neko
+neodb
 nixfmt
 nixpkgs
 noopener
