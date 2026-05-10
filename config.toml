@@ -19,20 +19,9 @@ fontawesome = true
 
 [params.background]
 image = "/images/bg.webp"
-# Hand-rolled 16x8 LQIP — kiln only stamps `<img>`, not CSS backgrounds.
+# Hand-rolled 16x8 LQIP since kiln only stamps `<img>`; CSS backgrounds need a manual placeholder.
 lqip_uri = "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAgABIByJYwAAjuRI6+m6AAA/vGdTVlvPFRSsRiSc/Pgld5k7oUI2bfXkLCKpotCEX2jctQ+PaCoAAA="
 position = "70% 50%"
-
-[params.home]
-paginate = 8
-
-[params.home.profile]
-avatar = "/images/hotlink-ok/avatar-lite.webp"
-title = "HAKULA†CHANNEL"
-subtitle = "让我们一直谈论变革，以确保事实上什么都没改变。"
-
-[params.section]
-paginate = 10
 
 [params.comments]
 enabled = true
@@ -45,6 +34,22 @@ api_url = "https://twikoo.hakula.xyz"
 since = 2018
 license = "CC BY-NC-SA 4.0"
 license_url = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+
+[params.home]
+paginate = 8
+
+[params.home.profile]
+avatar = "/images/hotlink-ok/avatar-lite.webp"
+title = "HAKULA†CHANNEL"
+subtitle = "让我们一直谈论变革，以确保事实上什么都没改变。"
+
+[params.lightgallery]
+enabled = true
+# Client-side activation token; surfaced in HTML by lightgallery itself.
+license_key = "25262F0A-212A4039-AF8FA4BC-CA4E44AD"
+
+[params.section]
+paginate = 10
 
 # `name` fields are i18n keys resolved by the theme via `t(item.name)`.
 # Labels live in `i18n/<language>.toml`.
