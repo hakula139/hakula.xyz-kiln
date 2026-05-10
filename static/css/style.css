@@ -2104,7 +2104,7 @@
   margin-block: calc(var(--spacing) * 1);
   display: inline;
 }
-.prose a:has(> img:only-child) {
+.prose a:has(> img:only-child), .prose a:has(> .lqip:only-child) {
   border-bottom-style: var(--tw-border-style);
   border-bottom-width: 0px;
   padding-bottom: calc(var(--spacing) * 0);
