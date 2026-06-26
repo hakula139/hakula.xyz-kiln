@@ -15,8 +15,8 @@
   # Inputs
   # ----------------------------------------------------------------------------
   inputs = {
-    # Nixpkgs - NixOS 25.11 stable release
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    # Nixpkgs - NixOS 26.05 stable release
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     # Per-system flake outputs
     flake-utils.url = "github:numtide/flake-utils";
