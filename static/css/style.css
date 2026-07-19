@@ -1956,7 +1956,7 @@
       animation: var(--animate-lqip-fade-in);
     }
   }
-  .prose figure > .lqip {
+  .prose figure > .lqip, .prose figure > .lightgallery {
     margin-inline: auto;
     display: block;
     width: fit-content;
