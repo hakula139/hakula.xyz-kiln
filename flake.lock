@@ -139,22 +139,20 @@
           "flake-utils"
         ],
         "git-hooks-nix": "git-hooks-nix_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_3",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1778344932,
-        "narHash": "sha256-8ZUiVZ36xgvi5I38LQ5UopJa35bqDWA5msEygVHgJCY=",
+        "lastModified": 1787123769,
+        "narHash": "sha256-VRBaWpHEn2Pe6tUL97urUxW6SsSsOLJrtAnWx8BH/Co=",
         "owner": "hakula139",
         "repo": "kiln",
-        "rev": "618be3387b133ef011094b995ac8e6646af466d0",
+        "rev": "edf012de7252c950f4511691f83784078f28ba2b",
         "type": "github"
       },
       "original": {
         "owner": "hakula139",
-        "ref": "v0.3.0-rc.1",
+        "ref": "v0.3.0-rc.3",
         "repo": "kiln",
         "type": "github"
       }
@@ -193,6 +191,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1782233679,
+        "narHash": "sha256-QyuGP5+QOtmXpy4i2X4DhBVBaySBdDKQEhqKcphcp34=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "667d5cf1c59585031d743c78b394b0a647537c35",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1787042014,
         "narHash": "sha256-lgnV/xeEatfEnPZG0RrXS0fhcr63p3tsVvL1GdaVkJQ=",
         "owner": "NixOS",
@@ -212,7 +226,7 @@
         "flake-utils": "flake-utils",
         "git-hooks-nix": "git-hooks-nix",
         "kiln": "kiln",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       }
     },
     "rust-overlay": {
