@@ -105,12 +105,13 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 | 游戏名                 | ID                             | 段位 / 实力                                               |              时间 |
 | :--------------------- | :----------------------------- | :-------------------------------------------------------- | ----------------: |
-| [Arcaea][arcaea]       | Hakula (047 570 647)           | ptt: 12.00                                                | 2024-07 ~ 2025-01 |
+| [Arcaea][arcaea]       | Hakula (047 570 647)           | ptt: [12.00][arcaea-ptt]                                  | 2024-07 ~ 2025-01 |
 | [発狂 BMS][lr2ir]      | [Hakula♪ (122423)][lr2ir-me]   | 准 SP★06 / Walkure: [★13.26][walkure] / [点灯情况][lamps] | 2016-09 ~ 2019-02 |
 | [LLSIF :jp:][llsif]    | はくら (235609666)             | 全曲无判 FC，☆12 平均 P 率 ≈ 95%                          | 2015-11 ~ 2018-01 |
 | [BeatStage][beatstage] | [hakula_1234567][beatstage-me] | 最高 #1                                                   | 2013-08 ~ 2018-08 |
 
 [arcaea]: https://arcaea.lowiro.com
+[arcaea-ptt]: https://www.bilibili.com/video/BV1pXwkesEs4
 [lr2ir]: http://www.dream-pro.info/~lavalse/LR2IR/search.cgi?mode=search&type=insane
 [lr2ir-me]: http://www.dream-pro.info/~lavalse/LR2IR/search.cgi?mode=mypage&playerid=122423
 [walkure]: http://walkure.net/hakkyou/recommended_mypage.html?playerid=122423
@@ -134,6 +135,15 @@ url = "https://www.pixiv.net/artworks/64035231"
 [majsoul]: https://www.maj-soul.net
 [majsoul-me]: https://amae-koromo.sapk.ch/player/697658
 
+### 德州扑克
+
+| 游戏名                 | ID                        |           时间 |
+| :--------------------- | :------------------------ | -------------: |
+| [PokerFate][pokerfate] | [Hakula][pokerfate-stats] | 2026-06 ~ 至今 |
+
+[pokerfate]: https://pokerfate.com
+[pokerfate-stats]: https://poker-fate-stats.hakula.xyz
+
 ### 手游
 
 | 游戏名                            | ID             |              时间 |
@@ -144,7 +154,9 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 ## :headphones: 音乐
 
-::: music {server="apple" name="favorite-songs" id="pl.u-AkAmPlpf2YvL2d9" country="jp"} <!-- cspell:disable-line -->
+<!-- cspell:disable-next-line -->
+
+::: music {server="apple" name="favorite-songs" id="pl.u-AkAmPlpf2YvL2d9" country="jp"}
 :::
 
 | 平台             | 账号                     |
