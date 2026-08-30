@@ -28,6 +28,7 @@ provider = "twikoo"
 
 [params.comments.twikoo]
 api_url = "https://twikoo.hakula.xyz"
+visitor = true
 
 [params.footer]
 since = 2018
