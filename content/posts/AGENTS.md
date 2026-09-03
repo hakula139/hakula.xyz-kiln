@@ -62,8 +62,8 @@ Four constructions recur often enough to name. This is not a checklist to run ag
 ## Content
 
 - Clear and rigorous, pitched between the written and the spoken register.
-- Precise terminology and no invented words, glossed in parentheses where needed. A term's first appearance takes 「」 and may carry its original-language name. Piling up terms without explanation is prohibited.
-- Bold sparingly. 「」 carries emphasis.
+- Use precise, established terminology rather than invented words, enclosing each term in `「」` on its first appearance alongside its optional original-language name and glossing it in parentheses when needed instead of piling up unexplained terms.
+- Bold sparingly. `「」` carries emphasis.
 - Where the argument returns to an earlier section, link back to it with a Markdown link.
 - Merge short analytical passages into continuous paragraphs. Subheadings are for longer self-contained arguments.
 - Watch what the owner edits after each pass and learn the preference from it.

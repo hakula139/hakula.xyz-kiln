@@ -72,13 +72,13 @@ Paragraphs are not hard-wrapped. One paragraph is one line, and wrapping is the 
 
 ### Punctuation
 
-Chinese paragraphs take full-width punctuation. Quotation uses corner brackets 「」, nested as 『』.
+Chinese paragraphs use full-width punctuation and format quotations with corner brackets `「」`, nesting them as `『』`.
 
 Work titles by tradition:
 
-- ACGN works always take 「」: 「少女终末旅行」、「EVA」
-- Chinese classical works take 《》: 《红楼梦》、《让子弹飞》
-- Japanese classical works take 『』: 『金閣寺』、『羅生門』
+- ACGN works always take `「」`: 「少女终末旅行」、「EVA」
+- Chinese classical works take `《》`: 《红楼梦》、《让子弹飞》
+- Japanese classical works take `『』`: 『金閣寺』、『羅生門』
 - English works take italics: _Ulysses_, _The Godfather_
 
 Half-width exceptions:
@@ -98,4 +98,4 @@ Keep capitalisation and spelling correct, and spell a name out in full on first 
 [markdownlint](https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md) enforces list style, indentation, code fence style, code block languages, emphasis style, and the ban on bold text standing in for a subheading, all configured in `.markdownlint-cli2.jsonc`. Two conventions it does not cover:
 
 - In Chinese prose a foreign term is embedded directly. Italics mark only a foreign work title.
-- Headings do not end in 、；：, which MD026 does not catch because it is configured for the half-width `.,;:` only.
+- Headings do not end in `、；：`, which MD026 does not catch because it is configured only for the half-width `.,;:`.
