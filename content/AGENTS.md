@@ -1,10 +1,10 @@
-# 文章格式与排版规范
+# Format and Typography
 
-本文档规定 `content/` 目录下文章的格式与排版规范。写作风格另见 `content/posts/CLAUDE.md`。
+Format and typography for everything under `content/`. Writing style lives in [content/posts/AGENTS.md](posts/AGENTS.md).
 
-## 1. Frontmatter
+## Frontmatter
 
-使用 TOML frontmatter（`+++` 分隔符），日期为 TOML 原生偏移日期时间格式（`+08:00`）。
+TOML with `+++` delimiters. `date` is a native TOML offset date-time in `+08:00`, and may be initialised to the current date and time.
 
 ```toml
 +++
@@ -23,12 +23,9 @@ url = "https://www.pixiv.net/artworks/{pixiv_id}"
 +++
 ```
 
-`featured_image` 为 TOML 表，含 `src`（图片路径）、可选 `position`（CSS `object-position`）和可选 `credit` 子表（`title`、`author`、`url`）。
+`featured_image` is a TOML table holding `src`, an optional `position` (CSS `object-position`), and an optional `credit` subtable of `title`, `author`, and `url`.
 
-- `date`：ISO 8601，时区 `+08:00`，可初始化为当前日期和时间。
-- 路径含 `_` 开头目录的内部文档无需 frontmatter。
-
-## 2. 文章结构
+## Article structure
 
 ```markdown
 +++
@@ -44,12 +41,11 @@ url = "https://www.pixiv.net/artworks/{pixiv_id}"
 正文内容
 ```
 
-- 正文从二级标题（`##`）开始，最多六级，不跳级。
-- `<!--more-->` 标记摘要分隔点。
-- 脚注定义紧跟引用它的段落之后。
-- 路径含 `_` 开头目录的内部文档使用一级标题，不使用 frontmatter、摘要、directives。
+The body starts at `##` and nests to six levels without skipping one. `<!--more-->` marks the summary break. A footnote definition follows the paragraph that references it.
 
-## 3. Directives
+Internal documents in a directory whose name starts with `_` take an H1 heading and carry no frontmatter, no summary, and no directives.
+
+## Directives
 
 ```markdown
 ::: callout {type=quote title="标题"}
@@ -59,49 +55,47 @@ url = "https://www.pixiv.net/artworks/{pixiv_id}"
 :::
 ```
 
-可用类型：`quote`、`note`、`info`、`warning`、`tip`。上下两侧须有空行。标题含空格时用引号包裹。通常用 `callout quote` 替代 Markdown `>`。
+Types are `quote`, `note`, `info`, `warning`, and `tip`. A blank line is required above and below. Quote the title when it contains a space. Prefer `callout quote` over Markdown `>`.
 
-## 4. 排版
+## Typography
 
-基于 [中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-Hans.md)。
+Based on [中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-Hans.md).
 
-### 4.1 空格
+Paragraphs are not hard-wrapped. One paragraph is one line, and wrapping is the reader's job, so do not introduce 80-column breaks inside a paragraph.
 
-- 中文与英文、数字等半角字符之间添加空格：`在 LeanCloud 上`、`花了 5000 元`。
-- 数字与单位之间添加空格（百分号、度数除外）：`10 Gbps`、`15%`、`90°`。
-- 链接两侧添加空格（标点侧除外）：`详情请查阅 [官方文档](url)。`
-- 脚注左侧不加空格、右侧加空格（标点侧除外）：`Rust[^rust] 是一种编程语言。`
+### Spacing
 
-### 4.2 标点
+- A space between Han characters and half-width characters such as Latin or digits: `在 LeanCloud 上`, `花了 5000 元`.
+- A space between a number and its unit, excluding percent and degree signs: `10 Gbps`, `15%`, `90°`.
+- A space on both sides of a link, excluding the side facing punctuation: `详情请查阅 [官方文档](url)。`
+- A footnote takes no space on its left and one on its right, again excluding the punctuation side: `Rust[^rust] 是一种编程语言。`
 
-中文段落使用全角标点。引号用直角引号 `「」`（内层 `『』`）。
+### Punctuation
 
-**作品名标记**：
+Chinese paragraphs take full-width punctuation. Quotation uses corner brackets 「」, nested as 『』.
 
-- ACGN 作品一律用 `「」`：「少女终末旅行」、「EVA」
-- 中文传统作品用 `《》`：《红楼梦》、《让子弹飞》
-- 日文传统作品用 `『』`：『金閣寺』、『羅生門』
-- 英文作品用斜体：_Ulysses_, _The Godfather_
+Work titles by tradition:
 
-**半角例外**：
+- ACGN works always take 「」: 「少女终末旅行」、「EVA」
+- Chinese classical works take 《》: 《红楼梦》、《让子弹飞》
+- Japanese classical works take 『』: 『金閣寺』、『羅生門』
+- English works take italics: _Ulysses_, _The Godfather_
 
-- 括号内全为半角字符时用半角括号：拉康 (Jacques Lacan) 的理论
-- 并列项全为半角字符时用半角逗号：123, text, `code`
-- 冒号前后均为半角字符时用半角冒号：GPU: NVIDIA GeForce RTX 5090
-- 完整英文句子内用半角标点：「Stay hungry, stay foolish.」
-- 始终用半角 `/`：自然 / 文化、人类 / 机器
+Half-width exceptions:
 
-### 4.3 专有名词
+- Parentheses go half-width when everything inside them is half-width: 拉康 (Jacques Lacan) 的理论
+- A comma goes half-width when every item it separates is half-width: 123, text, `code`
+- A colon goes half-width when both sides are half-width: GPU: NVIDIA GeForce RTX 5090
+- A complete English sentence keeps half-width punctuation throughout: 「Stay hungry, stay foolish.」
+- `/` is always half-width: 自然 / 文化、人类 / 机器
 
-保持正确大小写和拼写，首次出现不用缩写。
+### Proper nouns
 
-## 5. Markdown
+Keep capitalisation and spelling correct, and spell a name out in full on first use.
 
-遵循 [markdownlint](https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md)。要点：
+## Markdown
 
-- 无序列表用 `-`，子项缩进 2 格；有序列表子项缩进 3 格。
-- 代码块须指定语言标识符（无语言概念时用 `text`）。
-- 加粗 `**文本**`，斜体 `_文本_`（中文行文中外语术语直接嵌入，斜体仅用于标注外语作品名称）。
-- 禁止用粗体短句代替小标题。
-- 标题结尾不含逗号、顿号、分号、冒号。
-- 正文段落不硬换行：一个段落写成一行，折行交给阅读器，不要在段落内引入 80 列断行。
+[markdownlint](https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md) enforces list style, indentation, code fence style, code block languages, emphasis style, and the ban on bold text standing in for a subheading, all configured in `.markdownlint-cli2.jsonc`. Two conventions it does not cover:
+
+- In Chinese prose a foreign term is embedded directly. Italics mark only a foreign work title.
+- Headings do not end in 、；：, which MD026 does not catch because it is configured for the half-width `.,;:` only.
