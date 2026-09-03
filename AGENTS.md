@@ -1,106 +1,52 @@
-# CLAUDE.md — hakula.xyz-kiln
+# AGENTS.md: hakula.xyz-kiln
 
-## Project Overview
+Project-specific rules for any coding assistant working in this repository. `CLAUDE.md` is a symlink to this file. Follow the user's global instructions for communication, scope, comment, and commit doctrine.
 
-hakula.xyz-kiln is the [kiln](https://github.com/hakula139/kiln) site source for [hakula.xyz](https://hakula.xyz), using the [IgnIt](https://github.com/hakula139/IgnIt) theme (git submodule at `themes/IgnIt/`). Migrated from a Hugo + LoveIt stack.
+This is the [kiln](https://github.com/hakula139/kiln) source for [hakula.xyz](https://hakula.xyz), using the [IgnIt](https://github.com/hakula139/IgnIt) theme as a submodule at `themes/IgnIt/`. This file holds only what the repository cannot show you directly, so anything readable off `ls`, `flake.nix`, `package.json`, or `git log` is deliberately absent.
 
-### Site Structure
+## Read before you edit
 
-```text
-.
-├── config.toml                       # Site configuration
-├── content/                          # Markdown content (posts, standalone pages)
-├── i18n/                             # Translation overrides (merged on top of theme keys)
-├── static/                           # Shipped assets
-│   ├── css/
-│   │   ├── _src/                     # Tailwind sources (private, not shipped)
-│   │   │   ├── main.css              # Entry: imports theme + site-level partials
-│   │   │   └── components/           # Site-only Tailwind partials
-│   │   └── style.css                 # Compiled Tailwind output (shipped)
-│   ├── js/                           # Site-only JS, shipped as-is (no build step)
-│   └── images/                       # Article covers, hotlink-ok mirrors, background
-├── templates/                        # Site-only directives & template overrides
-│   ├── _partials/
-│   │   └── icons/                    # Site-side SVG icon overrides resolved by IgnIt's icon dispatcher
-│   └── directives/
-└── themes/
-    └── IgnIt/                        # Theme (git submodule)
-```
+| Touching                          | Read                                               |
+| --------------------------------- | -------------------------------------------------- |
+| Frontmatter, typography, Markdown | [content/AGENTS.md](content/AGENTS.md)             |
+| Prose in an article               | [content/posts/AGENTS.md](content/posts/AGENTS.md) |
 
-Files under `templates/` override the same-path file in `themes/IgnIt/templates/`. Site-only directives live in `templates/directives/<name>.html` and are picked up by kiln's directive renderer without further wiring. Same precedence applies to icon SVGs: a file at `templates/_partials/icons/<slug>.svg` shadows the theme's bundle for that slug (or adds a new one). Files and directories whose names start with `_` are private build inputs (kiln's `copy_static` skips them).
+## Override precedence
 
-### Theme Submodule
+A file under `templates/` shadows the same-path file in `themes/IgnIt/templates/`. A site-only directive at `templates/directives/<name>.html` is picked up by kiln's directive renderer with no further wiring, and an icon at `templates/_partials/icons/<slug>.svg` shadows the theme's bundle for that slug or adds a new one.
 
-IgnIt is pinned as a git submodule. To update the theme:
+Names beginning with `_` are private build inputs, which kiln's `copy_static` skips.
 
-```bash
-git submodule update --remote themes/IgnIt
-git add themes/IgnIt
-git commit -m "chore: update IgnIt submodule"
-```
+## Two things that bite
+
+**Run `pnpm build` after editing CSS.** Tailwind sources live in `static/css/_src/`, and the compiled `static/css/style.css` is committed. The sync gate is `git diff --exit-code static/` in CI's `check` job only, so a stale `style.css` commits cleanly on your machine and fails at PR time.
+
+**Install Git LFS before cloning.** Image binaries (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are stored via LFS per `.gitattributes`, and without `git lfs install` you get pointer files where the images should be.
 
 ## Build
 
-### Site build (kiln)
-
 ```bash
-kiln build                   # Build site to public/
-kiln serve --open            # Dev server with live reload
+kiln build                   # build to public/
+kiln serve --open            # dev server with live reload
+pnpm build                   # compile static/css/style.css
+pnpm dev                     # Tailwind watch
+nix develop                  # dev shell, installs the pre-commit hook
+nix flake check              # Nix-side hooks, also gated in CI
 ```
 
-### Site-level CSS / JS
+`direnv` activates the dev shell via `.envrc`. kiln and pagefind come prebuilt from the `hakula` cachix substituter, so first entry does not compile kiln from source. Minification happens at deploy time through `kiln build --minify`, leaving shipped files readable during development.
 
-Tailwind sources live in `static/css/_src/`; the entry `main.css` imports the theme's own `_src/main.css` plus any site-specific partials. Site JS ships as-is. CI fails if `static/css/style.css` is out of sync with source — run `pnpm build` after editing CSS.
-
-```bash
-pnpm build                   # Compile to static/css/style.css
-pnpm dev                     # Tailwind watch mode
-```
-
-Minification for both CSS and JS happens at deploy time via `kiln build --minify`, so shipped files stay readable during development.
-
-### Dev shell (Nix)
-
-`flake.nix` pulls Node.js, pnpm, pagefind, and kiln from the [kiln flake](https://github.com/hakula139/kiln/tree/main/flake.nix), plus the pre-commit hook toolchain. `direnv` auto-activates it via `.envrc`. kiln + pagefind are built once by kiln's CI and served from `hakula.cachix.org`, so `nix develop` doesn't compile kiln from source on first entry.
-
-```bash
-nix develop                  # interactive shell (auto-installs hooks)
-nix flake check              # run Nix-side hooks (also gated in CI)
-```
+Node-side pre-commit hooks no-op when `node_modules/` is absent, which is the case inside the Nix sandbox. CI's `check` job runs the equivalent `pnpm` commands directly, so coverage is preserved and a green `nix flake check` does not mean the Node hooks ran.
 
 ## Deploy
 
-The site is hosted on Cloudflare Workers (Static Assets binding) at [dev.hakula.xyz](https://dev.hakula.xyz) — `wrangler.toml` at the repo root pins the worker name, custom domain, and `not_found_handling`. The apex `hakula.xyz` is still served by the legacy Pages project; cutover is planned later by appending the apex pattern to `wrangler.toml`'s `routes` array and removing it from Pages.
+Cloudflare Workers with a Static Assets binding, at [dev.hakula.xyz](https://dev.hakula.xyz). `wrangler.toml` pins the worker name, custom domain, and `not_found_handling`. The apex `hakula.xyz` is still served by the legacy Pages project.
 
-`.github/workflows/build.yml` is a reusable workflow (`workflow_call`) that enters the Nix dev shell and runs `pnpm build` (Tailwind) + `kiln build --minify`, then optionally uploads `public/` as a CI artifact. kiln + pagefind come from the `hakula` cachix substituter (pinned via the `kiln` flake input). Both `ci.yml` (PR validation) and `deploy.yml` (push to main → Cloudflare) call into it, keeping the build path single-sourced.
+`.github/workflows/build.yml` is a reusable `workflow_call` that enters the dev shell and runs `pnpm build` then `kiln build --minify`. Both `ci.yml` and `deploy.yml` call into it, so the build path is single-sourced. A manual deploy is `pnpm wrangler login` once, then `pnpm wrangler deploy`. CI needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets.
 
-Local manual deploy: `pnpm wrangler login` once, then `pnpm wrangler deploy`. CI deploy needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets configured at the repository level.
+## Conventions
 
-## Coding Conventions
-
-### Content
-
-- Article covers go in `static/images/article-covers/`.
-- Co-located assets (diagrams, data files) live alongside `index.md` in page bundles.
-- Frontmatter, typography, and Markdown conventions live in [content/CLAUDE.md](content/CLAUDE.md); writing style lives in [content/posts/CLAUDE.md](content/posts/CLAUDE.md).
-
-### Git Conventions
-
-- Commit messages: `type(scope): description`
-  - Types: `feat`, `fix`, `refactor`, `docs`, `test`, `ci`, `chore`, `style`, `perf`
-  - Scope: topic area (e.g., content file name without extension, `config`, `template`)
-- PRs: assign to `hakula139`.
-
-### Git hooks
-
-Pre-commit hooks are driven by [git-hooks-nix](https://github.com/cachix/git-hooks.nix), wired in `flake.nix`. Entering the dev shell (`nix develop` or via direnv) installs `.git/hooks/pre-commit` automatically. Hooks: Prettier (with `prettier-plugin-tailwindcss` for class sorting), markdownlint, cspell, nixfmt / statix / deadnix, and basic file hygiene. Node-side hooks no-op when `node_modules/` is absent (e.g., inside the Nix sandbox); CI's `check` job runs the equivalent commands directly via `pnpm`, so coverage is preserved.
-
-The compiled CSS sync gate (`git diff --exit-code static/`) is gated only in CI's `check` job — pushing a stale `static/css/style.css` is allowed locally and caught at PR time.
-
-### Git LFS
-
-Image binaries (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are stored via Git LFS — see `.gitattributes`. Install Git LFS (`git lfs install`) before cloning, otherwise pointer files are checked out instead of real images.
-
-### Spell Checking
-
-- Config in `cspell.json`. Add project-specific words to `.cspell/words.txt` (one word per line, sorted alphabetically).
+- Article covers go in `static/images/article-covers/`. Co-located assets such as diagrams and data files sit alongside `index.md` in the page bundle.
+- Commit scope is the topic area: a content file name without its extension, or `config`, or `template`.
+- Assign pull requests to `hakula139`.
+- Add spell-check words to `.cspell/words.txt`, one per line, sorted alphabetically.
