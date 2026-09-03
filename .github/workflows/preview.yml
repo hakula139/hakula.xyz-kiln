@@ -31,33 +31,28 @@ jobs:
       WORKERS_DEV_SUBDOMAIN: hakula.workers.dev
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up pnpm
         uses: pnpm/setup@v2
         with:
           version: latest
+          runtime: node@lts
+          cache: true
           install: false
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: lts/*
-          cache: pnpm
-
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: site-public
           path: public/
 
       - name: Upload preview version
         id: upload
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          wranglerVersion: '4.87.0'
           command: >-
             versions upload
             --preview-alias pr-${{ env.PR_NUMBER }}
@@ -78,7 +73,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Comment preview
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@v3
         with:
           header: preview-url
           message: |
