@@ -1,56 +1,80 @@
-# 写作风格规范
+# Writing Style
 
-本文档规定 AI 辅助写作时的风格规范。格式与排版另见 `content/CLAUDE.md`。
+Style doctrine for AI-assisted writing under `content/posts/`. Format and typography live in [content/AGENTS.md](../AGENTS.md).
 
-## 1. 风格范文
+## Exemplars
 
-以下文章最能代表目标风格，写作前读一篇校准语感。读的是节奏和密度，不要照搬句式。
+Read one before writing, for cadence and density. Do not copy sentence patterns.
 
-- `content/posts/essay/war-must-be-defended/index.md`：克制、密度高、理论嵌入自然
-- `content/posts/avg/swan-song/normal-end/index.md`：情感与分析交织、节奏变化丰富
-- `content/posts/anime/bocchi-the-rock/`：口语化与学术化平衡、追问式推进
+- `content/posts/essay/war-must-be-defended/index.md` — restrained, dense, theory embedded without seams
+- `content/posts/avg/swan-song/normal-end/index.md` — feeling and analysis interleaved, wide dynamic range
+- `content/posts/anime/bocchi-the-rock/` — colloquial and academic in balance, driven forward by follow-up questions
 
-## 2. 风格要求
+## Voice
 
-整体偏学术但不冷淡，立场鲜明但承认局限。核心特征：
+Academic in register but not cold. Take a position and admit where it stops. Emotional and partisan phrasing is allowed, and the wording need not always be the most standard, most neutral option available. Do not perform a neutrality you do not hold.
 
-- **句式长短交错**：以 20 字以上的复杂长句为主，穿插短句强调。压得太短会让行文像电报。
-- **隐式过渡**：段落间靠逻辑推进衔接。上下文结构已经暗示了过渡，就不必再写「回到 X」「让我们来看看」，也不必靠「然而」「与此同时」这类连接词把段落缝起来。
-- **追问式推进**：反复追问「为什么」「然后呢」，不满足于表面描述。
-- **不对称节奏**：段落长短不一，信息密度有松有紧，情绪有克制也有突然激烈。允许 300 字以上的长段落，也允许一句感慨自成一段。真实的写作里有犹豫、自嘲和跑题。
-- **主观、不迎合**：允许情绪化、倾向性的表达，不追求虚假的客观中立。用词不必总是挑最标准最中性的那一个。
-- **理论作为工具**：理论服务于理解作品本身，不炫技。首次引入时用 `callout` 块解释背景，不预设读者的知识储备。
-- **括号降格附注**：补充说明、举例、限定这类从属信息用括号。破折号 `——` 留给有分量的转折或关键推进，也不要和分号叠成「X——是 Y；Z——也只有 W」这样的并列结构。
-- **分号连接近义句**：关系密切的两个句子用分号，避免频繁断句。
-- **事实前置**：事实性信息在自然出现的位置就交代掉，不刻意留到后文充当「揭示」式的收束。
-- **合成优先于枚举**：多个细节指向同一结论时压缩成一个抽象意象，而不是逐条列出。A 已经蕴含 B 就不必再展开 B，概念本身有力度就不必再用修辞强化。
-- **正文少用列表**：论述部分不要频繁使用 `- **子项**：说明` 这种结构，展开成段落。
+## Cadence
 
-## 3. 几种反复出现的句式反射
+Complex clauses of 20 characters or more carry the argument, with short sentences for emphasis. Compressed too far, the prose reads like a telegram.
 
-这一节只列真正会反复冒出来的几种，不是逐条自检的清单。实测中让模型自己估计「这段有多像 AI 生成」会挑错对象，把写得好的段落判成问题段落，而成条的禁令清单也不如上一节的正面要求有效。要改就直接照第 2 节改写。
+## Transitions
 
-- **二元对比反射**：「不是 X，而是 Y」及其变体反复出现。要禁的是这个对比结构，换一个连接词照样算。需要强调对比时用「正是」或者「与其说……不如说……」。
-- **机械排比与机械列举**：三个以上结构完全一致的并列短句，以及「首先……其次……最后……」这样的骨架。
-- **对仗式金句**：「X 只问 A，不问 B」之类的对仗短句。要表达类似的意思，融进行文里展开。
-- **空洞收尾**：用「综上所述」「总之」开头再复述一遍前文。段落自身的收束力够了，就不要额外补一段回扣前文。
+Let the logic carry the paragraph break. Where the structure already implies the turn, 「回到 X」 and 「让我们来看看」 add nothing, and 「然而」 or 「与此同时」 should not be used to stitch two paragraphs together.
 
-## 4. 内容规范
+## Interrogative drive
 
-- 表达清晰、逻辑严密，但不过于书面也不过于口语。
-- 使用准确的专业术语，避免虚空造词，必要时用括号补充说明。重要术语首次出现时用直角引号强调，可以给出原语言的原名。严禁不加解释地堆砌术语。
-- 避免过多加粗，强调用 `「」`。
-- 章节之间通过回应前文建立关联，引用前文章节用 Markdown 超链接。
-- 分析段落不长时合并成连续段落，子标题只用于较长的独立论述。
-- 每次编辑后观察用户的修改，学习用户的写作风格偏好。
+Keep asking 「为什么」 and 「然后呢」 past the first plausible answer. Surface description is a starting point.
 
-## 5. 写作禁忌
+## Asymmetric rhythm
 
-1. 虚假的客观中立，假装没有立场。
-2. 为迎合大众而回避争议性观点。
-3. 不加解释地使用专业术语。
-4. 空洞的套话和废话。
-5. 追求「高雅」而使用生僻、自造的词汇。
-6. 把简单问题复杂化以显示深度。
-7. 弄错事实（场地容量、角色关系等）。
-8. 将后续剧情的设定提前引入当前时间线的分析。
+Paragraph lengths differ, information density loosens and tightens, and emotion runs from restrained to suddenly fierce. A paragraph over 300 characters is fine, and so is a single sentence standing alone. Leave room for hesitation, self-deprecation, and digression.
+
+## Theory as instrument
+
+Theory serves understanding of the work itself. On first use a `callout` block gives the background, since the reader's prior knowledge is not assumed.
+
+## Punctuation roles
+
+Parentheses take subordinate material: elaboration, examples, qualifications. Reserve 破折号 `——` for a turn that carries weight or a key step forward. Two closely related sentences may be joined with 分号, which keeps the prose from breaking into fragments, though stacking the two into 「X——是 Y；Z——也只有 W」 produces exactly the manufactured drama that gives the writing away.
+
+## Facts up front
+
+State factual material where it naturally arises. Holding it back to spring later as a reveal is a structure to avoid.
+
+## Synthesis over enumeration
+
+When several details point at one conclusion, compress them into a single image. Where A already entails B, B does not need its own sentence, and a concept with force of its own does not need rhetoric added to it.
+
+## Prose over lists
+
+In the body of an argument the `- **子项**：说明` shape should be rare. Expand it into paragraphs.
+
+## Recurring reflexes
+
+Four constructions recur often enough to name. This is not a checklist to run against a finished draft: asking a model to score how AI-generated a passage looks picks the wrong targets and flags the good paragraphs, and a list of prohibitions measured worse than the positive requirements above. Revise against those requirements.
+
+- **Binary contrast** — 「不是 X，而是 Y」 and its variants. The structure is the problem, so swapping the connective changes nothing. Where the contrast needs emphasis, 「正是」 or 「与其说……不如说……」 does the work.
+- **Mechanical parallelism and enumeration** — three or more juxtaposed clauses of identical structure, and the 「首先……其次……最后……」 skeleton.
+- **Aphorism** — a self-contained verdict in couplet form, 「X 只问 A，不问 B」. Fold the meaning into the argument as it develops.
+- **Hollow closing** — opening with 「综上所述」 or 「总之」 and restating what came before. Where a paragraph already closes itself, an added callback paragraph is padding.
+
+## Content
+
+- Clear and rigorous, pitched between the written and the spoken register.
+- Precise terminology and no invented words, glossed in parentheses where needed. A term's first appearance takes 「」 and may carry its original-language name. Piling up terms without explanation is prohibited.
+- Bold sparingly. 「」 carries emphasis.
+- Where the argument returns to an earlier section, link back to it with a Markdown link.
+- Merge short analytical passages into continuous paragraphs. Subheadings are for longer self-contained arguments.
+- Watch what the owner edits after each pass and learn the preference from it.
+
+## Prohibitions
+
+1. Neutrality performed without being held.
+2. Avoiding a contested position in order to be agreeable.
+3. Terminology used without explanation.
+4. Empty formula and filler.
+5. Obscure or self-coined vocabulary in pursuit of elevation.
+6. Complicating a simple point to look deep.
+7. Factual error, such as venue capacity or character relations.
+8. Later plot material imported into analysis set earlier in the timeline.
