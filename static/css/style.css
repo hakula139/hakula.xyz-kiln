@@ -41,6 +41,7 @@
     --blur-sm: 8px;
     --blur-md: 12px;
     --blur-lg: 16px;
+    --aspect-video: 16 / 9;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: ease;
     --default-font-family: var(--font-sans);
@@ -726,6 +727,9 @@
   .aspect-\[21\/9\] {
     aspect-ratio: 21/9;
   }
+  .aspect-video {
+    aspect-ratio: var(--aspect-video);
+  }
   .w-full {
     width: 100%;
   }
@@ -808,10 +812,6 @@
   }
   .rounded-none {
     border-radius: 0;
-  }
-  .border-0 {
-    border-style: var(--tw-border-style);
-    border-width: 0px;
   }
   .border-b-0 {
     border-bottom-style: var(--tw-border-style);
@@ -2925,13 +2925,14 @@
     border-color: var(--pf-border);
     border-radius: var(--pf-border-radius);
   }
-  .music-player-wrapper {
+  .player-wrapper {
     margin-block: calc(var(--spacing) * 4);
     overflow: hidden;
     border-radius: var(--radius-lg);
   }
-  .music-player-wrapper iframe {
+  .player-wrapper iframe {
     display: block;
+    width: 100%;
     border-style: var(--tw-border-style);
     border-width: 0px;
   }
