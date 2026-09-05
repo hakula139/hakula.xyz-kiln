@@ -1,9 +1,13 @@
+# ── Exact legacy paths ──
+
 /about_me.html /about-me/ 301
 /algo/project_task_1.html /posts/note/algorithms/dna-error-detection/task-1/ 301
 /algo/project_task_2.html /posts/note/algorithms/dna-error-detection/task-2/ 301
 /archive.html /posts/ 301
 /avg/impression.html /posts/avg/impressions/ 301
 /avg/on-looker.html /posts/avg/on-looker/ 301
+/categories/ /sections/ 301
+/categories/index.html /sections/ 301
 /comments.html /comments/ 301
 /comp_arch/branch_predictor_mips.html /posts/note/comp-org/mips-branch-predictor/ 301
 /comp_arch/cache_mips.html /posts/note/comp-org/mips-cache/ 301
@@ -27,7 +31,6 @@
 /os/lab_5.html /posts/note/os/process-management-and-system-call/ 301
 /os/lab_6.html /posts/note/os/driver-and-libc/ 301
 /os/lab_7.html /posts/note/os/file-system-and-shell/ 301
-/page/1 / 301
 /page/1/ / 301
 /posts/note/philosophy/critique-of-pure-reason/index/ /posts/note/philosophy/critique-of-pure-reason/ 301
 /posts/tutorial/lr2/index/ /posts/tutorial/lr2/ 301
@@ -40,11 +43,8 @@
 /project/trump-bot.html /posts/project/trump-bot/ 301
 /project/ua_typecho.html /posts/project/user-agent-for-typecho/ 301
 /project/woogle.html /posts/project/woogle/ 301
-/sites /links/ 301
 /sites/ /links/ 301
-/tags/c++ /tags/c/ 301
 /tags/c++/ /tags/c/ 301
-/tags/csapp /tags/cs-app/ 301
 /tags/csapp/ /tags/cs-app/ 301
 /tutorial/bms.html /posts/tutorial/lr2/about-bms/ 301
 /tutorial/lr2.html /posts/tutorial/lr2/ 301
@@ -63,14 +63,15 @@
 /tutorial/lr2_wmix.html /posts/tutorial/lr2/wmix/ 301
 /tutorial/vagex.html /posts/tutorial/vagex/ 301
 /vps/cloudcone.html /posts/vps/cloudcone/ 301
-/categories/index.html /sections/ 301
-/categories /sections/ 301
-/categories/ /sections/ 301
+
+# ── Prefix-scoped patterns: must precede the catch-alls below ──
+
 /categories/:section/ /posts/:section/ 301
-/categories/:section /posts/:section/ 301
 /categories/:section/* /posts/:section/:splat 301
-/*/index.html /:splat/ 301
-/*/page/1 /:splat/ 301
-/*/page/1/ /:splat/ 301
 /tags/c++/* /tags/c/:splat 301
 /tags/csapp/* /tags/cs-app/:splat 301
+
+# ── Catch-alls: last, because the first matching rule wins ──
+
+/*/index.html /:splat/ 301
+/*/page/1/ /:splat/ 301
