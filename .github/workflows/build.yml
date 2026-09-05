@@ -8,7 +8,7 @@ on:
         type: boolean
         default: false
       base-url:
-        description: Override `base_url` from config.toml (used by PR previews so links stay on the preview origin)
+        description: Override `base_url` from config.toml so development and preview links stay on their origin
         type: string
         default: ''
 
