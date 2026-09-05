@@ -18,28 +18,27 @@ url = "https://www.pixiv.net/artworks/70180757"
 
 | 项目   | 方案                             |
 | :----- | :------------------------------- |
-| 框架   | [Hugo]                           |
-| 主题   | [LoveIt] - [@Dillon]             |
+| 框架   | [kiln]                           |
+| 主题   | [IgnIt]                          |
 | 评论   | [Twikoo]                         |
 | VPS    | [DMIT]                           |
 | DNS    | [Cloudflare]                     |
 | CDN    | [Cloudflare]                     |
-| 部署   | [Cloudflare Pages]               |
+| 部署   | [Cloudflare Workers]             |
 | 云存储 | [Cloudreve] & [Backblaze B2][B2] |
 | 图床   | [PicList] & [腾讯云 COS][COS]    |
 | 流媒体 | [PeerTube]                       |
 | 监控   | [Netdata] & [Better Stack]       |
 
-[@Dillon]: https://github.com/dillonzq
 [B2]: https://www.backblaze.com/cloud-storage
 [Better Stack]: https://betterstack.com
 [Cloudflare]: https://www.cloudflare.com
-[Cloudflare Pages]: https://pages.cloudflare.com
+[Cloudflare Workers]: https://developers.cloudflare.com/workers/static-assets/
 [Cloudreve]: https://cloudreve.org
 [COS]: https://cloud.tencent.com/product/cos
 [DMIT]: /links/dmit
-[Hugo]: https://gohugo.io
-[LoveIt]: https://hugoloveit.com
+[IgnIt]: https://github.com/hakula139/IgnIt
+[kiln]: https://github.com/hakula139/kiln
 [Netdata]: https://www.netdata.cloud
 [PeerTube]: https://joinpeertube.org
 [PicList]: https://piclist.cn
@@ -49,6 +48,7 @@ url = "https://www.pixiv.net/artworks/70180757"
 
 | 日期           | 更新内容                                                                                                                               |
 | :------------- | :------------------------------------------------------------------------------------------------------------------------------------- |
+| **2026-09-05** | 本站迁移至 [kiln] 和 [IgnIt]，部署于 [Cloudflare Workers]。原 Hugo 站点保留于 [old.hakula.xyz](https://old.hakula.xyz)。               |
 | 2026-03-07     | 基于 [PeerTube] 方案部署视频站。                                                                                                       |
 | 2026-02-02     | 服务器迁移完毕：[CloudCone :us:][CloudCone] → [DMIT :us:][DMIT] (Premium, CN2 GIA)，月付 \$ 15。                                       |
 | **2025‑12‑24** | 服务器迁移完毕：[腾讯云 :singapore:][Lighthouse] → [CloudCone :us:][CloudCone]、Ubuntu 22.04 → NixOS 25.11、CPU 2 → 3 核，年付 \$ 25。 |
