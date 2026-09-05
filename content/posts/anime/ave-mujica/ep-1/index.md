@@ -47,7 +47,7 @@ src = "/images/article-covers/ave-mujica.webp"
 
 ![KiLLKiSS](assets/02.07.avif)
 
-::: music {server="netease" type="song" id="2653641752"}
+::: bilibili {id="BV1i9rBY1EJK"}
 :::
 
 ::: callout {type=note title="KiLLKiSS - 歌词" open=false}
