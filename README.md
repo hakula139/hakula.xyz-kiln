@@ -26,14 +26,13 @@ Output is written to `public/`.
 
 ## Deploy
 
-The site auto-deploys to [hakula.xyz](https://hakula.xyz) on every push to `main` via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow builds with `kiln build --minify` and ships `public/` to a Cloudflare Worker (config in [`wrangler.toml`](wrangler.toml)) using the static-assets binding.
+Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz), and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz), via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow builds with `kiln build --minify` and ships `public/` to separate Cloudflare Workers configured in [`wrangler.toml`](wrangler.toml). Development builds keep links on the development origin. Development and PR preview hosts are excluded from indexing with `X-Robots-Tag: noindex`.
 
-For manual deploys (and one-time provisioning of the Worker + custom domain):
+For a manual deploy, run the workflow on the intended branch:
 
 ```bash
-pnpm install
-pnpm wrangler login           # one-time OAuth
-pnpm wrangler deploy
+gh workflow run deploy.yml --ref main
+gh workflow run deploy.yml --ref dev
 ```
 
 CI deploys require two repository secrets:
@@ -64,6 +63,6 @@ CI deploys require two repository secrets:
 
 ## License
 
-Copyright (c) 2026 [Hakula](https://hakula.xyz).  
-Code is licensed under [GPL v3](LICENSE).  
+Copyright (c) 2026 [Hakula](https://hakula.xyz).\
+Code is licensed under [GPL v3](LICENSE).\
 Articles are licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).

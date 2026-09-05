@@ -40,9 +40,9 @@ Node-side pre-commit hooks no-op when `node_modules/` is absent, which is the ca
 
 ## Deploy
 
-Cloudflare Workers with a Static Assets binding, at [hakula.xyz](https://hakula.xyz). `wrangler.toml` pins the worker name, custom domains, and `not_found_handling`. The legacy Hugo site is served by the Pages project at [old.hakula.xyz](https://old.hakula.xyz).
+Cloudflare Workers with a Static Assets binding. Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz), and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz) through Wrangler's `dev` environment. `wrangler.toml` pins the worker name, custom domains, and `not_found_handling`. The legacy Hugo site is served by the Pages project at [old.hakula.xyz](https://old.hakula.xyz).
 
-`.github/workflows/build.yml` is a reusable `workflow_call` that enters the dev shell and runs `pnpm build` then `kiln build --minify`. Both `ci.yml` and `deploy.yml` call into it, so the build path is single-sourced. A manual deploy is `pnpm wrangler login` once, then `pnpm wrangler deploy`. CI needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets.
+`.github/workflows/build.yml` is a reusable `workflow_call` that enters the dev shell and runs `pnpm build` then `kiln build --minify`. Both `ci.yml` and `deploy.yml` call into it, so the build path is single-sourced. Development builds set `KILN_BASE_URL=https://dev.hakula.xyz`. Development and PR preview hosts send `X-Robots-Tag: noindex`. For a manual deploy, run `deploy.yml` on `main` or `dev` to select the matching build origin and Worker. CI needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets.
 
 ## Conventions
 

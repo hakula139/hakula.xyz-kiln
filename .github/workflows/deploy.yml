@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   workflow_dispatch:
 
 concurrency:
@@ -14,9 +14,11 @@ permissions:
 
 jobs:
   build:
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     uses: ./.github/workflows/build.yml
     with:
       upload-artifact: true
+      base-url: ${{ github.ref_name == 'dev' && 'https://dev.hakula.xyz' || '' }}
 
   deploy:
     needs: build
@@ -44,4 +46,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy
+          command: ${{ github.ref_name == 'dev' && 'deploy --env dev' || 'deploy' }}

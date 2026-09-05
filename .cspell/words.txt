@@ -80,6 +80,7 @@ neko
 neodb
 nixfmt
 nixpkgs
+noindex
 noopener
 Nosctis
 numtide

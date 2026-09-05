@@ -54,3 +54,11 @@
 /*.js
   ! Cache-Control
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# ── Non-production hosts: keep previews out of search results ──
+
+https://dev.hakula.xyz/*
+  X-Robots-Tag: noindex
+
+https://:version.hakula.workers.dev/*
+  X-Robots-Tag: noindex
