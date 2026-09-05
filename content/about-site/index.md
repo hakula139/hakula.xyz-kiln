@@ -12,8 +12,6 @@ author = "c.c.R"
 url = "https://www.pixiv.net/artworks/70180757"
 +++
 
-<!-- markdownlint-disable MD053 -->
-
 ## 技术选型
 
 | 项目   | 方案                             |
@@ -30,25 +28,11 @@ url = "https://www.pixiv.net/artworks/70180757"
 | 流媒体 | [PeerTube]                       |
 | 监控   | [Netdata] & [Better Stack]       |
 
-[B2]: https://www.backblaze.com/cloud-storage
-[Better Stack]: https://betterstack.com
-[Cloudflare]: https://www.cloudflare.com
-[Cloudflare Workers]: https://developers.cloudflare.com/workers/static-assets/
-[Cloudreve]: https://cloudreve.org
-[COS]: https://cloud.tencent.com/product/cos
-[DMIT]: /links/dmit
-[IgnIt]: https://github.com/hakula139/IgnIt
-[kiln]: https://github.com/hakula139/kiln
-[Netdata]: https://www.netdata.cloud
-[PeerTube]: https://joinpeertube.org
-[PicList]: https://piclist.cn
-[Twikoo]: https://twikoo.js.org
-
 ## 更新日志
 
 | 日期           | 更新内容                                                                                                                               |
 | :------------- | :------------------------------------------------------------------------------------------------------------------------------------- |
-| **2026-09-06** | 新站迁移计划完成，总耗时约 133 小时。原站保留于 [old.hakula.xyz](https://old.hakula.xyz)。                                             |
+| **2026-09-06** | 新站迁移计划完成，总耗时约 160 小时。原站暂时保留于 [old.hakula.xyz](https://old.hakula.xyz)。                                         |
 | 2026-05-08     | 新站接入 [Twikoo API Worker] 评论后端。                                                                                                |
 | 2026-05-06     | 开始开发基于 [Cloudflare Workers] 和 [D1] 的 [Twikoo API Worker]，迁移原站评论。                                                       |
 | 2026-03-22     | 原站文章迁移至 [kiln] 格式。                                                                                                           |
@@ -94,8 +78,10 @@ url = "https://www.pixiv.net/artworks/70180757"
 [Algolia]: https://www.algolia.com
 [B2]: https://www.backblaze.com/cloud-storage
 [Better Stack]: https://betterstack.com
-[Cloudflare Pages]: https://pages.cloudflare.com
 [CloudCone]: /links/cloudcone-cn
+[Cloudflare]: https://www.cloudflare.com
+[Cloudflare Pages]: https://pages.cloudflare.com
+[Cloudflare Workers]: https://developers.cloudflare.com/workers/static-assets/
 [Cloudreve]: https://cloudreve.org
 [COS]: https://cloud.tencent.com/product/cos
 [D1]: https://developers.cloudflare.com/d1/
@@ -105,21 +91,23 @@ url = "https://www.pixiv.net/artworks/70180757"
 [hakula.xyz]: https://www.whois.com/whois/hakula.xyz
 [handsome]: https://www.ihewro.com/archives/489
 [Hugo]: https://gohugo.io
+[IgnIt]: https://github.com/hakula139/IgnIt
+[kiln]: https://github.com/hakula139/kiln
 [Lighthouse]: https://cloud.tencent.com/product/lighthouse
 [LoveIt]: https://hugoloveit.com
 [LoveKKComment]: https://github.com/ylqjgm/LoveKKComment
 [Lsky]: https://www.lsky.pro
-[PicList]: https://piclist.cn
 [Netdata]: https://www.netdata.cloud
 [Nextcloud]: https://nextcloud.com
 [OneDrive]: https://www.microsoft.com/microsoft-365/onedrive/onedrive-for-business
 [OneIndex]: https://github.com/0oVicero0/oneindex
 [PeerTube]: https://joinpeertube.org
+[PicList]: https://piclist.cn
 [PyOne]: https://github.com/abbeyokgo/PyOne
 [Rclone]: https://rclone.org
 [Restic]: https://restic.net
-[UptimeRobot]: https://uptimerobot.com
 [Twikoo]: https://twikoo.js.org
 [Twikoo API Worker]: https://github.com/hakula139/twikoo-api-worker
 [Typecho]: https://typecho.org
+[UptimeRobot]: https://uptimerobot.com
 [Webhooks]: https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks
