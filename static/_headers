@@ -7,12 +7,6 @@
 /*
   Cache-Control: public, max-age=300, stale-while-revalidate=3600
 
-https://dev.hakula.xyz/*
-  X-Robots-Tag: noindex
-
-https://:version.hakula.workers.dev/*
-  X-Robots-Tag: noindex
-
 # ── Content-stable: images, fonts, icons ──
 
 /*.avif
@@ -60,3 +54,11 @@ https://:version.hakula.workers.dev/*
 /*.js
   ! Cache-Control
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# ── Non-production hosts: keep previews out of search results ──
+
+https://dev.hakula.xyz/*
+  X-Robots-Tag: noindex
+
+https://:version.hakula.workers.dev/*
+  X-Robots-Tag: noindex
