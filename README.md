@@ -5,7 +5,7 @@
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-orange.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/hakula139/hakula.xyz-kiln)
 
-My personal website, built with [kiln](https://github.com/hakula139/kiln) and the [IgnIt](https://github.com/hakula139/IgnIt) theme.
+My personal website, built with [kiln](https://github.com/hakula139/kiln) and the [IgnIt](https://github.com/hakula139/IgnIt) theme. The previous Hugo site is preserved at [old.hakula.xyz](https://old.hakula.xyz).
 
 ## Setup
 
@@ -26,7 +26,7 @@ Output is written to `public/`.
 
 ## Deploy
 
-The site auto-deploys to [dev.hakula.xyz](https://dev.hakula.xyz) on every push to `main` via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow builds with `kiln build --minify` and ships `public/` to a Cloudflare Worker (config in [`wrangler.toml`](wrangler.toml)) using the static-assets binding.
+The site auto-deploys to [hakula.xyz](https://hakula.xyz) on every push to `main` via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow builds with `kiln build --minify` and ships `public/` to a Cloudflare Worker (config in [`wrangler.toml`](wrangler.toml)) using the static-assets binding.
 
 For manual deploys (and one-time provisioning of the Worker + custom domain):
 

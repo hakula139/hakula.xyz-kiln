@@ -40,7 +40,7 @@ Node-side pre-commit hooks no-op when `node_modules/` is absent, which is the ca
 
 ## Deploy
 
-Cloudflare Workers with a Static Assets binding, at [dev.hakula.xyz](https://dev.hakula.xyz). `wrangler.toml` pins the worker name, custom domain, and `not_found_handling`. The apex `hakula.xyz` is still served by the legacy Pages project.
+Cloudflare Workers with a Static Assets binding, at [hakula.xyz](https://hakula.xyz). `wrangler.toml` pins the worker name, custom domains, and `not_found_handling`. The legacy Hugo site is served by the Pages project at [old.hakula.xyz](https://old.hakula.xyz).
 
 `.github/workflows/build.yml` is a reusable `workflow_call` that enters the dev shell and runs `pnpm build` then `kiln build --minify`. Both `ci.yml` and `deploy.yml` call into it, so the build path is single-sourced. A manual deploy is `pnpm wrangler login` once, then `pnpm wrangler deploy`. CI needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets.
 
