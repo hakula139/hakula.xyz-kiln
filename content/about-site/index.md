@@ -48,8 +48,13 @@ url = "https://www.pixiv.net/artworks/70180757"
 
 | 日期           | 更新内容                                                                                                                               |
 | :------------- | :------------------------------------------------------------------------------------------------------------------------------------- |
-| **2026-09-05** | 本站迁移至 [kiln] 和 [IgnIt]，部署于 [Cloudflare Workers]。原 Hugo 站点保留于 [old.hakula.xyz](https://old.hakula.xyz)。               |
+| **2026-09-06** | 新站迁移计划完成，总耗时约 133 小时。原站保留于 [old.hakula.xyz](https://old.hakula.xyz)。                                             |
+| 2026-05-08     | 新站接入 [Twikoo API Worker] 评论后端。                                                                                                |
+| 2026-05-06     | 开始开发基于 [Cloudflare Workers] 和 [D1] 的 [Twikoo API Worker]，迁移原站评论。                                                       |
+| 2026-03-22     | 原站文章迁移至 [kiln] 格式。                                                                                                           |
+| **2026-03-08** | 新站迁移计划启动，改用 [kiln] 框架，并开始开发 [IgnIt] 主题。                                                                          |
 | 2026-03-07     | 基于 [PeerTube] 方案部署视频站。                                                                                                       |
+| 2026-02-22     | 开始开发静态站点生成器 [kiln]。                                                                                                        |
 | 2026-02-02     | 服务器迁移完毕：[CloudCone :us:][CloudCone] → [DMIT :us:][DMIT] (Premium, CN2 GIA)，月付 \$ 15。                                       |
 | **2025‑12‑24** | 服务器迁移完毕：[腾讯云 :singapore:][Lighthouse] → [CloudCone :us:][CloudCone]、Ubuntu 22.04 → NixOS 25.11、CPU 2 → 3 核，年付 \$ 25。 |
 | 2025-12-24     | 改用 [Restic] 每日备份至 [Backblaze B2][B2]，弃用 [Rclone]。                                                                           |
@@ -93,6 +98,7 @@ url = "https://www.pixiv.net/artworks/70180757"
 [CloudCone]: /links/cloudcone-cn
 [Cloudreve]: https://cloudreve.org
 [COS]: https://cloud.tencent.com/product/cos
+[D1]: https://developers.cloudflare.com/d1/
 [DMIT]: /links/dmit
 [Gdrive]: https://github.com/prasmussen/gdrive
 [h5ai]: https://larsjung.de/h5ai
@@ -114,5 +120,6 @@ url = "https://www.pixiv.net/artworks/70180757"
 [Restic]: https://restic.net
 [UptimeRobot]: https://uptimerobot.com
 [Twikoo]: https://twikoo.js.org
+[Twikoo API Worker]: https://github.com/hakula139/twikoo-api-worker
 [Typecho]: https://typecho.org
 [Webhooks]: https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks
