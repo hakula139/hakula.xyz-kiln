@@ -25,7 +25,7 @@ url = "https://www.pixiv.net/artworks/59521621"
 
 ### 血线图
 
-背景是整局游戏过程中的血量变化曲线，中央是本次游玩的 [评价等级](#dj-level)，底部是当前使用的 [血槽设置](https://hakula.xyz/tutorial/lr2_body_select.html#GROOVEGAUGE) 和剩余血量。
+背景是整局游戏过程中的血量变化曲线，中央是本次游玩的 [评价等级](#dj-level)，底部是当前使用的 [血槽设置](../select/#groove-gauge) 和剩余血量。
 
 ### CLEAR TYPE
 
