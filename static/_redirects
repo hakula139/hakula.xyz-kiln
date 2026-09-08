@@ -68,9 +68,22 @@
 /vps/cloudcone.html /posts/vps/cloudcone/ 301
 
 # ── Hugo-era renames ──
+#
+# The sections are listed because a `:section` placeholder would also capture
+# `/categories/index.xml` and redirect that dead feed onto another dead path.
 
+/categories /sections/ 301
 /categories/ /sections/ 301
+/categories/anime /posts/anime/ 301
+/categories/avg /posts/avg/ 301
+/categories/essay /posts/essay/ 301
+/categories/note /posts/note/ 301
+/categories/project /posts/project/ 301
+/categories/tutorial /posts/tutorial/ 301
+/categories/vps /posts/vps/ 301
+/sites /links/ 301
 /sites/ /links/ 301
+/tags/csapp /tags/cs-app/ 301
 
 # ── Canonical URL forms ──
 #
