@@ -35,6 +35,11 @@
     // Disable first-line heading (frontmatter handles this)
     "MD041": false,
 
+    // Disable link-fragments — it derives anchors with GitHub's slugger, which
+    // drops the `.` `_` `~` `+` that kiln keeps, so it validates ids the site
+    // never emits.
+    "MD051": false,
+
     // Code block style: fenced
     "MD046": { "style": "fenced" },
 
