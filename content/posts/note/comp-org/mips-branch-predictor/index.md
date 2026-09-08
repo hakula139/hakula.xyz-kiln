@@ -81,7 +81,7 @@ Local Predictor 的优势在于能够发现同一跳转指令在一个时间段�
 
 Global Predictor, Local Predictor 和 Selector 都分别是一个 PHT（Pattern History Table）。其中 Global Predictor 使用 `index ^ ght_state` 索引，Local Predictor 使用 `index ^ bht_state` 索引，Selector 使用 `index` 索引。使用 $\mathrm{XOR}$ 运算来 hash 是为了在 PHT 的大小较小时，通过将索引地址随机化，降低重名冲突发生的概率，同时尽可能减少因此增加的延迟。
 
-Selector 根据上次预测的情况决定本次选用 Global Predictor 还是 Local Predictor 进行预测。作为 PHT，与 Global Predictor 和 Local Predictor 一样，需要 2 次错误预测才会使得 Selector 切换预测模式，原理见 [2.4](#24-saturating-counter) 节。整个机制综合起来，就是所谓的 Tournament Predictor。
+Selector 根据上次预测的情况决定本次选用 Global Predictor 还是 Local Predictor 进行预测。作为 PHT，与 Global Predictor 和 Local Predictor 一样，需要 2 次错误预测才会使得 Selector 切换预测模式，原理见 [2.4](#2.4-saturating-counter) 节。整个机制综合起来，就是所谓的 Tournament Predictor。
 
 Tournament Predictor 的优势在于能够根据不同分支的不同情况，选择最适合其特征的预测模式。因此在大多数情况下，Tournament Predictor 会有相对较好的表现。
 
@@ -128,7 +128,7 @@ BPB（Branch Prediction Buffer）是这个动态分支预测器的主体，负�
 
 首先在 `mips` 里新增了 BPB 模块，并且新增了其与 Fetch 阶段和 Hazard Unit 间的交互逻辑。Fetch 阶段更改了 `pc_next`（新的 PC 值）的选择逻辑，当预测失败或当前指令为 `jr` 时选择原本的 `pc_next` 值，否则选择 BPB 的预测值 `predict_pc`。这里 BPB 也可以预测非跳转指令的 `pc_next` 值（总是 `pc + 4`），因此就将这部分逻辑合并进 BPB 了。
 
-此外，根据 [2.6](#26-branch-prediction-buffer) 节的描述，修改了 `hazard_unit` 的 `flush_d` 信号。由于现在采用动态分支预测，跳转指令在 Fetch 阶段后就会直接跳转，而不像原来需要再读取一条无用指令，因此不需要针对跳转指令进行额外的 flush 操作（`jr` 指令除外）。实际上这个 penalty 是转移到了预测失败的情况，但现在预测成功时就没有这个 penalty 了，动态分支预测主要就是优化了这个地方。
+此外，根据 [2.6](#2.6-branch-prediction-buffer) 节的描述，修改了 `hazard_unit` 的 `flush_d` 信号。由于现在采用动态分支预测，跳转指令在 Fetch 阶段后就会直接跳转，而不像原来需要再读取一条无用指令，因此不需要针对跳转指令进行额外的 flush 操作（`jr` 指令除外）。实际上这个 penalty 是转移到了预测失败的情况，但现在预测成功时就没有这个 penalty 了，动态分支预测主要就是优化了这个地方。
 
 ```sv
 assign flush_e_o = stall_d_o || predict_miss_i;

@@ -79,7 +79,7 @@ eu fugiat nulla pariatur Excepteur sint occaecat cupidatat non proident sunt in 
 java -jar index.jar <input_path> <output_path> <temp_path>
 ```
 
-其中，`<input_path>`, `<output_path>`, `<temp_path>` 分别表示指定的输入路径（语料库位置）、输出路径（索引位置）和缓存路径（临时文件位置）。需要注意的是，如果 `<output_path>`、`<temp_path>/output_job1` 和 `<temp_path>/output_job2` 中的某些在程序运行前已经存在，则程序会跳过部分任务的执行（具体跳过了什么、为什么跳过将在 [之后](#52-driver) 展开阐述）。因此如果你需要重新执行全部任务，则需要将这些目录手动移除。
+其中，`<input_path>`, `<output_path>`, `<temp_path>` 分别表示指定的输入路径（语料库位置）、输出路径（索引位置）和缓存路径（临时文件位置）。需要注意的是，如果 `<output_path>`、`<temp_path>/output_job1` 和 `<temp_path>/output_job2` 中的某些在程序运行前已经存在，则程序会跳过部分任务的执行（具体跳过了什么、为什么跳过将在 [之后](#5.2-driver) 展开阐述）。因此如果你需要重新执行全部任务，则需要将这些目录手动移除。
 
 如果希望在 Hadoop 集群上使用，则执行以下命令（需提前配置好 Hadoop 环境）：
 
@@ -132,7 +132,7 @@ their	03.txt:2:2.873563e-03:1045;1141
 their	$2:0.5849625007211562
 ```
 
-注意到同一个 `<token>` 在不同文档里的 TF 和 IDF 都被分成了不同的行，而不是合并在同一行里，[之后](#553-reducer) 会解释原因。
+注意到同一个 `<token>` 在不同文档里的 TF 和 IDF 都被分成了不同的行，而不是合并在同一行里，[之后](#5.5.3-reducer) 会解释原因。
 
 索引过程中产生的日志文件会保存在 `logs/app.log` 文件里（文件名随日期滚动）。
 
@@ -240,7 +240,7 @@ aaaa: not found
 <token>	<filename>:<token_count>:0:[<position>]
 ```
 
-这里这个 `0` 是 TF 的占位符，目前还无法计算（[之后](#543-reducer) 会讲为什么），因此先留空。
+这里这个 `0` 是 TF 的占位符，目前还无法计算（[之后](#5.4.3-reducer) 会讲为什么），因此先留空。
 
 与此同时，我们对文件里所有短语的出现次数求和，从而得到文件的短语总数，格式如下：
 
@@ -483,7 +483,7 @@ public class TokenCount {
 }
 ```
 
-Job 2 的 Mapper 就是把字段改个位置，[之前](#512-job-2-概览) 讲过了。接下来 Reducer 就可以对 `<filename>` 进行聚合。
+Job 2 的 Mapper 就是把字段改个位置，[之前](#5.1.2-job-2-概览) 讲过了。接下来 Reducer 就可以对 `<filename>` 进行聚合。
 
 #### 5.4.3 Reducer
 
@@ -729,7 +729,7 @@ public class Woogle extends Configured implements Tool {
 }
 ```
 
-这个是检索程序的核心代码。我们根据关键词 `<key>`，利用函数 `getPartition()` 定位到相应的 TF 文件（将在 [5.6.2](#562-getpartition) 节讲解），然后逐行遍历查询。查询到与 `<key>` 相同的 `<token>` 后，判断 value 的首字符是否为 `$`。如果是，则按 IDF 条目的格式解析 value，并输出搜索结果，退出程序。否则按 TF 条目的格式解析 value，并缓存结果，等待之后统一输出。如果索引文件里找不到，则输出信息 `<key>: not found`。
+这个是检索程序的核心代码。我们根据关键词 `<key>`，利用函数 `getPartition()` 定位到相应的 TF 文件（将在 [5.6.2](#5.6.2-getpartition) 节讲解），然后逐行遍历查询。查询到与 `<key>` 相同的 `<token>` 后，判断 value 的首字符是否为 `$`。如果是，则按 IDF 条目的格式解析 value，并输出搜索结果，退出程序。否则按 TF 条目的格式解析 value，并缓存结果，等待之后统一输出。如果索引文件里找不到，则输出信息 `<key>: not found`。
 
 为什么要遍历查询呢？主要还是因为并行的 MapReduce 程序不保证顺序，不一定可以使用二分查找。事实上如果觉得慢的话，完全可以把最后一个 Reducer 的任务数量设置得大一点，因为最后索引的分片数量就等于这个 Reducer 的任务数量，我们总可以设置到一个足够大的值，使得线性复杂度的耗时可以接受。
 

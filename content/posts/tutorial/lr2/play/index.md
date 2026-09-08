@@ -100,4 +100,4 @@ DARK 模式可以隐藏画面里的部分素材，减少对读谱的干扰，十
 
 [^ghost-position]: 其显示位置取决于 [GHOST POSITION](../select/#ghost-position)。
 
-[^sudden]: 需开启 [SUDDEN+](../select/#sudden)。
+[^sudden]: 需开启 [SUDDEN+](../select/#sudden+)。

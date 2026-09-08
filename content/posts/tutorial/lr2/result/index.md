@@ -25,7 +25,7 @@ url = "https://www.pixiv.net/artworks/59521621"
 
 ### 血线图
 
-背景是整局游戏过程中的血量变化曲线，中央是本次游玩的 [评价等级](#dj-level)，底部是当前使用的 [血槽设置](https://hakula.xyz/tutorial/lr2_body_select.html#GROOVEGAUGE) 和剩余血量。
+背景是整局游戏过程中的血量变化曲线，中央是本次游玩的 [评价等级](#dj-level)，底部是当前使用的 [血槽设置](../select/#groove-gauge) 和剩余血量。
 
 ### CLEAR TYPE
 
@@ -108,7 +108,7 @@ $$\mathrm{MISS\ COUNT} = \mathrm{BAD} + \mathrm{POOR}$$
 当前 IR 排名。由于网络原因，显示会有一定的延迟。
 
 ::: callout {type=tip title="提高退出速度"}
-很多玩家遇到过结算界面想退出却退不出去，每次都要等上一段时间才能退出的问题，其原因在于 LR2 在结算界面会尝试拉取本谱的 IR 排行榜数据，阻塞了退出操作。解决方案参见 [FAQ](../faq/#28-结算界面退出时卡住)。
+很多玩家遇到过结算界面想退出却退不出去，每次都要等上一段时间才能退出的问题，其原因在于 LR2 在结算界面会尝试拉取本谱的 IR 排行榜数据，阻塞了退出操作。解决方案参见 [FAQ](../faq/#2.8-结算界面退出时卡住)。
 :::
 
 #### JUDGE

@@ -261,7 +261,7 @@ ALU 译码器，完整真值表如下：
 
 图中 `mux4` 只输入了 3 个 $\textrm{DATA}$，是因为这里只需要用到 3 个。教材的电路设计中并没有用到 `mux4`，我引入 `mux4` 的目的是为了简化 `pc_next` 和 `write_reg` 的选择电路。
 
-对于 `pc_next`（新的 PC 值），其值的选择逻辑如下（部分符号释义见 [1.1](#11-实现指令集) 节）：
+对于 `pc_next`（新的 PC 值），其值的选择逻辑如下（部分符号释义见 [1.1](#1.1-实现指令集) 节）：
 
 - 一般情况下，`pc_next` = `PC + 4`，由 `pc_src` 信号控制 `pc_branch_next_mux2` 选择，此时 `pc_src` 为 `0`；
 - 对于指令 `beq`, `bne`，`pc_next` = `BTA`，由 `pc_src` 信号控制 `pc_branch_next_mux2` 选择，此时 `pc_src` 为 `1`，`jump[1:0]` 为 `00`；
@@ -308,7 +308,7 @@ ALU 译码器，完整真值表如下：
 
 算术逻辑单元（ALU），用于加减、位运算等算术操作。
 
-ALU 根据 $\textrm{ALU\\_CONTROL}$ 信号决定对操作数 $\textrm{A}$ 和 $\textrm{B}$ 进行何种运算，从 $\textrm{RESULT}$ 输出运算结果，从 $\textrm{ZERO}$ 输出结果是否为 $0$。其中 $\textrm{ALU\\_CONTROL}$ 由控制单元根据 $\textrm{ALU\\_OP}$ 和 $\textrm{FUNCT}$ 决定（详见 [2.4.2](#242-alu_dec) 节）。具体映射表如下：
+ALU 根据 $\textrm{ALU\\_CONTROL}$ 信号决定对操作数 $\textrm{A}$ 和 $\textrm{B}$ 进行何种运算，从 $\textrm{RESULT}$ 输出运算结果，从 $\textrm{ZERO}$ 输出结果是否为 $0$。其中 $\textrm{ALU\\_CONTROL}$ 由控制单元根据 $\textrm{ALU\\_OP}$ 和 $\textrm{FUNCT}$ 决定（详见 [2.4.2](#2.4.2-alu_dec) 节）。具体映射表如下：
 
 | `alu_control` |    `result`     |           指令            |
 | :-----------: | :-------------: | :-----------------------: |

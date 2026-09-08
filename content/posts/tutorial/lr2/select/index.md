@@ -257,7 +257,7 @@ HI-SPEED 就是游玩界面里 note 的下落速度[^hi-speed]。新手可以先
   - 按住 START 键打开 PLAY 面板
   - 按 SELECT 键快速切换难度
 - 游玩界面
-  - 双击 START 键开关挡板（需开启 [SUDDEN+](#sudden)）
+  - 双击 START 键开关挡板（需开启 [SUDDEN+](#sudden+)）
   - 按 START + 黑 / 白键调速
   - 按 START + SELECT 键退出
 
@@ -325,7 +325,7 @@ Fast / Slow 指示开启后，默认显示位置为 TYPE_A。
 背景动画开关。
 
 ::: callout {type=bug}
-如果你确定谱面有自带 BGA，但显示为黑屏，参见 [FAQ](../faq/#26-bga-黑屏或报错)。
+如果你确定谱面有自带 BGA，但显示为黑屏，参见 [FAQ](../faq/#2.6-bga-黑屏或报错)。
 :::
 
 #### BGA SIZE
@@ -357,7 +357,7 @@ BGA 显示尺寸设置。
 
 #### LANE COVER
 
-同 [SUDDEN+](#sudden)。
+同 [SUDDEN+](#sudden+)。
 
 #### SCREEN MODE
 
@@ -391,7 +391,7 @@ BGA 显示尺寸设置。
 ::: callout {type=bug}
 
 - [G-BATTLE](#g-battle) 模式下回放可能保存失败。
-- 段位 / Course 的回放可能保存失败，解决方案参见 [FAQ](../faq/#23-段位回放没有保存)。
+- 段位 / Course 的回放可能保存失败，解决方案参见 [FAQ](../faq/#2.3-段位回放没有保存)。
 
 :::
 
@@ -649,7 +649,7 @@ IR 即当前 Internet Ranking 的连接情况。
 
 [^f3]: 按住 F3 键后，按 :arrow_up: :arrow_down: 键调整谱面难度，:arrow_left: :arrow_right: 键调整谱面等级。
 
-[^f7]: 由于没有 FPS 限制，LR2 基本会跑满 GPU，帧率上千不是梦，真实显卡跑分游戏。手机测评跑原神，以后咱 PC 就跑 LR2。如果发现全屏后 FPS 锁定为 60 帧，参见 [FAQ](../faq/#24-笔记本全屏锁帧)。
+[^f7]: 由于没有 FPS 限制，LR2 基本会跑满 GPU，帧率上千不是梦，真实显卡跑分游戏。手机测评跑原神，以后咱 PC 就跑 LR2。如果发现全屏后 FPS 锁定为 60 帧，参见 [FAQ](../faq/#2.4-笔记本全屏锁帧)。
 
 [^f8]: 参见 [启动器](../launcher/#song-reload) 篇。
 

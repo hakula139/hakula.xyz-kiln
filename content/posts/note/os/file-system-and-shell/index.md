@@ -60,7 +60,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 #### 1.2 Buffer cache
 
-第 2 层是磁盘块缓存，用于将磁盘块缓存到内存中，从而加速磁盘读写。我们已在 Lab 6 时在 `kern/bio.c` 中实现，详见 [Lab 6 第 1 节](../driver-and-libc/#1-io-框架)。
+第 2 层是磁盘块缓存，用于将磁盘块缓存到内存中，从而加速磁盘读写。我们已在 Lab 6 时在 `kern/bio.c` 中实现，详见 [Lab 6 第 1 节](../driver-and-libc/#1-i-o-框架)。
 
 在这一层中，我们提供了以下方法：
 
@@ -398,7 +398,7 @@ write_head()
 }
 ```
 
-之后的写磁盘过程同 [1.3.1](#131-initlog) 节中函数 `recover_from_log` 的后半段。
+之后的写磁盘过程同 [1.3.1](#1.3.1-initlog) 节中函数 `recover_from_log` 的后半段。
 
 #### 1.4 Inode
 
@@ -1545,6 +1545,6 @@ sys_exec: failed to fetch argument.
 
 [^syscall]: 参考了 Stack Overflow 上的回答 [[3]][syscall-so-1] [[4]][syscall-so-2]。
 
-[^about-cat]: 不过本项目里仅支持普通文件，参见 [1.7](#17-file-descriptor) 节。
+[^about-cat]: 不过本项目里仅支持普通文件，参见 [1.7](#1.7-file-descriptor) 节。
 
 [^cat.c]: [mit-pdos / xv6-public / cat.c - GitHub][cat.c]
