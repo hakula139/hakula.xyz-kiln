@@ -232,7 +232,7 @@ proc_init()
 1. 利用函数 `pid_next`（`kern/proc.c`）分配 PID。
 2. 利用函数 `kalloc`（`kern/kalloc.c`）分配内核栈 kstack。
 3. 在 kstack 的栈顶分配一块空间作为 trap frame。
-4. 在 trap frame 下面再分配一块空间作为 context，并进行初始化。其中寄存器 X30 保存函数 `forkret` 的地址，作为进程初次从函数 `swtch` 返回时的返回地址。这里函数 `forkret` 只需在进程第一次被 scheduler 调度时进入一次，之后就不再需要进入了。调度的具体过程将在 [1.4.5](#145-内核调度-scheduler) 节讲解。
+4. 在 trap frame 下面再分配一块空间作为 context，并进行初始化。其中寄存器 X30 保存函数 `forkret` 的地址，作为进程初次从函数 `swtch` 返回时的返回地址。这里函数 `forkret` 只需在进程第一次被 scheduler 调度时进入一次，之后就不再需要进入了。调度的具体过程将在 [1.4.5](#1.4.5-内核调度-scheduler) 节讲解。
 5. 设置进程状态为 EMBRYO。
 
 如果创建进程失败，则返回 `NULL`。
@@ -316,7 +316,7 @@ proc_free(struct proc* p)
 1. 利用函数 `proc_alloc`（`kern/proc.c`）进行内核部分的初始化。
 2. 利用函数 `pgdir_init`（`kern/vm.c`）分配一个用户页表，并指定进程的内存空间为一个页表的大小 `PGSIZE`。
 3. 利用函数 `uvm_init`（`kern/vm.c`）将初始化二进制码 `initcode` 加载到页表的起始位置。
-4. 清空 trap frame，并进行初始化。其中寄存器 SP_EL0 设置为 `PGSIZE`，其余寄存器设置为 `0`。部分寄存器会在函数 `trapret` 返回（`eret`）时用到，具体将在 [1.4.5](#145-内核调度-scheduler) 节讲解。
+4. 清空 trap frame，并进行初始化。其中寄存器 SP_EL0 设置为 `PGSIZE`，其余寄存器设置为 `0`。部分寄存器会在函数 `trapret` 返回（`eret`）时用到，具体将在 [1.4.5](#1.4.5-内核调度-scheduler) 节讲解。
 5. 设置进程名为 `initproc`。
 6. 设置进程状态为 RUNNABLE。
 
@@ -470,7 +470,7 @@ uvm_switch(struct proc* p)
 }
 ```
 
-随后调用函数 `swtch`，切换到该进程的 context，参见 [1.2.2](#122-context-switch-实现) 节。`swtch` 的返回地址由 `p->context` 保存的寄存器 X30 决定。在 [1.4.3](#143-创建新进程-proc_alloc) 节中我们提到，X30 保存的是函数 `forkret` 的地址。因此进程初次被 `scheduler` 调度，从函数 `swtch` 返回时，将返回到 `forkret`。此后，进程就按照每次切换 context 时 X30 保存的地址，返回到用户地址空间的相应位置。
+随后调用函数 `swtch`，切换到该进程的 context，参见 [1.2.2](#1.2.2-context-switch-实现) 节。`swtch` 的返回地址由 `p->context` 保存的寄存器 X30 决定。在 [1.4.3](#1.4.3-创建新进程-proc_alloc) 节中我们提到，X30 保存的是函数 `forkret` 的地址。因此进程初次被 `scheduler` 调度，从函数 `swtch` 返回时，将返回到 `forkret`。此后，进程就按照每次切换 context 时 X30 保存的地址，返回到用户地址空间的相应位置。
 
 ```c {title="kern/proc.c"}
 /*
@@ -492,7 +492,7 @@ forkret()
 
 函数 `forkret` 的作用是在进程初次被调度时，释放 `scheduler` 持有的进程锁 `p->lock`，并进行一些必须在用户进程中才能进行的初始化工作，例如文件系统的初始化（因为需要调用 `sleep` 休眠当前进程，故不能在函数 `main` 中执行）。由于目前我们还没有实现文件系统，因此目前 `forkret` 只是为这些初始化工作预留一个位置。
 
-接下来函数 `forkret` 应该返回到函数 `trapret`。这里一个非常 tricky 的点在于，如何返回？关于这点我研究了 7 个多小时，阅读了大量手册和源码。这项工作的难点在于，如果直接返回，那么由于 [1.2.2](#122-context-switch-实现) 节我们设置的 context 中寄存器 X30 的值为函数 `forkret` 的地址，而且后续没有地方修改过，因此这里 `forkret` 还是会返回到 `forkret`，导致死循环。那如果直接调用 `trapret` 呢？由于当前栈指针 SP 保存的地址指向函数 `forkret` 目前栈帧的栈顶，显然不是进程 trap frame 的地址 `p->tf`。然而 `trapret` 在还原寄存器时需要用到 SP 的值，且该值应当为 `p->tf`，错误的 SP 值将导致 `trapret` 无法正常工作。
+接下来函数 `forkret` 应该返回到函数 `trapret`。这里一个非常 tricky 的点在于，如何返回？关于这点我研究了 7 个多小时，阅读了大量手册和源码。这项工作的难点在于，如果直接返回，那么由于 [1.2.2](#1.2.2-context-switch-实现) 节我们设置的 context 中寄存器 X30 的值为函数 `forkret` 的地址，而且后续没有地方修改过，因此这里 `forkret` 还是会返回到 `forkret`，导致死循环。那如果直接调用 `trapret` 呢？由于当前栈指针 SP 保存的地址指向函数 `forkret` 目前栈帧的栈顶，显然不是进程 trap frame 的地址 `p->tf`。然而 `trapret` 在还原寄存器时需要用到 SP 的值，且该值应当为 `p->tf`，错误的 SP 值将导致 `trapret` 无法正常工作。
 
 ```asm {title="kern/trapasm.S"}
 /* Return falls through to trapret. */
@@ -581,11 +581,11 @@ usertrapret:
 
 虽然暴力，但简单明了。
 
-终于，我们跳转到了函数 `trapret`，其作用主要是载入 trap frame，初始化所有寄存器。[1.4.4](#144-初始化用户进程-user_init) 节中我们提到，寄存器 X30 和 ELR_EL1 设置为 `0`，其实指的是 `initcode` 在页表中的起始地址；寄存器 SP_EL0 设置为 `PGSIZE`，指的是用户栈的栈底地址，作为栈指针 SP 的初始值；寄存器 SPSR_EL1 设置为 `0`，表示用户态（EL0）。于是，`trapret` 在异常返回（`eret`）时，将返回到用户态下 `initcode` 的起始地址。至此，用户程序 `initcode` 开始执行。
+终于，我们跳转到了函数 `trapret`，其作用主要是载入 trap frame，初始化所有寄存器。[1.4.4](#1.4.4-初始化用户进程-user_init) 节中我们提到，寄存器 X30 和 ELR_EL1 设置为 `0`，其实指的是 `initcode` 在页表中的起始地址；寄存器 SP_EL0 设置为 `PGSIZE`，指的是用户栈的栈底地址，作为栈指针 SP 的初始值；寄存器 SPSR_EL1 设置为 `0`，表示用户态（EL0）。于是，`trapret` 在异常返回（`eret`）时，将返回到用户态下 `initcode` 的起始地址。至此，用户程序 `initcode` 开始执行。
 
 ##### 1.4.6 进程切换: `yield`
 
-每当时间片耗尽，程序就要被强制暂停执行。这时我们通过 trap 调用函数 `yield` 来切换当前使用 CPU 的程序。trap 的部分我们留到 [2.1](#21-系统调用模块) 节再讲，这里我们只关注进程管理的部分。
+每当时间片耗尽，程序就要被强制暂停执行。这时我们通过 trap 调用函数 `yield` 来切换当前使用 CPU 的程序。trap 的部分我们留到 [2.1](#2.1-系统调用模块) 节再讲，这里我们只关注进程管理的部分。
 
 函数 `yield` 的工作很简单，就是设置进程状态为 RUNNABLE，然后调用函数 `sched`。
 
@@ -670,7 +670,7 @@ exit(int status)
 目前内核已经支持基本的异常处理，在本实验中还需要进一步完善内核的系统调用模块。
 :::
 
-从函数 `trap` 开始说起。在 trap 后，如果判断当前为 timer 中断，则调用函数 `yield`，触发进程切换，具体参见 [1.4.6](#146-进程切换-yield) 节。如果判断当前为系统调用，则清空寄存器 ESR (Exception Syndrome Register)，设置 trap frame，并调用函数 `syscall`。
+从函数 `trap` 开始说起。在 trap 后，如果判断当前为 timer 中断，则调用函数 `yield`，触发进程切换，具体参见 [1.4.6](#1.4.6-进程切换-yield) 节。如果判断当前为系统调用，则清空寄存器 ESR (Exception Syndrome Register)，设置 trap frame，并调用函数 `syscall`。
 
 ```c {title="kern/trap.c"}
 void
@@ -742,7 +742,7 @@ syscall()
 
 ### 3 调整主循环
 
-由于 [1.4.4](#144-初始化用户进程-user_init) 节中踩到的坑，我仔细检查了一遍哪些初始化函数是只能在 CPU0 上被调用一次的。修改后的主循环 `main` 如下所示：
+由于 [1.4.4](#1.4.4-初始化用户进程-user_init) 节中踩到的坑，我仔细检查了一遍哪些初始化函数是只能在 CPU0 上被调用一次的。修改后的主循环 `main` 如下所示：
 
 ```c {title="kern/main.c"}
 volatile static int started = 0;

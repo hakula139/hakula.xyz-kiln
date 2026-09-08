@@ -387,7 +387,7 @@ int yyFlexLexer::yylex() {
 
 这样 Flex 在生成 `yylex()` 的代码时，就会以这个为实际的函数签名。
 
-流程上，Parser 在读取 token 时，会先调用自己的 `yy::Parser::yylex()`（无法修改），这个函数我们已经提供了定义，其中传入的参数是由设置 `%lex-param` 决定的，接下来我们会提到。然后这个函数会调用 `yy::Lexer::ReadToken()`，其中 `yy::Lexer` 是我们自己定义的类，代码如下所示，主要目的是为了给 `yyFlexLexer` 提供一个额外的私有成员 `Driver& drv_`，在词法分析时需要用到。这里 `yy::Lexer::ReadToken()` 我们只提供声明（通过定义宏 `YY_DECL` 的方式），而函数定义则由 Flex 自动生成。最后 `yy::Lexer::ReadToken()` 就会以 Flex 自动生成的原本 `yyFlexLexer::yylex()` 的实现为我们读取下一个 token，而原来的 `int yyFlexLexer::yylex()` 则不会再被调用（但仍需提供定义，理论上这应该是 Flex 的 bug）。当然，为此我们还需要调整词法分析器的源代码，通过 Bison 的接口令 `yy::Lexer::ReadToken()` 在实现里返回的值不是 `int` 而是 `symbol_type`，这个我们 [之后](#52-token-类型) 再讲。
+流程上，Parser 在读取 token 时，会先调用自己的 `yy::Parser::yylex()`（无法修改），这个函数我们已经提供了定义，其中传入的参数是由设置 `%lex-param` 决定的，接下来我们会提到。然后这个函数会调用 `yy::Lexer::ReadToken()`，其中 `yy::Lexer` 是我们自己定义的类，代码如下所示，主要目的是为了给 `yyFlexLexer` 提供一个额外的私有成员 `Driver& drv_`，在词法分析时需要用到。这里 `yy::Lexer::ReadToken()` 我们只提供声明（通过定义宏 `YY_DECL` 的方式），而函数定义则由 Flex 自动生成。最后 `yy::Lexer::ReadToken()` 就会以 Flex 自动生成的原本 `yyFlexLexer::yylex()` 的实现为我们读取下一个 token，而原来的 `int yyFlexLexer::yylex()` 则不会再被调用（但仍需提供定义，理论上这应该是 Flex 的 bug）。当然，为此我们还需要调整词法分析器的源代码，通过 Bison 的接口令 `yy::Lexer::ReadToken()` 在实现里返回的值不是 `int` 而是 `symbol_type`，这个我们 [之后](#5.2-token-类型) 再讲。
 
 ```cpp {title="src/lexer.hpp"}
 namespace yy {
@@ -572,7 +572,7 @@ class Lexer : public yyFlexLexer {
 
 需要注意的是，我们对终结符 `INTEGER`, `REAL`, `STRING` 还额外封装了三个对应的非终结符，这个主要是为了书写规则时的形式统一，不定义这几个非终结符也是可以的。
 
-此外，我们还需要指定操作符的优先级和结合性。从上到下表示优先级依次提高，`%left`, `%right`, `%nonassoc` 分别表示左结合、右结合和非结合。这里我们额外定义了两个假的操作符 `POS` 和 `NEG`，分别对应作为单目运算符时的 `PLUS` 和 `MINUS`。这个假操作符占位操作将在 [之后](#43-grammar-rules) 通过 `%prec` 显式指定优先级时利用到。
+此外，我们还需要指定操作符的优先级和结合性。从上到下表示优先级依次提高，`%left`, `%right`, `%nonassoc` 分别表示左结合、右结合和非结合。这里我们额外定义了两个假的操作符 `POS` 和 `NEG`，分别对应作为单目运算符时的 `PLUS` 和 `MINUS`。这个假操作符占位操作将在 [之后](#4.3-grammar-rules) 通过 `%prec` 显式指定优先级时利用到。
 
 ```cpp {title="src/parser.yy"}
 %left                 OR;
@@ -710,7 +710,7 @@ expr:
 
 这里为什么不能将 `UnaryExpr` 或 `BinaryExpr` 的产生式合并成一个 `op expr` 和 `expr op expr` 呢？是因为我们需要利用操作符 `op` 的优先级和结合性。如果我们将 `op` 提取出来，在产生式里仅保留一个非操作符 `op`，Bison 将无法利用终结符的优先级和结合性信息，从而导致错误的语法分析结果。
 
-式中，`PLUS expr %prec POS` 表示对此式采用 `POS` 的优先级。[前面](#42-bison-declaration) 我们看到，`POS` 的优先级和 `NOT` 同级，通过这种方式我们就实现了对 `PLUS` 作为单目运算符时优先级的重定义。
+式中，`PLUS expr %prec POS` 表示对此式采用 `POS` 的优先级。[前面](#4.2-bison-declaration) 我们看到，`POS` 的优先级和 `NOT` 同级，通过这种方式我们就实现了对 `PLUS` 作为单目运算符时优先级的重定义。
 
 除了这种单个节点的构造方式外，我们还存在另一种数组节点的构造方式。
 
@@ -822,7 +822,7 @@ void Logger::Error(
 %}
 ```
 
-`YY_USER_ACTION` 将在每次 Lexer 读取一个 token 后执行一次。其中 `loc.step()` 将当前 `loc` 的 `begin` 设置为 `end`，`loc += YYLeng()` 将当前 `loc` 的 `end.column` 增加当前 token 的长度。于是，我们就得到了当前 token 的始末位置。这里 `drv_` 就是 [之前](#41-prologue) 提到的 `Lexer` 在继承 `yyFlexLexer` 时保存的额外私有成员 `Driver& drv_`。
+`YY_USER_ACTION` 将在每次 Lexer 读取一个 token 后执行一次。其中 `loc.step()` 将当前 `loc` 的 `begin` 设置为 `end`，`loc += YYLeng()` 将当前 `loc` 的 `end.column` 增加当前 token 的长度。于是，我们就得到了当前 token 的始末位置。这里 `drv_` 就是 [之前](#4.1-prologue) 提到的 `Lexer` 在继承 `yyFlexLexer` 时保存的额外私有成员 `Driver& drv_`。
 
 对于换行的情况，我们在遇到换行符 `\n` 时利用 `loc.lines()` 将当前 `loc` 的 `end.line` 加 1，`end.column` 设置为 1，从而实现了行号的更新。
 
@@ -862,7 +862,7 @@ void skip_COMMENTS(const std::string& s, const location_type& loc) {
 
 ### 5.2 Token 类型
 
-此外，[之前](#41-prologue) 我们提到 Lexer 现在需要返回一个 `symbol_type` 而不是 `int`，这部分逻辑我们是通过 Bison 的 token constructor 接口实现的。具体来说，原本我们是以枚举的形式定义所有的 token 类型：
+此外，[之前](#4.1-prologue) 我们提到 Lexer 现在需要返回一个 `symbol_type` 而不是 `int`，这部分逻辑我们是通过 Bison 的 token constructor 接口实现的。具体来说，原本我们是以枚举的形式定义所有的 token 类型：
 
 ```cpp {title="hakula139/pcat_lexical_analyzer:src/lexer.hpp"}
 enum Tokens {
@@ -1425,7 +1425,7 @@ class String : public Constant<std::string>;
 
 参见 [`src/ast/constant.hpp`][constant.hpp]。
 
-这里本来 `Integer` 和 `Real` 分别继承自 `Constant<int32_t>` 和 `Constant<double>`，这也是为什么 `Constant` 被声明成一个模板类。在 [4.2](#42-bison-declaration) 节我们解释过为什么后来改成了 `Constant<std::string>`。
+这里本来 `Integer` 和 `Real` 分别继承自 `Constant<int32_t>` 和 `Constant<double>`，这也是为什么 `Constant` 被声明成一个模板类。在 [4.2](#4.2-bison-declaration) 节我们解释过为什么后来改成了 `Constant<std::string>`。
 
 [constant.hpp]: https://github.com/hakula139/pcat_parser/blob/master/src/ast/constant.hpp
 

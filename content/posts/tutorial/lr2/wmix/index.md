@@ -17,7 +17,7 @@ url = "https://www.pixiv.net/artworks/62549069"
 
 <!--more-->
 
-在 [Select](../select/#skin--soundset) 篇里我留了一个坑，现在我们来把它填掉。
+在 [Select](../select/#skin-soundset) 篇里我留了一个坑，现在我们来把它填掉。
 
 在 SYSTEM OPTION 页面下点击 SKIN · SOUNDSET 按钮进入皮肤 / 音频设置界面。
 

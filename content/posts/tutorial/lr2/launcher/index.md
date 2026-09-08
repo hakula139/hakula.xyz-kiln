@@ -106,7 +106,7 @@ LR2IR 即 LR2 的在线排行榜，勾选表示连接到 LR2IR，本地成绩将
 
 导入段位 / Course 也是类似的，将 `.lr2crs` 文件拖进 JUKEBOX1 即可。需要注意拖动的不是 `.lr2crs` 文件所在的目录，而是文件本身。如果 `.lr2crs` 文件消失，则说明导入成功。LR2 没有重复检查功能，请勿重复导入。
 
-Custom Folder 在目前语境下通常表示第三方难易度表，导入方式同理，将 BeMusicSeeker 输出的文件夹拖进 JUKEBOX1 即可。不过可能 BeMusicSeeker 已经帮你自动导入了，无需手动导入。具体如何利用 BeMusicSeeker 导入第三方表可以参考 [这篇教程](../tools/#BeMusicSeeker)。
+Custom Folder 在目前语境下通常表示第三方难易度表，导入方式同理，将 BeMusicSeeker 输出的文件夹拖进 JUKEBOX1 即可。不过可能 BeMusicSeeker 已经帮你自动导入了，无需手动导入。具体如何利用 BeMusicSeeker 导入第三方表可以参考 [这篇教程](../tools/#bemusicseeker)。
 
 右键已导入的目录，选择「データベースから除外」即可移除。
 

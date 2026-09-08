@@ -70,9 +70,9 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 
 Fetch 阶段，通过 `pc_f` 输出指令地址 `pc` 到 `imem`，通过 `instr_f` 从 `imem` 读入指令 `instr`，存储到流水线寄存器 `decode_reg` 中，在下一个时钟上升沿到达时从 `instr_d` 输出。
 
-此外，本阶段还需要完成 PC 的更新。`pc_next`（新的 PC 值）的选择逻辑同单周期的 [2.8](../single-cycle-mips-cpu/#28-mux2-mux4) 节，这里不再赘述。需要注意的是 Fetch 阶段需要用到一些 Decode 阶段的数据，也就是上一条指令计算得到的相对寻址地址 `pc_branch_d`、用于指令 `jr` 跳转的地址 `src_a_d` 和指令解析得到的 `pc_src_d`, `jump_d` 信号，用来确定 `pc_next` 的值。
+此外，本阶段还需要完成 PC 的更新。`pc_next`（新的 PC 值）的选择逻辑同单周期的 [2.8](../single-cycle-mips-cpu/#2.8-mux2-mux4) 节，这里不再赘述。需要注意的是 Fetch 阶段需要用到一些 Decode 阶段的数据，也就是上一条指令计算得到的相对寻址地址 `pc_branch_d`、用于指令 `jr` 跳转的地址 `src_a_d` 和指令解析得到的 `pc_src_d`, `jump_d` 信号，用来确定 `pc_next` 的值。
 
-在需要解决冲突的情况下，通过 `stall_f`, `stall_d`, `flush_d` 信号决定是否保持（stall）或清空（flush）对应流水线寄存器保存的数据，其中 `stall_f` 为 `1` 时保持当前 PC 值不更新，`stall_d` 为 `1` 时保持当前 `decode_reg` 的数据不更新，`flush_d` 为 `1` 时清空 `decode_reg` 的数据。具体这些信号在何时为何值，将在 [2.7](#27-hazard_unit) 节详细阐述。
+在需要解决冲突的情况下，通过 `stall_f`, `stall_d`, `flush_d` 信号决定是否保持（stall）或清空（flush）对应流水线寄存器保存的数据，其中 `stall_f` 为 `1` 时保持当前 PC 值不更新，`stall_d` 为 `1` 时保持当前 `decode_reg` 的数据不更新，`flush_d` 为 `1` 时清空 `decode_reg` 的数据。具体这些信号在何时为何值，将在 [2.7](#2.7-hazard_unit) 节详细阐述。
 
 代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/pipeline_stages/fetch.sv)。
 
@@ -88,7 +88,7 @@ Fetch 阶段流水线寄存器。结构很简单，就是将 PC 寄存器 `pc_re
 
 ![触发器](assets/flip-flop.webp)
 
-这里只说与单周期版本的区别，其余请参见单周期的 [2.10](../single-cycle-mips-cpu/#210-flip_flop) 节。
+这里只说与单周期版本的区别，其余请参见单周期的 [2.10](../single-cycle-mips-cpu/#2.10-flip_flop) 节。
 
 首先增加了一个清零信号 $\textrm{CLR}$，当 $\textrm{CLR}$ 为 $1$ 时，将保存的数据同步清零（$\textrm{RST}$ 为异步清零），用于 flush 信号。尽管这里 `fetch_reg` 用不到，但其他流水线寄存器可能会需要，这里是出于部件复用的考虑。其次增加了一个**低电平**有效的保持信号 $\textrm{EN}$，当 $\textrm{EN}$ 为 $0$ 时，保持数据不变。对于 `fetch_reg` 来说，其值即 `~stall_f`。
 
@@ -185,7 +185,7 @@ Decode 阶段和 Execute 阶段之间的流水线寄存器，中转一下 `contr
 
 代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/pipeline_registers/execute_reg.sv)。
 
-[^bundle]: 关于信号集合，参见单周期的 [2.4](../single-cycle-mips-cpu/#24-control_unit) 节。
+[^bundle]: 关于信号集合，参见单周期的 [2.4](../single-cycle-mips-cpu/#2.4-control_unit) 节。
 
 ### 2.4 `execute`
 
@@ -231,7 +231,7 @@ Memory 阶段和 Writeback 阶段之间的流水线寄存器，中转一下 `con
 
 ![Writeback 阶段](assets/writeback.webp)
 
-Writeback 阶段，由 `mem_to_reg` 信号控制 `result_mux2` 选择写入 `reg_file` 的数据为 `alu_out` 还是 `read_data`。写入逻辑放在了 `decode` 模块，参见 [2.3](#23-decode) 节。
+Writeback 阶段，由 `mem_to_reg` 信号控制 `result_mux2` 选择写入 `reg_file` 的数据为 `alu_out` 还是 `read_data`。写入逻辑放在了 `decode` 模块，参见 [2.3](#2.3-decode) 节。
 
 代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Pipeline/src/pipeline_stages/writeback.sv)。
 
@@ -299,13 +299,13 @@ assign stall_f_o = stall_d_o;
 
 目前的实现中使用的是静态分支预测，之后我们将实现动态分支预测以获得更好的性能。
 
-不幸的是，引入静态分支预测将导致新的 RAW 冲突，因此需要再次用到 [2.7.1](#271-数据冲突) 节里解决数据冲突的两种方法。
+不幸的是，引入静态分支预测将导致新的 RAW 冲突，因此需要再次用到 [2.7.1](#2.7.1-数据冲突) 节里解决数据冲突的两种方法。
 
 ##### 2.7.2.1 使用重定向解决冲突
 
 如果指令的结果在 Writeback 阶段，则它将在前半周期写入寄存器，在后半周期进行读操作，此时不会产生冲突。如果指令的结果在 Memory 阶段，则可以将它重定向回 Decode 阶段的 `equal_cmp`。
 
-类似 [2.7.1.1](#2711-使用重定向解决冲突) 节，以 `$rs` 的情况为例，重定向逻辑如下：
+类似 [2.7.1.1](#2.7.1.1-使用重定向解决冲突) 节，以 `$rs` 的情况为例，重定向逻辑如下：
 
 ```sv
 assign forward_a_d_o = rs_d_i && rs_d_i == write_reg_m_i && reg_write_m_i;
@@ -315,7 +315,7 @@ assign forward_a_d_o = rs_d_i && rs_d_i == write_reg_m_i && reg_write_m_i;
 
 如果指令的结果在 Execute 阶段，或者指令 `lw` 的结果在 Memory 阶段，则需要阻塞流水线。
 
-类似 [2.7.1.2](#2712-使用阻塞解决冲突) 节，阻塞逻辑如下：
+类似 [2.7.1.2](#2.7.1.2-使用阻塞解决冲突) 节，阻塞逻辑如下：
 
 ```sv
 assign branch_stall = (branch_d_i || jump_d_i[1])
