@@ -1502,6 +1502,24 @@
       background: var(--surface-glass-panel);
       content: '';
     }
+    article.article-background-cached::before {
+      background-color: transparent;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      background-image: var(--article-background-image);
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: var(--article-background-position);
+      background-repeat: no-repeat;
+    }
+    article.article-background-cached::after {
+      pointer-events: none;
+      position: absolute;
+      inset: 0px;
+      z-index: calc(1 * -1);
+      background-color: var(--surface-glass-panel);
+      content: '';
+    }
   }
   .article-title {
     font-size: var(--text-xl);
