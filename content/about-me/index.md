@@ -137,9 +137,9 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 ### 德州扑克
 
-| 游戏名                 | ID       |           时间 |
-| :--------------------- | :------- | -------------: |
-| [PokerFate][pokerfate] | [Hakula] | 2026-06 ~ 至今 |
+| 游戏名                 | ID     |           时间 |
+| :--------------------- | :----- | -------------: |
+| [PokerFate][pokerfate] | Hakula | 2026-06 ~ 至今 |
 
 [pokerfate]: https://pokerfate.com
 
