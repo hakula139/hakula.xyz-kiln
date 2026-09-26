@@ -23,8 +23,7 @@ url = "https://www.pixiv.net/artworks/69065999"
 
 ::: callout {type=success title="LR2 整合包"}
 
-- [:(fas fa-download): 本地下载](https://bms.hakula.xyz) - 新人请进 /【启动器】Lunatic Rave 2
-- [:(fas fa-cloud): 百度云](https://pan.baidu.com/s/17J8SD82VemKUS0OW2c3y-w) - **fcn6**
+- [:(fas fa-download): 本地下载](https://cloud.hakula.xyz/home?path=cloudreve%3A%2F%2F7aTX%40share%2FBMS%2520%25E6%2592%25AD%25E6%2594%25BE%25E5%2599%25A8%2FLunatic%2520Rave%25202) - /BMS 播放器/Lunatic Rave 2
 
 由 @Hakula 整合，最后更新：2018-09-23
 
