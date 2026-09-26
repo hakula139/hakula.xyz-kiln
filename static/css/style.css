@@ -1950,7 +1950,7 @@
       animation: var(--animate-lqip-fade-in);
     }
   }
-  .prose figure > .lqip, .prose figure > .lightgallery {
+  .prose figure > .lqip, .prose figure > .lightgallery, .prose figure > .lightgallery > .lqip {
     margin-inline: auto;
     display: block;
     width: fit-content;
