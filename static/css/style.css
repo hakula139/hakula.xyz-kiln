@@ -1989,14 +1989,15 @@
 .prose pre.mermaid {
   margin-block: calc(var(--spacing) * 4);
   display: flex;
-  justify-content: center;
+  overflow-x: auto;
   border-radius: var(--radius-lg);
   padding: calc(var(--spacing) * 6);
   color: inherit;
   font-family: var(--font-sans);
+  justify-content: safe center;
 }
 .prose pre.mermaid svg {
-  max-width: 100%;
+  max-width: none;
   height: auto;
 }
 .prose {
