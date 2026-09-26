@@ -62,7 +62,7 @@ Four constructions recur often enough to name. This is not a checklist to run ag
 ## Content
 
 - Clear and rigorous, pitched between the written and the spoken register.
-- Use precise, established terminology rather than invented words, enclosing each term in `「」` on its first appearance alongside its optional original-language name and glossing it in parentheses when needed instead of piling up unexplained terms.
+- Use precise, established terminology. Enclose each term in `「」` on its first appearance, optionally with its original-language name, and gloss it in parentheses when a reader would need it.
 - Bold sparingly. `「」` carries emphasis.
 - Where the argument returns to an earlier section, link back to it with a Markdown link.
 - Merge short analytical passages into continuous paragraphs. Subheadings are for longer self-contained arguments.
