@@ -2014,12 +2014,65 @@
   --tw-prose-quotes: var(--color-text-secondary);
   --tw-prose-captions: var(--color-text-secondary);
 }
+.prose :where(h2, h3, h4, h5, h6) {
+  margin-bottom: calc(var(--spacing) * 6);
+  --tw-leading: var(--leading-normal);
+  line-height: var(--leading-normal);
+  --tw-font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+.prose :where(h2, h3, h4, h5, h6) + * {
+  margin-top: 0px;
+}
 .prose :where(h2) {
-  margin-top: 1.5em;
-  font-size: 1.25em;
+  margin-top: 2.25em;
+  padding-bottom: 0.4em;
+  font-size: 1.4em;
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+  &::after {
+    content: var(--tw-content);
+    position: absolute;
+  }
+  &::after {
+    content: var(--tw-content);
+    right: 0px;
+  }
+  &::after {
+    content: var(--tw-content);
+    bottom: 0px;
+  }
+  &::after {
+    content: var(--tw-content);
+    left: calc(var(--spacing) * 5);
+  }
+  &::after {
+    content: var(--tw-content);
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
+  }
+  &::after {
+    content: var(--tw-content);
+    border-color: var(--color-border-overlay);
+  }
 }
 .prose :where(h3) {
-  font-size: 1.1em;
+  margin-top: 2em;
+  font-size: 1.25em;
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+}
+.prose :where(h4) {
+  margin-top: 1.9em;
+  font-size: 1.125em;
+}
+.prose :where(h5, h6) {
+  margin-top: 1.75em;
+  font-size: 1em;
+}
+.prose :where(h6) {
+  color: var(--color-text-secondary);
 }
 .prose .highlight span {
   display: inline;
@@ -3265,6 +3318,11 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
+@property --tw-content {
+  syntax: "*";
+  initial-value: "";
+  inherits: false;
+}
 @property --tw-gradient-position {
   syntax: "*";
   inherits: false;
@@ -3375,11 +3433,6 @@
   syntax: "*";
   inherits: false;
 }
-@property --tw-content {
-  syntax: "*";
-  inherits: false;
-  initial-value: "";
-}
 @property --tw-scale-x {
   syntax: "*";
   inherits: false;
@@ -3480,6 +3533,7 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-content: "";
       --tw-gradient-position: initial;
       --tw-gradient-from: #0000;
       --tw-gradient-via: #0000;
@@ -3505,7 +3559,6 @@
       --tw-drop-shadow-color: initial;
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
-      --tw-content: "";
       --tw-scale-x: 1;
       --tw-scale-y: 1;
       --tw-scale-z: 1;
