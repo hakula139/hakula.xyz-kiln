@@ -44,7 +44,7 @@
   const ASC_BY_DEFAULT = new Set(['text', 'age-rating', 'heatmap']);
 
   // ── Color Strategies ──
-  // Computed inline — these colors are dynamic and cannot use CSS tokens
+  // Computed inline because these colors depend on each cell's score.
 
   const COLOR_STRATEGIES = {
     // Rating: continuous HSL scale from total score (theme-adaptive lightness)
@@ -88,7 +88,6 @@
       const tbody = table.querySelector('tbody');
       const ths = Array.from(thead.querySelectorAll('th'));
 
-      // Column sorting
       for (const [domIdx, th] of ths.entries()) {
         if (th.classList.contains('col-rownum')) {
           continue;
@@ -123,7 +122,6 @@
         });
       }
 
-      // Apply dynamic colors (called on init and theme change)
       const applyColors = () => {
         const dark = isDark();
         for (const type of Object.keys(COLOR_STRATEGIES)) {

@@ -14,7 +14,7 @@ git clone --recurse-submodules https://github.com/hakula139/hakula.xyz-kiln.git
 cd hakula.xyz-kiln
 ```
 
-[Nix](https://nixos.org/download/) (with flakes) is the recommended path — `nix develop` enters a shell with kiln, pagefind, Node, and pnpm preinstalled, all pulled from the [`hakula` cachix cache](https://app.cachix.org/cache/hakula). Without Nix, install [kiln](https://github.com/hakula139/kiln#installation) (Rust 1.85+) and [pagefind](https://pagefind.app/docs/installation/) yourself.
+[Nix](https://nixos.org/download/) (with flakes) is the recommended path. `nix develop` enters a shell with kiln, pagefind, Node, and pnpm preinstalled, all pulled from the [`hakula` cachix cache](https://app.cachix.org/cache/hakula). Without Nix, install [kiln](https://github.com/hakula139/kiln#installation) (Rust 1.85+) and [pagefind](https://pagefind.app/docs/installation/) yourself.
 
 ## Usage
 
@@ -37,7 +37,7 @@ gh workflow run deploy.yml --ref dev
 
 CI deploys require two repository secrets:
 
-- `CLOUDFLARE_API_TOKEN` — scoped to: Account → Workers Scripts: Edit; Zone (`hakula.xyz`) → DNS: Edit + Workers Routes: Edit.
+- `CLOUDFLARE_API_TOKEN`, scoped to Account → Workers Scripts: Edit and Zone (`hakula.xyz`) → DNS: Edit + Workers Routes: Edit.
 - `CLOUDFLARE_ACCOUNT_ID`.
 
 ## Site Structure

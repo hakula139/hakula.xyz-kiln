@@ -53,8 +53,8 @@
         # ----------------------------------------------------------------------
         # `pnpm exec` needs node + pnpm on PATH and the project's
         # `node_modules` materialised. The Nix sandbox lacks the latter, so
-        # `nix flake check` skips these hooks; the equivalent checks run in
-        # CI via direct `pnpm` scripts.
+        # `nix flake check` skips these hooks, and CI runs the equivalent
+        # checks via direct `pnpm` scripts.
         nodeHook =
           name: cmd:
           let

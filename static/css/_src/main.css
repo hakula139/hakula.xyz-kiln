@@ -1,4 +1,4 @@
-/* Import theme source — tokens, base, and all theme components */
+/* Theme source: tokens, base, and all theme components */
 @import '../../../themes/IgnIt/static/css/_src/main.css';
 
 @source '../../../templates/**/*.html';

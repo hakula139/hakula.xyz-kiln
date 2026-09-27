@@ -20,10 +20,10 @@ Update the IgnIt theme submodule and rebuild site assets. Use after pushing chan
 
    ```bash
    git add themes/IgnIt static/css/style.css
-   git commit -m "chore: update IgnIt submodule, rebuild site CSS"
+   git commit -m "chore(theme): bump IgnIt to <short-sha>"
    ```
 
-   Theme JS changes are captured by the submodule pointer alone — kiln's `copy_static` ships `themes/IgnIt/static/js/` directly, so the site has no JS artifact to rebuild.
+   Theme JS changes are captured by the submodule pointer alone, because kiln's `copy_static` ships `themes/IgnIt/static/js/` directly and the site has no JS artifact to rebuild.
 
 4. **Push**:
 
@@ -38,6 +38,6 @@ Update the IgnIt theme submodule and rebuild site assets. Use after pushing chan
 
 ## Common Mistakes
 
-- Forgetting `pnpm build` after submodule update — the compiled CSS in `static/` will be stale
+- Forgetting `pnpm build` after a submodule update, which leaves the compiled CSS in `static/` stale
 - Committing only the submodule pointer without the rebuilt `static/css/style.css`
 - Not checking that the submodule is on the correct branch before pulling

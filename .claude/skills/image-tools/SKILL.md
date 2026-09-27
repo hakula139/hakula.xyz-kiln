@@ -2,12 +2,12 @@
 
 Download, compress, and inspect images for article covers and site assets. Use when adding new article covers (from Pixiv or other sources), upgrading existing images to higher quality, or checking image dimensions / file sizes.
 
-**Script**: `.claude/skills/image-tools/image-tools.sh` — all operations are implemented as subcommands. Run with `help` for full usage.
+**Script**: `.claude/skills/image-tools/image-tools.sh`, with every operation implemented as a subcommand. Run with `help` for full usage.
 
 ## Prerequisites
 
-- `magick` — ImageMagick 7 (compress, info, batch)
-- `gallery-dl` — Pixiv downloader (download; needs Pixiv auth configured)
+- `magick`: ImageMagick 7 (compress, info, batch)
+- `gallery-dl`: Pixiv downloader (download, needs Pixiv auth configured)
 
 ## Workflow
 
@@ -25,12 +25,13 @@ Download, compress, and inspect images for article covers and site assets. Use w
    ./image-tools.sh compress <PIXIV_ID>_p0.png
    ```
 
-   Output goes to `static/images/article-covers/<PIXIV_ID>_p0.webp` by default. Rename to `<PIXIV_ID>.webp` if needed.
+   Output goes to `static/images/article-covers/<PIXIV_ID>_p0.webp` by default.
 
 3. Reference in frontmatter:
 
    ```toml
-   featured_image = "/images/article-covers/<PIXIV_ID>.webp"
+   [featured_image]
+   src = "/images/article-covers/<PIXIV_ID>_p0.webp"
    ```
 
 ### Upgrading the Background Image
@@ -61,5 +62,5 @@ Check dimensions and file sizes:
 
 - Article covers: 1920px max width, quality 85, WebP format
 - Background image: 3840px (4K), quality 90
-- Filenames: Pixiv ID for Pixiv-sourced images, descriptive name for others
+- Filenames: `<PIXIV_ID>_p0` for Pixiv-sourced images, descriptive name for others
 - All images stored under `static/images/`
