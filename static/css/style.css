@@ -2146,7 +2146,7 @@
     color: var(--color-link-hover);
   }
 }
-.prose .heading-anchor, .prose .heading-anchor:hover, .prose .footnote-reference a, .prose .footnote-reference a:hover {
+.prose .heading-anchor, .prose .heading-anchor:hover, .prose .footnote-reference a, .prose .footnote-reference a:hover, .prose .footnote-backref, .prose .footnote-backref:hover {
   border-bottom-style: var(--tw-border-style);
   border-bottom-width: 0px;
 }
@@ -2236,10 +2236,9 @@
   .prose :where(th, td):not(.nowrap, .not-prose *) {
     min-width: calc(var(--table-nowrap-width, 0) * 0.5em);
   }
-  .prose .footnote-definition {
-    margin-top: calc(var(--spacing) * 4);
-    display: flex;
-    gap: calc(var(--spacing) * 2);
+  .prose .footnotes {
+    --tw-prose-counters: var(--color-link);
+    margin-top: calc(var(--spacing) * 12);
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
     border-color: var(--color-border-overlay);
@@ -2248,19 +2247,8 @@
     line-height: var(--tw-leading, var(--text-sm--line-height));
     color: var(--color-text-tertiary);
   }
-  .prose .footnote-definition-label {
-    flex-shrink: 0;
-    --tw-font-weight: var(--font-weight-semibold);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-link);
-  }
-  .prose .footnote-definition p {
-    margin-block: 0px;
-  }
-  .prose .footnote-reference a {
-    --tw-font-weight: var(--font-weight-semibold);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-link);
+  .prose .footnote-backref {
+    margin-left: var(--spacing);
   }
   .highlight {
     background-color: color-mix(in srgb, #f5f5f7 60%, transparent);
