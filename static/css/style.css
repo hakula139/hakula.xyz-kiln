@@ -2513,12 +2513,15 @@
     position: relative;
     z-index: 10;
     display: flex;
-    min-height: calc(var(--spacing) * 88);
+    min-height: calc(var(--spacing) * 72);
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: calc(var(--spacing) * 4);
     text-align: center;
+    @media (width >= 40rem) {
+      min-height: calc(var(--spacing) * 88);
+    }
     @media (width >= 40rem) {
       padding: calc(var(--spacing) * 5);
     }
@@ -2803,7 +2806,9 @@
   }
   .profile-social {
     display: inline-flex;
-    aspect-ratio: 1 / 1;
+    width: calc(var(--spacing) * 10);
+    height: calc(var(--spacing) * 10);
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
     border-radius: calc(infinity * 1px);
