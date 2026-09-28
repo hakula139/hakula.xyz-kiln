@@ -16,6 +16,7 @@ link = "https://hakula.xyz"
 
 [params]
 fontawesome = true
+table_nowrap_width = 30
 
 [params.background]
 image = "/images/bg.webp"
