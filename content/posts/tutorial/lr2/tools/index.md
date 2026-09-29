@@ -118,7 +118,7 @@ javascript: (function () {
 
 在「逆推荐」页面中，Walkure 列出了所有你通过的难度高于你当前实力值的谱面，右侧显示推定的通过概率。
 
-这些基本属于 Walkure 不认为你能通过但你却神秘通过了的谱面，~~可以用来装逼 :sunglasses:（然后被人[骂]^(kuā) sb）~~。
+这些基本属于 Walkure 不认为你能通过但你却神秘通过了的谱面，~~可以用来装逼 :sunglasses:（然后被人骂 (kuā) sb）~~。
 
 ![Walkure - 逆推荐](assets/walkure/reverse-recommendations.webp)
 
