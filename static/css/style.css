@@ -13,6 +13,7 @@
     --color-white: #fff;
     --spacing: 0.25rem;
     --container-2xl: 42rem;
+    --container-3xl: 48rem;
     --container-4xl: 56rem;
     --container-6xl: 72rem;
     --text-xs: 0.75rem;
@@ -940,6 +941,14 @@
     }
     .sm\:px-5 {
       padding-inline: calc(var(--spacing) * 5);
+    }
+    @media (width < 80rem) {
+      .sm\:max-xl\:w-\[90\%\] {
+        width: 90%;
+      }
+      .sm\:max-xl\:max-w-3xl {
+        max-width: var(--container-3xl);
+      }
     }
   }
   @media (width >= 48rem) {
