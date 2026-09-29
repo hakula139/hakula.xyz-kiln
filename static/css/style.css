@@ -754,6 +754,9 @@
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
+  .flex-col {
+    flex-direction: column;
+  }
   .flex-wrap {
     flex-wrap: wrap;
   }
@@ -914,6 +917,12 @@
     }
   }
   @media (width >= 40rem) {
+    .sm\:block {
+      display: block;
+    }
+    .sm\:inline {
+      display: inline;
+    }
     .sm\:p-8 {
       padding: calc(var(--spacing) * 8);
     }
