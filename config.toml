@@ -42,7 +42,7 @@ paginate = 8
 [params.home.profile]
 avatar = "/images/hotlink-ok/avatar-lite.webp"
 title = "HAKULA†CHANNEL"
-subtitle = "让我们一直谈论变革，以确保事实上什么都没改变。"
+subtitle = "让我们一直谈论变革，\n以确保事实上什么都没改变。"
 
 [params.lightgallery]
 enabled = true
