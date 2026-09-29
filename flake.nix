@@ -23,7 +23,7 @@
 
     # kiln + pagefind (the kiln flake exposes both as `packages.${system}.*`).
     kiln = {
-      url = "github:hakula139/kiln/v0.4.0-rc.1";
+      url = "github:hakula139/kiln/0582f56ff0d3f8321b66cea26ea6f0b32fcdfd2a";
       inputs.flake-utils.follows = "flake-utils";
     };
 

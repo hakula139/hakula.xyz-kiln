@@ -2064,6 +2064,7 @@
     gap: calc(var(--spacing) * 2);
   }
   .post-footer-updated {
+    margin-left: auto;
     display: inline-flex;
     flex-wrap: wrap;
     align-items: baseline;
