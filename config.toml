@@ -3,6 +3,7 @@ title = "HAKULA†CHANNEL"
 description = "Hakula's personal site"
 language = "zh-Hans"
 timezone = "Asia/Shanghai"
+enable_git_info = true
 output_dir = "public"
 theme = "IgnIt"
 
