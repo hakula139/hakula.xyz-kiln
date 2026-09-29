@@ -942,14 +942,6 @@
     .sm\:px-5 {
       padding-inline: calc(var(--spacing) * 5);
     }
-    @media (width < 80rem) {
-      .sm\:max-xl\:w-\[90\%\] {
-        width: 90%;
-      }
-      .sm\:max-xl\:max-w-3xl {
-        max-width: var(--container-3xl);
-      }
-    }
   }
   @media (width >= 48rem) {
     .md\:flex {
@@ -2485,6 +2477,24 @@
   .toc-sidebar .toc li.active > ul {
     opacity: 100%;
   }
+  .home-container {
+    margin-inline: auto;
+    max-width: var(--container-4xl);
+    padding-inline: calc(var(--spacing) * 2);
+    @media (width >= 40rem) {
+      padding-inline: calc(var(--spacing) * 4);
+    }
+    @media (width >= 40rem) {
+      @media (width < 80rem) {
+        width: 90%;
+      }
+    }
+    @media (width >= 40rem) {
+      @media (width < 80rem) {
+        max-width: var(--container-3xl);
+      }
+    }
+  }
   .home-card {
     position: relative;
     overflow: hidden;
@@ -2501,10 +2511,6 @@
     inset: 0px;
     height: 100%;
     width: 100%;
-    --tw-scale-x: var(--scale-card-hover);
-    --tw-scale-y: var(--scale-card-hover);
-    --tw-scale-z: var(--scale-card-hover);
-    scale: var(--tw-scale-x) var(--tw-scale-y);
     object-fit: cover;
     --tw-blur: blur(var(--blur-sm));
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
@@ -2584,7 +2590,7 @@
     padding-bottom: calc(var(--spacing) * 4);
     text-align: center;
     @media (width >= 40rem) {
-      padding: calc(var(--spacing) * 5);
+      padding-inline: calc(var(--spacing) * 5);
     }
     @media (width >= 40rem) {
       @media (width < 80rem) {
@@ -2650,7 +2656,7 @@
     @supports (color: color-mix(in lab, red, red)) {
       color: color-mix(in oklab, var(--color-white) 80%, transparent);
     }
-    @media (width >= 40rem) {
+    @media (width >= 80rem) {
       overflow: hidden;
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -2800,12 +2806,14 @@
       transition-duration: 500ms,500ms,0s;
     }
     .home-card:not(:hover):not(:focus-within) .home-card-image {
-      --tw-scale-x: 100%;
-      --tw-scale-y: 100%;
-      --tw-scale-z: 100%;
-      scale: var(--tw-scale-x) var(--tw-scale-y);
       --tw-blur:  ;
       filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+    }
+    .home-card:hover .home-card-image, .home-card:focus-within .home-card-image {
+      --tw-scale-x: var(--scale-card-hover);
+      --tw-scale-y: var(--scale-card-hover);
+      --tw-scale-z: var(--scale-card-hover);
+      scale: var(--tw-scale-x) var(--tw-scale-y);
     }
     .home-card:not(:hover):not(:focus-within) .home-card-overlay::after {
       opacity: 0%;
@@ -3445,21 +3453,6 @@
   initial-value: "";
   inherits: false;
 }
-@property --tw-scale-x {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}
-@property --tw-scale-y {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}
-@property --tw-scale-z {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}
 @property --tw-blur {
   syntax: "*";
   inherits: false;
@@ -3570,6 +3563,21 @@
   inherits: false;
   initial-value: 0;
 }
+@property --tw-scale-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
 @property --tw-ordinal {
   syntax: "*";
   inherits: false;
@@ -3656,9 +3664,6 @@
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
       --tw-content: "";
-      --tw-scale-x: 1;
-      --tw-scale-y: 1;
-      --tw-scale-z: 1;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;
@@ -3684,6 +3689,9 @@
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-scale-z: 1;
       --tw-ordinal: initial;
       --tw-slashed-zero: initial;
       --tw-numeric-figure: initial;
