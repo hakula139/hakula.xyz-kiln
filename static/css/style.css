@@ -2538,6 +2538,12 @@
     --tw-drop-shadow-size: drop-shadow(0 1px 2px var(--tw-drop-shadow-color, rgba(0, 0, 0, 0.3)));
     --tw-drop-shadow: drop-shadow(var(--drop-shadow-text));
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+    @media (width < 40rem) {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
   }
   .home-card-meta {
     margin-top: calc(var(--spacing) * 3);
