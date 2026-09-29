@@ -779,6 +779,9 @@
   .gap-1\.5 {
     gap: calc(var(--spacing) * 1.5);
   }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
   }
@@ -934,6 +937,12 @@
   @media (width >= 40rem) {
     .sm\:mx-4 {
       margin-inline: calc(var(--spacing) * 4);
+    }
+    .sm\:flex {
+      display: flex;
+    }
+    .sm\:hidden {
+      display: none;
     }
     .sm\:p-8 {
       padding: calc(var(--spacing) * 8);
@@ -1441,7 +1450,7 @@
   .highlight, .code-header {
     background: transparent !important;
   }
-  .glass-glow:has(.header-nav), #mobile-menu, .site-footer,  .toc-sidebar-wrapper, .toc-collapse, .post-banner,  .home-card-image, .home-card-overlay, .home-card-pin,  #comments,  .pagination-link, .pagination-ellipsis, .pagination-input,  .float-btn, pagefind-modal {
+  .glass-glow:has(.header-nav), #mobile-menu, .site-footer,  .toc-sidebar-wrapper, .toc-collapse, .post-banner,  .home-card-image, .home-card-overlay, .home-card-pin,  #comments,  .pagination-link, .pagination-input,  .float-btn, pagefind-modal {
     display: none !important;
   }
   .prose a[href^='http']::after {
@@ -3048,7 +3057,17 @@
     --tw-duration: 200ms;
     transition-duration: 200ms;
   }
-  .pagination-link:hover {
+  .pagination-mobile .pagination-link {
+    height: calc(var(--spacing) * 10);
+    min-width: calc(var(--spacing) * 10);
+  }
+  .pagination-current .pagination-link {
+    min-width: calc(var(--spacing) * 20);
+  }
+  .pagination-link:disabled {
+    opacity: 40%;
+  }
+  .pagination-link:not(:disabled):hover, .pagination-link:focus-visible {
     color: var(--color-link-hover);
     background-color: color-mix(in srgb, #14607d 8%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -3062,9 +3081,12 @@
       background-color: color-mix(in srgb, var(--color-link-hover) 15%, transparent);
     }
   }
-  .pagination-ellipsis {
+  .pagination-jump {
     cursor: pointer;
     color: var(--color-text-tertiary);
+  }
+  .pagination-jump[hidden], .pagination-input[hidden] {
+    display: none;
   }
   .pagination-input {
     height: calc(var(--spacing) * 9);
@@ -3095,6 +3117,10 @@
     }
     appearance: textfield;
     -moz-appearance: textfield;
+  }
+  .pagination-current .pagination-input {
+    height: calc(var(--spacing) * 10);
+    width: calc(var(--spacing) * 20);
   }
   .pagination-input:focus {
     border-color: var(--color-link-hover);
