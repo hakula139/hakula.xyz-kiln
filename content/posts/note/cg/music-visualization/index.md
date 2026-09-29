@@ -167,7 +167,7 @@ $$\Delta N = \frac{|S|}{n} = \frac{N}{2n}$$
 
 然后我们算出这个频域范围内的响度均值 $A$（即 `barValue`）
 
-$$A = \frac{1}{\lceil \Delta N \rceil} \sum\limits\_{k=\lfloor i\Delta N \rfloor}^{\lceil (i+1)\Delta N \rceil} S_k$$
+$$A = \frac{1}{\lceil \Delta N \rceil} \sum\limits_{k=\lfloor i\Delta N \rfloor}^{\lceil (i+1)\Delta N \rceil} S_k$$
 
 那么这个柱形的高度 $h_i$（即 `barHeight`）就可以设定为
 
