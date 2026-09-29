@@ -740,6 +740,9 @@
   .max-w-6xl {
     max-width: var(--container-6xl);
   }
+  .max-w-full {
+    max-width: 100%;
+  }
   .max-w-none {
     max-width: none;
   }
@@ -894,6 +897,9 @@
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
+  }
+  .break-words {
+    overflow-wrap: break-word;
   }
   .whitespace-nowrap {
     white-space: nowrap;
@@ -2025,6 +2031,36 @@
 .prose pre.mermaid svg {
   max-width: none;
   height: auto;
+}
+@layer components {
+  .post-footer {
+    margin-top: calc(var(--spacing) * 8);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: calc(var(--spacing) * 6);
+    row-gap: calc(var(--spacing) * 4);
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+    border-color: var(--color-border-overlay);
+    padding-top: calc(var(--spacing) * 5);
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .post-footer-tags {
+    display: flex;
+    min-width: 0px;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing) * 2);
+  }
+  .post-footer-updated {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: calc(var(--spacing) * 1.5);
+    color: var(--color-text-secondary);
+  }
 }
 .prose {
   --tw-prose-body: var(--color-text);
