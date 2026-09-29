@@ -2207,7 +2207,7 @@
     border-radius: var(--radius-lg);
     text-align: center;
   }
-  .prose table {
+  .prose table:not(.code-block table) {
     display: block;
     &::-webkit-scrollbar {
       height: calc(var(--spacing) * 2);
@@ -2233,7 +2233,7 @@
   .prose :where(th, td).nowrap {
     white-space: nowrap;
   }
-  .prose :where(th, td):not(.nowrap, .not-prose *) {
+  .prose :where(th, td):not(.nowrap, .not-prose *, .code-block *) {
     min-width: calc(var(--table-nowrap-width, 0) * 0.5em);
   }
   .prose .footnotes {
