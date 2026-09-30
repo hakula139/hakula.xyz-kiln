@@ -1659,31 +1659,16 @@
     border-left-color: var(--callout-color);
   }
   .callout-title {
-    list-style-type: none;
     padding-block: calc(var(--spacing) * 2);
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
     color: var(--callout-color);
-  }
-  .callout-title::-webkit-details-marker {
-    display: none;
   }
   .callout-title::before {
     flex-shrink: 0;
     font-family: var(--fa-family-classic);
     font-weight: 900;
     content: var(--callout-icon, '\f05a');
-  }
-  .callout::details-content {
-    display: grid;
-    grid-template-rows: 0fr;
-  }
-  .callout[open]::details-content {
-    grid-template-rows: 1fr;
-  }
-  .callout-body {
-    min-height: 0px;
-    overflow: hidden;
   }
   .callout-body-inner {
     overflow: hidden;
@@ -1699,16 +1684,6 @@
   }
   .callout-body-inner > :last-child {
     margin-bottom: calc(var(--spacing) * 2);
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .callout::details-content {
-      transition: grid-template-rows 300ms, content-visibility 300ms allow-discrete;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .callout .callout-title::after {
-      transition-property: none;
-    }
   }
   .callout.abstract {
     --callout-color: var(--callout-abstract-fg);
@@ -1869,6 +1844,12 @@
     -webkit-user-select: none;
     user-select: none;
   }
+  .callout-title, .toc-trigger {
+    list-style-type: none;
+  }
+  .callout-title::-webkit-details-marker, .toc-trigger::-webkit-details-marker {
+    display: none;
+  }
   .code-header::before, .callout-title::after, .toc-trigger::after {
     flex-shrink: 0;
     font-family: var(--fa-family-classic);
@@ -1885,10 +1866,21 @@
   .callout-title::after, .toc-trigger::after {
     margin-left: auto;
   }
-  .code-block.collapsed .code-header::before, .callout:not([open]) .callout-title::after, .toc-collapse.collapsed .toc-trigger::after {
+  .code-block.collapsed .code-header::before, .callout:not([open]) .callout-title::after, .toc-collapse:not([open]) .toc-trigger::after {
     rotate: calc(90deg * -1);
   }
-  .code-body, .toc-body-wrapper {
+  .callout::details-content, .toc-collapse::details-content {
+    display: grid;
+    grid-template-rows: 0fr;
+  }
+  .callout[open]::details-content, .toc-collapse[open]::details-content {
+    grid-template-rows: 1fr;
+  }
+  .callout-body, .toc-body {
+    min-height: 0px;
+    overflow: hidden;
+  }
+  .code-body {
     display: grid;
     grid-template-rows: 1fr;
     transition-property: grid-template-rows;
@@ -1897,8 +1889,18 @@
     --tw-duration: 300ms;
     transition-duration: 300ms;
   }
-  .code-block.collapsed .code-body, .toc-collapse.collapsed .toc-body-wrapper {
+  .code-block.collapsed .code-body {
     grid-template-rows: 0fr;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .callout::details-content, .toc-collapse::details-content {
+      transition: grid-template-rows 300ms, content-visibility 300ms allow-discrete;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .callout .callout-title::after, .toc-collapse .toc-trigger::after {
+      transition-property: none;
+    }
   }
 }
 .prose .tk-avatar-img {
@@ -2515,8 +2517,6 @@
     color: var(--color-text-tertiary);
   }
   .toc-body {
-    min-height: 0px;
-    overflow: hidden;
     padding-inline: calc(var(--spacing) * 4);
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
