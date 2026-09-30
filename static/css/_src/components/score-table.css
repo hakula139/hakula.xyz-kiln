@@ -106,18 +106,20 @@
     background: var(--st-bg-header);
   }
 
-  @media only screen and (max-width: 768px) {
-    .score-table .col-title {
-      @apply static z-auto max-w-none min-w-40 border-r bg-transparent;
-      box-shadow: none;
-    }
+  @media screen {
+    @variant max-md {
+      .score-table .col-title {
+        @apply static z-auto max-w-none min-w-40 border-r bg-transparent;
+        box-shadow: none;
+      }
 
-    .score-table tbody tr:hover .col-title {
-      box-shadow: inset 0 0 0 9999px var(--st-hover);
-    }
+      .score-table tbody tr:hover .col-title {
+        box-shadow: inset 0 0 0 9999px var(--st-hover);
+      }
 
-    .score-table thead .col-title {
-      @apply z-2;
+      .score-table thead .col-title {
+        @apply z-2;
+      }
     }
   }
 
