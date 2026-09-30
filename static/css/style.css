@@ -2137,6 +2137,7 @@
   line-height: var(--leading-normal);
   --tw-font-weight: var(--font-weight-semibold);
   font-weight: var(--font-weight-semibold);
+  overflow-wrap: break-word;
   color: var(--color-text);
 }
 .prose :where(h2, h3, h4, h5, h6) + * {
@@ -2162,7 +2163,7 @@
   }
   &::after {
     content: var(--tw-content);
-    left: calc(var(--spacing) * 5);
+    left: calc(var(--spacing) * 4);
   }
   &::after {
     content: var(--tw-content);
@@ -2172,6 +2173,12 @@
   &::after {
     content: var(--tw-content);
     border-color: var(--color-border-overlay);
+  }
+  @media (width >= 40rem) {
+    &::after {
+      content: var(--tw-content);
+      left: calc(var(--spacing) * 5);
+    }
   }
 }
 .prose :where(h3) {
@@ -2325,8 +2332,14 @@
   }
   .prose :where(h1, h2, h3, h4, h5, h6) {
     position: relative;
-    margin-left: calc(var(--spacing) * -5);
-    padding-left: calc(var(--spacing) * 5);
+    margin-left: calc(var(--spacing) * -3);
+    padding-left: calc(var(--spacing) * 4);
+    @media (width >= 40rem) {
+      margin-left: calc(var(--spacing) * -5);
+    }
+    @media (width >= 40rem) {
+      padding-left: calc(var(--spacing) * 5);
+    }
   }
   .prose .heading-anchor {
     position: absolute;
@@ -2340,6 +2353,9 @@
   }
   .prose :where(h2, h3, h4, h5, h6):hover .heading-anchor {
     opacity: 60%;
+  }
+  .prose .heading-anchor:focus-visible {
+    opacity: 100%;
   }
   .prose :where(.callout, blockquote) .heading-anchor {
     display: none;
