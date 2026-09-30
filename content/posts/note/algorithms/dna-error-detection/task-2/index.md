@@ -60,7 +60,7 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 ##### 1.2.1 生成 minimizer
 
-建立完索引后，我们就可以在每个 $\textrm{read}$ 片段中遍历所有长度为 $k$ 的子字符串，根据其哈希值查找是否有相同哈希值的 $\textrm{k-mer}$。同时，我们对于 $\textrm{read}$ 片段的反向互补序列 $\textrm{read'}$ 也进行同样的操作。对于每个找到的 $\textrm{k-mer}$，我们保存一个这样的结构：$\\{\textrm{range}\_\textrm{ref},\ \textrm{key}\_\textrm{read},\ \textrm{range}\_\textrm{read}\\}$，我们称其为一个 $\textrm{minimizer}$。其中，$\textrm{range}\_\textrm{ref}$ 表示 $\textrm{k-mer}$ 映射到 $\textrm{ref}$ 上的位置 $[i,i+k)$，$\textrm{key}\_\textrm{read}$ 表示 $\textrm{read}$ 的编号（例如 $\textrm{S1}\_1$），$\textrm{range}\_\textrm{read}$ 表示这个子字符串在 $\textrm{read}$（或 $\textrm{read'}$）上的位置 $[j,j+k)$。同时，在每个 $\textrm{range}$ 中还额外保存了一个原字符串（$\textrm{ref}$ 或 $\textrm{read}$）的指针，用于之后读取及合并这个子字符串的值。在 $\textrm{range}\_\textrm{read}$ 中还额外保存了 `mode` 字段和 `unknown` 字段，分别用于指示当前 $\textrm{read}$ 的模式（是否是反向互补序列），以及是否包含一定数量的未知字符 $\textrm{N}$（在合并时用于提高效率，不关键）。
+建立完索引后，我们就可以在每个 $\textrm{read}$ 片段中遍历所有长度为 $k$ 的子字符串，根据其哈希值查找是否有相同哈希值的 $\textrm{k-mer}$。同时，我们对于 $\textrm{read}$ 片段的反向互补序列 $\textrm{read'}$ 也进行同样的操作。对于每个找到的 $\textrm{k-mer}$，我们保存一个这样的结构：$\{\textrm{range}_{\textrm{ref}},\ \textrm{key}_{\textrm{read}},\ \textrm{range}_{\textrm{read}}\}$，我们称其为一个 $\textrm{minimizer}$。其中，$\textrm{range}_{\textrm{ref}}$ 表示 $\textrm{k-mer}$ 映射到 $\textrm{ref}$ 上的位置 $[i,i+k)$，$\textrm{key}_{\textrm{read}}$ 表示 $\textrm{read}$ 的编号（例如 $\textrm{S1}_{1}$），$\textrm{range}_{\textrm{read}}$ 表示这个子字符串在 $\textrm{read}$（或 $\textrm{read'}$）上的位置 $[j,j+k)$。同时，在每个 $\textrm{range}$ 中还额外保存了一个原字符串（$\textrm{ref}$ 或 $\textrm{read}$）的指针，用于之后读取及合并这个子字符串的值。在 $\textrm{range}_{\textrm{read}}$ 中还额外保存了 `mode` 字段和 `unknown` 字段，分别用于指示当前 $\textrm{read}$ 的模式（是否是反向互补序列），以及是否包含一定数量的未知字符 $\textrm{N}$（在合并时用于提高效率，不关键）。
 
 随后，我们根据 $\textrm{read}$ 和 $\textrm{read'}$ 片段上 $\textrm{minimizer}$ 的数量决定是否对 $\textrm{read}$ 进行反向互补操作。即如果 $\textrm{read'}$ 上的 $\textrm{minimizer}$ 较多，则进行反向互补操作，反之则不进行。
 
@@ -68,11 +68,11 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 ##### 1.2.2 合并 minimizer
 
-生成 $\textrm{minimizer}$ 后，我们需要对它们进行过滤及合并。其中，过滤指的是将错误匹配的 $\textrm{minimizer}$ 移除，合并指的是将两个 $\textrm{minimizer}$ 根据其 $\textrm{range}\_\textrm{ref}$ 的范围 $[i\_1,i\_1+k)$ 和 $[i\_2,i\_2+k)$ 进行合并。
+生成 $\textrm{minimizer}$ 后，我们需要对它们进行过滤及合并。其中，过滤指的是将错误匹配的 $\textrm{minimizer}$ 移除，合并指的是将两个 $\textrm{minimizer}$ 根据其 $\textrm{range}_{\textrm{ref}}$ 的范围 $[i_{1},i_{1}+k)$ 和 $[i_{2},i_{2}+k)$ 进行合并。
 
-具体来说，在与一个聚类合并时，对于每一个 $\textrm{minimizer}$，我们比较此次合并后 $\textrm{range}\_\textrm{ref}$ 和 $\textrm{range}\_\textrm{read}$ 表示范围的增量 $\Delta\_\textrm{ref}$ 和 $\Delta\_\textrm{read}$。如果它们的差距不大，则将这个 $\textrm{minimizer}$ 归并到当前聚类，同时此聚类的计数器加 $1$。反之则尝试合并到下一个聚类，如果没有可合并的聚类，则将其单独分到一个新的聚类。
+具体来说，在与一个聚类合并时，对于每一个 $\textrm{minimizer}$，我们比较此次合并后 $\textrm{range}_{\textrm{ref}}$ 和 $\textrm{range}_{\textrm{read}}$ 表示范围的增量 $\Delta_{\textrm{ref}}$ 和 $\Delta_{\textrm{read}}$。如果它们的差距不大，则将这个 $\textrm{minimizer}$ 归并到当前聚类，同时此聚类的计数器加 $1$。反之则尝试合并到下一个聚类，如果没有可合并的聚类，则将其单独分到一个新的聚类。
 
-合并后，新的 $\textrm{minimizer}$ 的 $\textrm{range}\_\textrm{ref}$ 为 $[\min\\{i\_1,i\_2\\\},\ \max\\{i\_1,i\_2\\\}+k)$，$\textrm{key}\_\textrm{read}$ 为空字符串，$\textrm{range}\_\textrm{read}$ 为 $[0,l)$，其中 $l$ 为合并后新生成的 $\textrm{read}$ 字符串的长度，同时 $\textrm{range}\_\textrm{read}$ 中保存的指针指向这个新字符串。
+合并后，新的 $\textrm{minimizer}$ 的 $\textrm{range}_{\textrm{ref}}$ 为 $[\min\{i_{1},i_{2}\},\ \max\{i_{1},i_{2}\}+k)$，$\textrm{key}_{\textrm{read}}$ 为空字符串，$\textrm{range}_{\textrm{read}}$ 为 $[0,l)$，其中 $l$ 为合并后新生成的 $\textrm{read}$ 字符串的长度，同时 $\textrm{range}_{\textrm{read}}$ 中保存的指针指向这个新字符串。
 
 于是，我们就得到了若干 $\textrm{minimizer}$ 聚类。我们将其中计数器值较小或者范围较小的 $\textrm{minimizer}$ 过滤。
 
@@ -92,7 +92,7 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 #### 1.3 查找 SV 片段
 
-最终，我们将问题化归到了类似于 Task 1 的情形。根据每个 $\textrm{minimizer}$ 中保存的 $\textrm{range}\_\textrm{ref}$ 和 $\textrm{range}\_\textrm{read}$，我们可以得到两个需要比较的字符串，接下来只需复用函数 `Dna::FindDeltasChunk` 的逻辑即可。
+最终，我们将问题化归到了类似于 Task 1 的情形。根据每个 $\textrm{minimizer}$ 中保存的 $\textrm{range}_{\textrm{ref}}$ 和 $\textrm{range}_{\textrm{read}}$，我们可以得到两个需要比较的字符串，接下来只需复用函数 `Dna::FindDeltasChunk` 的逻辑即可。
 
 但是，由于 Task 2 的数据含有一定量的噪声，原先对 Task 1 的数据处理方式不再适用于 Task 2，我们需要重新研究如何处理通过 `Dna::FindDeltasChunk` 函数得到的 SV。
 
