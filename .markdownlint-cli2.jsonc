@@ -1,7 +1,4 @@
 {
-  // Match TOML frontmatter (+++ delimiters)
-  "frontMatter": "^\\+\\+\\+$[\\s\\S]*?^\\+\\+\\+$",
-
   "config": {
     "default": true,
 

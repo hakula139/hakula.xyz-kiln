@@ -1,6 +1,9 @@
-# Sync Theme
+---
+name: sync-theme
+description: Update the IgnIt theme submodule and rebuild site assets. Use after pushing changes to the IgnIt repo (CSS, JS, templates) to propagate them into hakula.xyz-kiln.
+---
 
-Update the IgnIt theme submodule and rebuild site assets. Use after pushing changes to the IgnIt repo (CSS, JS, templates) to propagate them into hakula.xyz-kiln.
+# Sync Theme
 
 ## Steps
 
