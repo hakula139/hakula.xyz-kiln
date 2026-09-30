@@ -2132,11 +2132,13 @@
   --tw-prose-captions: var(--color-text-secondary);
 }
 .prose :where(h2, h3, h4, h5, h6) {
+  position: relative;
   margin-bottom: calc(var(--spacing) * 6);
   --tw-leading: var(--leading-normal);
   line-height: var(--leading-normal);
   --tw-font-weight: var(--font-weight-semibold);
   font-weight: var(--font-weight-semibold);
+  overflow-wrap: break-word;
   color: var(--color-text);
 }
 .prose :where(h2, h3, h4, h5, h6) + * {
@@ -2162,7 +2164,7 @@
   }
   &::after {
     content: var(--tw-content);
-    left: calc(var(--spacing) * 5);
+    left: 0px;
   }
   &::after {
     content: var(--tw-content);
@@ -2287,11 +2289,39 @@
 .prose :where(a:not(.not-prose, .not-prose *)) {
   padding-bottom: calc(var(--spacing) * 0.5);
   text-decoration-line: none;
-  &:hover {
+  &:hover, &:focus-visible {
     color: var(--color-link-hover);
   }
 }
-.prose .heading-anchor, .prose .heading-anchor:hover, .prose .footnote-reference a, .prose .footnote-reference a:hover, .prose .footnote-backref, .prose .footnote-backref:hover {
+.prose :where(.heading-anchor) {
+  border-bottom-style: var(--tw-border-style);
+  border-bottom-width: 0px;
+  padding: 0px;
+  color: inherit;
+  font-weight: inherit;
+  @media (width >= 80rem) {
+    &:hover, &:focus-visible {
+      color: inherit;
+    }
+    &::before {
+      position: absolute;
+      left: calc(var(--spacing) * -5);
+      color: var(--color-link);
+      opacity: 0%;
+      transition-property: opacity;
+      transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+      transition-duration: var(--tw-duration, var(--default-transition-duration));
+      content: '#';
+    }
+    &:hover::before {
+      opacity: 60%;
+    }
+    &:focus-visible::before {
+      opacity: 100%;
+    }
+  }
+}
+.prose .footnote-reference a, .prose .footnote-reference a:hover, .prose .footnote-backref, .prose .footnote-backref:hover {
   border-bottom-style: var(--tw-border-style);
   border-bottom-width: 0px;
 }
@@ -2322,27 +2352,6 @@
   }
   .prose :where(p, li) {
     overflow-wrap: break-word;
-  }
-  .prose :where(h1, h2, h3, h4, h5, h6) {
-    position: relative;
-    margin-left: calc(var(--spacing) * -5);
-    padding-left: calc(var(--spacing) * 5);
-  }
-  .prose .heading-anchor {
-    position: absolute;
-    left: 0px;
-    color: var(--color-link);
-    text-decoration-line: none;
-    opacity: 0%;
-    transition-property: opacity;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-  }
-  .prose :where(h2, h3, h4, h5, h6):hover .heading-anchor {
-    opacity: 60%;
-  }
-  .prose :where(.callout, blockquote) .heading-anchor {
-    display: none;
   }
   .prose figure img {
     margin-inline: auto;
