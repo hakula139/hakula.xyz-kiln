@@ -2132,6 +2132,7 @@
   --tw-prose-captions: var(--color-text-secondary);
 }
 .prose :where(h2, h3, h4, h5, h6) {
+  position: relative;
   margin-bottom: calc(var(--spacing) * 6);
   --tw-leading: var(--leading-normal);
   line-height: var(--leading-normal);
@@ -2144,7 +2145,6 @@
   margin-top: 0px;
 }
 .prose :where(h2) {
-  position: relative;
   margin-top: 2.25em;
   padding-bottom: 0.4em;
   font-size: 1.4em;
@@ -2294,9 +2294,32 @@
   }
 }
 .prose :where(.heading-anchor) {
+  border-bottom-style: var(--tw-border-style);
+  border-bottom-width: 0px;
   padding: 0px;
   color: inherit;
   font-weight: inherit;
+  @media (width >= 80rem) {
+    &:hover, &:focus-visible {
+      color: inherit;
+    }
+    &::before {
+      position: absolute;
+      left: calc(var(--spacing) * -5);
+      color: var(--color-link);
+      opacity: 0%;
+      transition-property: opacity;
+      transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+      transition-duration: var(--tw-duration, var(--default-transition-duration));
+      content: '#';
+    }
+    &:hover::before {
+      opacity: 60%;
+    }
+    &:focus-visible::before {
+      opacity: 100%;
+    }
+  }
 }
 .prose .footnote-reference a, .prose .footnote-reference a:hover, .prose .footnote-backref, .prose .footnote-backref:hover {
   border-bottom-style: var(--tw-border-style);
