@@ -2144,6 +2144,7 @@
   margin-top: 0px;
 }
 .prose :where(h2) {
+  position: relative;
   margin-top: 2.25em;
   padding-bottom: 0.4em;
   font-size: 1.4em;
@@ -2163,7 +2164,7 @@
   }
   &::after {
     content: var(--tw-content);
-    left: calc(var(--spacing) * 4);
+    left: 0px;
   }
   &::after {
     content: var(--tw-content);
@@ -2173,12 +2174,6 @@
   &::after {
     content: var(--tw-content);
     border-color: var(--color-border-overlay);
-  }
-  @media (width >= 40rem) {
-    &::after {
-      content: var(--tw-content);
-      left: calc(var(--spacing) * 5);
-    }
   }
 }
 .prose :where(h3) {
@@ -2294,11 +2289,16 @@
 .prose :where(a:not(.not-prose, .not-prose *)) {
   padding-bottom: calc(var(--spacing) * 0.5);
   text-decoration-line: none;
-  &:hover {
+  &:hover, &:focus-visible {
     color: var(--color-link-hover);
   }
 }
-.prose .heading-anchor, .prose .heading-anchor:hover, .prose .footnote-reference a, .prose .footnote-reference a:hover, .prose .footnote-backref, .prose .footnote-backref:hover {
+.prose :where(.heading-anchor) {
+  padding: 0px;
+  color: inherit;
+  font-weight: inherit;
+}
+.prose .footnote-reference a, .prose .footnote-reference a:hover, .prose .footnote-backref, .prose .footnote-backref:hover {
   border-bottom-style: var(--tw-border-style);
   border-bottom-width: 0px;
 }
@@ -2329,36 +2329,6 @@
   }
   .prose :where(p, li) {
     overflow-wrap: break-word;
-  }
-  .prose :where(h1, h2, h3, h4, h5, h6) {
-    position: relative;
-    margin-left: calc(var(--spacing) * -3);
-    padding-left: calc(var(--spacing) * 4);
-    @media (width >= 40rem) {
-      margin-left: calc(var(--spacing) * -5);
-    }
-    @media (width >= 40rem) {
-      padding-left: calc(var(--spacing) * 5);
-    }
-  }
-  .prose .heading-anchor {
-    position: absolute;
-    left: 0px;
-    color: var(--color-link);
-    text-decoration-line: none;
-    opacity: 0%;
-    transition-property: opacity;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-  }
-  .prose :where(h2, h3, h4, h5, h6):hover .heading-anchor {
-    opacity: 60%;
-  }
-  .prose .heading-anchor:focus-visible {
-    opacity: 100%;
-  }
-  .prose :where(.callout, blockquote) .heading-anchor {
-    display: none;
   }
   .prose figure img {
     margin-inline: auto;
