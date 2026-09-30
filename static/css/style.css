@@ -1664,7 +1664,6 @@
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
     color: var(--callout-color);
-    list-style: none;
   }
   .callout-title::-webkit-details-marker {
     display: none;
@@ -1675,8 +1674,18 @@
     font-weight: 900;
     content: var(--callout-icon, '\f05a');
   }
-  .callout-body-inner {
+  .callout::details-content {
+    display: grid;
+    grid-template-rows: 0fr;
+  }
+  .callout[open]::details-content {
+    grid-template-rows: 1fr;
+  }
+  .callout-body {
     min-height: 0px;
+    overflow: hidden;
+  }
+  .callout-body-inner {
     overflow: hidden;
     padding-inline: calc(var(--spacing) * 4);
   }
@@ -1690,6 +1699,16 @@
   }
   .callout-body-inner > :last-child {
     margin-bottom: calc(var(--spacing) * 2);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .callout::details-content {
+      transition: grid-template-rows 300ms, content-visibility 300ms allow-discrete;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .callout .callout-title::after {
+      transition-property: none;
+    }
   }
   .callout.abstract {
     --callout-color: var(--callout-abstract-fg);
@@ -1866,10 +1885,10 @@
   .callout-title::after, .toc-trigger::after {
     margin-left: auto;
   }
-  .code-block.collapsed .code-header::before, .callout.collapsed .callout-title::after, .toc-collapse.collapsed .toc-trigger::after {
+  .code-block.collapsed .code-header::before, .callout:not([open]) .callout-title::after, .toc-collapse.collapsed .toc-trigger::after {
     rotate: calc(90deg * -1);
   }
-  .code-body, .callout-body, .toc-body-wrapper {
+  .code-body, .toc-body-wrapper {
     display: grid;
     grid-template-rows: 1fr;
     transition-property: grid-template-rows;
@@ -1878,7 +1897,7 @@
     --tw-duration: 300ms;
     transition-duration: 300ms;
   }
-  .code-block.collapsed .code-body, .callout.collapsed .callout-body, .toc-collapse.collapsed .toc-body-wrapper {
+  .code-block.collapsed .code-body, .toc-collapse.collapsed .toc-body-wrapper {
     grid-template-rows: 0fr;
   }
 }
