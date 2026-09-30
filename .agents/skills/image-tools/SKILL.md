@@ -1,8 +1,13 @@
+---
+name: image-tools
+description: Download, compress, and inspect images for article covers and site assets. Use when adding new article covers (from Pixiv or other sources), upgrading existing images to higher quality, or checking image dimensions / file sizes.
+---
+
 # Image Tools
 
-Download, compress, and inspect images for article covers and site assets. Use when adding new article covers (from Pixiv or other sources), upgrading existing images to higher quality, or checking image dimensions / file sizes.
+Run commands from the repository root.
 
-**Script**: `.claude/skills/image-tools/image-tools.sh`, with every operation implemented as a subcommand. Run with `help` for full usage.
+**Script**: `.agents/skills/image-tools/image-tools.sh`, with every operation implemented as a subcommand. Run with `help` for full usage.
 
 ## Prerequisites
 
@@ -16,13 +21,13 @@ Download, compress, and inspect images for article covers and site assets. Use w
 1. Download the original from Pixiv:
 
    ```bash
-   ./image-tools.sh download <PIXIV_ID>
+   .agents/skills/image-tools/image-tools.sh download <PIXIV_ID>
    ```
 
 2. Compress to WebP at 1920px wide (default):
 
    ```bash
-   ./image-tools.sh compress <PIXIV_ID>_p0.png
+   .agents/skills/image-tools/image-tools.sh compress <PIXIV_ID>_p0.png
    ```
 
    Output goes to `static/images/article-covers/<PIXIV_ID>_p0.webp` by default.
@@ -37,7 +42,7 @@ Download, compress, and inspect images for article covers and site assets. Use w
 ### Upgrading the Background Image
 
 ```bash
-./image-tools.sh compress ~/path/to/source.png static/images 3840 90
+.agents/skills/image-tools/image-tools.sh compress ~/path/to/source.png static/images 3840 90
 ```
 
 This outputs a 4K WebP at quality 90.
@@ -47,7 +52,7 @@ This outputs a 4K WebP at quality 90.
 Compress all images in a directory at once:
 
 ```bash
-./image-tools.sh batch /tmp/pixiv-originals
+.agents/skills/image-tools/image-tools.sh batch /tmp/pixiv-originals
 ```
 
 ### Inspecting Images
@@ -55,7 +60,7 @@ Compress all images in a directory at once:
 Check dimensions and file sizes:
 
 ```bash
-./image-tools.sh info static/images/article-covers
+.agents/skills/image-tools/image-tools.sh info static/images/article-covers
 ```
 
 ## Conventions
