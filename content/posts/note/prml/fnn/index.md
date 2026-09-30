@@ -56,8 +56,8 @@ $$
 
 $$
 \nabla z = (
-  \frac{\partial z}{\partial X}\_{n\times d},
-  \frac{\partial z}{\partial W}\_{d\times d'}
+  \frac{\partial z}{\partial X}_{n\times d},
+  \frac{\partial z}{\partial W}_{d\times d'}
 ) \tag{1.2}
 $$
 
@@ -65,29 +65,29 @@ $$
 
 $$
 \begin{align}
-\mathit{vec}(\frac{\partial z}{\partial X}\_{n\times d})
-&={(\frac{\partial Y}{\partial X})^T}\_{nd\times {nd'}}
-  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}\_{nd'} \\\\
-&={({\frac{\partial {\mathit{vec}(X\times W)}\_{nd'}} {\partial {\mathit{vec}(X)}\_{nd}}})^T}\_{nd\times {nd'}}
-  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}\_{nd'} \\\\
+\mathit{vec}(\frac{\partial z}{\partial X}_{n\times d})
+&={(\frac{\partial Y}{\partial X})^T}_{nd\times {nd'}}
+  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\\\
+&={({\frac{\partial {\mathit{vec}(X\times W)}_{nd'}} {\partial {\mathit{vec}(X)}_{nd}}})^T}_{nd\times {nd'}}
+  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\\\
 &={({\frac
-    {\partial ({\mathit{vec}(X)}\_{nd} \times {(I\_n\otimes W)}\_{nd\times {nd'}})}
-    {\partial {\mathit{vec}(X)}\_{nd}}
-  })^T}\_{nd\times {nd'}}
-  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}\_{nd'} \\\\
-&={(I\_n\otimes W)}\_{nd\times {nd'}}
-  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}\_{nd'} \\\\
-&=\mathit{vec}({(\frac{\partial z}{\partial Y}\times W^T)}\_{n\times d})
+    {\partial ({\mathit{vec}(X)}_{nd} \times {(I_{n}\otimes W)}_{nd\times {nd'}})}
+    {\partial {\mathit{vec}(X)}_{nd}}
+  })^T}_{nd\times {nd'}}
+  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\\\
+&={(I_{n}\otimes W)}_{nd\times {nd'}}
+  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\\\
+&=\mathit{vec}({(\frac{\partial z}{\partial Y}\times W^T)}_{n\times d})
 \end{align} \tag{1.3}
 $$
 
-这里 $\mathit{vec}(X\_{m\times n})$ 表示向量
+这里 $\mathit{vec}(X_{m\times n})$ 表示向量
 
 $$
 \begin{bmatrix}
-x\_{11} & x\_{12} & ... & x\_{1n} &&
+x_{11} & x_{12} & ... & x_{1n} &&
                     ...           &&
-x\_{m1} & x\_{m2} & ... & x\_{mn}
+x_{m1} & x_{m2} & ... & x_{mn}
 \end{bmatrix} \tag{1.3.1}
 $$
 
@@ -96,15 +96,15 @@ $\otimes$ 表示 Kronecker 积，下标表示矩阵或向量的维度。
 因此有
 
 $$
-\frac{\partial z}{\partial X}\_{n\times d}
-= {(\frac{\partial z}{\partial Y}\times W^T)}\_{n\times d} \tag{1.4}
+\frac{\partial z}{\partial X}_{n\times d}
+= {(\frac{\partial z}{\partial Y}\times W^T)}_{n\times d} \tag{1.4}
 $$
 
 类似 $(1.3)$ 的推导，同理可得
 
 $$
-\frac{\partial z}{\partial W}\_{d\times d'}
-= {(X^T\times \frac{\partial z}{\partial Y})}\_{d\times d'} \tag{1.5}
+\frac{\partial z}{\partial W}_{d\times d'}
+= {(X^T\times \frac{\partial z}{\partial Y})}_{d\times d'} \tag{1.5}
 $$
 
 ##### 1.1.2 代码实现
@@ -150,13 +150,13 @@ class Matmul(NumpyOp):
 
 ##### 1.2.1 公式推导
 
-输入一个 $n\times d$ 的矩阵 $X$，对于 $X$ 中的每个元素 $X\_{ij}$，算子 `Relu` 的正向传播公式为：
+输入一个 $n\times d$ 的矩阵 $X$，对于 $X$ 中的每个元素 $X_{ij}$，算子 `Relu` 的正向传播公式为：
 
 $$
-Y\_{ij} =
+Y_{ij} =
 \begin{cases}
-  X\_{ij} &(X\_{ij} > 0) \\\\
-  0       &(X\_{ij}\le 0)
+  X_{ij} &(X_{ij} > 0) \\\\
+  0       &(X_{ij}\le 0)
 \end{cases} \tag{2.1}
 $$
 
@@ -167,31 +167,31 @@ $$
 $$
 \begin{align}
 \nabla z
-&=\frac{\partial z}{\partial X}\_{n\times d} \\\\
-&=\frac{\partial z}{\partial Y}\_{n\times d}
-  \odot \frac{\partial Y}{\partial X}\_{n\times d}
+&=\frac{\partial z}{\partial X}_{n\times d} \\\\
+&=\frac{\partial z}{\partial Y}_{n\times d}
+  \odot \frac{\partial Y}{\partial X}_{n\times d}
 \end{align} \tag{2.2}
 $$
 
 这里 $\odot$ 表示 Hadamard 积，即逐元素（element-wise）乘积。
 
-其中，对于 $\frac{\partial Y}{\partial X}\_{n\times d}$ 中的每个元素 ${Y'}\_{ij}$，由 $(2.1)$ 有
+其中，对于 $\frac{\partial Y}{\partial X}_{n\times d}$ 中的每个元素 ${Y'}_{ij}$，由 $(2.1)$ 有
 
 $$
-{Y'}\_{ij} =
+{Y'}_{ij} =
 \begin{cases}
-  1 &(X\_{ij} > 0) \\\\
-  0 &(X\_{ij}\le 0)
+  1 &(X_{ij} > 0) \\\\
+  0 &(X_{ij}\le 0)
 \end{cases} \tag{2.3}
 $$
 
-因此，对于 $\frac{\partial z}{\partial X}\_{n\times d}$ 中的每个元素 ${Z'}\_{ij}$，令 ${Z\_Y}' = \frac{\partial z}{\partial Y}\_{n\times d}$，由 $(2.2)$ 有
+因此，对于 $\frac{\partial z}{\partial X}_{n\times d}$ 中的每个元素 ${Z'}_{ij}$，令 ${Z_{Y}}' = \frac{\partial z}{\partial Y}_{n\times d}$，由 $(2.2)$ 有
 
 $$
-{Z'}\_{ij} =
+{Z'}_{ij} =
 \begin{cases}
-  {({Z\_Y}')}\_{ij} &(X\_{ij} > 0) \\\\
-  0                 &(X\_{ij}\le 0)
+  {({Z_{Y}}')}_{ij} &(X_{ij} > 0) \\\\
+  0                 &(X_{ij}\le 0)
 \end{cases} \tag{2.4}
 $$
 
@@ -232,10 +232,10 @@ class Relu(NumpyOp):
 
 ##### 1.3.1 公式推导
 
-输入一个 $n\times d$ 的矩阵 $X$，对于 $X$ 中的每个元素 $X\_{ij}$，算子 `Log` 的正向传播公式为：
+输入一个 $n\times d$ 的矩阵 $X$，对于 $X$ 中的每个元素 $X_{ij}$，算子 `Log` 的正向传播公式为：
 
 $$
-Y\_{ij} = \log X\_{ij} \tag{3.1}
+Y_{ij} = \log X_{ij} \tag{3.1}
 $$
 
 输出一个 $n\times d$ 的矩阵 $Y$。
@@ -245,27 +245,27 @@ $$
 $$
 \begin{align}
 \nabla z
-&=\frac{\partial z}{\partial X}\_{n\times d} \\\\
-&=\frac{\partial z}{\partial Y}\_{n\times d}
-  \odot \frac{\partial Y}{\partial X}\_{n\times d}
+&=\frac{\partial z}{\partial X}_{n\times d} \\\\
+&=\frac{\partial z}{\partial Y}_{n\times d}
+  \odot \frac{\partial Y}{\partial X}_{n\times d}
 \end{align} \tag{3.2}
 $$
 
-其中，对于 $\frac{\partial Y}{\partial X}\_{n\times d}$ 中的每个元素 ${Y'}\_{ij}$，由 $(3.1)$ 有
+其中，对于 $\frac{\partial Y}{\partial X}_{n\times d}$ 中的每个元素 ${Y'}_{ij}$，由 $(3.1)$ 有
 
 $$
-{Y'}\_{ij} = \frac{1}{X\_{ij}} \tag{3.3}
+{Y'}_{ij} = \frac{1}{X_{ij}} \tag{3.3}
 $$
 
-因此，对于 $\frac{\partial z}{\partial X}\_{n\times d}$ 中的每个元素 ${Z'}\_{ij}$，令 ${Z\_Y}' = \frac{\partial z}{\partial Y}\_{n\times d}$，由 $(3.2)$ 有
+因此，对于 $\frac{\partial z}{\partial X}_{n\times d}$ 中的每个元素 ${Z'}_{ij}$，令 ${Z_{Y}}' = \frac{\partial z}{\partial Y}_{n\times d}$，由 $(3.2)$ 有
 
 $$
-{Z'}\_{ij} = \frac{{({Z\_Y}')}\_{ij}}{X\_{ij}} \tag{3.4}
+{Z'}_{ij} = \frac{{({Z_{Y}}')}_{ij}}{X_{ij}} \tag{3.4}
 $$
 
 ##### 1.3.2 代码实现
 
-为了防止 $X\_{ij} = 0$ 时出现 $\log X\_{ij}\rightarrow -\infty$ 导致溢出，这里我们给 $X\_{ij}$ 附加了一个 $\epsilon = 10^{-12}$ 的修正。
+为了防止 $X_{ij} = 0$ 时出现 $\log X_{ij}\rightarrow -\infty$ 导致溢出，这里我们给 $X_{ij}$ 附加了一个 $\epsilon = 10^{-12}$ 的修正。
 
 ```python {title="numpy_fnn.py"}
 class Log(NumpyOp):
@@ -302,10 +302,10 @@ class Log(NumpyOp):
 
 ##### 1.4.1 公式推导
 
-输入一个 $n\times d$ 的矩阵 $X$，对于 $X$ 中的每个元素 $X\_{ij}$，算子 `Softmax` 的正向传播公式为：
+输入一个 $n\times d$ 的矩阵 $X$，对于 $X$ 中的每个元素 $X_{ij}$，算子 `Softmax` 的正向传播公式为：
 
 $$
-Y\_{ij} = \frac{e^{X\_{ij}}}{\sum\limits\_{k=1}^d e^{X\_{ik}}} \tag{4.1}
+Y_{ij} = \frac{e^{X_{ij}}}{\sum\limits_{k=1}^d e^{X_{ik}}} \tag{4.1}
 $$
 
 输出一个 $n\times d$ 的矩阵 $Y$。
@@ -313,41 +313,41 @@ $$
 对于梯度的反向传播，有
 
 $$
-\nabla z = \frac{\partial z}{\partial X}\_{n\times d} \tag{4.2}
+\nabla z = \frac{\partial z}{\partial X}_{n\times d} \tag{4.2}
 $$
 
-其中，对于 $\frac{\partial z}{\partial X}\_{n\times d}$ 中的每个元素 ${Z'}\_{ij}$ 有
+其中，对于 $\frac{\partial z}{\partial X}_{n\times d}$ 中的每个元素 ${Z'}_{ij}$ 有
 
 $$
 \begin{align}
-{Z'}\_{ij}
-&=\frac{\partial z}{\partial X\_{ij}} \\\\
-&={(\frac{\partial z}{\partial Y\_i})}\_d
-  \cdot {(\frac{\partial Y\_i}{\partial X\_{ij}})}\_d \\\\
-&=\frac{\partial z}{\partial Y\_{ij}}
-  \cdot \frac{\partial Y\_{ij}}{\partial X\_{ij}} +
-  \sum\limits\_{k=1,\\,k\ne j}^d
-  \frac{\partial z}{\partial Y\_{ik}}
-  \cdot \frac{\partial Y\_{ik}}{\partial X\_{ij}} \\\\
-&=\frac{\partial z}{\partial Y\_{ij}}
-  \cdot \frac{\partial}{\partial X\_{ij}}(\frac{e^{X\_{ij}}}{\sum\limits\_{t=1}^d e^{X\_{it}}}) +
-  \sum\limits\_{k=1,\\,k\ne j}^d
-  \frac{\partial z}{\partial Y\_{ik}}
-  \cdot \frac{\partial}{\partial X\_{ij}}(\frac{e^{X\_{ik}}}{\sum\limits\_{t=1}^d e^{X\_{it}}}) \\\\
-&=\frac{\partial z}{\partial Y\_{ij}}
-  \cdot \frac{e^{X\_{ij}}}{\sum\limits\_{t=1}^d e^{X\_{it}}}
-  \cdot (1 - \frac{e^{X\_{ij}}}{\sum\limits\_{t=1}^d e^{X\_{it}}}) -
-  \sum\limits\_{k=1,\\,k\ne j}^d
-  \frac{\partial z}{\partial Y\_{ik}}
-  \cdot \frac{e^{X\_{ij}}}{\sum\limits\_{t=1}^d e^{X\_{it}}}
-  \cdot \frac{e^{X\_{ik}}}{\sum\limits\_{t=1}^d e^{X\_{it}}} \\\\
-&=\frac{\partial z}{\partial Y\_{ij}}\cdot Y\_{ij}\cdot (1 - Y\_{ij}) -
-  \sum\limits\_{k=1,\\,k\ne j}^d
-  \frac{\partial z}{\partial Y\_{ik}}\cdot Y\_{ij}\cdot Y\_{ik} \\\\
-&=Y\_{ij}\cdot (
-    \frac{\partial z}{\partial Y\_{ij}} -
-    \sum\limits\_{k=1}^d
-    \frac{\partial z}{\partial Y\_{ik}}\cdot Y\_{ik}
+{Z'}_{ij}
+&=\frac{\partial z}{\partial X_{ij}} \\\\
+&={(\frac{\partial z}{\partial Y_{i}})}_{d}
+  \cdot {(\frac{\partial Y_{i}}{\partial X_{ij}})}_{d} \\\\
+&=\frac{\partial z}{\partial Y_{ij}}
+  \cdot \frac{\partial Y_{ij}}{\partial X_{ij}} +
+  \sum\limits_{k=1,\\,k\ne j}^d
+  \frac{\partial z}{\partial Y_{ik}}
+  \cdot \frac{\partial Y_{ik}}{\partial X_{ij}} \\\\
+&=\frac{\partial z}{\partial Y_{ij}}
+  \cdot \frac{\partial}{\partial X_{ij}}(\frac{e^{X_{ij}}}{\sum\limits_{t=1}^d e^{X_{it}}}) +
+  \sum\limits_{k=1,\\,k\ne j}^d
+  \frac{\partial z}{\partial Y_{ik}}
+  \cdot \frac{\partial}{\partial X_{ij}}(\frac{e^{X_{ik}}}{\sum\limits_{t=1}^d e^{X_{it}}}) \\\\
+&=\frac{\partial z}{\partial Y_{ij}}
+  \cdot \frac{e^{X_{ij}}}{\sum\limits_{t=1}^d e^{X_{it}}}
+  \cdot (1 - \frac{e^{X_{ij}}}{\sum\limits_{t=1}^d e^{X_{it}}}) -
+  \sum\limits_{k=1,\\,k\ne j}^d
+  \frac{\partial z}{\partial Y_{ik}}
+  \cdot \frac{e^{X_{ij}}}{\sum\limits_{t=1}^d e^{X_{it}}}
+  \cdot \frac{e^{X_{ik}}}{\sum\limits_{t=1}^d e^{X_{it}}} \\\\
+&=\frac{\partial z}{\partial Y_{ij}}\cdot Y_{ij}\cdot (1 - Y_{ij}) -
+  \sum\limits_{k=1,\\,k\ne j}^d
+  \frac{\partial z}{\partial Y_{ik}}\cdot Y_{ij}\cdot Y_{ik} \\\\
+&=Y_{ij}\cdot (
+    \frac{\partial z}{\partial Y_{ij}} -
+    \sum\limits_{k=1}^d
+    \frac{\partial z}{\partial Y_{ik}}\cdot Y_{ik}
   )
 \end{align} \tag{4.3}
 $$

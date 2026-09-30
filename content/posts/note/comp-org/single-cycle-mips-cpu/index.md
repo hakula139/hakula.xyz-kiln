@@ -257,7 +257,7 @@ ALU 译码器，完整真值表如下：
 
 多路复用器，用于数据多选一，操作数位数可改变。
 
-使用时读入多路 $\textrm{DATA}$，从 $\textrm{RESULT}$ 输出 $\textrm{SELECT}$ 选择的那一路的数据。以 `mux4` 为例，$\textrm{SELECT}$ 为 $00$, $01$, $10$, $11$ 时分别输出 $\textrm{DATA}_0$, $\textrm{DATA}_1$, $\textrm{DATA}_2$, $\textrm{DATA}_3$ 的值。
+使用时读入多路 $\textrm{DATA}$，从 $\textrm{RESULT}$ 输出 $\textrm{SELECT}$ 选择的那一路的数据。以 `mux4` 为例，$\textrm{SELECT}$ 为 $00$, $01$, $10$, $11$ 时分别输出 $\textrm{DATA}_{0}$, $\textrm{DATA}_{1}$, $\textrm{DATA}_{2}$, $\textrm{DATA}_{3}$ 的值。
 
 图中 `mux4` 只输入了 3 个 $\textrm{DATA}$，是因为这里只需要用到 3 个。教材的电路设计中并没有用到 `mux4`，我引入 `mux4` 的目的是为了简化 `pc_next` 和 `write_reg` 的选择电路。
 
@@ -288,7 +288,7 @@ ALU 译码器，完整真值表如下：
 
 寄存器文件内置了 32 个 32 位寄存器，用于读写临时数据。
 
-使用时从 $\textrm{RA}_1$ 和 $\textrm{RA}_2$ 分别读入地址（范围：$[\mathtt{0x0},\mathtt{0x1F}]$）以指定寄存器，然后从 $\textrm{RD}_1$ 和 $\textrm{RD}_2$ 分别输出对应寄存器中的 32 位数据。其中 0 号寄存器的值始终为 $0$，因此在实现中直接返回 $0$。当写使能 $\textrm{WE}_3$ 为 $1$ 时，在时钟上升沿将数据 $\textrm{WD}_3$ 写入地址 $\textrm{WA}_3$ 指定的寄存器。当重置信号 $\textrm{RST}$ 为 $1$ 时，清空所有寄存器中的数据。
+使用时从 $\textrm{RA}_{1}$ 和 $\textrm{RA}_{2}$ 分别读入地址（范围：$[\mathtt{0x0},\mathtt{0x1F}]$）以指定寄存器，然后从 $\textrm{RD}_{1}$ 和 $\textrm{RD}_{2}$ 分别输出对应寄存器中的 32 位数据。其中 0 号寄存器的值始终为 $0$，因此在实现中直接返回 $0$。当写使能 $\textrm{WE}_{3}$ 为 $1$ 时，在时钟上升沿将数据 $\textrm{WD}_{3}$ 写入地址 $\textrm{WA}_{3}$ 指定的寄存器。当重置信号 $\textrm{RST}$ 为 $1$ 时，清空所有寄存器中的数据。
 
 代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Single-Cycle/src/reg_file.sv)。
 
@@ -308,7 +308,7 @@ ALU 译码器，完整真值表如下：
 
 算术逻辑单元（ALU），用于加减、位运算等算术操作。
 
-ALU 根据 $\textrm{ALU\\_CONTROL}$ 信号决定对操作数 $\textrm{A}$ 和 $\textrm{B}$ 进行何种运算，从 $\textrm{RESULT}$ 输出运算结果，从 $\textrm{ZERO}$ 输出结果是否为 $0$。其中 $\textrm{ALU\\_CONTROL}$ 由控制单元根据 $\textrm{ALU\\_OP}$ 和 $\textrm{FUNCT}$ 决定（详见 [2.4.2](#2.4.2-alu_dec) 节）。具体映射表如下：
+ALU 根据 $\textrm{ALU\_CONTROL}$ 信号决定对操作数 $\textrm{A}$ 和 $\textrm{B}$ 进行何种运算，从 $\textrm{RESULT}$ 输出运算结果，从 $\textrm{ZERO}$ 输出结果是否为 $0$。其中 $\textrm{ALU\_CONTROL}$ 由控制单元根据 $\textrm{ALU\_OP}$ 和 $\textrm{FUNCT}$ 决定（详见 [2.4.2](#2.4.2-alu_dec) 节）。具体映射表如下：
 
 | `alu_control` |    `result`     |           指令            |
 | :-----------: | :-------------: | :-----------------------: |
