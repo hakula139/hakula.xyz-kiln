@@ -98,7 +98,7 @@ const setupAudioAnalyser = (): void => {
 
 这里我们设定了 `AnalyserNode.smoothingTimeConstant` 的值为 $0.8$，以对一定量的历史响度数据取平均，从而使每帧之间的过渡平滑一点。这个值的选取范围为 $[0,1]$ 内的浮点数，$0$ 表示仅考虑当前一帧，不做任何平均化处理。
 
-对于每一帧的音频，我们利用函数 `AnalyserNode.getByteFrequencyData()` 按频率将 $[0,f_s/2]$ 范围的音频**线性**地切割成 $N/2$ 个频域，同时得到每个频域上音频的响度（默认范围为 $[-100,-30]\ \mathrm{Db}$）**线性**映射到整数域 $[0,255]$ 上的值。其中 $f_s$ 即 `context.sampleRate` 为采样频率，其默认值取决于音频设备的系统设置，通常为 $44100\ \mathrm{Hz}$。$N$ 即 `FFT_SIZE` 为 FFT 时的采样点数，本项目中取值为 $256$。
+对于每一帧的音频，我们利用函数 `AnalyserNode.getByteFrequencyData()` 按频率将 $[0,f_{s}/2]$ 范围的音频**线性**地切割成 $N/2$ 个频域，同时得到每个频域上音频的响度（默认范围为 $[-100,-30]\ \mathrm{Db}$）**线性**映射到整数域 $[0,255]$ 上的值。其中 $f_{s}$ 即 `context.sampleRate` 为采样频率，其默认值取决于音频设备的系统设置，通常为 $44100\ \mathrm{Hz}$。$N$ 即 `FFT_SIZE` 为 FFT 时的采样点数，本项目中取值为 $256$。
 
 ```ts {title="src/components/MusicVisualizer.vue"}
 const spectrum = new Uint8Array(audioAnalyser.value.frequencyBinCount);
@@ -151,11 +151,11 @@ const render = (): void => {
 };
 ```
 
-首先我们在页面上生成一个铺满窗口的 canvas，然后根据这个 canvas 的宽度 $w$ 和高度 $h$ 决定生成多少个柱形、每个柱形的高度缩放比以及在 canvas 中的位置。这里我们设置每个柱形的宽度为 $w_0$（即 `BAR_WIDTH`，此处为 $16$）、间隔为 $\Delta w$（即 `BAR_GAP`，此处为 $5$）、最小高度为 $h_{\min}$（即 `MIN_HEIGHT`，此处为 $2$）。
+首先我们在页面上生成一个铺满窗口的 canvas，然后根据这个 canvas 的宽度 $w$ 和高度 $h$ 决定生成多少个柱形、每个柱形的高度缩放比以及在 canvas 中的位置。这里我们设置每个柱形的宽度为 $w_{0}$（即 `BAR_WIDTH`，此处为 $16$）、间隔为 $\Delta w$（即 `BAR_GAP`，此处为 $5$）、最小高度为 $h_{\min}$（即 `MIN_HEIGHT`，此处为 $2$）。
 
 于是我们就可以算出 canvas 里可以平铺的柱形数量 $n$（即 `barCount`）
 
-$$n = \lfloor \frac{w}{w_0+\Delta w} \rfloor$$
+$$n = \lfloor \frac{w}{w_{0}+\Delta w} \rfloor$$
 
 和每个柱形的高度缩放比 $\phi$（即 `scale`）
 
@@ -167,17 +167,17 @@ $$\Delta N = \frac{|S|}{n} = \frac{N}{2n}$$
 
 然后我们算出这个频域范围内的响度均值 $A$（即 `barValue`）
 
-$$A = \frac{1}{\lceil \Delta N \rceil} \sum\limits_{k=\lfloor i\Delta N \rfloor}^{\lceil (i+1)\Delta N \rceil} S_k$$
+$$A = \frac{1}{\lceil \Delta N \rceil} \sum\limits_{k=\lfloor i\Delta N \rfloor}^{\lceil (i+1)\Delta N \rceil} S_{k}$$
 
-那么这个柱形的高度 $h_i$（即 `barHeight`）就可以设定为
+那么这个柱形的高度 $h_{i}$（即 `barHeight`）就可以设定为
 
-$$h_i = \phi A$$
+$$h_{i} = \phi A$$
 
 当这个频域内的响度达到最大值时，柱形就可以有 $100\%$ 的 canvas 高度 $h$。
 
 柱形的位置即为
 
-$$(x_i,\ y_i) = (i(w_0+\Delta w),\ h-h_i)$$
+$$(x_{i},\ y_{i}) = (i(w_{0}+\Delta w),\ h-h_{i})$$
 
 其中原点为 canvas 的**左上角**。
 
@@ -206,6 +206,6 @@ const setFillStyle = (): void => {
 
 [^cors]: 可能存在跨域问题（CORS），请提供允许跨域的地址。
 
-[^about-freq]: 取 $f_s=44100$，则有 $44100/2/128 = 172.27$。
+[^about-freq]: 取 $f_{s}=44100$，则有 $44100/2/128 = 172.27$。
 
 [^about-loudness]: 当然，也可以利用函数 `AnalyserNode.getFloatFrequencyData()` 直接得到原始响度，但最后还是要映射回去。

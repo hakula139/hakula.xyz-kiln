@@ -71,11 +71,11 @@ $$
 &={({\frac{\partial {\mathit{vec}(X\times W)}_{nd'}} {\partial {\mathit{vec}(X)}_{nd}}})^T}_{nd\times {nd'}}
   \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\\\
 &={({\frac
-    {\partial ({\mathit{vec}(X)}_{nd} \times {(I_n\otimes W)}_{nd\times {nd'}})}
+    {\partial ({\mathit{vec}(X)}_{nd} \times {(I_{n}\otimes W)}_{nd\times {nd'}})}
     {\partial {\mathit{vec}(X)}_{nd}}
   })^T}_{nd\times {nd'}}
   \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\\\
-&={(I_n\otimes W)}_{nd\times {nd'}}
+&={(I_{n}\otimes W)}_{nd\times {nd'}}
   \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\\\
 &=\mathit{vec}({(\frac{\partial z}{\partial Y}\times W^T)}_{n\times d})
 \end{align} \tag{1.3}
@@ -185,12 +185,12 @@ $$
 \end{cases} \tag{2.3}
 $$
 
-因此，对于 $\frac{\partial z}{\partial X}_{n\times d}$ 中的每个元素 ${Z'}_{ij}$，令 ${Z_Y}' = \frac{\partial z}{\partial Y}_{n\times d}$，由 $(2.2)$ 有
+因此，对于 $\frac{\partial z}{\partial X}_{n\times d}$ 中的每个元素 ${Z'}_{ij}$，令 ${Z_{Y}}' = \frac{\partial z}{\partial Y}_{n\times d}$，由 $(2.2)$ 有
 
 $$
 {Z'}_{ij} =
 \begin{cases}
-  {({Z_Y}')}_{ij} &(X_{ij} > 0) \\\\
+  {({Z_{Y}}')}_{ij} &(X_{ij} > 0) \\\\
   0                 &(X_{ij}\le 0)
 \end{cases} \tag{2.4}
 $$
@@ -257,10 +257,10 @@ $$
 {Y'}_{ij} = \frac{1}{X_{ij}} \tag{3.3}
 $$
 
-因此，对于 $\frac{\partial z}{\partial X}_{n\times d}$ 中的每个元素 ${Z'}_{ij}$，令 ${Z_Y}' = \frac{\partial z}{\partial Y}_{n\times d}$，由 $(3.2)$ 有
+因此，对于 $\frac{\partial z}{\partial X}_{n\times d}$ 中的每个元素 ${Z'}_{ij}$，令 ${Z_{Y}}' = \frac{\partial z}{\partial Y}_{n\times d}$，由 $(3.2)$ 有
 
 $$
-{Z'}_{ij} = \frac{{({Z_Y}')}_{ij}}{X_{ij}} \tag{3.4}
+{Z'}_{ij} = \frac{{({Z_{Y}}')}_{ij}}{X_{ij}} \tag{3.4}
 $$
 
 ##### 1.3.2 代码实现
@@ -322,8 +322,8 @@ $$
 \begin{align}
 {Z'}_{ij}
 &=\frac{\partial z}{\partial X_{ij}} \\\\
-&={(\frac{\partial z}{\partial Y_i})}_d
-  \cdot {(\frac{\partial Y_i}{\partial X_{ij}})}_d \\\\
+&={(\frac{\partial z}{\partial Y_{i}})}_{d}
+  \cdot {(\frac{\partial Y_{i}}{\partial X_{ij}})}_{d} \\\\
 &=\frac{\partial z}{\partial Y_{ij}}
   \cdot \frac{\partial Y_{ij}}{\partial X_{ij}} +
   \sum\limits_{k=1,\\,k\ne j}^d

@@ -66,10 +66,10 @@ K-Means 模型的一个问题是，由于初始时的聚簇中心是随机选择
 作为优化，我们参考 scikit-learn 库的思路，对于同样的训练数据，使用不同的随机种子训练 $n$ 次（本实验中默认取 $10$，可通过参数 `n_epochs` 调整），最后选择最优的训练模型作为预测时使用的模型。这里我们对最优的判断标准是各簇内距离（各数据点到聚簇中心距离）的平方和最小。具体来说，即要求如下参数的值最小：
 
 $$
-W = \sum_{\mathbf{x}_i\in \mathbf{D}} \sum_{\mathbf{c}_k\in \mathbf{C}} (\mathbf{x}_i - \mathbf{c}_k)^2
+W = \sum_{\mathbf{x}_{i}\in \mathbf{D}} \sum_{\mathbf{c}_{k}\in \mathbf{C}} (\mathbf{x}_{i} - \mathbf{c}_{k})^2
 $$
 
-其中 $\mathbf{x}_i$ 为数据点，$\mathbf{D}$ 为数据集，$\mathbf{c}_k$ 为聚簇中心，$\mathbf{C}$ 为聚簇中心集。
+其中 $\mathbf{x}_{i}$ 为数据点，$\mathbf{D}$ 为数据集，$\mathbf{c}_{k}$ 为聚簇中心，$\mathbf{C}$ 为聚簇中心集。
 
 经实验，对于一般的数据集，这个优化可以有效地使 K-Means 模型收敛到全局最优解。
 
@@ -321,8 +321,8 @@ GMM 模型（Gaussian Mixture Model）的算法思路类似于 K-Means 模型，
    $$
    {
    p(\mathbf{x})
-   = \frac{1}{\sqrt{(2\pi)^d |\mathbf{\Sigma}_i|}}
-     \exp(-\frac{1}{2}(\mathbf{x}-\mathbf{\mu}_i)^\mathrm{T} \mathbf{\Sigma}_i^{-1} (\mathbf{x}-\mathbf{\mu}_i))
+   = \frac{1}{\sqrt{(2\pi)^d |\mathbf{\Sigma}_{i}|}}
+     \exp(-\frac{1}{2}(\mathbf{x}-\mathbf{\mu}_{i})^\mathrm{T} \mathbf{\Sigma}_{i}^{-1} (\mathbf{x}-\mathbf{\mu}_{i}))
    }
    $$
 
@@ -332,7 +332,7 @@ GMM 模型（Gaussian Mixture Model）的算法思路类似于 K-Means 模型，
 
    $$
    {
-   p(x) = \frac{1}{\sqrt{2\pi\sigma_i^2}} \exp(-\frac{(x-\mu_i)^2}{2\sigma_i^2})
+   p(x) = \frac{1}{\sqrt{2\pi\sigma_{i}^2}} \exp(-\frac{(x-\mu_{i})^2}{2\sigma_{i}^2})
    }
    $$
 
@@ -342,7 +342,7 @@ GMM 模型（Gaussian Mixture Model）的算法思路类似于 K-Means 模型，
 
    $$
    {
-   f_i(\mathbf{x}) = \frac{p(\mathbf{x})\phi_i}{\sum\limits_{i=1}^k p(\mathbf{x})\phi_i}
+   f_{i}(\mathbf{x}) = \frac{p(\mathbf{x})\phi_{i}}{\sum\limits_{i=1}^k p(\mathbf{x})\phi_{i}}
    }
    $$
 
@@ -353,10 +353,10 @@ GMM 模型（Gaussian Mixture Model）的算法思路类似于 K-Means 模型，
 
      $$
      {
-     \mathbf{\mu}_i
+     \mathbf{\mu}_{i}
      = \frac
-       {\sum\limits_{i=1}^k(f_i(\mathbf{x})\cdot \mathbf{x})}
-       {\sum\limits_{i=1}^k f_i(\mathbf{x})}
+       {\sum\limits_{i=1}^k(f_{i}(\mathbf{x})\cdot \mathbf{x})}
+       {\sum\limits_{i=1}^k f_{i}(\mathbf{x})}
      }
      $$
 
@@ -364,14 +364,14 @@ GMM 模型（Gaussian Mixture Model）的算法思路类似于 K-Means 模型，
 
      $$
      {
-     \mathbf{\Sigma}_i
+     \mathbf{\Sigma}_{i}
      = \frac
        {\sum\limits_{i=1}^k(
-         f_i(\mathbf{x})\cdot
-         (\mathbf{x}-\mathbf{\mu}_i)^\mathrm{T}
-         (\mathbf{x}-\mathbf{\mu}_i)
+         f_{i}(\mathbf{x})\cdot
+         (\mathbf{x}-\mathbf{\mu}_{i})^\mathrm{T}
+         (\mathbf{x}-\mathbf{\mu}_{i})
        )}
-       {\sum\limits_{i=1}^k f_i(\mathbf{x})}
+       {\sum\limits_{i=1}^k f_{i}(\mathbf{x})}
      }
      $$
 
@@ -379,11 +379,11 @@ GMM 模型（Gaussian Mixture Model）的算法思路类似于 K-Means 模型，
 
      $$
      {
-     \sigma_i
+     \sigma_{i}
      = \sqrt{
          \frac
-         {\sum\limits_{i=1}^k(f_i(x)\cdot (x-\mu_i)^2)}
-         {\sum\limits_{i=1}^k f_i(x)}
+         {\sum\limits_{i=1}^k(f_{i}(x)\cdot (x-\mu_{i})^2)}
+         {\sum\limits_{i=1}^k f_{i}(x)}
        }
      }
      $$
@@ -392,7 +392,7 @@ GMM 模型（Gaussian Mixture Model）的算法思路类似于 K-Means 模型，
 
      $$
      {
-     \phi_i = \frac{1}{N} \sum\limits_{i=1}^k f_i(\mathbf{x})
+     \phi_{i} = \frac{1}{N} \sum\limits_{i=1}^k f_{i}(\mathbf{x})
      }
      $$
 
@@ -409,7 +409,7 @@ GMM 模型（Gaussian Mixture Model）的算法思路类似于 K-Means 模型，
 与 K-Means 模型类似，GMM 模型初始时的聚簇中心也是随机选择的，因此这里我们采用了和 K-Means 模型一样的优化思路，即先使用不同的随机种子训练 $n$ 次，最后选择最优的训练模型作为预测时使用的模型。与 K-Means 模型不同的地方在于，在 GMM 模型中，我们不能简单地使用到聚簇中心的距离作为参考标准。实际上，我们希望每个数据点被分配到其所属的聚簇时，其在概率矩阵中对应的概率尽可能大。因此，这里我们对最优的判断标准是要求如下参数的值最大：
 
 $$
-\sum\limits_{i=1}^N \max_{1\le j\le k}{\{f_j(\mathbf{x})\}}
+\sum\limits_{i=1}^N \max_{1\le j\le k}{\{f_{j}(\mathbf{x})\}}
 $$
 
 经实验，这个优化也可以有效地使 GMM 模型收敛到全局最优解。
@@ -593,22 +593,22 @@ size = 500
 这里我们利用 Gap Statistic 方法实现了数据集中聚簇数量的自动推测。Gap Statistic 方法的思想是：对于数据集聚类结果的簇内距离，它和同规模均匀分布的期望簇内距离相比，两者的差距越大，则认为模型的聚类结果越好，即 $k$ 值的选择越好。具体来说，即希望如下参数的值尽可能大：
 
 $$
-\mathrm{Gap}_k = \operatorname{E}(\log {W'}_k) - \log W_k
+\mathrm{Gap}_{k} = \operatorname{E}(\log {W'}_{k}) - \log W_{k}
 $$
 
-其中，$k$ 即选择的 $k$ 值，$W_k$ 为数据集 $\mathbf{D}$ 聚类结果的簇内距离的平方和，${W'}_k$ 为同规模均匀分布 $\mathbf{U}$ 聚类结果的簇内距离的平方和。这里 $W$ 的具体定义参见 [1.2](#1.2-一些优化) 节。
+其中，$k$ 即选择的 $k$ 值，$W_{k}$ 为数据集 $\mathbf{D}$ 聚类结果的簇内距离的平方和，${W'}_{k}$ 为同规模均匀分布 $\mathbf{U}$ 聚类结果的簇内距离的平方和。这里 $W$ 的具体定义参见 [1.2](#1.2-一些优化) 节。
 
-我们利用 Monte Carlo 方法计算 $\operatorname{E}(\log {W'}_k)$ 的值。我们在数据集 $\mathbf{D}$ 覆盖的矩形范围内进行 $B$ 次随机均匀采样，得到 $B$ 个不同的 ${W'}_k^{(b)}$，于是我们有
+我们利用 Monte Carlo 方法计算 $\operatorname{E}(\log {W'}_{k})$ 的值。我们在数据集 $\mathbf{D}$ 覆盖的矩形范围内进行 $B$ 次随机均匀采样，得到 $B$ 个不同的 ${W'}_{k}^{(b)}$，于是我们有
 
 $$
-\operatorname{E}(\log {W'}_k) = \frac{1}{B} \sum\limits_{b=1}^B \log {W'}_k^{(b)}
+\operatorname{E}(\log {W'}_{k}) = \frac{1}{B} \sum\limits_{b=1}^B \log {W'}_{k}^{(b)}
 $$
 
-我们的算法底层建立在 K-Means 模型的基础上。实验时，需指定扫描时的最大 $k$ 值 $k_{\max}$，模型将在 $[1,k_{\max}]$ 的范围内找到使得 $\mathrm{Gap}_k$ 最大的 $k$ 值，作为推测的数据集中的聚簇数量。
+我们的算法底层建立在 K-Means 模型的基础上。实验时，需指定扫描时的最大 $k$ 值 $k_{\max}$，模型将在 $[1,k_{\max}]$ 的范围内找到使得 $\mathrm{Gap}_{k}$ 最大的 $k$ 值，作为推测的数据集中的聚簇数量。
 
 #### 3.2 一些优化
 
-为了一定程度上减少扫描时间，我们设定了一个终止阈值 $B$（默认取 $3$，可通过参数 `break_threshold` 调整）。当 $\mathrm{Gap}_k$ 连续 $B$ 次没有增长时，我们就认为已经找到了最优的 $k$ 值，模型自动终止扫描。
+为了一定程度上减少扫描时间，我们设定了一个终止阈值 $B$（默认取 $3$，可通过参数 `break_threshold` 调整）。当 $\mathrm{Gap}_{k}$ 连续 $B$ 次没有增长时，我们就认为已经找到了最优的 $k$ 值，模型自动终止扫描。
 
 #### 3.3 基础实验
 
