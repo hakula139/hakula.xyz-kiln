@@ -1901,7 +1901,7 @@
     grid-template-rows: 0fr;
   }
 }
-.twikoo .el-input__inner::placeholder, .twikoo .el-textarea__inner::placeholder, .twikoo .tk-avatar .tk-avatar-img, .twikoo .tk-extras, .twikoo .tk-sort-item, .twikoo .tk-submit-action-icon.__markdown {
+.twikoo .el-input__inner::placeholder, .twikoo .el-textarea__inner::placeholder, .twikoo .tk-avatar .tk-avatar-img, .twikoo .tk-extras, .twikoo .tk-footer, .twikoo .tk-sort-item, .twikoo .tk-submit-action-icon.__markdown {
   color: var(--color-text-secondary);
 }
 .twikoo .el-button--text, .twikoo .tk-action-link, .twikoo .tk-actions button, .twikoo .tk-icon.__comments, .twikoo .tk-sort-item:is(.__active, :focus) {
@@ -1917,6 +1917,9 @@
   background-color: var(--color-link);
   color: var(--color-bg);
   box-shadow: 0 0 0 0.2rem var(--color-link);
+}
+.twikoo .tk-comments-error, .twikoo .tk-error-message {
+  color: var(--callout-danger-fg);
 }
 .twikoo .tk-tag {
   --tk-tag-color: var(--color-text-secondary);
@@ -1944,6 +1947,9 @@
 }
 .twikoo input.el-input__inner:focus, .twikoo textarea.el-textarea__inner:focus {
   border-color: var(--color-link);
+}
+.twikoo .tk-meta-input .el-input input:invalid {
+  border-color: var(--callout-danger-fg);
 }
 .twikoo button.el-button:not(.el-button--primary):not(.el-button--text):is(:active, :focus, :hover) {
   border-color: color-mix(in srgb, #1d84a8 50%, transparent);
