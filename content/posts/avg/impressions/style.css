@@ -21,7 +21,7 @@
 }
 
 .rating-levels tr:nth-child(1) > td:first-child {
-  color: #9ca3af;
+  color: var(--color-text-secondary);
 }
 .rating-levels tr:nth-child(3) > td:first-child,
 .rating-levels tr:nth-child(4) > td:first-child {
@@ -40,9 +40,6 @@
   background: #1a1a1a;
 }
 
-[data-theme='dark'] .rating-levels tr:nth-child(1) > td:first-child {
-  color: #6b7280;
-}
 [data-theme='dark'] .rating-levels tr:nth-child(5) > td:first-child {
   background: #443e00;
 }
