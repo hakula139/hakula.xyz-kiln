@@ -2364,11 +2364,11 @@
 .prose :where(li) {
   margin-block: calc(var(--spacing) * 0.5);
 }
-.prose :where(ul > li):has(> input[type='checkbox'], > p > input[type='checkbox']):not(.not-prose *) {
+.prose :where(li):has(> input[type='checkbox'], > p > input[type='checkbox']) {
   position: relative;
   list-style-type: none;
   padding-inline-start: 0px;
-  > input[type='checkbox'], > p > input[type='checkbox'] {
+  input[type='checkbox'] {
     position: absolute;
     margin: 0px;
     width: 1em;
