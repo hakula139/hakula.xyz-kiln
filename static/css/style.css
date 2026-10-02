@@ -2364,6 +2364,25 @@
 .prose :where(li) {
   margin-block: calc(var(--spacing) * 0.5);
 }
+.prose :where(li):has(> input[type='checkbox'], > p > input[type='checkbox']) {
+  position: relative;
+  list-style-type: none;
+  padding-inline-start: 0px;
+  input[type='checkbox'] {
+    position: absolute;
+    margin: 0px;
+    width: 1em;
+    height: 1em;
+    accent-color: var(--color-link);
+    inset-inline-start: -1.625em;
+    top: calc((1lh - 1em) / 2);
+    font: inherit;
+    color-scheme: light;
+    &:where([data-theme="dark"], [data-theme="dark"] *) {
+      color-scheme: dark;
+    }
+  }
+}
 .prose :where(a:not(.not-prose, .not-prose *)) {
   padding-bottom: calc(var(--spacing) * 0.5);
   text-decoration-line: none;
