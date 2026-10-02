@@ -293,10 +293,11 @@ You may try [Postman][postman] to inspect how the API works.
 
 ## TODOs
 
-- Support more features
-  - [ ] Rename files / directories.
-  - [ ] Download a directory from server.
-  - [ ] Batch download files / directories from server.
-  - [ ] Upload a directory to server.
-  - [ ] Batch upload files / directories to server.
-  - [ ] Upload through selecting a file instead of manually inputting a path.
+Support more features:
+
+- [ ] Rename files / directories.
+- [ ] Download a directory from server.
+- [ ] Batch download files / directories from server.
+- [ ] Upload a directory to server.
+- [ ] Batch upload files / directories to server.
+- [ ] Upload through selecting a file instead of manually inputting a path.
