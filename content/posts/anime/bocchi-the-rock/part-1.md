@@ -6,6 +6,7 @@ tags = [
     "文艺批评",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/btr.webp"
@@ -15,7 +16,7 @@ src = "/images/article-covers/btr.webp"
 
 <!--more-->
 
-## 1 对作品的评价
+## 对作品的评价 {#1-对作品的评价}
 
 其实我并不是「孤独摇滚」的目标受众。如果不是这部作品达到了如此高的讨论度，甚至直接影响了社区的讨论规则，我想也许我这辈子都不会想到去观看这部作品。
 
@@ -43,7 +44,7 @@ src = "/images/article-covers/btr.webp"
 
 「孤独摇滚」是现实生活的麻醉剂。
 
-## 2 理想的现实主义，现实的理想主义
+## 理想的现实主义，现实的理想主义 {#2-理想的现实主义-现实的理想主义}
 
 （未完待续）
 

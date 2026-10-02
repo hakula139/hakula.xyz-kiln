@@ -5,6 +5,7 @@ armv8
 Baldr
 beatoraja
 BEMANI
+binaryexpr
 bmsid
 BOFU
 Bowlby
@@ -20,6 +21,7 @@ cinkai
 csapp
 CSDN
 Csikszentmihalyi
+ctarget
 CUDA
 Cyorage
 Cytus
@@ -27,6 +29,7 @@ dav1d
 différance
 DIGGY
 direnv
+dmem
 DMIT
 elif
 Ennea
@@ -34,6 +37,7 @@ ennnnny
 epoché
 esbuild
 gdrive
+getbuf
 gitee
 hakula
 Hatsune
@@ -42,10 +46,20 @@ Heng
 Hiten
 Homutan
 httpx
+ialloc
+idup
 IIDX
+iinit
+ilock
+imem
 impls
 INTJ
+iput
 Iser
+ispositive
+iunlock
+iunlockput
+iupdate
 Jauss
 Karpathy
 kaze
@@ -94,12 +108,14 @@ pkgs
 prml
 PTSD
 rclone
+readi
 realmsd
 rgba
 Rikki
 riscv
 Ritsuki
 rownum
+rtarget
 Rushkoff
 Rāna
 Sadaharu
@@ -115,6 +131,7 @@ SPSR
 sscanf
 statix
 STFT
+stmts
 strtol
 swapon
 SWAV
@@ -124,6 +141,7 @@ Togawa
 Tomori
 Totypes
 TPIDR
+trapasm
 Twikoo
 Uika
 Umiri
@@ -138,6 +156,8 @@ webp
 WMIX
 woogle
 workerd
+writeexpr
+writei
 XDMCP
 Xshell
 YangMame

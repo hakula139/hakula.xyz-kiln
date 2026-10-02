@@ -8,6 +8,7 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/71199279_p0.webp"
@@ -34,7 +35,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ## 实验报告
 
-### 1 中断流程
+### 中断流程 {#1-中断流程}
 
 ::: callout {type=quote title="题目"}
 请简要描述一下在你实现的操作系统中，中断时 CPU 进行了哪些操作。
@@ -46,7 +47,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 4. 跳转到中断函数 `trap` 入口，根据中断路由选择当前的中断服务（局部时钟 timer 中断、全局时钟 clock 中断、UART 输入中断等）。
 5. 中断处理程序完成后，恢复上下文，将所有通用寄存器和 3 个特殊寄存器 SP_EL0, SPSR_EL1, ELR_EL1 弹栈还原。中断返回，主程序继续执行。
 
-### 2 Trap Frame 设计
+### Trap Frame 设计 {#2-trap-frame-设计}
 
 ::: callout {type=quote title="实验目标"}
 请在 `inc/trap.h` 中设计你自己的 trap frame，并简要说明为什么这么设计。
@@ -100,13 +101,13 @@ struct trapframe {
 };
 ```
 
-### 3 Trap Frame 构建与恢复
+### Trap Frame 构建与恢复 {#3-trap-frame-构建与恢复}
 
 ::: callout {type=quote title="实验目标"}
 请补全 `kern/trapasm.S` 中的代码，完成 trap frame 的构建、恢复。
 :::
 
-#### 3.1 Trap Frame 构建
+#### Trap Frame 构建 {#3.1-trap-frame-构建}
 
 将所有通用寄存器和 3 个特殊寄存器 SP_EL0, SPSR_EL1, ELR_EL1 压入堆栈，然后跳转到中断函数 `trap` 入口。
 
@@ -142,7 +143,7 @@ alltraps:
     bl  trap
 ```
 
-#### 3.2 Trap Frame 恢复
+#### Trap Frame 恢复 {#3.2-trap-frame-恢复}
 
 将所有通用寄存器和 3 个特殊寄存器 SP_EL0, SPSR_EL1, ELR_EL1 弹栈还原，然后中断返回（`eret`）。
 

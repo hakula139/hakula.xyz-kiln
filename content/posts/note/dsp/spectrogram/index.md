@@ -7,6 +7,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/102257565_p0.webp"
@@ -39,7 +40,7 @@ Digital Signal Processing @ Fudan University, fall 2021.
 
 ## 实验报告
 
-### 1 语音波形图
+### 语音波形图 {#1-语音波形图}
 
 ```python {title="main.py"}
 def plot_waveform(filename: str, y: np.ndarray, sr: int) -> None:
@@ -61,7 +62,7 @@ def plot_waveform(filename: str, y: np.ndarray, sr: int) -> None:
 
 载入音频的过程就不再赘述了。这里绘制语音波形图的原理和上次绘制时域下的幅度图基本完全相同，区别是上次截取了前 1024 个采样，这次处理的则是整段音频。
 
-### 2 语谱图生成
+### 语谱图生成 {#2-语谱图生成}
 
 生成语谱图的基本思想是使用 STFT（Short-time Fourier Transform）。由于直接对整段音频进行 FFT 的话，只能得到信号整体在频域下的幅度谱（只提供了有哪些频率成分的信息），而无法观察信号随时间变化的瞬时频率情况，因此我们就需要 STFT。STFT 采用滑动窗口的方式，随时间将此时的信号抽出一帧进行 FFT，如此即可得到信号的时间信息。
 
@@ -134,7 +135,7 @@ def hamming(m: int) -> np.ndarray:
 
 由于题目要求窗口宽度为 5 ms, 10 ms, 15 ms，考虑到我们音频的采样率为 8000 Hz，因此调用本函数时，相应的窗口宽度即为 40, 80, 120 个采样。
 
-### 3 语谱图绘制
+### 语谱图绘制 {#3-语谱图绘制}
 
 生成完语谱图后，我们将其绘制出来。
 
@@ -206,9 +207,9 @@ def plot_spectrogram(
     plt.savefig(output_path)
 ```
 
-### 4 运行代码
+### 运行代码 {#4-运行代码}
 
-#### 4.1 安装
+#### 安装 {#4.1-安装}
 
 配置环境前，首先需要安装以下依赖：
 
@@ -221,7 +222,7 @@ conda env update --name dsp --file environment.yml
 conda activate dsp
 ```
 
-#### 4.2 使用
+#### 使用 {#4.2-使用}
 
 将音频文件放置于 `./data/dev_set` 目录下，执行以下命令启动程序：
 
@@ -231,7 +232,7 @@ python3 main.py
 
 生成的语音波形图和语谱图将保存在 `./assets/spectrogram` 目录下。
 
-#### 4.3 测试
+#### 测试 {#4.3-测试}
 
 本实验中，我们使用了预录制的音频文件 `one.dat`, `two.dat`, `six.dat`，其内容分别是单词 one, two, six 的单词发音，按 8000 Hz 采样。如果你的测试音频不是按 8000 Hz 采样的，可以使用 `resample.py` 进行重采样，使用方法：
 
@@ -249,25 +250,25 @@ python3 resample.py "path/to/directory" 8000    # 目录下所有 .wav 文件递
 - `foobar_spec_domain_10ms_hamming.png`：信号在 10 ms 窗口宽度下的语谱图
 - `foobar_spec_domain_15ms_hamming.png`：信号在 15 ms 窗口宽度下的语谱图
 
-### 5 运行结果
+### 运行结果 {#5-运行结果}
 
-#### 5.1 语音波形图
+#### 语音波形图 {#5.1-语音波形图}
 
-##### 5.1.1 one
+##### one {#5.1.1-one}
 
 ![one - 语音波形图](assets/one/time-domain.webp)
 
-##### 5.1.2 two
+##### two {#5.1.2-two}
 
 ![two - 语音波形图](assets/two/time-domain.webp)
 
-##### 5.1.3 six
+##### six {#5.1.3-six}
 
 ![six - 语音波形图](assets/six/time-domain.webp)
 
-#### 5.2 语谱图
+#### 语谱图 {#5.2-语谱图}
 
-##### 5.2.1 one
+##### one {#5.2.1-one}
 
 ![one - 语谱图（5 ms + 汉明窗）](assets/one/spec-domain-5ms-hamming.webp)
 
@@ -275,7 +276,7 @@ python3 resample.py "path/to/directory" 8000    # 目录下所有 .wav 文件递
 
 ![one - 语谱图（15 ms + 汉明窗）](assets/one/spec-domain-15ms-hamming.webp)
 
-##### 5.2.2 two
+##### two {#5.2.2-two}
 
 ![two - 语谱图（5 ms + 汉明窗）](assets/two/spec-domain-5ms-hamming.webp)
 
@@ -283,7 +284,7 @@ python3 resample.py "path/to/directory" 8000    # 目录下所有 .wav 文件递
 
 ![two - 语谱图（15 ms + 汉明窗）](assets/two/spec-domain-15ms-hamming.webp)
 
-##### 5.2.3 six
+##### six {#5.2.3-six}
 
 ![six - 语谱图（5 ms + 汉明窗）](assets/six/spec-domain-5ms-hamming.webp)
 

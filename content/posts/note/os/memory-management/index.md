@@ -8,6 +8,7 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/83708256_p0.webp"
@@ -34,7 +35,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ## 实验报告
 
-### 1 物理内存分配器
+### 物理内存分配器 {#1-物理内存分配器}
 
 ::: callout {type=quote title="实验目标"}
 完成物理内存分配器的分配函数 `kalloc` 以及回收函数 `kfree`。
@@ -87,7 +88,7 @@ kfree(char* v)
 }
 ```
 
-### 2 页表管理
+### 页表管理 {#2-页表管理}
 
 ::: callout {type=quote title="实验目标"}
 完成物理地址的映射函数 `map_region` 以及回收页表物理空间函数 `vm_free`。

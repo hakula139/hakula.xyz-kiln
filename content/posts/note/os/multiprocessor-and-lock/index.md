@@ -8,6 +8,7 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/69514736_p0.webp"
@@ -34,7 +35,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ## 实验报告
 
-### 1 多核启动流程
+### 多核启动流程 {#1-多核启动流程}
 
 ::: callout {type=quote title="题目"}
 为了确保你完全掌握了多核的启动流程，请简要描述一下 `kern/entry.S` 中各个 CPU 的初始状态如何、经历了哪些变化？至少包括对 PC、栈指针、页表的描述。
@@ -48,7 +49,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 - 如果当前是 EL2，CPU 将初始化 HCR (Hyp Configuration Register), SCTLR (System Control Register), SPSR, ELR，并切换 exception level 到 EL1。
 - 切换到 EL1 后，CPU 将初始化 TCR (Translation Control Register), MAIR (Memory Attribute Indirection Register), MMU (Memory Management Unit), SP (Stack Pointer)，其中栈指针 SP 的地址设置为 `_start - cpuid() * PGSIZE`（需 16 bytes 对齐），并将 `ttbr0` 和 `ttbr1` 页表均映射到地址为 `kpgdir` 的物理内存空间。最后跳转到主循环 `main`，启动 kernel。
 
-### 2 自旋锁时为什么要关中断
+### 自旋锁时为什么要关中断 {#2-自旋锁时为什么要关中断}
 
 ::: callout {type=quote title="题目"}
 请阅读 `kern/spinlock.c` 并思考一下，如果我们在内核中没有关中断的话，`kern/spinlock.c` 是否有问题？如果有的话，应该如何修改呢？
@@ -58,7 +59,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 因此如果内核没有关中断，我们就需要在自旋锁的实现（`kern/spinlock.c`）里关中断。具体来说就是在加锁前关中断，解锁后开中断。可参考 xv6-riscv 中的实现[^spinlock.c]。
 
-### 3 给主循环加锁
+### 给主循环加锁 {#3-给主循环加锁}
 
 ::: callout {type=quote title="实验目标"}
 注意到所有 CPU 都会并行进入 `kern/main.c:main`，而其中有些初始化函数是只能被调用一次的，请简单描述一下你的判断和理由，并在 `kern/main.c` 中加锁来保证这一点。

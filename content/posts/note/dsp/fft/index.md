@@ -7,6 +7,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/102184125_p0.webp"
@@ -39,7 +40,7 @@ Digital Signal Processing @ Fudan University, fall 2021.
 
 ## 实验报告
 
-### 0 总览
+### 总览 {#0-总览}
 
 ```python {title="main.py"}
 # Parameters
@@ -68,7 +69,7 @@ def main() -> None:
     )
 ```
 
-### 1 重采样
+### 重采样 {#1-重采样}
 
 ```python {title="main.py"}
 # Resample to required sample_rate.
@@ -79,7 +80,7 @@ y, sr = librosa.load(wav_path, sr=sample_rate)
 
 为什么不在录音时就直接使用 8000 Hz 采样呢？其实我也想这样做，但即使我使用了专业音频处理软件 Logic Pro，在录音时其支持的最低采样率还是有 44100 Hz，没有更低的选项了。于是只好这样绕了个弯子。
 
-### 2 截取
+### 截取 {#2-截取}
 
 由于音频信号可能很长，我们在分析前需要先将信号分割成若干个帧。这里实验没有进一步要求，我们就简单截取了前 1024 个采样。
 
@@ -117,7 +118,7 @@ def plot_time_domain(output_path: str, t: np.ndarray, y: np.ndarray) -> None:
 
 由于截取的是前 1024 个采样，这段音频其实在发 signal 里的 s 音，所以幅度很小，看起来有点像是环境噪音了。
 
-### 3 FFT
+### FFT {#3-fft}
 
 然后我们就对这段信号进行 FFT。这里为了验证我们手写的 FFT 是否正确，我们先使用 `numpy` 库的 FFT 实现输出一个幅度谱。
 
@@ -150,7 +151,7 @@ plot_freq_domain(
 
 可以看到幅度谱一模一样，说明我们的实现是正确的。
 
-### 4 FFT 实现
+### FFT 实现 {#4-fft-实现}
 
 本实验中我们实现的是经典的 2 基底 Cooley-Tukey FFT 算法，利用了分治法的思想。算法的输入是信号在时域的幅度数组 $A$，输出是信号在频域的幅度数组 $Y$。
 
@@ -224,9 +225,9 @@ def fft_freq(n: int, sr: float) -> np.ndarray:
 
 这里我们就按通常的实现写了，实际上由于我们的输入信号是实数序列，因此并不需要负频率的部分。
 
-### 5 运行代码
+### 运行代码 {#5-运行代码}
 
-#### 5.1 安装
+#### 安装 {#5.1-安装}
 
 配置环境前，首先需要安装以下依赖：
 
@@ -239,7 +240,7 @@ conda env update --name dsp --file environment.yml
 conda activate dsp
 ```
 
-#### 5.2 使用
+#### 使用 {#5.2-使用}
 
 将音频文件（WAV 格式）放置于 `./data` 目录下，执行以下命令启动程序：
 
@@ -249,7 +250,7 @@ python3 main.py
 
 生成的幅度谱将保存在 `./assets/fft` 目录下。
 
-#### 5.3 测试
+#### 测试 {#5.3-测试}
 
 本实验中，我们使用了预录制的音频文件 `./data/signal.wav`（未上传至 git 仓库），其内容是单词 signal 的一段朗读语音，按 48000 Hz 采样。
 
