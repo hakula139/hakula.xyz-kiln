@@ -392,7 +392,9 @@ class Softmax(NumpyOp):
 我们使用 NumPy 重写了函数 `mini_batch`，用于之后的训练。
 
 ```python {title="numpy_mnist.py"}
-def mini_batch(dataset: List[Tuple[Any, int]], batch_size=128) -> np.ndarray:
+def mini_batch(
+    dataset: List[Tuple[Any, int]], batch_size=128
+) -> List[Tuple[np.ndarray, np.ndarray]]:
     '''
     Align the data and labels from the given dataset into batches.
 

@@ -1406,8 +1406,8 @@ char buf[512];
 void
 cat(int fd)
 {
-    int n = read(fd, buf, sizeof(buf));
-    while (n > 0) {
+    int n;
+    while ((n = read(fd, buf, sizeof(buf))) > 0) {
         if (write(1, buf, n) != n) {
             printf("cat: write error.\n");
             return;

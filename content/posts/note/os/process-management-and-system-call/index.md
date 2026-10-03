@@ -361,7 +361,7 @@ user_init()
     p->state = RUNNABLE;
     release(&p->lock);
 
-    cprintf("user_init: proc %d (%s) success.\n", p->pid, p->name, cpuid());
+    cprintf("user_init: proc %d (%s) success.\n", p->pid, p->name);
 }
 ```
 

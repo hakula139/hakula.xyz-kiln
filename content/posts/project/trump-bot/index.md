@@ -331,7 +331,7 @@ class rnn(nn.Module):
         self.drop = nn.Dropout(dropout)
         self.encoder = nn.Embedding(input_size, hidden_size)
         self.gru = nn.GRU(hidden_size, hidden_size,
-                          num_layers, dropout=dropout)
+                         num_layers, dropout=dropout)
         self.decoder = nn.Linear(hidden_size, output_size)
 
     def forward(self, inp: Tensor, hid: Tensor) -> Tuple[Tensor, Tensor]:
@@ -521,7 +521,7 @@ def evaluate_model(save: bool = False) -> None:
     predicted_words: List[str] = evaluate(
         prime_words, predict_len, temperature,
     )
-    output: List[str] = ' '.join(predicted_words)
+    output: str = ' '.join(predicted_words)
     if save:
         current_time: str = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         with open(output_path, 'a') as f:

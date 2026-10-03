@@ -65,7 +65,7 @@ def main() -> None:
     # y0_fft = np.abs(nf.fft(y0))
     y0_fft = np.abs(fft(y0))
     plot_freq_domain(
-        fig_freq_path, y0_freqs[y0_freqs >= 0],  y0_fft[y0_freqs >= 0],
+        fig_freq_path, y0_freqs[y0_freqs >= 0], y0_fft[y0_freqs >= 0],
     )
 ```
 
@@ -130,7 +130,7 @@ import numpy.fft as nf
 y0_freqs = nf.fftfreq(n_samples, 1. / sr)
 y0_fft = np.abs(nf.fft(y0))
 plot_freq_domain(
-    fig_freq_path, y0_freqs[y0_freqs >= 0],  y0_fft[y0_freqs >= 0],
+    fig_freq_path, y0_freqs[y0_freqs >= 0], y0_fft[y0_freqs >= 0],
 )
 ```
 
@@ -143,7 +143,7 @@ plot_freq_domain(
 y0_freqs = fft_freq(n_samples, sr)
 y0_fft = np.abs(fft(y0))
 plot_freq_domain(
-    fig_freq_path, y0_freqs[y0_freqs >= 0],  y0_fft[y0_freqs >= 0],
+    fig_freq_path, y0_freqs[y0_freqs >= 0], y0_fft[y0_freqs >= 0],
 )
 ```
 

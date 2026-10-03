@@ -439,7 +439,7 @@ fa 18 40 00 c3 00 00 00
 讲义中给出了函数 `hexmatch` 和 `touch3` 的源代码：
 
 ```c
-/* Compare string to hex represention of unsigned value */
+/* Compare string to hex representation of unsigned value */
 int hexmatch(unsigned val, char *sval) {
     char cbuf[110];
     /* Make position of check string unpredictable */
@@ -452,7 +452,7 @@ int hexmatch(unsigned val, char *sval) {
 ```c
 void touch3(char *sval) {
     vlevel = 3;       /* Part of validation protocol */
-    if (hexmatch(cookie,sval)) {
+    if (hexmatch(cookie, sval)) {
         printf("Touch3!: You called touch3(\"%s\")\n", sval);
         validate(3);
     } else {
