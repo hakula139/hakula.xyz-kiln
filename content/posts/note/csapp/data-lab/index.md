@@ -6,6 +6,7 @@ tags = [
     "位运算",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/csapp.webp"
@@ -23,17 +24,17 @@ Introduction to Computer Systems I (H) @ Fudan University, fall 2019.
 
 ## 实验报告
 
-### 1 bitAnd
+### bitAnd
 
 ::: callout {type=quote title="题目"}
 `x & y` using only `~` and `|`.
 :::
 
-#### 1.1 思路
+#### 思路
 
 利用 De Morgan's laws 即可。
 
-#### 1.2 解答
+#### 解答
 
 ```c
 int bitAnd(int x, int y) {
@@ -42,18 +43,18 @@ int bitAnd(int x, int y) {
 }
 ```
 
-### 2 getByte
+### getByte
 
 ::: callout {type=quote title="题目"}
 Extract byte $n$ from word $x$.
 Bytes numbered from $0$ (LSB) to $3$ (MSB).
 :::
 
-#### 2.1 思路
+#### 思路
 
 $1\ \mathrm{byte} = 8\ \mathrm{bit}$，因此将 $x$ 右移 $8n$ 位后，$x$ 最低的字节就是我们需要提取的 byte $n$。之后利用掩码 $\mathtt{0xFF}$ 提取即可。
 
-#### 2.2 解答
+#### 解答
 
 ```c
 int getByte(int x, int n) {
@@ -62,18 +63,18 @@ int getByte(int x, int n) {
 }
 ```
 
-### 3 logicalShift
+### logicalShift
 
 ::: callout {type=quote title="题目"}
 Shift $x$ to the right by $n$, using a logical shift.
 Can assume that $0\le n\le 31$.
 :::
 
-#### 3.1 思路
+#### 思路
 
 负数右移时会在高位补 $1$，因此需要用掩码提取最低的 $(32-n)$ 位。这里将 $\mathtt{0x1}$ 左移 $31$ 位到最高位，然后右移 $(n-1)$ 位得到一个高位 $n$ 个 $1$、低位 $(32-n)$ 个 $0$ 的二进制数，最后取反即得到我们所需的掩码。
 
-#### 3.2 解答
+#### 解答
 
 ```c
 int logicalShift(int x, int n) {
@@ -86,13 +87,13 @@ int logicalShift(int x, int n) {
 }
 ```
 
-### 4 bitCount
+### bitCount
 
 ::: callout {type=quote title="题目"}
 Returns count of number of $1$'s in word.
 :::
 
-#### 4.1 思路
+#### 思路
 
 因为不允许使用循环遍历，这里采用了分治法的思想。[^codinfox]
 
@@ -112,7 +113,7 @@ Returns count of number of $1$'s in word.
 
 在具体实现中，由于常数限定在 $[\mathtt{0x0},\mathtt{0xFF}]$ 的范围，因此做了一些额外处理。
 
-#### 4.2 解答
+#### 解答
 
 ```c
 int bitCount(int x) {
@@ -135,17 +136,17 @@ int bitCount(int x) {
 }
 ```
 
-### 5 bang
+### bang
 
 ::: callout {type=quote title="题目"}
 Compute `!x` without using `!`.
 :::
 
-#### 5.1 思路
+#### 思路
 
 只需判断原数是否为 $0$。这里将 $x$ 每次压缩成原来位数的一半，用 $\mathrm{OR}$ 运算来保留所有的 $1$。如果最终得到的 $1$ 位数为 $0$ 即表示 $x = 0$，否则 $x\ne 0$。最后取反并利用掩码 $\mathtt{0x1}$ 提取结果即可。
 
-#### 5.2 解答
+#### 解答
 
 ```c
 int bang(int x) {
@@ -159,17 +160,17 @@ int bang(int x) {
 }
 ```
 
-### 6 tmin
+### tmin
 
 ::: callout {type=quote title="题目"}
 Return minimum two's complement integer.
 :::
 
-#### 6.1 思路
+#### 思路
 
 由二补码的规则易知 $\mathrm{tmin} = \mathtt{0x80000000}$。由于常数限定在 $[\mathtt{0x0},\mathtt{0xFF}]$ 的范围，因此采用 `0x1 << 31` 来表示。
 
-#### 6.2 解答
+#### 解答
 
 ```c
 int tmin(void) {
@@ -178,13 +179,13 @@ int tmin(void) {
 }
 ```
 
-### 7 fitsBits
+### fitsBits
 
 ::: callout {type=quote title="题目"}
 Return $1$ if $x$ can be represented as an $n$-bit, two's complement integer. $(1\le n\le 32)$
 :::
 
-#### 7.1 思路
+#### 思路
 
 如果一个非负数 $x$ 可以表示成 $n$ 位二补码的形式，那么 $x$ 最高的 $1$ 必然不能高于第 $(n-1)$ 位。因此如果对 $x$ 右移 $(n-1)$ 位所得的结果为 $0$，即表示 $x$ 是符合要求的。
 
@@ -192,7 +193,7 @@ Return $1$ if $x$ can be represented as an $n$-bit, two's complement integer. $(
 
 因为不允许使用条件语句，如何将负数取反的同时保持正数不变，这里用了一个 trick，详见代码部分。因为不允许使用减号，这里就用 $\mathrm{NOT}\ 0$ 来表示 $-1$ 了。
 
-#### 7.2 解答
+#### 解答
 
 ```c
 int fitsBits(int x, int n) {
@@ -207,18 +208,18 @@ int fitsBits(int x, int n) {
 }
 ```
 
-### 8 divpwr2 <!-- cspell:disable-line -->
+### divpwr2 <!-- cspell:disable-line -->
 
 ::: callout {type=quote title="题目"}
 Compute $x / 2^n$, for $0\le n\le 30$.
 Round toward zero.
 :::
 
-#### 8.1 思路
+#### 思路
 
 非负数直接右移即可；负数直接右移会向下取整，但要求是向 $0$ 取整（向上取整），因此需要加上一个偏移量。具体处理方式类似于十进制里对进一法的处理，即在原数上先加 $2^n - 1$，这样即可确保右移 $n$ 位后的结果是向上取整。
 
-#### 8.2 解答
+#### 解答
 
 ```c
 int divpwr2(int x, int n) {
@@ -232,17 +233,17 @@ int divpwr2(int x, int n) {
 }
 ```
 
-### 9 negate
+### negate
 
 ::: callout {type=quote title="题目"}
 Return $-x$.
 :::
 
-#### 9.1 思路
+#### 思路
 
 取反加一即可。
 
-#### 9.2 解答
+#### 解答
 
 ```c
 int negate(int x) {
@@ -250,13 +251,13 @@ int negate(int x) {
 }
 ```
 
-### 10 isPositive
+### isPositive
 
 ::: callout {type=quote title="题目"}
 Return $1$ if $x > 0$, return $0$ otherwise.
 :::
 
-#### 10.1 思路
+#### 思路
 
 关键在于对 $0$ 的处理，直接返回 `!(x >> 31)` 对于 $0$ 是错误的。
 
@@ -270,7 +271,7 @@ Return $1$ if $x > 0$, return $0$ otherwise.
 
 可见这里存在一个 $\mathrm{XOR}$ 的关系，于是就得到解答。
 
-#### 10.2 解答
+#### 解答
 
 ```c
 int isPositive(int x) {
@@ -283,13 +284,13 @@ int isPositive(int x) {
 }
 ```
 
-### 11 isLessOrEqual
+### isLessOrEqual
 
 ::: callout {type=quote title="题目"}
 If $x\le y$ then return $1$, else return $0$.
 :::
 
-#### 11.1 思路
+#### 思路
 
 首先判断 $x$ 和 $y$ 的符号是否相同，因为如果符号不同，相减可能导致溢出问题，从而得出错误的结果。
 
@@ -297,7 +298,7 @@ If $x\le y$ then return $1$, else return $0$.
 
 如果 $x$ 和 $y$ 异号，那么负数必然小于非负数，我们判断 $x$ 的符号即可。如果 $x$ 为负数则结果为真，否则为假。
 
-#### 11.2 解答
+#### 解答
 
 ```c
 int isLessOrEqual(int x, int y) {
@@ -311,19 +312,19 @@ int isLessOrEqual(int x, int y) {
 }
 ```
 
-### 12 ilog2 <!-- cspell:disable-line -->
+### ilog2 <!-- cspell:disable-line -->
 
 ::: callout {type=quote title="题目"}
 Return $\lfloor \log_2{x}\rfloor$, where $x>0$.
 :::
 
-#### 12.1 思路
+#### 思路
 
 目标是找到 $x$ 最高的 $1$ 所在的位置。
 
 因为不允许使用循环遍历，这里采用二分查找[^codinfox]，详见代码部分。
 
-#### 12.2 解答
+#### 解答
 
 ```c
 int ilog2(int x) {
@@ -337,7 +338,7 @@ int ilog2(int x) {
 }
 ```
 
-### 13 float_neg
+### float_neg
 
 ::: callout {type=quote title="题目"}
 
@@ -349,13 +350,13 @@ When argument is $\mathrm{NaN}$, return argument.
 
 :::
 
-#### 13.1 思路
+#### 思路
 
 关键在于判断原数是否为 $\mathrm{NaN}$，是则直接返回，否则将符号位（最高位）取反后返回。
 
 当 $f$ 的 exponent bits 全为 $1$ 且 fraction bits 不全为 $0$ 时，$f$ 即为 $\mathrm{NaN}$。[^float-wiki]
 
-#### 13.2 解答
+#### 解答
 
 ```c
 unsigned float_neg(unsigned uf) {
@@ -373,7 +374,7 @@ unsigned float_neg(unsigned uf) {
 }
 ```
 
-### 14 float_i2f
+### float_i2f
 
 ::: callout {type=quote title="题目"}
 
@@ -383,7 +384,7 @@ Result is returned as unsigned int, but it is to be interpreted as the bit-level
 
 :::
 
-#### 14.1 思路
+#### 思路
 
 为了方便起见，先将负数转化为其相反数。为此需要将 `INT_MIN`（$\mathtt{0x80000000}$）作为特殊情况处理。同时由于整数中只有 $0$ 是 subnormal number[^float-wiki]，因此也作为特殊情况处理。
 
@@ -397,7 +398,7 @@ Result is returned as unsigned int, but it is to be interpreted as the bit-level
 
 解决了进位问题后，其余问题都不是问题，详见代码部分。
 
-#### 14.2 解答
+#### 解答
 
 ```c
 unsigned float_i2f(int x) {
@@ -438,7 +439,7 @@ unsigned float_i2f(int x) {
 }
 ```
 
-### 15 float_twice
+### float_twice
 
 ::: callout {type=quote title="题目"}
 
@@ -450,7 +451,7 @@ When argument is $\mathrm{NaN}$, return argument.
 
 :::
 
-#### 15.1 思路
+#### 思路
 
 只需要处理一些特殊情况即可。
 
@@ -459,7 +460,7 @@ When argument is $\mathrm{NaN}$, return argument.
 - 当 $f$ 是 subnormal number 时，直接将 fraction bits 左移 $1$ 位后返回[^float-twice]；
 - 其余情况，将 exponent bits 加 $1$。
 
-#### 15.2 解答
+#### 解答
 
 ```c
 unsigned float_twice(unsigned uf) {

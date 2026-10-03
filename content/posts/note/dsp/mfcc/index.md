@@ -8,6 +8,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/95680357_p0.webp"
@@ -43,7 +44,7 @@ Digital Signal Processing @ Fudan University, fall 2021.
 
 ## 实验报告
 
-### 1 预加重
+### 预加重
 
 ```python {title="main.py"}
 # Load audio signal from disk.
@@ -62,7 +63,7 @@ $$y(n) = x(n)-\alpha x(n-1)$$
 
 其本质就是一个 $H(z) = 1-\alpha z^{-1}$ 的高通滤波器，其中系数 $\alpha$ 在本实验中的取值为 $0.97$。
 
-### 2 端点检测
+### 端点检测
 
 ```python {title="main.py"}
 # Get the window length for FFT.
@@ -75,7 +76,7 @@ ranges, i_starts, zcr = detect_voice_activity(y, n_window)
 
 接下来我们将音频中的语音部分提取出来，在这一步我们将确定语音的起点和终点。其基本原理是利用语音的短时平均幅度和短时过零率（Zero-Crossing Rate, ZCR）。
 
-#### 2.1 分帧计算短时平均幅度和短时过零率
+#### 分帧计算短时平均幅度和短时过零率
 
 首先将信号分帧，同之前讲过的 STFT 过程，这里不再赘述。
 
@@ -109,7 +110,7 @@ avg_zcrs = [np.sum(np.abs(
 )) / 2 / t_window for i in i_starts]
 ```
 
-#### 2.2 利用短时平均幅度（高阈值）初步判断区间
+#### 利用短时平均幅度（高阈值）初步判断区间
 
 ```python {title="main.py"}
 # Step 1: Find the ranges by judging whether the average amplitude is
@@ -127,7 +128,7 @@ for k, avg_amp in enumerate(avg_amps):
 
 通过这一步，我们至少可以找到信号中所有的浊音。不过对于测试音频 shop 来说，浊音 -o- 和清音 -p 之间存在一个小的间隔，且清音 -p 的持续时间很短，这可能导致清音 -p 无法被检测到。因此这里将阈值 $M_H$ 设置得比较低，目的是为了在这一步能同时检测到幅度较小的清音，但副作用是如果背景噪声较大，可能会影响端点检测的结果。
 
-#### 2.3 利用短时平均幅度（低阈值）扩展区间
+#### 利用短时平均幅度（低阈值）扩展区间
 
 ```python {title="main.py"}
 # Step 2: Expand the ranges by judging whether the average amplitude is
@@ -150,7 +151,7 @@ for r in ranges_1:
 
 通过这一步，我们基本利用平均幅度的信息找到了语音段的大致区间。不过由于清音段的幅度较小，难以与无声段区分，因此为了得到更精确的端点位置，我们需要利用清音段相较无声段过零率显著更高的特点。
 
-#### 2.4 利用短时过零率扩展区间
+#### 利用短时过零率扩展区间
 
 ```python {title="main.py"}
 # Step 3: Expand the ranges by judging whether the average zero-crossing
@@ -185,7 +186,7 @@ ranges = [[i_starts[r[0]], i_starts[r[1]] + n_window] for r in ranges_3]
 
 ![shop - 语音波形图](assets/shop/time-domain.webp)
 
-### 3 构造 Mel 滤波器组
+### 构造 Mel 滤波器组
 
 ```python {title="main.py"}
 # Obtain the Mel filter banks.
@@ -250,7 +251,7 @@ filters = np.array([np.concatenate([
 
 ![Mel 滤波器组](assets/mel-filters.webp)
 
-### 4 使用 Mel 滤波器组处理能量谱
+### 使用 Mel 滤波器组处理能量谱
 
 ```python {title="main.py"}
 # Get the spectrogram using STFT.
@@ -273,7 +274,7 @@ log_filtered_spec = 10 * np.log10(filtered_spec)
 
 ![shop - 对数能量谱（16 ms + 汉明窗 + Mel 滤波器组）](assets/shop/energy-spec-16ms-hamming-filtered.webp)
 
-### 5 生成 MFCC 系数
+### 生成 MFCC 系数
 
 ```python {title="main.py"}
 # Generate the MFCC.
@@ -386,9 +387,9 @@ def dct(x: np.ndarray, d: int) -> np.ndarray:
 
 :::
 
-### 6 运行代码
+### 运行代码
 
-#### 6.1 安装
+#### 安装
 
 配置环境前，首先需要安装以下依赖：
 
@@ -401,7 +402,7 @@ conda env update --name dsp --file environment.yml
 conda activate dsp
 ```
 
-#### 6.2 使用
+#### 使用
 
 将音频文件放置于 `./data/dev_set` 目录下，执行以下命令启动程序：
 
@@ -411,7 +412,7 @@ python3 main.py
 
 生成的语音波形图、MFCC 系数以及过程中产生的其他图像将保存在 `./assets/mfcc` 目录下。
 
-#### 6.3 测试
+#### 测试
 
 本实验中，我们使用了预录制的音频文件 `shop.dat`，其内容是单词 shop 的一段语音，按 8000 Hz 采样。
 

@@ -6,6 +6,7 @@ tags = [
     "VPS",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/66372748_p0.webp"
@@ -42,9 +43,9 @@ url = "https://www.pixiv.net/artworks/66372748"
 
 以下我整理了一个大概的建站流程（但不是教程），主要目的在于告诉读者需要完成哪些工作，以及在哪里可以**找到**相关信息和资料——你当然需要自己动手。
 
-### 1 获得 VPS 主机
+### 获得 VPS 主机
 
-#### 1.1 为什么选择 VPS
+#### 为什么选择 VPS
 
 [VPS][vps-wiki] 并不是必需的，你完全可以选择 [虚拟主机][vhost-wiki] 作为替代方案。本文推荐使用 VPS，单纯只是因为喜欢控制权完全在自己手中，或者说，喜欢折腾。毕竟生命在于折腾嘛。
 
@@ -58,7 +59,7 @@ url = "https://www.pixiv.net/artworks/66372748"
 
 :::
 
-#### 1.2 VPS 服务商选择
+#### VPS 服务商选择
 
 ![VPS 选择三色图](assets/select-vps.webp)
 
@@ -75,13 +76,13 @@ url = "https://www.pixiv.net/artworks/66372748"
 [分享我对于 VPS 主机的一些经验给入坑萌新 - 初行博客](https://www.zrj96.com/post-762.html)
 :::
 
-#### 1.3 VPS 系统选择
+#### VPS 系统选择
 
 一般推荐用 Linux，不推荐 Windows，又贵又吃配置，配环境还麻烦，完全没有必要。至于用 Linux 的哪一个发行版，看个人习惯就行。新手的话推荐开箱即用的 Ubuntu。
 
 本文选择的是 Ubuntu 18.04 LTS。
 
-#### 1.4 如何连接到 VPS
+#### 如何连接到 VPS
 
 Windows 下推荐使用 [Xshell]，免费的 Home & School 版其实就完全够用了。macOS 下可以试试 [Termius]。
 
@@ -92,7 +93,7 @@ Windows 下推荐使用 [Xshell]，免费的 Home & School 版其实就完全够
 [Xshell 6 安装和使用教程 - CSDN](https://blog.csdn.net/qq_32653877/article/details/81984745)
 :::
 
-### 2 获得域名
+### 获得域名
 
 不推荐国内域名商，**强烈**不推荐 Freenom（切记，**免费的永远是最贵的**）。推荐使用 [Cloudflare Registrar][cf-registrar]，仅收取 [ICANN] 的成本价，十分良心。你也可以考虑先在其他地方注册（例如 [namecheap] 和 [namesilo]），蹭个首年优惠，然后再迁移到 Cloudflare。
 
@@ -105,7 +106,7 @@ Windows 下推荐使用 [Xshell]，免费的 Home & School 版其实就完全够
 [namecheap]: https://www.namecheap.com
 [namesilo]: https://www.namesilo.com
 
-### 3 配置 CDN
+### 配置 CDN
 
 想提高国内访问速度（而且有钱）就上国内 CDN，想提高全球（除中国大陆以外地区）访问速度就上 [Cloudflare]。
 
@@ -117,7 +118,7 @@ Windows 下推荐使用 [Xshell]，免费的 Home & School 版其实就完全够
 
 [Cloudflare]: https://www.cloudflare.com
 
-### 4 开始建站
+### 开始建站
 
 ::: callout {type=tip title="阅读"}
 [极限建站 - YangMame](https://blog.yangmame.org/%E6%9E%81%E9%99%90%E5%BB%BA%E7%AB%99.html)

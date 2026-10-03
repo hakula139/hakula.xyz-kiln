@@ -9,6 +9,7 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/85995104_p0.webp"
@@ -36,9 +37,9 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ## 实验报告
 
-### 1 进程管理
+### 进程管理
 
-#### 1.1 关于 PCB 设计
+#### 关于 PCB 设计
 
 ::: callout {type=quote title="题目"}
 在 `proc`（即 PCB）中仅存储了进程的 trap frame 与 context 的指针，请说明 trap frame 与 context 的实例存在何处，为什么要这样设计？
@@ -52,13 +53,13 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 如图所示[^xv6-book]，context 的实例保存在执行 context switch 的内核的 kernel stack 处。与 trap frame 类似，context 也是一个保存了一组通用寄存器的结构。Scheduler 在 context switch 时需要交换进程的 context，然而我们并没有这么多寄存器来在函数调用时传入整个 context 结构。因此，我们在 PCB 中仅存储 context 的指针，这样在调度时 scheduler 就只需用到两个寄存器，分别存放了将被调入和调出的新旧进程的 context 指针。
 
-#### 1.2 Context Switch
+#### Context Switch
 
 ::: callout {type=quote title="实验目标"}
 请完成 `inc/proc.h` 中 `struct context` 的定义以及 `kern/swtch.S` 中 context switch 的实现。
 :::
 
-##### 1.2.1 Context 设计
+##### Context 设计
 
 Context 中需要保存所有的 callee-saved 寄存器[^xv6-book]，即通用寄存器 X19 ~ X28[^proc-call-std]。此外，我们额外保存寄存器 X29 (Frame Pointer) 和 X30 (Procedure Link Register)，其中 X30 用于指定用户进程初次运行的地址。
 
@@ -81,7 +82,7 @@ struct context {
 };
 ```
 
-##### 1.2.2 Context Switch 实现
+##### Context Switch 实现
 
 Context switch 主要做了以下几件事情[^xv6]：
 
@@ -127,9 +128,9 @@ swtch:
     ret
 ```
 
-#### 1.3 关于 Context Switch 设计
+#### 关于 Context Switch 设计
 
-##### 1.3.1 问题一
+##### 问题一
 
 ::: callout {type=quote title="题目"}
 
@@ -145,7 +146,7 @@ void swtch(struct context**, struct context*);
 
 因为如果第一个参数传的是 `struct context*`，那么在函数 `swtch` 中对第一个参数值的修改（也就是将栈指针的地址保存在寄存器 X0）将无法反映到函数外部。即在函数返回后，这个局部变量就会失效，这样也就无法保存旧进程的 context 指针。而传入 `struct context**`，就可以通过修改这个指针所指向的地址，来将旧进程的 context 指针传到函数外部。
 
-##### 1.3.2 问题二
+##### 问题二
 
 ::: callout {type=quote title="题目"}
 `context` 中仅需要存储 callee-saved registers，请结合 PCS 说明为什么？
@@ -153,7 +154,7 @@ void swtch(struct context**, struct context*);
 
 因为根据 PCS (Procedure Call Standard)[^proc-call-std]，函数调用时，callee 只需要确保约定的 callee-saved 寄存器中的数据不被损坏（corrupt），而其他寄存器中的数据是可以损坏的。因此在 context switch 时，context 不需要存储 callee-saved 寄存器以外的其他寄存器，因为即使这些数据在 context switch 的过程中损坏了也没有关系，只需保证 callee-saved 寄存器中的数据不受 context switch 影响即可。
 
-##### 1.3.3 问题三
+##### 问题三
 
 ::: callout {type=quote title="题目"}
 与 trap frame 对比，请说明为什么 trap frame 需要存储这么多信息？
@@ -161,7 +162,7 @@ void swtch(struct context**, struct context*);
 
 因为 trap 过程不是函数调用，没有 caller 和 callee 的说法，不遵循也无法遵循 PCS。例如系统中断时，内核可以直接中断用户程序，用户程序并不会有机会提前保存所谓的 callee-saved 寄存器，但这些数据同样不应该在 trap 后被内核程序损坏。因此 trap frame 需要存储所有通用寄存器，才能保证之后回到用户态时可以正确还原用户程序的数据。
 
-##### 1.3.4 问题四
+##### 问题四
 
 ::: callout {type=quote title="题目"}
 Trap frame **似乎**已经包含了 context 中的内容，为什么上下文切换时还需要先 trap 再 switch？
@@ -169,13 +170,13 @@ Trap frame **似乎**已经包含了 context 中的内容，为什么上下文�
 
 因为 trap 过程是从用户态切换到内核态的过程，switch 过程是内核态中的过程。上下文切换需要在内核态中进行，因此还是要先 trap 再 switch。虽然 trap frame 似乎包含了 context 中的内容，但它们完全是两个不同的东西，有着不同的用途，存储在不同的位置，因此也无法复用其中的数据。
 
-#### 1.4 内核进程管理模块
+#### 内核进程管理模块
 
 ::: callout {type=quote title="题目"}
 请根据 `kern/proc.c` 中相应代码的注释完成内核进程管理模块以支持调度第一个用户进程 `user/initcode.S`。
 :::
 
-##### 1.4.1 PCB 设计
+##### PCB 设计
 
 每个用户进程的 PCB 中保存了以下数据，具体作用参见注释。
 
@@ -203,7 +204,7 @@ struct proc {
 };
 ```
 
-##### 1.4.2 锁的初始化: `proc_init`
+##### 锁的初始化: `proc_init`
 
 函数 `proc_init` 的主要工作是完成 `ptable` 锁的初始化，以处理多核的并发问题。这里我们不是在整个 `struct ptable` 中，而是在每个 `struct proc` 中新增一个自旋锁 `proc_lock`。这样做的目的是为了使锁的控制粒度更细，实际上这也是 xv6-riscv 的实现方法[^xv6-riscv]。
 
@@ -225,14 +226,14 @@ proc_init()
 }
 ```
 
-##### 1.4.3 创建新进程: `proc_alloc`
+##### 创建新进程: `proc_alloc`
 
 函数 `proc_alloc` 的主要工作是遍历进程表 `ptable`，找到一个 UNUSED 进程，进行内核部分的初始化工作，最后返回进程的 `proc` 指针。具体来说：
 
 1. 利用函数 `pid_next`（`kern/proc.c`）分配 PID。
 2. 利用函数 `kalloc`（`kern/kalloc.c`）分配内核栈 kstack。
 3. 在 kstack 的栈顶分配一块空间作为 trap frame。
-4. 在 trap frame 下面再分配一块空间作为 context，并进行初始化。其中寄存器 X30 保存函数 `forkret` 的地址，作为进程初次从函数 `swtch` 返回时的返回地址。这里函数 `forkret` 只需在进程第一次被 scheduler 调度时进入一次，之后就不再需要进入了。调度的具体过程将在 [1.4.5](#1.4.5-内核调度-scheduler) 节讲解。
+4. 在 trap frame 下面再分配一块空间作为 context，并进行初始化。其中寄存器 X30 保存函数 `forkret` 的地址，作为进程初次从函数 `swtch` 返回时的返回地址。这里函数 `forkret` 只需在进程第一次被 scheduler 调度时进入一次，之后就不再需要进入了。调度的具体过程将在 [内核调度：`scheduler`](#内核调度-scheduler) 节讲解。
 5. 设置进程状态为 EMBRYO。
 
 如果创建进程失败，则返回 `NULL`。
@@ -309,14 +310,14 @@ proc_free(struct proc* p)
 }
 ```
 
-##### 1.4.4 初始化用户进程: `user_init`
+##### 初始化用户进程: `user_init`
 
 函数 `user_init` 的主要工作是初始化第一个用户进程。具体来说：
 
 1. 利用函数 `proc_alloc`（`kern/proc.c`）进行内核部分的初始化。
 2. 利用函数 `pgdir_init`（`kern/vm.c`）分配一个用户页表，并指定进程的内存空间为一个页表的大小 `PGSIZE`。
 3. 利用函数 `uvm_init`（`kern/vm.c`）将初始化二进制码 `initcode` 加载到页表的起始位置。
-4. 清空 trap frame，并进行初始化。其中寄存器 SP_EL0 设置为 `PGSIZE`，其余寄存器设置为 `0`。部分寄存器会在函数 `trapret` 返回（`eret`）时用到，具体将在 [1.4.5](#1.4.5-内核调度-scheduler) 节讲解。
+4. 清空 trap frame，并进行初始化。其中寄存器 SP_EL0 设置为 `PGSIZE`，其余寄存器设置为 `0`。部分寄存器会在函数 `trapret` 返回（`eret`）时用到，具体将在 [内核调度：`scheduler`](#内核调度-scheduler) 节讲解。
 5. 设置进程名为 `initproc`。
 6. 设置进程状态为 RUNNABLE。
 
@@ -402,7 +403,7 @@ uvm_init(uint64_t* pgdir, char* binary, uint64_t sz)
 }
 ```
 
-##### 1.4.5 内核调度: `scheduler`
+##### 内核调度: `scheduler`
 
 函数 `scheduler` 的主要工作是调度进程，这就是个大工程了。以下我们按函数调用顺序慢慢展开。
 
@@ -470,7 +471,7 @@ uvm_switch(struct proc* p)
 }
 ```
 
-随后调用函数 `swtch`，切换到该进程的 context，参见 [1.2.2](#1.2.2-context-switch-实现) 节。`swtch` 的返回地址由 `p->context` 保存的寄存器 X30 决定。在 [1.4.3](#1.4.3-创建新进程-proc_alloc) 节中我们提到，X30 保存的是函数 `forkret` 的地址。因此进程初次被 `scheduler` 调度，从函数 `swtch` 返回时，将返回到 `forkret`。此后，进程就按照每次切换 context 时 X30 保存的地址，返回到用户地址空间的相应位置。
+随后调用函数 `swtch`，切换到该进程的 context，参见 [Context Switch 实现](#context-switch-实现) 节。`swtch` 的返回地址由 `p->context` 保存的寄存器 X30 决定。在 [创建新进程：`proc_alloc`](#创建新进程-proc_alloc) 节中我们提到，X30 保存的是函数 `forkret` 的地址。因此进程初次被 `scheduler` 调度，从函数 `swtch` 返回时，将返回到 `forkret`。此后，进程就按照每次切换 context 时 X30 保存的地址，返回到用户地址空间的相应位置。
 
 ```c {title="kern/proc.c"}
 /*
@@ -492,7 +493,7 @@ forkret()
 
 函数 `forkret` 的作用是在进程初次被调度时，释放 `scheduler` 持有的进程锁 `p->lock`，并进行一些必须在用户进程中才能进行的初始化工作，例如文件系统的初始化（因为需要调用 `sleep` 休眠当前进程，故不能在函数 `main` 中执行）。由于目前我们还没有实现文件系统，因此目前 `forkret` 只是为这些初始化工作预留一个位置。
 
-接下来函数 `forkret` 应该返回到函数 `trapret`。这里一个非常 tricky 的点在于，如何返回？关于这点我研究了 7 个多小时，阅读了大量手册和源码。这项工作的难点在于，如果直接返回，那么由于 [1.2.2](#1.2.2-context-switch-实现) 节我们设置的 context 中寄存器 X30 的值为函数 `forkret` 的地址，而且后续没有地方修改过，因此这里 `forkret` 还是会返回到 `forkret`，导致死循环。那如果直接调用 `trapret` 呢？由于当前栈指针 SP 保存的地址指向函数 `forkret` 目前栈帧的栈顶，显然不是进程 trap frame 的地址 `p->tf`。然而 `trapret` 在还原寄存器时需要用到 SP 的值，且该值应当为 `p->tf`，错误的 SP 值将导致 `trapret` 无法正常工作。
+接下来函数 `forkret` 应该返回到函数 `trapret`。这里一个非常 tricky 的点在于，如何返回？关于这点我研究了 7 个多小时，阅读了大量手册和源码。这项工作的难点在于，如果直接返回，那么由于 [Context Switch 实现](#context-switch-实现) 节我们设置的 context 中寄存器 X30 的值为函数 `forkret` 的地址，而且后续没有地方修改过，因此这里 `forkret` 还是会返回到 `forkret`，导致死循环。那如果直接调用 `trapret` 呢？由于当前栈指针 SP 保存的地址指向函数 `forkret` 目前栈帧的栈顶，显然不是进程 trap frame 的地址 `p->tf`。然而 `trapret` 在还原寄存器时需要用到 SP 的值，且该值应当为 `p->tf`，错误的 SP 值将导致 `trapret` 无法正常工作。
 
 ```asm {title="kern/trapasm.S"}
 /* Return falls through to trapret. */
@@ -581,11 +582,11 @@ usertrapret:
 
 虽然暴力，但简单明了。
 
-终于，我们跳转到了函数 `trapret`，其作用主要是载入 trap frame，初始化所有寄存器。[1.4.4](#1.4.4-初始化用户进程-user_init) 节中我们提到，寄存器 X30 和 ELR_EL1 设置为 `0`，其实指的是 `initcode` 在页表中的起始地址；寄存器 SP_EL0 设置为 `PGSIZE`，指的是用户栈的栈底地址，作为栈指针 SP 的初始值；寄存器 SPSR_EL1 设置为 `0`，表示用户态（EL0）。于是，`trapret` 在异常返回（`eret`）时，将返回到用户态下 `initcode` 的起始地址。至此，用户程序 `initcode` 开始执行。
+终于，我们跳转到了函数 `trapret`，其作用主要是载入 trap frame，初始化所有寄存器。[初始化用户进程：`user_init`](#初始化用户进程-user_init) 节中我们提到，寄存器 X30 和 ELR_EL1 设置为 `0`，其实指的是 `initcode` 在页表中的起始地址；寄存器 SP_EL0 设置为 `PGSIZE`，指的是用户栈的栈底地址，作为栈指针 SP 的初始值；寄存器 SPSR_EL1 设置为 `0`，表示用户态（EL0）。于是，`trapret` 在异常返回（`eret`）时，将返回到用户态下 `initcode` 的起始地址。至此，用户程序 `initcode` 开始执行。
 
-##### 1.4.6 进程切换: `yield`
+##### 进程切换: `yield`
 
-每当时间片耗尽，程序就要被强制暂停执行。这时我们通过 trap 调用函数 `yield` 来切换当前使用 CPU 的程序。trap 的部分我们留到 [2.1](#2.1-系统调用模块) 节再讲，这里我们只关注进程管理的部分。
+每当时间片耗尽，程序就要被强制暂停执行。这时我们通过 trap 调用函数 `yield` 来切换当前使用 CPU 的程序。trap 的部分我们留到 [系统调用模块](#系统调用模块) 节再讲，这里我们只关注进程管理的部分。
 
 函数 `yield` 的工作很简单，就是设置进程状态为 RUNNABLE，然后调用函数 `sched`。
 
@@ -625,7 +626,7 @@ sched()
 }
 ```
 
-##### 1.4.7 进程退出: `exit`
+##### 进程退出: `exit`
 
 假设程序已经执行完了，最后系统函数 `sys_exit` 会调用函数 `exit` 退出。函数 `exit` 的主要工作是将当前进程的子进程托管给第一个用户进程 `initproc`，设置进程状态为 ZOMBIE，最后调用函数 `sched` 回到 `scheduler`。由于目前我们没有实现函数 `wait`，因此其实进程申请的资源暂时还无法释放，父子进程的概念暂时也没有什么用处，可以先不管。
 
@@ -662,15 +663,15 @@ exit(int status)
 }
 ```
 
-### 2 系统调用
+### 系统调用
 
-#### 2.1 系统调用模块
+#### 系统调用模块
 
 ::: callout {type=quote title="实验目标"}
 目前内核已经支持基本的异常处理，在本实验中还需要进一步完善内核的系统调用模块。
 :::
 
-从函数 `trap` 开始说起。在 trap 后，如果判断当前为 timer 中断，则调用函数 `yield`，触发进程切换，具体参见 [1.4.6](#1.4.6-进程切换-yield) 节。如果判断当前为系统调用，则清空寄存器 ESR (Exception Syndrome Register)，设置 trap frame，并调用函数 `syscall`。
+从函数 `trap` 开始说起。在 trap 后，如果判断当前为 timer 中断，则调用函数 `yield`，触发进程切换，具体参见 [进程切换：`yield`](#进程切换-yield) 节。如果判断当前为系统调用，则清空寄存器 ESR (Exception Syndrome Register)，设置 trap frame，并调用函数 `syscall`。
 
 ```c {title="kern/trap.c"}
 void
@@ -740,9 +741,9 @@ syscall()
 }
 ```
 
-### 3 调整主循环
+### 调整主循环
 
-由于 [1.4.4](#1.4.4-初始化用户进程-user_init) 节中踩到的坑，我仔细检查了一遍哪些初始化函数是只能在 CPU0 上被调用一次的。修改后的主循环 `main` 如下所示：
+由于 [初始化用户进程：`user_init`](#初始化用户进程-user_init) 节中踩到的坑，我仔细检查了一遍哪些初始化函数是只能在 CPU0 上被调用一次的。修改后的主循环 `main` 如下所示：
 
 ```c {title="kern/main.c"}
 volatile static int started = 0;

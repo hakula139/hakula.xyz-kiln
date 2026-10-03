@@ -10,6 +10,7 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/88070709_p0.webp"
@@ -36,21 +37,21 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ## 实验报告
 
-### 1 文件系统
+### 文件系统
 
 ::: callout {type=quote title="实验目标"}
 请实现文件系统，本实验中的文件系统遵循 xv6 的设计，你也可以从 0 开始设计属于你的文件系统。如果你的文件系统不同于 xv6 的话，请修改 `user/src/mkfs`。你需要添加测试证明你实现的文件系统可以读取到你打包的文件，在数量、内容上是正确的。
 :::
 
-#### 1.0 总览
+#### 总览 {numbering-start=0}
 
 ![xv6 文件系统的整体架构（引自 _xv6_）](assets/file-system.webp){width=500}
 
 文件系统的整体架构参考 xv6 的设计，其 7 层架构如图所示。以下我们将自底向上依次进行阐述。
 
-#### 1.1 Disk
+#### Disk
 
-第 1 层是磁盘驱动，作为物理磁盘的抽象层，为操作系统提供了读写磁盘块的方法。我们已在 Lab 6 时在 `kern/sd.c` 中实现，详见 [Lab 6 第 2 节](../driver-and-libc/#2-块设备驱动)。
+第 1 层是磁盘驱动，作为物理磁盘的抽象层，为操作系统提供了读写磁盘块的方法。我们已在 Lab 6 时在 `kern/sd.c` 中实现，详见 [Lab 6：块设备驱动](../driver-and-libc/#块设备驱动)。
 
 在这一层中，我们提供了以下方法：
 
@@ -58,9 +59,9 @@ Operating Systems (H) @ Fudan University, fall 2020.
 - `sd_intr`：处理 SD 卡设备中断
 - `sd_rw`：读写 SD 卡磁盘块
 
-#### 1.2 Buffer cache
+#### Buffer cache
 
-第 2 层是磁盘块缓存，用于将磁盘块缓存到内存中，从而加速磁盘读写。我们已在 Lab 6 时在 `kern/bio.c` 中实现，详见 [Lab 6 第 1 节](../driver-and-libc/#1-i-o-框架)。
+第 2 层是磁盘块缓存，用于将磁盘块缓存到内存中，从而加速磁盘读写。我们已在 Lab 6 时在 `kern/bio.c` 中实现，详见 [Lab 6：I/O 框架](../driver-and-libc/#i-o-框架)。
 
 在这一层中，我们提供了以下方法：
 
@@ -71,7 +72,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 - `bpin`：将 `buf` 的引用数加 `1`，其中引用数表示当前正在等待此 `buf` 的设备数量
 - `bunpin`：将 `buf` 的引用数减 `1`
 
-#### 1.3 Logging
+#### Logging
 
 第 3 层是磁盘改动日志，用于维护文件系统的崩溃一致性（crash consistency），确保写磁盘的事务是原子（atomic）的。我们将在 `kern/log.c` 中实现。
 
@@ -82,7 +83,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 - `begin_op`：开始文件系统调用
 - `end_op`：结束文件系统调用
 
-##### 1.3.1 `initlog`
+##### `initlog`
 
 函数 `initlog` 的主要工作是根据 super block 中的信息对 `log` 进行初始化，然后调用函数 `recover_from_log`，根据 log header 恢复崩溃前未写入到磁盘的数据。
 
@@ -237,7 +238,7 @@ write_head()
 }
 ```
 
-##### 1.3.2 `log_write`
+##### `log_write`
 
 函数 `log_write` 的主要工作是在内存中的 log header 里记录需要被写入磁盘的 block 的标号，并标记这个 block 对应的 `buf` 为 dirty，以固定在 `bcache` 中，不会因 LRU 算法被意外淘汰。这些 block 将在之后被统一连续写入磁盘，从而提高效率。
 
@@ -276,7 +277,7 @@ log_write(struct buf* b)
 
 这里引入了 absorption 的优化机制。当在一个事务中多次写入同一个 block 时，在 log header 中仅记录一次这个 block 的标号，从而节省 log header 的空间，并提高效率。
 
-##### 1.3.3 `begin_op`
+##### `begin_op`
 
 函数 `begin_op` 的主要工作是在事务开始前，等待 `log` 空闲（不处于正在 commit 的状态）且可用（log header 有足够的空间保存新的待写 block 的标号），然后才允许开始本次文件系统调用。
 
@@ -303,7 +304,7 @@ begin_op()
 }
 ```
 
-##### 1.3.4 `end_op`
+##### `end_op`
 
 函数 `end_op` 的主要工作是在事务结束后，将 log header 中标记的 block 统一连续写入磁盘，并唤醒函数 `begin_op` 中等待 `log` 空闲且可用的文件系统调用。
 
@@ -398,9 +399,9 @@ write_head()
 }
 ```
 
-之后的写磁盘过程同 [1.3.1](#1.3.1-initlog) 节中函数 `recover_from_log` 的后半段。
+之后的写磁盘过程同 [`initlog`](#initlog) 节中函数 `recover_from_log` 的后半段。
 
-#### 1.4 Inode
+#### Inode
 
 第 4 层是索引节点（inode），包含了文件的元信息，用于描述文件系统对象。我们将在 `kern/fs.c` 中实现。
 
@@ -418,7 +419,7 @@ write_head()
 - `readi`：从 `inode` 中读取数据
 - `writei`：写入数据到 `inode`
 
-##### 1.4.1 `iinit`
+##### `iinit`
 
 函数 `iinit` 的主要工作是初始化 `icache` 和 `inode` 的锁。
 
@@ -472,7 +473,7 @@ struct inode {
 };
 ```
 
-##### 1.4.2 `ialloc`
+##### `ialloc`
 
 函数 `ialloc` 的主要工作是在磁盘中找到一个未分配的 `inode`（`type` 为 `0`），然后将它的 `type` 设置为给定的文件类型，表示已分配，最后调用函数 `iget`，返回这个 `inode` 在内存中的拷贝。
 
@@ -541,7 +542,7 @@ iget(uint32_t dev, uint32_t inum)
 }
 ```
 
-##### 1.4.3 `iupdate`
+##### `iupdate`
 
 函数 `iupdate` 的主要工作是将内存中的 `inode` 写入到磁盘。由于我们的 `icache` 采用直写（write-through）模式，因此每当 `inode` 有字段被修改，就需要调用一次函数 `iupdate` 进行写回操作。
 
@@ -569,7 +570,7 @@ iupdate(struct inode* ip)
 }
 ```
 
-##### 1.4.4 `idup`
+##### `idup`
 
 函数 `idup` 的主要工作是将 `inode` 的引用数加 `1`，其中引用数表示当前内存中指向这个 `inode` 的指针数量。
 
@@ -588,7 +589,7 @@ idup(struct inode* ip)
 }
 ```
 
-##### 1.4.5 `ilock`
+##### `ilock`
 
 函数 `ilock` 的主要工作是给指定的 `inode` 加锁。如果当前 `inode` 不在内存中（即 `valid` 为 `0`），则从磁盘中读取，并将 `valid` 设置为 `1`。
 
@@ -622,7 +623,7 @@ ilock(struct inode* ip)
 }
 ```
 
-##### 1.4.6 `iunlock`
+##### `iunlock`
 
 函数 `iunlock` 的主要工作是给指定的 `inode` 解锁。
 
@@ -639,7 +640,7 @@ iunlock(struct inode* ip)
 }
 ```
 
-##### 1.4.7 `iput`
+##### `iput`
 
 函数 `iput` 的主要工作是当 `inode` 的引用数为 `1` 时，调用函数 `itrunc` 清空并释放该 `inode` 的内容，然后调用函数 `iupdate` 更新磁盘中的 `inode`。否则将其引用数减 `1`。
 
@@ -735,7 +736,7 @@ bfree(int dev, uint32_t b)
 }
 ```
 
-##### 1.4.8 `iunlockput`
+##### `iunlockput`
 
 函数 `iunlockput` 是 `iunlock` + `iput` 的别名。
 
@@ -751,7 +752,7 @@ iunlockput(struct inode* ip)
 }
 ```
 
-##### 1.4.9 `stati`
+##### `stati`
 
 函数 `stati` 的主要工作是复制 `inode` 的元数据（metadata）到 `stat` 结构，届时用户程序可以通过 `stat` 系统调用读取。
 
@@ -778,7 +779,7 @@ stati(struct inode* ip, struct stat* st)
 }
 ```
 
-##### 1.4.10 `readi`
+##### `readi`
 
 函数 `readi` 的主要工作是从 `inode` 中读取数据。具体来说，先确保数据的读取范围在文件内，然后利用函数 `bmap` 定位文件中 block 的地址并读取到 `buf`，接着将数据从 `buf` 复制到目标地址 `dst`，最后返回成功读取的 block 数量。
 
@@ -897,7 +898,7 @@ bzero(int dev, int bno)
 }
 ```
 
-##### 1.4.11 `writei`
+##### `writei`
 
 函数 `writei` 的主要工作是写入数据到 `inode`。具体来说，先确保数据的写入起始地址在文件内，且写入结束地址不超过最大文件大小 `MAXFILE * BSIZE`，然后利用函数 `bmap` 定位文件中 block 的地址并读取到 `buf`，接着将数据从源地址 `src` 复制到 `buf`，并调用函数 `log_write` 加入写磁盘队列，最后返回成功写入的 block 数量。其中，如果写入的 block 数量超过文件大小，文件将自动扩容，最后需要更新此文件的大小，并调用函数 `iupdate` 写入到磁盘。
 
@@ -934,7 +935,7 @@ writei(struct inode* ip, char* src, size_t off, size_t n)
 }
 ```
 
-#### 1.5 Directory
+#### Directory
 
 第 5 层是目录，用于组织文件系统的层次结构（hierarchy）。TA 已在 `kern/fs.c` 中实现，由于时间有限，这里就不详细阐述了。
 
@@ -944,7 +945,7 @@ writei(struct inode* ip, char* src, size_t off, size_t n)
 - `dirlookup`：在一个目录下查找指定名称的文件夹
 - `dirlink`：在一个目录下新建指定名称的文件夹
 
-#### 1.6 Pathname
+#### Pathname
 
 第 6 层是路径，用于以字符串表示一个文件或文件夹在文件系统中的位置。TA 已在 `kern/fs.c` 中实现，由于时间有限，这里就不详细阐述了。
 
@@ -953,7 +954,7 @@ writei(struct inode* ip, char* src, size_t off, size_t n)
 - `namei`：查找指定路径的文件或文件夹
 - `nameiparent`：查找指定路径的父文件夹
 
-#### 1.7 File descriptor
+#### File descriptor
 
 第 7 层是文件描述符，以非负整数的形式，表示一个已打开文件（或管道、socket 等，一切皆文件！）的引用。内核为每个进程维护了一个进程级文件表（file table），同时在全局维护了一个系统级文件表（global file table，或 `ftable`），包含了所有打开的文件，文件描述符实际就是这个表的索引。我们将在 `kern/file.c` 中实现。由于时间有限，我们目前仅支持普通文件。
 
@@ -967,7 +968,7 @@ writei(struct inode* ip, char* src, size_t off, size_t n)
 - `file_read`：从文件读取数据
 - `file_write`：写入数据到文件
 
-##### 1.7.1 `file_init`
+##### `file_init`
 
 函数 `file_init` 的主要工作是初始化 `ftable` 的锁。
 
@@ -1002,7 +1003,7 @@ struct file {
 };
 ```
 
-##### 1.7.2 `file_alloc`
+##### `file_alloc`
 
 函数 `file_alloc` 的主要工作是在 `ftable` 中找到一个未使用的文件（`ref` 为 `0`），然后将它标记为使用中并返回。
 
@@ -1026,7 +1027,7 @@ file_alloc()
 }
 ```
 
-##### 1.7.3 `file_dup`
+##### `file_dup`
 
 函数 `file_dup` 的主要工作是将文件的引用数加 `1`，表示创建一个此文件的引用拷贝。
 
@@ -1045,7 +1046,7 @@ file_dup(struct file* f)
 }
 ```
 
-##### 1.7.4 `file_close`
+##### `file_close`
 
 函数 `file_close` 的主要工作是将文件的引用数减 `1`，当引用数降到 `0` 时，对于普通文件，调用函数 `iput` 关闭文件。
 
@@ -1078,7 +1079,7 @@ file_close(struct file* f)
 }
 ```
 
-##### 1.7.5 `file_stat`
+##### `file_stat`
 
 函数 `file_stat` 的主要工作是调用函数 `stati` 读取文件的元数据。
 
@@ -1099,7 +1100,7 @@ file_stat(struct file* f, struct stat* st)
 }
 ```
 
-##### 1.7.6 `file_read`
+##### `file_read`
 
 函数 `file_read` 的主要工作是对于普通文件，调用函数 `readi` 从文件中读取数据。
 
@@ -1123,7 +1124,7 @@ file_read(struct file* f, char* addr, ssize_t n)
 }
 ```
 
-##### 1.7.7 `file_write`
+##### `file_write`
 
 函数 `file_write` 的主要工作是对于普通文件，调用函数 `writei` 写入数据到文件。
 
@@ -1165,7 +1166,7 @@ file_write(struct file* f, char* addr, ssize_t n)
 }
 ```
 
-### 2 系统调用
+### 系统调用
 
 ::: callout {type=quote title="实验目标"}
 请修改 `syscall.c` 以及 `trapasm.S` 来接上 musl，或者修改 Makefile 并搬运 xv6 的简易 libc，从而允许用户态程序通过调用系统调用来操作文件系统。
@@ -1173,7 +1174,7 @@ file_write(struct file* f, char* addr, ssize_t n)
 
 接上 musl 后，我们对系统调用的细节进行了一些修改。以下我们将以初始化程序 `user/initcode.S` 为例，简单梳理一下用户程序进行系统调用的全过程。
 
-#### 2.1 `initcode.S`
+#### `initcode.S`
 
 这里我们引入了 musl 的 `syscall.h`，其中包含了 libc 中所有系统调用所对应的 system call number 的定义，例如系统调用 `sys_exec` 对应的 system call number 就是 `SYS_execve`（其值为 `221`）。
 
@@ -1200,7 +1201,7 @@ argv:
     .word 0
 ```
 
-#### 2.2 `trapasm.S`
+#### `trapasm.S`
 
 陷入内核态前，需要先构建 trap frame 结构。这里我们在原有寄存器的基础上，新增了 musl 需要用到的两个寄存器 Q0 和 TPIDR_EL0。
 
@@ -1262,7 +1263,7 @@ struct trapframe {
 };
 ```
 
-#### 2.3 `trap.c`
+#### `trap.c`
 
 随后跳转到函数 `trap` 入口。在函数 `trap` 中，我们根据寄存器 ESR (Exception Syndrome Register) 判断当前为系统调用，随后调用函数 `syscall1`，传入 trap frame，并将返回值保存在 trap frame 的寄存器 X0 中。
 
@@ -1287,7 +1288,7 @@ trap(struct trapframe* tf)
 }
 ```
 
-#### 2.4 `syscall.c`
+#### `syscall.c`
 
 我们根据之前保存在寄存器 X8 的值，可以得到当前的 system call number。随后利用函数指针表 `syscalls`，即可进行相应的系统调用。
 
@@ -1379,13 +1380,13 @@ int sys_chdir();
 
 至此，用户程序就完成了一次系统调用。
 
-### 3 Shell
+### Shell
 
 ::: callout {type=quote title="实验目标"}
 我们已经把 xv6 的 shell 搬运到了 `user/src/sh` 目录下，但需要实现 `brk` 系统调用来使用 `malloc`，你也可以自行实现一个简单的 shell。请在 `user/src/cat` 中实现 `cat` 命令并在你的 shell 中执行。
 :::
 
-#### 3.1 `cat`
+#### `cat`
 
 我们引入了 3 个头文件，分别用于：
 
@@ -1545,6 +1546,6 @@ sys_exec: failed to fetch argument.
 
 [^syscall]: 参考了 Stack Overflow 上的回答 [[3]][syscall-so-1] [[4]][syscall-so-2]。
 
-[^about-cat]: 不过本项目里仅支持普通文件，参见 [1.7](#1.7-file-descriptor) 节。
+[^about-cat]: 不过本项目里仅支持普通文件，参见 [File descriptor](#file-descriptor) 节。
 
 [^cat.c]: [mit-pdos / xv6-public / cat.c - GitHub][cat.c]

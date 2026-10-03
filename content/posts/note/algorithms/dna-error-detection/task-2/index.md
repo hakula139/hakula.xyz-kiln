@@ -7,6 +7,7 @@ tags = [
     "C++",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/89979147_p0.webp"
@@ -33,7 +34,7 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 ## 解题报告
 
-### 1 解题思路
+### 解题思路
 
 在 Task 1 的基础上，本题的主要难点分为两部分：
 
@@ -46,7 +47,7 @@ Algorithms (H) @ Fudan University, spring 2021.
 2. 利用 $\textrm{ref}$ 的索引，将 $\textrm{read}$ 片段匹配到 $\textrm{ref}$ 上的对应区域。
 3. 比较 $\textrm{read}$ 片段和 $\textrm{ref}$ 上匹配到的区域，查找 SV 片段。
 
-#### 1.1 建立索引
+#### 建立索引
 
 由于噪音和 SV 片段的存在，我们无法简单地在 $\textrm{ref}$ 字符串中直接查找一个 $\textrm{read}$ 子字符串片段，因此我们需要建立索引。
 
@@ -56,9 +57,9 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 具体代码可参见 [`src/common/dna.cpp`][dna.cpp:187] 中函数 `Dna::CreateIndex` 的实现。为了方便重复使用，我们提供了函数 `Dna::PrintIndex` 用于将索引导出成文件，以及函数 `Dna::ImportIndex` 用于从文件中读取索引。
 
-#### 1.2 字符串片段的模糊匹配
+#### 字符串片段的模糊匹配
 
-##### 1.2.1 生成 minimizer
+##### 生成 minimizer
 
 建立完索引后，我们就可以在每个 $\textrm{read}$ 片段中遍历所有长度为 $k$ 的子字符串，根据其哈希值查找是否有相同哈希值的 $\textrm{k-mer}$。同时，我们对于 $\textrm{read}$ 片段的反向互补序列 $\textrm{read'}$ 也进行同样的操作。对于每个找到的 $\textrm{k-mer}$，我们保存一个这样的结构：$\{\textrm{range}_{\textrm{ref}},\ \textrm{key}_{\textrm{read}},\ \textrm{range}_{\textrm{read}}\}$，我们称其为一个 $\textrm{minimizer}$。其中，$\textrm{range}_{\textrm{ref}}$ 表示 $\textrm{k-mer}$ 映射到 $\textrm{ref}$ 上的位置 $[i,i+k)$，$\textrm{key}_{\textrm{read}}$ 表示 $\textrm{read}$ 的编号（例如 $\textrm{S1}_{1}$），$\textrm{range}_{\textrm{read}}$ 表示这个子字符串在 $\textrm{read}$（或 $\textrm{read'}$）上的位置 $[j,j+k)$。同时，在每个 $\textrm{range}$ 中还额外保存了一个原字符串（$\textrm{ref}$ 或 $\textrm{read}$）的指针，用于之后读取及合并这个子字符串的值。在 $\textrm{range}_{\textrm{read}}$ 中还额外保存了 `mode` 字段和 `unknown` 字段，分别用于指示当前 $\textrm{read}$ 的模式（是否是反向互补序列），以及是否包含一定数量的未知字符 $\textrm{N}$（在合并时用于提高效率，不关键）。
 
@@ -66,7 +67,7 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 具体代码可参见 [`src/common/dna.cpp`][dna.cpp:250] 中函数 `Dna::FindOverlaps` 的实现。同时，我们提供了函数 `Dna::PrintOverlaps` 用于将 $\textrm{minimizer}$ 导出成文件，以及函数 `Dna::ImportOverlaps` 用于从文件中读取 $\textrm{minimizer}$。
 
-##### 1.2.2 合并 minimizer
+##### 合并 minimizer
 
 生成 $\textrm{minimizer}$ 后，我们需要对它们进行过滤及合并。其中，过滤指的是将错误匹配的 $\textrm{minimizer}$ 移除，合并指的是将两个 $\textrm{minimizer}$ 根据其 $\textrm{range}_{\textrm{ref}}$ 的范围 $[i_{1},i_{1}+k)$ 和 $[i_{2},i_{2}+k)$ 进行合并。
 
@@ -78,7 +79,7 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 具体代码可参见 [`src/common/dna_overlap.cpp`][dna_overlap.cpp:44] 中函数 `DnaOverlap::Merge` 的实现。
 
-##### 1.2.3 匹配 ref 链和 sv 链
+##### 匹配 ref 链和 sv 链
 
 由于 `long.fasta` 中同时包含了多条 $\textrm{sv}$ 链的采样，我们需要从中找到与 $\textrm{ref}$ 链匹配的 $\textrm{sv}$ 链。这里我们根据 $\textrm{minimizer}$ 在 $\textrm{ref}$ 上的覆盖率，选择覆盖率最高的 $\textrm{sv}$ 链与 $\textrm{ref}$ 链相匹配。
 
@@ -90,7 +91,7 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 具体代码可参见 [`src/common/dna_overlap.cpp`][dna_overlap.cpp:116] 中函数 `DnaOverlap::SelectChain` 和 `DnaOverlap::CheckCoverage` 的实现。
 
-#### 1.3 查找 SV 片段
+#### 查找 SV 片段
 
 最终，我们将问题化归到了类似于 Task 1 的情形。根据每个 $\textrm{minimizer}$ 中保存的 $\textrm{range}_{\textrm{ref}}$ 和 $\textrm{range}_{\textrm{read}}$，我们可以得到两个需要比较的字符串，接下来只需复用函数 `Dna::FindDeltasChunk` 的逻辑即可。
 
@@ -102,7 +103,7 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 接下来就是调参的工作了，在配置文件 [`src/utils/config.cpp`][config.cpp] 中有大量可以调整的参数，其中比较重要的参数有 `SIGNAL_RATE`, `DENSITY_WINDOW_SIZE`, `DELTA_MIN_LEN`, `SNAKE_MIN_LEN`, `GAP_MIN_DIFF` 等。由于时间关系，没有很多时间用来调参了，因此最终的实验结果尚不理想。
 
-### 2 运行代码
+### 运行代码
 
 本项目使用 C++17 编写，环境要求：
 
@@ -121,7 +122,7 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 使用 Task 2 测试数据生成的结果位于 `tests/test_2/sv.bed`。
 
-### 3 测试环境
+### 测试环境
 
 - Ubuntu 18.04.5 LTS (WSL2 5.4.72-microsoft-standard)
 - GCC 10.3.0

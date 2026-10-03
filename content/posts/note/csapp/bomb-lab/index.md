@@ -6,6 +6,7 @@ tags = [
     "汇编",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/csapp.webp"
@@ -40,7 +41,7 @@ printf("Phase 1 defused. How about the next one?\n");
 
 ## 实验报告
 
-### 准备工作
+### 准备工作 {numbering-start=0}
 
 使用 objdump[^objdump] 反汇编 `bomb` 程序，并将输出重定向到 `bomb.asm`。之后此文件将作为解题的重要参考。
 
@@ -60,13 +61,13 @@ gdb bomb
 
 ### Phase 1: string comparison
 
-#### 1.1 本关密码
+#### 本关密码
 
 `Border relations with Canada have never been better.`
 
-#### 1.2 解题过程
+#### 解题过程
 
-##### 1.2.1 观察函数 `main`
+##### 观察函数 `main`
 
 在 `bomb.asm` 中找到函数 `main` 对应的汇编语句，注意到其中片段：
 
@@ -87,7 +88,7 @@ gdb bomb
 `%rdi` = `input`
 :::
 
-##### 1.2.2 观察函数 `phase_1`
+##### 观察函数 `phase_1`
 
 在 `bomb.asm` 中找到函数 `phase_1` 对应的汇编语句：
 
@@ -119,9 +120,9 @@ gdb bomb
 
 `400eee`: `test %eax,%eax` 和 `400ef0`: `je 400ef7 <phase_1+0x17>` 判断返回值是否为 `0`，是则直接跳到 `400ef7`: `add $0x8,%rsp` 弹栈返回，否则执行 `400ef2`: `callq 40143a <explode_bomb>` 引爆炸弹。
 
-其实到这里基本已经可以猜到答案了。但严谨起见，接下来将完整分析各个函数的具体作用与实现，以验证我们的推测是否正确。如果觉得这些分析没有必要，可以直接跳到 [1.2.6](#1.2.6-回到函数-phase_1) 节。
+其实到这里基本已经可以猜到答案了。但严谨起见，接下来将完整分析各个函数的具体作用与实现，以验证我们的推测是否正确。如果觉得这些分析没有必要，可以直接跳到 [回到函数 `phase_1`](#回到函数-phase_1) 节。
 
-##### 1.2.3 观察函数 `strings_not_equal`
+##### 观察函数 `strings_not_equal`
 
 在 `bomb.asm` 中找到函数 `strings_not_equal` 对应的汇编语句：
 
@@ -176,7 +177,7 @@ gdb bomb
 
 `401342`: `callq 40131b <string_length>` 调用函数 `string_length`。从函数名推测其作用可能为求字符串的长度。
 
-##### 1.2.4 观察函数 `string_length`
+##### 观察函数 `string_length`
 
 ```text {title="bomb.asm"}
 000000000040131b <string_length>:
@@ -219,7 +220,7 @@ return result;
 
 可见，函数 `string_length` 的作用为求 `%rdi` 寄存器指向的字符串的长度。
 
-##### 1.2.5 回到函数 `strings_not_equal`
+##### 回到函数 `strings_not_equal`
 
 ```text {title="bomb.asm"}
   40133c:   48 89 fb                mov    %rdi,%rbx
@@ -346,7 +347,7 @@ return 0;
 
 可见，函数 `strings_not_equal` 的作用为检查 `%rdi` 和 `%rsi` 寄存器指向的字符串是否相等，是则返回 `0`，否则返回 `1`。
 
-##### 1.2.6 回到函数 `phase_1`
+##### 回到函数 `phase_1`
 
 ```text {title="bomb.asm"}
 0000000000400ee0 <phase_1>:
@@ -369,7 +370,7 @@ return 0;
 
 可见，函数 `phase_1` 的作用为检查输入的字符串和 `0x402400` 指向的字符串是否相等，是则直接返回，否则引爆炸弹。
 
-##### 1.2.7 使用 gdb 查看内容
+##### 使用 gdb 查看内容
 
 因此 Phase 1 的密码就是 `0x402400` 指向的字符串。使用 gdb 查看该地址存放的内容：
 
@@ -383,7 +384,7 @@ return 0;
 0x402400:       "Border relations with Canada have never been better."
 ```
 
-##### 1.2.8 测试
+##### 测试
 
 在 gdb 中输入 Phase 1 的密码：
 
@@ -399,17 +400,17 @@ Phase 1 defused. How about the next one?
 
 ### Phase 2: loops
 
-#### 2.1 本关密码
+#### 本关密码
 
 `1 2 4 8 16 32`
 
-#### 2.2 解题过程
+#### 解题过程
 
 ::: callout {type=note title="寄存器状态"}
 `%rdi` = `input`
 :::
 
-##### 2.2.1 观察函数 `phase_2`
+##### 观察函数 `phase_2`
 
 在 `bomb.asm` 中找到函数 `phase_2` 对应的汇编语句：
 
@@ -450,9 +451,9 @@ Phase 1 defused. How about the next one?
 
 `400f05`: `callq 40145c <read_six_numbers>` 调用函数 `read_six_numbers`。从函数名推测其作用可能是读入 6 个数。
 
-类似地，接下来我们将完整分析该函数的具体作用与实现，以验证我们的推测是否正确。如果觉得这些分析没有必要，可以直接跳到 [2.2.3](#2.2.3-回到函数-phase_2) 节。
+类似地，接下来我们将完整分析该函数的具体作用与实现，以验证我们的推测是否正确。如果觉得这些分析没有必要，可以直接跳到 [回到函数 `phase_2`](#回到函数-phase_2) 节。
 
-##### 2.2.2 观察函数 `read_six_numbers`
+##### 观察函数 `read_six_numbers`
 
 在 `bomb.asm` 中找到函数 `read_six_numbers` 对应的汇编语句：
 
@@ -565,7 +566,7 @@ num2_pos = start_pos + 2;           // num2_pos in %r8
 
 [^sscanf]: [sscanf() - Read Data - IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_72/rtref/sscanf.htm)
 
-##### 2.2.3 回到函数 `phase_2`
+##### 回到函数 `phase_2`
 
 由之前的分析，我们确定了函数 `read_six_numbers` 的具体作用。此时栈内保存的信息为：
 
@@ -648,7 +649,7 @@ return target;
 
 由之前的分析，本关密码即为 `1 2 4 8 16 32`。
 
-##### 2.2.4 测试
+##### 测试
 
 在 gdb 中输入 Phase 2 的密码：
 
@@ -664,17 +665,17 @@ That's number 2.  Keep going!
 
 ### Phase 3: conditionals / switches
 
-#### 3.1 本关密码
+#### 本关密码
 
 `0 207`, `1 311`, `2 707`, `3 256`, `4 389`, `5 206`, `6 682`, `7 327`
 
-#### 3.2 解题过程
+#### 解题过程
 
 ::: callout {type=note title="寄存器状态"}
 `%rdi` = `input`
 :::
 
-##### 3.2.1 观察函数 `phase_3`
+##### 观察函数 `phase_3`
 
 在 `bomb.asm` 中找到函数 `phase_3` 对应的汇编语句：
 
@@ -829,7 +830,7 @@ return result;
 
 于是得到本关的 8 组解：`0 207`, `1 311`, `2 707`, `3 256`, `4 389`, `5 206`, `6 682`, `7 327`。
 
-##### 3.2.2 测试
+##### 测试
 
 这里以 `0 207` 为例，在 gdb 中输入 Phase 3 的密码：
 
@@ -845,17 +846,17 @@ Halfway there!
 
 ### Phase 4: recursive calls and the stack discipline
 
-#### 4.1 本关密码
+#### 本关密码
 
 `0 0`, `1 0`, `3 0`, `7 0`
 
-#### 4.2 解题过程
+#### 解题过程
 
 ::: callout {type=note title="寄存器状态"}
 `%rdi` = `input`
 :::
 
-##### 4.2.1 观察函数 `phase_4`
+##### 观察函数 `phase_4`
 
 在 `bomb.asm` 中找到函数 `phase_4` 对应的汇编语句：
 
@@ -919,7 +920,7 @@ Halfway there!
 
 `401048`: `callq 400fce <func4>` 调用函数 `func4`，也就是本关的主体部分。
 
-##### 4.2.2 观察函数 `func4`
+##### 观察函数 `func4`
 
 在 `bomb.asm` 中找到函数 `func4` 对应的汇编语句：
 
@@ -977,7 +978,7 @@ int func4(int key, int low, int high) {
 
 如此这个递归函数的作用就很清晰了。
 
-##### 4.2.3 回到函数 `phase_4`
+##### 回到函数 `phase_4`
 
 ::: callout {type=note title="寄存器状态"}
 `%eax` = `func4(nums[0], 0, 14)`
@@ -1001,7 +1002,7 @@ int func4(int key, int low, int high) {
 
 因此，输入的第 2 个整数应当为 `0`。
 
-##### 4.2.4 确定输入的第 1 个整数
+##### 确定输入的第 1 个整数
 
 事实上，由于 `nums[0]` 的取值范围有限，直接遍历然后测试返回值是否为 `0` 即可。测试代码如下：
 
@@ -1028,7 +1029,7 @@ The solutions are: 0 1 3 7
 
 综上，本关密码即为 `0 0`, `1 0`, `3 0`, `7 0`。
 
-##### 4.2.5 测试
+##### 测试
 
 这里以 `7 0` 为例，在 gdb 中输入 Phase 4 的密码：
 
@@ -1044,17 +1045,17 @@ So you got that one.  Try this one.
 
 ### Phase 5: pointers
 
-#### 5.1 本关密码
+#### 本关密码
 
 `9ON567`（不唯一）
 
-#### 5.2 解题过程
+#### 解题过程
 
 ::: callout {type=note title="寄存器状态"}
 `%rdi` = `input`
 :::
 
-##### 5.2.1 观察函数 `phase_5`
+##### 观察函数 `phase_5`
 
 在 `bomb.asm` 中找到函数 `phase_5` 对应的汇编语句：
 
@@ -1141,7 +1142,7 @@ So you got that one.  Try this one.
 `%eax` = `0`
 :::
 
-`40107a`: `callq 40131b <string_length>` 调用函数 `string_length`。由 [1.2.4](#1.2.4-观察函数-string_length) 节的分析，函数 `string_length` 的返回值就是字符串 `input` 的长度。
+`40107a`: `callq 40131b <string_length>` 调用函数 `string_length`。由 [观察函数 `string_length`](#观察函数-string_length) 节的分析，函数 `string_length` 的返回值就是字符串 `input` 的长度。
 
 `40107f`: `cmp $0x6,%eax` 和 `401082`: `je 4010d2 <phase_5+0x70>` 判断返回值是否为 `6`，是则直接跳到 `4010d2`: `mov $0x0,%eax`，否则执行 `401084`: `callq 40143a <explode_bomb>` 引爆炸弹。
 
@@ -1191,7 +1192,7 @@ if (result != 0)
 return result;
 ```
 
-其中，由 [1.2.5](#1.2.5-回到函数-strings_not_equal) 节的分析，函数 `strings_not_equal` 的作用为检查两个字符串是否相等，是则返回 `0`，否则返回 `1`。同时也可以知道 `0x40245e` 这个地址指向的是一个字符串。
+其中，由 [回到函数 `strings_not_equal`](#回到函数-strings_not_equal) 节的分析，函数 `strings_not_equal` 的作用为检查两个字符串是否相等，是则返回 `0`，否则返回 `1`。同时也可以知道 `0x40245e` 这个地址指向的是一个字符串。
 
 可见，这段代码的作用为：
 
@@ -1204,7 +1205,7 @@ return result;
 
 [^fs-se]: [linux - What sets fs:[0x28] (stack canary)? - Unix & Linux Stack Exchange](https://unix.stackexchange.com/questions/453749/what-sets-fs0x28-stack-canary)
 
-##### 5.2.2 确定目标字符串 `word`
+##### 确定目标字符串 `word`
 
 使用 gdb 查看地址 `0x40245e` 存放的内容：
 
@@ -1220,7 +1221,7 @@ return result;
 
 这就是我们需要构造的目标字符串 `word` 的值。
 
-##### 5.2.3 确定 6 个索引 `index`
+##### 确定 6 个索引 `index`
 
 使用 gdb 查看地址 `0x4024b0` 存放的内容：
 
@@ -1236,7 +1237,7 @@ return result;
 
 这就是字符串 `target` 的值，我们需要将 `word[i]` 分别设置为字符 `target[index]`。于是得到对应的 6 个 `index` 的值为：`0x9`, `0xf`, `0xe`, `0x5`, `0x6`, `0x7`（`index` 是 4 位二进制数，因此其取值范围为 $[\mathtt{0x0},\mathtt{0xf}]$）。
 
-##### 5.2.4 确定输入的 6 个字符
+##### 确定输入的 6 个字符
 
 由于索引 `index` 是字符 `input[i]` 的最后 4 位（二进制），通过 ASCII 码表找到最后 4 位为 `index` 的字符即可[^ascii-wiki]。于是得到对应的 6 个字符为：`9`, `O`, `N`, `5`, `6`, `7`（答案不唯一，这里就不一一列举了）。
 
@@ -1244,7 +1245,7 @@ return result;
 
 [^ascii-wiki]: [ASCII - Wikipedia](https://en.wikipedia.org/wiki/ASCII)
 
-##### 5.2.5 测试
+##### 测试
 
 在 gdb 中输入 Phase 5 的密码：
 
@@ -1260,17 +1261,17 @@ Good work!  On to the next...
 
 ### Phase 6: linked lists / pointers / structs
 
-#### 6.1 本关密码
+#### 本关密码
 
 `4 3 2 1 6 5`
 
-#### 6.2 解题过程
+#### 解题过程
 
 ::: callout {type=note title="寄存器状态"}
 `%rdi` = `input`
 :::
 
-##### 6.2.0 观察函数 `phase_6`
+##### 观察函数 `phase_6` {numbering-start=0}
 
 在 `bomb.asm` 中找到函数 `phase_6` 对应的汇编语句：
 
@@ -1367,7 +1368,7 @@ Good work!  On to the next...
 
 发现这段代码相当长，所以这里就不逐句分析了，直接逆向工程。
 
-##### 6.2.1 第一部分（`4010f4` ~ `40110b`）
+##### 第一部分（`4010f4` ~ `40110b`）
 
 ```text {title="bomb.asm"}
   4010f4:   41 56                   push   %r14
@@ -1382,7 +1383,7 @@ Good work!  On to the next...
   40110b:   49 89 e6                mov    %rsp,%r14
 ```
 
-首先读入 6 个整数（详见 [2.2.2](#2.2.2-观察函数-read_six_numbers) 节），保存到栈中。
+首先读入 6 个整数（详见 [观察函数 `read_six_numbers`](#观察函数-read_six_numbers) 节），保存到栈中。
 
 ::: callout {type=note title="寄存器状态"}
 `%rsi` = `%r13` = `%r14` = `%rsp`
@@ -1399,7 +1400,7 @@ Good work!  On to the next...
 
 其中，`nums[0]` ... `nums[5]` 表示输入的字符串中解析得到的（前）6 个整数。
 
-##### 6.2.2 第二部分（`40110e` ~ `401151`）
+##### 第二部分（`40110e` ~ `401151`）
 
 ```text {title="bomb.asm"}
   40110e:   41 bc 00 00 00 00       mov    $0x0,%r12d
@@ -1455,7 +1456,7 @@ while (true) {
 
 因此，这 6 个整数是 `1` ~ `6` 的一个全排列。
 
-##### 6.2.3 第三部分（`401153` ~ `40116d`）
+##### 第三部分（`401153` ~ `40116d`）
 
 ```text {title="bomb.asm"}
   401153:   48 8d 74 24 18          lea    0x18(%rsp),%rsi
@@ -1483,7 +1484,7 @@ for (i = begin_pos; i != end_pos; ++i) {        // i in %rax
 
 可见，保存在栈中的这 6 个整数 `nums[i]` 被依次修改成了 `7 - nums[i]`。
 
-##### 6.2.4 第四部分（`40116f` ~ `4011a9`）
+##### 第四部分（`40116f` ~ `4011a9`）
 
 ```text {title="bomb.asm"}
   40116f:   be 00 00 00 00          mov    $0x0,%esi
@@ -1555,7 +1556,7 @@ for (i = 0; i != 6; ++i) {          // i in %rsi
 `p_node6` = `0x603220`
 :::
 
-##### 6.2.5 第五部分（`4011ab` ~ `4011d0`）
+##### 第五部分（`4011ab` ~ `4011d0`）
 
 ```text {title="bomb.asm"}
   4011ab:   48 8b 5c 24 20          mov    0x20(%rsp),%rbx
@@ -1592,7 +1593,7 @@ for (cur_node = begin_node; next_pos != end_pos;
 
 这里的 `*(cur_node + 1)` 实质上就是 `cur_node->next`（即 `(*cur_node).next`），因为链表中的结点其实是一个结构体（struct），结点所在的地址指向的是数据 `val`，加上 `0x8` 后指向的也就是指针 `next`。此处将该指针 `next` 指向了下一个结点。
 
-##### 6.2.6 第六部分（`4011da` ~ `401203`）
+##### 第六部分（`4011da` ~ `401203`）
 
 ```text {title="bomb.asm"}
   4011da:   bd 05 00 00 00          mov    $0x5,%ebp
@@ -1653,13 +1654,13 @@ return next_node;
 
 按递减顺序排列后，可见在栈中地址由低到高应当分别为 `3`, `4`, `5`, `6`, `1`, `2` 号结点。
 
-##### 6.2.7 确定输入的 6 个整数
+##### 确定输入的 6 个整数
 
 由之前的分析，`nums[i]` 在第三部分的代码中被依次修改成了 `7 - nums[i]`，而修改后的值分别对应栈中结点的标号 `3`, `4`, `5`, `6`, `1`, `2`。
 
 因此，最开始输入的 6 个整数也就是 `4`, `3`, `2`, `1`, `6`, `5`，本关密码即为 `4 3 2 1 6 5`。
 
-##### 6.2.8 测试
+##### 测试
 
 在 gdb 中输入 Phase 6 的密码：
 
@@ -1686,23 +1687,23 @@ Congratulations! You've defused the bomb!
 
 ### Secret Phase
 
-#### 7.1 本关密码
+#### 本关密码
 
-##### 7.1.1 开启隐藏关的方法
+##### 开启隐藏关的方法
 
 在 Phase 4 输入的 2 个整数后再额外输入 1 个字符串 `DrEvil`，例如将输入的字符串修改为 `7 0 DrEvil`，其余环节不变。
 
-##### 7.1.2 隐藏关的密码
+##### 隐藏关的密码
 
 `22`, `20`
 
-#### 7.2 解题过程
+#### 解题过程
 
-##### 7.2.0 找到隐藏函数
+##### 找到隐藏函数 {numbering-start=0}
 
 好吧，其实在 `bomb.asm` 中稍微往下翻翻就能找到一个名为 `secret_phase` 的函数。顾名思义，这应该就是隐藏关所对应的函数。
 
-##### 7.2.1 找到开启隐藏关的方法
+##### 找到开启隐藏关的方法
 
 事实上，前 6 关通过后，程序就自动终止了。那么应该如何进入这个隐藏关呢？
 
@@ -1774,7 +1775,7 @@ Congratulations! You've defused the bomb!
 
 `4015d6`: `xor %eax,%eax` 将 `%eax` 寄存器设置为 `0`。
 
-`4015d8`: `cmpl $0x6,0x202181(%rip)` 和 `4015df`: `jne 40163f <phase_defused+0x7b>` 判断 `0x202181(%rip)` 的值是否为 `6`，是则继续执行之后的语句，否则直接跳到 `40163f`: `mov 0x68(%rsp),%rax` 返回（这一段详见 [5.2.1](#5.2.1-观察函数-phase_5) 节关于 stack canary 的阐述）。
+`4015d8`: `cmpl $0x6,0x202181(%rip)` 和 `4015df`: `jne 40163f <phase_defused+0x7b>` 判断 `0x202181(%rip)` 的值是否为 `6`，是则继续执行之后的语句，否则直接跳到 `40163f`: `mov 0x68(%rsp),%rax` 返回（这一段详见 [观察函数 `phase_5`](#观察函数-phase_5) 节关于 stack canary 的阐述）。
 
 `0x202181(%rip)` 也就是 `(0x603760)` 存放的是什么？通过 gdb 发现，这个值的初始值为 `0`，而每通过一关后，这个值便加 `1`。结合注释（即变量名）`# 603760 <num_input_strings>`，推测它表示输入过的字符串数量，实际上也就是通过的关卡数量。
 
@@ -1923,7 +1924,7 @@ Breakpoint 3, 0x0000000000400efc in phase_2 ()
 
 这段就是输出几行提示文本，待会儿我们可以直接看到。以及，调用函数 `secret_phase` 开启隐藏关。
 
-##### 7.2.2 开启隐藏关
+##### 开启隐藏关
 
 运行到 Phase 4 时，在 gdb 中输入修改后的字符串：
 
@@ -1938,7 +1939,7 @@ Curses, you've found the secret phase!
 But finding it and solving it are quite different...
 ```
 
-##### 7.2.3 观察函数 `secret_phase`
+##### 观察函数 `secret_phase`
 
 在 `bomb.asm` 中找到函数 `secret_phase` 对应的汇编语句：
 
@@ -2038,7 +2039,7 @@ But finding it and solving it are quite different...
 
 [^strtol]: [strtol - C++ Reference](http://www.cplusplus.com/reference/cstdlib/strtol)
 
-##### 7.2.4 观察函数 `fun7`
+##### 观察函数 `fun7`
 
 在 `bomb.asm` 中找到函数 `fun7` 对应的汇编语句：
 
@@ -2093,7 +2094,7 @@ int fun7(int* p_node, int target) {
 
 如此这个递归函数的作用就很清晰了。
 
-##### 7.2.5 确定输入的整数
+##### 确定输入的整数
 
 接下来，使用 gdb 查看作为参数传入的地址 `0x6030f0` 开始的连续内存中的值（经试验可知第 60 个 8 bytes 之后的地址中存放的都是无关数据，因此这里只需显示前 60 个地址）：
 
@@ -2136,7 +2137,7 @@ x/60xg 0x6030f0
 0x6032c0 <n48+16>:       0x0000000000000000       0x0000000000000000
 ```
 
-结合 [7.2.4](#7.2.4-观察函数-fun7) 节译出的函数 `fun7` 代码，可以发现这是一个二叉树。二叉树中每个结点是一个结构体，结点所在的地址指向的是数据 `val`，加上 `0x8` 后指向的是指针 `left`，加上 `0x10` 后指向的是指针 `right`。
+结合 [观察函数 `fun7`](#观察函数-fun7) 节译出的函数 `fun7` 代码，可以发现这是一个二叉树。二叉树中每个结点是一个结构体，结点所在的地址指向的是数据 `val`，加上 `0x8` 后指向的是指针 `left`，加上 `0x10` 后指向的是指针 `right`。
 
 因此，`fun7` 函数中的 `*p_node` 即 `p_node->val`，`*(p_node + 1)` 即 `p_node->left`，`*(p_node + 2)` 即 `p_node->right`。
 
@@ -2180,7 +2181,7 @@ graph TB
 
 于是得到本关的 2 个解：`22`, `20`。
 
-##### 7.2.6 测试
+##### 测试
 
 这里以 `22` 为例，在 gdb 中输入 Secret Phase 的密码：
 

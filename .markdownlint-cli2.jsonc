@@ -17,6 +17,9 @@
     // Disable line length for Chinese content
     "MD013": false,
 
+    // Repeated subsection titles are distinct under different parent headings.
+    "MD024": { "siblings_only": true },
+
     // Heading trailing punctuation: only flag .,;:
     "MD026": { "punctuation": ".,;:" },
 
@@ -32,11 +35,6 @@
     // Disable first-line heading (frontmatter handles this)
     "MD041": false,
 
-    // Disable link-fragments — it derives anchors with GitHub's slugger, which
-    // drops the `.` `_` `~` `+` that kiln keeps, so it validates ids the site
-    // never emits.
-    "MD051": false,
-
     // Code block style: fenced
     "MD046": { "style": "fenced" },
 
@@ -48,6 +46,11 @@
 
     // Strong style: asterisk for bold
     "MD050": { "style": "asterisk" },
+
+    // Disable link-fragments — it derives anchors with GitHub's slugger, which
+    // drops the `.` `_` `~` `+` that kiln keeps, so it validates ids the site
+    // never emits.
+    "MD051": false,
   },
 
   "ignores": [],

@@ -8,6 +8,7 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/60181142_p0.webp"
@@ -34,9 +35,9 @@ Operating Systems (H) @ Fudan University, fall 2020.
 
 ## 实验报告
 
-### 1 I/O 框架
+### I/O 框架
 
-#### 1.1 请求队列
+#### 请求队列
 
 ::: callout {type=quote title="实验目标"}
 请补全 `inc/buf.h` 以便于 SD 卡驱动中请求队列的实现，即每个请求都是一个 `buf`，所有请求排成一队。
@@ -153,7 +154,7 @@ bread(uint32_t dev, uint32_t blockno)
 }
 ```
 
-其中，常量 `LBA` 指的是第 2 个分区起始块的逻辑区块地址（logical block address, LBA），`LBA` 的值（`0x20800`）将在 [2.2.3](#2.2.3-sd-卡初始化-sd_init) 节解析主引导记录时得到。这里之所以要给 block number 加上这个偏移量，是因为我们需要先定位到我们的文件系统，而第 2 个分区正是我们的文件系统所在的根目录分区。函数 `sd_rw` 负责 SD 卡的读写操作，详情将在 [2.2.1](#2.2.1-sd-卡读写磁盘-sd_rw) 节提到。
+其中，常量 `LBA` 指的是第 2 个分区起始块的逻辑区块地址（logical block address, LBA），`LBA` 的值（`0x20800`）将在 [SD 卡初始化：`sd_init`](#sd-卡初始化-sd_init) 节解析主引导记录时得到。这里之所以要给 block number 加上这个偏移量，是因为我们需要先定位到我们的文件系统，而第 2 个分区正是我们的文件系统所在的根目录分区。函数 `sd_rw` 负责 SD 卡的读写操作，详情将在 [SD 卡读写磁盘：`sd_rw`](#sd-卡读写磁盘-sd_rw) 节提到。
 
 当我们需要进行写操作时，我们调用函数 `bwrite` 对这个 `buf` 进行写操作。
 
@@ -220,9 +221,9 @@ bunpin(struct buf* b)
 }
 ```
 
-### 2 块设备驱动
+### 块设备驱动
 
-#### 2.1 Sleep 实现
+#### Sleep 实现
 
 ::: callout {type=quote title="实验目标"}
 请完成 `kern/proc.c` 中的 `sleep` 和 `wakeup` 函数，并简要描述并分析你的设计。
@@ -286,7 +287,7 @@ wakeup(void* chan)
 }
 ```
 
-#### 2.2 SD 卡初始化
+#### SD 卡初始化
 
 ::: callout {type=quote title="实验目标"}
 请完成 `kern/sd.c` 中的 `sd_init`, `sd_intr`, `sd_rw`，然后分别在合适的地方调用 `sd_init` 和 `sd_test` 完成 SD 卡初始化并通过测试。
@@ -294,7 +295,7 @@ wakeup(void* chan)
 
 我研究了半天，最后还是觉得要修改其他源代码才能比较优雅地实现这几个函数，否则结构实在太乱了，可复用性也很差。而且引用的这个 [源代码][sdcard.c] 的代码风格简直不忍直视，看得恶心，最后还是先全部简单改了一遍。完全改过来还是算了，style fix 约等于 refactor，像日志输出全是乱打的。强烈建议每一位 C / C++ 程序员在写代码前先通览一遍 [Google C++ Style Guide][cpp-guide] 或者其他随便什么靠谱的 style guide，最起码要保证前后的风格是统一的，不要随心所欲想怎么写就怎么写。
 
-##### 2.2.1 SD 卡读写磁盘: `sd_rw`
+##### SD 卡读写磁盘: `sd_rw`
 
 为了优雅地实现 `sd_init`，我们决定先实现 `sd_rw`。
 
@@ -361,7 +362,7 @@ _sd_start(struct buf* b)
 }
 ```
 
-在函数 `sd_rw` 里，我们先调用函数 `_sd_start` 对 `buf` 进行 I/O 操作，然后将其 `flags` 的 `B_DIRTY` 位设置为 `0`、`B_VALID` 位设置为 `1`，最后调用函数 `brelse` 释放 `buf`（见 [1.1](#1.1-请求队列) 节）。
+在函数 `sd_rw` 里，我们先调用函数 `_sd_start` 对 `buf` 进行 I/O 操作，然后将其 `flags` 的 `B_DIRTY` 位设置为 `0`、`B_VALID` 位设置为 `1`，最后调用函数 `brelse` 释放 `buf`（见 [请求队列](#请求队列) 节）。
 
 ```c {title="kern/sd.c"}
 /*
@@ -378,7 +379,7 @@ sd_rw(struct buf* b)
 }
 ```
 
-##### 2.2.2 SD 卡中断处理: `sd_intr`
+##### SD 卡中断处理: `sd_intr`
 
 函数 `sd_intr` 的工作是处理设备中断。具体来说，检查请求是否已执行完毕，然后清空中断信息。
 
@@ -413,7 +414,7 @@ sd_intr()
    - 目前我的 `bcache` 不需要手动维护其结构，如果需要一个清空 `buf` 队列的操作（我猜 `sd_intr` 可能想干这个事情），到时候我可以直接在 `bcache` 提供一个方法 `bclear`，思路是循环调用 `sd_rw`，并不需要让 `sd_intr` 去处理这个事情。
    - 还是要看实际的应用场景，在有函数需要用到 `sd_intr` 前我不打算写这一部分，反正这个需求到时候加起来很快的。
 
-##### 2.2.3 SD 卡初始化: `sd_init`
+##### SD 卡初始化: `sd_init`
 
 函数 `sd_init` 的工作分为两部分：
 
@@ -525,7 +526,7 @@ _parse_uint32_t(uint8_t* bytes)
 }
 ```
 
-##### 2.2.4 SD 卡初始化及测试
+##### SD 卡初始化及测试
 
 在函数 `main` 中，调用函数 `sd_init` 完成 SD 卡初始化，调用函数 `sd_test` 进行测试。
 
@@ -543,15 +544,15 @@ main()
 }
 ```
 
-### 3 制作启动盘
+### 制作启动盘
 
-#### 3.1 获取分区信息
+#### 获取分区信息
 
 ::: callout {type=quote title="实验目标"}
 请在 `sd_init` 中解析 MBR 获得第二分区起始块的 LBA 和分区大小以便后续使用。
 :::
 
-见 [2.2.3](#2.2.3-sd-卡初始化-sd_init) 节，我们将所有信息直接输出到终端。
+见 [SD 卡初始化：`sd_init`](#sd-卡初始化-sd_init) 节，我们将所有信息直接输出到终端。
 
 ## 运行结果
 

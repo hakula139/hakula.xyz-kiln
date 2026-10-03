@@ -10,6 +10,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/88775351_p0.webp"
@@ -38,11 +39,11 @@ Pattern Recognition and Machine Learning (H) @ Fudan University, spring 2021.
 
 ## 实验报告
 
-### 1 FNN 算子的反向传播
+### FNN 算子的反向传播
 
-#### 1.1 Matmul
+#### Matmul
 
-##### 1.1.1 公式推导
+##### 公式推导
 
 输入一个 $n\times d$ 的矩阵 $X$ 和一个 $d\times d'$ 的矩阵 $W$，算子 Matmul 的正向传播公式为：
 
@@ -107,7 +108,7 @@ $$
 = {(X^T\times \frac{\partial z}{\partial Y})}_{d\times d'} \tag{1.5}
 $$
 
-##### 1.1.2 代码实现
+##### 代码实现
 
 ```python {title="numpy_fnn.py"}
 class Matmul(NumpyOp):
@@ -146,9 +147,9 @@ class Matmul(NumpyOp):
         return grad_x, grad_w
 ```
 
-#### 1.2 Relu
+#### Relu
 
-##### 1.2.1 公式推导
+##### 公式推导
 
 输入一个 $n\times d$ 的矩阵 $X$，对于 $X$ 中的每个元素 $X_{ij}$，算子 `Relu` 的正向传播公式为：
 
@@ -195,7 +196,7 @@ $$
 \end{cases} \tag{2.4}
 $$
 
-##### 1.2.2 代码实现
+##### 代码实现
 
 ```python {title="numpy_fnn.py"}
 class Relu(NumpyOp):
@@ -228,9 +229,9 @@ class Relu(NumpyOp):
         return np.where(x > 0, grad_y, 0)
 ```
 
-#### 1.3 Log
+#### Log
 
-##### 1.3.1 公式推导
+##### 公式推导
 
 输入一个 $n\times d$ 的矩阵 $X$，对于 $X$ 中的每个元素 $X_{ij}$，算子 `Log` 的正向传播公式为：
 
@@ -263,7 +264,7 @@ $$
 {Z'}_{ij} = \frac{{({Z_{Y}}')}_{ij}}{X_{ij}} \tag{3.4}
 $$
 
-##### 1.3.2 代码实现
+##### 代码实现
 
 为了防止 $X_{ij} = 0$ 时出现 $\log X_{ij}\rightarrow -\infty$ 导致溢出，这里我们给 $X_{ij}$ 附加了一个 $\epsilon = 10^{-12}$ 的修正。
 
@@ -298,9 +299,9 @@ class Log(NumpyOp):
         return grad_y / x
 ```
 
-#### 1.4 Softmax
+#### Softmax
 
-##### 1.4.1 公式推导
+##### 公式推导
 
 输入一个 $n\times d$ 的矩阵 $X$，对于 $X$ 中的每个元素 $X_{ij}$，算子 `Softmax` 的正向传播公式为：
 
@@ -352,7 +353,7 @@ $$
 \end{align} \tag{4.3}
 $$
 
-##### 1.4.2 代码实现
+##### 代码实现
 
 ```python {title="numpy_fnn.py"}
 class Softmax(NumpyOp):
@@ -386,7 +387,7 @@ class Softmax(NumpyOp):
         return y * (grad_y - (grad_y * y).sum(axis=1)[:, None])
 ```
 
-### 2 函数 `mini_batch` 实现
+### 函数 `mini_batch` 实现
 
 我们使用 NumPy 重写了函数 `mini_batch`，用于之后的训练。
 
@@ -418,7 +419,7 @@ def mini_batch(dataset: List[Tuple[Any, int]], batch_size=128) -> np.ndarray:
     return batches
 ```
 
-### 3 实验过程与结果
+### 实验过程与结果
 
 执行以下命令开始训练。
 
@@ -426,9 +427,9 @@ def mini_batch(dataset: List[Tuple[Any, int]], batch_size=128) -> np.ndarray:
 python ./numpy_mnist.py
 ```
 
-#### 3.1 实验 1
+#### 实验 1
 
-##### 3.1.1 参数
+##### 参数
 
 ```python
 epoch_number = 3
@@ -436,7 +437,7 @@ batch_size = 128
 learning_rate = 0.1
 ```
 
-##### 3.1.2 预测准确率
+##### 预测准确率
 
 ```text
 [0] Accuracy: 0.9485
@@ -444,15 +445,15 @@ learning_rate = 0.1
 [2] Accuracy: 0.9715
 ```
 
-##### 3.1.3 损失函数值
+##### 损失函数值
 
 ![实验 1 - 损失函数值](assets/1-loss.webp)
 
-#### 3.2 实验 2
+#### 实验 2
 
 这次，我们调大训练轮数（`epoch_number`），观察预测准确率的变化。
 
-##### 3.2.1 参数
+##### 参数
 
 ```python
 epoch_number = 10
@@ -460,7 +461,7 @@ batch_size = 128
 learning_rate = 0.1
 ```
 
-##### 3.2.2 预测准确率
+##### 预测准确率
 
 ```text
 [0] Accuracy: 0.9496
@@ -477,17 +478,17 @@ learning_rate = 0.1
 
 可见，训练轮数越多，预测准确率越高，但到达一定准确率后开始波动，不再明显上升。
 
-##### 3.2.3 损失函数值
+##### 损失函数值
 
 ![实验 2 - 损失函数值](assets/2-loss.webp)
 
 可见，训练轮数越多，损失函数值越低，波动越小。
 
-#### 3.3 实验 3
+#### 实验 3
 
 这次，我们调大批处理时每批数据的规模（`batch_size`），观察预测准确率的变化。
 
-##### 3.3.1 参数
+##### 参数
 
 ```python
 epoch_number = 10
@@ -495,7 +496,7 @@ batch_size = 256
 learning_rate = 0.1
 ```
 
-##### 3.3.2 预测准确率
+##### 预测准确率
 
 ```text
 [0] Accuracy: 0.9253
@@ -512,17 +513,17 @@ learning_rate = 0.1
 
 可见，每批数据的规模越大，训练速度越慢，但最终达到的准确率没有明显变化。
 
-##### 3.3.3 损失函数值
+##### 损失函数值
 
 ![实验 3 - 损失函数值](assets/3-loss.webp)
 
 可见，每批数据的大小越大，损失函数值整体的波动越小。
 
-#### 3.4 实验 4
+#### 实验 4
 
 这次，我们提高学习率（`learning_rate`），观察预测准确率的变化。
 
-##### 3.4.1 参数
+##### 参数
 
 ```python
 epoch_number = 10
@@ -530,7 +531,7 @@ batch_size = 256
 learning_rate = 0.5
 ```
 
-##### 3.4.2 预测准确率
+##### 预测准确率
 
 ```text
 [0] Accuracy: 0.9505
@@ -547,7 +548,7 @@ learning_rate = 0.5
 
 可见，学习率越高，训练速度越快，但训练时的波动也可能较大。
 
-##### 3.4.3 损失函数值
+##### 损失函数值
 
 ![实验 4 - 损失函数值](assets/4-loss.webp)
 

@@ -9,6 +9,7 @@ tags = [
     "C++",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/90380296_p0.webp"
@@ -35,7 +36,7 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 ## 解题报告
 
-### 1 解题思路
+### 解题思路
 
 本题的本质其实就是找出两个字符串的最小编辑距离，因此很容易联想到用于找出最长公共子序列（Longest Common Subsequence, LCS）的动态规划解法，这部分详见 [`src/utils/utils.cpp`][utils.cpp:27] 中函数 `FuzzyCompare` 的部分实现。
 
@@ -45,7 +46,7 @@ Algorithms (H) @ Fudan University, spring 2021.
 
 Myers 差分算法最终可以找到原字符串 $\textrm{ref}$ 基础上所有的缺失片段和插入片段，接下来我们要考虑的是如何将它们转化为题目中要求的 SV 类型。
 
-#### 1.1 INS - 片段插入
+#### INS - 片段插入
 
 在 Myers 差分算法中，我们会维护当前处理的字符所在的位置 $(x,y)$。其中 $x$ 表示字符在原字符串 $\textrm{ref}$ 中的位置，$y$ 表示字符在修改字符串 $\textrm{sv}$ 中的位置。我们记录节点在图中经过的路径[^lcs]，其中沿 $x$ 轴向右移动表示删除字符，沿 $y$ 轴向下移动表示插入字符，沿对角线向右下移动表示不作修改，跳到下一个字符。
 
@@ -61,11 +62,11 @@ Myers 差分算法最终可以找到原字符串 $\textrm{ref}$ 基础上所有�
 
 这样一来，我们能够基本保证 INS 类型 SV 片段的正确性。
 
-#### 1.2 DEL - 片段缺失
+#### DEL - 片段缺失
 
 基本同 INS 类型，区别在于 INS 类型保存向下移动的路径，DEL 类型则保存向右移动的路径。
 
-#### 1.3 DUP - 片段串联重复
+#### DUP - 片段串联重复
 
 在得到了所有 INS 和 DEL 类型 SV 片段的基础上，我们从中识别出剩下 3 种 SV 类型。
 
@@ -78,15 +79,15 @@ Myers 差分算法最终可以找到原字符串 $\textrm{ref}$ 基础上所有�
 
 其中任意一个判定达到标准，即认为两个字符串大致相同，具体可参见 [`src/utils/utils.cpp`][utils.cpp:27] 中函数 `FuzzyCompare` 的实现。这样可以尽可能应对 SV 片段重叠、SV 片段少量出错或未知等问题，提高算法的健壮性。
 
-#### 1.4 INV - 染色体倒位
+#### INV - 染色体倒位
 
 对于 INV 类型，我们遍历同染色体下的所有 INS 和 DEL 类型片段，找出其中大致相邻且大小大致相同的 INS 和 DEL 类型片段，将其中 INS 类型片段的位置修改为与 DEL 类型片段对齐（只是为了和要求的输出格式相符），然后对其代表的字符串进行比较。字符串的比较方式同 DUP 类型，区别在于其中一个字符串要进行反向互补操作，即先反转，再逐位将 `A`, `T` 互换、`C`, `G` 互换。如果字符串基本匹配，则移除对应的 INS 和 DEL 类型片段，新增一个 INV 类型片段。参见 [`src/common/dna.cpp`][dna.cpp:257] 中函数 `Dna::FindInvDeltas` 的实现。
 
-#### 1.5 TRA - 染色体间异位
+#### TRA - 染色体间异位
 
 TRA 类型与 INV 类型类似，我们遍历所有染色体的 INS 和 DEL 类型片段，找出每条染色体中大致相邻且大小大致相同的片段，分别放入一个 INS / DEL 缓存，然后移除。接下来我们遍历 INS 和 DEL 缓存，找出其中大致相邻且大小大致相同的 INS 和 DEL 类型片段，然后对其代表的字符串进行比较。字符串的比较方式同 DUP 类型。如果字符串基本匹配，则新增一个 TRA 类型片段。最后将未匹配的缓存中的片段放回原处。参见 [`src/common/dna.cpp`][dna.cpp:299] 中函数 `Dna::FindTraDeltas` 的实现。
 
-### 2 运行代码
+### 运行代码
 
 本项目使用 C++17 编写，环境要求：
 
@@ -101,7 +102,7 @@ make && make run
 
 使用 Task 1 测试数据生成的结果位于 `tests/test_1/sv.bed`。
 
-### 3 测试环境
+### 测试环境
 
 - macOS Catalina 10.15.7
 - Clang 12.0.0

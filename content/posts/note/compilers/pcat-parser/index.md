@@ -11,6 +11,7 @@ tags = [
     "C++",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/94538258_p0.webp"
@@ -31,7 +32,7 @@ Compilers @ Fudan University, fall 2021.
 [:(fab fa-github): hakula139 / pcat_parser](https://github.com/hakula139/pcat_parser)
 :::
 
-## 1 项目结构总览
+## 项目结构总览
 
 - `bin/`：二进制文件的存放位置（构建时自动生成）
   - `parser`：本 PCAT 语法分析器的二进制文件
@@ -92,9 +93,9 @@ Compilers @ Fudan University, fall 2021.
 
 [^bison-tgz]: 有些操作系统自带的 Bison 版本较老，无法运行本项目，因此这里提供了 Bison 3.8.2 的源码供编译使用，可执行 `scripts/prebuild.sh` 进行自动化安装。
 
-## 2 运行本项目
+## 运行本项目
 
-### 2.1 构建与运行
+### 构建与运行
 
 本项目使用 C++17 编写，构建前需要先安装以下依赖：
 
@@ -118,7 +119,7 @@ make INPUT="tests/case_1.pcat"
 
 [^bison-ver]: 更低版本确定不可用。暂时没有更高版本，但根据文档，Bison 的 C++ API 未来随时会改，因此不保证向上兼容性。
 
-### 2.2 测试
+### 测试
 
 本项目自带了 14 个 PCAT 语言测试样例，位于 `tests` 目录下。测试时依次通过上述命令处理即可，或者你也可以使用我们提供的自动化测试脚本 `scripts/test.sh`。
 
@@ -195,7 +196,7 @@ program <1:1-8:5>
               lvalue <7:33-7:34> y
 ```
 
-## 3 Makefile 文件说明
+## Makefile 文件说明
 
 下面我们通过 Makefile，简单介绍一下项目的构建顺序。
 
@@ -286,7 +287,7 @@ clean:
 
 [makefile]: https://github.com/hakula139/pcat_parser/blob/master/Makefile
 
-## 4 Bison 使用方法
+## Bison 使用方法
 
 Bison 文件的结构和 Flex 文件类似，总体分为四个部分[^bison-3.1]：
 
@@ -333,7 +334,7 @@ Bison 文件的结构和 Flex 文件类似，总体分为四个部分[^bison-3.1
 
 [^bison-3.1]: 参见 Bison 文档的 [3.1][bison-3.1] 节。
 
-### 4.1 Prologue
+### Prologue
 
 ```cpp {title="src/parser.yy"}
 %code requires {
@@ -387,7 +388,7 @@ int yyFlexLexer::yylex() {
 
 这样 Flex 在生成 `yylex()` 的代码时，就会以这个为实际的函数签名。
 
-流程上，Parser 在读取 token 时，会先调用自己的 `yy::Parser::yylex()`（无法修改），这个函数我们已经提供了定义，其中传入的参数是由设置 `%lex-param` 决定的，接下来我们会提到。然后这个函数会调用 `yy::Lexer::ReadToken()`，其中 `yy::Lexer` 是我们自己定义的类，代码如下所示，主要目的是为了给 `yyFlexLexer` 提供一个额外的私有成员 `Driver& drv_`，在词法分析时需要用到。这里 `yy::Lexer::ReadToken()` 我们只提供声明（通过定义宏 `YY_DECL` 的方式），而函数定义则由 Flex 自动生成。最后 `yy::Lexer::ReadToken()` 就会以 Flex 自动生成的原本 `yyFlexLexer::yylex()` 的实现为我们读取下一个 token，而原来的 `int yyFlexLexer::yylex()` 则不会再被调用（但仍需提供定义，理论上这应该是 Flex 的 bug）。当然，为此我们还需要调整词法分析器的源代码，通过 Bison 的接口令 `yy::Lexer::ReadToken()` 在实现里返回的值不是 `int` 而是 `symbol_type`，这个我们 [之后](#5.2-token-类型) 再讲。
+流程上，Parser 在读取 token 时，会先调用自己的 `yy::Parser::yylex()`（无法修改），这个函数我们已经提供了定义，其中传入的参数是由设置 `%lex-param` 决定的，接下来我们会提到。然后这个函数会调用 `yy::Lexer::ReadToken()`，其中 `yy::Lexer` 是我们自己定义的类，代码如下所示，主要目的是为了给 `yyFlexLexer` 提供一个额外的私有成员 `Driver& drv_`，在词法分析时需要用到。这里 `yy::Lexer::ReadToken()` 我们只提供声明（通过定义宏 `YY_DECL` 的方式），而函数定义则由 Flex 自动生成。最后 `yy::Lexer::ReadToken()` 就会以 Flex 自动生成的原本 `yyFlexLexer::yylex()` 的实现为我们读取下一个 token，而原来的 `int yyFlexLexer::yylex()` 则不会再被调用（但仍需提供定义，理论上这应该是 Flex 的 bug）。当然，为此我们还需要调整词法分析器的源代码，通过 Bison 的接口令 `yy::Lexer::ReadToken()` 在实现里返回的值不是 `int` 而是 `symbol_type`，这个我们 [之后](#token-类型) 再讲。
 
 ```cpp {title="src/lexer.hpp"}
 namespace yy {
@@ -405,7 +406,7 @@ class Lexer : public yyFlexLexer {
 
 是不是绕了很大一个弯子？主要原因是 Bison 和 Flex 的接口很多都写死了。为了实现交互，只能用这种比较 dirty 的办法了。尽管不一定是唯一的方式，但应该是目前最好的方式。
 
-### 4.2 Bison declaration
+### Bison declaration
 
 接下来，我们需要对 Bison 进行一些设置，具体含义见注释。
 
@@ -572,7 +573,7 @@ class Lexer : public yyFlexLexer {
 
 需要注意的是，我们对终结符 `INTEGER`, `REAL`, `STRING` 还额外封装了三个对应的非终结符，这个主要是为了书写规则时的形式统一，不定义这几个非终结符也是可以的。
 
-此外，我们还需要指定操作符的优先级和结合性。从上到下表示优先级依次提高，`%left`, `%right`, `%nonassoc` 分别表示左结合、右结合和非结合。这里我们额外定义了两个假的操作符 `POS` 和 `NEG`，分别对应作为单目运算符时的 `PLUS` 和 `MINUS`。这个假操作符占位操作将在 [之后](#4.3-grammar-rules) 通过 `%prec` 显式指定优先级时利用到。
+此外，我们还需要指定操作符的优先级和结合性。从上到下表示优先级依次提高，`%left`, `%right`, `%nonassoc` 分别表示左结合、右结合和非结合。这里我们额外定义了两个假的操作符 `POS` 和 `NEG`，分别对应作为单目运算符时的 `PLUS` 和 `MINUS`。这个假操作符占位操作将在 [之后](#grammar-rules) 通过 `%prec` 显式指定优先级时利用到。
 
 ```cpp {title="src/parser.yy"}
 %left                 OR;
@@ -588,7 +589,7 @@ class Lexer : public yyFlexLexer {
 
 [^bison-3.7]: 参见 Bison 文档的 [3.7][bison-3.7] 节。
 
-### 4.3 Grammar rules
+### Grammar rules
 
 那么接下来就是定义语法分析的具体规则了，也就是定义所有非终结符的产生式。由于数量较多，这里我们针对一些比较有代表性的规则进行详解。
 
@@ -630,7 +631,7 @@ program -> PROGRAM IS body ';'
 
 由于 `$` 是根结点 `program`，因此我们将其保存到 `Driver` 类里。将来我们通过 `Driver` 打印语法树时，这就是我们语法树的根。
 
-之后我会在 [7](#7-语法树实现) 节详细讲解这里发生了什么，现在我们只需要知道，每个非终结符 `x` 的语义值就是一个指向这个 AST 节点 `x` 的指针 `$x`。当构造一个节点 `x` 时，需要传入这个节点的位置 `@x` 和其子节点的语义值 `$y`，其中子节点即构成这个非终结符的所有非终结符和**有值**的终结符（`INTEGER`, `REAL`, `STRING`）。
+之后我会在 [语法树实现](#语法树实现) 节详细讲解这里发生了什么，现在我们只需要知道，每个非终结符 `x` 的语义值就是一个指向这个 AST 节点 `x` 的指针 `$x`。当构造一个节点 `x` 时，需要传入这个节点的位置 `@x` 和其子节点的语义值 `$y`，其中子节点即构成这个非终结符的所有非终结符和**有值**的终结符（`INTEGER`, `REAL`, `STRING`）。
 
 举个复杂点的例子，比如 `stmt` 的产生规则就是：
 
@@ -710,7 +711,7 @@ expr:
 
 这里为什么不能将 `UnaryExpr` 或 `BinaryExpr` 的产生式合并成一个 `op expr` 和 `expr op expr` 呢？是因为我们需要利用操作符 `op` 的优先级和结合性。如果我们将 `op` 提取出来，在产生式里仅保留一个非操作符 `op`，Bison 将无法利用终结符的优先级和结合性信息，从而导致错误的语法分析结果。
 
-式中，`PLUS expr %prec POS` 表示对此式采用 `POS` 的优先级。[前面](#4.2-bison-declaration) 我们看到，`POS` 的优先级和 `NOT` 同级，通过这种方式我们就实现了对 `PLUS` 作为单目运算符时优先级的重定义。
+式中，`PLUS expr %prec POS` 表示对此式采用 `POS` 的优先级。[前面](#bison-declaration) 我们看到，`POS` 的优先级和 `NOT` 同级，通过这种方式我们就实现了对 `PLUS` 作为单目运算符时优先级的重定义。
 
 除了这种单个节点的构造方式外，我们还存在另一种数组节点的构造方式。
 
@@ -754,7 +755,7 @@ decl:
 
 [^pcat-12]: 参见 [PCAT 标准文档][pcat] 的 12 节。
 
-### 4.4 Epilogue
+### Epilogue
 
 最后我们在 Epilogue 给出了函数 `yy::Parser::error()` 的实现，用于语法分析器的报错实现。
 
@@ -800,11 +801,11 @@ void Logger::Error(
 #define RESET "\e[0;0m"
 ```
 
-## 5 对 Flex 文件的修改
+## 对 Flex 文件的修改
 
 由于现在我们使用 Bison 进行语法分析，在接入 Flex 作为词法分析器时，需要做一定的调整。
 
-### 5.1 位置追踪
+### 位置追踪
 
 在之前的实现中，我们基本是手动维护的位置信息。现在 Bison 提供了十分强大的 location 接口，我们自然也要利用起来。
 
@@ -822,7 +823,7 @@ void Logger::Error(
 %}
 ```
 
-`YY_USER_ACTION` 将在每次 Lexer 读取一个 token 后执行一次。其中 `loc.step()` 将当前 `loc` 的 `begin` 设置为 `end`，`loc += YYLeng()` 将当前 `loc` 的 `end.column` 增加当前 token 的长度。于是，我们就得到了当前 token 的始末位置。这里 `drv_` 就是 [之前](#4.1-prologue) 提到的 `Lexer` 在继承 `yyFlexLexer` 时保存的额外私有成员 `Driver& drv_`。
+`YY_USER_ACTION` 将在每次 Lexer 读取一个 token 后执行一次。其中 `loc.step()` 将当前 `loc` 的 `begin` 设置为 `end`，`loc += YYLeng()` 将当前 `loc` 的 `end.column` 增加当前 token 的长度。于是，我们就得到了当前 token 的始末位置。这里 `drv_` 就是 [之前](#prologue) 提到的 `Lexer` 在继承 `yyFlexLexer` 时保存的额外私有成员 `Driver& drv_`。
 
 对于换行的情况，我们在遇到换行符 `\n` 时利用 `loc.lines()` 将当前 `loc` 的 `end.line` 加 1，`end.column` 设置为 1，从而实现了行号的更新。
 
@@ -860,9 +861,9 @@ void skip_COMMENTS(const std::string& s, const location_type& loc) {
 }
 ```
 
-### 5.2 Token 类型
+### Token 类型
 
-此外，[之前](#4.1-prologue) 我们提到 Lexer 现在需要返回一个 `symbol_type` 而不是 `int`，这部分逻辑我们是通过 Bison 的 token constructor 接口实现的。具体来说，原本我们是以枚举的形式定义所有的 token 类型：
+此外，[之前](#prologue) 我们提到 Lexer 现在需要返回一个 `symbol_type` 而不是 `int`，这部分逻辑我们是通过 Bison 的 token constructor 接口实现的。具体来说，原本我们是以枚举的形式定义所有的 token 类型：
 
 ```cpp {title="hakula139/pcat_lexical_analyzer:src/lexer.hpp"}
 enum Tokens {
@@ -897,11 +898,11 @@ REAL                  ({DIGIT}+"."{DIGIT}*)
 
 关于如何实现词法错误的报错，我们将在下个章节统一讲解。得益于 Bison 的异常捕获机制，这次我们采取了和之前不同的报错实现方式。
 
-## 6 错误检测与报错
+## 错误检测与报错
 
 Bison 的错误处理是通过捕获 `yy::Parser::syntax_error` 异常来实现的，这里 `yy::Parser::syntax_error` 是基于 `std::runtime_error` 的一个派生类。当分析过程中出现语法错误时，程序就会抛出一个 `yy::Parser::syntax_error` 异常，Bison 捕获后调用 `yy::Parser::error()` 函数进行报错。这个函数我们已经在 `src/parser.yy` 的 Epilogue 部分提供了定义。
 
-### 6.1 词法错误
+### 词法错误
 
 我们可以利用这个机制，让 Bison 对词法错误进行同样的错误处理。方法就是在 Flex 检测到词法错误时，同样抛出一个 `yy::Parser::syntax_error` 异常。具体来说，例如对于 `INTEGER` 的词法错误检测，我们可以这样实现：
 
@@ -952,7 +953,7 @@ void panic_UNTERM_STRING(const std::string& s, const location_type& loc) {
 }
 ```
 
-### 6.2 语法错误
+### 语法错误
 
 当 Bison 遇到语法错误时，会自动抛出 `yy::Parser::syntax_error` 异常，因此不需要我们显式地写报错逻辑，只需要定义 `yy::Parser::error()` 函数。
 
@@ -1010,7 +1011,7 @@ var_decl:
 [ERROR] 74:1-74:11: syntax error, unterminated comments: (****123**
 ```
 
-## 7 语法树实现
+## 语法树实现
 
 接下来讲一下抽象语法树（AST）的实现，具体代码可以参见 [`src/ast`][ast] 目录下的文件。
 
@@ -1025,7 +1026,7 @@ class Nodes : public Node;
 
 [ast]: https://github.com/hakula139/pcat_parser/tree/master/src/ast
 
-### 7.1 `Node`
+### `Node`
 
 `Node` 类的实现如下所示：
 
@@ -1101,7 +1102,7 @@ void Body::UpdateDepth(int depth) {
 
 打印节点时，打印的内容是该节点的名称 `name_` 和位置 `loc_`。
 
-### 7.2 `ValueNode`
+### `ValueNode`
 
 `ValueNode` 类的实现如下所示：
 
@@ -1131,7 +1132,7 @@ void ValueNode::Print(std::ostream& os) const {
 
 `ValueNode` 比 `Node` 主要就是多保存了一个节点的语义值 `value_`，并围绕 `value_` 新增 / 修改了相关方法，比如构造时多传入一个参数 `value`，打印时多打印一个节点的语义值 `value()`。注意这里的 `value()` 和前面 `Node` 里的 `name()` 都是虚函数，因此可以被派生类的实现覆盖。
 
-### 7.3 `Nodes`
+### `Nodes`
 
 `Nodes` 类的实现如下所示：
 
@@ -1190,11 +1191,11 @@ void Nodes::Print(std::ostream& os) const {
 
 这里有一点可以改进的地方是，数组成员 `data_` 的元素类型不应该是 `std::shared_ptr<Node>`，而应该是泛型 `std::shared_ptr<T>` 或者 `T`，然后派生类在继承时特化。我这里是懒了，毕竟不影响结果，只是缺少了一个运行时的类型检查，以及缺失了一定的语义（例如 `Lvalues` 类的 `data_` 的元素类型应当只能是 `std::shared_ptr<Lvalue>` 而不能是别的）。
 
-### 7.4 如何继承
+### 如何继承
 
 其他节点就是继承自这三个基类了，逻辑上基本没有大的变化，只是针对自己的情形做了一些调整。例如：
 
-#### 7.4.1 `Node` 类的派生类: `Body`
+#### `Node` 类的派生类: `Body`
 
 ```cpp {title="src/ast/body.hpp"}
 class Body : public Node {
@@ -1237,7 +1238,7 @@ void Body::Print(std::ostream& os) const {
 
 构造时，传入的参数就是该节点的子节点的指针，保存在对象中。之后在调用函数 `UpdateDepth()` 和 `Print()` 时，就可以直接向下「递归」了。对于叶节点，函数 `UpdateDepth()` 和 `Print()` 不进行覆盖，而是直接使用基类的实现。
 
-#### 7.4.2 `ValueNode` 类的派生类: `BinaryExpr`
+#### `ValueNode` 类的派生类: `BinaryExpr`
 
 ```cpp {title="src/ast/expr.hpp"}
 class Expr : public ValueNode {
@@ -1299,7 +1300,7 @@ std::string BinaryExpr::value() const {
 
 相较于 `Node` 类的派生类，主要是多了一个对函数 `value()` 的覆盖。这个 `value()` 就是节点的语义值。通过这种方式，当 `expr1`, `op`, `expr2` 的语义值分别为 `(1 + 2)`, `*`, `3` 时，我们就可以得到本节点的语义值 `(1 + 2) * 3`。一方面形式上非常统一，另一方面不需要相同实现重复定义，这就是虚函数的妙处。
 
-#### 7.4.3 `Nodes` 类的派生类: `Stmts`
+#### `Nodes` 类的派生类: `Stmts`
 
 ```cpp {title="src/ast/stmt.hpp"}
 class Stmts : public Nodes {
@@ -1315,7 +1316,7 @@ class Stmts : public Nodes {
 
 只需要改个名字就可以了。
 
-#### 7.4.4 一些特例: `WriteExpr`
+#### 一些特例: `WriteExpr`
 
 ```cpp {title="src/ast/expr.hpp"}
 class WriteExpr : public Expr {
@@ -1388,11 +1389,11 @@ std::string WriteExpr::value() const {
 
 [visit-cppref]: https://en.cppreference.com/w/cpp/utility/variant/visit
 
-### 7.5 继承关系
+### 继承关系
 
 最后，我在这里统一列一下所有类之间的继承关系（除基类外按首字母顺序）。
 
-#### 7.5.1 三个基类
+#### 三个基类
 
 ```cpp
 class ValueNode : public Node;
@@ -1403,7 +1404,7 @@ class Nodes : public Node;
 
 [node.hpp]: https://github.com/hakula139/pcat_parser/blob/master/src/ast/node.hpp
 
-#### 7.5.2 Body
+#### Body
 
 ```cpp
 class Body : public Node;
@@ -1413,7 +1414,7 @@ class Body : public Node;
 
 [body.hpp]: https://github.com/hakula139/pcat_parser/blob/master/src/ast/body.hpp
 
-#### 7.5.3 所有常量类
+#### 所有常量类
 
 ```cpp
 template <class T> class Constant : public Node;
@@ -1425,11 +1426,11 @@ class String : public Constant<std::string>;
 
 参见 [`src/ast/constant.hpp`][constant.hpp]。
 
-这里本来 `Integer` 和 `Real` 分别继承自 `Constant<int32_t>` 和 `Constant<double>`，这也是为什么 `Constant` 被声明成一个模板类。在 [4.2](#4.2-bison-declaration) 节我们解释过为什么后来改成了 `Constant<std::string>`。
+这里本来 `Integer` 和 `Real` 分别继承自 `Constant<int32_t>` 和 `Constant<double>`，这也是为什么 `Constant` 被声明成一个模板类。在 [Bison declaration](#bison-declaration) 节我们解释过为什么后来改成了 `Constant<std::string>`。
 
 [constant.hpp]: https://github.com/hakula139/pcat_parser/blob/master/src/ast/constant.hpp
 
-#### 7.5.4 所有声明类
+#### 所有声明类
 
 ```cpp
 class Decl : public Node;
@@ -1446,7 +1447,7 @@ class ProcDecls : public Decls;
 
 [decl.hpp]: https://github.com/hakula139/pcat_parser/blob/master/src/ast/decl.hpp
 
-#### 7.5.5 所有表达式类
+#### 所有表达式类
 
 ```cpp
 class Expr : public ValueNode;
@@ -1473,7 +1474,7 @@ class WriteExprs : public Exprs;
 
 [expr.hpp]: https://github.com/hakula139/pcat_parser/blob/master/src/ast/expr.hpp
 
-#### 7.5.6 Identifier
+#### Identifier
 
 ```cpp
 class Id : public ValueNode;
@@ -1484,7 +1485,7 @@ class Ids : public Nodes;
 
 [identifier.hpp]: https://github.com/hakula139/pcat_parser/blob/master/src/ast/identifier.hpp
 
-#### 7.5.7 所有左值类
+#### 所有左值类
 
 ```cpp
 class Lvalue : public ValueNode;
@@ -1498,7 +1499,7 @@ class RecordCompLvalue : public Lvalue;
 
 [lvalue.hpp]: https://github.com/hakula139/pcat_parser/blob/master/src/ast/lvalue.hpp
 
-#### 7.5.8 Operator
+#### Operator
 
 ```cpp
 class Op : public ValueNode;
@@ -1508,7 +1509,7 @@ class Op : public ValueNode;
 
 [operator.hpp]: https://github.com/hakula139/pcat_parser/blob/master/src/ast/operator.hpp
 
-#### 7.5.9 所有参数类
+#### 所有参数类
 
 ```cpp
 class Param : public Node;
@@ -1524,7 +1525,7 @@ class WriteParams : public WriteExprs;
 
 [param.hpp]: https://github.com/hakula139/pcat_parser/blob/master/src/ast/param.hpp
 
-#### 7.5.10 Program
+#### Program
 
 ```cpp
 class Program : public Node;
@@ -1534,7 +1535,7 @@ class Program : public Node;
 
 [program.hpp]: https://github.com/hakula139/pcat_parser/blob/master/src/ast/program.hpp
 
-#### 7.5.11 所有语句类
+#### 所有语句类
 
 ```cpp
 class Stmt : public Node;
@@ -1559,7 +1560,7 @@ class ReturnStmt : public Stmt;
 
 [stmt.hpp]: https://github.com/hakula139/pcat_parser/blob/master/src/ast/stmt.hpp
 
-#### 7.5.12 所有类型类
+#### 所有类型类
 
 ```cpp
 class Type : public Node;

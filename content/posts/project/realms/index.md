@@ -8,6 +8,7 @@ tags = [
     "REST",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/69321889_p0.webp"
@@ -30,7 +31,7 @@ Introduction to Database Systems (H) @ Fudan University, spring 2020.
 
 ## Getting started
 
-### 0 Prerequisites
+### Prerequisites {numbering-start=0}
 
 To set up the environment, you need to have the following dependencies installed.
 
@@ -46,7 +47,7 @@ For Windows, try [MinGW-w64][mingw].
 [mariadb]: https://mariadb.com/downloads
 [mingw]: https://sourceforge.net/projects/mingw-w64
 
-### 1 Installation
+### Installation
 
 First, you need to obtain the REALMS package.
 
@@ -74,9 +75,9 @@ build: realms done.
 build: realmsd done.
 ```
 
-### 2 Usage
+### Usage
 
-#### 2.1 realmsd - the backend
+#### realmsd - the backend
 
 Run _realmsd_ using the command below, and the server will listen to port `7274` by default.
 
@@ -86,7 +87,7 @@ Run _realmsd_ using the command below, and the server will listen to port `7274`
 
 Realmsd will open a database connection to a MySQL database, originally at `root:Hakula@tcp(localhost:3306)/library`. You can modify the configuration in the config file `./configs/db_config.json`. There's no need to manually create a database named `library`, as it'll be created automatically in advance.
 
-#### 2.2 realms - the frontend
+#### realms - the frontend
 
 To interact with the backend, here's a simple CLI tool, namely, _realms_. Though, it's not necessarily required, since you can easily build another frontend with the RESTful APIs, a guide for which will be provided later.
 
@@ -148,13 +149,13 @@ COMMANDS:
 
 It's quite easy to understand how these commands work, nevertheless we're going to introduce them in detail in the next chapter.
 
-### 3 REST API
+### REST API
 
 Here we'll demonstrate the usage of these RESTful APIs by example.
 
-#### 3.1 Log in
+#### Log in
 
-##### 3.1.1 Request
+##### Request
 
 Method: `POST /login`  
 Content-Type: `multipart/form-data`  
@@ -177,7 +178,7 @@ On the server-side, the password will be hashed using [bcrypt] before save.
 [cookiejar]: https://golang.org/pkg/net/http/cookiejar
 [bcrypt]: https://en.wikipedia.org/wiki/Bcrypt
 
-##### 3.1.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -207,9 +208,9 @@ auth: already logged in
 auth: failed to save session
 ```
 
-#### 3.2 Log out
+#### Log out
 
-##### 3.2.1 Request
+##### Request
 
 Method: `GET /logout`  
 CLI command: `logout`
@@ -220,7 +221,7 @@ In realms:
 > logout
 ```
 
-##### 3.2.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -242,9 +243,9 @@ auth: invalid session token, have you logged in?
 auth: failed to save session
 ```
 
-#### 3.3 Show current logged-in user
+#### Show current logged-in user
 
-##### 3.3.1 Request
+##### Request
 
 Method: `GET /user/me`  
 CLI command: `me`
@@ -257,7 +258,7 @@ In realms:
 
 **User** privilege is required, which means you have to login before doing this operation.
 
-##### 3.3.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -278,9 +279,9 @@ If you're not logged in, you'll receive an error message below.
 auth: unauthorized
 ```
 
-#### 3.4 Show the current login status
+#### Show the current login status
 
-##### 3.4.1 Request
+##### Request
 
 Method: `GET /status`  
 CLI command: `status`
@@ -291,7 +292,7 @@ In realms:
 > status
 ```
 
-##### 3.4.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -306,9 +307,9 @@ If the current user is logged in, you'll see the following message.
 Online
 ```
 
-#### 3.5 Add a new book
+#### Add a new book
 
-##### 3.5.1 Request
+##### Request
 
 Method: `POST /admin/books`  
 Content-Type: `application/json`  
@@ -345,7 +346,7 @@ On the server-side, the following message will be written to log using [zap]. Th
 
 [zap]: https://pkg.go.dev/mod/go.uber.org/zap
 
-##### 3.5.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -374,9 +375,9 @@ If not authorized (i.e. you're not an admin), you'll receive an error message be
 auth: unauthorized
 ```
 
-#### 3.6 Update data of a book
+#### Update data of a book
 
-##### 3.6.1 Request
+##### Request
 
 Method: `PATCH /admin/books/:id`  
 Content-Type: `application/json`  
@@ -412,7 +413,7 @@ The following message will be written to log.
 { "level": "info", "time": "2020-05-04T01:41:57.908+0800", "msg": "Updated book 20" }
 ```
 
-##### 3.6.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -442,9 +443,9 @@ auth: unauthorized
 database: book not found
 ```
 
-#### 3.7 Remove a book
+#### Remove a book
 
-##### 3.7.1 Request
+##### Request
 
 Method: `DELETE /admin/books/:id`  
 Content-Type: `application/json`  
@@ -482,7 +483,7 @@ Or if there's no explanation:
 { "level": "info", "time": "2020-05-04T02:13:00.956+0800", "msg": "Removed book 5" }
 ```
 
-##### 3.7.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -504,9 +505,9 @@ auth: unauthorized
 database: book not found
 ```
 
-#### 3.8 Show all books
+#### Show all books
 
-##### 3.8.1 Request
+##### Request
 
 Method: `GET /books`  
 CLI command: `show books`
@@ -517,7 +518,7 @@ In realms:
 > show books
 ```
 
-##### 3.8.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -593,9 +594,9 @@ func printBooks(books []interface{}) {
 }
 ```
 
-#### 3.9 Show the book of given ID
+#### Show the book of given ID
 
-##### 3.9.1 Request
+##### Request
 
 Method: `GET /books/:id`  
 CLI command: `show book`
@@ -607,7 +608,7 @@ In realms:
 Book ID: 20
 ```
 
-##### 3.9.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -640,9 +641,9 @@ Possible error messages are shown below.
 database: book not found
 ```
 
-#### 3.10 Find books by title / author / ISBN
+#### Find books by title / author / ISBN
 
-##### 3.10.1 Request
+##### Request
 
 Method: `POST /books/find`  
 Content-Type: `application/json`  
@@ -686,7 +687,7 @@ Author (optional):
 ISBN (optional):
 ```
 
-##### 3.10.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -727,9 +728,9 @@ If there's no book found, realms will print the following message.
 No books found
 ```
 
-#### 3.11 Add a new user
+#### Add a new user
 
-##### 3.11.1 Request
+##### Request
 
 Method: `POST /admin/users`  
 Content-Type: `application/json`  
@@ -770,7 +771,7 @@ The following message will be written to log.
 { "level": "info", "time": "2020-05-05T14:44:18.319+0800", "msg": "Added user 11" }
 ```
 
-##### 3.11.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -799,9 +800,9 @@ auth: unauthorized
 database: username already exists
 ```
 
-#### 3.12 Update data of a user
+#### Update data of a user
 
-##### 3.12.1 Request
+##### Request
 
 Method: `PATCH /admin/users/:id`  
 Content-Type: `application/json`  
@@ -835,7 +836,7 @@ The following message will be written to log.
 { "level": "info", "time": "2020-05-05T15:11:07.467+0800", "msg": "Updated user 11" }
 ```
 
-##### 3.12.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -864,9 +865,9 @@ auth: unauthorized
 database: user not found
 ```
 
-#### 3.13 Remove a user
+#### Remove a user
 
-##### 3.13.1 Request
+##### Request
 
 Method: `DELETE /admin/users/:id`  
 CLI command: `remove user`
@@ -886,7 +887,7 @@ The following message will be written to log.
 { "level": "info", "time": "2020-05-05T15:20:12.451+0800", "msg": "Removed user 11" }
 ```
 
-##### 3.13.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -908,9 +909,9 @@ auth: unauthorized
 database: user not found
 ```
 
-#### 3.14 Show all users
+#### Show all users
 
-##### 3.14.1 Request
+##### Request
 
 Method: `GET /admin/users`  
 CLI command: `show users`
@@ -923,7 +924,7 @@ In realms:
 
 **Admin** privilege is required.
 
-##### 3.14.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -962,9 +963,9 @@ Possible error messages are shown below.
 auth: unauthorized
 ```
 
-#### 3.15 Show the user of given ID
+#### Show the user of given ID
 
-##### 3.15.1 Request
+##### Request
 
 Method: `GET /admin/users/:id`  
 CLI command: `show user`
@@ -978,7 +979,7 @@ User ID: 3
 
 **Admin** privilege is required.
 
-##### 3.15.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -1009,9 +1010,9 @@ auth: unauthorized
 database: user not found
 ```
 
-#### 3.16 Borrow a book
+#### Borrow a book
 
-##### 3.16.1 Request
+##### Request
 
 Method: `POST /user/books/:id`  
 Content-Type: `application/json`  
@@ -1051,7 +1052,7 @@ The following message will be written to log.
 { "level": "info", "time": "2020-05-05T15:50:00.395+0800", "msg": "User 5 borrowed book 20" }
 ```
 
-##### 3.16.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -1095,9 +1096,9 @@ auth: unauthorized
 database: book not found
 ```
 
-#### 3.17 Return a book
+#### Return a book
 
-##### 3.17.1 Request
+##### Request
 
 Method: `DELETE /user/books/:id`  
 CLI command: `return book`
@@ -1119,7 +1120,7 @@ The following message will be written to log.
 { "level": "info", "time": "2020-05-05T17:18:07.279+0800", "msg": "User 5 returned book 20" }
 ```
 
-##### 3.17.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -1148,9 +1149,9 @@ auth: unauthorized
 
 Why there's not a `book not found` error here? It's to prevent the case that an admin removed a book which had been borrowed, and now the user who borrowed it wants to return it back.
 
-#### 3.18 Check the deadline to return a book
+#### Check the deadline to return a book
 
-##### 3.18.1 Request
+##### Request
 
 Method: `GET /user/books/:id`  
 CLI command: `check ddl`
@@ -1164,7 +1165,7 @@ Book ID: 22
 
 **User** privilege is required.
 
-##### 3.18.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -1198,9 +1199,9 @@ auth: unauthorized
 library: book not borrowed
 ```
 
-#### 3.19 Extend the deadline to return a book
+#### Extend the deadline to return a book
 
-##### 3.19.1 Request
+##### Request
 
 Method: `PATCH /user/books/:id`  
 CLI command: `extend ddl`
@@ -1214,7 +1215,7 @@ Book ID: 22
 
 **User** privilege is required.
 
-##### 3.19.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -1254,9 +1255,9 @@ auth: unauthorized
 library: book not borrowed
 ```
 
-#### 3.20 Show all books that you've borrowed
+#### Show all books that you've borrowed
 
-##### 3.20.1 Request
+##### Request
 
 Method: `GET /user/books`  
 CLI command: `show list`
@@ -1269,7 +1270,7 @@ In realms:
 
 **User** privilege is required.
 
-##### 3.20.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -1327,9 +1328,9 @@ Possible error messages are shown below.
 auth: unauthorized
 ```
 
-#### 3.21 Show all overdue books that you've borrowed
+#### Show all overdue books that you've borrowed
 
-##### 3.21.1 Request
+##### Request
 
 Method: `GET /user/overdue`  
 CLI command: `show overdue`
@@ -1342,7 +1343,7 @@ In realms:
 
 **User** privilege is required.
 
-##### 3.21.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -1385,9 +1386,9 @@ Possible error messages are shown below.
 auth: unauthorized
 ```
 
-#### 3.22 Show all your records
+#### Show all your records
 
-##### 3.22.1 Request
+##### Request
 
 Method: `GET /user/history`  
 CLI command: `show history`
@@ -1400,7 +1401,7 @@ In realms:
 
 **User** privilege is required.
 
-##### 3.22.2 Response
+##### Response
 
 Status: `200 OK`  
 Content-Type: `application/json`
@@ -1463,11 +1464,11 @@ auth: unauthorized
 
 ## Design
 
-### 4 Database schema
+### Database schema {numbering-start=4}
 
 There're currently 3 tables in database `library`, namely, `books`, `users` and `records`.
 
-#### 4.1 books
+#### books
 
 | Field     | Type             | Null | Key |
 | :-------- | :--------------- | :--: | :-: |
@@ -1477,7 +1478,7 @@ There're currently 3 tables in database `library`, namely, `books`, `users` and 
 | publisher | varchar(255)     | YES  |  /  |
 | isbn      | varchar(255)     | YES  |  /  |
 
-#### 4.2 users
+#### users
 
 | Field    | Type             | Null | Key |
 | :------- | :--------------- | :--: | :-: |
@@ -1486,7 +1487,7 @@ There're currently 3 tables in database `library`, namely, `books`, `users` and 
 | password | varchar(255)     |  NO  |  /  |
 | level    | int(10) unsigned |  NO  |  /  |
 
-#### 4.3 records
+#### records
 
 | Field        | Type             | Null | Key |
 | :----------- | :--------------- | :--: | :-: |

@@ -325,7 +325,7 @@ Fast / Slow 指示开启后，默认显示位置为 TYPE_A。
 背景动画开关。
 
 ::: callout {type=bug}
-如果你确定谱面有自带 BGA，但显示为黑屏，参见 [FAQ](../faq/#2.6-bga-黑屏或报错)。
+如果你确定谱面有自带 BGA，但显示为黑屏，参见 [FAQ](../faq/#bga-黑屏或报错)。
 :::
 
 #### BGA SIZE
@@ -391,7 +391,7 @@ BGA 显示尺寸设置。
 ::: callout {type=bug}
 
 - [G-BATTLE](#g-battle) 模式下回放可能保存失败。
-- 段位 / Course 的回放可能保存失败，解决方案参见 [FAQ](../faq/#2.3-段位回放没有保存)。
+- 段位 / Course 的回放可能保存失败，解决方案参见 [FAQ](../faq/#段位回放没有保存)。
 
 :::
 
@@ -649,7 +649,7 @@ IR 即当前 Internet Ranking 的连接情况。
 
 [^f3]: 按住 F3 键后，按 :arrow_up: :arrow_down: 键调整谱面难度，:arrow_left: :arrow_right: 键调整谱面等级。
 
-[^f7]: 由于没有 FPS 限制，LR2 基本会跑满 GPU，帧率上千不是梦，真实显卡跑分游戏。手机测评跑原神，以后咱 PC 就跑 LR2。如果发现全屏后 FPS 锁定为 60 帧，参见 [FAQ](../faq/#2.4-笔记本全屏锁帧)。
+[^f7]: 由于没有 FPS 限制，LR2 基本会跑满 GPU，帧率上千不是梦，真实显卡跑分游戏。手机测评跑原神，以后咱 PC 就跑 LR2。如果发现全屏后 FPS 锁定为 60 帧，参见 [FAQ](../faq/#笔记本全屏锁帧)。
 
 [^f8]: 参见 [启动器](../launcher/#song-reload) 篇。
 
