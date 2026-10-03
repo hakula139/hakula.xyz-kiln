@@ -211,7 +211,7 @@ Here is `server.py`, the core of the MCP server. We will walk through it piece b
 
 ### FastMCP instantiation
 
-```python {title="server.py"}
+```python {title="src/my_docs_mcp/server.py"}
 from fastmcp import FastMCP
 
 mcp = FastMCP(
@@ -232,7 +232,7 @@ The first argument is the server name (shown in the agent's MCP server list). Th
 
 Each tool is an async function decorated with `@mcp.tool`. FastMCP reads the function's type hints and docstring to generate the JSON Schema that the agent sees. This means your docstring _is_ the tool's documentation — if it is vague, the agent will use the tool incorrectly.
 
-```python {title="server.py"}
+```python {title="src/my_docs_mcp/server.py"}
 @mcp.tool
 async def list_versions() -> list[dict[str, Any]]:
     """List all available documentation versions with their aliases."""
@@ -265,7 +265,7 @@ The most complex tool is `get_page`, because it needs to resolve a URL path to a
 1. **Primary**: Look up the page title from `llms.txt` (which maps paths to titles), then find the corresponding `# Title` section in `llms-full.txt`.
 2. **Fallback**: If the page is not in `llms.txt` (some pages, like auto-generated API references, may be excluded), assemble it from the MkDocs search index, which stores one entry per section.
 
-```python {title="server.py"}
+```python {title="src/my_docs_mcp/server.py"}
 @mcp.tool
 async def get_page(path: str, version: str = "latest") -> str:
     """Get a single documentation page's content in markdown.
@@ -295,7 +295,7 @@ async def get_page(path: str, version: str = "latest") -> str:
 
 The extraction helpers are straightforward string operations:
 
-```python {title="server.py"}
+```python {title="src/my_docs_mcp/server.py"}
 def _normalize_path(path: str) -> str:
     """Normalize a page path for consistent comparison."""
     path = path.strip("/")
@@ -338,7 +338,7 @@ If all your pages are already included in `llms-full.txt`, you can safely skip t
 
 :::
 
-```python {title="server.py"}
+```python {title="src/my_docs_mcp/server.py"}
 def _assemble_from_search_index(
     index: list[dict[str, Any]], path: str
 ) -> str | None:
@@ -372,7 +372,7 @@ The reconstructed document only uses two heading levels (`#` for the page title,
 
 ### The entry point
 
-```python {title="server.py"}
+```python {title="src/my_docs_mcp/server.py"}
 def main() -> None:
     parser = argparse.ArgumentParser(description="My Docs MCP Server")
     parser.add_argument(
@@ -393,7 +393,7 @@ The base URL is configurable through a CLI argument or an environment variable, 
 
 The fetcher is a thin async HTTP client that caches responses for 5 minutes. Every tool call hits the fetcher, and without caching, a typical agent session (which might call `search_docs`, then `get_page` three times, then `get_docs_index`) would make a dozen HTTP requests to the same URLs within seconds.
 
-```python {title="fetcher.py"}
+```python {title="src/my_docs_mcp/fetcher.py"}
 DEFAULT_BASE_URL = "https://docs.example.com"
 CACHE_TTL = 300  # 5 minutes
 
@@ -446,7 +446,7 @@ MkDocs with [mike](https://github.com/jimporter/mike) (the versioning plugin) pu
 
 The fetcher resolves aliases before fetching:
 
-```python {title="fetcher.py"}
+```python {title="src/my_docs_mcp/fetcher.py"}
 async def resolve_version(self, version: str) -> str:
     """Resolve 'latest' or other aliases to actual version identifiers."""
     versions = await self.get_versions()
@@ -464,7 +464,7 @@ This means `get_page("guides/getting-started/", version="latest")` transparently
 
 The search module is deliberately simple: keyword matching with title weighting. No vector embeddings, no semantic search, no external dependencies.
 
-```python {title="search.py"}
+```python {title="src/my_docs_mcp/search.py"}
 def search(
     docs: list[dict[str, Any]],
     query: str,

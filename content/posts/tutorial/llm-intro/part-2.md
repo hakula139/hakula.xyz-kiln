@@ -42,9 +42,9 @@ Both reasons point to the same mental model: a project manager delegating to spe
 
 Claude Code ships with several built-in subagents: **Explore** (haiku, read-only, for fast codebase search), **Plan** (inherits model, read-only, for context gathering in plan mode), and **General-purpose** (inherits model, full tool access, for complex multi-step tasks). These cover the most common delegation patterns out of the box.
 
-My configuration defines eight additional custom agent types on top of these, each with a specific role, behavioral constraints, and (in some cases) a different model tier. Each agent type is a separate Markdown file. Here is the `tester` agent, which overrides the default model to `sonnet`:
+My configuration defines eight additional custom agent types on top of these, each with a specific role, behavioral constraints, and (in some cases) a different model tier. Each agent type is a separate Markdown file. Here is the [`tester` agent](https://github.com/hakula139/nixos-config/blob/b78fbb2d2cfca60931fe88e467e1bf49053a65c1/home/modules/claude-code/agents/tester.md), which overrides the default model to `sonnet`:
 
-```markdown {title="~/.claude/agents/tester.md"}
+```markdown {title="hakula139/nixos-config:home/modules/claude-code/agents/tester.md"}
 ---
 name: tester
 description: |
@@ -85,7 +85,7 @@ The overall orchestration rules — when to use agents, model selection guidelin
 
 Access constraints here are behavioral: agents are instructed to operate read-only through their system prompts, not through hard tool restrictions. This lets an agent break the boundary when genuinely needed — a read-only researcher might need to create a temporary file for an intermediate computation. The exception is the `codex-worker`, whose narrower tool set physically prevents it from doing work directly, forcing it to delegate to Codex instead:
 
-```markdown {title="~/.claude/agents/codex-worker.md"}
+```markdown {title="hakula139/nixos-config:home/modules/llm-assistants/claude-code/agents/codex-worker.md"}
 ---
 name: codex-worker
 description: |

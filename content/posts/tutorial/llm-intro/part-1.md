@@ -186,7 +186,7 @@ Here is a concrete example from my own configuration.
 
 **Global** (`~/.claude/CLAUDE.md`) covers communication style, code quality principles, commenting guidelines, and MCP server usage patterns:
 
-```markdown {title="~/.claude/CLAUDE.md"}
+```markdown {title="hakula139/nixos-config:home/modules/claude-code/_CLAUDE.md"}
 ## Communication Style
 
 Be direct, honest, and skeptical. Criticism is valuable.
@@ -261,7 +261,7 @@ The global file also defines the entire agent team workflow: available agent typ
 
 **Project** (`CLAUDE.md` in a Rust static site generator repo) covers project structure, coding conventions, and verification workflow:
 
-````markdown {title="CLAUDE.md"}
+````markdown {title="hakula139/kiln:CLAUDE.md"}
 ## Project Overview
 
 kiln is a custom static site generator (SSG) written in Rust.
@@ -373,7 +373,7 @@ Beyond CLAUDE.md, the agent's behavior is governed by `settings.json`, which inc
 My configuration defines over 250 auto-approved patterns spanning filesystem navigation, text processing, Git operations, development tools, network utilities, and container management. Destructive operations (`rm`, `kill`, `git push`) require explicit confirmation. Some operations are unconditionally blocked. Here is an excerpt:
 
 <!-- prettier-ignore -->
-```json {title="settings.json"}
+```json {title="~/.claude/settings.json"}
 {
   "permissions": {
     "defaultMode": "acceptEdits",
@@ -485,7 +485,7 @@ This is context engineering through subtraction: instead of writing "always form
 
 **Notification (PermissionRequest):** When the agent needs user attention (a permission prompt or a question), this hook sends a desktop notification so you are not blocked waiting:
 
-```json
+```json {title="~/.claude/settings.json"}
 {
   "hooks": {
     "PermissionRequest": [
@@ -527,7 +527,7 @@ The examples above are all command hooks (`type: "command"`), but Claude Code su
 
 **Prompt hooks** (`type: "prompt"`) send the event context to an LLM for single-turn evaluation. The LLM returns `{"ok": true}` to allow or `{"ok": false, "reason": "..."}` to block. This is useful when the decision requires judgment rather than a deterministic script check. A common pattern is a `Stop` hook that evaluates whether all tasks are actually complete before allowing the agent to finish:
 
-```json
+```json {title="~/.claude/settings.json"}
 {
   "hooks": {
     "Stop": [
@@ -620,7 +620,7 @@ Each server brings capabilities that would be awkward or unreliable through raw 
 
 With both hooks and MCP in place, they reinforce each other. Here is a `PreToolUse` hook that blocks Bash commands whenever an MCP equivalent exists, forcing the agent to use the structured tool instead:
 
-```json
+```json {title="~/.claude/settings.json"}
 {
   "hooks": {
     "PreToolUse": [
@@ -640,7 +640,7 @@ With both hooks and MCP in place, they reinforce each other. Here is a `PreToolU
 
 The script reads the JSON input from stdin, checks the command, and returns a `permissionDecision` of `"deny"` with a redirect message:
 
-```bash {title=".claude/hooks/enforce-mcp.sh"}
+```bash {title="hakula139/nixos-config:home/modules/claude-code/hooks/enforce-mcp.sh"}
 #!/usr/bin/env bash
 COMMAND=$(jq -r '.tool_input.command')
 
@@ -695,7 +695,7 @@ MCP gives the agent structured access to tools, but it does not tell the agent _
 
 Here is the official `/commit` skill from Anthropic's [commit-commands](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/commit-commands) plugin:
 
-```markdown {title=".claude/skills/"}
+```markdown {title="anthropics/claude-plugins-official:plugins/commit-commands/commands/commit.md"}
 ---
 description: Create a git commit
 allowed-tools:
@@ -755,7 +755,7 @@ My configuration enables 18+ plugins across three categories:
 
 **Official**, Anthropic-maintained skill bundles and workflow extensions:
 
-```json
+```json {title="~/.claude/settings.json"}
 {
   "enabledPlugins": {
     "document-skills@anthropic-agent-skills": true,
@@ -773,7 +773,7 @@ The skill bundles add dozens of invocable skills: `/pdf` for PDF manipulation, `
 
 **LSP integrations**, language server protocol plugins:
 
-```json
+```json {title="~/.claude/settings.json"}
 {
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true,
@@ -789,7 +789,7 @@ These give the agent access to real-time language diagnostics (type errors, unus
 
 **Third-party plugins**, community contributions:
 
-```json
+```json {title="~/.claude/settings.json"}
 {
   "enabledPlugins": {
     "context7-plugin@context7-marketplace": true,
@@ -804,7 +804,7 @@ We [already saw](#configuring-mcp-servers) Context7 as an MCP server for documen
 
 Plugins are distributed through **marketplaces**, GitHub repositories that serve as registries. Anthropic maintains two official marketplaces (`anthropics/skills` and `anthropics/claude-plugins-official`), and third parties can create their own. The configuration is explicit: you declare which marketplaces to trust and which plugins to enable.
 
-```json
+```json {title="~/.claude/settings.json"}
 {
   "extraKnownMarketplaces": {
     "anthropic-agent-skills": {
