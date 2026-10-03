@@ -6,7 +6,6 @@ tags = [
     "VPS",
 ]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/66372748_p0.webp"
@@ -15,6 +14,8 @@ src = "/images/article-covers/66372748_p0.webp"
 title = "ARCANA"
 author = "MISSILE228"
 url = "https://www.pixiv.net/artworks/66372748"
+
+[heading_numbering]
 +++
 
 建站以来第一篇文章，主要是建站后的一点感想，以及建站的整个大致流程。

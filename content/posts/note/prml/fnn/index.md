@@ -10,7 +10,6 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/88775351_p0.webp"
@@ -19,6 +18,8 @@ src = "/images/article-covers/88775351_p0.webp"
 title = "封鎖"
 author = "SWAV"
 url = "https://www.pixiv.net/artworks/88775351"
+
+[heading_numbering]
 +++
 
 本次作业完成了选题 1 的实验内容，利用 NumPy 实现了一个 FNN 模型，并在 MNIST 数据集上进行了训练。

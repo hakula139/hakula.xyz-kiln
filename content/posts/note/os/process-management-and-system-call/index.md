@@ -9,7 +9,6 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/85995104_p0.webp"
@@ -19,6 +18,8 @@ position = "top"
 title = "猫の街"
 author = "MISSILE228"
 url = "https://www.pixiv.net/artworks/85995104"
+
+[heading_numbering]
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.

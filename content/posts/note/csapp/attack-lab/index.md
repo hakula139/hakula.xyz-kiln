@@ -7,10 +7,19 @@ tags = [
     "缓冲区溢出",
 ]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/csapp.webp"
+
+[heading_numbering]
+
+[heading_numbering.starts]
+"准备工作" = 0
+"总览" = 0
+"总览-1" = 0
+"总览-2" = 0
+"总览-3" = 0
+"总览-4" = 0
 +++
 
 Introduction to Computer Systems I (H) @ Fudan University, fall 2019.

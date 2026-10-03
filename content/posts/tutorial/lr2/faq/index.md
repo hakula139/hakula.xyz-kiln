@@ -3,7 +3,6 @@ title = "LR2 配置教程 - FAQ"
 date = 2019-07-19T02:43:00+08:00
 tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/73473821_p0.webp"
@@ -12,6 +11,8 @@ src = "/images/article-covers/73473821_p0.webp"
 title = "膕"
 author = "神岡ちろる"
 url = "https://www.pixiv.net/artworks/73473821"
+
+[heading_numbering]
 +++
 
 一些常见问题及参考解决方案。

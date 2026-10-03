@@ -6,7 +6,6 @@ tags = [
     "排序",
 ]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/77359441_p0.webp"
@@ -15,6 +14,8 @@ src = "/images/article-covers/77359441_p0.webp"
 title = "内緒"
 author = "MISSILE228"
 url = "https://www.pixiv.net/artworks/77359441"
+
+[heading_numbering]
 +++
 
 Data Structures (H) @ Fudan University, fall 2019.

@@ -6,10 +6,16 @@ tags = [
     "汇编",
 ]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/csapp.webp"
+
+[heading_numbering]
+
+[heading_numbering.starts]
+"准备工作" = 0
+"观察函数-phase_6" = 0
+"找到隐藏函数" = 0
 +++
 
 Introduction to Computer Systems I (H) @ Fudan University, fall 2019.

@@ -8,7 +8,6 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/60181142_p0.webp"
@@ -17,6 +16,8 @@ src = "/images/article-covers/60181142_p0.webp"
 title = "LAST WORDS"
 author = "Miv4t"
 url = "https://www.pixiv.net/artworks/60181142"
+
+[heading_numbering]
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.

@@ -9,7 +9,6 @@ tags = [
     "C++",
 ]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/88865174_p0.webp"
@@ -18,6 +17,8 @@ src = "/images/article-covers/88865174_p0.webp"
 title = "季節を抱きしめて"
 author = "DSマイル"
 url = "https://www.pixiv.net/artworks/88865174"
+
+[heading_numbering]
 +++
 
 本项目利用 Flex (fast lexical analyzer generator)，实现了对给定 PCAT 语言样例的词法分析。

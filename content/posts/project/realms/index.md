@@ -8,7 +8,6 @@ tags = [
     "REST",
 ]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/69321889_p0.webp"
@@ -17,6 +16,12 @@ src = "/images/article-covers/69321889_p0.webp"
 title = "19"
 author = "Aer7o"
 url = "https://www.pixiv.net/artworks/69321889"
+
+[heading_numbering]
+
+[heading_numbering.starts]
+"prerequisites" = 0
+"database-schema" = 4
 +++
 
 REALMS Establishes A Library Management System, written in Go, using a MySQL database.

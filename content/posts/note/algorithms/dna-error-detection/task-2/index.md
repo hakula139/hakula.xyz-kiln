@@ -7,7 +7,6 @@ tags = [
     "C++",
 ]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/89979147_p0.webp"
@@ -16,6 +15,8 @@ src = "/images/article-covers/89979147_p0.webp"
 title = "夕凪"
 author = "mocha"
 url = "https://www.pixiv.net/artworks/89979147"
+
+[heading_numbering]
 +++
 
 Algorithms (H) @ Fudan University, spring 2021.

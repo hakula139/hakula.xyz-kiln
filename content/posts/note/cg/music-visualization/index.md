@@ -8,7 +8,6 @@ tags = [
     "TypeScript",
 ]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/82818849_p0.webp"
@@ -17,6 +16,8 @@ src = "/images/article-covers/82818849_p0.webp"
 title = "届け！僕らの願い事"
 author = "輪廻（りんね）"
 url = "https://www.pixiv.net/artworks/82818849"
+
+[heading_numbering]
 +++
 
 本项目利用 HTML5 Canvas，实现了对音乐旋律的可视化，使用 TypeScript 编写。
