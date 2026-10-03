@@ -2487,6 +2487,52 @@
   .prose .footnote-backref {
     margin-left: var(--spacing);
   }
+}
+.prose .katex-display {
+  &::-webkit-scrollbar {
+    height: calc(var(--spacing) * 2);
+    width: calc(var(--spacing) * 2);
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: calc(infinity * 1px);
+    background-color: var(--color-border);
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-text-tertiary);
+  }
+  @supports not selector(::-webkit-scrollbar) {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-text-tertiary) transparent;
+  }
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.prose .katex-display > .katex > .katex-html {
+  width: max-content;
+  min-width: 100%;
+}
+.prose .katex-display:not(.leqno) > .katex > .katex-html:has(> .katex-tag) {
+  display: flex;
+  align-items: baseline;
+  > .katex-base {
+    flex-shrink: 0;
+  }
+  > .katex-base:first-child {
+    margin-left: auto;
+  }
+  > .katex-base:nth-last-child(2) {
+    margin-right: auto;
+  }
+  > .katex-tag {
+    position: static;
+    margin-left: 1em;
+    flex-shrink: 0;
+  }
+}
+@layer components {
   .highlight {
     background-color: color-mix(in srgb, #f5f5f7 60%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
