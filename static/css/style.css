@@ -53,8 +53,8 @@
     --color-text: #161209;
     --color-text-secondary: #6a6a75;
     --color-text-tertiary: #75757e;
-    --color-link: #1d84a8;
-    --color-link-hover: #14607d;
+    --color-link: #14799a;
+    --color-link-hover: #07516b;
     --color-border: #e8e8ed;
     --color-border-overlay: rgba(255, 255, 255, 0.2);
     --color-card: #2a2a2e;
@@ -1700,21 +1700,15 @@
     color: var(--color-link-hover);
   }
 }
-.prose :where(a[href], u, ins, .underline):not( :where( .heading-anchor, .footnote-reference a, .footnote-backref, .underline *, u *, ins *, a:not(.underline):has(u, ins, .underline), :has(> img:only-child, > .lqip:only-child), .not-prose, .not-prose * ) ) {
-  background-image: linear-gradient( var(--underline-accent-color, currentColor), var(--underline-accent-color, currentColor) ), linear-gradient( var(--underline-base-color, transparent), var(--underline-base-color, transparent) );
+.prose :where(a[href]):not( :where( .heading-anchor, .footnote-reference a, .footnote-backref, :has(> img:only-child, > .lqip:only-child), .not-prose, .not-prose * ) ) {
+  background-image: linear-gradient(var(--color-link-hover), var(--color-link-hover)), linear-gradient( var(--underline-base-color, transparent), var(--underline-base-color, transparent) );
   background-position: right bottom, left bottom;
   background-repeat: no-repeat;
   background-size: 0% 2px, 100% 2px;
   -webkit-box-decoration-break: slice;
   box-decoration-break: slice;
   transition: background-size 300ms ease;
-  &:where(u, ins, .underline) {
-    padding-bottom: calc(var(--spacing) * 0.5);
-    text-decoration-line: none;
-    --underline-accent-color: var(--color-link-hover);
-    --underline-base-color: currentColor;
-  }
-  &:hover, &:focus-visible, &:has(a:focus-visible), &:where(a:focus-visible u, a:focus-visible ins, a:focus-visible .underline) {
+  &:hover, &:focus-visible {
     background-position: left bottom, left bottom;
     background-size: 100% 2px, 100% 2px;
   }
@@ -1725,8 +1719,27 @@
     text-underline-offset: 0.2em;
   }
 }
-.prose :where(a.underline, a u, a ins, a .underline):not(:where(.not-prose, .not-prose *)) {
+.prose :where(a.underline, u > a:only-child, ins > a:only-child, .underline > a:only-child):not( :where(.not-prose, .not-prose *) ) {
   --underline-base-color: var(--color-link);
+}
+.prose :where(u, ins, .underline):has(> a[href]:only-child):not(:where(.not-prose, .not-prose *)) {
+  text-decoration-line: none;
+}
+.prose :where(a[href] u, a[href] ins, a[href] .underline):not( :where(.underline *, u *, ins *, .not-prose, .not-prose *) ) {
+  padding-bottom: var(--spacing);
+  text-decoration-line: none;
+  background-image: linear-gradient(var(--color-link), var(--color-link));
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  -webkit-box-decoration-break: slice;
+  box-decoration-break: slice;
+  @media print, (forced-colors: active) {
+    background-image: none;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+  }
 }
 .prose :where(.heading-anchor):not(:where(.not-prose, .not-prose *)) {
   border-bottom-style: var(--tw-border-style);
@@ -2955,7 +2968,7 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
     &:hover {
-      border-color: color-mix(in srgb, #14607d 30%, transparent);
+      border-color: color-mix(in srgb, #07516b 30%, transparent);
       @supports (color: color-mix(in lab, red, red)) {
         border-color: color-mix(in oklab, var(--color-link-hover) 30%, transparent);
       }
@@ -3036,14 +3049,14 @@
     }
     &:not(:disabled):hover, &:focus-visible {
       color: var(--color-link-hover);
-      background-color: color-mix(in srgb, #14607d 8%, transparent);
+      background-color: color-mix(in srgb, #07516b 8%, transparent);
       @supports (color: color-mix(in lab, red, red)) {
         background-color: color-mix(in srgb, var(--color-link-hover) 8%, transparent);
       }
     }
     &[aria-current='page'] {
       color: var(--color-link-hover);
-      background-color: color-mix(in srgb, #14607d 15%, transparent);
+      background-color: color-mix(in srgb, #07516b 15%, transparent);
       @supports (color: color-mix(in lab, red, red)) {
         background-color: color-mix(in srgb, var(--color-link-hover) 15%, transparent);
       }
@@ -3224,11 +3237,11 @@
   border-color: var(--callout-danger-fg);
 }
 .twikoo button.el-button:not(.el-button--primary):not(.el-button--text):is(:active, :focus, :hover) {
-  border-color: color-mix(in srgb, #1d84a8 50%, transparent);
+  border-color: color-mix(in srgb, #14799a 50%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     border-color: color-mix(in oklab, var(--color-link) 50%, transparent);
   }
-  background-color: color-mix(in srgb, #1d84a8 10%, transparent);
+  background-color: color-mix(in srgb, #14799a 10%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     background-color: color-mix(in oklab, var(--color-link) 10%, transparent);
   }
@@ -3408,8 +3421,8 @@ pre.mermaid {
     --color-text: #161209 !important;
     --color-text-secondary: #6a6a75 !important;
     --color-text-tertiary: #75757e !important;
-    --color-link: #1d84a8 !important;
-    --color-link-hover: #14607d !important;
+    --color-link: #14799a !important;
+    --color-link-hover: #07516b !important;
     --color-border: #e8e8ed !important;
     --color-line-highlight-bg: rgba(255, 235, 59, 0.1) !important;
     --color-line-highlight-border: rgba(255, 193, 7, 0.5) !important;
