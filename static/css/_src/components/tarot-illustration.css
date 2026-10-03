@@ -1,0 +1,5 @@
+@layer components {
+  .tarot-illustration img {
+    width: 240px;
+  }
+}

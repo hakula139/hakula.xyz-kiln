@@ -3639,6 +3639,9 @@ pre.mermaid {
   .score-table .ext-score-approx {
     color: var(--color-text-secondary);
   }
+  .tarot-illustration img {
+    width: 240px;
+  }
 }
 @property --tw-space-y-reverse {
   syntax: "*";
