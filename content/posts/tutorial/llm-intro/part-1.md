@@ -844,8 +844,8 @@ In [Part 2](../part-2), we will cover **subagents** (focused delegation to child
 [claude-marketplaces]: https://claudemarketplaces.com
 [claude-plugins-official]: https://github.com/anthropics/claude-plugins-official
 [CLAUDE.md]: https://code.claude.com/docs/en/memory
-[code-review]: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/code-review
-[commit-commands]: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/commit-commands
+[code-review]: https://github.com/anthropics/claude-plugins-official/tree/aeb25ced03e501e4d60d08edc66f4e1744a22432/plugins/code-review
+[commit-commands]: https://github.com/anthropics/claude-plugins-official/tree/aeb25ced03e501e4d60d08edc66f4e1744a22432/plugins/commit-commands
 [commit-skill]: https://github.com/anthropics/claude-plugins-official/blob/aeb25ced03e501e4d60d08edc66f4e1744a22432/plugins/commit-commands/commands/commit.md
 [Context7]: https://context7.com
 [DeepWiki]: https://deepwiki.com
