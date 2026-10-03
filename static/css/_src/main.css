@@ -4,4 +4,5 @@
 @source '../../../templates/**/*.html';
 
 /* Site-specific components */
+@import './components/callout.css';
 @import './components/score-table.css';

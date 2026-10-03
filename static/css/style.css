@@ -3412,6 +3412,15 @@ pre.mermaid {
   }
 }
 @layer components {
+  .callout.flush > .callout-body > .callout-body-inner {
+    padding-inline: 0px;
+    > :first-child {
+      margin-top: 0px !important;
+    }
+    > :last-child {
+      margin-bottom: 0px !important;
+    }
+  }
   .score-table-wrapper {
     margin-block: calc(var(--spacing) * 4);
     overflow-x: auto;
