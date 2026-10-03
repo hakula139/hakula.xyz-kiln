@@ -306,7 +306,7 @@ assign stall_f_o = stall_d_o;
 
 如果指令的结果在 Writeback 阶段，则它将在前半周期写入寄存器，在后半周期进行读操作，此时不会产生冲突。如果指令的结果在 Memory 阶段，则可以将它重定向回 Decode 阶段的 `equal_cmp`。
 
-类似 [使用重定向解决冲突](#2.7.1.1-使用重定向解决冲突) 节，以 `$rs` 的情况为例，重定向逻辑如下：
+类似 [数据冲突：使用重定向解决冲突](#2.7.1.1-使用重定向解决冲突) 节，以 `$rs` 的情况为例，重定向逻辑如下：
 
 ```sv
 assign forward_a_d_o = rs_d_i && rs_d_i == write_reg_m_i && reg_write_m_i;
@@ -316,7 +316,7 @@ assign forward_a_d_o = rs_d_i && rs_d_i == write_reg_m_i && reg_write_m_i;
 
 如果指令的结果在 Execute 阶段，或者指令 `lw` 的结果在 Memory 阶段，则需要阻塞流水线。
 
-类似 [使用阻塞解决冲突](#2.7.1.2-使用阻塞解决冲突) 节，阻塞逻辑如下：
+类似 [数据冲突：使用阻塞解决冲突](#2.7.1.2-使用阻塞解决冲突) 节，阻塞逻辑如下：
 
 ```sv
 assign branch_stall = (branch_d_i || jump_d_i[1])
