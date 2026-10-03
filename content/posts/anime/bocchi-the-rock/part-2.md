@@ -6,7 +6,6 @@ tags = [
     "文艺批评",
 ]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/btr.webp"
@@ -16,7 +15,7 @@ src = "/images/article-covers/btr.webp"
 
 <!--more-->
 
-## 理想的现实主义，现实的理想主义 {#2-理想的现实主义-现实的理想主义}
+## 2 理想的现实主义，现实的理想主义
 
 懒惰是人类的天性，我们天然喜欢更省力的事情。
 
@@ -64,7 +63,7 @@ src = "/images/article-covers/btr.webp"
 
 拥抱「娱乐至死」，我选择「躺平」。
 
-## 躺平？——精英主义与民粹主义的话语权之争 {#3-躺平-精英主义与民粹主义的话语权之争}
+## 3 躺平？——精英主义与民粹主义的话语权之争
 
 （未完待续）
 

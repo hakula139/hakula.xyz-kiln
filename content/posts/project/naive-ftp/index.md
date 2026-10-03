@@ -46,7 +46,7 @@ Computer Networks @ Fudan University, fall 2020.
 
 ## Getting Started
 
-### Prerequisites {#0-prerequisites}
+### Prerequisites
 
 To set up the environment, you need to have the following dependencies installed.
 
@@ -58,7 +58,7 @@ To set up the environment, you need to have the following dependencies installed
 [nodejs]: https://nodejs.org/en/download
 [yarn]: https://classic.yarnpkg.com/en/docs/install
 
-### Installation {#1-installation}
+### Installation
 
 First, obtain the Naive-FTP package.
 
@@ -86,7 +86,7 @@ Make sure you have the latest version of `setuptools` installed.
 python -m pip install --upgrade setuptools
 ```
 
-#### GUI support {#1.1-gui-support}
+#### GUI support
 
 A graphical user interface (GUI) is optional for Naive-FTP, so if you prefer to use a command-line interface (CLI), you can safely skip this step.
 
@@ -104,9 +104,9 @@ pip install flask waitress
 
 [pip]: https://pypi.org/project/pip
 
-### Usage {#2-usage}
+### Usage
 
-#### Server {#2.1-server}
+#### Server
 
 After a successful installation, you can start the Naive-FTP server using the command below. The server will listen to port `2121` by default.
 
@@ -120,7 +120,7 @@ You should see the following welcome message. Press `q` to exit.
 Welcome to Naive-FTP server! Press q to exit.
 ```
 
-#### Client CLI {#2.2-client-cli}
+#### Client CLI
 
 If you just want to use a CLI, use this command to start it. The client will attempt to establish a connection to `localhost:2121` by default.
 
@@ -160,7 +160,7 @@ RMDI <server_path>           Remove a directory.
 RMDA <server_path>           Remove a directory recursively.
 ```
 
-#### Client handler {#2.3-client-handler}
+#### Client handler
 
 To help the GUI work in a proper way, you need to launch an API server, which is called a client handler here.
 
@@ -174,7 +174,7 @@ You should see something like:
 Serving on http://localhost:5000
 ```
 
-#### Client GUI {#2.4-client-gui}
+#### Client GUI
 
 Finally, start the local server and check the GUI on <http://localhost:8181>.
 
@@ -210,19 +210,19 @@ By far, we support these features in our GUI:
 
 In this chapter we will illustrate the entire communication process.
 
-### Client GUI {#1-client-gui}
+### Client GUI
 
 ![Create a directory using client GUI](assets/mkdir.webp)
 
 To begin with, we suppose that a user is interacting with the client GUI in a browser, and performs an operation (e.g. create a directory).
 
-### Client GUI -> Client handler {#2-client-gui-client-handler}
+### Client GUI -> Client handler
 
 The user operation is handled by the frontend, interpreted into some HTTP requests, and sent to the client handler (the API server).
 
 ![Client GUI sends HTTP requests to client handler](assets/http-requests.webp)
 
-### Client handler -> Server -> Client handler {#3-client-handler-server-client-handler}
+### Client handler -> Server -> Client handler
 
 Next, the HTTP requests are processed by the client handler, interpreted into some FTP requests, and sent to the server. The server does some operations (creates a directory) according to the FTP requests, and then returns some FTP responses based on the status of these operations.
 
@@ -282,7 +282,7 @@ Welcome to Naive-FTP server! Press q to exit.
 [DEBUG] ls: Listing information of E:\Github\Naive-FTP\server_files
 ```
 
-### Client handler -> Client GUI {#4-client-handler-client-gui}
+### Client handler -> Client GUI
 
 Finally, the responses from the server (sometimes along with data) are parsed into JSON format, and returned back to the client GUI. There may be some feedbacks shown in the client GUI to indicate whether the operation is successful or not.
 

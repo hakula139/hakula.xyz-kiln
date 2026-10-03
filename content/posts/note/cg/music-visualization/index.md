@@ -31,13 +31,13 @@ Computer Graphics @ Fudan University, fall 2021.
 
 ![音乐可视化](assets/screenshot.webp)
 
-## 程序说明 {#1-程序说明}
+## 程序说明
 
-### 线上 Demo {#1.1-线上-demo}
+### 线上 Demo
 
 本项目利用 Vercel 部署了一个 [线上 Demo][demo]，访问可能需要良好的网络环境。因为是线上 Demo，选择好音乐后需等待音乐加载完毕才能使用。
 
-### 本地安装 {#1.2-本地安装}
+### 本地安装
 
 执行 `./scripts/prebuild.sh` 安装所有依赖，然后执行 `./scripts/build.sh` 构建本项目。如果你使用的是 Windows，一种选择是使用 WSL，或者你也可以手动下载安装 [Node.js][nodejs]，然后执行以下指令：
 
@@ -47,7 +47,7 @@ yarn global add pm2
 yarn && yarn build
 ```
 
-### 如何使用 {#1.3-如何使用}
+### 如何使用
 
 执行 `./scripts/start.sh` 启动本地服务器，然后在浏览器打开 <http://localhost:7070> 即可访问。如果出现端口冲突，可以在 [`server.mjs`][server.mjs] 里指定 `listenPort` 为其他可用端口。如果你使用的是 Windows，则执行以下指令：
 
@@ -63,11 +63,11 @@ pm2 start server.mjs --watch
 pm2 stop server
 ```
 
-## 程序原理 {#2-程序原理}
+## 程序原理
 
 核心代码参见 [`src/components/MusicVisualizer.vue`][MusicVisualizer.vue]，下面讲讲程序的主要思路。
 
-### 音频分析 {#2.1-音频分析}
+### 音频分析
 
 首先是初始化音频分析器 `audioAnalyser`，将其绑定到我们的音频源上，并设置一些参数。
 
@@ -114,7 +114,7 @@ audioAnalyser.value.getByteFrequencyData(spectrum);
 
 接下来，我们对这个数组 $S$ 进行可视化，将每个数据点转化为相应的图形。
 
-### Canvas 渲染 {#2.2-canvas-渲染}
+### Canvas 渲染
 
 由于期末时间过于紧张，这里我们就简单生成一个柱状图。
 

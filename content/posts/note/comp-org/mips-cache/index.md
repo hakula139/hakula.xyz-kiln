@@ -29,7 +29,7 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 [:(fab fa-github): hakula139 / MIPS-CPU / Cache](https://github.com/hakula139/MIPS-CPU/tree/master/Cache)
 :::
 
-## 参数 {#1-参数}
+## 参数
 
 ![Cache 的整体结构（引自 _CS:APP_）](assets/cache-csapp.webp)
 
@@ -51,23 +51,23 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
   - RR：Random Replacement，对应 $\mathrm{mode}=1$
   - LFU：Least Frequently Used，对应 $\mathrm{mode}=2$
 
-## 结构 {#2-结构}
+## 结构
 
 ![Cache 的整体结构](assets/cache.webp)
 
-### Cache {#2.1-cache}
+### Cache
 
 Cache 负责输入 CPU 传来的地址、信号及数据，交由 Cache Controller 解析得到相应的控制信号，以控制读写 set / 内存的数据，最终将 set 的输出返还给 CPU。
 
 代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Cache/src/cache/cache.sv)。
 
-### Cache Controller {#2.2-cache-controller}
+### Cache Controller
 
 Cache Controller 通过一个有限状态机（Finite State Machine, FSM）来决定当前所处的状态，随后利用组合逻辑得到 set / 内存的控制信号及读写内存的地址（如果需要）。根据 CPU 输入的地址可以唯一确定需要操作的 set，其余 set 将被屏蔽。具体判断读写及返回哪一个 line 的任务交给每个 set 自行完成。
 
 代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Cache/src/cache/cache_controller.sv)。
 
-#### FSM {#2.2.1-fsm}
+#### FSM
 
 ![有限状态机（FSM）](assets/fsm.webp)
 
@@ -84,7 +84,7 @@ Cache Controller 通过一个有限状态机（Finite State Machine, FSM）来�
 - `READ_MEM`：读内存状态，从内存读取数据到 Cache
   - 阻塞 Cache 到读入完成后（`ready` 为 `1`）切换到 `INITIAL` 状态，默认需要等待 4 个时钟周期。
 
-#### Controller 逻辑 {#2.2.2-controller-逻辑}
+#### Controller 逻辑
 
 根据 FSM 的当前状态，Cache Controller 输出 set / 内存的控制信号，如下所示：
 
@@ -108,13 +108,13 @@ Cache Controller 通过一个有限状态机（Finite State Machine, FSM）来�
 - `offset_sel`：此值为 `1` 时，Cache 与 CPU 交互，访问 line 的 block offset 由 CPU 输入的地址提供，写入 line 的数据（如果需要）为 CPU 输入的数据。此值为 `0` 时，Cache 与内存交互，访问 line 的 block offset 由当前访问的内存地址提供，写入 line 的数据为从内存读取的数据。
 - `mem_write_en`：是否对内存进行写操作。
 
-### Set {#2.3-set}
+### Set
 
 得到控制信号的 set 需要判断读写及返回哪一个 line 的数据。本实现中，每个 line 自行检查 tag 是否匹配，并返回是否命中，命中的 line 将同时返回对应 block 的数据。如果存在命中的 line，set 就返回这个 line 的数据，否则由 Replace Controller 决定接下来应该写入（覆盖）哪一个 line。
 
 代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Cache/src/cache/set.sv)。
 
-### Replace Controller {#2.4-replace-controller}
+### Replace Controller
 
 Replace Controller 根据当前每个 line 的 valid 和 hit 情况决定接下来应该替换的 line。当 `strategy_en` 为 `1` 时启用，否则保持之前的输出。
 
@@ -128,7 +128,7 @@ Replace Controller 根据当前每个 line 的 valid 和 hit 情况决定接下�
 
 代码见 [这里](https://github.com/hakula139/MIPS-CPU/blob/master/Cache/src/cache/replace_controller.sv)。
 
-## 一些改动 {#3-一些改动}
+## 一些改动
 
 本 Cache 的实现基于 [之前](../pipeline-mips-cpu/) 实现的流水线 MIPS CPU，这里注明所做的一些改动。
 
@@ -154,9 +154,9 @@ assign dcen = memwrite | mem_to_reg_m;
 
 [^stall]: 其实有些情况下并不需要 stall，例如 `dcache` 处于 `ONLY_WRITE` 阶段，而 CPU 暂时不需要访问 `dcache` 时，可以等 CPU 需要访存时再 stall，可见这里存在一定的优化空间。
 
-## 样例测试 {#4-样例测试}
+## 样例测试
 
-### 测试结果 {#4.1-测试结果}
+### 测试结果
 
 ![测试 1 ~ 4](assets/test-1-4.webp)
 
@@ -164,12 +164,12 @@ assign dcen = memwrite | mem_to_reg_m;
 
 ![测试 9 ~ 11](assets/test-9-11.webp)
 
-### 测试环境 {#4.2-测试环境}
+### 测试环境
 
 - Windows 10 Version 2004 (OS Build 19041.264)
 - Vivado v2019.1
 
-### 测试分析 {#4.3-测试分析}
+### 测试分析
 
 这里 CPI 相较原流水线 MIPS CPU 有所升高是正常现象，因为 Cache 引入了 4 个时钟周期的 miss penalty，更加符合实际情况[^miss-penalty]。在不同参数下进行测试，各替换策略的 CPI 如下所示：
 

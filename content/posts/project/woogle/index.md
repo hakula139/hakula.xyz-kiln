@@ -30,7 +30,7 @@ Distributed Systems (H) @ Fudan University, fall 2021.
 [:(fab fa-github): hakula139 / woogle](https://github.com/hakula139/woogle)
 :::
 
-## 任务说明与描述 {#1-任务说明与描述}
+## 任务说明与描述
 
 ::: callout {type=info title="参见"}
 [Hadoop 平台使用及 PJ 要求 - 腾讯文档](https://docs.qq.com/doc/DUnJVS0R6dURQU0lB)
@@ -51,13 +51,13 @@ eu fugiat nulla pariatur Excepteur sint occaecat cupidatat non proident sunt in 
 2. 在上一步的基础上，包括此词在文档中出现的位置。
 3. 支持关键词检索。实现程序，输入词后，程序输出这个词的索引。
 
-## 参与人员任务分工说明 {#2-参与人员任务分工说明}
+## 参与人员任务分工说明
 
 - [**Hakula Chen**](https://github.com/hakula139)：独立完成全部功能，实现了对语料库倒排索引的构建，实现了基于索引的关键词搜索功能。
 
-## 程序启动与操作说明 {#3-程序启动与操作说明}
+## 程序启动与操作说明
 
-### 开发 {#3.1-开发}
+### 开发
 
 本项目使用 IntelliJ IDEA 开发，相关构建、运行、打包配置已经写在了 `.idea` 目录下的配置文件里，直接在 IDE 里执行相应的任务即可：
 
@@ -70,7 +70,7 @@ eu fugiat nulla pariatur Excepteur sint occaecat cupidatat non proident sunt in 
 
 原项目基于 Java SE 17 开发，为了兼容服务器的 Java SE 8 环境，在主分支 `master` 外维护了一个 `dev-jdk-1.8` 分支，提供了基于 Java 8 版本的实现，同时提供了配套的 IDE 配置文件。
 
-### 启动 {#3.2-启动}
+### 启动
 
 项目已经预先打包好了 `index.jar` 和 `woogle.jar` 文件，可以直接使用。
 
@@ -80,7 +80,7 @@ eu fugiat nulla pariatur Excepteur sint occaecat cupidatat non proident sunt in 
 java -jar index.jar <input_path> <output_path> <temp_path>
 ```
 
-其中，`<input_path>`, `<output_path>`, `<temp_path>` 分别表示指定的输入路径（语料库位置）、输出路径（索引位置）和缓存路径（临时文件位置）。需要注意的是，如果 `<output_path>`、`<temp_path>/output_job1` 和 `<temp_path>/output_job2` 中的某些在程序运行前已经存在，则程序会跳过部分任务的执行（具体跳过了什么、为什么跳过将在 [之后](#5.2-driver) 展开阐述）。因此如果你需要重新执行全部任务，则需要将这些目录手动移除。
+其中，`<input_path>`, `<output_path>`, `<temp_path>` 分别表示指定的输入路径（语料库位置）、输出路径（索引位置）和缓存路径（临时文件位置）。需要注意的是，如果 `<output_path>`、`<temp_path>/output_job1` 和 `<temp_path>/output_job2` 中的某些在程序运行前已经存在，则程序会跳过部分任务的执行（具体跳过了什么、为什么跳过将在 [之后](#driver) 展开阐述）。因此如果你需要重新执行全部任务，则需要将这些目录手动移除。
 
 如果希望在 Hadoop 集群上使用，则执行以下命令（需提前配置好 Hadoop 环境）：
 
@@ -96,9 +96,9 @@ hadoop jar woogle.jar <index_path>
 
 其中，`<index_path>` 表示指定的索引位置，通常也就是前面传入 `index.jar` 的 `<output_path>`。
 
-### 执行结果 {#3.3-执行结果}
+### 执行结果
 
-#### 索引格式 {#3.3.1-索引格式}
+#### 索引格式
 
 执行 `index.jar` 后，我们将在输出路径 `<output_path>` 下得到我们的索引文件，格式如下（文件名：`part-r-xxxxx`）：
 
@@ -133,11 +133,11 @@ their	03.txt:2:2.873563e-03:1045;1141
 their	$2:0.5849625007211562
 ```
 
-注意到同一个 `<token>` 在不同文档里的 TF 和 IDF 都被分成了不同的行，而不是合并在同一行里，[之后](#5.5.3-reducer) 会解释原因。
+注意到同一个 `<token>` 在不同文档里的 TF 和 IDF 都被分成了不同的行，而不是合并在同一行里，[之后](#reducer-2) 会解释原因。
 
 索引过程中产生的日志文件会保存在 `logs/app.log` 文件里（文件名随日期滚动）。
 
-#### 搜索结果格式 {#3.3.2-搜索结果格式}
+#### 搜索结果格式
 
 执行 `woogle.jar` 后，程序会提示用户输入一个关键词：
 
@@ -174,7 +174,7 @@ their: IDF = 0.584963 | found in 2 files:
 aaaa: not found
 ```
 
-## 程序文件 / 类功能说明 {#4-程序文件-类功能说明}
+## 程序文件 / 类功能说明
 
 这里重点讲项目的核心代码部分，一些诸如 `log4j.properties` 之类的配置文件就略过了。
 
@@ -189,13 +189,13 @@ aaaa: not found
     - `model/`：一些自定义类型的定义，类似于 package `xyz.hakula.index` 下 `io/` 里的类，提供了解析索引的方法。
     - `Woogle.java`：检索程序的主类，从终端读取用户输入，定位到对应的索引文件进行查询，然后格式化输出到终端。
 
-## 架构以及模块实现方法说明 {#5-架构以及模块实现方法说明}
+## 架构以及模块实现方法说明
 
-### 总览 {#5.1-总览}
+### 总览
 
 项目的整体架构分为 3 个 MapReduce Job。一般来说，关注程序的输入和输出是一个理清脉络的好方法。
 
-#### Job 1 概览 {#5.1.1-job-1-概览}
+#### Job 1 概览
 
 开始时，输入数据的格式如下：
 
@@ -227,7 +227,7 @@ aaaa: not found
 
 至此 Job 1 结束，所有结果保存在目录 `<temp_path>/output_job1` 下的文件里。为了节省 Job 间原始数据和 `String` 之间互相转换的开销，这里我们直接顺序输出二进制格式的数据（`SequenceFileOutputFormat`），因此直接打开文件是无法阅读的。
 
-#### Job 2 概览 {#5.1.2-job-2-概览}
+#### Job 2 概览
 
 接下来这些数据经过 Job 2 - token count 的 Mapper，将 key 里的 `<token>` 字段移到 value 里，以便后续可以对 `<filename>` 聚合处理，格式如下：
 
@@ -241,7 +241,7 @@ aaaa: not found
 <token>	<filename>:<token_count>:0:[<position>]
 ```
 
-这里这个 `0` 是 TF 的占位符，目前还无法计算（[之后](#5.4.3-reducer) 会讲为什么），因此先留空。
+这里这个 `0` 是 TF 的占位符，目前还无法计算（[之后](#reducer-1) 会讲为什么），因此先留空。
 
 与此同时，我们对文件里所有短语的出现次数求和，从而得到文件的短语总数，格式如下：
 
@@ -251,7 +251,7 @@ aaaa: not found
 
 至此 Job 2 结束，所有结果保存在目录 `<temp_path>/output_job2` 下的文件里，每个文件的短语总数保存在文件 `<temp_path>/file_token_count/<filename>` 里。
 
-#### Job 3 概览 {#5.1.3-job-3-概览}
+#### Job 3 概览
 
 接下来这些数据经过 Job 3 - inverted index 的 Mapper，根据文件 `<temp_path>/file_token_count/<filename>` 里保存的文件短语总数，计算得到 TF，替换掉原来的占位符，格式如下：
 
@@ -270,7 +270,7 @@ aaaa: not found
 
 下面我们来看看具体的实现。
 
-### Driver {#5.2-driver}
+### Driver
 
 首先是索引程序的主类 `Driver`，也就是整个程序的入口。以下是基于 Java SE 17 的实现：
 
@@ -317,9 +317,9 @@ public class Driver extends Configured implements Tool {
 
 接下来讲讲这 3 个 MapReduce Job 的具体实现。
 
-### Job 1 - token position {#5.3-job-1-token-position}
+### Job 1 - token position
 
-#### Driver {#5.3.1-driver}
+#### Driver
 
 在 `Driver` 里，我们需要先对这个 Job 进行一些设定。
 
@@ -358,7 +358,7 @@ public class Driver extends Configured implements Tool {
 
 那 Job 1 的核心类可想而知，就是 `TokenPosition` 了。我们来看看相关的实现。
 
-#### Mapper {#5.3.2-mapper}
+#### Mapper
 
 ```java {title="src/main/java/xyz/hakula/index/TokenPosition.java"}
 public class TokenPosition {
@@ -401,7 +401,7 @@ public class TokenPosition {
 
 最后我们设置输出的 key 为 `<token>@<filename>`，以便 Reducer 进一步聚合每个短语在各文件里出现的所有位置。输出的 value 就是短语出现的位置，也就是前面讲的字节偏移量。
 
-#### Reducer {#5.3.3-reducer}
+#### Reducer
 
 ```java {title="src/main/java/xyz/hakula/index/TokenPosition.java"}
 public class TokenPosition {
@@ -429,9 +429,9 @@ Reducer 的逻辑就比较简单了，就是将每个短语在各文件里出现
 
 需要注意的是，MapReduce 在遍历一个 Iterable 时，为了节省内存开销，会**复用同一个 value 对象**，这是 Hadoop 的第二个坑。那我们知道 Java 底层全都是传的 reference，所以如果你直接将 value 传入数组的话，最后数组里所有元素的值就都会是同一个值（也就是最后一个元素）。因此这里传入数组的时候，一定要使用 `WritableUtils.clone()` 方法进行深拷贝。
 
-### Job 2 - token count {#5.4-job-2-token-count}
+### Job 2 - token count
 
-#### Driver {#5.4.1-driver}
+#### Driver
 
 ```java {title="src/main/java/xyz/hakula/index/Driver.java"}
 public class Driver extends Configured implements Tool {
@@ -463,7 +463,7 @@ public class Driver extends Configured implements Tool {
 
 和 Job 1 基本没什么区别。这里将 Reducer 的任务数量设置为了文件总数，是因为这一步是在对 `<filename>` 进行聚合。这里最好是设置一个 Partitioner，让每个 `<filename>` 可以和 Reducer 一一对应，不过因为对效率影响不大，这里就不写了。
 
-#### Mapper {#5.4.2-mapper}
+#### Mapper
 
 ```java {title="src/main/java/xyz/hakula/index/TokenCount.java"}
 public class TokenCount {
@@ -484,9 +484,9 @@ public class TokenCount {
 }
 ```
 
-Job 2 的 Mapper 就是把字段改个位置，[之前](#5.1.2-job-2-概览) 讲过了。接下来 Reducer 就可以对 `<filename>` 进行聚合。
+Job 2 的 Mapper 就是把字段改个位置，[之前](#job-2-概览) 讲过了。接下来 Reducer 就可以对 `<filename>` 进行聚合。
 
-#### Reducer {#5.4.3-reducer}
+#### Reducer
 
 ```java {title="src/main/java/xyz/hakula/index/TokenCount.java"}
 public class TokenCount {
@@ -552,9 +552,9 @@ Reducer 比较复杂，是整个项目最大的难点。困难的不是实现本
 
 别的就没什么好讲的了，代码很直观。这里我们输出的 key 又变回了 `<token>`，接下来我们将对 `<token>` 进行聚合。
 
-### Job 3 - inverted index {#5.5-job-3-inverted-index}
+### Job 3 - inverted index
 
-#### Driver {#5.5.1-driver}
+#### Driver
 
 ```java {title="src/main/java/xyz/hakula/index/Driver.java"}
 public class Driver extends Configured implements Tool {
@@ -583,7 +583,7 @@ public class Driver extends Configured implements Tool {
 
 和 Job 1 基本没什么区别。因为是最后一个 Job，这里不再需要设置 `setOutputFormatClass` 了，我们直接以文本格式输出。
 
-#### Mapper {#5.5.2-mapper}
+#### Mapper
 
 ```java {title="src/main/java/xyz/hakula/index/InvertedIndex.java"}
 public class InvertedIndex {
@@ -614,7 +614,7 @@ public class InvertedIndex {
 
 将每个短语的出现次数除以文件的短语总数，我们就得到了短语的 TF，这下可以替换掉原来的占位符了。
 
-#### Reducer {#5.5.3-reducer}
+#### Reducer
 
 ```java {title="src/main/java/xyz/hakula/index/InvertedIndex.java"}
 public class InvertedIndex {
@@ -654,7 +654,7 @@ public class InvertedIndex {
 
 至此，我们就成功实现了一个索引程序。
 
-### Woogle {#5.6-woogle}
+### Woogle
 
 下面简单讲讲检索程序的主类 `Woogle`，以下是基于 Java SE 17 的实现：
 
@@ -689,7 +689,7 @@ public class Woogle extends Configured implements Tool {
 
 接下来讲一下具体实现。
 
-#### `search()` {#5.6.1-search}
+#### `search()`
 
 ```java {title="src/main/java/xyz/hakula/woogle/Woogle.java"}
 public class Woogle extends Configured implements Tool {
@@ -730,11 +730,11 @@ public class Woogle extends Configured implements Tool {
 }
 ```
 
-这个是检索程序的核心代码。我们根据关键词 `<key>`，利用函数 `getPartition()` 定位到相应的 TF 文件（将在 [`getPartition()`](#5.6.2-getpartition) 节讲解），然后逐行遍历查询。查询到与 `<key>` 相同的 `<token>` 后，判断 value 的首字符是否为 `$`。如果是，则按 IDF 条目的格式解析 value，并输出搜索结果，退出程序。否则按 TF 条目的格式解析 value，并缓存结果，等待之后统一输出。如果索引文件里找不到，则输出信息 `<key>: not found`。
+这个是检索程序的核心代码。我们根据关键词 `<key>`，利用函数 `getPartition()` 定位到相应的 TF 文件（将在 [`getPartition()`](#getpartition) 节讲解），然后逐行遍历查询。查询到与 `<key>` 相同的 `<token>` 后，判断 value 的首字符是否为 `$`。如果是，则按 IDF 条目的格式解析 value，并输出搜索结果，退出程序。否则按 TF 条目的格式解析 value，并缓存结果，等待之后统一输出。如果索引文件里找不到，则输出信息 `<key>: not found`。
 
 为什么要遍历查询呢？主要还是因为并行的 MapReduce 程序不保证顺序，不一定可以使用二分查找。事实上如果觉得慢的话，完全可以把最后一个 Reducer 的任务数量设置得大一点，因为最后索引的分片数量就等于这个 Reducer 的任务数量，我们总可以设置到一个足够大的值，使得线性复杂度的耗时可以接受。
 
-#### `getPartition()` {#5.6.2-getpartition}
+#### `getPartition()`
 
 ```java {title="src/main/java/xyz/hakula/woogle/Woogle.java"}
 public class Woogle extends Configured implements Tool {
@@ -747,7 +747,7 @@ public class Woogle extends Configured implements Tool {
 
 函数 `getPartition()` 的实现很简单，其实就是沿用了 Job 2 的默认 Partitioner 的分配方法，也就是直接对 `<key>` 哈希，然后对 Reducer 的任务数量取模。这样就可以定位到当时 `reduce()` 这个 `<key>` 的 Reducer，从而定位到相应的索引分片。
 
-#### `InverseDocumentFreq.parse()` {#5.6.3-inversedocumentfreq.parse}
+#### `InverseDocumentFreq.parse()`
 
 ```java {title="src/main/java/xyz/hakula/woogle/model/InverseDocumentFreq.java"}
 public record InverseDocumentFreq(long fileCount, double inverseDocumentFreq) {
@@ -765,7 +765,7 @@ public record InverseDocumentFreq(long fileCount, double inverseDocumentFreq) {
 
 函数 `InverseDocumentFreq.parse()` 就是解析一下 IDF 条目的内容，简单 `split()` 一下就行。
 
-#### `TermFreq.parse()` {#5.6.4-termfreq.parse}
+#### `TermFreq.parse()`
 
 ```java {title="src/main/java/xyz/hakula/woogle/model/TermFreq.java"}
 public record TermFreq(String filename, long tokenCount, double termFreq, long[] positions) {
@@ -786,7 +786,7 @@ public record TermFreq(String filename, long tokenCount, double termFreq, long[]
 
 函数 `TermFreq.parse()` 就是解析一下 TF 条目的内容，同样简单 `split()` 一下就行。`positions` 的解析用了个比较函数式的写法。其实 MapReduce 本身就很函数式，只可惜 Java 不太函数式，写起来就不怎么优雅。
 
-#### `print()` {#5.6.5-print}
+#### `print()`
 
 ```java {title="src/main/java/xyz/hakula/woogle/Woogle.java"}
 public class Woogle extends Configured implements Tool {

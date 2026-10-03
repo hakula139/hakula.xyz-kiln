@@ -10,7 +10,6 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
-heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/87013646_p0.webp"
@@ -31,7 +30,7 @@ Natural Language Processing (H) @ Fudan University, fall 2020.
 [:(fab fa-github): hakula139 / Trump-bot](https://github.com/hakula139/Trump-bot)
 :::
 
-## 选题动机 {#1-选题动机}
+## 1 选题动机
 
 文本生成（Text Generation）是自然语言处理（Natural Language Processing, NLP）的一个重要研究领域，有着广阔的应用前景。根据文本数据集的特征，我们可以训练 AI 生成有着特定风格的文本。这里我们选择以第 45 任美国总统特朗普（Donald Trump）的推特账号 [@realDonaldTrump] 作为模仿对象，有以下四点原因：
 
@@ -42,7 +41,7 @@ Natural Language Processing (H) @ Fudan University, fall 2020.
 
 感觉训练一个特朗普风格的文本生成 AI 会比较有意思，而且难度也不算很高。作为 NLP 初学者，目前还不是很熟悉深度学习，加上期末季时间实在过于有限，最后就选择了这个题目。
 
-## 数据获取 {#2-数据获取}
+## 2 数据获取
 
 尽管特朗普的推特账号在 2021/01/08 被永久封禁，不过幸运的是，我们还是能在网上找到特朗普被封禁前的所有推特存档。在 [Trump Twitter Archive][trump-archive] 上，我们可以根据年份和关键词检索、浏览及下载特朗普发过的所有推特。可以看到总共有将近 60000 条推特数据，训练一个简单的 AI 模型还是绰绰有余的。
 
@@ -51,7 +50,7 @@ Natural Language Processing (H) @ Fudan University, fall 2020.
 - 以 `http://` 或 `https://` 开头的推特，这些通常是链接分享，并不包含文本信息。
 - 以 `RT` 开头的推特，这些通常是转发的推特，不是特朗普本人的发言。
 
-## 数据处理 {#3-数据处理}
+## 3 数据处理
 
 接下来，我们需要将这些 JSON 格式的数据进一步处理，从而得到一个可以进行训练的语料库。在 [`corpus.py`][corpus.py] 中，我们定义了两个类 `dictionary` 和 `corpus`。其中，`dictionary` 用于维护一个词典，保存了数据集中出现过的所有单词，以及相应的索引和出现频率；`corpus` 用于维护一个语料库，以 `List[str]` 类型按顺序保存了完整的数据集，并提供了将 JSON 格式数据转化为 text 格式数据的处理方法，以及 text 格式数据的读取方法。
 
@@ -280,7 +279,7 @@ class corpus():
             # self.dictionary.clear_words()
 ```
 
-## 模型方法 {#4-模型方法}
+## 4 模型方法
 
 这里我们主要采用 GRU（Gate Recurrent Unit）模型进行训练，它是循环神经网络（Recurrent Neural Network, RNN）的一种。
 
@@ -362,7 +361,7 @@ class rnn(nn.Module):
         return weight.new_zeros(self.num_layers, batch_size, self.hidden_size)
 ```
 
-## 训练模型 {#5-训练模型}
+## 5 训练模型
 
 整体的训练思路是，每次从训练集中随机抽取一个固定长度的片段 $S$，不妨设总共有 $n$ 个词，将 $S$ 中前 $n-1$ 个词作为输入 $I$，后 $n-1$ 个词作为目标 $T$。遍历 $I$，模型根据每个输入词 $I_j$ 和当前的 hidden state 预测一个输出词 $O_j$ 作为 $I_j$ 可能的后继词。然后将输出词 $O_j$ 和目标词 $T_j$ 进行比对，使用交叉熵（cross entropy）计算损失（loss），并利用梯度下降法尝试降低损失。这里我们使用 [Adam] 优化器进行梯度下降，它可以自适应地调节学习率（learning rate）。
 
@@ -489,7 +488,7 @@ def validate(inp: Tensor, tar: Tensor) -> float:
     return loss.item() / chunk_size
 ```
 
-## 生成文本 {#6-生成文本}
+## 6 生成文本
 
 生成文本的本质就是利用训练好的模型进行预测。具体来说，先从测试集中随机选取若干个（参数可调节）连续单词，然后以这几个单词为开头，利用模型逐一预测接下来的单词，从而组成一个句子。
 
@@ -602,7 +601,7 @@ def evaluate(prime_words: List[str] = None, predict_len: int = 30,
     return predicted_words
 ```
 
-## 运行代码 {#7-运行代码}
+## 7 运行代码
 
 配置环境前，首先需要安装以下依赖：
 
@@ -627,7 +626,7 @@ python ./trump_bot/main.py
 
 使用测试集生成的文本位于 `output/output.txt`，模型的学习曲线位于 `assets/loss.png`。
 
-## 实验结果 {#8-实验结果}
+## 8 实验结果
 
 训练过程中的训练损失和验证损失如图所示（使用 [`main.py`][main.py] 中定义的默认参数）：
 
@@ -685,12 +684,12 @@ I have n't think the Federal Party are doing such being important in their stone
 
 经检验，这些文本并不是特朗普的原话，也就是说确实是 AI 自己生成的文本。
 
-## 实验环境 {#9-实验环境}
+## 9 实验环境
 
 - Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-62-generic x86_64)
 - GPU: NVIDIA Tesla V100-NVLINK-32G × 1 (with CUDA 10.1.105)
 
-## 结论和感想 {#10-结论和感想}
+## 10 结论和感想
 
 目前从生成的文本来看，效果还算可以。整个训练过程还是比较有趣的，中间生成了许多十分有特朗普风格的搞笑句子。前期训练一直在用自己笔记本的 1050 Ti 跑，显存完全不够，跑一轮的速度也非常慢。后来看时间来不及了，实在受不了还是去租了台 GPU 服务器。后来就一直用的 Tesla V100 跑，舒服多了。
 

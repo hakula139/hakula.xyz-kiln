@@ -30,7 +30,7 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 [:(fab fa-github): hakula139 / MIPS-CPU / Branch-Predictor](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor)
 :::
 
-## 参数 {#1-参数}
+## 参数
 
 本分支预测器在实现中默认使用 Tournament Predictor，当 miss 时优先选择 Global Predictor。当 Global Predictor 和 Local Predictor miss 时使用 Static Predictor 作为 fallback，Static Predictor 默认采用 BTFNT（Backward Taken, Forward Not Taken）跳转策略。
 
@@ -56,11 +56,11 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 [bpb.svh]: https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/bpb.svh
 [sp.svh]: https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/static_predictor.svh
 
-## 结构 {#2-结构}
+## 结构
 
 ![分支预测器的整体结构](assets/branch-predictor.webp)
 
-### Global History Table {#2.1-global-history-table}
+### Global History Table
 
 GHT（Global History Table）是一个全局分支跳转记录表，所有分支的跳转记录共享一个位移寄存器。Global Predictor 利用 GHT 提供的最近一次分支跳转记录 `ght_state` 进行预测。
 
@@ -68,7 +68,7 @@ Global Predictor 的优势在于能够发现不同跳转指令间的相关性，
 
 代码见 [这里](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/ght.sv)。
 
-### Branch History Table {#2.2-branch-history-table}
+### Branch History Table
 
 BHT（Branch History Table）是一个局部分支跳转记录表，每个条件跳转指令的跳转记录都分别保存在按地址直接映射的专用位移寄存器里。Local Predictor 利用 BHT 提供的指定分支最近一次跳转记录 `bht_state` 进行预测。
 
@@ -78,17 +78,17 @@ Local Predictor 的优势在于能够发现同一跳转指令在一个时间段�
 
 代码见 [这里](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/bht.sv)。
 
-### Pattern History Table {#2.3-pattern-history-table}
+### Pattern History Table
 
 Global Predictor, Local Predictor 和 Selector 都分别是一个 PHT（Pattern History Table）。其中 Global Predictor 使用 `index ^ ght_state` 索引，Local Predictor 使用 `index ^ bht_state` 索引，Selector 使用 `index` 索引。使用 $\mathrm{XOR}$ 运算来 hash 是为了在 PHT 的大小较小时，通过将索引地址随机化，降低重名冲突发生的概率，同时尽可能减少因此增加的延迟。
 
-Selector 根据上次预测的情况决定本次选用 Global Predictor 还是 Local Predictor 进行预测。作为 PHT，与 Global Predictor 和 Local Predictor 一样，需要 2 次错误预测才会使得 Selector 切换预测模式，原理见 [Saturating Counter](#2.4-saturating-counter) 节。整个机制综合起来，就是所谓的 Tournament Predictor。
+Selector 根据上次预测的情况决定本次选用 Global Predictor 还是 Local Predictor 进行预测。作为 PHT，与 Global Predictor 和 Local Predictor 一样，需要 2 次错误预测才会使得 Selector 切换预测模式，原理见 [Saturating Counter](#saturating-counter) 节。整个机制综合起来，就是所谓的 Tournament Predictor。
 
 Tournament Predictor 的优势在于能够根据不同分支的不同情况，选择最适合其特征的预测模式。因此在大多数情况下，Tournament Predictor 会有相对较好的表现。
 
 代码见 [这里](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/pht.sv)。
 
-### Saturating Counter {#2.4-saturating-counter}
+### Saturating Counter
 
 对于每一个保存的记录，其形式是一个 2 位饱和计数器（Saturating Counter），即一个有 4 种状态的状态机。
 
@@ -103,7 +103,7 @@ Tournament Predictor 的优势在于能够根据不同分支的不同情况，�
 
 代码见 [这里](https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/state_switch.sv)。
 
-### Static Predictor {#2.5-static-predictor}
+### Static Predictor
 
 在程序刚开始运行时，GHT, BHT, PHT 都还是空的，此时需要 fallback 到 Static Predictor。Static Predictor 默认采用 BTFNT 策略，相较于其他静态预测模式，能够较好地同时处理循环[^btfnt]和一般跳转情况。
 
@@ -111,7 +111,7 @@ Tournament Predictor 的优势在于能够根据不同分支的不同情况，�
 
 [^btfnt]: 这里利用的是循环在绝大多数时候（除了最后一次）总是向后跳转的特性。
 
-### Branch Prediction Buffer {#2.6-branch-prediction-buffer}
+### Branch Prediction Buffer
 
 BPB（Branch Prediction Buffer）是这个动态分支预测器的主体，负责预测跳转地址并与 CPU 交互。
 
@@ -123,22 +123,22 @@ BPB（Branch Prediction Buffer）是这个动态分支预测器的主体，负�
 
 [parser.sv]: https://github.com/hakula139/MIPS-CPU/tree/master/Branch-Predictor/src/branch-predictor/parser.sv
 
-## 一些改动 {#3-一些改动}
+## 一些改动
 
 本动态分支预测器的实现基于 [之前](../mips-cache/) 实现的带 Cache 的流水线 MIPS CPU，这里注明所做的一些改动。
 
 首先在 `mips` 里新增了 BPB 模块，并且新增了其与 Fetch 阶段和 Hazard Unit 间的交互逻辑。Fetch 阶段更改了 `pc_next`（新的 PC 值）的选择逻辑，当预测失败或当前指令为 `jr` 时选择原本的 `pc_next` 值，否则选择 BPB 的预测值 `predict_pc`。这里 BPB 也可以预测非跳转指令的 `pc_next` 值（总是 `pc + 4`），因此就将这部分逻辑合并进 BPB 了。
 
-此外，根据 [Branch Prediction Buffer](#2.6-branch-prediction-buffer) 节的描述，修改了 `hazard_unit` 的 `flush_d` 信号。由于现在采用动态分支预测，跳转指令在 Fetch 阶段后就会直接跳转，而不像原来需要再读取一条无用指令，因此不需要针对跳转指令进行额外的 flush 操作（`jr` 指令除外）。实际上这个 penalty 是转移到了预测失败的情况，但现在预测成功时就没有这个 penalty 了，动态分支预测主要就是优化了这个地方。
+此外，根据 [Branch Prediction Buffer](#branch-prediction-buffer) 节的描述，修改了 `hazard_unit` 的 `flush_d` 信号。由于现在采用动态分支预测，跳转指令在 Fetch 阶段后就会直接跳转，而不像原来需要再读取一条无用指令，因此不需要针对跳转指令进行额外的 flush 操作（`jr` 指令除外）。实际上这个 penalty 是转移到了预测失败的情况，但现在预测成功时就没有这个 penalty 了，动态分支预测主要就是优化了这个地方。
 
 ```sv
 assign flush_e_o = stall_d_o || predict_miss_i;
 assign flush_d_o = predict_miss_i || jump_d_i[1];  // wrong prediction or JR
 ```
 
-## 样例测试 {#4-样例测试}
+## 样例测试
 
-### 测试结果 {#4.1-测试结果}
+### 测试结果
 
 ![测试 1 ~ 4](assets/test-1-4.webp)
 
@@ -146,12 +146,12 @@ assign flush_d_o = predict_miss_i || jump_d_i[1];  // wrong prediction or JR
 
 ![测试 9 ~ 11](assets/test-9-11.webp)
 
-### 测试环境 {#4.2-测试环境}
+### 测试环境
 
 - Windows 10 Version 2004 (OS Build 19041.264)
 - Vivado v2019.1
 
-### 测试分析 {#4.3-测试分析}
+### 测试分析
 
 同等条件下，未使用动态分支预测时 CPI 为 `1.997842`。可见，动态分支预测将 CPI 降低了 $10\%$ 左右，这个优化效果还是比较可观的。以下调整不同参数，进行了一些测试。
 
