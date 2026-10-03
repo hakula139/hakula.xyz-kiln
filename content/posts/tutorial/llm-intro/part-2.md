@@ -212,7 +212,7 @@ Under the hood, teammates can run as separate processes in tmux panes, giving ea
 
 ### What teams add over subagents
 
-Many of the [subagent patterns](#patterns) — parallel review, parallel exploration — work fine without teams. The orchestrator spawns workers, collects reports, synthesizes. Teams earn their overhead when agents need to coordinate mid-task. The [official documentation][claude-agent-teams] highlights several workflows where this matters:
+Many of the [subagent patterns](#patterns) — parallel review, parallel exploration — work fine without teams. The orchestrator spawns workers, collects reports, synthesizes. Teams earn their overhead when agents need to coordinate mid-task. The [official documentation][Agent teams] highlights several workflows where this matters:
 
 **Multi-hypothesis debugging**: spawn multiple debuggers with different theories. Unlike the subagent version where each reports independently, teammates share confirming and contradicting evidence via `SendMessage`, actively challenging each other's assumptions. Sequential investigation suffers from confirmation bias; parallel adversarial investigation surfaces the root cause faster because agents disprove each other's theories in real time, not after the fact.
 
@@ -279,7 +279,7 @@ Recall from [Part 1](../part-1/#what-is-an-llm) that the context window is the m
 
 Claude Code handles this through a compaction pipeline[^compaction] that operates transparently during normal use.
 
-[^compaction]: See the [context management documentation][claude-context-window] for details on compaction behavior and configuration.
+[^compaction]: See the [context management documentation][Context window] for details on compaction behavior and configuration.
 
 ### Auto-compaction
 
@@ -342,9 +342,9 @@ The trajectory from "prompt engineering" (2024) to "context engineering" (2026) 
 
 The tool is only as good as the person directing it. Understanding the layers is understanding the leverage points. And the leverage, at every level, comes from the same place: knowing what the agent needs to see, when it needs to see it, and what you can safely leave out.
 
+[Agent teams]: https://code.claude.com/docs/en/agent-teams
 [c-compiler]: https://www.anthropic.com/engineering/building-c-compiler
-[claude-agent-teams]: https://code.claude.com/docs/en/agent-teams
-[claude-context-window]: https://code.claude.com/docs/en/context-window
+[Context window]: https://code.claude.com/docs/en/context-window
 [git-worktree]: https://git-scm.com/docs/git-worktree
 [harness-problem]: https://blog.can.ac/2026/02/12/the-harness-problem/
 [learn-claude-code]: https://github.com/shareAI-lab/learn-claude-code
