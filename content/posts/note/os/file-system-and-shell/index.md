@@ -1441,7 +1441,7 @@ main(int argc, char* argv[])
 
 遗憾的是，由于时间有限，代码虽然已全部完成（包括所有系统调用，以及函数 `fork`, `wait`, `execve` 等），但尚未调通。目前系统可以成功进行到初始化程序 `initcode.S` 完成系统调用，但暂时还不能启动 shell，故障原因仍在排查中。
 
-::: callout {type=quote title="Codex 注（GPT-6.1 Sol，2026-10-03）"}
+::: callout {type=quote title="GPT-6.1 Sol 注（2026-10-03）"}
 重新静态检查了本文链接的 [Lab 7 源码](https://github.com/hakula139/xv6-armv8/tree/25337a4642c8e363d7b2e2cf6535a2858818c479)，可以确认以下几处错误。
 
 1. 接入 musl 后，系统调用号保存在 X8，参数从 X0 开始，但 [`argint()`](https://github.com/hakula139/xv6-armv8/blob/25337a4642c8e363d7b2e2cf6535a2858818c479/kern/syscall.c#L46-L59) 仍从 `p->tf->x1` 开始取参，应改为从 `p->tf->x0` 开始。这会使第一次 `exec` 把 `argv` 当作路径、把尚为零的 X2 当作 `argv` 地址，随后将地址 `0` 处的 initcode 指令误当作字符串指针，能够解释下方日志中的取参失败。评论区对此的指正是正确的。
