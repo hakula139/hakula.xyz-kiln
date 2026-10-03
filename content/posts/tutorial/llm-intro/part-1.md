@@ -74,7 +74,7 @@ This changes everything. Instead of asking "how do I fix this test?" and getting
 
 The mechanism by which agents discover and use tools is the **Model Context Protocol** (MCP), an open standard that Anthropic donated to the Linux Foundation in 2025. MCP defines a structured interface: a server exposes tools with typed inputs and outputs, and the agent learns to use them from their descriptions, analogous to reading `--help` output. By the time of this writing (March 2026), the ecosystem has grown to over 18,000 MCP servers[^mcp-servers] covering Git, GitHub, Slack, databases, cloud infrastructure, web search, and anything else that exposes an MCP interface. The analogy to humans is direct: a person is bad at multiplying large numbers, but a person with a calculator is not. The tool compensates for the limitation. LLMs hallucinate facts, but an LLM with a search tool can look things up; an LLM with a code execution tool can run the computation instead of guessing the answer. The model does not need to _know_ everything, it needs to know _how to get_ the answer. We will return to MCP in detail later; for now, the point is that tools are how an LLM stops being a chatbot and starts being an agent.
 
-[^mcp-servers]: Source: [mcp.so][mcp-so], the community registry for MCP servers.
+[^mcp-servers]: Source: [mcp.so], the community registry for MCP servers.
 
 ### The agentic loop
 
@@ -168,7 +168,7 @@ There has to be a better way. What if you could write your preferences down once
 
 ## CLAUDE.md, Rules, and Memory
 
-[CLAUDE.md][claude-memory] is the answer to the repetition problem. It is a Markdown file (which is a type of plain text) that the agent reads at the start of every session, automatically. No need to paste instructions; they are always in context.
+[CLAUDE.md] is the answer to the repetition problem. It is a Markdown file (which is a type of plain text) that the agent reads at the start of every session, automatically. No need to paste instructions; they are always in context.
 
 ### The CLAUDE.md hierarchy
 
@@ -430,7 +430,7 @@ CLAUDE.md tells the agent what to do, but these are instructions, not constraint
 
 ## Hooks
 
-[Hooks][claude-hooks] are actions triggered at specific lifecycle events in the agent's operation — shell commands, HTTP endpoints, or even LLM prompts. They run _outside_ the model: the model does not decide whether a hook fires, and it cannot override a hook's decision. This is the difference between a suggestion and an enforcement mechanism.
+[Hooks] are actions triggered at specific lifecycle events in the agent's operation — shell commands, HTTP endpoints, or even LLM prompts. They run _outside_ the model: the model does not decide whether a hook fires, and it cannot override a hook's decision. This is the difference between a suggestion and an enforcement mechanism.
 
 ### Hook events
 
@@ -457,7 +457,7 @@ And these are more specialized:
 
 Hooks can be defined at global scope (`~/.claude/settings.json`) or project scope (`.claude/settings.json`). Project-scope hooks can be committed to the repo and shared with your team. The following examples use global scope, with hook scripts in `~/.claude/hooks/`.
 
-**Auto-formatting (PostToolUse):** After every file edit or write, this hook runs [Prettier][prettier] on the changed file:
+**Auto-formatting (PostToolUse):** After every file edit or write, this hook runs [Prettier] on the changed file:
 
 ```json {title="~/.claude/settings.json"}
 {
@@ -517,7 +517,7 @@ case "$tool_name" in
 esac
 ```
 
-The script parses `tool_name` from the JSON input on stdin and sends a desktop notification with `notify-send`. On macOS, replace with `osascript`; on WSL, you need a Windows-side toast tool since `notify-send` has no display server to talk to — my implementation uses [toasty][toasty] and auto-detects the platform ([source][nixos-notify]). For complex hooks like this, extracting the logic into a separate script is cleaner than inlining escaped shell in JSON.
+The script parses `tool_name` from the JSON input on stdin and sends a desktop notification with `notify-send`. On macOS, replace with `osascript`; on WSL, you need a Windows-side toast tool since `notify-send` has no display server to talk to — my implementation uses [toasty] and auto-detects the platform ([source][nixos-notify]). For complex hooks like this, extracting the logic into a separate script is cleaner than inlining escaped shell in JSON.
 
 ### Beyond shell commands
 
@@ -565,7 +565,7 @@ Hooks also cannot give the agent structured access to external systems. The agen
 
 ## MCP
 
-We introduced [MCP][claude-mcp] briefly in the agent section. Now it is time to look at it properly, because MCP is the infrastructure that makes everything else useful. Without MCP, an agent's only tool is a raw Bash shell, powerful but unstructured, with no type safety. Every command's output is dumped as raw text into the context window.
+We introduced [MCP] briefly in the agent section. Now it is time to look at it properly, because MCP is the infrastructure that makes everything else useful. Without MCP, an agent's only tool is a raw Bash shell, powerful but unstructured, with no type safety. Every command's output is dumped as raw text into the context window.
 
 ### What MCP actually provides
 
@@ -613,7 +613,7 @@ Each server brings capabilities that would be awkward or unreliable through raw 
 
 - **Git MCP** returns structured data (diffs, logs, status) instead of raw terminal output. A `git diff` through Bash might dump 200 lines of colored text into the context window; the MCP equivalent returns the same information in a parsed format the model can consume reliably — denser and cheaper.
 - **Fetcher MCP** runs a headless Playwright browser behind the scenes. Claude Code's built-in `WebFetch` tool uses a simple HTTP client that many sites block (Reddit, Wikipedia, etc. all return 403). Fetcher bypasses this by rendering the page in a real Chromium instance, so the agent can actually read the content. It is slower and heavier, but invaluable as a fallback.
-- [**Context7**][context7] and [**DeepWiki**][deepwiki] are documentation servers. Context7 provides up-to-date library docs with code examples; DeepWiki builds AI-powered documentation for any GitHub repository and lets the agent ask questions about it interactively. These are direct countermeasures against hallucination. When the agent can look up the actual API instead of guessing from training data, it generates code that actually works.
+- **[Context7]** and **[DeepWiki]** are documentation servers. Context7 provides up-to-date library docs with code examples; DeepWiki builds AI-powered documentation for any GitHub repository and lets the agent ask questions about it interactively. These are direct countermeasures against hallucination. When the agent can look up the actual API instead of guessing from training data, it generates code that actually works.
 - **Codex MCP** is a bridge to OpenAI's Codex CLI. The agent can delegate self-contained tasks to a GPT model with its own context window. What makes this most valuable is that it gives you a genuine second opinion from a different model family. Claude and GPT have different blind spots, and their disagreements are where the interesting insights live. The back-and-forth between them frequently produces better results than either model alone.
 
 ### MCP enforcement through hooks
@@ -689,11 +689,11 @@ MCP gives the agent structured access to tools, but it does not tell the agent _
 
 ## Skills
 
-[Skills][claude-skills] are Markdown files that define on-demand procedures. They live in `.claude/skills/`, and their descriptions are always loaded so the model knows what is available, but the full content only enters the context window when invoked — either explicitly via `/skill-name` or automatically when the model determines the skill is relevant to the current task.
+[Skills] are Markdown files that define on-demand procedures. They live in `.claude/skills/`, and their descriptions are always loaded so the model knows what is available, but the full content only enters the context window when invoked — either explicitly via `/skill-name` or automatically when the model determines the skill is relevant to the current task.
 
 ### Skill anatomy
 
-Here is the official [`/commit` skill][commit-skill] from Anthropic's [commit-commands][commit-commands] plugin:
+Here is the official [`/commit` skill][commit-skill] from Anthropic's [commit-commands] plugin:
 
 ```markdown {title="anthropics/claude-plugins-official:plugins/commit-commands/commands/commit.md"}
 ---
@@ -743,7 +743,7 @@ Skills also cannot bundle related capabilities together. A code review workflow 
 
 ## Plugins
 
-[Plugins][claude-plugins] fill this gap. They are installable packages that bundle skills, agents, hooks, output styles, and settings together, distributed through a marketplace and auto-updated on each session. You enable a plugin once; it stays current.
+[Plugins] fill this gap. They are installable packages that bundle skills, agents, hooks, output styles, and settings together, distributed through a marketplace and auto-updated on each session. You enable a plugin once; it stays current.
 
 ### Why this matters
 
@@ -798,7 +798,7 @@ These give the agent access to real-time language diagnostics (type errors, unus
 }
 ```
 
-We [already saw](#configuring-mcp-servers) Context7 as an MCP server for documentation lookup, but the MCP server alone does not tell the agent _how_ to use it well. The plugin bundles a skill with proper instructions on top of the server, so the agent knows when and how to query docs effectively. [Agent-browser][agent-browser] (by Vercel Labs) is a lightweight alternative to Playwright for browser automation: it uses accessibility snapshots with semantic element references (`@e1`, `@e2`) instead of full HTML, and a persistent Rust CLI + Node.js daemon architecture that avoids reinitializing the browser on every call. The result is significantly less context consumed per interaction compared to a raw Playwright MCP.
+We [already saw](#configuring-mcp-servers) Context7 as an MCP server for documentation lookup, but the MCP server alone does not tell the agent _how_ to use it well. The plugin bundles a skill with proper instructions on top of the server, so the agent knows when and how to query docs effectively. [Agent-browser] (by Vercel Labs) is a lightweight alternative to Playwright for browser automation: it uses accessibility snapshots with semantic element references (`@e1`, `@e2`) instead of full HTML, and a persistent Rust CLI + Node.js daemon architecture that avoids reinitializing the browser on every call. The result is significantly less context consumed per interaction compared to a raw Playwright MCP.
 
 ### Marketplaces
 
@@ -840,24 +840,24 @@ With these seven layers, you have a fully configured, production-ready agent. Fo
 
 In [Part 2](../part-2), we will cover **subagents** (focused delegation to child processes with their own context windows), **agent teams** (full peer-to-peer coordination with shared task lists and direct messaging), and the orchestration patterns that tie them together. That is where the opening scenario — three reviewers, a researcher, and an implementer all working in parallel — becomes reality.
 
-[mcp-so]: https://mcp.so
-[token-efficiency]: https://x.com/iannuttall/status/1953833034794651649
-[claude-memory]: https://code.claude.com/docs/en/memory
-[nixos-claude-instructions]: https://github.com/hakula139/nixos-config/blob/b78fbb2d2cfca60931fe88e467e1bf49053a65c1/home/modules/claude-code/_CLAUDE.md
-[kiln-instructions]: https://github.com/hakula139/kiln/blob/1f8b92fd08e0c219a076bb6fe4d568de1c6455b1/CLAUDE.md
-[claude-hooks]: https://code.claude.com/docs/en/hooks
-[prettier]: https://prettier.io
-[toasty]: https://github.com/shanselman/toasty
-[nixos-notify]: https://github.com/hakula139/nixos-config/blob/b78fbb2d2cfca60931fe88e467e1bf49053a65c1/home/modules/notify/default.nix
-[claude-mcp]: https://code.claude.com/docs/en/mcp
-[context7]: https://context7.com
-[deepwiki]: https://deepwiki.com
-[nixos-enforce-mcp]: https://github.com/hakula139/nixos-config/blob/b78fbb2d2cfca60931fe88e467e1bf49053a65c1/home/modules/claude-code/hooks/enforce-mcp.sh
-[claude-skills]: https://code.claude.com/docs/en/slash-commands
-[commit-skill]: https://github.com/anthropics/claude-plugins-official/blob/aeb25ced03e501e4d60d08edc66f4e1744a22432/plugins/commit-commands/commands/commit.md
-[commit-commands]: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/commit-commands
-[code-review]: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/code-review
-[claude-plugins]: https://code.claude.com/docs/en/discover-plugins
-[claude-plugins-official]: https://github.com/anthropics/claude-plugins-official
+[Agent-browser]: https://github.com/vercel-labs/agent-browser
 [claude-marketplaces]: https://claudemarketplaces.com
-[agent-browser]: https://github.com/vercel-labs/agent-browser
+[claude-plugins-official]: https://github.com/anthropics/claude-plugins-official
+[CLAUDE.md]: https://code.claude.com/docs/en/memory
+[code-review]: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/code-review
+[commit-commands]: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/commit-commands
+[commit-skill]: https://github.com/anthropics/claude-plugins-official/blob/aeb25ced03e501e4d60d08edc66f4e1744a22432/plugins/commit-commands/commands/commit.md
+[Context7]: https://context7.com
+[DeepWiki]: https://deepwiki.com
+[Hooks]: https://code.claude.com/docs/en/hooks
+[kiln-instructions]: https://github.com/hakula139/kiln/blob/1f8b92fd08e0c219a076bb6fe4d568de1c6455b1/CLAUDE.md
+[MCP]: https://code.claude.com/docs/en/mcp
+[mcp.so]: https://mcp.so
+[nixos-claude-instructions]: https://github.com/hakula139/nixos-config/blob/b78fbb2d2cfca60931fe88e467e1bf49053a65c1/home/modules/claude-code/_CLAUDE.md
+[nixos-enforce-mcp]: https://github.com/hakula139/nixos-config/blob/b78fbb2d2cfca60931fe88e467e1bf49053a65c1/home/modules/claude-code/hooks/enforce-mcp.sh
+[nixos-notify]: https://github.com/hakula139/nixos-config/blob/b78fbb2d2cfca60931fe88e467e1bf49053a65c1/home/modules/notify/default.nix
+[Plugins]: https://code.claude.com/docs/en/discover-plugins
+[Prettier]: https://prettier.io
+[Skills]: https://code.claude.com/docs/en/slash-commands
+[toasty]: https://github.com/shanselman/toasty
+[token-efficiency]: https://x.com/iannuttall/status/1953833034794651649
