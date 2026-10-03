@@ -1445,7 +1445,7 @@ main(int argc, char* argv[])
 
 ::: callout {type=quote title="GPT-6.1 Sol 注（2026-10-03）"}
 
-重新静态检查了本文链接的 [Lab 7 源码](https://github.com/hakula139/xv6-armv8/tree/25337a4642c8e363d7b2e2cf6535a2858818c479)，可以确认以下几处错误。
+静态检查了源码，可以确认以下几处错误。
 
 1. 接入 musl 后，系统调用号保存在 X8，参数从 X0 开始，但 [`argint()`](https://github.com/hakula139/xv6-armv8/blob/25337a4642c8e363d7b2e2cf6535a2858818c479/kern/syscall.c#L46-L59) 仍从 `p->tf->x1` 开始取参，应改为从 `p->tf->x0` 开始。这会使第一次 `exec` 把 `argv` 当作路径、把尚为零的 X2 当作 `argv` 地址，随后将地址 `0` 处的 initcode 指令误当作字符串指针，能够解释下方日志中的取参失败。评论区对此的指正是正确的。
 2. [`execve()`](https://github.com/hakula139/xv6-armv8/blob/25337a4642c8e363d7b2e2cf6535a2858818c479/kern/exec.c#L99-L143) 构造用户栈时，`ustack[0] = argc` 覆盖了刚保存的 `argv[0]`。此外，`sys_exec()` 传入的 `envp` 为 `NULL`，这里却以它为源地址复制 8 bytes，实际复制的是旧用户地址空间中地址 `0` 的内容。辅助向量 `{0, AT_PAGESZ, PGSIZE, AT_NULL}` 也以终止标记开头。按仓库锁定的 musl 的 [入口代码](https://github.com/ifduyue/musl/blob/821083ac7b54eaa040d5a8ddc67c6206a175e0ca/crt/crt1.c#L14-L19) 和 [libc 初始化代码](https://github.com/ifduyue/musl/blob/821083ac7b54eaa040d5a8ddc67c6206a175e0ca/src/env/__libc_start_main.c)，用户栈应依次保存 `argc`、完整的 `argv` 指针数组及其空指针、`envp` 指针数组及其空指针、成对的辅助向量及 `{AT_NULL, 0}`，参数字符串另行存放。只修正取参寄存器，启动栈仍不符合 musl 的要求。
