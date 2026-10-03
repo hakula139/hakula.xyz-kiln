@@ -682,7 +682,7 @@ The three levels compose: a plugin includes the MCP server config and the skill,
 
 ### MCP Inspector
 
-The [MCP Inspector][mcp-inspector] is a web-based testing UI that connects to your server and lets you call tools interactively:
+The [MCP Inspector] is a web-based testing UI that connects to your server and lets you call tools interactively:
 
 ```bash
 npx @modelcontextprotocol/inspector uvx my-docs-mcp
@@ -755,7 +755,7 @@ All the code in this article is self-contained — copy the three modules, chang
 [hatchling]: https://hatch.pypa.io
 [llmstxt.org]: https://llmstxt.org
 [Material for MkDocs]: https://squidfunk.github.io/mkdocs-material
-[mcp-inspector]: https://modelcontextprotocol.io/docs/tools/inspector
+[MCP Inspector]: https://modelcontextprotocol.io/docs/tools/inspector
 [mike]: https://github.com/jimporter/mike
 [MkDocs]: https://www.mkdocs.org
 [mkdocs-llmstxt]: https://github.com/pawamoy/mkdocs-llmstxt
