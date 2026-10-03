@@ -83,7 +83,7 @@ The overall orchestration rules — when to use agents, model selection guidelin
 | `usability-reviewer` | UX clarity for user-facing surfaces   | opus   | Read-only  |
 | `codex-worker`       | Delegates to OpenAI Codex MCP         | haiku  | Restricted |
 
-Access constraints here are behavioral: agents are instructed to operate read-only through their system prompts, not through hard tool restrictions. This lets an agent break the boundary when genuinely needed — a read-only researcher might need to create a temporary file for an intermediate computation. The exception is the `codex-worker`, whose narrower tool set physically prevents it from doing work directly, forcing it to delegate to Codex instead:
+Access constraints here are behavioral: agents are instructed to operate read-only through their system prompts, not through hard tool restrictions. This lets an agent break the boundary when genuinely needed — a read-only researcher might need to create a temporary file for an intermediate computation. The exception is the [`codex-worker`](https://github.com/hakula139/nixos-config/blob/9a54ef1d213bd43104014764ba4751dc007facbf/home/modules/llm-assistants/claude-code/agents/codex-worker.md), whose narrower tool set physically prevents it from doing work directly, forcing it to delegate to Codex instead:
 
 ```markdown {title="hakula139/nixos-config:home/modules/llm-assistants/claude-code/agents/codex-worker.md"}
 ---

@@ -184,7 +184,7 @@ Each level inherits from the one above and can override or extend it. A global f
 
 Here is a concrete example from my own configuration.
 
-**Global** (`~/.claude/CLAUDE.md`) covers communication style, code quality principles, commenting guidelines, and MCP server usage patterns:
+**Global** ([`~/.claude/CLAUDE.md`](https://github.com/hakula139/nixos-config/blob/b78fbb2d2cfca60931fe88e467e1bf49053a65c1/home/modules/claude-code/_CLAUDE.md)) covers communication style, code quality principles, commenting guidelines, and MCP server usage patterns:
 
 ```markdown {title="hakula139/nixos-config:home/modules/claude-code/_CLAUDE.md"}
 ## Communication Style
@@ -259,7 +259,7 @@ interfaces, better error handling, and work within the configured permission mod
 
 The global file also defines the entire agent team workflow: available agent types, model selection guidelines, coordination patterns, team presets, and the output contract all agents must follow. This is roughly 300 lines that establish the operational framework for every session. We will cover this in detail in [Part 2](../part-2).
 
-**Project** (`CLAUDE.md` in a Rust static site generator repo) covers project structure, coding conventions, and verification workflow:
+**Project** ([`CLAUDE.md`](https://github.com/hakula139/kiln/blob/1f8b92fd08e0c219a076bb6fe4d568de1c6455b1/CLAUDE.md) in a Rust static site generator repo) covers project structure, coding conventions, and verification workflow:
 
 ````markdown {title="hakula139/kiln:CLAUDE.md"}
 ## Project Overview
@@ -455,7 +455,7 @@ And these are more specialized:
 
 ### Real examples
 
-Hooks can be defined at global scope (`~/.claude/settings.json`) or project scope (`.claude/settings.json`). Project-scope hooks can be committed to the repo and shared with your team. Here are three examples from my configuration.
+Hooks can be defined at global scope (`~/.claude/settings.json`) or project scope (`.claude/settings.json`). Project-scope hooks can be committed to the repo and shared with your team. The following examples use global scope, with hook scripts in `~/.claude/hooks/`.
 
 **Auto-formatting (PostToolUse):** After every file edit or write, this hook runs [Prettier](https://prettier.io) on the changed file:
 
@@ -493,7 +493,7 @@ This is context engineering through subtraction: instead of writing "always form
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/notify-permission.sh"
+            "command": "~/.claude/hooks/notify-permission.sh"
           }
         ]
       }
@@ -502,7 +502,7 @@ This is context engineering through subtraction: instead of writing "always form
 }
 ```
 
-```bash {title=".claude/hooks/notify-permission.sh"}
+```bash {title="~/.claude/hooks/notify-permission.sh"}
 #!/usr/bin/env bash
 tool_name="$(jq -r '.tool_name // empty')"
 case "$tool_name" in
@@ -629,7 +629,7 @@ With both hooks and MCP in place, they reinforce each other. Here is a `PreToolU
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/enforce-mcp.sh"
+            "command": "~/.claude/hooks/enforce-mcp.sh"
           }
         ]
       }
@@ -638,7 +638,7 @@ With both hooks and MCP in place, they reinforce each other. Here is a `PreToolU
 }
 ```
 
-The script reads the JSON input from stdin, checks the command, and returns a `permissionDecision` of `"deny"` with a redirect message:
+This excerpt from [`enforce-mcp.sh`](https://github.com/hakula139/nixos-config/blob/b78fbb2d2cfca60931fe88e467e1bf49053a65c1/home/modules/claude-code/hooks/enforce-mcp.sh) reads the JSON input from stdin, checks the command, and returns a `permissionDecision` of `"deny"` with a redirect message:
 
 ```bash {title="hakula139/nixos-config:home/modules/claude-code/hooks/enforce-mcp.sh"}
 #!/usr/bin/env bash
@@ -693,7 +693,7 @@ MCP gives the agent structured access to tools, but it does not tell the agent _
 
 ### Skill anatomy
 
-Here is the official `/commit` skill from Anthropic's [commit-commands](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/commit-commands) plugin:
+Here is the official [`/commit` skill](https://github.com/anthropics/claude-plugins-official/blob/aeb25ced03e501e4d60d08edc66f4e1744a22432/plugins/commit-commands/commands/commit.md) from Anthropic's [commit-commands](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/commit-commands) plugin:
 
 ```markdown {title="anthropics/claude-plugins-official:plugins/commit-commands/commands/commit.md"}
 ---
