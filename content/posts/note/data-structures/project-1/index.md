@@ -16,6 +16,7 @@ author = "MISSILE228"
 url = "https://www.pixiv.net/artworks/77359441"
 
 [heading_numbering]
+enabled = true
 +++
 
 Data Structures (H) @ Fudan University, fall 2019.

@@ -16,6 +16,7 @@ author = "MISSILE228"
 url = "https://www.pixiv.net/artworks/66372748"
 
 [heading_numbering]
+enabled = true
 +++
 
 建站以来第一篇文章，主要是建站后的一点感想，以及建站的整个大致流程。

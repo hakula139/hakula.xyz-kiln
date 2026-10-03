@@ -14,6 +14,7 @@ license = "CC BY-NC-SA 4.0"
 src = "/images/article-covers/swan-song.webp"
 
 [heading_numbering]
+enabled = true
 +++
 
 <!--more-->

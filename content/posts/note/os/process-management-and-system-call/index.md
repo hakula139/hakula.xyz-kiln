@@ -20,6 +20,7 @@ author = "MISSILE228"
 url = "https://www.pixiv.net/artworks/85995104"
 
 [heading_numbering]
+enabled = true
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.

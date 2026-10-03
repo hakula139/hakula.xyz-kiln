@@ -22,11 +22,7 @@ author = "藤原"
 url = "https://www.pixiv.net/artworks/87631904"
 
 [heading_numbering]
-
-[heading_numbering.starts]
-"生成数据集" = 0
-"生成数据集-1" = 0
-"生成数据集-2" = 0
+enabled = true
 +++
 
 本次作业利用 NumPy 实现了一个 K-Means 模型和一个 GMM 模型，并利用 Gap Statistic 方法实现了数据集中聚簇数量的自动推测。
@@ -82,7 +78,7 @@ $$
 
 #### 基础实验
 
-##### 生成数据集
+##### 生成数据集 {numbering-start=0}
 
 我们利用以下函数生成数据集：
 
@@ -423,7 +419,7 @@ $$
 
 #### 基础实验
 
-##### 生成数据集
+##### 生成数据集 {numbering-start=0}
 
 这里我们使用与 K-Means 相同的数据集生成方法。
 
@@ -619,7 +615,7 @@ $$
 
 #### 基础实验
 
-##### 生成数据集
+##### 生成数据集 {numbering-start=0}
 
 这里我们使用与 K-Means 相同的数据集生成方法。
 

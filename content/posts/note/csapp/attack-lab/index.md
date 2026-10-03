@@ -12,14 +12,7 @@ license = "CC BY-NC-SA 4.0"
 src = "/images/article-covers/csapp.webp"
 
 [heading_numbering]
-
-[heading_numbering.starts]
-"准备工作" = 0
-"总览" = 0
-"总览-1" = 0
-"总览-2" = 0
-"总览-3" = 0
-"总览-4" = 0
+enabled = true
 +++
 
 Introduction to Computer Systems I (H) @ Fudan University, fall 2019.
@@ -42,7 +35,7 @@ Introduction to Computer Systems I (H) @ Fudan University, fall 2019.
 
 ## 实验报告
 
-### 准备工作
+### 准备工作 {numbering-start=0}
 
 #### 反汇编 `ctarget` 和 `rtarget`
 
@@ -129,7 +122,7 @@ c0 17 40 00 00 00 00 00
 
 #### 解题过程
 
-##### 总览
+##### 总览 {numbering-start=0}
 
 讲义中给出了函数 `test` 和 `getbuf` 的源代码：
 
@@ -252,7 +245,7 @@ ec 17 40 00 c3 00 00 00
 
 #### 解题过程
 
-##### 总览
+##### 总览 {numbering-start=0}
 
 讲义中给出了函数 `touch2` 的源代码：
 
@@ -443,7 +436,7 @@ fa 18 40 00 c3 00 00 00
 
 #### 解题过程
 
-##### 总览
+##### 总览 {numbering-start=0}
 
 讲义中给出了函数 `hexmatch` 和 `touch3` 的源代码：
 
@@ -638,7 +631,7 @@ ec 17 40 00 00 00 00 00
 
 #### 解题过程
 
-##### 总览
+##### 总览 {numbering-start=0}
 
 原本的汇编代码：
 
@@ -824,7 +817,7 @@ fa 18 40 00 00 00 00 00
 
 #### 解题过程
 
-##### 总览
+##### 总览 {numbering-start=0}
 
 原本的汇编代码：
 

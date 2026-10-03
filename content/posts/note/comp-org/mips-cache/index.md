@@ -18,6 +18,7 @@ author = "Qi==Qi"
 url = "https://www.pixiv.net/artworks/78302689"
 
 [heading_numbering]
+enabled = true
 +++
 
 32 位 256 bytes 4 路组相联（参数可调节）高速缓存，使用 SystemVerilog 编写。

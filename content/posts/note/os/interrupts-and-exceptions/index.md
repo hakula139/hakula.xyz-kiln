@@ -18,6 +18,7 @@ author = "cinkai"
 url = "https://www.pixiv.net/artworks/71199279"
 
 [heading_numbering]
+enabled = true
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.

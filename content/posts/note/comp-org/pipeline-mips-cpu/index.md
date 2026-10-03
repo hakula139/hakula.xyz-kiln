@@ -18,9 +18,7 @@ author = "和武はざの"
 url = "https://www.pixiv.net/artworks/75293213"
 
 [heading_numbering]
-
-[heading_numbering.starts]
-"总览" = 0
+enabled = true
 +++
 
 32 位流水线 MIPS 指令集 CPU，使用 SystemVerilog 编写。
@@ -39,7 +37,7 @@ Introduction to Computer Systems II (H) @ Fudan University, spring 2020.
 
 ## 部件构成及分析
 
-### 总览
+### 总览 {numbering-start=0}
 
 ![CPU 总览](assets/cpu.webp)
 

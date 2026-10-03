@@ -21,9 +21,7 @@ author = "MISSILE228"
 url = "https://www.pixiv.net/artworks/86286793"
 
 [heading_numbering]
-
-[heading_numbering.starts]
-"prerequisites" = 0
+enabled = true
 +++
 
 Naive-FTP is a simple FTP server & client, written in Python and TypeScript.
@@ -50,7 +48,7 @@ Computer Networks @ Fudan University, fall 2020.
 
 ## Getting Started
 
-### Prerequisites
+### Prerequisites {numbering-start=0}
 
 To set up the environment, you need to have the following dependencies installed.
 

@@ -20,6 +20,7 @@ author = "MISSILE228"
 url = "https://www.pixiv.net/artworks/87013646"
 
 [heading_numbering]
+enabled = true
 +++
 
 一个模仿特朗普 Twitter 账号 [@realDonaldTrump] 语言风格的简易文本生成 AI，基于 GRU 模型实现。

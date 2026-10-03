@@ -18,6 +18,7 @@ author = "Miv4t"
 url = "https://www.pixiv.net/artworks/95680357"
 
 [heading_numbering]
+enabled = true
 +++
 
 本实验中，我们实现了一个端点检测算法，并构造了一个 Mel 滤波器组处理信号的能量谱，最后利用离散余弦变换（DCT）得到了信号的 MFCC 系数。

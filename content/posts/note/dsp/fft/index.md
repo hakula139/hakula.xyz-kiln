@@ -17,9 +17,7 @@ author = "NEKO"
 url = "https://www.pixiv.net/artworks/102184125"
 
 [heading_numbering]
-
-[heading_numbering.starts]
-"总览" = 0
+enabled = true
 +++
 
 本实验中，我们实现了一个基础的 FFT 算法，使用 Python 编写。
@@ -44,7 +42,7 @@ Digital Signal Processing @ Fudan University, fall 2021.
 
 ## 实验报告
 
-### 总览
+### 总览 {numbering-start=0}
 
 ```python {title="main.py"}
 # Parameters

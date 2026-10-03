@@ -17,6 +17,7 @@ author = "Miv4t"
 url = "https://www.pixiv.net/artworks/102257565"
 
 [heading_numbering]
+enabled = true
 +++
 
 本实验中，我们利用之前实现的 FFT 算法，生成了不同语音片段在不同窗口宽度下的语谱图。

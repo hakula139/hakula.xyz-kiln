@@ -19,6 +19,7 @@ author = "DSマイル"
 url = "https://www.pixiv.net/artworks/88865174"
 
 [heading_numbering]
+enabled = true
 +++
 
 本项目利用 Flex (fast lexical analyzer generator)，实现了对给定 PCAT 语言样例的词法分析。

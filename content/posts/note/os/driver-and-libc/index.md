@@ -18,6 +18,7 @@ author = "Miv4t"
 url = "https://www.pixiv.net/artworks/60181142"
 
 [heading_numbering]
+enabled = true
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.

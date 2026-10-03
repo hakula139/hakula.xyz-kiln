@@ -11,11 +11,7 @@ license = "CC BY-NC-SA 4.0"
 src = "/images/article-covers/csapp.webp"
 
 [heading_numbering]
-
-[heading_numbering.starts]
-"准备工作" = 0
-"观察函数-phase_6" = 0
-"找到隐藏函数" = 0
+enabled = true
 +++
 
 Introduction to Computer Systems I (H) @ Fudan University, fall 2019.
@@ -47,7 +43,7 @@ printf("Phase 1 defused. How about the next one?\n");
 
 ## 实验报告
 
-### 准备工作
+### 准备工作 {numbering-start=0}
 
 使用 objdump[^objdump] 反汇编 `bomb` 程序，并将输出重定向到 `bomb.asm`。之后此文件将作为解题的重要参考。
 
@@ -1277,7 +1273,7 @@ Good work!  On to the next...
 `%rdi` = `input`
 :::
 
-##### 观察函数 `phase_6`
+##### 观察函数 `phase_6` {numbering-start=0}
 
 在 `bomb.asm` 中找到函数 `phase_6` 对应的汇编语句：
 
@@ -1705,7 +1701,7 @@ Congratulations! You've defused the bomb!
 
 #### 解题过程
 
-##### 找到隐藏函数
+##### 找到隐藏函数 {numbering-start=0}
 
 好吧，其实在 `bomb.asm` 中稍微往下翻翻就能找到一个名为 `secret_phase` 的函数。顾名思义，这应该就是隐藏关所对应的函数。
 

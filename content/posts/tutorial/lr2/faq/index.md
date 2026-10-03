@@ -13,6 +13,7 @@ author = "神岡ちろる"
 url = "https://www.pixiv.net/artworks/73473821"
 
 [heading_numbering]
+enabled = true
 +++
 
 一些常见问题及参考解决方案。

@@ -19,6 +19,7 @@ author = "SWAV"
 url = "https://www.pixiv.net/artworks/90743556"
 
 [heading_numbering]
+enabled = true
 +++
 
 本次作业利用 NumPy 实现了一个 KNN 模型。

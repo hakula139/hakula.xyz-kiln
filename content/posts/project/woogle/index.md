@@ -19,6 +19,7 @@ author = "輪廻（りんね）"
 url = "https://www.pixiv.net/artworks/94278235"
 
 [heading_numbering]
+enabled = true
 +++
 
 本项目利用 Hadoop MapReduce，构建了对 Wikipedia 语料库的倒排索引，并实现了一个简易的搜索引擎，可根据检索的关键词返回相应的索引信息，使用 Java 编写。

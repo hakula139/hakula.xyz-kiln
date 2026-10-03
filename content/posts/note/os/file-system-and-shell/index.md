@@ -20,9 +20,7 @@ author = "ももこ"
 url = "https://www.pixiv.net/artworks/88070709"
 
 [heading_numbering]
-
-[heading_numbering.starts]
-"总览" = 0
+enabled = true
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.
@@ -47,7 +45,7 @@ Operating Systems (H) @ Fudan University, fall 2020.
 请实现文件系统，本实验中的文件系统遵循 xv6 的设计，你也可以从 0 开始设计属于你的文件系统。如果你的文件系统不同于 xv6 的话，请修改 `user/src/mkfs`。你需要添加测试证明你实现的文件系统可以读取到你打包的文件，在数量、内容上是正确的。
 :::
 
-#### 总览
+#### 总览 {numbering-start=0}
 
 ![xv6 文件系统的整体架构（引自 _xv6_）](assets/file-system.webp){width=500}
 

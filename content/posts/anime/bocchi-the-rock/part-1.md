@@ -11,6 +11,7 @@ license = "CC BY-NC-SA 4.0"
 src = "/images/article-covers/btr.webp"
 
 [heading_numbering]
+enabled = true
 +++
 
 这个时代，我们到底需要怎样的文艺作品？

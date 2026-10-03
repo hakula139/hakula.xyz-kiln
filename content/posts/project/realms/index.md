@@ -18,10 +18,7 @@ author = "Aer7o"
 url = "https://www.pixiv.net/artworks/69321889"
 
 [heading_numbering]
-
-[heading_numbering.starts]
-"prerequisites" = 0
-"database-schema" = 4
+enabled = true
 +++
 
 REALMS Establishes A Library Management System, written in Go, using a MySQL database.
@@ -36,7 +33,7 @@ Introduction to Database Systems (H) @ Fudan University, spring 2020.
 
 ## Getting started
 
-### Prerequisites
+### Prerequisites {numbering-start=0}
 
 To set up the environment, you need to have the following dependencies installed.
 
@@ -1469,7 +1466,7 @@ auth: unauthorized
 
 ## Design
 
-### Database schema
+### Database schema {numbering-start=4}
 
 There're currently 3 tables in database `library`, namely, `books`, `users` and `records`.
 

@@ -19,6 +19,7 @@ author = "藤原"
 url = "https://www.pixiv.net/artworks/90380296"
 
 [heading_numbering]
+enabled = true
 +++
 
 Algorithms (H) @ Fudan University, spring 2021.

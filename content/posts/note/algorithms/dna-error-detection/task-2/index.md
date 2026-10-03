@@ -17,6 +17,7 @@ author = "mocha"
 url = "https://www.pixiv.net/artworks/89979147"
 
 [heading_numbering]
+enabled = true
 +++
 
 Algorithms (H) @ Fudan University, spring 2021.

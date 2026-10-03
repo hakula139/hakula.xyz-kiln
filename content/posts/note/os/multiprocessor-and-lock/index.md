@@ -18,6 +18,7 @@ author = "Paindude"
 url = "https://www.pixiv.net/artworks/69514736"
 
 [heading_numbering]
+enabled = true
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.
