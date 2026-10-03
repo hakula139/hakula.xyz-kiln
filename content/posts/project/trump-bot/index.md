@@ -10,6 +10,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/87013646_p0.webp"
@@ -18,9 +19,6 @@ src = "/images/article-covers/87013646_p0.webp"
 title = "キラキラを集めよう　Twitterの絵もまとめよう"
 author = "MISSILE228"
 url = "https://www.pixiv.net/artworks/87013646"
-
-[heading_numbering]
-enabled = true
 +++
 
 一个模仿特朗普 Twitter 账号 [@realDonaldTrump] 语言风格的简易文本生成 AI，基于 GRU 模型实现。

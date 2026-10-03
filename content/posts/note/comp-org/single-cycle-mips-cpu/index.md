@@ -8,6 +8,7 @@ tags = [
     "SystemVerilog",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/78398601_p0.webp"
@@ -16,9 +17,6 @@ src = "/images/article-covers/78398601_p0.webp"
 title = "Moment"
 author = "望月しいな"
 url = "https://www.pixiv.net/artworks/78398601"
-
-[heading_numbering]
-enabled = true
 +++
 
 32 位单周期 MIPS 指令集 CPU，使用 SystemVerilog 编写。

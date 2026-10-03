@@ -6,20 +6,17 @@ tags = [
     "文艺批评",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/btr.webp"
-
-[heading_numbering]
-enabled = true
-start = 2
 +++
 
 这个时代，我们到底需要怎样的文艺作品？
 
 <!--more-->
 
-## 理想的现实主义，现实的理想主义
+## 理想的现实主义，现实的理想主义 {numbering-start=2}
 
 懒惰是人类的天性，我们天然喜欢更省力的事情。
 

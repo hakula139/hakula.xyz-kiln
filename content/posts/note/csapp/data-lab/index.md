@@ -6,12 +6,10 @@ tags = [
     "位运算",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/csapp.webp"
-
-[heading_numbering]
-enabled = true
 +++
 
 Introduction to Computer Systems I (H) @ Fudan University, fall 2019.

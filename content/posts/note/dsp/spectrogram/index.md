@@ -7,6 +7,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/102257565_p0.webp"
@@ -15,9 +16,6 @@ src = "/images/article-covers/102257565_p0.webp"
 title = "I DON'T LOVE YOU"
 author = "Miv4t"
 url = "https://www.pixiv.net/artworks/102257565"
-
-[heading_numbering]
-enabled = true
 +++
 
 本实验中，我们利用之前实现的 FFT 算法，生成了不同语音片段在不同窗口宽度下的语谱图。

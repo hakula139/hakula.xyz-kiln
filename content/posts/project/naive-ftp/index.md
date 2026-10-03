@@ -10,6 +10,7 @@ tags = [
     "TypeScript",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/86286793_p0.webp"
@@ -19,9 +20,6 @@ position = "top"
 title = "カラスの集め物"
 author = "MISSILE228"
 url = "https://www.pixiv.net/artworks/86286793"
-
-[heading_numbering]
-enabled = true
 +++
 
 Naive-FTP is a simple FTP server & client, written in Python and TypeScript.

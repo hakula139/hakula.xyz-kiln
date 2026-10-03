@@ -8,6 +8,7 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/83708256_p0.webp"
@@ -16,9 +17,6 @@ src = "/images/article-covers/83708256_p0.webp"
 title = "紅茶とスコーンと特製ケーキとTwitterまとめでございます"
 author = "MISSILE228"
 url = "https://www.pixiv.net/artworks/83708256"
-
-[heading_numbering]
-enabled = true
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.

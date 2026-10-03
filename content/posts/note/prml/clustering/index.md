@@ -12,6 +12,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/87631904_p0.webp"
@@ -20,9 +21,6 @@ src = "/images/article-covers/87631904_p0.webp"
 title = "方舟之旅"
 author = "藤原"
 url = "https://www.pixiv.net/artworks/87631904"
-
-[heading_numbering]
-enabled = true
 +++
 
 本次作业利用 NumPy 实现了一个 K-Means 模型和一个 GMM 模型，并利用 Gap Statistic 方法实现了数据集中聚簇数量的自动推测。

@@ -9,12 +9,10 @@ tags = [
     "文艺批评",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/swan-song.webp"
-
-[heading_numbering]
-enabled = true
 +++
 
 <!--more-->

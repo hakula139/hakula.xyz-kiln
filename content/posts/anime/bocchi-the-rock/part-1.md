@@ -6,12 +6,10 @@ tags = [
     "文艺批评",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/btr.webp"
-
-[heading_numbering]
-enabled = true
 +++
 
 这个时代，我们到底需要怎样的文艺作品？

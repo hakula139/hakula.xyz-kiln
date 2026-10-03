@@ -8,6 +8,7 @@ tags = [
     "SystemVerilog",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/78302689_p0.webp"
@@ -16,9 +17,6 @@ src = "/images/article-covers/78302689_p0.webp"
 title = "離去"
 author = "Qi==Qi"
 url = "https://www.pixiv.net/artworks/78302689"
-
-[heading_numbering]
-enabled = true
 +++
 
 32 位 256 bytes 4 路组相联（参数可调节）高速缓存，使用 SystemVerilog 编写。

@@ -7,6 +7,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/102184125_p0.webp"
@@ -15,9 +16,6 @@ src = "/images/article-covers/102184125_p0.webp"
 title = "秋のイベント"
 author = "NEKO"
 url = "https://www.pixiv.net/artworks/102184125"
-
-[heading_numbering]
-enabled = true
 +++
 
 本实验中，我们实现了一个基础的 FFT 算法，使用 Python 编写。

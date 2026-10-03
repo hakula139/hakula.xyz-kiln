@@ -8,6 +8,7 @@ tags = [
     "SystemVerilog",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/75293213_p0.webp"
@@ -16,9 +17,6 @@ src = "/images/article-covers/75293213_p0.webp"
 title = "ねこ聖女さま"
 author = "和武はざの"
 url = "https://www.pixiv.net/artworks/75293213"
-
-[heading_numbering]
-enabled = true
 +++
 
 32 位流水线 MIPS 指令集 CPU，使用 SystemVerilog 编写。

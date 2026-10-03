@@ -11,6 +11,7 @@ tags = [
     "C++",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/94538258_p0.webp"
@@ -19,9 +20,6 @@ src = "/images/article-covers/94538258_p0.webp"
 title = "紅葉から生まれた天の川"
 author = "輪廻（りんね）"
 url = "https://www.pixiv.net/artworks/94538258"
-
-[heading_numbering]
-enabled = true
 +++
 
 本项目利用 Bison 和 Flex，实现了对给定 PCAT 语言样例的语法分析。

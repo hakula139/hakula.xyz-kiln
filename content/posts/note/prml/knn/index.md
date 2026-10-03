@@ -9,6 +9,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/90743556_p0.webp"
@@ -17,9 +18,6 @@ src = "/images/article-covers/90743556_p0.webp"
 title = "行くよ。"
 author = "SWAV"
 url = "https://www.pixiv.net/artworks/90743556"
-
-[heading_numbering]
-enabled = true
 +++
 
 本次作业利用 NumPy 实现了一个 KNN 模型。

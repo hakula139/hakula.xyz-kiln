@@ -10,6 +10,7 @@ tags = [
     "Python",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/94819769_p0.webp"
@@ -18,9 +19,6 @@ src = "/images/article-covers/94819769_p0.webp"
 title = "雪化粧"
 author = "Hiten"
 url = "https://www.pixiv.net/artworks/94819769"
-
-[heading_numbering]
-enabled = true
 +++
 
 本项目实现了一个基础的语音识别系统，可以从 20 个给定单词中识别一段语音是其中的哪个单词。识别系统基于深度学习，以音频信号的 Mel 频率倒谱系数（MFCC）作为特征，通过一个卷积神经网络（CNN）进行训练。

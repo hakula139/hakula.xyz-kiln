@@ -8,6 +8,7 @@ tags = [
     "C",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/71199279_p0.webp"
@@ -16,9 +17,6 @@ src = "/images/article-covers/71199279_p0.webp"
 title = "little nemo"
 author = "cinkai"
 url = "https://www.pixiv.net/artworks/71199279"
-
-[heading_numbering]
-enabled = true
 +++
 
 Operating Systems (H) @ Fudan University, fall 2020.

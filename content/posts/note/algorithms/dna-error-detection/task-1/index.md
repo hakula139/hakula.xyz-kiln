@@ -9,6 +9,7 @@ tags = [
     "C++",
 ]
 license = "CC BY-NC-SA 4.0"
+heading_numbering = true
 
 [featured_image]
 src = "/images/article-covers/90380296_p0.webp"
@@ -17,9 +18,6 @@ src = "/images/article-covers/90380296_p0.webp"
 title = "大渓谷"
 author = "藤原"
 url = "https://www.pixiv.net/artworks/90380296"
-
-[heading_numbering]
-enabled = true
 +++
 
 Algorithms (H) @ Fudan University, spring 2021.
