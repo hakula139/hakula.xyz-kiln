@@ -103,7 +103,7 @@ Mujica 五位成员的反应也体现了她们对外部凝视的不同态度。�
 
 在塔罗牌组中，比较接近的或许是「愚者」(The Fool) 这张牌：
 
-![The Fool / 愚者](assets/rws-tarot/00-fool.webp){width=240}
+![The Fool / 愚者](assets/rws-tarot/00-fool.webp){width=250}
 
 ::: callout {type=quote title="韦特塔罗中的愚者"}
 
@@ -129,27 +129,27 @@ Amoris 是拉丁语 amor 的属格：「属于爱的」，而非作为主格的�
 
 Amoris 的代号与手中的禁果共同指向塔罗牌组中的「恋人」(The Lovers, VI)：
 
-![The Lovers / 恋人](assets/rws-tarot/06-lovers.webp){width=240}
+![The Lovers / 恋人](assets/rws-tarot/06-lovers.webp){width=250}
 
 但正位恋人所象征的和谐、结合与价值观的一致，似乎恰恰是若麦在剧中最缺乏的特质。仅用恋人牌来解释或许还缺少了些什么，为此我们就有必要引入恋人在构图上的镜像——「恶魔」(The Devil, XV)：
 
-![The Devil / 恶魔](assets/rws-tarot/15-devil.webp){width=240}
+![The Devil / 恶魔](assets/rws-tarot/15-devil.webp){width=250}
 
 ::: callout {type=quote title="恋人与恶魔"}
 
 恋人牌有两个视觉传统。马赛塔罗中这张牌的原名是 L'Amoureux（单数的恋人），牌面是一个男子站在两个女人之间做选择，构图可追溯到「赫拉克勒斯在十字路口」的古典寓言。恋人牌的基本牌义是「选择」，作为大阿尔卡纳的第 VI 号牌，它指向的是足以改写人生轨迹的重大决定。
 
-![L'Amoureux / 恋人](assets/tdm-tarot/06-l'amoureux.webp){width=240}
+![L'Amoureux / 恋人](assets/tdm-tarot/06-l'amoureux.webp){width=250}
 
 1909 年韦特 (A. E. Waite) 将牌面重新设计为伊甸园场景。上方展翅的是一位天使，后世解读通常认为是风之天使拉斐尔 (Raphael)，亚当与夏娃裸身分立两侧。夏娃身后是知识之树，一条蛇由下往上缠绕在树干上；亚当身后是生命之树，韦特称其「结着十二颗果实」，在画面中呈现为火焰状。视线链路：亚当注视夏娃，夏娃仰望天使，天使俯瞰两人——塔罗解读传统中常将这条链路对应「意识—潜意识—超意识」的传导。苹果挂在枝头，尚未被触碰。
 
 恶魔牌 (XV) 与恋人牌 (VI) 在构图上形成一组镜像，两张牌共享「上方有翼存在 + 下方两个裸体人类」的三角构图，但每个元素都被反转。韦特本人将恶魔牌的手势与教皇牌 (V) 对照，将男女二人称为「堕落之后的亚当与夏娃」。
 
-![The Hierophant / 教皇](assets/rws-tarot/05-hierophant.webp){width=240}
+![The Hierophant / 教皇](assets/rws-tarot/05-hierophant.webp){width=250}
 
 韦特称牌面设计综合了多种图像母题，形象主体是「门德斯的角山羊」：蝙蝠翅膀，额头上一枚倒五角星。主要视觉来源是列维 (Éliphas Lévi) _Dogme et Rituel de la Haute Magie_ (1854-56) 中的巴弗灭 (Baphomet) 画像，但有一些改动——列维原作中五角星为正位，腹部的赫尔墨斯双蛇杖也被史密斯 (Pamela Colman Smith) 在绘制时省略。右手向上举起，是教皇祝福手势的反转；左手向下，握着一支燃烧的火炬。
 
-![Baphomet / 巴弗灭](assets/rws-tarot/baphomet.webp){width=240}
+![Baphomet / 巴弗灭](assets/rws-tarot/baphomet.webp){width=250}
 
 与恋人牌相反，恶魔牌面中的视线链路是断裂的：巴弗灭直视前方，男女二人各自望向别处，既不看彼此也不看头顶的恶魔。将三者联系在一起的只有套在脖子上的锁链和巴弗灭脚下的方形基座。同一对亚当和夏娃长出了角和尾巴，其中亚当的尾端是火焰，夏娃的尾端是葡萄，后世解读中常将其对应恋人牌中生命之树与知识之树上的果实。从画面看锁链是松的，似乎可以从头顶摘下；韦特也写道「高踞于他们之上的并非他们永远的主人」。
 
