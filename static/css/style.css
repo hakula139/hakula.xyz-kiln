@@ -1516,6 +1516,11 @@
   --tw-prose-quotes: var(--color-text-secondary);
   --tw-prose-captions: var(--color-text-secondary);
 }
+@layer components {
+  .prose :where(p, li):not(:where(.not-prose, .not-prose *)) {
+    overflow-wrap: break-word;
+  }
+}
 .prose :where(h2, h3, h4, h5, h6):not(:where(.not-prose, .not-prose *)) {
   position: relative;
   margin-bottom: calc(var(--spacing) * 6);
@@ -1578,6 +1583,18 @@
 .prose :where(h6):not(:where(.not-prose, .not-prose *)) {
   color: var(--color-text-secondary);
 }
+@layer components {
+  .prose code:not(:where(.not-prose, .not-prose *)) {
+    border-radius: 0.25rem;
+    background-color: color-mix(in srgb, #f5f5f7 60%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-bg-muted) 60%, transparent);
+    }
+    padding-inline: calc(var(--spacing) * 1.5);
+    padding-block: calc(var(--spacing) * 0.5);
+    font-size: 0.875em;
+  }
+}
 .prose code:not(:where(.not-prose, .not-prose *)) {
   --tw-font-weight: var(--font-weight-normal);
   font-weight: var(--font-weight-normal);
@@ -1592,6 +1609,37 @@
 }
 .prose :where(hr, blockquote, th, td, thead, tr):not(:where(.not-prose, .not-prose *)) {
   border-color: var(--color-border-overlay);
+}
+@layer components {
+  .prose table:not(.code-block table):not(:where(.not-prose, .not-prose *)) {
+    display: block;
+    &::-webkit-scrollbar {
+      height: calc(var(--spacing) * 2);
+      width: calc(var(--spacing) * 2);
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: calc(infinity * 1px);
+      background-color: var(--color-border);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: var(--color-text-tertiary);
+    }
+    @supports not selector(::-webkit-scrollbar) {
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-text-tertiary) transparent;
+    }
+    width: auto;
+    overflow-x: auto;
+  }
+  .prose :where(th, td).nowrap:not(:where(.not-prose, .not-prose *)) {
+    white-space: nowrap;
+  }
+  .prose :where(th, td):not(.nowrap, .code-block *):not(:where(.not-prose, .not-prose *)) {
+    min-width: calc(var(--table-nowrap-width, 0) * 0.5em);
+  }
 }
 .prose :where(thead):not(.code-block *):not(:where(.not-prose, .not-prose *)) {
   border-bottom-style: var(--tw-border-style);
@@ -1681,9 +1729,22 @@
     }
   }
 }
-.prose .footnote-reference a:not(:where(.not-prose, .not-prose *)), .prose .footnote-reference a:hover:not(:where(.not-prose, .not-prose *)), .prose .footnote-backref:not(:where(.not-prose, .not-prose *)), .prose .footnote-backref:hover:not(:where(.not-prose, .not-prose *)) {
-  border-bottom-style: var(--tw-border-style);
-  border-bottom-width: 0px;
+@layer components {
+  .prose figure:not(:where(.not-prose, .not-prose *)) {
+    border-radius: var(--radius-lg);
+    text-align: center;
+  }
+  .prose figure > .lqip:not(:where(.not-prose, .not-prose *)), .prose figure > .lightgallery:not(:where(.not-prose, .not-prose *)), .prose figure > .lightgallery > .lqip:not(:where(.not-prose, .not-prose *)) {
+    margin-inline: auto;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    border-radius: var(--radius-lg);
+  }
+  .prose figure img:not(:where(.not-prose, .not-prose *)) {
+    margin-inline: auto;
+    border-radius: var(--radius-lg);
+  }
 }
 .prose :where(img:not(figure img)):not(:where(.not-prose, .not-prose *)) {
   margin-block: var(--spacing);
@@ -1700,63 +1761,6 @@
   }
 }
 @layer components {
-  .prose code:not(:where(.not-prose, .not-prose *)) {
-    border-radius: 0.25rem;
-    background-color: color-mix(in srgb, #f5f5f7 60%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-bg-muted) 60%, transparent);
-    }
-    padding-inline: calc(var(--spacing) * 1.5);
-    padding-block: calc(var(--spacing) * 0.5);
-    font-size: 0.875em;
-  }
-  .prose :where(p, li):not(:where(.not-prose, .not-prose *)) {
-    overflow-wrap: break-word;
-  }
-  .prose figure img:not(:where(.not-prose, .not-prose *)) {
-    margin-inline: auto;
-    border-radius: var(--radius-lg);
-  }
-  .prose figure:not(:where(.not-prose, .not-prose *)) {
-    border-radius: var(--radius-lg);
-    text-align: center;
-  }
-  .prose figure > .lqip:not(:where(.not-prose, .not-prose *)), .prose figure > .lightgallery:not(:where(.not-prose, .not-prose *)), .prose figure > .lightgallery > .lqip:not(:where(.not-prose, .not-prose *)) {
-    margin-inline: auto;
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    border-radius: var(--radius-lg);
-  }
-  .prose table:not(.code-block table):not(:where(.not-prose, .not-prose *)) {
-    display: block;
-    &::-webkit-scrollbar {
-      height: calc(var(--spacing) * 2);
-      width: calc(var(--spacing) * 2);
-    }
-    &::-webkit-scrollbar-track {
-      background-color: transparent;
-    }
-    &::-webkit-scrollbar-thumb {
-      border-radius: calc(infinity * 1px);
-      background-color: var(--color-border);
-    }
-    &::-webkit-scrollbar-thumb:hover {
-      background-color: var(--color-text-tertiary);
-    }
-    @supports not selector(::-webkit-scrollbar) {
-      scrollbar-width: thin;
-      scrollbar-color: var(--color-text-tertiary) transparent;
-    }
-    width: auto;
-    overflow-x: auto;
-  }
-  .prose :where(th, td).nowrap:not(:where(.not-prose, .not-prose *)) {
-    white-space: nowrap;
-  }
-  .prose :where(th, td):not(.nowrap, .code-block *):not(:where(.not-prose, .not-prose *)) {
-    min-width: calc(var(--table-nowrap-width, 0) * 0.5em);
-  }
   .prose .footnotes:not(:where(.not-prose, .not-prose *)) {
     --tw-prose-counters: var(--color-link);
     margin-top: calc(var(--spacing) * 12);
@@ -1771,6 +1775,12 @@
   .prose .footnote-backref:not(:where(.not-prose, .not-prose *)) {
     margin-left: var(--spacing);
   }
+}
+.prose .footnote-reference a:not(:where(.not-prose, .not-prose *)), .prose .footnote-reference a:hover:not(:where(.not-prose, .not-prose *)), .prose .footnote-backref:not(:where(.not-prose, .not-prose *)), .prose .footnote-backref:hover:not(:where(.not-prose, .not-prose *)) {
+  border-bottom-style: var(--tw-border-style);
+  border-bottom-width: 0px;
+}
+@layer components {
   @media screen {
     .glass-glow:has(> article.glass-panel) {
       overflow: clip;
@@ -1826,6 +1836,11 @@
     --tw-duration: 500ms;
     transition-duration: 500ms;
   }
+  .post-banner-media .lqip {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
   .post-banner:hover .post-banner-media {
     scale: 1.1;
   }
@@ -1876,11 +1891,6 @@
   }
   .post-banner:hover .post-banner-credit {
     opacity: 0%;
-  }
-  .post-banner-media .lqip {
-    display: block;
-    height: 100%;
-    width: 100%;
   }
 }
 @media (dynamic-range: high) {
@@ -2281,11 +2291,6 @@
     column-gap: calc(var(--spacing) * 1.5);
     color: var(--color-text-secondary);
   }
-  @media (prefers-reduced-motion: no-preference) {
-    .toc-sidebar-scroll {
-      scroll-behavior: smooth;
-    }
-  }
   .toc ul {
     margin: 0px;
     list-style-type: none;
@@ -2377,6 +2382,11 @@
     max-height: calc(100vh - 10rem);
     overflow-y: auto;
   }
+  @media (prefers-reduced-motion: no-preference) {
+    .toc-sidebar-scroll {
+      scroll-behavior: smooth;
+    }
+  }
   .toc-sidebar-title {
     margin-bottom: calc(var(--spacing) * 2);
     --tw-font-weight: var(--font-weight-semibold);
@@ -2436,6 +2446,12 @@
     background-color: var(--color-card);
     --tw-shadow: 0 0.25rem 1rem var(--tw-shadow-color, rgba(0, 0, 0, 0.2));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .home-card > .lqip {
+    position: absolute;
+    inset: 0px;
+    height: 100%;
+    width: 100%;
   }
   .home-card-image {
     position: absolute;
@@ -2842,12 +2858,6 @@
         background-color: color-mix(in oklab, var(--color-white) 10%, transparent);
       }
     }
-  }
-  .home-card > .lqip {
-    position: absolute;
-    inset: 0px;
-    height: 100%;
-    width: 100%;
   }
   .year-heading {
     margin-top: calc(var(--spacing) * 6);
