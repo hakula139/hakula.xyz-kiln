@@ -1836,6 +1836,7 @@
   .code-header, .callout-title, .toc-trigger {
     display: flex;
     cursor: pointer;
+    list-style-type: none;
     align-items: center;
     gap: calc(var(--spacing) * 2);
     padding-inline: calc(var(--spacing) * 4);
@@ -1844,10 +1845,7 @@
     -webkit-user-select: none;
     user-select: none;
   }
-  .callout-title, .toc-trigger {
-    list-style-type: none;
-  }
-  .callout-title::-webkit-details-marker, .toc-trigger::-webkit-details-marker {
+  .code-header::-webkit-details-marker, .callout-title::-webkit-details-marker, .toc-trigger::-webkit-details-marker {
     display: none;
   }
   .code-header::before, .callout-title::after, .toc-trigger::after {
@@ -1866,39 +1864,27 @@
   .callout-title::after, .toc-trigger::after {
     margin-left: auto;
   }
-  .code-block.collapsed .code-header::before, .callout:not([open]) .callout-title::after, .toc-collapse:not([open]) .toc-trigger::after {
+  .code-block:not([open]) > .code-header::before, .callout:not([open]) > .callout-title::after, .toc-collapse:not([open]) > .toc-trigger::after {
     rotate: calc(90deg * -1);
   }
-  .callout::details-content, .toc-collapse::details-content {
+  .code-block::details-content, .callout::details-content, .toc-collapse::details-content {
     display: grid;
     grid-template-rows: 0fr;
   }
-  .callout[open]::details-content, .toc-collapse[open]::details-content {
+  .code-block[open]::details-content, .callout[open]::details-content, .toc-collapse[open]::details-content {
     grid-template-rows: 1fr;
   }
-  .callout-body, .toc-body {
+  .code-body, .callout-body, .toc-body {
     min-height: 0px;
     overflow: hidden;
   }
-  .code-body {
-    display: grid;
-    grid-template-rows: 1fr;
-    transition-property: grid-template-rows;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-    --tw-duration: 300ms;
-    transition-duration: 300ms;
-  }
-  .code-block.collapsed .code-body {
-    grid-template-rows: 0fr;
-  }
   @media (prefers-reduced-motion: no-preference) {
-    .callout::details-content, .toc-collapse::details-content {
+    .code-block::details-content, .callout::details-content, .toc-collapse::details-content {
       transition: grid-template-rows 300ms, content-visibility 300ms allow-discrete;
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .callout .callout-title::after, .toc-collapse .toc-trigger::after {
+    .code-header::before, .callout-title::after, .toc-trigger::after {
       transition-property: none;
     }
   }
