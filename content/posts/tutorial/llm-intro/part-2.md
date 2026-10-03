@@ -28,7 +28,7 @@ The second part of the context engineering series. [Part 1](../part-1/) covered 
 
 Throughout [Part 1](../part-1/), we saw subagents appear in passing: the `/code-review` skill [launches five in parallel](../part-1/#skill-anatomy), the `pr-review-toolkit` plugin ships specialized review agents. But what _are_ subagents, exactly?
 
-[Subagents](https://code.claude.com/docs/en/sub-agents) are child agent instances spawned by a parent agent to handle focused tasks. Each gets its own context window, runs the same agent loop as the parent (plan → tool call → observe → iterate), and reports results back when done. No communication between subagents; everything routes through the orchestrator.
+[Subagents] are child agent instances spawned by a parent agent to handle focused tasks. Each gets its own context window, runs the same agent loop as the parent (plan → tool call → observe → iterate), and reports results back when done. No communication between subagents; everything routes through the orchestrator.
 
 ### Why subagents
 
@@ -42,9 +42,9 @@ Both reasons point to the same mental model: a project manager delegating to spe
 
 Claude Code ships with several built-in subagents: **Explore** (haiku, read-only, for fast codebase search), **Plan** (inherits model, read-only, for context gathering in plan mode), and **General-purpose** (inherits model, full tool access, for complex multi-step tasks). These cover the most common delegation patterns out of the box.
 
-My configuration defines eight additional custom agent types on top of these, each with a specific role, behavioral constraints, and (in some cases) a different model tier. Each agent type is a separate Markdown file. Here is the `tester` agent, which overrides the default model to `sonnet`:
+My configuration defines eight additional custom agent types on top of these, each with a specific role, behavioral constraints, and (in some cases) a different model tier. Each agent type is a separate Markdown file. Here is the [`tester` agent][nixos-tester], which overrides the default model to `sonnet`:
 
-```markdown {title="~/.claude/agents/tester.md"}
+```markdown {title="hakula139/nixos-config:home/modules/claude-code/agents/tester.md"}
 ---
 name: tester
 description: |
@@ -83,9 +83,9 @@ The overall orchestration rules — when to use agents, model selection guidelin
 | `usability-reviewer` | UX clarity for user-facing surfaces   | opus   | Read-only  |
 | `codex-worker`       | Delegates to OpenAI Codex MCP         | haiku  | Restricted |
 
-Access constraints here are behavioral: agents are instructed to operate read-only through their system prompts, not through hard tool restrictions. This lets an agent break the boundary when genuinely needed — a read-only researcher might need to create a temporary file for an intermediate computation. The exception is the `codex-worker`, whose narrower tool set physically prevents it from doing work directly, forcing it to delegate to Codex instead:
+Access constraints here are behavioral: agents are instructed to operate read-only through their system prompts, not through hard tool restrictions. This lets an agent break the boundary when genuinely needed — a read-only researcher might need to create a temporary file for an intermediate computation. The exception is the [`codex-worker`][nixos-codex-worker], whose narrower tool set physically prevents it from doing work directly, forcing it to delegate to Codex instead:
 
-```markdown {title="~/.claude/agents/codex-worker.md"}
+```markdown {title="hakula139/nixos-config:home/modules/llm-assistants/claude-code/agents/codex-worker.md"}
 ---
 name: codex-worker
 description: |
@@ -212,7 +212,7 @@ Under the hood, teammates can run as separate processes in tmux panes, giving ea
 
 ### What teams add over subagents
 
-Many of the [subagent patterns](#patterns) — parallel review, parallel exploration — work fine without teams. The orchestrator spawns workers, collects reports, synthesizes. Teams earn their overhead when agents need to coordinate mid-task. The [official documentation](https://code.claude.com/docs/en/agent-teams) highlights several workflows where this matters:
+Many of the [subagent patterns](#patterns) — parallel review, parallel exploration — work fine without teams. The orchestrator spawns workers, collects reports, synthesizes. Teams earn their overhead when agents need to coordinate mid-task. The [official documentation][Agent teams] highlights several workflows where this matters:
 
 **Multi-hypothesis debugging**: spawn multiple debuggers with different theories. Unlike the subagent version where each reports independently, teammates share confirming and contradicting evidence via `SendMessage`, actively challenging each other's assumptions. Sequential investigation suffers from confirmation bias; parallel adversarial investigation surfaces the root cause faster because agents disprove each other's theories in real time, not after the fact.
 
@@ -232,7 +232,7 @@ The lead must partition work so each teammate owns distinct file sets. For a ref
 
 The most ambitious public stress test of these patterns is Anthropic's own C compiler experiment[^c-compiler]: 16 parallel agents, running across ~2,000 Claude Code sessions over two weeks, produced a 100,000-line Rust-based C compiler capable of building Linux 6.9 on x86, ARM, and RISC-V. The key lesson was not about the agents themselves but about the harness. Agents work autonomously, so the test suite becomes the steering mechanism — if the verifier is imperfect, the agents solve the wrong problem. The experiment also surfaced a fundamental limitation of parallelism: when all agents hit the same bug in a monolithic task, they overwrite each other's fixes. The solution was to partition work using GCC as an oracle, randomly compiling most files with GCC and only the remainder with the new compiler, so each agent could work on a different failing file in parallel.
 
-[^c-compiler]: Nicholas Carlini, [Building a C compiler with a team of parallel Claudes](https://www.anthropic.com/engineering/building-c-compiler) (Feb 2026). The total cost was approximately $20,000 in API usage.
+[^c-compiler]: Nicholas Carlini, [Building a C compiler with a team of parallel Claudes][c-compiler] (Feb 2026). The total cost was approximately $20,000 in API usage.
 
 ### Honest limitations
 
@@ -247,7 +247,7 @@ The judgment call (when to use a single agent, when to spawn subagents, when to 
 
 ## Worktree Isolation
 
-The file ownership constraint from agent teams has a clean solution at the git level: [worktrees](https://git-scm.com/docs/git-worktree). A git worktree is a separate working directory checked out from the same repository. Multiple worktrees share the same `.git` history, but each has its own branch and its own files. Changes in one worktree do not affect the others until you explicitly merge.
+The file ownership constraint from agent teams has a clean solution at the git level: [worktrees][git-worktree]. A git worktree is a separate working directory checked out from the same repository. Multiple worktrees share the same `.git` history, but each has its own branch and its own files. Changes in one worktree do not affect the others until you explicitly merge.
 
 Claude Code uses worktrees to give each agent or session an isolated workspace. The `--worktree` flag starts a new session in its own directory:
 
@@ -279,7 +279,7 @@ Recall from [Part 1](../part-1/#what-is-an-llm) that the context window is the m
 
 Claude Code handles this through a compaction pipeline[^compaction] that operates transparently during normal use.
 
-[^compaction]: See the [context management documentation](https://code.claude.com/docs/en/context-window) for details on compaction behavior and configuration.
+[^compaction]: See the [context management documentation][Context window] for details on compaction behavior and configuration.
 
 ### Auto-compaction
 
@@ -301,7 +301,7 @@ This is useful at natural task boundaries. After finishing a complex investigati
 
 In practice, manual compaction should be used more aggressively than most people realize. Even though flagship models like Opus 4.6 advertise a 1M-token context window, reasoning quality degrades well before that limit — typically 200-300K tokens is the effective ceiling for reliable work, and beyond 500K performance drops sharply. Compared to the earlier 200K window, the 1M expansion is better understood as breathing room — space to finish what you started without hitting a wall, not an invitation for marathon sessions. Compact when a logical task completes, not when the system forces you to.
 
-That said, compaction itself is not free. Each compaction consumes tokens for the summarization pass, and information is inevitably lost. The better strategy is to avoid needing frequent compaction in the first place: start fresh sessions for genuinely new tasks rather than appending to an aging context, store durable knowledge in CLAUDE.md and auto memory rather than relying on it surviving compaction, and use structured specs as the source of truth that gets re-loaded cleanly each session. Tools like [OpenSpec](https://github.com/Fission-AI/OpenSpec) formalize this approach — specifications live as version-controlled Markdown files in the repository, separating current behavior from proposed changes, so each session loads a clean contract rather than reconstructing intent from a compacted conversation history. Compaction is a safety net, not a workflow.
+That said, compaction itself is not free. Each compaction consumes tokens for the summarization pass, and information is inevitably lost. The better strategy is to avoid needing frequent compaction in the first place: start fresh sessions for genuinely new tasks rather than appending to an aging context, store durable knowledge in CLAUDE.md and auto memory rather than relying on it surviving compaction, and use structured specs as the source of truth that gets re-loaded cleanly each session. Tools like [OpenSpec] formalize this approach — specifications live as version-controlled Markdown files in the repository, separating current behavior from proposed changes, so each session loads a clean contract rather than reconstructing intent from a compacted conversation history. Compaction is a safety net, not a workflow.
 
 ### Practical implications
 
@@ -326,18 +326,31 @@ There is a meta-observation worth making: this entire configuration system (the 
 
 ### The broader ecosystem
 
-These orchestration patterns are not unique to Claude Code. The open-source ecosystem has been converging on the same architecture from different directions — [OpenCode](https://github.com/anomalyco/opencode), which we [compared in Part 1](../part-1/#why-claude-code), implements the same agent concepts decoupled from any specific model provider. The patterns themselves (delegation, isolation, coordination) are sound, independent of which LLM executes them.
+These orchestration patterns are not unique to Claude Code. The open-source ecosystem has been converging on the same architecture from different directions — [OpenCode], which we [compared in Part 1](../part-1/#why-claude-code), implements the same agent concepts decoupled from any specific model provider. The patterns themselves (delegation, isolation, coordination) are sound, independent of which LLM executes them.
 
-The [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) project (50,000+ stars) reverse-engineered Claude Code's architecture into a 12-session curriculum that mirrors the progression of this article: from a minimal agent loop through tool use, planning, subagents, context compaction, task systems, agent teams, and worktree isolation. Their central framing is worth borrowing: _the model is the agent; the code is the harness_[^harness]. The intelligence lives in the model. Everything we have been calling "context engineering" throughout this article is, in their vocabulary, harness engineering — building the tools, knowledge, permissions, and coordination infrastructure that lets the intelligence operate effectively. The model is half the system; the harness is the other half. Neither is dispensable, and the most capable working systems are the ones that invest in both.
+The [learn-claude-code] project (50,000+ stars) reverse-engineered Claude Code's architecture into a 12-session curriculum that mirrors the progression of this article: from a minimal agent loop through tool use, planning, subagents, context compaction, task systems, agent teams, and worktree isolation. Their central framing is worth borrowing: _the model is the agent; the code is the harness_[^harness]. The intelligence lives in the model. Everything we have been calling "context engineering" throughout this article is, in their vocabulary, harness engineering — building the tools, knowledge, permissions, and coordination infrastructure that lets the intelligence operate effectively. The model is half the system; the harness is the other half. Neither is dispensable, and the most capable working systems are the ones that invest in both.
 
-[Oh My OpenAgent](https://github.com/code-yeongyu/oh-my-openagent) (50,000+ stars) demonstrates this on both fronts. On the harness side, its hash-anchored edit tool — where every line carries a content hash that rejects edits against stale file state — reportedly took one model from a 6.7% to 68.3% success rate on a code editing benchmark[^harness-problem]. The model was the same; the edit mechanism changed. On the model side, the project routes different task categories to different providers automatically: visual engineering tasks go to a vision-specialized model, deep reasoning goes to GPT-5.4, fast exploration goes to a lightweight model. This is the [model selection](#model-selection) approach we described for subagents, taken to its logical extreme across provider boundaries.
+[Oh My OpenAgent] (50,000+ stars) demonstrates this on both fronts. On the harness side, its hash-anchored edit tool — where every line carries a content hash that rejects edits against stale file state — reportedly took one model from a 6.7% to 68.3% success rate on a code editing benchmark[^harness-problem]. The model was the same; the edit mechanism changed. On the model side, the project routes different task categories to different providers automatically: visual engineering tasks go to a vision-specialized model, deep reasoning goes to GPT-5.4, fast exploration goes to a lightweight model. This is the [model selection](#model-selection) approach we described for subagents, taken to its logical extreme across provider boundaries.
 
-[^harness]: The "harness engineering" framing originates from the learn-claude-code project. See their [README](https://github.com/shareAI-lab/learn-claude-code) for the full philosophy.
+[^harness]: The "harness engineering" framing originates from the learn-claude-code project. See their [README][learn-claude-code] for the full philosophy.
 
-[^harness-problem]: Source: Can Bölük, [The Harness Problem](https://blog.can.ac/2026/02/12/the-harness-problem/). The benchmark was Terminal Bench using Grok Code Fast 1.
+[^harness-problem]: Source: Can Bölük, [The Harness Problem][harness-problem]. The benchmark was Terminal Bench using Grok Code Fast 1.
 
 ### Where this is going
 
 The trajectory from "prompt engineering" (2024) to "context engineering" (2026) points toward something we might call "organization engineering": the skill of decomposing problems into delegable units, assigning them to the right specialist with the right context, and coordinating the results. The ecosystem's move toward multi-model orchestration suggests the next step — not just picking the right specialist, but picking the right _kind_ of intelligence for each task. These are fundamentally human skills, the same skills that make a good project manager, a good research director, a good leader.
 
 The tool is only as good as the person directing it. Understanding the layers is understanding the leverage points. And the leverage, at every level, comes from the same place: knowing what the agent needs to see, when it needs to see it, and what you can safely leave out.
+
+[Agent teams]: https://code.claude.com/docs/en/agent-teams
+[c-compiler]: https://www.anthropic.com/engineering/building-c-compiler
+[Context window]: https://code.claude.com/docs/en/context-window
+[git-worktree]: https://git-scm.com/docs/git-worktree
+[harness-problem]: https://blog.can.ac/2026/02/12/the-harness-problem/
+[learn-claude-code]: https://github.com/shareAI-lab/learn-claude-code
+[nixos-codex-worker]: https://github.com/hakula139/nixos-config/blob/9a54ef1d213bd43104014764ba4751dc007facbf/home/modules/llm-assistants/claude-code/agents/codex-worker.md
+[nixos-tester]: https://github.com/hakula139/nixos-config/blob/b78fbb2d2cfca60931fe88e467e1bf49053a65c1/home/modules/claude-code/agents/tester.md
+[Oh My OpenAgent]: https://github.com/code-yeongyu/oh-my-openagent
+[OpenCode]: https://github.com/anomalyco/opencode
+[OpenSpec]: https://github.com/Fission-AI/OpenSpec
+[Subagents]: https://code.claude.com/docs/en/sub-agents

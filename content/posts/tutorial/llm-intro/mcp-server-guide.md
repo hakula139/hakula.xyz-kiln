@@ -38,7 +38,7 @@ This article walks through a real MCP server, generalized from an internal deplo
 
 Before building the server, we need to understand _what_ the agent reads. The answer is **llms.txt**, a convention (proposed by Jeremy Howard in late 2024[^llms-txt]) for making websites LLM-accessible, analogous to how `robots.txt` and `sitemap.xml` work for search engine crawlers — one signals what content exists, the other makes it navigable. `llms.txt` does both for LLMs.
 
-[^llms-txt]: See [llmstxt.org](https://llmstxt.org) for the specification and the growing list of adopters.
+[^llms-txt]: See [llmstxt.org] for the specification and the growing list of adopters.
 
 The idea is simple. A website places a file at `/llms.txt` that contains a structured summary of its content: page titles, URLs, and brief descriptions, all in Markdown. A companion file `/llms-full.txt` concatenates the full content of every page into a single document. Together, these two files give an LLM everything it needs to navigate and read the site — without parsing HTML, executing JavaScript, or dealing with navigation menus and sidebars.
 
@@ -69,14 +69,14 @@ The Python API exposes the core functionality through...
 
 ### Generating llms.txt for your docs
 
-If your docs are already on [MkDocs](https://www.mkdocs.org), generating these files is a one-line plugin addition. The [mkdocs-llmstxt](https://github.com/pawamoy/mkdocs-llmstxt) plugin scans your pages at build time and produces both files automatically. Add it to `mkdocs.yml`:
+If your docs are already on [MkDocs], generating these files is a one-line plugin addition. The [mkdocs-llmstxt] plugin scans your pages at build time and produces both files automatically. Add it to `mkdocs.yml`:
 
 ```yaml {title="mkdocs.yml"}
 plugins:
   - llmstxt
 ```
 
-If you have scattered Markdown files that are not part of any site, organize them into a MkDocs project (with [Material for MkDocs](https://squidfunk.github.io/mkdocs-material) as the theme, which is the de facto standard) — you get a hosted site _and_ llms.txt for free. The MCP server we build below only cares that the text files are reachable at a URL.
+If you have scattered Markdown files that are not part of any site, organize them into a MkDocs project (with [Material for MkDocs] as the theme, which is the de facto standard) — you get a hosted site _and_ llms.txt for free. The MCP server we build below only cares that the text files are reachable at a URL.
 
 ### Migrating from Confluence
 
@@ -84,7 +84,7 @@ If your docs live in Confluence, the path is longer but well-trodden. The overal
 
 #### Export
 
-Install [confluence-markdown-exporter](https://github.com/Spenhouet/confluence-markdown-exporter) and configure it with your instance URL and credentials:
+Install [confluence-markdown-exporter] and configure it with your instance URL and credentials:
 
 ```bash
 pip install confluence-markdown-exporter
@@ -151,7 +151,7 @@ All tools default to the `latest` version when `version` is omitted, which cover
 
 The architecture is three modules:
 
-- **`server.py`** — Tool definitions and page extraction logic. This is where [FastMCP](https://github.com/jlowin/fastmcp) lives.
+- **`server.py`** — Tool definitions and page extraction logic. This is where [FastMCP] lives.
 - **`fetcher.py`** — An async HTTP client with TTL caching. Fetches `llms.txt`, `llms-full.txt`, `versions.json`, and the MkDocs search index from your docs site.
 - **`search.py`** — A keyword search engine that operates over the MkDocs `search_index.json`.
 
@@ -159,7 +159,7 @@ The data flow is: agent calls a tool → server delegates to fetcher (which cach
 
 ## Project Setup
 
-We use [uv](https://docs.astral.sh/uv) for dependency management and [hatchling](https://hatch.pypa.io) as the build backend. The project layout:
+We use [uv] for dependency management and [hatchling] as the build backend. The project layout:
 
 ```text
 my-docs-mcp/
@@ -211,7 +211,7 @@ Here is `server.py`, the core of the MCP server. We will walk through it piece b
 
 ### FastMCP instantiation
 
-```python {title="server.py"}
+```python {title="src/my_docs_mcp/server.py"}
 from fastmcp import FastMCP
 
 mcp = FastMCP(
@@ -232,7 +232,7 @@ The first argument is the server name (shown in the agent's MCP server list). Th
 
 Each tool is an async function decorated with `@mcp.tool`. FastMCP reads the function's type hints and docstring to generate the JSON Schema that the agent sees. This means your docstring _is_ the tool's documentation — if it is vague, the agent will use the tool incorrectly.
 
-```python {title="server.py"}
+```python {title="src/my_docs_mcp/server.py"}
 @mcp.tool
 async def list_versions() -> list[dict[str, Any]]:
     """List all available documentation versions with their aliases."""
@@ -265,7 +265,7 @@ The most complex tool is `get_page`, because it needs to resolve a URL path to a
 1. **Primary**: Look up the page title from `llms.txt` (which maps paths to titles), then find the corresponding `# Title` section in `llms-full.txt`.
 2. **Fallback**: If the page is not in `llms.txt` (some pages, like auto-generated API references, may be excluded), assemble it from the MkDocs search index, which stores one entry per section.
 
-```python {title="server.py"}
+```python {title="src/my_docs_mcp/server.py"}
 @mcp.tool
 async def get_page(path: str, version: str = "latest") -> str:
     """Get a single documentation page's content in markdown.
@@ -295,7 +295,7 @@ async def get_page(path: str, version: str = "latest") -> str:
 
 The extraction helpers are straightforward string operations:
 
-```python {title="server.py"}
+```python {title="src/my_docs_mcp/server.py"}
 def _normalize_path(path: str) -> str:
     """Normalize a page path for consistent comparison."""
     path = path.strip("/")
@@ -338,7 +338,7 @@ If all your pages are already included in `llms-full.txt`, you can safely skip t
 
 :::
 
-```python {title="server.py"}
+```python {title="src/my_docs_mcp/server.py"}
 def _assemble_from_search_index(
     index: list[dict[str, Any]], path: str
 ) -> str | None:
@@ -372,7 +372,7 @@ The reconstructed document only uses two heading levels (`#` for the page title,
 
 ### The entry point
 
-```python {title="server.py"}
+```python {title="src/my_docs_mcp/server.py"}
 def main() -> None:
     parser = argparse.ArgumentParser(description="My Docs MCP Server")
     parser.add_argument(
@@ -393,7 +393,7 @@ The base URL is configurable through a CLI argument or an environment variable, 
 
 The fetcher is a thin async HTTP client that caches responses for 5 minutes. Every tool call hits the fetcher, and without caching, a typical agent session (which might call `search_docs`, then `get_page` three times, then `get_docs_index`) would make a dozen HTTP requests to the same URLs within seconds.
 
-```python {title="fetcher.py"}
+```python {title="src/my_docs_mcp/fetcher.py"}
 DEFAULT_BASE_URL = "https://docs.example.com"
 CACHE_TTL = 300  # 5 minutes
 
@@ -435,7 +435,7 @@ The `verify_ssl=False` default is intentional for internal deployments where doc
 
 ### Version resolution
 
-MkDocs with [mike](https://github.com/jimporter/mike) (the versioning plugin) publishes a `versions.json` that maps version numbers to aliases:
+MkDocs with [mike] (the versioning plugin) publishes a `versions.json` that maps version numbers to aliases:
 
 ```json {title="versions.json"}
 [
@@ -446,7 +446,7 @@ MkDocs with [mike](https://github.com/jimporter/mike) (the versioning plugin) pu
 
 The fetcher resolves aliases before fetching:
 
-```python {title="fetcher.py"}
+```python {title="src/my_docs_mcp/fetcher.py"}
 async def resolve_version(self, version: str) -> str:
     """Resolve 'latest' or other aliases to actual version identifiers."""
     versions = await self.get_versions()
@@ -464,7 +464,7 @@ This means `get_page("guides/getting-started/", version="latest")` transparently
 
 The search module is deliberately simple: keyword matching with title weighting. No vector embeddings, no semantic search, no external dependencies.
 
-```python {title="search.py"}
+```python {title="src/my_docs_mcp/search.py"}
 def search(
     docs: list[dict[str, Any]],
     query: str,
@@ -514,7 +514,7 @@ This produces `dist/my_docs_mcp-0.1.0-py3-none-any.whl`, a standard Python wheel
 
 ### Running with uvx
 
-The key insight for distribution is [uvx](https://docs.astral.sh/uv/guides/tools) (part of the `uv` toolchain): it downloads, installs, and runs a Python package in an isolated environment, all in one command. No virtual environments to manage, no system-wide installs, no dependency conflicts.
+The key insight for distribution is [uvx] (part of the `uv` toolchain): it downloads, installs, and runs a Python package in an isolated environment, all in one command. No virtual environments to manage, no system-wide installs, no dependency conflicts.
 
 ```bash
 uvx my-docs-mcp
@@ -639,7 +639,7 @@ Where to place the skill file depends on the agent:
 
 ### Level 3: Plugin (Claude Code)
 
-A [plugin](https://code.claude.com/docs/en/discover-plugins) bundles the MCP server config _and_ the skill file so it can be installed with a single command. Create a `.claude-plugin/` directory:
+A [plugin] bundles the MCP server config _and_ the skill file so it can be installed with a single command. Create a `.claude-plugin/` directory:
 
 ```text {title=".claude-plugin/"}
 .claude-plugin/
@@ -682,7 +682,7 @@ The three levels compose: a plugin includes the MCP server config and the skill,
 
 ### MCP Inspector
 
-The [MCP Inspector](https://modelcontextprotocol.io/docs/tools/inspector) is a web-based testing UI that connects to your server and lets you call tools interactively:
+The [MCP Inspector] is a web-based testing UI that connects to your server and lets you call tools interactively:
 
 ```bash
 npx @modelcontextprotocol/inspector uvx my-docs-mcp
@@ -749,3 +749,16 @@ The code is intentionally minimal (under 200 lines across all three modules) so 
 With an MCP server in place, your agent reads documentation instead of guessing. But the server is one piece of a larger system. [Part 1](part-1.md) covers the full stack — CLAUDE.md for persistent instructions, hooks for enforcement, skills for reusable procedures, plugins for distribution. An MCP server gives the agent _access_ to your docs; a skill tells it _when and how_ to use that access; a hook can _enforce_ that it always checks documentation before answering questions about your API. The layers compose.
 
 All the code in this article is self-contained — copy the three modules, change the base URL, adjust the path resolution to match your site structure, publish to your internal registry, and your entire team has structured documentation access in every agent session.
+
+[confluence-markdown-exporter]: https://github.com/Spenhouet/confluence-markdown-exporter
+[FastMCP]: https://github.com/jlowin/fastmcp
+[hatchling]: https://hatch.pypa.io
+[llmstxt.org]: https://llmstxt.org
+[Material for MkDocs]: https://squidfunk.github.io/mkdocs-material
+[MCP Inspector]: https://modelcontextprotocol.io/docs/tools/inspector
+[mike]: https://github.com/jimporter/mike
+[MkDocs]: https://www.mkdocs.org
+[mkdocs-llmstxt]: https://github.com/pawamoy/mkdocs-llmstxt
+[plugin]: https://code.claude.com/docs/en/discover-plugins
+[uv]: https://docs.astral.sh/uv
+[uvx]: https://docs.astral.sh/uv/guides/tools
