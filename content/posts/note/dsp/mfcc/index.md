@@ -199,7 +199,7 @@ filters = get_mel_filters(
 
 $$
 \begin{align*}
-B(f) &= 2595\log_{10}(1+\frac{f}{700}) \\\\
+B(f) &= 2595\log_{10}(1+\frac{f}{700}) \\
 B^{-1}(f_{\mathrm{mel}}) &= 700\cdot (10^{f_{\mathrm{mel}}/2595}-1)
 \end{align*}
 $$
@@ -229,9 +229,9 @@ f = np.floor(i_mel_freq(mel_f) * n_window / sr).astype(int)
 $$
 H_m(k) =
 \begin{cases}
-  0                                   &k < f(m-1) \\\\
-  \large \frac{k-f(m-1)}{f(m)-f(m-1)} &f(m-1) \le k \le f(m) \\\\
-  \large \frac{f(m+1)-k}{f(m+1)-f(m)} &f(m) < k \le f(m+1) \\\\
+  0                                   &k < f(m-1) \\
+  \large \frac{k-f(m-1)}{f(m)-f(m-1)} &f(m-1) \le k \le f(m) \\
+  \large \frac{f(m+1)-k}{f(m+1)-f(m)} &f(m) < k \le f(m+1) \\
   0                                   &k > f(m+1)
 \end{cases}
 $$
@@ -284,7 +284,7 @@ cc = dct(log_filtered_spec, dim_mfcc + 1)[1:]
 
 $$
 \begin{align*}
-  F(0) &= \frac{1}{\sqrt{M}} \sum\limits_{x=0}^{M-1} f(x) &u=0 \\\\
+  F(0) &= \frac{1}{\sqrt{M}} \sum\limits_{x=0}^{M-1} f(x) &u=0 \\
   F(u) &= \sqrt{\frac{2}{M}} \sum\limits_{x=0}^{M-1} f(x)\cos(\frac{\pi u}{2M}(2x+1)) &u=1,2,...,D-1
 \end{align*}
 $$

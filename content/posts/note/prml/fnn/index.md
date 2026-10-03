@@ -67,16 +67,16 @@ $$
 \begin{align}
 \mathit{vec}(\frac{\partial z}{\partial X}_{n\times d})
 &={(\frac{\partial Y}{\partial X})^T}_{nd\times {nd'}}
-  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\\\
+  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\
 &={({\frac{\partial {\mathit{vec}(X\times W)}_{nd'}} {\partial {\mathit{vec}(X)}_{nd}}})^T}_{nd\times {nd'}}
-  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\\\
+  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\
 &={({\frac
     {\partial ({\mathit{vec}(X)}_{nd} \times {(I_{n}\otimes W)}_{nd\times {nd'}})}
     {\partial {\mathit{vec}(X)}_{nd}}
   })^T}_{nd\times {nd'}}
-  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\\\
+  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\
 &={(I_{n}\otimes W)}_{nd\times {nd'}}
-  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\\\
+  \times {\mathit{vec}(\frac{\partial z}{\partial Y})}_{nd'} \\
 &=\mathit{vec}({(\frac{\partial z}{\partial Y}\times W^T)}_{n\times d})
 \end{align} \tag{1.3}
 $$
@@ -155,7 +155,7 @@ class Matmul(NumpyOp):
 $$
 Y_{ij} =
 \begin{cases}
-  X_{ij} &(X_{ij} > 0) \\\\
+  X_{ij} &(X_{ij} > 0) \\
   0       &(X_{ij}\le 0)
 \end{cases} \tag{2.1}
 $$
@@ -167,7 +167,7 @@ $$
 $$
 \begin{align}
 \nabla z
-&=\frac{\partial z}{\partial X}_{n\times d} \\\\
+&=\frac{\partial z}{\partial X}_{n\times d} \\
 &=\frac{\partial z}{\partial Y}_{n\times d}
   \odot \frac{\partial Y}{\partial X}_{n\times d}
 \end{align} \tag{2.2}
@@ -180,7 +180,7 @@ $$
 $$
 {Y'}_{ij} =
 \begin{cases}
-  1 &(X_{ij} > 0) \\\\
+  1 &(X_{ij} > 0) \\
   0 &(X_{ij}\le 0)
 \end{cases} \tag{2.3}
 $$
@@ -190,7 +190,7 @@ $$
 $$
 {Z'}_{ij} =
 \begin{cases}
-  {({Z_{Y}}')}_{ij} &(X_{ij} > 0) \\\\
+  {({Z_{Y}}')}_{ij} &(X_{ij} > 0) \\
   0                 &(X_{ij}\le 0)
 \end{cases} \tag{2.4}
 $$
@@ -245,7 +245,7 @@ $$
 $$
 \begin{align}
 \nabla z
-&=\frac{\partial z}{\partial X}_{n\times d} \\\\
+&=\frac{\partial z}{\partial X}_{n\times d} \\
 &=\frac{\partial z}{\partial Y}_{n\times d}
   \odot \frac{\partial Y}{\partial X}_{n\times d}
 \end{align} \tag{3.2}
@@ -321,29 +321,29 @@ $$
 $$
 \begin{align}
 {Z'}_{ij}
-&=\frac{\partial z}{\partial X_{ij}} \\\\
+&=\frac{\partial z}{\partial X_{ij}} \\
 &={(\frac{\partial z}{\partial Y_{i}})}_{d}
-  \cdot {(\frac{\partial Y_{i}}{\partial X_{ij}})}_{d} \\\\
+  \cdot {(\frac{\partial Y_{i}}{\partial X_{ij}})}_{d} \\
 &=\frac{\partial z}{\partial Y_{ij}}
   \cdot \frac{\partial Y_{ij}}{\partial X_{ij}} +
-  \sum\limits_{k=1,\\,k\ne j}^d
+  \sum\limits_{k=1,\,k\ne j}^d
   \frac{\partial z}{\partial Y_{ik}}
-  \cdot \frac{\partial Y_{ik}}{\partial X_{ij}} \\\\
+  \cdot \frac{\partial Y_{ik}}{\partial X_{ij}} \\
 &=\frac{\partial z}{\partial Y_{ij}}
   \cdot \frac{\partial}{\partial X_{ij}}(\frac{e^{X_{ij}}}{\sum\limits_{t=1}^d e^{X_{it}}}) +
-  \sum\limits_{k=1,\\,k\ne j}^d
+  \sum\limits_{k=1,\,k\ne j}^d
   \frac{\partial z}{\partial Y_{ik}}
-  \cdot \frac{\partial}{\partial X_{ij}}(\frac{e^{X_{ik}}}{\sum\limits_{t=1}^d e^{X_{it}}}) \\\\
+  \cdot \frac{\partial}{\partial X_{ij}}(\frac{e^{X_{ik}}}{\sum\limits_{t=1}^d e^{X_{it}}}) \\
 &=\frac{\partial z}{\partial Y_{ij}}
   \cdot \frac{e^{X_{ij}}}{\sum\limits_{t=1}^d e^{X_{it}}}
   \cdot (1 - \frac{e^{X_{ij}}}{\sum\limits_{t=1}^d e^{X_{it}}}) -
-  \sum\limits_{k=1,\\,k\ne j}^d
+  \sum\limits_{k=1,\,k\ne j}^d
   \frac{\partial z}{\partial Y_{ik}}
   \cdot \frac{e^{X_{ij}}}{\sum\limits_{t=1}^d e^{X_{it}}}
-  \cdot \frac{e^{X_{ik}}}{\sum\limits_{t=1}^d e^{X_{it}}} \\\\
+  \cdot \frac{e^{X_{ik}}}{\sum\limits_{t=1}^d e^{X_{it}}} \\
 &=\frac{\partial z}{\partial Y_{ij}}\cdot Y_{ij}\cdot (1 - Y_{ij}) -
-  \sum\limits_{k=1,\\,k\ne j}^d
-  \frac{\partial z}{\partial Y_{ik}}\cdot Y_{ij}\cdot Y_{ik} \\\\
+  \sum\limits_{k=1,\,k\ne j}^d
+  \frac{\partial z}{\partial Y_{ik}}\cdot Y_{ij}\cdot Y_{ik} \\
 &=Y_{ij}\cdot (
     \frac{\partial z}{\partial Y_{ij}} -
     \sum\limits_{k=1}^d

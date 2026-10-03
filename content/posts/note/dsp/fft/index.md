@@ -191,7 +191,7 @@ def fft(a: np.ndarray) -> np.ndarray:
 
 $$
 \begin{align*}
-&Y[i] &= Y_e[i] + \omega_N^i Y_o[i] \\\\
+&Y[i] &= Y_e[i] + \omega_N^i Y_o[i] \\
 &Y[i+\frac{n}{2}] &= Y_e[i] - \omega_N^i Y_o[i]
 \end{align*}
 $$
