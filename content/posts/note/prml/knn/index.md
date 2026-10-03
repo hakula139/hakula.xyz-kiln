@@ -86,7 +86,7 @@ def _get_k_nearest_neighbors(
         data = self.test_data
 
     # Use a min heap of size k to get the k nearest neighbors
-    heap: List[Tuple[float, np.ndarray]] = []
+    heap: List[Tuple[float, int]] = []
     for p_i in range(data.shape[0]):
         dist: float = _distance(base_p, data[p_i])
         if (len(heap) < k):
@@ -228,7 +228,7 @@ def generate() -> None:
 
         :param `param`: a tuple of `mean`, `cov`, `size`
             `mean`: the mean of the dataset
-            `cov`: the coefficient of variation (COV) of the dataset
+            `cov`: the covariance matrix of the dataset
             `size`: the number of points in the dataset
         '''
 

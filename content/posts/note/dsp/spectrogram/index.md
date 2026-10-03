@@ -238,7 +238,7 @@ python3 main.py
 
 ```bash {title="resample.py"}
 python3 resample.py "path/to/foobar.wav" 8000  # 单个文件
-python3 resample.py "path/to/directory" 8000    # 目录下所有 .wav 文件递归批处理
+python3 resample.py "path/to/directory" 8000   # 目录下所有 .wav 文件递归批处理
 ```
 
 重采样后的音频文件将保存在同目录下，文件名的后缀名修改为 `.dat`。

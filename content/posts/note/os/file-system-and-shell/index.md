@@ -1406,8 +1406,8 @@ char buf[512];
 void
 cat(int fd)
 {
-    int n = read(fd, buf, sizeof(buf));
-    while (n > 0) {
+    int n;
+    while ((n = read(fd, buf, sizeof(buf))) > 0) {
         if (write(1, buf, n) != n) {
             printf("cat: write error.\n");
             return;
@@ -1442,6 +1442,26 @@ main(int argc, char* argv[])
 遗憾的是，由于时间有限，代码虽然已全部完成（包括所有系统调用，以及函数 `fork`, `wait`, `execve` 等），但尚未调通。目前系统可以成功进行到初始化程序 `initcode.S` 完成系统调用，但暂时还不能启动 shell，故障原因仍在排查中。
 
 有机会再继续做吧。
+
+::: callout {type=quote title="GPT-6.1 Sol 注（2026-10-03）"}
+
+静态检查了源码，可以确认以下几处错误：
+
+1. 接入 musl 后，系统调用号保存在 `X8`，参数从 `X0` 开始，但 [`argint()`][syscall.c] 仍从 `p->tf->x1` 开始取参，应改为从 `p->tf->x0` 开始。这会使第一次 `exec` 把 `argv` 当作路径、把尚为零的 `X2` 当作 `argv` 地址，随后将地址 `0` 处的 `initcode` 指令误当作字符串指针，能够解释下方日志中的取参失败。评论区对此的指正是正确的。
+2. [`execve()`][exec.c] 构造用户栈时，`ustack[0] = argc` 覆盖了刚保存的 `argv[0]`。此外，`sys_exec()` 传入的 `envp` 为 `NULL`，这里却以它为源地址复制 8 bytes，实际复制的是旧用户地址空间中地址 `0` 的内容。辅助向量 `{0, AT_PAGESZ, PGSIZE, AT_NULL}` 也以终止标记开头。按 musl 的 [入口代码][crt1.c] 和 [libc 初始化代码][__libc_start_main.c]，用户栈应依次保存 `argc`、完整的 `argv` 指针数组及其空指针、`envp` 指针数组及其空指针、成对的辅助向量及 `{AT_NULL, 0}`，参数字符串另行存放。只修正取参寄存器，启动栈仍不符合 musl 的要求。
+3. [`trapret`][trapasm.S] 恢复寄存器的顺序与压栈顺序不匹配，应先恢复填充位和 `TPIDR_EL0`，再恢复 `Q0`。当前实现会互换两个 16 bytes 的槽，破坏线程指针和 `Q0`。第一次进入 `initcode` 时相关槽均为零，会掩盖这个问题。
+4. [用户内存管理][vm.c] 还有后续问题：`uvm_alloc()` 应从 `ROUNDUP(oldsz, PGSIZE)` 开始分配，当前实现会在旧大小未按页对齐时覆盖已有末页，并可能漏掉新增末页。`uvm_copy()` 和 `uvm_unmap()` 应将页表中的物理地址通过 `P2V()` 转为内核虚拟地址，当前却使用了 `V2P()`，分别影响 `fork()` 的页拷贝和内存释放。`/init` 启动后还要通过 `fork()` 创建子进程来执行 shell，因此这些也是需要继续修正的问题。
+
+以上结论仅来自源码和调用约定的静态检查，没有重新编译或运行实验，也未确认修正这些问题后 shell 就能启动。保留原代码及当时的日志，供读者对照。
+
+[syscall.c]: https://github.com/hakula139/xv6-armv8/blob/25337a4642c8e363d7b2e2cf6535a2858818c479/kern/syscall.c#L46-L59
+[exec.c]: https://github.com/hakula139/xv6-armv8/blob/25337a4642c8e363d7b2e2cf6535a2858818c479/kern/exec.c#L99-L143
+[crt1.c]: https://github.com/ifduyue/musl/blob/821083ac7b54eaa040d5a8ddc67c6206a175e0ca/crt/crt1.c#L14-L19
+[__libc_start_main.c]: https://github.com/ifduyue/musl/blob/821083ac7b54eaa040d5a8ddc67c6206a175e0ca/src/env/__libc_start_main.c
+[trapasm.S]: https://github.com/hakula139/xv6-armv8/blob/25337a4642c8e363d7b2e2cf6535a2858818c479/kern/trapasm.S#L27-L42
+[vm.c]: https://github.com/hakula139/xv6-armv8/blob/25337a4642c8e363d7b2e2cf6535a2858818c479/kern/vm.c
+
+:::
 
 ```bash
 make && make qemu

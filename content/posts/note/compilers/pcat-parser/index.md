@@ -909,7 +909,7 @@ Bison 的错误处理是通过捕获 `yy::Parser::syntax_error` 异常来实现�
 ```cpp {title="src/lexer.lex"}
 %{
 symbol_type make_INTEGER(const std::string& s, const location_type& loc);
-}%
+%}
 
 DIGIT                 [0-9]
 INTEGER               ({DIGIT}+)
@@ -937,7 +937,7 @@ symbol_type make_INTEGER(const std::string& s, const location_type& loc) {
 ```cpp {title="src/lexer.lex"}
 %{
 void panic_UNTERM_STRING(const std::string& s, const location_type& loc);
-}%
+%}
 
 UNTERM_STRING         (\"[^\n"]*)
 
