@@ -1972,7 +1972,27 @@
     }
   }
   .callout-body-inner {
-    overflow: hidden;
+    &::-webkit-scrollbar {
+      height: calc(var(--spacing) * 2);
+      width: calc(var(--spacing) * 2);
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: calc(infinity * 1px);
+      background-color: var(--color-border);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: var(--color-text-tertiary);
+    }
+    @supports not selector(::-webkit-scrollbar) {
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-text-tertiary) transparent;
+    }
+    overflow-y: auto;
+    max-height: min(var(--scroll-max-height, 32rem), 50svh);
+    overflow-x: hidden;
     padding-inline: calc(var(--spacing) * 4);
     p {
       margin-block: calc(var(--spacing) * 1.5);
@@ -2051,8 +2071,27 @@
     overflow-y: hidden;
   }
   .code-body[data-max-lines] > .highlight {
+    &::-webkit-scrollbar {
+      height: calc(var(--spacing) * 2);
+      width: calc(var(--spacing) * 2);
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: calc(infinity * 1px);
+      background-color: var(--color-border);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: var(--color-text-tertiary);
+    }
+    @supports not selector(::-webkit-scrollbar) {
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-text-tertiary) transparent;
+    }
     overflow-y: auto;
-    max-height: calc(var(--max-lines, 40) * 1.5em + 1rem);
+    max-height: min(var(--scroll-max-height, 32rem), 50svh);
+    --scroll-max-height: calc(var(--max-lines, 40) * 1.5em + 1rem);
   }
   .highlight table {
     width: max-content;
@@ -3371,28 +3410,26 @@ pre.mermaid {
     color: #000 !important;
     background: #fff !important;
   }
-  body > .body-bg {
-    display: none !important;
-  }
   main {
     padding-top: 0 !important;
   }
-  .glass-panel, .glass-glow {
+  body > .body-bg, .glass-glow:has(.header-nav), #mobile-menu, .site-footer,  .glow-ambient, .glow-border,  .post-banner, .toc-collapse, .toc-sidebar-wrapper,  .home-card-image, .home-card-overlay, .home-card-pin,  #comments,  .pagination-input, .pagination-link,  .float-btn, pagefind-modal {
+    display: none !important;
+  }
+  .glass-glow, .glass-panel {
     background: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
     border: none !important;
     border-radius: 0 !important;
+    box-shadow: none !important;
   }
-  .glow-ambient, .glow-border {
-    display: none !important;
-  }
-  .highlight, .code-header {
+  .code-header, .highlight {
     background: transparent !important;
   }
-  .glass-glow:has(.header-nav), #mobile-menu, .site-footer,  .toc-sidebar-wrapper, .toc-collapse, .post-banner,  .home-card-image, .home-card-overlay, .home-card-pin,  #comments,  .pagination-link, .pagination-input,  .float-btn, pagefind-modal {
-    display: none !important;
+  .callout-body-inner, .code-body[data-max-lines] > .highlight {
+    max-height: none !important;
+    overflow: visible !important;
   }
   .prose a[href^='http']:not(:where(.not-prose, .not-prose *))::after {
     content: ' (' attr(href) ')';
@@ -3403,11 +3440,11 @@ pre.mermaid {
   h1, h2, h3, h4, h5, h6 {
     break-after: avoid;
   }
-  p, li {
+  li, p {
     orphans: 3;
     widows: 3;
   }
-  pre, img, figure, .code-block {
+  figure, img, pre, .code-block {
     break-inside: avoid;
   }
 }
