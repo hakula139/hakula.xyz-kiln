@@ -1693,11 +1693,40 @@
   }
 }
 .prose :where(a):not(:where(.not-prose, .not-prose *)) {
+  border-color: transparent;
   padding-bottom: calc(var(--spacing) * 0.5);
   text-decoration-line: none;
   &:hover, &:focus-visible {
     color: var(--color-link-hover);
   }
+}
+.prose :where(a[href], u, ins, .underline):not( :where( .heading-anchor, .footnote-reference a, .footnote-backref, .underline *, u *, ins *, a:not(.underline):has(u, ins, .underline), :has(> img:only-child, > .lqip:only-child), .not-prose, .not-prose * ) ) {
+  background-image: linear-gradient( var(--underline-accent-color, currentColor), var(--underline-accent-color, currentColor) ), linear-gradient( var(--underline-base-color, transparent), var(--underline-base-color, transparent) );
+  background-position: right bottom, left bottom;
+  background-repeat: no-repeat;
+  background-size: 0% 2px, 100% 2px;
+  -webkit-box-decoration-break: slice;
+  box-decoration-break: slice;
+  transition: background-size 300ms ease;
+  &:where(u, ins, .underline) {
+    padding-bottom: calc(var(--spacing) * 0.5);
+    text-decoration-line: none;
+    --underline-accent-color: var(--color-link-hover);
+    --underline-base-color: currentColor;
+  }
+  &:hover, &:focus-visible, &:has(a:focus-visible), &:where(a:focus-visible u, a:focus-visible ins, a:focus-visible .underline) {
+    background-position: left bottom, left bottom;
+    background-size: 100% 2px, 100% 2px;
+  }
+  @media print, (forced-colors: active) {
+    background-image: none;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+  }
+}
+.prose :where(a.underline, a u, a ins, a .underline):not(:where(.not-prose, .not-prose *)) {
+  --underline-base-color: var(--color-link);
 }
 .prose :where(.heading-anchor):not(:where(.not-prose, .not-prose *)) {
   border-bottom-style: var(--tw-border-style);
