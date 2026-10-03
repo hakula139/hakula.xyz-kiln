@@ -331,7 +331,7 @@ class rnn(nn.Module):
         self.drop = nn.Dropout(dropout)
         self.encoder = nn.Embedding(input_size, hidden_size)
         self.gru = nn.GRU(hidden_size, hidden_size,
-                         num_layers, dropout=dropout)
+                          num_layers, dropout=dropout)
         self.decoder = nn.Linear(hidden_size, output_size)
 
     def forward(self, inp: Tensor, hid: Tensor) -> Tuple[Tensor, Tensor]:
