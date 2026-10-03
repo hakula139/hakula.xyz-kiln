@@ -517,7 +517,7 @@ case "$tool_name" in
 esac
 ```
 
-The script parses `tool_name` from the JSON input on stdin and sends a desktop notification with `notify-send`. On macOS, replace with `osascript`; on WSL, you need a Windows-side toast tool since `notify-send` has no display server to talk to — my implementation uses [toasty](https://github.com/shanselman/toasty) and auto-detects the platform ([source](https://github.com/hakula139/nixos-config/blob/main/home/modules/notify/default.nix)). For complex hooks like this, extracting the logic into a separate script is cleaner than inlining escaped shell in JSON.
+The script parses `tool_name` from the JSON input on stdin and sends a desktop notification with `notify-send`. On macOS, replace with `osascript`; on WSL, you need a Windows-side toast tool since `notify-send` has no display server to talk to — my implementation uses [toasty](https://github.com/shanselman/toasty) and auto-detects the platform ([source](https://github.com/hakula139/nixos-config/blob/b78fbb2d2cfca60931fe88e467e1bf49053a65c1/home/modules/notify/default.nix)). For complex hooks like this, extracting the logic into a separate script is cleaner than inlining escaped shell in JSON.
 
 ### Beyond shell commands
 
