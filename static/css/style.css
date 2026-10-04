@@ -3530,7 +3530,7 @@ pre.mermaid {
   .score-table tbody tr {
     counter-increment: row-num;
   }
-  .score-table tbody tr:hover, .score-table tbody tr:hover .col-rownum {
+  .score-table tbody tr:hover td {
     box-shadow: inset 0 0 0 9999px var(--st-hover);
   }
   .score-table tbody tr:hover .col-title {
