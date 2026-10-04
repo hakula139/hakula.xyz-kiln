@@ -177,7 +177,7 @@ external = true
 [[menu.social]]
 name = "menu_social_neodb"
 url = "https://neodb.social/users/hakula139@mastodon.social"
-icon = "svg:fediverse"
+icon = "svg:neodb"
 weight = 9
 external = true
 
