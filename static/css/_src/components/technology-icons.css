@@ -1,0 +1,13 @@
+@layer components {
+  .prose p:has(> a > .technology-icon) {
+    @apply flex flex-wrap items-center gap-3;
+
+    > a {
+      @apply inline-flex;
+    }
+
+    .technology-icon {
+      @apply my-0;
+    }
+  }
+}

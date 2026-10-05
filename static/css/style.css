@@ -3603,6 +3603,18 @@ pre.mermaid {
   .score-table .ext-score-approx {
     color: var(--color-text-secondary);
   }
+  .prose p:has(> a > .technology-icon) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: calc(var(--spacing) * 3);
+    > a {
+      display: inline-flex;
+    }
+    .technology-icon {
+      margin-block: 0px;
+    }
+  }
 }
 @property --tw-space-y-reverse {
   syntax: "*";
