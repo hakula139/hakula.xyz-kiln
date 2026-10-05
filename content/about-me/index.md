@@ -77,7 +77,7 @@ url = "https://www.pixiv.net/artworks/64035231"
 ### 开发环境
 
 [![Claude](assets/icons/claude.svg){width=50 height=50}](https://claude.ai)
-[![GPT](assets/icons/gpt.svg){width=50 height=50}](https://openai.com)
+[![GPT](assets/icons/openai.svg){width=50 height=50}](https://openai.com)
 [![Cursor](assets/icons/cursor.svg){width=50 height=50}](https://cursor.com)
 [![NixOS](assets/icons/nixos.svg){width=50 height=50}](https://nixos.org)
 [![macOS](assets/icons/apple.svg){width=50 height=50}](https://www.apple.com/macos)
