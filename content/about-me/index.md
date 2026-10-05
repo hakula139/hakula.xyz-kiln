@@ -55,31 +55,34 @@ url = "https://www.pixiv.net/artworks/64035231"
 [![TypeScript](assets/icons/typescript.svg){width=50 height=50}](https://www.typescriptlang.org)
 [![Rust](assets/icons/rust.svg){width=50 height=50}](https://www.rust-lang.org)
 [![Go](assets/icons/go.svg){width=50 height=50}](https://golang.org)
-[![Java](assets/icons/java.svg){width=50 height=50}](https://www.java.com)
 
 ### 技术栈
 
 [![Vue](assets/icons/vuejs.svg){width=50 height=50}](https://vuejs.org)
 [![Tailwind CSS](assets/icons/tailwindcss.svg){width=50 height=50}](https://tailwindcss.com)
 [![Node.js](assets/icons/nodejs.svg){width=50 height=50}](https://nodejs.org)
+[![Nginx](assets/icons/nginx.svg){width=50 height=50}](https://nginx.org)
 [![MySQL](assets/icons/mysql.svg){width=50 height=50}](https://www.mysql.com)
 [![DuckDB](assets/icons/duckdb.svg){width=50 height=50}](https://duckdb.org)
 [![MongoDB](assets/icons/mongodb.svg){width=50 height=50}](https://www.mongodb.com)
 [![Redis](assets/icons/redis.svg){width=50 height=50}](https://redis.io)
+[![CMake](assets/icons/cmake.svg){width=50 height=50}](https://cmake.org)
 [![Docker](assets/icons/docker.svg){width=50 height=50}](https://www.docker.com)
 [![Podman](assets/icons/podman.svg){width=50 height=50}](https://podman.io)
 [![Kubernetes](assets/icons/kubernetes.svg){width=50 height=50}](https://kubernetes.io)
+[![Cloudflare](assets/icons/cloudflare.svg){width=50 height=50}](https://www.cloudflare.com)
+[![GitHub Actions](assets/icons/githubactions.svg){width=50 height=50}](https://github.com/features/actions)
+[![GitLab CI/CD](assets/icons/gitlab.svg){width=50 height=50}](https://docs.gitlab.com/ci/)
 [![Elasticsearch](assets/icons/elasticsearch.svg){width=50 height=50}](https://www.elastic.co)
 [![Prometheus](assets/icons/prometheus.svg){width=50 height=50}](https://prometheus.io)
 [![Grafana](assets/icons/grafana.svg){width=50 height=50}](https://grafana.com)
-[![PyTorch](assets/icons/pytorch.svg){width=50 height=50}](https://pytorch.org)
 
 ### 开发环境
 
 [![Claude](assets/icons/claude.svg){width=50 height=50}](https://claude.ai)
 [![GPT](assets/icons/openai.svg){width=50 height=50}](https://openai.com)
 [![Cursor](assets/icons/cursor.svg){width=50 height=50}](https://cursor.com)
-[![NixOS](assets/icons/nixos.svg){width=50 height=50}](https://nixos.org)
+[![Nix / NixOS](assets/icons/nixos.svg){width=50 height=50}](https://nixos.org)
 [![macOS](assets/icons/apple.svg){width=50 height=50}](https://www.apple.com/macos)
 [![Zsh](assets/icons/zsh.svg){width=50 height=50}](https://zsh.sourceforge.io)
 [![Starship](assets/icons/starship.svg){width=50 height=50}](https://starship.rs)
