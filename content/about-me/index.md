@@ -15,18 +15,25 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 ## :briefcase: 工作经历
 
-| 公司 / 部门           | 岗位             | Base |              时间 |
-| :-------------------- | :--------------- | :--- | ----------------: |
-| 佳期投资              | Tech             | 上海 |    2024-05 ~ 至今 |
-| 腾讯 / IEG / 天美 T1  | 后台开发         | 上海 | 2021-07 ~ 2024-05 |
-| 字节跳动 / 飞书 / RTC | 后台开发（实习） | 上海 | 2021-03 ~ 2021-06 |
+| 公司 / 部门                                | 岗位             | Base |              时间 |
+| :----------------------------------------- | :--------------- | :--- | ----------------: |
+| [佳期投资][jq] / Tech                      | Core Engineer    | 上海 |    2024-05 ~ 至今 |
+| 腾讯 / IEG / 天美 T1 / [元梦之星][ymzx]    | 后台开发         | 上海 | 2023-07 ~ 2024-05 |
+| 腾讯 / IEG / 天美 T1 / [刺客信条][ac-jade] | 后台开发         | 上海 | 2021-07 ~ 2023-07 |
+| 字节跳动 / 飞书 / RTC                      | 后台开发（实习） | 上海 | 2021-03 ~ 2021-06 |
+
+[jq]: https://www.jqinvestments.com
+[ymzx]: https://ymzx.qq.com
+[ac-jade]: https://www.assassinscreedjade.com
 
 ## :mortar_board: 教育经历
 
-| 学校           | 专业 / 班级                  |              时间 |
-| :------------- | :--------------------------- | ----------------: |
-| 复旦大学       | 计算机科学与技术（拔尖计划） | 2018-09 ~ 2022-07 |
-| 华东师大二附中 | 基础科学实验班               | 2015-09 ~ 2018-06 |
+| 学校           | 专业 / 班级                    |              时间 |
+| :------------- | :----------------------------- | ----------------: |
+| 复旦大学       | 计算机科学与技术（[拔尖计划]） | 2018-09 ~ 2022-07 |
+| 华东师大二附中 | 基础科学实验班                 | 2015-09 ~ 2018-06 |
+
+[拔尖计划]: https://cs.fudan.edu.cn/15/97/c24752a267671/page.htm
 
 ## :star2: 历史成绩
 
@@ -66,11 +73,11 @@ url = "https://www.pixiv.net/artworks/64035231"
 [![Prometheus](assets/icons/prometheus.svg){width=50 height=50}](https://prometheus.io)
 [![Grafana](assets/icons/grafana.svg){width=50 height=50}](https://grafana.com)
 [![PyTorch](assets/icons/pytorch.svg){width=50 height=50}](https://pytorch.org)
-[![Unity](assets/icons/unity.svg){width=50 height=50}](https://unity.com)
 
 ### 开发环境
 
 [![Claude](assets/icons/claude.svg){width=50 height=50}](https://claude.ai)
+[![GPT](assets/icons/gpt.svg){width=50 height=50}](https://openai.com)
 [![Cursor](assets/icons/cursor.svg){width=50 height=50}](https://cursor.com)
 [![NixOS](assets/icons/nixos.svg){width=50 height=50}](https://nixos.org)
 [![macOS](assets/icons/apple.svg){width=50 height=50}](https://www.apple.com/macos)
@@ -105,7 +112,7 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 | 游戏名                 | ID                             | 段位 / 实力                                               |              时间 |
 | :--------------------- | :----------------------------- | :-------------------------------------------------------- | ----------------: |
-| [Arcaea][arcaea]       | Hakula (047 570 647)           | ptt: [12.00][arcaea-ptt]                                  | 2024-07 ~ 2025-01 |
+| [Arcaea][arcaea]       | Hakula (047 570 647)           | ptt: [12.065][arcaea-ptt]                                 | 2024-07 ~ 2025-01 |
 | [発狂 BMS][lr2ir]      | [Hakula♪ (122423)][lr2ir-me]   | 准 SP★06 / Walkure: [★13.26][walkure] / [点灯情况][lamps] | 2016-09 ~ 2019-02 |
 | [LLSIF :jp:][llsif]    | はくら (235609666)             | 全曲无判 FC，☆12 平均 P 率 ≈ 95%                          | 2015-11 ~ 2018-01 |
 | [BeatStage][beatstage] | [hakula_1234567][beatstage-me] | 最高 #1                                                   | 2013-08 ~ 2018-08 |
@@ -137,9 +144,9 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 ### 德州扑克
 
-| 游戏名                 | ID     |           时间 |
-| :--------------------- | :----- | -------------: |
-| [PokerFate][pokerfate] | Hakula | 2026-06 ~ 至今 |
+| 游戏名                 | ID                | 筹码                  |              时间 |
+| :--------------------- | :---------------- | :-------------------- | ----------------: |
+| [PokerFate][pokerfate] | Hakula (10410931) | 最高 150M（不氪筹码） | 2026-05 ~ 2026-10 |
 
 [pokerfate]: https://pokerfate.com
 
