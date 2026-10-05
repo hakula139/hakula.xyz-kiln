@@ -71,7 +71,7 @@ url = "https://www.pixiv.net/artworks/64035231"
 [![Podman](assets/icons/podman.svg){width=50 height=50}](https://podman.io)
 [![Kubernetes](assets/icons/kubernetes.svg){width=50 height=50}](https://kubernetes.io)
 [![Cloudflare](assets/icons/cloudflare.svg){width=50 height=50}](https://www.cloudflare.com)
-[![GitHub Actions](assets/icons/githubactions.svg){width=50 height=50}](https://github.com/features/actions)
+[![GitHub](assets/icons/github.svg){.monochrome-icon width=50 height=50}](https://github.com)
 [![GitLab CI/CD](assets/icons/gitlab.svg){width=50 height=50}](https://docs.gitlab.com/ci/)
 [![Elasticsearch](assets/icons/elasticsearch.svg){width=50 height=50}](https://www.elastic.co)
 [![Prometheus](assets/icons/prometheus.svg){width=50 height=50}](https://prometheus.io)
