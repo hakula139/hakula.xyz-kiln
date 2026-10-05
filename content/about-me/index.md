@@ -46,8 +46,6 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 [![wakatime](https://wakatime.com/badge/user/f4a35a1f-0e29-4093-a647-e66aad164737.svg){height=20}](https://wakatime.com/@f4a35a1f-0e29-4093-a647-e66aad164737)
 
-<!-- Icons downloaded from https://raw.githubusercontent.com/devicons/devicon/master/icons/{name}/{name}-original.svg -->
-
 ### 编程语言
 
 [![C++](assets/icons/cplusplus.svg){.technology-icon width=50 height=50}](https://www.cplusplus.com)
@@ -79,8 +77,8 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 ### 开发环境
 
-[![Claude](assets/icons/claude.svg){.technology-icon width=50 height=50}](https://claude.ai)
-[![GPT](assets/icons/openai.svg){.technology-icon .monochrome-icon width=50 height=50}](https://openai.com)
+[![Claude Code](assets/icons/claudecode.svg){.technology-icon width=50 height=50}](https://claude.com/product/claude-code)
+[![Codex](assets/icons/codex.svg){.technology-icon width=50 height=50}](https://openai.com/codex/)
 [![Cursor](assets/icons/cursor.svg){.technology-icon width=50 height=50}](https://cursor.com)
 [![Nix / NixOS](assets/icons/nixos.svg){.technology-icon width=50 height=50}](https://nixos.org)
 [![macOS](assets/icons/apple.svg){.technology-icon .monochrome-icon width=50 height=50}](https://www.apple.com/macos)
