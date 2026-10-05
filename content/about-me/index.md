@@ -53,7 +53,7 @@ url = "https://www.pixiv.net/artworks/64035231"
 [![C++](assets/icons/cplusplus.svg){width=50 height=50}](https://www.cplusplus.com)
 [![Python](assets/icons/python.svg){width=50 height=50}](https://www.python.org)
 [![TypeScript](assets/icons/typescript.svg){width=50 height=50}](https://www.typescriptlang.org)
-[![Rust](assets/icons/rust.svg){width=50 height=50}](https://www.rust-lang.org)
+[![Rust](assets/icons/rust.svg){.monochrome-icon width=50 height=50}](https://www.rust-lang.org)
 [![Go](assets/icons/go.svg){width=50 height=50}](https://golang.org)
 
 ### 技术栈
@@ -80,10 +80,10 @@ url = "https://www.pixiv.net/artworks/64035231"
 ### 开发环境
 
 [![Claude](assets/icons/claude.svg){width=50 height=50}](https://claude.ai)
-[![GPT](assets/icons/openai.svg){width=50 height=50}](https://openai.com)
+[![GPT](assets/icons/openai.svg){.monochrome-icon width=50 height=50}](https://openai.com)
 [![Cursor](assets/icons/cursor.svg){width=50 height=50}](https://cursor.com)
 [![Nix / NixOS](assets/icons/nixos.svg){width=50 height=50}](https://nixos.org)
-[![macOS](assets/icons/apple.svg){width=50 height=50}](https://www.apple.com/macos)
+[![macOS](assets/icons/apple.svg){.monochrome-icon width=50 height=50}](https://www.apple.com/macos)
 [![Zsh](assets/icons/zsh.svg){width=50 height=50}](https://zsh.sourceforge.io)
 [![Starship](assets/icons/starship.svg){width=50 height=50}](https://starship.rs)
 

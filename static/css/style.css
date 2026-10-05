@@ -3416,6 +3416,12 @@ pre.mermaid {
       margin-bottom: 0px !important;
     }
   }
+  @media not print {
+    .monochrome-icon:where([data-theme="dark"], [data-theme="dark"] *) {
+      --tw-invert: invert(100%);
+      filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+    }
+  }
   .score-table-wrapper {
     margin-block: calc(var(--spacing) * 4);
     overflow-x: auto;
