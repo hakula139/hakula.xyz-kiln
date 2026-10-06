@@ -46,6 +46,8 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 [![wakatime](https://wakatime.com/badge/user/f4a35a1f-0e29-4093-a647-e66aad164737.svg){height=20}](https://wakatime.com/@f4a35a1f-0e29-4093-a647-e66aad164737)
 
+<!-- Icons downloaded from https://github.com/devicons/devicon -->
+
 ### 编程语言
 
 [![C++](assets/icons/cplusplus.svg){.technology-icon width=50 height=50}](https://www.cplusplus.com)
