@@ -80,7 +80,7 @@ url = "https://www.pixiv.net/artworks/64035231"
 ### 开发环境
 
 [![Claude Code](assets/icons/claudecode.svg){.tech-icon width=50 height=50}](https://claude.com/product/claude-code)
-[![Codex](assets/icons/codex.svg){.tech-icon width=50 height=50}](https://openai.com/codex/)
+[![Codex](assets/icons/codex.svg){.tech-icon width=50 height=50}](https://openai.com/codex)
 [![Cursor](assets/icons/cursor.svg){.tech-icon width=50 height=50}](https://cursor.com)
 [![Nix / NixOS](assets/icons/nixos.svg){.tech-icon width=50 height=50}](https://nixos.org)
 [![macOS](assets/icons/apple.svg){.tech-icon .monochrome-icon width=50 height=50}](https://www.apple.com/macos)
