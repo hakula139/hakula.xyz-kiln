@@ -50,13 +50,19 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 ### 编程语言
 
+::: {.tech-icons}
+
 [![C++](assets/icons/cplusplus.svg){.tech-icon width=50 height=50}](https://www.cplusplus.com)
 [![Rust](assets/icons/rust.svg){.tech-icon .monochrome-icon width=50 height=50}](https://www.rust-lang.org)
 [![Python](assets/icons/python.svg){.tech-icon width=50 height=50}](https://www.python.org)
 [![TypeScript](assets/icons/typescript.svg){.tech-icon width=50 height=50}](https://www.typescriptlang.org)
 [![Go](assets/icons/go.svg){.tech-icon width=50 height=50}](https://golang.org)
 
+:::
+
 ### 技术栈
+
+::: {.tech-icons}
 
 [![Vue](assets/icons/vuejs.svg){.tech-icon width=50 height=50}](https://vuejs.org)
 [![Tailwind CSS](assets/icons/tailwindcss.svg){.tech-icon width=50 height=50}](https://tailwindcss.com)
@@ -77,7 +83,11 @@ url = "https://www.pixiv.net/artworks/64035231"
 [![Prometheus](assets/icons/prometheus.svg){.tech-icon width=50 height=50}](https://prometheus.io)
 [![Grafana](assets/icons/grafana.svg){.tech-icon width=50 height=50}](https://grafana.com)
 
+:::
+
 ### 开发环境
+
+::: {.tech-icons}
 
 [![Claude Code](assets/icons/claudecode.svg){.tech-icon width=50 height=50}](https://claude.com/product/claude-code)
 [![Codex](assets/icons/codex.svg){.tech-icon width=50 height=50}](https://openai.com/codex)
@@ -86,6 +96,8 @@ url = "https://www.pixiv.net/artworks/64035231"
 [![macOS](assets/icons/apple.svg){.tech-icon .monochrome-icon width=50 height=50}](https://www.apple.com/macos)
 [![Zsh](assets/icons/zsh.svg){.tech-icon width=50 height=50}](https://zsh.sourceforge.io)
 [![Starship](assets/icons/starship.svg){.tech-icon width=50 height=50}](https://starship.rs)
+
+:::
 
 ## :desktop_computer: 设备
 

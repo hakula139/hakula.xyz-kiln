@@ -1,5 +1,5 @@
 @layer components {
-  .prose p:has(> a > .tech-icon) {
+  .tech-icons > p {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
