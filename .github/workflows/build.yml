@@ -33,12 +33,6 @@ jobs:
           cachix_name: hakula
           cachix_skip_push: 'true'
 
-      - name: Install dependencies
-        run: nix develop -c pnpm install --frozen-lockfile
-
-      - name: Build CSS
-        run: nix develop -c pnpm build
-
       - name: Build site
         env:
           KILN_BASE_URL: ${{ inputs.base-url }}

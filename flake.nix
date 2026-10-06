@@ -2,7 +2,7 @@
 # hakula.xyz-kiln Site Development Flake
 # ==============================================================================
 #
-# Provides Tailwind toolchain, kiln, pagefind, and pre-commit hooks. `kiln`
+# Provides kiln with its CSS compiler, pagefind, and pre-commit hooks. `kiln`
 # (source-built) and `pagefind` (1.5+ prebuilt) come from kiln's flake.
 #
 #   nix develop        # interactive shell (auto-installs hooks)
@@ -23,7 +23,7 @@
 
     # kiln + pagefind (the kiln flake exposes both as `packages.${system}.*`).
     kiln = {
-      url = "github:hakula139/kiln/e139ce0c6441533278484f06c19916737a02fe74";
+      url = "github:hakula139/kiln/c020624c898fcc5318173b54e53cde77bf7cb097";
       inputs.flake-utils.follows = "flake-utils";
     };
 
@@ -100,7 +100,7 @@
               enable = true;
               name = "prettier";
               entry = nodeHook "prettier-write" "prettier --write --ignore-unknown";
-              files = "\\.(css|js|json)$";
+              files = "\\.(css|js|mjs|json)$";
               pass_filenames = true;
             };
 
@@ -108,7 +108,7 @@
               enable = true;
               name = "eslint";
               entry = nodeHook "eslint" "eslint --fix";
-              files = "\\.js$";
+              files = "\\.(js|mjs)$";
               pass_filenames = true;
             };
 

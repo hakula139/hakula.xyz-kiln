@@ -49,18 +49,6 @@ jobs:
       - name: Install dependencies
         run: nix develop -c pnpm install --frozen-lockfile
 
-      - name: Build CSS
-        run: nix develop -c pnpm build
-
-      - name: Verify generated CSS is committed
-        run: |
-          git diff --exit-code
-          untracked_files=$(git ls-files --others --exclude-standard)
-          if [ -n "$untracked_files" ]; then
-            printf '%s\n' "$untracked_files"
-            exit 1
-          fi
-
       - name: Format
         run: nix develop -c pnpm format
 

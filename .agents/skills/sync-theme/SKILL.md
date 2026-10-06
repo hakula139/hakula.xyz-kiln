@@ -1,6 +1,6 @@
 ---
 name: sync-theme
-description: Update the IgnIt theme submodule and rebuild site assets. Use after pushing changes to the IgnIt repo (CSS, JS, templates) to propagate them into hakula.xyz-kiln.
+description: Update the IgnIt theme submodule and verify the site build. Use after pushing changes to the IgnIt repo (CSS, JS, templates) to propagate them into hakula.xyz-kiln.
 ---
 
 # Sync Theme
@@ -13,20 +13,20 @@ description: Update the IgnIt theme submodule and rebuild site assets. Use after
    git -C themes/IgnIt pull
    ```
 
-2. **Rebuild site CSS / JS** (theme changes may affect compiled output):
+2. **Build the site**, including CSS compilation:
 
    ```bash
-   pnpm build
+   kiln build
    ```
 
-3. **Stage and commit** the submodule pointer and rebuilt CSS:
+3. **Stage and commit** the submodule pointer:
 
    ```bash
-   git add themes/IgnIt static/css/style.css
+   git add themes/IgnIt
    git commit -m "chore(theme): bump IgnIt to <short-sha>"
    ```
 
-   Theme JS changes are captured by the submodule pointer alone, because kiln's `copy_static` ships `themes/IgnIt/static/js/` directly and the site has no JS artifact to rebuild.
+   Generated CSS stays in the ignored build output. Theme JavaScript ships directly from `themes/IgnIt/static/js/`.
 
 4. **Push**:
 
@@ -41,6 +41,6 @@ description: Update the IgnIt theme submodule and rebuild site assets. Use after
 
 ## Common Mistakes
 
-- Forgetting `pnpm build` after a submodule update, which leaves the compiled CSS in `static/` stale
-- Committing only the submodule pointer without the rebuilt `static/css/style.css`
+- Skipping the site build after a submodule update
+- Staging generated build output
 - Not checking that the submodule is on the correct branch before pulling

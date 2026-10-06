@@ -15,11 +15,11 @@ This is the [kiln](https://github.com/hakula139/kiln) source for [hakula.xyz](ht
 
 A file under `templates/` shadows the same-path file in `themes/IgnIt/templates/`. A site-only directive at `templates/directives/<name>.html` is picked up by kiln's directive renderer with no further wiring, and an icon at `templates/_partials/icons/<slug>.svg` shadows the theme's bundle for that slug or adds a new one.
 
-Names beginning with `_` are private build inputs, which kiln's `copy_static` skips.
+Names beginning with `_` are private content and bundle inputs. `static/` is copied verbatim.
 
 ## Two things that bite
 
-**Run `pnpm build` after editing CSS.** The shared source is `static/css/_src/style.css`, and its output is `static/css/style.generated.css`. `pnpm build` uses IgnIt's CSS compiler to discover page sources at `content/**/assets/css/_src/style.css` and compile each to its CSS root's `style.generated.css`. The compiler supplies the shared theme context to page sources. Commit all generated outputs. CI requires a clean working tree after the build, including untracked outputs.
+**Keep CSS with its owner.** Shared sources live in `_assets/css/`, and page sources live in `content/<page>/_assets/css/`. kiln compiles each `style.css` entry during build and serve, supplies the shared Tailwind context to page styles, and writes generated files only to the build output. Preserve handwritten source comments.
 
 **Install Git LFS before cloning.** Image binaries (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are stored via LFS per `.gitattributes`, and without `git lfs install` you get pointer files where the images should be.
 
@@ -28,8 +28,8 @@ Names beginning with `_` are private build inputs, which kiln's `copy_static` sk
 ```bash
 kiln build                   # build to public/
 kiln serve --open            # dev server with live reload
-pnpm build                   # compile shared and discovered page CSS
-pnpm dev                     # watch CSS sources and their dependencies
+pnpm build                   # alias for kiln build
+pnpm dev                     # alias for kiln serve
 nix develop                  # dev shell, installs the pre-commit hook
 nix flake check              # Nix-side hooks, also gated in CI
 ```
@@ -42,7 +42,7 @@ Node-side pre-commit hooks no-op when `node_modules/` is absent, which is the ca
 
 Cloudflare Workers with a Static Assets binding. Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz), and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz) through Wrangler's `dev` environment. `wrangler.toml` pins the worker name, custom domains, and `not_found_handling`. The legacy Hugo site is served by the Pages project at [old.hakula.xyz](https://old.hakula.xyz).
 
-`.github/workflows/build.yml` is a reusable `workflow_call` that enters the dev shell and runs `pnpm build` then `kiln build --minify`. Both `ci.yml` and `deploy.yml` call into it, so the build path is single-sourced. Development builds set `KILN_BASE_URL=https://dev.hakula.xyz`. Development and PR preview hosts send `X-Robots-Tag: noindex`. For a manual deploy, run `deploy.yml` on `main` or `dev` to select the matching build origin and Worker. CI needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets.
+`.github/workflows/build.yml` is a reusable `workflow_call` that enters the dev shell and runs `kiln build --minify`, including CSS compilation. Both `ci.yml` and `deploy.yml` call into it, so the build path is single-sourced. Development builds set `KILN_BASE_URL=https://dev.hakula.xyz`. Development and PR preview hosts send `X-Robots-Tag: noindex`. For a manual deploy, run `deploy.yml` on `main` or `dev` to select the matching build origin and Worker. CI needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets.
 
 ## Conventions
 

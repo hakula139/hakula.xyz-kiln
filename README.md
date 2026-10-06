@@ -14,7 +14,7 @@ git clone --recurse-submodules https://github.com/hakula139/hakula.xyz-kiln.git
 cd hakula.xyz-kiln
 ```
 
-[Nix](https://nixos.org/download/) (with flakes) is the recommended path. `nix develop` enters a shell with kiln, pagefind, Node, and pnpm preinstalled, all pulled from the [`hakula` cachix cache](https://app.cachix.org/cache/hakula). Without Nix, install [kiln](https://github.com/hakula139/kiln#installation) (Rust 1.85+) and [pagefind](https://pagefind.app/docs/installation/) yourself.
+[Nix](https://nixos.org/download/) (with flakes) is the recommended path. `nix develop` supplies kiln, its CSS processor, Pagefind, and the Node tools for linting and deployment. Packages are pulled from the [`hakula` cachix cache](https://app.cachix.org/cache/hakula). Without Nix, follow [kiln's installation instructions](https://github.com/hakula139/kiln#installation), set up its [CSS processor](https://github.com/hakula139/kiln#stylesheets), and install [Pagefind](https://pagefind.app/docs/installation/).
 
 ## Usage
 
@@ -44,24 +44,22 @@ CI deploys require two repository secrets:
 
 ```text
 .
-├── config.toml                   # Site configuration
-├── content/                      # Markdown content (posts, standalone pages)
-├── static/                       # Shipped assets
-│   ├── css/
-│   │   ├── _src/                 # Tailwind sources (private, skipped by kiln)
-│   │   └── style.generated.css   # Compiled shared output
-│   ├── js/                       # JS sources, shipped as-is
+├── _assets/css/              # Private shared CSS sources
+├── config.toml               # Site configuration
+├── content/                  # Markdown content and page-owned assets
+├── static/                   # Files copied verbatim
+│   ├── js/                   # JS sources, shipped as-is
 │   └── images/
-│       ├── article-covers/       # Featured images for posts (WebP)
-│       ├── hotlink-ok/           # Avatar images (publicly linkable)
-│       └── bg.webp               # Background image (4K)
-├── templates/                    # Site-level template overrides
-├── themes/                       # Themes (git submodules)
-│   └── IgnIt/                    # Active theme
-└── public/                       # Build output
+│       ├── article-covers/   # Featured images for posts (WebP)
+│       ├── hotlink-ok/       # Avatar images (publicly linkable)
+│       └── bg.webp           # Background image (4K)
+├── templates/                # Site-level template overrides
+├── themes/                   # Themes (git submodules)
+│   └── IgnIt/                # Active theme
+└── public/                   # Build output
 ```
 
-Page CSS sources live at `content/<page>/assets/css/_src/style.css`. `pnpm build` compiles both the shared entry and all page entries, and `pnpm dev` watches their sources and imports. Generated `style.generated.css` files are committed and excluded from formatting. kiln keeps `_src` private and loads each page stylesheet only on its page.
+Each CSS owner uses `_assets/css/style.css`: the site, its theme, or a page bundle. `kiln build` compiles these sources into `public/`, and `kiln serve` rebuilds them as sources change. Page styles load only on their owning page. Generated CSS is never committed. `pnpm build` and `pnpm dev` alias those kiln commands.
 
 ## License
 
