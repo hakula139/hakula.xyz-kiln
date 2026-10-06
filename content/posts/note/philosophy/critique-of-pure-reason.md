@@ -9,7 +9,7 @@ tags = [
 license = "CC BY-NC-SA 4.0"
 
 [featured_image]
-src = "/images/article-covers/critique-of-pure-reason.webp"
+src = "/assets/images/article-covers/critique-of-pure-reason.webp"
 +++
 
 <!--more-->

@@ -15,19 +15,15 @@
   # Inputs
   # ----------------------------------------------------------------------------
   inputs = {
-    # Nixpkgs - NixOS 26.05 stable release
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
-    # Per-system flake outputs
     flake-utils.url = "github:numtide/flake-utils";
 
-    # kiln + pagefind (the kiln flake exposes both as `packages.${system}.*`).
     kiln = {
-      url = "github:hakula139/kiln/cbe76d4cee2b0f4c16dc2c2c10034dff6f0f1829";
+      url = "github:hakula139/kiln/95536cc05074308039adc7bb46b6bf149a125991";
       inputs.flake-utils.follows = "flake-utils";
     };
 
-    # Pre-commit hooks
     git-hooks-nix.url = "github:cachix/git-hooks.nix";
   };
 
@@ -51,10 +47,8 @@
         # ----------------------------------------------------------------------
         # Node Hook Wrapper
         # ----------------------------------------------------------------------
-        # `pnpm exec` needs node + pnpm on PATH and the project's
-        # `node_modules` materialised. The Nix sandbox lacks the latter, so
-        # `nix flake check` skips these hooks, and CI runs the equivalent
-        # checks via direct `pnpm` scripts.
+        # Node hooks need the local dependencies, which the Nix sandbox excludes.
+        # CI runs the equivalent checks directly with pnpm.
         nodeHook =
           name: cmd:
           let
@@ -77,9 +71,6 @@
         # ----------------------------------------------------------------------
         # Pre-commit Hooks
         # ----------------------------------------------------------------------
-        # Single source of truth for commit-time checks. Node-side tools run
-        # via `pnpm exec` so prettier picks up `prettier-plugin-tailwindcss`
-        # and cspell finds the project's `node_modules/@cspell/dict-*`.
         preCommitCheck = git-hooks-nix.lib.${system}.run {
           src = ./.;
           hooks = {
@@ -147,9 +138,6 @@
               pnpm
             ]);
 
-          # `pre-commit install` writes `.git/hooks/pre-commit` so direnv
-          # users get the hook automatically. It backs up any prior hook
-          # (e.g., from `git lfs install`) to `*.legacy` and chains it.
           inherit (preCommitCheck) shellHook;
         };
 

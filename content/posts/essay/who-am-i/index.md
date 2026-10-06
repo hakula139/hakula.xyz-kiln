@@ -12,7 +12,7 @@ tags = [
 license = "禁止转载"
 
 [featured_image]
-src = "/images/article-covers/123273147_p0.webp"
+src = "/assets/images/article-covers/123273147_p0.webp"
 position = "top"
 
 [featured_image.credit]

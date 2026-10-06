@@ -10,7 +10,7 @@ license = "CC BY-NC-SA 4.0"
 weight = 2
 
 [featured_image]
-src = "/images/article-covers/yuki.webp"
+src = "/assets/images/article-covers/yuki.webp"
 +++
 
 个人推过的 AVG 评测数据。

@@ -5,7 +5,7 @@ tags = ["LR2"]
 license = "CC BY-NC-SA 4.0"
 
 [featured_image]
-src = "/images/article-covers/75778049_p0.webp"
+src = "/assets/images/article-covers/75778049_p0.webp"
 position = "50% 25%"
 
 [featured_image.credit]

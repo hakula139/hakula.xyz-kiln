@@ -12,7 +12,7 @@ license = "CC BY-NC-SA 4.0"
 heading_numbering = true
 
 [featured_image]
-src = "/images/article-covers/swan-song.webp"
+src = "/assets/images/article-covers/swan-song.webp"
 +++
 
 <!--more-->

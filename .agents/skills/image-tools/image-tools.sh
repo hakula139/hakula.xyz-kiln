@@ -17,7 +17,7 @@ set -euo pipefail
 # Configuration
 # ------------------------------------------------------------------------------
 
-readonly COVERS_DIR="static/images/article-covers"
+readonly COVERS_DIR="assets/images/article-covers"
 readonly DEFAULT_MAX_WIDTH=1920
 readonly DEFAULT_QUALITY=85
 
@@ -151,15 +151,15 @@ Commands:
   batch       <INPUT_DIR> [OUTPUT_DIR] [MAX_WIDTH] [QUALITY]
 
 Defaults:
-  OUTPUT_DIR   static/images/article-covers
+  OUTPUT_DIR   assets/images/article-covers
   MAX_WIDTH    1920   (no upscaling; images narrower than this are unchanged)
   QUALITY      85     (WebP quality 0-100)
 
 Examples:
   image-tools.sh download 94175799
   image-tools.sh compress ~/Pictures/cover.png
-  image-tools.sh compress ~/Pictures/bg.png static/images 3840 90
-  image-tools.sh info static/images/article-covers
+  image-tools.sh compress ~/Pictures/bg.png assets/images 3840 90
+  image-tools.sh info assets/images/article-covers
   image-tools.sh batch /tmp/pixiv-originals
 
 Prerequisites:

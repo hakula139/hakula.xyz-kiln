@@ -15,38 +15,29 @@ This is the [kiln](https://github.com/hakula139/kiln) source for [hakula.xyz](ht
 
 A file under `templates/` shadows the same-path file in `themes/IgnIt/templates/`. A site-only directive at `templates/directives/<name>.html` is picked up by kiln's directive renderer with no further wiring, and an icon at `templates/_partials/icons/<slug>.svg` shadows the theme's bundle for that slug or adds a new one.
 
-Names beginning with `_` are private content and bundle inputs. `static/` is copied verbatim.
+Asset publication and CSS contracts are documented in [kiln's assets guide](https://github.com/hakula139/kiln/blob/main/docs/assets.md).
 
-## Two things that bite
+## Source constraints
 
-**Keep CSS with its owner.** Shared sources live in `_assets/css/`, and page sources live in `content/<page>/_assets/css/`. kiln compiles each `style.css` entry during build and serve, supplies the shared Tailwind context to page styles, and writes generated files only to the build output. Preserve handwritten source comments.
+**Preserve handwritten CSS comments.**
 
 **Install Git LFS before cloning.** Image binaries (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are stored via LFS per `.gitattributes`, and without `git lfs install` you get pointer files where the images should be.
 
 ## Build
 
-```bash
-kiln build                   # build to public/
-kiln serve --open            # dev server with live reload
-pnpm build                   # alias for kiln build
-pnpm dev                     # alias for kiln serve
-nix develop                  # dev shell, installs the pre-commit hook
-nix flake check              # Nix-side hooks, also gated in CI
-```
-
-`direnv` activates the dev shell via `.envrc`. kiln and pagefind come prebuilt from the `hakula` cachix substituter, so first entry does not compile kiln from source. Minification happens at deploy time through `kiln build --minify`, leaving shipped files readable during development.
+Use the commands in [README.md](README.md#usage) for site builds and previews. `nix flake check` runs the Nix-side hooks.
 
 Node-side pre-commit hooks no-op when `node_modules/` is absent, which is the case inside the Nix sandbox. CI's `check` job runs the equivalent `pnpm` commands directly, so coverage is preserved and a green `nix flake check` does not mean the Node hooks ran.
 
 ## Deploy
 
-Cloudflare Workers with a Static Assets binding. Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz), and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz) through Wrangler's `dev` environment. `wrangler.toml` pins the worker name, custom domains, and `not_found_handling`. The legacy Hugo site is served by the Pages project at [old.hakula.xyz](https://old.hakula.xyz).
+Deployment commands and branch behavior are documented in [README.md](README.md#deploy).
 
-`.github/workflows/build.yml` is a reusable `workflow_call` that enters the dev shell and runs `kiln build --minify`, including CSS compilation. Both `ci.yml` and `deploy.yml` call into it, so the build path is single-sourced. Development builds set `KILN_BASE_URL=https://dev.hakula.xyz`. Development and PR preview hosts send `X-Robots-Tag: noindex`. For a manual deploy, run `deploy.yml` on `main` or `dev` to select the matching build origin and Worker. CI needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets.
+`.github/workflows/build.yml` is a reusable `workflow_call` that enters the dev shell and runs `kiln build --minify`, including CSS compilation. Both `ci.yml` and `deploy.yml` call into it, so the build path is single-sourced.
 
 ## Conventions
 
-- Article covers go in `static/images/article-covers/`. Co-located assets such as diagrams and data files sit alongside `index.md` in the page bundle.
+- Article covers go in `assets/images/article-covers/`. Co-located assets such as diagrams and data files sit alongside `index.md` in the page bundle.
 - Commit scope is the topic area: a content file name without its extension, or `config`, or `template`.
 - Assign pull requests to `hakula139`.
 - Add spell-check words to `.cspell/words.txt`, one per line, sorted alphabetically.

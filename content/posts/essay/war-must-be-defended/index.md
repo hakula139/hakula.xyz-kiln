@@ -5,7 +5,7 @@ tags = ["意识形态批判"]
 license = "CC BY-NC-SA 4.0"
 
 [featured_image]
-src = "/images/article-covers/104923272_p0.webp"
+src = "/assets/images/article-covers/104923272_p0.webp"
 
 [featured_image.credit]
 title = "PAPERCUT 4.0"

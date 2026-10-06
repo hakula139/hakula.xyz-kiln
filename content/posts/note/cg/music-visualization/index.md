@@ -11,7 +11,7 @@ license = "CC BY-NC-SA 4.0"
 heading_numbering = true
 
 [featured_image]
-src = "/images/article-covers/82818849_p0.webp"
+src = "/assets/images/article-covers/82818849_p0.webp"
 
 [featured_image.credit]
 title = "届け！僕らの願い事"

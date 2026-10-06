@@ -4,7 +4,7 @@ date = 2018-11-15T18:46:00+08:00
 weight = -4
 
 [featured_image]
-src = "/images/article-covers/95120332_p1.webp"
+src = "/assets/images/article-covers/95120332_p1.webp"
 
 [featured_image.credit]
 title = "私だけの舞台"
@@ -45,7 +45,7 @@ url = "https://www.pixiv.net/artworks/95120332"
 - **名称：** HAKULA†CHANNEL
 - **描述：** 让我们一直谈论变革，以确保事实上什么都没改变。
 - **链接：** <https://hakula.xyz>
-- **图标：** <https://hakula.xyz/images/hotlink-ok/avatar-lite.webp>
+- **图标：** <https://hakula.xyz/assets/images/hotlink-ok/avatar-lite.webp>
 
 :::
 

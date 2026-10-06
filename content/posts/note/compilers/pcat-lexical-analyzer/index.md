@@ -12,7 +12,7 @@ license = "CC BY-NC-SA 4.0"
 heading_numbering = true
 
 [featured_image]
-src = "/images/article-covers/88865174_p0.webp"
+src = "/assets/images/article-covers/88865174_p0.webp"
 
 [featured_image.credit]
 title = "季節を抱きしめて"

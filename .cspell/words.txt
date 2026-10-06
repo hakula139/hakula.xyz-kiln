@@ -134,6 +134,7 @@ Vivado
 vndb
 vsync
 vtuber
+waivable
 Wakaba
 webp
 WMIX

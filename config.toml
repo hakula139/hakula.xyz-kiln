@@ -20,7 +20,7 @@ fontawesome = true
 table_nowrap_width = 30
 
 [params.background]
-image = "/images/bg.webp"
+image = "/assets/images/bg.webp"
 lqip_uri = "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAgABIByJYwAAjuRI6+m6AAA/vGdTVlvPFRSsRiSc/Pgld5k7oUI2bfXkLCKpotCEX2jctQ+PaCoAAA="
 position = "70% 50%"
 
@@ -41,7 +41,7 @@ license_url = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 paginate = 8
 
 [params.home.profile]
-avatar = "/images/hotlink-ok/avatar-lite.webp"
+avatar = "/assets/images/hotlink-ok/avatar-lite.webp"
 title = "HAKULA†CHANNEL"
 subtitle = "让我们一直谈论变革，\n以确保事实上什么都没改变。"
 
@@ -121,7 +121,7 @@ external = true
 
 [[menu.social]]
 name = "menu_social_qq"
-url = "/images/social/qq.webp"
+url = "/assets/images/social/qq.webp"
 icon = "svg:qq"
 weight = 1
 external = true

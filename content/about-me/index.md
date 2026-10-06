@@ -4,7 +4,7 @@ date = 2019-04-16T00:05:00+08:00
 weight = -1
 
 [featured_image]
-src = "/images/article-covers/64035231_p0.webp"
+src = "/assets/images/article-covers/64035231_p0.webp"
 position = "top"
 
 [featured_image.credit]

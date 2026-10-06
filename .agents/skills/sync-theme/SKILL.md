@@ -26,8 +26,6 @@ description: Update the IgnIt theme submodule and verify the site build. Use aft
    git commit -m "chore(theme): bump IgnIt to <short-sha>"
    ```
 
-   Generated CSS stays in the ignored build output. Theme JavaScript ships directly from `themes/IgnIt/static/js/`.
-
 4. **Push**:
 
    ```bash

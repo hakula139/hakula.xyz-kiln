@@ -10,7 +10,7 @@ tags = [
 license = "CC BY-NC-SA 4.0"
 
 [featured_image]
-src = "/images/article-covers/ave-mujica.webp"
+src = "/assets/images/article-covers/ave-mujica.webp"
 +++
 
 <!--more-->
