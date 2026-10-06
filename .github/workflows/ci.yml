@@ -52,8 +52,14 @@ jobs:
       - name: Build CSS
         run: nix develop -c pnpm build
 
-      - name: Verify compiled CSS is up to date
-        run: git diff --exit-code static/
+      - name: Verify generated CSS is committed
+        run: |
+          git diff --exit-code
+          untracked_files=$(git ls-files --others --exclude-standard)
+          if [ -n "$untracked_files" ]; then
+            printf '%s\n' "$untracked_files"
+            exit 1
+          fi
 
       - name: Format
         run: nix develop -c pnpm format

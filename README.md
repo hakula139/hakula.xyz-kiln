@@ -44,22 +44,24 @@ CI deploys require two repository secrets:
 
 ```text
 .
-├── config.toml               # Site configuration
-├── content/                  # Markdown content (posts, standalone pages)
-├── static/                   # Shipped assets
+├── config.toml                   # Site configuration
+├── content/                      # Markdown content (posts, standalone pages)
+├── static/                       # Shipped assets
 │   ├── css/
-│   │   ├── _src/             # Tailwind sources (private, skipped by kiln)
-│   │   └── style.css         # Compiled Tailwind output
-│   ├── js/                   # JS sources, shipped as-is
+│   │   ├── _src/                 # Tailwind sources (private, skipped by kiln)
+│   │   └── style.generated.css   # Compiled shared output
+│   ├── js/                       # JS sources, shipped as-is
 │   └── images/
-│       ├── article-covers/   # Featured images for posts (WebP)
-│       ├── hotlink-ok/       # Avatar images (publicly linkable)
-│       └── bg.webp           # Background image (4K)
-├── templates/                # Site-level template overrides
-├── themes/                   # Themes (git submodules)
-│   └── IgnIt/                # Active theme
-└── public/                   # Build output
+│       ├── article-covers/       # Featured images for posts (WebP)
+│       ├── hotlink-ok/           # Avatar images (publicly linkable)
+│       └── bg.webp               # Background image (4K)
+├── templates/                    # Site-level template overrides
+├── themes/                       # Themes (git submodules)
+│   └── IgnIt/                    # Active theme
+└── public/                       # Build output
 ```
+
+Page CSS sources live at `content/<page>/assets/css/_src/style.css`. `pnpm build` compiles both the shared entry and all page entries, and `pnpm dev` watches their sources and imports. Generated `style.generated.css` files are committed and excluded from formatting. kiln keeps `_src` private and loads each page stylesheet only on its page.
 
 ## License
 

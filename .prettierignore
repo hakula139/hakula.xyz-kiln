@@ -1,4 +1,4 @@
 pnpm-lock.yaml
-static/css/style.css
+**/*.generated.css
 templates/
 themes/

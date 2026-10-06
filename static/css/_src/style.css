@@ -1,5 +1,5 @@
 /* Theme source: tokens, base, and all theme components */
-@import '../../../themes/IgnIt/static/css/_src/main.css';
+@import '../../../themes/IgnIt/static/css/_src/style.css';
 
 @source '../../../templates/**/*.html';
 

@@ -19,7 +19,7 @@ Names beginning with `_` are private build inputs, which kiln's `copy_static` sk
 
 ## Two things that bite
 
-**Run `pnpm build` after editing CSS.** Tailwind sources live in `static/css/_src/`, and the compiled `static/css/style.css` is committed. The sync gate is `git diff --exit-code static/` in CI's `check` job only, so a stale `style.css` commits cleanly on your machine and fails at PR time.
+**Run `pnpm build` after editing CSS.** The shared source is `static/css/_src/style.css`, and its output is `static/css/style.generated.css`. `pnpm build` uses IgnIt's CSS compiler to discover page sources at `content/**/assets/css/_src/style.css` and compile each to its CSS root's `style.generated.css`. The compiler supplies the shared theme context to page sources. Commit all generated outputs. CI requires a clean working tree after the build, including untracked outputs.
 
 **Install Git LFS before cloning.** Image binaries (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are stored via LFS per `.gitattributes`, and without `git lfs install` you get pointer files where the images should be.
 
@@ -28,8 +28,8 @@ Names beginning with `_` are private build inputs, which kiln's `copy_static` sk
 ```bash
 kiln build                   # build to public/
 kiln serve --open            # dev server with live reload
-pnpm build                   # compile static/css/style.css
-pnpm dev                     # Tailwind watch
+pnpm build                   # compile shared and discovered page CSS
+pnpm dev                     # watch CSS sources and their dependencies
 nix develop                  # dev shell, installs the pre-commit hook
 nix flake check              # Nix-side hooks, also gated in CI
 ```
