@@ -15,16 +15,16 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 ## :briefcase: 工作经历
 
-| 公司 / 部门                                | 岗位             | Base |              时间 |
-| :----------------------------------------- | :--------------- | :--- | ----------------: |
-| [佳期投资][jq] / Tech                      | Core Engineer    | 上海 |    2024-05 ~ 至今 |
-| 腾讯 / IEG / 天美 T1 / [元梦之星][ymzx]    | 后台开发         | 上海 | 2023-07 ~ 2024-05 |
-| 腾讯 / IEG / 天美 T1 / [刺客信条][ac-jade] | 后台开发         | 上海 | 2021-07 ~ 2023-07 |
-| 字节跳动 / 飞书 / RTC                      | 后台开发（实习） | 上海 | 2021-03 ~ 2021-06 |
+| 公司 / 部门                       | 岗位             | Base |              时间 |
+| :-------------------------------- | :--------------- | :--- | ----------------: |
+| [佳期投资] / Tech                 | Core Engineer    | 上海 |    2024-05 ~ 至今 |
+| 腾讯 / IEG / 天美 T1 / [元梦之星] | 后台开发         | 上海 | 2023-07 ~ 2024-05 |
+| 腾讯 / IEG / 天美 T1 / [刺客信条] | 后台开发         | 上海 | 2021-07 ~ 2023-07 |
+| 字节跳动 / 飞书 / RTC             | 后台开发（实习） | 上海 | 2021-03 ~ 2021-06 |
 
-[jq]: https://www.jqinvestments.com
-[ymzx]: https://ymzx.qq.com
-[ac-jade]: https://www.assassinscreedjade.com
+[佳期投资]: https://www.jqinvestments.com
+[元梦之星]: https://ymzx.qq.com
+[刺客信条]: https://www.assassinscreedjade.com
 
 ## :mortar_board: 教育经历
 
