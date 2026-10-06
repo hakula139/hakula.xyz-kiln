@@ -19,7 +19,7 @@ Names beginning with `_` are private build inputs, which kiln's `copy_static` sk
 
 ## Two things that bite
 
-**Run `pnpm build` after editing CSS.** Tailwind sources live in `static/css/_src/`, with page entries under `pages/` using `@reference '../main.css'`. The build compiles the global stylesheet and page stylesheets to their committed output paths in `package.json`. CI's `check` job checks all compiled outputs for drift, so stale CSS fails at PR time. Add a `build:css:` script and extend that check when adding a page entry. `pnpm dev` watches all entries.
+**Run `pnpm build` after editing CSS.** Tailwind sources live in `static/css/_src/`, with page entries under `pages/` using `@reference '../main.css'`. The build compiles the global stylesheet and page stylesheets to their committed output paths in `package.json`. CI's `check` job runs `git diff --exit-code` after the build to detect drift in tracked files, so stale CSS fails at PR time. Add a `build:css:` script when adding a page entry. `pnpm dev` watches all entries.
 
 **Install Git LFS before cloning.** Image binaries (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are stored via LFS per `.gitattributes`, and without `git lfs install` you get pointer files where the images should be.
 
