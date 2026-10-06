@@ -19,8 +19,6 @@ Asset publication and CSS contracts are documented in [kiln's assets guide](http
 
 ## Source constraints
 
-**Preserve handwritten CSS comments.**
-
 **Install Git LFS before cloning.** Image binaries (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are stored via LFS per `.gitattributes`, and without `git lfs install` you get pointer files where the images should be.
 
 ## Build
