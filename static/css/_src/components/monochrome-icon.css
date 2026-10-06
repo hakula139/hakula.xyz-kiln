@@ -1,9 +1,0 @@
-@layer components {
-  .monochrome-icon {
-    @media not print {
-      @variant dark {
-        @apply invert;
-      }
-    }
-  }
-}

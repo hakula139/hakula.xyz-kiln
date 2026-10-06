@@ -53,7 +53,7 @@ jobs:
         run: nix develop -c pnpm build
 
       - name: Verify compiled CSS is up to date
-        run: git diff --exit-code static/
+        run: git diff --exit-code static/ content/about-me/assets/style.css content/posts/avg/impressions/style.css
 
       - name: Format
         run: nix develop -c pnpm format

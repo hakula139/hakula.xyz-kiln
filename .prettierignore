@@ -1,4 +1,6 @@
 pnpm-lock.yaml
 static/css/style.css
+content/about-me/assets/style.css
+content/posts/avg/impressions/style.css
 templates/
 themes/

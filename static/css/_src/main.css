@@ -2,9 +2,8 @@
 @import '../../../themes/IgnIt/static/css/_src/main.css';
 
 @source '../../../templates/**/*.html';
+@source '../../../content/**/*.md';
 
 /* Site-specific components */
 @import './components/callout.css';
-@import './components/monochrome-icon.css';
 @import './components/score-table.css';
-@import './components/tech-icons.css';

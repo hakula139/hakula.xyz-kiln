@@ -1,3 +1,5 @@
+@reference '../main.css';
+
 @layer components {
   .prose p:has(> a > .tech-icon) {
     @apply flex flex-wrap items-center gap-3;
@@ -8,6 +10,14 @@
 
     .tech-icon {
       @apply my-0;
+    }
+  }
+
+  .monochrome-icon {
+    @media not print {
+      @variant dark {
+        @apply invert;
+      }
     }
   }
 }

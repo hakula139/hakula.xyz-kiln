@@ -1,8 +1,11 @@
 {
   "private": true,
   "scripts": {
-    "build": "tailwindcss -i static/css/_src/main.css -o static/css/style.css",
-    "dev": "tailwindcss -i static/css/_src/main.css -o static/css/style.css --watch",
+    "build": "pnpm run --parallel \"/^build:css:/\"",
+    "build:css:site": "tailwindcss -i static/css/_src/main.css -o static/css/style.css",
+    "build:css:about-me": "tailwindcss -i static/css/_src/pages/about-me.css -o content/about-me/assets/style.css",
+    "build:css:avg-impressions": "tailwindcss -i static/css/_src/pages/avg-impressions.css -o content/posts/avg/impressions/style.css",
+    "dev": "pnpm run --parallel \"/^build:css:/\" --watch",
     "format": "prettier --check .",
     "lint": "pnpm lint:md && pnpm lint:js",
     "lint:js": "eslint .",
