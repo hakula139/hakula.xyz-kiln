@@ -3603,7 +3603,7 @@ pre.mermaid {
   .score-table .ext-score-approx {
     color: var(--color-text-secondary);
   }
-  .prose p:has(> a > .technology-icon) {
+  .prose p:has(> a > .tech-icon) {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -3611,7 +3611,7 @@ pre.mermaid {
     > a {
       display: inline-flex;
     }
-    .technology-icon {
+    .tech-icon {
       margin-block: 0px;
     }
   }

@@ -1,12 +1,12 @@
 @layer components {
-  .prose p:has(> a > .technology-icon) {
+  .prose p:has(> a > .tech-icon) {
     @apply flex flex-wrap items-center gap-3;
 
     > a {
       @apply inline-flex;
     }
 
-    .technology-icon {
+    .tech-icon {
       @apply my-0;
     }
   }
