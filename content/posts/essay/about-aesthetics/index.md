@@ -5,7 +5,7 @@ tags = ["美学"]
 license = "CC BY-NC-SA 4.0"
 
 [featured_image]
-src = "/images/article-covers/94175799_p0.webp"
+src = "/assets/images/article-covers/94175799_p0.webp"
 
 [featured_image.credit]
 title = "海底の路地"

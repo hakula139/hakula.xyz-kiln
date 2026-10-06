@@ -49,12 +49,6 @@ jobs:
       - name: Install dependencies
         run: nix develop -c pnpm install --frozen-lockfile
 
-      - name: Build CSS
-        run: nix develop -c pnpm build
-
-      - name: Verify compiled CSS is up to date
-        run: git diff --exit-code static/
-
       - name: Format
         run: nix develop -c pnpm format
 

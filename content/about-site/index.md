@@ -4,7 +4,7 @@ date = 2022-10-14T15:30:00+08:00
 weight = -2
 
 [featured_image]
-src = "/images/article-covers/70180757_p0.webp"
+src = "/assets/images/article-covers/70180757_p0.webp"
 
 [featured_image.credit]
 title = "Prism Castle"

@@ -9,7 +9,7 @@ tags = [
 license = "CC BY-NC-SA 4.0"
 
 [featured_image]
-src = "/images/article-covers/ave-mujica.webp"
+src = "/assets/images/article-covers/ave-mujica.webp"
 +++
 
 为什么写作？为什么是「Ave Mujica」？为什么是现在？

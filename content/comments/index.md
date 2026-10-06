@@ -4,7 +4,7 @@ date = 2018-08-27T23:58:00+08:00
 weight = -3
 
 [featured_image]
-src = "/images/article-covers/67767892_p0.webp"
+src = "/assets/images/article-covers/67767892_p0.webp"
 
 [featured_image.credit]
 title = "log3"

@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "build": "tailwindcss -i static/css/_src/main.css -o static/css/style.css",
-    "dev": "tailwindcss -i static/css/_src/main.css -o static/css/style.css --watch",
+    "build": "kiln build",
+    "dev": "kiln serve",
     "format": "prettier --check .",
     "lint": "pnpm lint:md && pnpm lint:js",
     "lint:js": "eslint .",
@@ -16,7 +16,6 @@
     "@cspell/dict-it-it": "^3.1.6",
     "@cspell/dict-la": "^1.1.2",
     "@eslint/js": "^10.0.1",
-    "@tailwindcss/cli": "^4.3.3",
     "@tailwindcss/typography": "^0.5.20",
     "cspell": "^10.3.4",
     "eslint": "^10.11.0",

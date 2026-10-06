@@ -30,19 +30,19 @@ Run commands from the repository root.
    .agents/skills/image-tools/image-tools.sh compress <PIXIV_ID>_p0.png
    ```
 
-   Output goes to `static/images/article-covers/<PIXIV_ID>_p0.webp` by default.
+   Output goes to `assets/images/article-covers/<PIXIV_ID>_p0.webp` by default.
 
 3. Reference in frontmatter:
 
    ```toml
    [featured_image]
-   src = "/images/article-covers/<PIXIV_ID>_p0.webp"
+   src = "/assets/images/article-covers/<PIXIV_ID>_p0.webp"
    ```
 
 ### Upgrading the Background Image
 
 ```bash
-.agents/skills/image-tools/image-tools.sh compress ~/path/to/source.png static/images 3840 90
+.agents/skills/image-tools/image-tools.sh compress ~/path/to/source.png assets/images 3840 90
 ```
 
 This outputs a 4K WebP at quality 90.
@@ -60,7 +60,7 @@ Compress all images in a directory at once:
 Check dimensions and file sizes:
 
 ```bash
-.agents/skills/image-tools/image-tools.sh info static/images/article-covers
+.agents/skills/image-tools/image-tools.sh info assets/images/article-covers
 ```
 
 ## Conventions
@@ -68,4 +68,4 @@ Check dimensions and file sizes:
 - Article covers: 1920px max width, quality 85, WebP format
 - Background image: 3840px (4K), quality 90
 - Filenames: `<PIXIV_ID>_p0` for Pixiv-sourced images, descriptive name for others
-- All images stored under `static/images/`
+- All images stored under `assets/images/`
