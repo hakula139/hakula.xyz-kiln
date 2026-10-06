@@ -15,18 +15,25 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 ## :briefcase: 工作经历
 
-| 公司 / 部门           | 岗位             | Base |              时间 |
-| :-------------------- | :--------------- | :--- | ----------------: |
-| 佳期投资              | Tech             | 上海 |    2024-05 ~ 至今 |
-| 腾讯 / IEG / 天美 T1  | 后台开发         | 上海 | 2021-07 ~ 2024-05 |
-| 字节跳动 / 飞书 / RTC | 后台开发（实习） | 上海 | 2021-03 ~ 2021-06 |
+| 公司 / 部门                       | 岗位             | Base |              时间 |
+| :-------------------------------- | :--------------- | :--- | ----------------: |
+| [佳期投资] / Tech                 | Core Engineer    | 上海 |    2024-05 ~ 至今 |
+| 腾讯 / IEG / 天美 T1 / [元梦之星] | 后台开发         | 上海 | 2023-07 ~ 2024-05 |
+| 腾讯 / IEG / 天美 T1 / [刺客信条] | 后台开发         | 上海 | 2021-07 ~ 2023-07 |
+| 字节跳动 / 飞书 / RTC             | 后台开发（实习） | 上海 | 2021-03 ~ 2021-06 |
+
+[佳期投资]: https://www.jqinvestments.com
+[元梦之星]: https://ymzx.qq.com
+[刺客信条]: https://www.assassinscreedjade.com
 
 ## :mortar_board: 教育经历
 
-| 学校           | 专业 / 班级                  |              时间 |
-| :------------- | :--------------------------- | ----------------: |
-| 复旦大学       | 计算机科学与技术（拔尖计划） | 2018-09 ~ 2022-07 |
-| 华东师大二附中 | 基础科学实验班               | 2015-09 ~ 2018-06 |
+| 学校           | 专业 / 班级                    |              时间 |
+| :------------- | :----------------------------- | ----------------: |
+| 复旦大学       | 计算机科学与技术（[拔尖计划]） | 2018-09 ~ 2022-07 |
+| 华东师大二附中 | 基础科学实验班                 | 2015-09 ~ 2018-06 |
+
+[拔尖计划]: https://cs.fudan.edu.cn/15/97/c24752a267671/page.htm
 
 ## :star2: 历史成绩
 
@@ -39,43 +46,58 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 [![wakatime](https://wakatime.com/badge/user/f4a35a1f-0e29-4093-a647-e66aad164737.svg){height=20}](https://wakatime.com/@f4a35a1f-0e29-4093-a647-e66aad164737)
 
-<!-- Icons downloaded from https://raw.githubusercontent.com/devicons/devicon/master/icons/{name}/{name}-original.svg -->
+<!-- Icons downloaded from https://github.com/devicons/devicon -->
 
 ### 编程语言
 
-[![C++](assets/icons/cplusplus.svg){width=50 height=50}](https://www.cplusplus.com)
-[![Python](assets/icons/python.svg){width=50 height=50}](https://www.python.org)
-[![TypeScript](assets/icons/typescript.svg){width=50 height=50}](https://www.typescriptlang.org)
-[![Rust](assets/icons/rust.svg){width=50 height=50}](https://www.rust-lang.org)
-[![Go](assets/icons/go.svg){width=50 height=50}](https://golang.org)
-[![Java](assets/icons/java.svg){width=50 height=50}](https://www.java.com)
+::: {.tech-icons}
+
+[![C++](assets/icons/cplusplus.svg){.tech-icon width=50 height=50}](https://www.cplusplus.com)
+[![Rust](assets/icons/rust.svg){.tech-icon .monochrome-icon width=50 height=50}](https://www.rust-lang.org)
+[![Python](assets/icons/python.svg){.tech-icon width=50 height=50}](https://www.python.org)
+[![TypeScript](assets/icons/typescript.svg){.tech-icon width=50 height=50}](https://www.typescriptlang.org)
+[![Go](assets/icons/go.svg){.tech-icon width=50 height=50}](https://golang.org)
+
+:::
 
 ### 技术栈
 
-[![Vue](assets/icons/vuejs.svg){width=50 height=50}](https://vuejs.org)
-[![Tailwind CSS](assets/icons/tailwindcss.svg){width=50 height=50}](https://tailwindcss.com)
-[![Node.js](assets/icons/nodejs.svg){width=50 height=50}](https://nodejs.org)
-[![MySQL](assets/icons/mysql.svg){width=50 height=50}](https://www.mysql.com)
-[![DuckDB](assets/icons/duckdb.svg){width=50 height=50}](https://duckdb.org)
-[![MongoDB](assets/icons/mongodb.svg){width=50 height=50}](https://www.mongodb.com)
-[![Redis](assets/icons/redis.svg){width=50 height=50}](https://redis.io)
-[![Docker](assets/icons/docker.svg){width=50 height=50}](https://www.docker.com)
-[![Podman](assets/icons/podman.svg){width=50 height=50}](https://podman.io)
-[![Kubernetes](assets/icons/kubernetes.svg){width=50 height=50}](https://kubernetes.io)
-[![Elasticsearch](assets/icons/elasticsearch.svg){width=50 height=50}](https://www.elastic.co)
-[![Prometheus](assets/icons/prometheus.svg){width=50 height=50}](https://prometheus.io)
-[![Grafana](assets/icons/grafana.svg){width=50 height=50}](https://grafana.com)
-[![PyTorch](assets/icons/pytorch.svg){width=50 height=50}](https://pytorch.org)
-[![Unity](assets/icons/unity.svg){width=50 height=50}](https://unity.com)
+::: {.tech-icons}
+
+[![Vue](assets/icons/vuejs.svg){.tech-icon width=50 height=50}](https://vuejs.org)
+[![Tailwind CSS](assets/icons/tailwindcss.svg){.tech-icon width=50 height=50}](https://tailwindcss.com)
+[![Node.js](assets/icons/nodejs.svg){.tech-icon width=50 height=50}](https://nodejs.org)
+[![MySQL](assets/icons/mysql.svg){.tech-icon width=50 height=50}](https://www.mysql.com)
+[![DuckDB](assets/icons/duckdb.svg){.tech-icon width=50 height=50}](https://duckdb.org)
+[![MongoDB](assets/icons/mongodb.svg){.tech-icon width=50 height=50}](https://www.mongodb.com)
+[![Redis](assets/icons/redis.svg){.tech-icon width=50 height=50}](https://redis.io)
+[![Elasticsearch](assets/icons/elasticsearch.svg){.tech-icon width=50 height=50}](https://www.elastic.co)
+[![CMake](assets/icons/cmake.svg){.tech-icon width=50 height=50}](https://cmake.org)
+[![Docker](assets/icons/docker.svg){.tech-icon width=50 height=50}](https://www.docker.com)
+[![Podman](assets/icons/podman.svg){.tech-icon width=50 height=50}](https://podman.io)
+[![Kubernetes](assets/icons/kubernetes.svg){.tech-icon width=50 height=50}](https://kubernetes.io)
+[![Nginx](assets/icons/nginx.svg){.tech-icon width=50 height=50}](https://nginx.org)
+[![Cloudflare](assets/icons/cloudflare.svg){.tech-icon width=50 height=50}](https://www.cloudflare.com)
+[![GitHub](assets/icons/github.svg){.tech-icon .monochrome-icon width=50 height=50}](https://github.com)
+[![GitLab](assets/icons/gitlab.svg){.tech-icon width=50 height=50}](https://gitlab.com)
+[![Prometheus](assets/icons/prometheus.svg){.tech-icon width=50 height=50}](https://prometheus.io)
+[![Grafana](assets/icons/grafana.svg){.tech-icon width=50 height=50}](https://grafana.com)
+
+:::
 
 ### 开发环境
 
-[![Claude](assets/icons/claude.svg){width=50 height=50}](https://claude.ai)
-[![Cursor](assets/icons/cursor.svg){width=50 height=50}](https://cursor.com)
-[![NixOS](assets/icons/nixos.svg){width=50 height=50}](https://nixos.org)
-[![macOS](assets/icons/apple.svg){width=50 height=50}](https://www.apple.com/macos)
-[![Zsh](assets/icons/zsh.svg){width=50 height=50}](https://zsh.sourceforge.io)
-[![Starship](assets/icons/starship.svg){width=50 height=50}](https://starship.rs)
+::: {.tech-icons}
+
+[![Claude Code](assets/icons/claudecode.svg){.tech-icon width=50 height=50}](https://claude.com/product/claude-code)
+[![Codex](assets/icons/codex.svg){.tech-icon width=50 height=50}](https://openai.com/codex)
+[![Cursor](assets/icons/cursor.svg){.tech-icon width=50 height=50}](https://cursor.com)
+[![Nix / NixOS](assets/icons/nixos.svg){.tech-icon width=50 height=50}](https://nixos.org)
+[![macOS](assets/icons/apple.svg){.tech-icon .monochrome-icon width=50 height=50}](https://www.apple.com/macos)
+[![Zsh](assets/icons/zsh.svg){.tech-icon width=50 height=50}](https://zsh.sourceforge.io)
+[![Starship](assets/icons/starship.svg){.tech-icon width=50 height=50}](https://starship.rs)
+
+:::
 
 ## :desktop_computer: 设备
 
@@ -105,7 +127,7 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 | 游戏名                 | ID                             | 段位 / 实力                                               |              时间 |
 | :--------------------- | :----------------------------- | :-------------------------------------------------------- | ----------------: |
-| [Arcaea][arcaea]       | Hakula (047 570 647)           | ptt: [12.00][arcaea-ptt]                                  | 2024-07 ~ 2025-01 |
+| [Arcaea][arcaea]       | Hakula (047 570 647)           | ptt: [12.065][arcaea-ptt]                                 | 2024-07 ~ 2025-01 |
 | [発狂 BMS][lr2ir]      | [Hakula♪ (122423)][lr2ir-me]   | 准 SP★06 / Walkure: [★13.26][walkure] / [点灯情况][lamps] | 2016-09 ~ 2019-02 |
 | [LLSIF :jp:][llsif]    | はくら (235609666)             | 全曲无判 FC，☆12 平均 P 率 ≈ 95%                          | 2015-11 ~ 2018-01 |
 | [BeatStage][beatstage] | [hakula_1234567][beatstage-me] | 最高 #1                                                   | 2013-08 ~ 2018-08 |
@@ -137,9 +159,9 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 ### 德州扑克
 
-| 游戏名                 | ID     |           时间 |
-| :--------------------- | :----- | -------------: |
-| [PokerFate][pokerfate] | Hakula | 2026-06 ~ 至今 |
+| 游戏名                 | ID                | 筹码                  |              时间 |
+| :--------------------- | :---------------- | :-------------------- | ----------------: |
+| [PokerFate][pokerfate] | Hakula (10410931) | 最高 150M（不氪筹码） | 2026-05 ~ 2026-10 |
 
 [pokerfate]: https://pokerfate.com
 
