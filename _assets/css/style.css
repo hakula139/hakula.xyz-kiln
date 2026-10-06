@@ -1,8 +1,6 @@
 /* Theme source: tokens, base, and all theme components */
 @import '../../themes/IgnIt/_assets/css/style.css';
 
-@source '../../templates/**/*.html';
-
 /* Site-specific components */
 @import './components/callout.css';
 @import './components/score-table.css';
