@@ -7,45 +7,13 @@
 /*
   Cache-Control: public, max-age=300, stale-while-revalidate=3600
 
-# ── Content-stable: images, fonts, icons ──
+# ── Content-addressed assets ──
 
-/*.avif
+/_assets/*
   ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
-/*.webp
-  ! Cache-Control
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.png
-  ! Cache-Control
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.jpg
-  ! Cache-Control
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.gif
-  ! Cache-Control
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.ico
-  ! Cache-Control
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.svg
-  ! Cache-Control
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.woff2
-  ! Cache-Control
-  Cache-Control: public, max-age=31536000, immutable
-
-/manifest.webmanifest
-  ! Cache-Control
-  Cache-Control: public, max-age=31536000, immutable
-
-# ── CSS / JS: short cache for references without fingerprints ──
+# ── CSS / JS ──
 
 /*.css
   ! Cache-Control
