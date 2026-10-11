@@ -23,7 +23,7 @@ url = "https://www.pixiv.net/artworks/61930743"
 
 ![游玩界面](assets/play.webp)
 
-此后我们就进入了 WMIX 的游玩界面。你看到的界面很可能与图中有许多不同，这是因为 WMIX 有很多可以自定义的地方，详见 [WMIX](../wmix) 篇。
+此后我们就进入了 WMIX 的游玩界面。你看到的界面很可能与图中有许多不同，这是因为 WMIX 有很多可以自定义的地方，详见 [WMIX](../wmix/) 篇。
 
 ::: callout {type=warning}
 

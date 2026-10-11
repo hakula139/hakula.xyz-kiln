@@ -153,7 +153,7 @@ url = "https://www.pixiv.net/artworks/70937229"
 - DJMax
 - EZ2DJ / EZ2ON
 
-详见 [注意事项](../notices)。
+详见 [注意事项](../notices/)。
 
 :::
 
