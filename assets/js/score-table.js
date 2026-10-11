@@ -92,7 +92,7 @@
         if (th.classList.contains('col-rownum')) {
           continue;
         }
-        const colType = th.getAttribute('data-col-type') || 'text';
+        const colType = th.getAttribute('data-col-type');
         const compare = COMPARATORS[colType] || numericCmp;
 
         th.querySelector('button').addEventListener('click', () => {

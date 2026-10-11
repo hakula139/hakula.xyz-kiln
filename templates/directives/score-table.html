@@ -70,7 +70,7 @@
   {%- if type == "text" -%}
         <td class="{{ cls }}" title="{{ val }}" data-sort-value="{{ val }}">{{ val }}</td>
   {%- elif type == "score" -%}
-    {%- set color = col_colors[h] | default("128,128,128") -%}
+    {%- set color = col_colors[h] -%}
     {%- set pct = val | float -%}
     {%- if pct > 100 %}{% set pct = 100 %}{% endif -%}
         <td class="{{ cls }}" style="background: linear-gradient(to right, rgba({{ color }}, 0.4) {{ pct }}%, transparent {{ pct }}%)" data-sort-value="{{ val }}">{{ val }}</td>
