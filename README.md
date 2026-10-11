@@ -51,7 +51,7 @@ CI deploys require two repository secrets:
 │       └── bg.webp           # Background image (4K)
 ├── config.toml               # Site configuration
 ├── content/                  # Markdown content and page-owned assets
-├── static/                   # Root-level public files, published under fixed paths
+├── static/                   # Public files with fixed URLs
 │   └── assets/
 │       ├── images/
 │       │   ├── hotlink-ok/   # Avatar images (publicly linkable)
