@@ -746,7 +746,7 @@ The code is intentionally minimal (under 200 lines across all three modules) so 
 
 ## What Comes Next
 
-With an MCP server in place, your agent reads documentation instead of guessing. But the server is one piece of a larger system. [Part 1](part-1.md) covers the full stack — CLAUDE.md for persistent instructions, hooks for enforcement, skills for reusable procedures, plugins for distribution. An MCP server gives the agent _access_ to your docs; a skill tells it _when and how_ to use that access; a hook can _enforce_ that it always checks documentation before answering questions about your API. The layers compose.
+With an MCP server in place, your agent reads documentation instead of guessing. But the server is one piece of a larger system. [Part 1](../part-1/) covers the full stack — CLAUDE.md for persistent instructions, hooks for enforcement, skills for reusable procedures, plugins for distribution. An MCP server gives the agent _access_ to your docs; a skill tells it _when and how_ to use that access; a hook can _enforce_ that it always checks documentation before answering questions about your API. The layers compose.
 
 All the code in this article is self-contained — copy the three modules, change the base URL, adjust the path resolution to match your site structure, publish to your internal registry, and your entire team has structured documentation access in every agent session.
 

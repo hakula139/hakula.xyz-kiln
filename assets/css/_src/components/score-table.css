@@ -7,8 +7,8 @@
 
   table.score-table {
     --st-bg: white;
-    --st-bg-header: theme(colors.gray.200);
-    --st-border: theme(colors.gray.300);
+    --st-bg-header: var(--color-gray-200);
+    --st-border: var(--color-gray-300);
     --st-hover: rgba(0, 0, 0, 0.1);
     --st-age-warning-bg: #fff3a0;
 
@@ -36,20 +36,25 @@
   }
 
   .score-table thead th {
-    @apply sticky top-0 z-2 cursor-pointer border-t font-bold select-none;
+    @apply sticky top-0 z-2 border-t font-bold select-none;
     border-top-color: var(--st-border);
     background: var(--st-bg-header);
   }
 
-  .score-table thead th[data-sort]::after {
+  .score-table thead button {
+    @apply w-full cursor-pointer;
+    text-align: inherit;
+  }
+
+  .score-table thead th[aria-sort] .sort-indicator::after {
     @apply text-[0.6rem];
   }
 
-  .score-table thead th[data-sort='asc']::after {
+  .score-table thead th[aria-sort='ascending'] .sort-indicator::after {
     content: ' \25B2';
   }
 
-  .score-table thead th[data-sort='desc']::after {
+  .score-table thead th[aria-sort='descending'] .sort-indicator::after {
     content: ' \25BC';
   }
 

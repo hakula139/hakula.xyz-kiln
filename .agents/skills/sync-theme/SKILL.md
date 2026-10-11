@@ -7,11 +7,13 @@ description: Update the IgnIt theme submodule and verify the site build. Use aft
 
 ## Steps
 
-1. **Update submodule** to the latest commit on the active branch:
+1. **Update submodule** to the latest commit on IgnIt's default branch:
 
    ```bash
-   git -C themes/IgnIt pull
+   git submodule update --init --remote themes/IgnIt
    ```
+
+   To preview an unmerged IgnIt branch instead, run `git -C themes/IgnIt fetch` and then `git -C themes/IgnIt switch --detach origin/<branch>`.
 
 2. **Build the site**, including CSS compilation:
 
@@ -23,7 +25,7 @@ description: Update the IgnIt theme submodule and verify the site build. Use aft
 
    ```bash
    git add themes/IgnIt
-   git commit -m "chore(theme): bump IgnIt to <short-sha>"
+   git commit -m "<type>(template): <summary of the IgnIt change>"
    ```
 
 4. **Push**:
@@ -35,10 +37,9 @@ description: Update the IgnIt theme submodule and verify the site build. Use aft
 ## When to Use
 
 - After committing and pushing changes in the IgnIt repo
-- After updating the IgnIt submodule branch (e.g., switching from `main` to a feature branch)
+- When previewing an IgnIt feature branch in the site
 
 ## Common Mistakes
 
 - Skipping the site build after a submodule update
 - Staging generated build output
-- Not checking that the submodule is on the correct branch before pulling

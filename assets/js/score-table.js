@@ -92,16 +92,16 @@
         if (th.classList.contains('col-rownum')) {
           continue;
         }
-        const colType = th.getAttribute('data-col-type') || 'text';
+        const colType = th.getAttribute('data-col-type');
         const compare = COMPARATORS[colType] || numericCmp;
 
-        th.addEventListener('click', () => {
-          const current = th.getAttribute('data-sort');
-          const isAsc = current ? current === 'desc' : ASC_BY_DEFAULT.has(colType);
+        th.querySelector('button').addEventListener('click', () => {
+          const current = th.getAttribute('aria-sort');
+          const isAsc = current ? current === 'descending' : ASC_BY_DEFAULT.has(colType);
           for (const h of ths) {
-            h.removeAttribute('data-sort');
+            h.removeAttribute('aria-sort');
           }
-          th.setAttribute('data-sort', isAsc ? 'asc' : 'desc');
+          th.setAttribute('aria-sort', isAsc ? 'ascending' : 'descending');
 
           const rows = Array.from(tbody.querySelectorAll('tr'));
           rows.sort((a, b) => {
@@ -138,9 +138,5 @@
     }
   };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initScoreTables);
-  } else {
-    initScoreTables();
-  }
+  initScoreTables();
 })();
