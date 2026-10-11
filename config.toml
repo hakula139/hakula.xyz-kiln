@@ -109,13 +109,13 @@ weight = 12
 external = true
 
 # Social icons rendered under the home profile subtitle, in `weight` order.
+# `external = true` also marks the link `rel="me"`, so reserve it for profile pages.
 
 [[menu.social]]
 name = "menu_social_qq"
 url = "/assets/images/social/qq.webp"
 icon = "svg:qq"
 weight = 1
-external = true
 
 [[menu.social]]
 name = "menu_social_telegram"
@@ -191,4 +191,3 @@ name = "menu_social_rss"
 url = "/index.xml"
 icon = "fas fa-rss"
 weight = 12
-external = true
