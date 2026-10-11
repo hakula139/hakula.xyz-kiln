@@ -7,21 +7,75 @@
 /*
   Cache-Control: public, max-age=300, stale-while-revalidate=3600
 
-# ── Content-addressed assets ──
+# ── Content-addressed assets (`<stem>.<hash>.<ext>`) ──
 
-/_assets/*
+/*.:hash.avif
   ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
-# ── CSS / JS ──
-
-/*.css
+/*.:hash.bmp
   ! Cache-Control
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cache-Control: public, max-age=31536000, immutable
 
-/*.js
+/*.:hash.gif
   ! Cache-Control
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.:hash.ico
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.:hash.jpeg
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.:hash.jpg
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.:hash.png
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.:hash.webp
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.:hash.otf
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.:hash.ttf
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.:hash.woff
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.:hash.woff2
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.:hash.js
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.:hash.mjs
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/css/site.:hash.css
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/css/page.:hash.css
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/*/assets/css/page.:hash.css
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
 
 # ── Non-production hosts: keep previews out of search results ──
 
