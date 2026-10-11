@@ -12,8 +12,6 @@ enabled = true
 
 [author]
 name = "Hakula"
-email = "i@hakula.xyz"
-link = "https://hakula.xyz"
 
 [params]
 fontawesome = true
