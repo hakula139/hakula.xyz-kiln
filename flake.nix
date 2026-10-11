@@ -15,16 +15,24 @@
   # Inputs
   # ----------------------------------------------------------------------------
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    # Following kiln's nixpkgs keeps the kiln package identical to its Cachix build.
+    nixpkgs.follows = "kiln/nixpkgs";
 
     flake-utils.url = "github:numtide/flake-utils";
 
     kiln = {
       url = "github:hakula139/kiln/b95010b4f63b307dc04b3d972019eb2162c1c025";
-      inputs.flake-utils.follows = "flake-utils";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        git-hooks-nix.follows = "git-hooks-nix";
+        kiln-tailwindcss.inputs.git-hooks-nix.follows = "git-hooks-nix";
+      };
     };
 
-    git-hooks-nix.url = "github:cachix/git-hooks.nix";
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # ----------------------------------------------------------------------------
