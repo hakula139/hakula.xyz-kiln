@@ -1,3 +1,4 @@
+{%- import "_partials/macros/directive.html" as directive -%}
 {%- set csv_text = read_file(positional_args[0]) -%}
 {%- set data = parse_csv(csv_text) -%}
 {%- set headers = data[0] -%}
@@ -47,7 +48,7 @@
     {%- set total_idx.value = loop.index0 -%}
   {%- endif -%}
 {%- endfor -%}
-<div class="score-table-wrapper not-prose">
+<div{{ directive.attrs(id, classes, "score-table-wrapper not-prose") }}>
   <table class="score-table">
     <thead>
       <tr>

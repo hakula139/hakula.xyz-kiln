@@ -29,7 +29,7 @@ url = "https://www.pixiv.net/artworks/66385542"
 
 ![BMS](assets/bms.webp)
 
-::: callout {type=warning title="注意"}
+::: callout {type=warning}
 
 LR2 **不支持**嵌套文件夹，你需要确保导入的根目录和谱面文件之间只隔了一层文件夹。也就是说，如果你的谱面文件位于 `started/start_a14_ucc.bme`，那么你应该将 `started` 文件夹放在某个根目录 `BMS` 下，然后在 LR2 导入这个 `BMS` 文件夹。
 

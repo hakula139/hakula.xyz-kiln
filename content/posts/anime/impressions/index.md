@@ -23,7 +23,7 @@ url = "https://www.pixiv.net/artworks/95611645"
 
 ## 评测数据
 
-::: callout {type=tip title="提示"}
+::: callout {type=tip}
 使用 `Shift` + `鼠标滚轮` 横向滚动，点击表头进行排序。
 :::
 

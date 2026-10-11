@@ -55,7 +55,7 @@ Internal documents in a directory whose name starts with `_` take an H1 heading 
 :::
 ```
 
-Types are `quote`, `note`, `info`, `warning`, and `tip`. A blank line is required above and below. Quote the title when it contains a space. Prefer `callout quote` over Markdown `>`.
+Types are `abstract`, `bug`, `danger`, `example`, `failure`, `info`, `note`, `question`, `quote`, `success`, `tip`, and `warning`. Omit `title` when the default title suits the type, such as 注意 for `warning`, 提示 for `tip`, or 说明 for `note`. Leave a blank line above and below. Quote titles that contain spaces. Prefer `callout quote` over Markdown `>`.
 
 ## Typography
 
