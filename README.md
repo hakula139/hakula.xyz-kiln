@@ -48,11 +48,15 @@ CI deploys require two repository secrets:
 │   ├── js/                   # Shared JavaScript
 │   └── images/
 │       ├── article-covers/   # Featured images for posts (WebP)
-│       ├── hotlink-ok/       # Avatar images (publicly linkable)
 │       └── bg.webp           # Background image (4K)
 ├── config.toml               # Site configuration
 ├── content/                  # Markdown content and page-owned assets
-├── static/                   # Root-level public files
+├── static/                   # Root-level public files, published under fixed paths
+│   └── assets/
+│       ├── images/
+│       │   ├── hotlink-ok/   # Avatar images (publicly linkable)
+│       │   └── social/       # Social link targets
+│       └── owo/              # Comment emoji, listed by URL in index.json
 ├── templates/                # Site-level template overrides
 ├── themes/                   # Themes (git submodules)
 │   └── IgnIt/                # Active theme
