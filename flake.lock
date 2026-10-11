@@ -141,17 +141,17 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1791722817,
-        "narHash": "sha256-DGkvHVDGcbn5Ayy+zboL6ZC/MROEyvaPTBrQuvdQ7o8=",
+        "lastModified": 1791723438,
+        "narHash": "sha256-+wcYctZWedeaAhz1ztyR3pZ4qG3qLLddLsds9fyMtuQ=",
         "owner": "hakula139",
         "repo": "kiln",
-        "rev": "d2bd884c665b6ec4f53a5053cd86f3b730f8ab60",
+        "rev": "fa77c833d24a79acd1d3cbfcb12a76036a52c819",
         "type": "github"
       },
       "original": {
         "owner": "hakula139",
         "repo": "kiln",
-        "rev": "d2bd884c665b6ec4f53a5053cd86f3b730f8ab60",
+        "rev": "fa77c833d24a79acd1d3cbfcb12a76036a52c819",
         "type": "github"
       }
     },
@@ -168,15 +168,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1791307141,
-        "narHash": "sha256-7Fyvvp7c2H/A/UQud6gXYK/PzXtl/y8yZr+UcWgFL7A=",
+        "lastModified": 1791312539,
+        "narHash": "sha256-90NwluAPxCKQRK+otN+ZxWwc3g8vTE31+9/T2nDx0a4=",
         "owner": "hakula139",
         "repo": "kiln-tailwindcss",
-        "rev": "7595bdff9032a181d9ab53be26e4b989c666e3ac",
+        "rev": "c1be99af1d4553139bf677daf12e2891d6e5f47e",
         "type": "github"
       },
       "original": {
         "owner": "hakula139",
+        "ref": "v0.1.2",
         "repo": "kiln-tailwindcss",
         "type": "github"
       }
