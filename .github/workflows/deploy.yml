@@ -30,6 +30,7 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/setup@v3
         with:
+          # Matched the dev shell's nixpkgs pnpm when set. Bump it by hand on flake updates.
           version: 11.27.0
           runtime: node@lts
           cache: true
