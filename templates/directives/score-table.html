@@ -55,7 +55,7 @@
         <th class="col-rownum">#</th>
 {%- for h in headers -%}
   {%- set type = col_types[h] | default("text") -%}
-        <th class="{{ col_classes[type] }}" data-col-type="{{ type }}"><button type="button">{{ h }}</button></th>
+        <th class="{{ col_classes[type] }}" data-col-type="{{ type }}"><button type="button">{{ h }}<span class="sort-indicator" aria-hidden="true"></span></button></th>
 {%- endfor -%}
       </tr>
     </thead>

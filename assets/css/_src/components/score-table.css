@@ -46,15 +46,15 @@
     text-align: inherit;
   }
 
-  .score-table thead th[aria-sort] button::after {
+  .score-table thead th[aria-sort] .sort-indicator::after {
     @apply text-[0.6rem];
   }
 
-  .score-table thead th[aria-sort='ascending'] button::after {
+  .score-table thead th[aria-sort='ascending'] .sort-indicator::after {
     content: ' \25B2';
   }
 
-  .score-table thead th[aria-sort='descending'] button::after {
+  .score-table thead th[aria-sort='descending'] .sort-indicator::after {
     content: ' \25BC';
   }
 
