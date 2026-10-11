@@ -26,7 +26,7 @@ url = "https://www.pixiv.net/artworks/72296053"
 
 Walkure 是一个基于 LR2IR 的辅助网站，提供了谱面难度推定、玩家实力值推定等实用功能。
 
-::: callout {type=warning title="注意"}
+::: callout {type=warning}
 SP 発狂 BMS 玩家限定，「实力值推定」需要达成至少一个 SP★01 Easy Clear 及以上的成绩才能使用。
 :::
 
@@ -36,7 +36,7 @@ SP 発狂 BMS 玩家限定，「实力值推定」需要达成至少一个 SP★
 
 基于 LR2IR 上的玩家成绩大数据，对发狂表内谱面、Overjoy 表内谱面和发狂段位的难度进行了相对更精确的推定。不定时更新，仅供参考。
 
-::: callout {type=note title="说明"}
+::: callout {type=note}
 
 - 如果无人通过，难度推定处将留空。
 - 已达成 Hard Clear 的谱面将被同时判定为已达成 Normal Clear，但实际上 Normal Clear 比 Hard Clear 更难的情况是可能发生的（例如 SP★★6 unhappy century），此时 Normal Clear 的难度推定将不准确。对于个别 Normal Clear 比 Full Combo 更难的情况同理（例如 SP★★4 Heart To Heart -collect sky blue-）。
@@ -68,7 +68,7 @@ SP 発狂 BMS 玩家限定，「实力值推定」需要达成至少一个 SP★
 
 基于玩家已通过和未通过[^2]的谱面，推定玩家的实力值。**仅供参考。**
 
-::: callout {type=note title="说明"}
+::: callout {type=note}
 
 - 未游玩的谱面不会参与实力推定
 - 地力谱面度越高的谱面权重越大

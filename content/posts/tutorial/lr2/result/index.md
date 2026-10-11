@@ -145,7 +145,7 @@ $$\mathrm{SCORE\ RATE} = \mathrm{PGREAT}\times 100\% + \mathrm{GREAT}\times 50\%
 
 ## 进阶
 
-::: callout {type=tip title="提示"}
+::: callout {type=tip}
 以下内容为进阶部分，不了解也不影响游玩。
 :::
 

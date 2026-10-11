@@ -147,7 +147,7 @@ LR2 没有 ASSISTED‑EASY 和 EX‑HARD 模式。
 
 设定目标后，在游玩界面[^ghost-position]和结算界面将显示与目标分数的分差。
 
-::: callout {type=warning title="注意"}
+::: callout {type=warning}
 [BATTLE](#battle) 模式下默认目标为对手的当前分数，此时本选项无效。
 :::
 
@@ -163,7 +163,7 @@ G-BATTLE 是一个独特且实用的对战模式。它可以通过 LR2IR 服务�
 
 使用 G-BATTLE 首先需要连接到 IR 并开启这里的 G-BATTLE 选项，然后在选曲界面选择需要 G-BATTLE 的歌曲，尝试按住 4 号键[^key-4]调出 IR 排行榜，滚动列表选择需要 G-BATTLE 的玩家进入游戏，这样就进入 G-BATTLE 模式了。当然，这个先后顺序也可以反过来。你可以先添加需要 G-BATTLE 的玩家为 Rival，然后在选曲界面进入这位玩家的 Rival Folder[^rival-folder]，选择需要 G-BATTLE 的歌曲进入游戏。
 
-::: callout {type=warning title="注意"}
+::: callout {type=warning}
 G-BATTLE 模式下，游玩界面使用的是 BATTLE 模式的皮肤，需要另行设定。
 :::
 
@@ -239,7 +239,7 @@ HI-SPEED 就是游玩界面里 note 的下落速度[^hi-speed]。新手可以先
 
 这里我们以 7K 模式为例。推荐先按 `F2` 键清空原有的键位设置，防止莫名的键位冲突。在最上方标题的左右侧各有一个小箭头，可以切换到其他模式。
 
-::: callout {type=warning title="注意"}
+::: callout {type=warning}
 与其他皮肤不同，WMIX 的 5K 模式用的是 7K 模式里与皿相邻的 5 个按键的键位设置，而不是 5K 模式的键位设置。
 :::
 
@@ -384,7 +384,7 @@ BGA 显示尺寸设置。
 | CLEAR     | 通过时保存             |
 | FULLCOMBO | 全连时保存             |
 
-::: callout {type=warning title="注意"}
+::: callout {type=warning}
 新回放将始终覆盖旧回放。
 :::
 
@@ -448,7 +448,7 @@ BGA 显示尺寸设置。
 
 选中段位 / Course 时，这里就变成了 COURSE EDITOR，可以调整此段位 / Course 的相关配置，常用于自制段位 / Course。
 
-::: callout {type=warning title="注意"}
+::: callout {type=warning}
 一旦开启 Internet Ranking 选项，所有配置均不能再作调整。
 :::
 
@@ -480,14 +480,14 @@ BGA 显示尺寸设置。
 
 调速参照 [十二平均律][equal-temperament-wiki]，即 FREQ + $x$ 对应 $2^{x/12}$ 倍速。例如 osu!mania 的 DT 模式就约等于 FREQ + 7。
 
-::: callout {type=warning title="注意"}
+::: callout {type=warning}
 
 - 减速不保存分数，但加速会保存（无分数加成）。
 - 段位不允许加减速，但 Course 允许。
 
 :::
 
-::: callout {type=tip title="提示"}
+::: callout {type=tip}
 开启后 BGM 也会变调哦～
 :::
 
@@ -616,7 +616,7 @@ BGA 显示尺寸设置。
 
 IR 即当前 Internet Ranking 的连接情况。
 
-::: callout {type=warning title="注意"}
+::: callout {type=warning}
 
 这里的 SCORE SAVE 正常情况下应显示 OK，否则**不保存分数**。
 
@@ -626,7 +626,7 @@ IR 即当前 Internet Ranking 的连接情况。
 
 ## 进阶
 
-::: callout {type=tip title="提示"}
+::: callout {type=tip}
 以下内容为进阶部分，不了解也不影响游玩。
 :::
 

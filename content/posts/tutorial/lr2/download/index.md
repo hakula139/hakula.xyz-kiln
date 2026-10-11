@@ -31,7 +31,7 @@ url = "https://www.pixiv.net/artworks/69065999"
 
 如遇到链接失效等问题或者有任何疑问，请直接在本文评论区留言。
 
-::: callout {type=warning title="注意"}
+::: callout {type=warning}
 放置 LR2 的路径不能包含中文等全角字符。
 :::
 

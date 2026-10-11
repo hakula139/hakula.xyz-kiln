@@ -281,7 +281,7 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 ```
 
-::: callout {type=warning title="注意"}
+::: callout {type=warning}
 创建 Swap 文件建议使用 `dd` 命令，而不要使用 `fallocate` 命令，否则生成的 Swap 文件可能有洞。参见 [swapon(8) § Files with holes - Arch manual pages](https://man.archlinux.org/man/swapon.8#Files_with_holes)。
 :::
 

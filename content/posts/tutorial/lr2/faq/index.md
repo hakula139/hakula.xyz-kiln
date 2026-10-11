@@ -131,7 +131,7 @@ LR2 的编码问题确实比较折腾，历史遗留问题。
 在 LR2IR 关闭 [成绩缓存](../internet-ranking/#player-status)。
 :::
 
-::: callout {type=warning title="注意"}
+::: callout {type=warning}
 关闭成绩缓存后，将无法使用 [G-BATTLE](../select/#g-battle) 模式。
 :::
 
