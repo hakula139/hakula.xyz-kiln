@@ -144,7 +144,7 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 ### Galgame
 
-- [AVG 个人评测数据](/posts/avg/impressions)
+- [AVG 个人评测数据](/posts/avg/impressions/)
 - [AVG 评测 - 哔哩哔哩专栏](https://www.bilibili.com/read/readlist/rl228822)
 - [Bangumi 番组计划](https://bgm.tv/user/hakula_1234567)
 
