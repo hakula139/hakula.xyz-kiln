@@ -20,7 +20,7 @@ author = "アシマ"
 url = "https://www.pixiv.net/artworks/136849830"
 +++
 
-A practical guide to LLM agents, from foundational concepts to building a production-ready agent configuration. Part 1 of a two-part series: what an LLM actually is, how it becomes an agent, and the layered system (CLAUDE.md, hooks, MCP, skills, plugins) that makes it useful in practice. [Part 2](../part-2) covers subagents, agent teams, and more advanced topics. Written for everyone, regardless of technical background.
+A practical guide to LLM agents, from foundational concepts to building a production-ready agent configuration. Part 1 of a two-part series: what an LLM actually is, how it becomes an agent, and the layered system (CLAUDE.md, hooks, MCP, skills, plugins) that makes it useful in practice. [Part 2](../part-2/) covers subagents, agent teams, and more advanced topics. Written for everyone, regardless of technical background.
 
 <!--more-->
 
@@ -42,7 +42,7 @@ The thesis is straightforward: LLM agents are a **layered system of context engi
 8. Subagents give each task its own context, but their summaries still flow back and fill the main agent's window. They cannot communicate with each other.
 9. Agent teams close that loop with shared task lists, direct messaging, and full parallel coordination, which is the state of the art by the time of this writing (March 2026).
 
-This article covers layers 1–7. [Part 2](../part-2) continues with subagents and agent teams.
+This article covers layers 1–7. [Part 2](../part-2/) continues with subagents and agent teams.
 
 Whether you write code, build models, review contracts, or manage operations, the underlying principles are the same. The context window is working memory. Everything that goes into it costs something. The art is in managing what gets loaded, when, and for how long. This is what the field now calls **context engineering**, and it is the central framework for this entire article.
 
@@ -257,7 +257,7 @@ Prefer MCP tools over equivalent Bash commands or web searches. MCPs provide str
 interfaces, better error handling, and work within the configured permission model.
 ```
 
-The global file also defines the entire agent team workflow: available agent types, model selection guidelines, coordination patterns, team presets, and the output contract all agents must follow. This is roughly 300 lines that establish the operational framework for every session. We will cover this in detail in [Part 2](../part-2).
+The global file also defines the entire agent team workflow: available agent types, model selection guidelines, coordination patterns, team presets, and the output contract all agents must follow. This is roughly 300 lines that establish the operational framework for every session. We will cover this in detail in [Part 2](../part-2/).
 
 **Project** ([`CLAUDE.md`][kiln-instructions] in a Rust static site generator repo) covers project structure, coding conventions, and verification workflow:
 
@@ -838,7 +838,7 @@ Each row exists because the row above it has a specific limitation. The progress
 
 With these seven layers, you have a fully configured, production-ready agent. For many workflows, this is all you need. But while skills and plugins _can_ spawn subagents, we have not yet examined how to define your own agent types, assign them different models and roles, or orchestrate them into coordinated teams. That is where the next layer begins.
 
-In [Part 2](../part-2), we will cover **subagents** (focused delegation to child processes with their own context windows), **agent teams** (full peer-to-peer coordination with shared task lists and direct messaging), and the orchestration patterns that tie them together. That is where the opening scenario — three reviewers, a researcher, and an implementer all working in parallel — becomes reality.
+In [Part 2](../part-2/), we will cover **subagents** (focused delegation to child processes with their own context windows), **agent teams** (full peer-to-peer coordination with shared task lists and direct messaging), and the orchestration patterns that tie them together. That is where the opening scenario — three reviewers, a researcher, and an implementer all working in parallel — becomes reality.
 
 [Agent-browser]: https://github.com/vercel-labs/agent-browser
 [claude-marketplaces]: https://claudemarketplaces.com
