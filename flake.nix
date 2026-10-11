@@ -2,8 +2,8 @@
 # hakula.xyz-kiln Site Development Flake
 # ==============================================================================
 #
-# Provides kiln with its CSS compiler, pagefind, and pre-commit hooks. `kiln`
-# (source-built) and `pagefind` (1.5+ prebuilt) come from kiln's flake.
+# Provides kiln and pre-commit hooks. kiln's package carries its CSS compiler
+# and Pagefind on its own PATH.
 #
 #   nix develop        # interactive shell (auto-installs hooks)
 #   nix flake check    # Nix-side hooks (Node-side run in CI's `check` job)
@@ -20,7 +20,7 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     kiln = {
-      url = "github:hakula139/kiln/d2bd884c665b6ec4f53a5053cd86f3b730f8ab60";
+      url = "github:hakula139/kiln/b95010b4f63b307dc04b3d972019eb2162c1c025";
       inputs.flake-utils.follows = "flake-utils";
     };
 
@@ -131,7 +131,6 @@
             preCommitCheck.enabledPackages
             ++ [
               kilnPkgs.kiln
-              kilnPkgs.pagefind
             ]
             ++ (with pkgs; [
               nodejs_24
