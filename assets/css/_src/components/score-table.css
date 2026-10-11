@@ -36,20 +36,25 @@
   }
 
   .score-table thead th {
-    @apply sticky top-0 z-2 cursor-pointer border-t font-bold select-none;
+    @apply sticky top-0 z-2 border-t font-bold select-none;
     border-top-color: var(--st-border);
     background: var(--st-bg-header);
   }
 
-  .score-table thead th[data-sort]::after {
+  .score-table thead button {
+    @apply w-full cursor-pointer;
+    text-align: inherit;
+  }
+
+  .score-table thead th[aria-sort] button::after {
     @apply text-[0.6rem];
   }
 
-  .score-table thead th[data-sort='asc']::after {
+  .score-table thead th[aria-sort='ascending'] button::after {
     content: ' \25B2';
   }
 
-  .score-table thead th[data-sort='desc']::after {
+  .score-table thead th[aria-sort='descending'] button::after {
     content: ' \25BC';
   }
 
