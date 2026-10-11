@@ -13,10 +13,6 @@ enabled = true
 [author]
 name = "Hakula"
 
-[params]
-fontawesome = true
-table_nowrap_width = 30
-
 [params.background]
 image = "/assets/images/bg.webp"
 lqip_uri = "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAgABIByJYwAAjuRI6+m6AAA/vGdTVlvPFRSsRiSc/Pgld5k7oUI2bfXkLCKpotCEX2jctQ+PaCoAAA="
@@ -46,9 +42,6 @@ subtitle = "让我们一直谈论变革，\n以确保事实上什么都没改变
 [params.lightgallery]
 enabled = true
 license_key = "25262F0A-212A4039-AF8FA4BC-CA4E44AD"
-
-[params.section]
-paginate = 10
 
 # `name` fields are i18n keys resolved by the theme via `t(item.name)`.
 # Labels live in `i18n/<language>.toml`.
