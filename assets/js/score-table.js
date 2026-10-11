@@ -138,9 +138,5 @@
     }
   };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initScoreTables);
-  } else {
-    initScoreTables();
-  }
+  initScoreTables();
 })();

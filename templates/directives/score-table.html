@@ -66,7 +66,7 @@
 {%- for val in row -%}
   {%- set h = headers[loop.index0] -%}
   {%- set type = col_types[h] | default("text") -%}
-  {%- set cls = col_classes[type] | default("col-text") -%}
+  {%- set cls = col_classes[type] -%}
   {%- if type == "text" -%}
         <td class="{{ cls }}" title="{{ val }}" data-sort-value="{{ val }}">{{ val }}</td>
   {%- elif type == "score" -%}
@@ -86,24 +86,24 @@
     {%- set display = val -%}
     {%- set tier = 0 -%}
     {%- if val is endingwith("G!!") -%}
-      {%- set display = val | replace("G!!", "") -%}
+      {%- set display = val[:-3] -%}
       {%- set tier = 6 -%}
     {%- elif val is endingwith("G!") -%}
-      {%- set display = val | replace("G!", "") -%}
+      {%- set display = val[:-2] -%}
       {%- set tier = 5 -%}
-    {%- elif val is endingwith("G") and not val is endingwith("G!") -%}
-      {%- set display = val | replace("G", "") -%}
+    {%- elif val is endingwith("G") -%}
+      {%- set display = val[:-1] -%}
       {%- set tier = 4 -%}
     {%- elif val is endingwith("!!") -%}
-      {%- set display = val | replace("!!", "") -%}
+      {%- set display = val[:-2] -%}
       {%- set tier = 3 -%}
-    {%- elif val is endingwith("!") and not val is endingwith("!!") -%}
-      {%- set display = val | replace("!", "") -%}
+    {%- elif val is endingwith("!") -%}
+      {%- set display = val[:-1] -%}
       {%- set tier = 2 -%}
     {%- endif -%}
     {%- set age = 0 -%}
     {%- if display is endingwith("+") -%}
-      {%- set age = display | replace("+", "") | int -%}
+      {%- set age = display[:-1] | int -%}
     {%- endif -%}
     {%- if tier == 0 and age >= 18 -%}
       {%- set tier = 1 -%}
