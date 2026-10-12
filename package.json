@@ -3,11 +3,11 @@
   "scripts": {
     "build": "kiln build",
     "dev": "kiln serve",
-    "format": "prettier --check .",
+    "format": "prettier --check --ignore-unknown $(git ls-files -s | awk '$1 ~ /^100/ { print $4 }')",
     "lint": "pnpm lint:md && pnpm lint:js",
     "lint:js": "eslint .",
-    "lint:md": "markdownlint-cli2 \"content/**/*.md\"",
-    "spellcheck": "cspell --no-progress \"content/**/*.md\""
+    "lint:md": "markdownlint-cli2 $(git ls-files '*.md')",
+    "spellcheck": "git ls-files | cspell --no-progress --file-list stdin"
   },
   "devDependencies": {
     "@cspell/dict-de-de": "^4.1.2",
