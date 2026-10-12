@@ -33,13 +33,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Set up pnpm
-        uses: pnpm/setup@v3
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
         with:
-          version: 11.27.0
-          runtime: node@lts
-          cache: true
-          require-lockfile: true
+          cachix_name: hakula
+          cachix_skip_push: 'true'
+
+      - name: Install dependencies
+        run: nix develop -c pnpm install --frozen-lockfile
 
       - name: Download artifact
         uses: actions/download-artifact@v8
@@ -49,22 +50,22 @@ jobs:
 
       - name: Upload preview version
         id: upload
-        uses: cloudflare/wrangler-action@v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: >-
-            versions upload
-            --preview-alias pr-${{ env.PR_NUMBER }}
-            --message "PR #${{ env.PR_NUMBER }} @ ${{ env.PR_SHA }}"
+        shell: bash
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          nix develop -c pnpm exec wrangler versions upload \
+            --preview-alias "pr-$PR_NUMBER" \
+            --message "PR #$PR_NUMBER @ $PR_SHA" | tee "$RUNNER_TEMP/upload.log"
+          echo "version_id=$(awk '/Worker Version ID:/ {print $NF; exit}' "$RUNNER_TEMP/upload.log")" >> "$GITHUB_OUTPUT"
 
       - name: Extract preview metadata
         id: meta
         env:
-          UPLOAD_OUTPUT: ${{ steps.upload.outputs.command-output }}
+          VERSION_ID: ${{ steps.upload.outputs.version_id }}
         run: |
-          version_id=$(awk '/Worker Version ID:/ {print $NF; exit}' <<<"$UPLOAD_OUTPUT")
-          version_prefix="${version_id:0:8}"
+          version_prefix="${VERSION_ID:0:8}"
           {
             echo "short_sha=${PR_SHA:0:7}"
             echo "version_url=https://${version_prefix}-${WORKER_NAME}.${WORKERS_DEV_SUBDOMAIN}"
