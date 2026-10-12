@@ -45,12 +45,13 @@ CI deploys require two repository secrets:
 .
 ├── assets/                   # Shared assets
 │   ├── css/_src/             # Handwritten shared CSS
-│   ├── js/                   # Shared JavaScript
-│   └── images/
-│       ├── article-covers/   # Featured images for posts (WebP)
-│       └── bg.webp           # Background image (4K)
+│   ├── images/
+│   │   ├── article-covers/   # Featured images for posts (WebP)
+│   │   └── bg.webp           # Background image (4K)
+│   └── js/                   # Shared JavaScript
 ├── config.toml               # Site configuration
 ├── content/                  # Markdown content and page-owned assets
+├── i18n/                     # Site translations (menu labels)
 ├── static/                   # Public files with fixed URLs
 │   └── assets/
 │       ├── images/

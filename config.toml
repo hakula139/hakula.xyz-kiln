@@ -4,7 +4,6 @@ description = "Hakula's personal site"
 language = "zh-Hans"
 timezone = "Asia/Shanghai"
 enable_git_info = true
-output_dir = "public"
 theme = "IgnIt"
 
 [search]
@@ -43,8 +42,8 @@ subtitle = "让我们一直谈论变革，\n以确保事实上什么都没改变
 enabled = true
 license_key = "25262F0A-212A4039-AF8FA4BC-CA4E44AD"
 
-# `name` fields are i18n keys resolved by the theme via `t(item.name)`.
-# Labels live in `i18n/<language>.toml`.
+# `name` fields are i18n keys or literal labels, resolved by the theme via `t(item.name)`.
+# Translated labels live in `i18n/<language>.toml`.
 [[menu.main]]
 name = "menu_posts"
 url = "/posts/"
@@ -110,15 +109,14 @@ external = true
 
 # Social icons rendered under the home profile subtitle, in `weight` order.
 # `external = true` also marks the link `rel="me"`, so reserve it for profile pages.
-
 [[menu.social]]
-name = "menu_social_qq"
+name = "QQ"
 url = "/assets/images/social/qq.webp"
 icon = "svg:qq"
 weight = 1
 
 [[menu.social]]
-name = "menu_social_telegram"
+name = "Telegram"
 url = "https://t.me/hakulaTG"
 icon = "svg:telegram"
 weight = 2
@@ -131,28 +129,28 @@ icon = "fas fa-envelope"
 weight = 3
 
 [[menu.social]]
-name = "menu_social_github"
+name = "GitHub"
 url = "https://github.com/hakula139"
 icon = "svg:github"
 weight = 4
 external = true
 
 [[menu.social]]
-name = "menu_social_linkedin"
+name = "LinkedIn"
 url = "https://linkedin.com/in/hakula"
 icon = "svg:linkedin"
 weight = 5
 external = true
 
 [[menu.social]]
-name = "menu_social_bilibili"
+name = "Bilibili"
 url = "https://space.bilibili.com/3507112"
 icon = "svg:bilibili"
 weight = 6
 external = true
 
 [[menu.social]]
-name = "menu_social_bangumi"
+name = "Bangumi"
 url = "https://bgm.tv/user/hakula_1234567"
 icon = "svg:bangumi"
 weight = 7
@@ -166,28 +164,28 @@ weight = 8
 external = true
 
 [[menu.social]]
-name = "menu_social_neodb"
+name = "NeoDB"
 url = "https://neodb.social/users/hakula139@mastodon.social"
 icon = "svg:neodb"
 weight = 9
 external = true
 
 [[menu.social]]
-name = "menu_social_steam"
+name = "Steam"
 url = "https://steamcommunity.com/id/hakula139"
 icon = "svg:steam"
 weight = 10
 external = true
 
 [[menu.social]]
-name = "menu_social_listenbrainz"
+name = "ListenBrainz"
 url = "https://listenbrainz.org/user/Hakula"
 icon = "svg:listenbrainz"
 weight = 11
 external = true
 
 [[menu.social]]
-name = "menu_social_rss"
+name = "RSS"
 url = "/index.xml"
 icon = "fas fa-rss"
 weight = 12

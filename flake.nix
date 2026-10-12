@@ -50,7 +50,6 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        kilnPkgs = kiln.packages.${system};
 
         # ----------------------------------------------------------------------
         # Node Hook Wrapper
@@ -99,7 +98,7 @@
               enable = true;
               name = "prettier";
               entry = nodeHook "prettier-write" "prettier --write --ignore-unknown";
-              files = "\\.(css|js|mjs|json)$";
+              files = "\\.(css|js|mjs|json|md|ya?ml)$";
               pass_filenames = true;
             };
 
@@ -138,7 +137,7 @@
           packages =
             preCommitCheck.enabledPackages
             ++ [
-              kilnPkgs.kiln
+              kiln.packages.${system}.kiln
             ]
             ++ (with pkgs; [
               nodejs_24
