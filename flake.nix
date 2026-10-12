@@ -50,7 +50,6 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        kilnPkgs = kiln.packages.${system};
 
         # ----------------------------------------------------------------------
         # Node Hook Wrapper
@@ -138,7 +137,7 @@
           packages =
             preCommitCheck.enabledPackages
             ++ [
-              kilnPkgs.kiln
+              kiln.packages.${system}.kiln
             ]
             ++ (with pkgs; [
               nodejs_24
