@@ -27,14 +27,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Set up pnpm
-        uses: pnpm/setup@v3
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
         with:
-          # Matched the dev shell's nixpkgs pnpm when set. Bump it by hand on flake updates.
-          version: 11.27.0
-          runtime: node@lts
-          cache: true
-          require-lockfile: true
+          cachix_name: hakula
+          cachix_skip_push: 'true'
+
+      - name: Install dependencies
+        run: nix develop -c pnpm install --frozen-lockfile
 
       - name: Download site artifact
         uses: actions/download-artifact@v8
@@ -43,8 +43,8 @@ jobs:
           path: public/
 
       - name: Deploy to Cloudflare Workers
-        uses: cloudflare/wrangler-action@v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: ${{ github.ref_name == 'dev' && 'deploy --env dev' || 'deploy' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_ENV: ${{ github.ref_name == 'dev' && 'dev' || '' }}
+        run: nix develop -c pnpm exec wrangler deploy ${WRANGLER_ENV:+--env "$WRANGLER_ENV"}
