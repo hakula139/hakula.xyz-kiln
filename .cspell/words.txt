@@ -115,6 +115,7 @@ strtol
 swapon
 SWAV
 Taki
+taplo
 tmin
 Togawa
 Tomori

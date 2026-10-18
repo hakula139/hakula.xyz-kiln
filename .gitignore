@@ -22,6 +22,7 @@
 .claude/worktrees
 
 # Build output
+/.kiln-build-*/
 /public*/
 
 # Wrangler

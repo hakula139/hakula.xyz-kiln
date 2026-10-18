@@ -20,6 +20,14 @@ export default [
     },
   },
   {
-    ignores: ['.claude/', '.direnv/', '.wrangler/', 'node_modules/', 'public*/', 'themes/'],
+    ignores: [
+      '.claude/',
+      '.direnv/',
+      '.kiln-build-*/',
+      '.wrangler/',
+      'node_modules/',
+      'public*/',
+      'themes/',
+    ],
   },
 ];

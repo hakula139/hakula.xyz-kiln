@@ -3,7 +3,9 @@
   "scripts": {
     "build": "kiln build",
     "dev": "kiln serve",
-    "format": "prettier --check .",
+    "format": "pnpm format:prettier && pnpm format:toml",
+    "format:prettier": "prettier --check .",
+    "format:toml": "taplo format --check",
     "lint": "pnpm lint:md && pnpm lint:js",
     "lint:js": "eslint .",
     "lint:md": "markdownlint-cli2 $(git ls-files '*.md')",
@@ -17,6 +19,7 @@
     "@cspell/dict-la": "^1.1.2",
     "@eslint/js": "^10.0.1",
     "@tailwindcss/typography": "^0.5.20",
+    "@taplo/cli": "^0.7.0",
     "cspell": "^10.3.4",
     "eslint": "^10.11.0",
     "globals": "^17.12.0",
