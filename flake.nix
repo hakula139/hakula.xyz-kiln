@@ -21,7 +21,7 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     kiln = {
-      url = "github:hakula139/kiln/v0.5.0-alpha.4";
+      url = "github:hakula139/kiln/v0.5.0";
       inputs = {
         flake-utils.follows = "flake-utils";
         git-hooks-nix.follows = "git-hooks-nix";
@@ -46,7 +46,7 @@
       git-hooks-nix,
       ...
     }:
-    flake-utils.lib.eachDefaultSystem (
+    flake-utils.lib.eachSystem (builtins.attrNames kiln.packages) (
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -104,6 +104,7 @@
 
             eslint = {
               enable = true;
+              package = null;
               name = "eslint";
               entry = nodeHook "eslint" "eslint --fix";
               files = "\\.(js|mjs)$";
@@ -112,6 +113,7 @@
 
             markdownlint = {
               enable = true;
+              package = null;
               name = "markdownlint-cli2";
               entry = nodeHook "markdownlint" "markdownlint-cli2 --fix";
               files = "\\.md$";
@@ -120,6 +122,7 @@
 
             cspell = {
               enable = true;
+              package = null;
               entry = nodeHook "cspell" "cspell --no-must-find-files --no-progress";
               types = [ "text" ];
               pass_filenames = true;

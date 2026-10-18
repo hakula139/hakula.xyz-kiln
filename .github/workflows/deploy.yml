@@ -12,6 +12,9 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  CACHIX_NAME: hakula
+
 jobs:
   build:
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
@@ -30,7 +33,7 @@ jobs:
       - name: Setup Nix
         uses: ./.github/actions/setup-nix
         with:
-          cachix_name: hakula
+          cachix_name: ${{ env.CACHIX_NAME }}
           cachix_skip_push: 'true'
 
       - name: Install dependencies

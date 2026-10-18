@@ -15,6 +15,9 @@ on:
 permissions:
   contents: read
 
+env:
+  CACHIX_NAME: hakula
+
 jobs:
   build:
     name: Build Site
@@ -30,7 +33,7 @@ jobs:
       - name: Setup Nix
         uses: ./.github/actions/setup-nix
         with:
-          cachix_name: hakula
+          cachix_name: ${{ env.CACHIX_NAME }}
           cachix_skip_push: 'true'
 
       - name: Build site
