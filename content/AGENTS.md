@@ -23,7 +23,7 @@ url = "https://www.pixiv.net/artworks/{pixiv_id}"
 +++
 ```
 
-`featured_image` is a TOML table holding `src`, an optional `position` (CSS `object-position`), and an optional `credit` subtable of `title`, `author`, and `url`.
+`featured_image` is a TOML table holding `src`, an optional `position` (CSS `object-position`), and an optional `credit` subtable of `title`, `author`, and `url`. Article covers go in `assets/images/article-covers/`, while co-located assets such as diagrams and data files sit alongside `index.md` in the page bundle.
 
 ## Article structure
 

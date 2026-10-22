@@ -9,6 +9,8 @@ My personal website, built with [kiln](https://github.com/hakula139/kiln) and th
 
 ## Setup
 
+Install [Git LFS](https://git-lfs.com/) and run `git lfs install` before cloning, since the images are stored in LFS.
+
 ```bash
 git clone --recurse-submodules https://github.com/hakula139/hakula.xyz-kiln.git
 cd hakula.xyz-kiln
@@ -23,9 +25,11 @@ kiln build         # Build to public/
 kiln serve --open  # Preview with live reload
 ```
 
+`pnpm build` and `pnpm dev` run `kiln build` and `kiln serve`.
+
 ## Deploy
 
-Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz) in the `production` GitHub Environment, and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz) in the `development` environment. Each PR from this repository gets a preview URL in the `preview` environment, linked from a PR comment.
+Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz) in the `production` GitHub Environment, and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz) in the `development` environment. Each PR from this repository gets a preview URL in the `preview` environment, linked from a PR comment. The workflows and the secrets they need are described in [docs/reference/ci.md](docs/reference/ci.md#deploy).
 
 For a manual deploy, run the workflow on the intended branch:
 
@@ -33,38 +37,6 @@ For a manual deploy, run the workflow on the intended branch:
 gh workflow run deploy.yml --ref main
 gh workflow run deploy.yml --ref dev
 ```
-
-CI deploys require two repository secrets:
-
-- `CLOUDFLARE_API_TOKEN`, scoped to Account → Workers Scripts: Edit and Zone (`hakula.xyz`) → DNS: Edit + Workers Routes: Edit.
-- `CLOUDFLARE_ACCOUNT_ID`.
-
-## Site Structure
-
-```text
-.
-├── assets/                   # Shared assets
-│   ├── css/_src/             # Handwritten shared CSS
-│   ├── images/
-│   │   ├── article-covers/   # Featured images for posts (WebP)
-│   │   └── bg.webp           # Background image (4K)
-│   └── js/                   # Shared JavaScript
-├── config.toml               # Site configuration
-├── content/                  # Markdown content and page-owned assets
-├── i18n/                     # Site translations (menu labels)
-├── static/                   # Public files with fixed URLs
-│   └── assets/
-│       ├── images/
-│       │   ├── hotlink-ok/   # Avatar images (publicly linkable)
-│       │   └── social/       # Social link targets
-│       └── owo/              # Comment emoji, listed by URL in index.json
-├── templates/                # Site-level template overrides
-├── themes/                   # Themes (git submodules)
-│   └── IgnIt/                # Active theme
-└── public/                   # Build output
-```
-
-See [kiln's assets guide](https://github.com/hakula139/kiln/blob/main/docs/assets.md) for CSS sources, publication rules, and live reload. `pnpm build` and `pnpm dev` alias kiln's build and serve commands.
 
 ## License
 
