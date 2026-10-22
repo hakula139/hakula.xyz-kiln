@@ -15,7 +15,7 @@ This is the [kiln](https://github.com/hakula139/kiln) source for [hakula.xyz](ht
 
 ## Source constraints
 
-Images (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are Git LFS objects per `.gitattributes`, so a text pointer where an image should be means LFS is missing, as [README.md](README.md#setup) explains.
+Images (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are Git LFS objects per `.gitattributes`, so a text pointer where an image should be means LFS is missing. Install it as [README.md](README.md#setup) describes, then run `git lfs pull`.
 
 ## Verification
 
