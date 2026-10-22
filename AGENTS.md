@@ -31,7 +31,7 @@ Node-side pre-commit hooks no-op when `node_modules/` is absent, which is the ca
 
 Deployment commands and branch behavior are documented in [README.md](README.md#deploy).
 
-`.github/workflows/build.yml` is a reusable `workflow_call` that enters the dev shell and runs `kiln build --minify`, including CSS compilation. Both `ci.yml` and `deploy.yml` call into it, so the build path is single-sourced.
+`.github/workflows/build.yml` is a reusable `workflow_call` that enters the dev shell and runs `kiln build --minify`, including CSS compilation. `ci.yml`, `deploy.yml`, and `preview.yml` call into it, so the build path is single-sourced.
 
 ## Conventions
 
