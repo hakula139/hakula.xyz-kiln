@@ -1,0 +1,77 @@
+name: Preview cleanup
+
+on:
+  pull_request_target:
+    types: [closed]
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  CACHIX_NAME: hakula
+
+jobs:
+  cleanup:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+      pull-requests: write
+    env:
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
+        with:
+          cachix_name: ${{ env.CACHIX_NAME }}
+          cachix_skip_push: 'true'
+
+      - name: Install dependencies
+        run: nix develop -c pnpm install --frozen-lockfile
+
+      - name: Delete preview
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_OUTPUT_FILE_PATH: ${{ runner.temp }}/wrangler-output.ndjson
+        run: |
+          if nix develop -c pnpm exec wrangler preview delete \
+            --name "pr-$PR_NUMBER" --skip-confirmation; then
+            exit 0
+          fi
+          # Cloudflare API error 10025 is "Preview not found".
+          jq -e 'select(.type == "command-failed") | .code == 10025' "$WRANGLER_OUTPUT_FILE_PATH"
+
+      - name: Deactivate deployments
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          ids=$(gh api --paginate -X GET "repos/$GITHUB_REPOSITORY/deployments" \
+            -f environment=preview -f ref="$HEAD_REF" --jq '.[].id')
+          for id in $ids; do
+            gh api -X POST "repos/$GITHUB_REPOSITORY/deployments/$id/statuses" \
+              -f state=inactive --silent
+          done
+
+      - name: Comment preview
+        uses: marocchino/sticky-pull-request-comment@v3
+        with:
+          header: preview-url
+          only_update: true
+          message: |
+            ## ⚡ Cloudflare Workers preview
+
+            This PR's preview was deleted when it closed.
+
+            [View cleanup logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
