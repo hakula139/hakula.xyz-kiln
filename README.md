@@ -25,7 +25,9 @@ kiln serve --open  # Preview with live reload
 
 ## Deploy
 
-Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz), and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz), via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow builds with `kiln build --minify` and ships `public/` to separate Cloudflare Workers configured in [`wrangler.toml`](wrangler.toml). Development builds keep links on the development origin. Development and PR preview hosts are excluded from indexing with `X-Robots-Tag: noindex`.
+Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz) in the `production` GitHub Environment, and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz) in the `development` environment, via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). Each environment accepts deploys only from its own branch. The workflow builds with `kiln build --minify` and ships `public/` to separate Cloudflare Workers configured in [`wrangler.toml`](wrangler.toml). Development builds keep links on the development origin.
+
+Each PR from this repository gets a Worker Preview named `pr-<number>` through [`.github/workflows/preview.yml`](.github/workflows/preview.yml), deployed in the `preview` environment and linked from a PR comment. Its `workers.dev` URL serves the PR's latest build, and each push also gets a URL of its own. When the PR closes, the workflow deletes the Preview and marks its deployments inactive. Development and PR preview hosts are excluded from indexing with `X-Robots-Tag: noindex`.
 
 For a manual deploy, run the workflow on the intended branch:
 

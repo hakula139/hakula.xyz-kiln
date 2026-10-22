@@ -2,7 +2,7 @@ name: Preview deploy
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, closed]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -16,6 +16,10 @@ env:
 
 jobs:
   build:
+    # Pull requests from forks receive no deploy secrets.
+    if: >-
+      github.event.action != 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository
     uses: ./.github/workflows/build.yml
     with:
       upload-artifact: true
@@ -24,14 +28,15 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    environment:
+      name: preview
+      url: ${{ steps.meta.outputs.deployment_url }}
     permissions:
       contents: read
       pull-requests: write
     env:
       PR_NUMBER: ${{ github.event.pull_request.number }}
       PR_SHA: ${{ github.event.pull_request.head.sha }}
-      WORKER_NAME: hakula-xyz-kiln
-      WORKERS_DEV_SUBDOMAIN: hakula.workers.dev
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -51,30 +56,32 @@ jobs:
           name: site-public
           path: public/
 
-      - name: Upload preview version
-        id: upload
-        shell: bash
+      - name: Deploy preview
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Wrangler appends one JSON record per command to this file, including the Preview's URLs.
+          WRANGLER_OUTPUT_FILE_PATH: ${{ runner.temp }}/wrangler-output.ndjson
         run: |
-          nix develop -c pnpm exec wrangler versions upload \
-            --preview-alias "pr-$PR_NUMBER" \
-            --message "PR #$PR_NUMBER @ $PR_SHA" | tee "$RUNNER_TEMP/upload.log"
-          echo "version_id=$(awk '/Worker Version ID:/ {print $NF; exit}' "$RUNNER_TEMP/upload.log")" >> "$GITHUB_OUTPUT"
+          nix develop -c pnpm exec wrangler preview \
+            --name "pr-$PR_NUMBER" \
+            --message "PR #$PR_NUMBER @ $PR_SHA"
 
       - name: Extract preview metadata
         id: meta
         env:
-          VERSION_ID: ${{ steps.upload.outputs.version_id }}
+          WRANGLER_OUTPUT_FILE_PATH: ${{ runner.temp }}/wrangler-output.ndjson
         run: |
-          version_prefix="${VERSION_ID:0:8}"
-          {
-            echo "short_sha=${PR_SHA:0:7}"
-            echo "version_url=https://${version_prefix}-${WORKER_NAME}.${WORKERS_DEV_SUBDOMAIN}"
-            echo "alias_url=https://pr-${PR_NUMBER}-${WORKER_NAME}.${WORKERS_DEV_SUBDOMAIN}"
-            echo "deploy_time=$(date -u +'%Y-%m-%d %H:%M UTC')"
-          } >> "$GITHUB_OUTPUT"
+          record=$(jq -c 'select(.type == "preview")' "$WRANGLER_OUTPUT_FILE_PATH")
+          preview_url=$(jq -er '.preview_urls[0]' <<<"$record")
+          deployment_url=$(jq -er '.deployment_urls[0]' <<<"$record")
+          deploy_time=$(date -u +'%Y-%m-%d %H:%M UTC')
+          cat >> "$GITHUB_OUTPUT" <<OUTPUT
+          short_sha=${PR_SHA:0:7}
+          preview_url=$preview_url
+          deployment_url=$deployment_url
+          deploy_time=$deploy_time
+          OUTPUT
 
       - name: Comment preview
         uses: marocchino/sticky-pull-request-comment@v3
@@ -86,11 +93,11 @@ jobs:
             <table>
               <tr>
                 <td><strong>Preview</strong></td>
-                <td><a href="${{ steps.meta.outputs.version_url }}">${{ steps.meta.outputs.version_url }}</a></td>
+                <td><a href="${{ steps.meta.outputs.preview_url }}">${{ steps.meta.outputs.preview_url }}</a></td>
               </tr>
               <tr>
-                <td><strong>Branch preview</strong></td>
-                <td><a href="${{ steps.meta.outputs.alias_url }}">${{ steps.meta.outputs.alias_url }}</a></td>
+                <td><strong>This commit</strong></td>
+                <td><a href="${{ steps.meta.outputs.deployment_url }}">${{ steps.meta.outputs.deployment_url }}</a></td>
               </tr>
               <tr>
                 <td><strong>Commit</strong></td>
@@ -103,3 +110,63 @@ jobs:
             </table>
 
             [View deploy logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+  cleanup:
+    if: >-
+      github.event.action == 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+      pull-requests: write
+    env:
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
+        with:
+          cachix_name: ${{ env.CACHIX_NAME }}
+          cachix_skip_push: 'true'
+
+      - name: Install dependencies
+        run: nix develop -c pnpm install --frozen-lockfile
+
+      - name: Delete preview
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_OUTPUT_FILE_PATH: ${{ runner.temp }}/wrangler-output.ndjson
+        run: |
+          if nix develop -c pnpm exec wrangler preview delete --name "pr-$PR_NUMBER"; then
+            exit 0
+          fi
+          # Cloudflare API error 10025 is "Preview not found": the PR never deployed one.
+          jq -e 'select(.type == "command-failed") | .code == 10025' "$WRANGLER_OUTPUT_FILE_PATH"
+
+      - name: Deactivate deployments
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          ids=$(gh api --paginate -X GET "repos/$GITHUB_REPOSITORY/deployments" \
+            -f environment=preview -f ref="$HEAD_REF" --jq '.[].id')
+          for id in $ids; do
+            gh api -X POST "repos/$GITHUB_REPOSITORY/deployments/$id/statuses" \
+              -f state=inactive --silent
+          done
+
+      - name: Comment preview
+        uses: marocchino/sticky-pull-request-comment@v3
+        with:
+          header: preview-url
+          only_update: true
+          message: |
+            ## ⚡ Cloudflare Workers preview
+
+            This PR's preview was deleted when it closed.
+
+            [View cleanup logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
