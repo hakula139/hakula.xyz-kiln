@@ -25,7 +25,7 @@ kiln serve --open  # Preview with live reload
 
 ## Deploy
 
-Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz) in the `production` GitHub Environment, and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz) in the `development` environment. Each PR gets a preview URL in the `preview` environment, linked from a PR comment.
+Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz) in the `production` GitHub Environment, and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz) in the `development` environment. Each PR from this repository gets a preview URL in the `preview` environment, linked from a PR comment.
 
 For a manual deploy, run the workflow on the intended branch:
 

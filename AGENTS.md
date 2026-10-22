@@ -29,13 +29,13 @@ Node-side pre-commit hooks no-op when `node_modules/` is absent, which is the ca
 
 ## Deploy
 
-Deployment commands and branch behavior are documented in [README.md](README.md#deploy).
+Manual deploy commands are in [README.md](README.md#deploy).
 
 `.github/workflows/build.yml` is a reusable `workflow_call` that enters the dev shell and runs `kiln build --minify`, including CSS compilation. `ci.yml`, `deploy.yml`, and `preview.yml` call into it, so the build path is single-sourced.
 
 `deploy.yml` ships `public/` to the Workers in `wrangler.toml`, the top-level Worker from `main` and `[env.dev]` from `dev`, and the `production` and `development` environments accept deploys only from those branches. Development builds keep links on the development origin, and `static/_headers` sends `X-Robots-Tag: noindex` on non-production hosts.
 
-`preview.yml` deploys each PR from this repository as a Worker Preview named `pr-<number>` and comments its stable and per-push URLs. When the PR closes, `preview-cleanup.yml` deletes the Preview, marks the PR's `preview` deployments inactive, and updates the comment. It runs on `pull_request_target`, which also fires for PRs with merge conflicts but runs `main`'s copy of the workflow, so a change to it takes effect only once merged and must never run PR code. Both workflows share the concurrency group `preview-<number>`, so closing a PR cancels its in-flight deploy. Previews serve a bare `Not found` for missing paths, because Worker Previews ignore `not_found_handling` ([workers-sdk#16047](https://github.com/cloudflare/workers-sdk/issues/16047)). Aliases and version URLs from PRs that predate Worker Previews still serve, since Wrangler can't delete them.
+`preview.yml` deploys each PR from this repository as a Worker Preview named `pr-<number>` and comments its stable and per-push URLs. When the PR closes, `preview-cleanup.yml` deletes the Preview, marks the PR's `preview` deployments inactive, and updates the comment. It runs on `pull_request_target`, which also fires for PRs with merge conflicts and runs `main`'s copy of the workflow, so a change to it takes effect only once merged. It holds the deploy secrets and a write token, so it must never check out or run PR code. Both workflows share the concurrency group `preview-<number>`, so closing a PR cancels its in-flight deploy. Previews serve a bare `Not found` for missing paths, because Worker Previews ignore `not_found_handling` ([workers-sdk#16047](https://github.com/cloudflare/workers-sdk/issues/16047)). Aliases and version URLs from PRs that predate Worker Previews still serve, since Wrangler can't delete them.
 
 ## Conventions
 

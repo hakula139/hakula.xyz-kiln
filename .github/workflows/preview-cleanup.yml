@@ -49,7 +49,7 @@ jobs:
             --name "pr-$PR_NUMBER" --skip-confirmation; then
             exit 0
           fi
-          # Cloudflare API error 10025 is "Preview not found", so nothing is left to delete.
+          # Cloudflare API error 10025 is "Preview not found".
           jq -e 'select(.type == "command-failed") | .code == 10025' "$WRANGLER_OUTPUT_FILE_PATH"
 
       - name: Deactivate deployments
