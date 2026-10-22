@@ -1,6 +1,5 @@
 name: Preview cleanup
 
-# `pull_request` skips closed PRs with merge conflicts. Secrets are in reach: never run PR code.
 on:
   pull_request_target:
     types: [closed]
@@ -17,7 +16,6 @@ env:
 
 jobs:
   cleanup:
-    # Pull requests from forks never get a preview.
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     permissions:

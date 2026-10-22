@@ -4,7 +4,6 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
-# Shared with Preview cleanup, so closing a PR cancels its in-flight deploy.
 concurrency:
   group: preview-${{ github.event.pull_request.number }}
   cancel-in-progress: true
