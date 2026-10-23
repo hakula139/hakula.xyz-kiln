@@ -3,7 +3,7 @@
   "scripts": {
     "build": "kiln build",
     "dev": "kiln serve",
-    "format": "prettier --check --ignore-unknown $(git ls-files -s | awk '$1 ~ /^100/ { print $4 }')",
+    "format": "prettier --check .",
     "lint": "pnpm lint:md && pnpm lint:js",
     "lint:js": "eslint .",
     "lint:md": "markdownlint-cli2 $(git ls-files '*.md')",
