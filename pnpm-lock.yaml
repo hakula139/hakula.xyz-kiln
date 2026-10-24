@@ -7,7 +7,7 @@ settings:
 overrides:
   '@tailwindcss/typography@0.5.20>postcss-selector-parser': ^7.1.7
   micromark-extension-math>katex: ^0.19.0
-  miniflare@5.20261019.2-beta>undici: ^7.30.1
+  miniflare@5.20261019.2-beta>undici: ^8.0.0
 
 importers:
 
@@ -1552,9 +1552,9 @@ packages:
   uc.micro@3.0.0:
     resolution: {integrity: sha512-U3PppEkleoTnIfi8BozMx3yju3qc/L6SwqWo2Sw+54PX+PX0q9I+r1Um5HCmqD7n9VDX5/v3vQH/AjA6deDdtw==}
 
-  undici@7.30.1:
-    resolution: {integrity: sha512-03KrMbjIFDWQR5RNPrSw3bd1r12JpyFQl9/yxjUbJtqkjmllqC5lFjZh6ujeuJCKr8EOQvRW872Oy/az+nLYxg==}
-    engines: {node: '>=20.18.1'}
+  undici@8.12.3:
+    resolution: {integrity: sha512-+fdndUTwBP86cVjihTp21hZHo7d6oj1c/47XPA3lL8mM0XHs+C4EkcjmgRsFnFk2f/UONGDy9ItBItmXsLOQHw==}
+    engines: {node: '>=22.19.0'}
 
   unenv@2.0.0-rc.24:
     resolution: {integrity: sha512-i7qRCmY42zmCwnYlh9H2SvLEypEFGye5iRmEMKjcGi7zk9UquigRjFtTLz0TYqr0ZGLZhaMHl/foy1bZR+Cwlw==}
@@ -2887,7 +2887,7 @@ snapshots:
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       sharp: 0.35.5
-      undici: 7.30.1
+      undici: 8.12.3
       workerd: 1.20261019.1
       ws: 8.21.0
       youch: 4.1.0-beta.10
@@ -3051,7 +3051,7 @@ snapshots:
 
   uc.micro@3.0.0: {}
 
-  undici@7.30.1: {}
+  undici@8.12.3: {}
 
   unenv@2.0.0-rc.24:
     dependencies:
