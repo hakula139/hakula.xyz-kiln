@@ -4,4 +4,6 @@ allowBuilds:
   workerd: true
 
 overrides:
+  '@tailwindcss/typography@0.5.20>postcss-selector-parser': 7.1.7
   micromark-extension-math>katex: ^0.19.0
+  miniflare@5.20261019.2-beta>undici: 7.30.1
