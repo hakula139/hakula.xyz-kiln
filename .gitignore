@@ -27,3 +27,6 @@
 .claude/plans
 .claude/settings.local.json
 .claude/worktrees
+
+# Local writing drafts
+/content/**/_drafts/

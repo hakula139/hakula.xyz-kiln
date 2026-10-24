@@ -1,4 +1,5 @@
 {
+  "editor.wrappingStrategy": "advanced",
   "files.associations": {
     "*.css": "tailwindcss",
     "*.html": "jinja-html"
