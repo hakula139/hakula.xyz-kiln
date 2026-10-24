@@ -98,4 +98,4 @@ Keep capitalisation and spelling correct, and spell a name out in full on first 
 [markdownlint](https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md) enforces list style, indentation, code fence style, code block languages, emphasis style, and the ban on bold text standing in for a subheading, all configured in `.markdownlint-cli2.jsonc`. Two conventions it does not cover:
 
 - In Chinese prose a foreign term is embedded directly. Italics mark only a foreign work title.
-- Headings do not end in `、；：`, which MD026 does not catch because it is configured only for the half-width `.,;:`.
+- Headings do not end in `、`, which MD026 does not cover.

@@ -46,6 +46,7 @@ INTJ
 Iser
 Jauss
 Karpathy
+katex
 kaze
 Kiyotsugu
 kstack

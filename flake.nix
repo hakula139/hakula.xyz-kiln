@@ -1,15 +1,9 @@
 # ==================================================================================================
 # hakula.xyz-kiln Site Development Flake
 # ==================================================================================================
-#
-# Provides kiln and pre-commit hooks. kiln's package carries its CSS compiler
-# and Pagefind on its own PATH.
-#
-#   nix develop        # interactive shell (auto-installs hooks)
-#   nix flake check    # Nix-side hooks (Node-side run in CI's `check` job)
 
 {
-  description = "hakula.xyz-kiln — site source for hakula.xyz (dev environment)";
+  description = "hakula.xyz site development environment";
 
   # ------------------------------------------------------------------------------------------------
   # Inputs
@@ -73,12 +67,12 @@
         # check leaves them to CI's Site Check job.
         nodeHook =
           name: cmd:
-          let
-            wrapper = pkgs.writeShellApplication {
+          pkgs.lib.getExe (
+            pkgs.writeShellApplication {
               inherit name;
-              runtimeInputs = [
-                pkgs.nodejs_24
-                pkgs.pnpm
+              runtimeInputs = with pkgs; [
+                nodejs_24
+                pnpm
               ];
               text = ''
                 if [ ! -d node_modules ]; then
@@ -87,9 +81,8 @@
                 fi
                 pnpm exec ${cmd} "$@"
               '';
-            };
-          in
-          "${wrapper}/bin/${name}";
+            }
+          );
 
         nodeHooks = {
           prettier-write = {
@@ -173,14 +166,12 @@
         };
 
         # ------------------------------------------------------------------------------------------
-        # Checks (`nix flake check`)
+        # Checks
         # ------------------------------------------------------------------------------------------
-        checks = {
-          pre-commit = preCommitCheck;
-        };
+        checks.pre-commit = preCommitCheck;
 
         # ------------------------------------------------------------------------------------------
-        # Formatter (`nix fmt`)
+        # Formatter
         # ------------------------------------------------------------------------------------------
         formatter = pkgs.nixfmt-tree;
       }

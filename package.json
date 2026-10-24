@@ -8,7 +8,7 @@
     "format:toml": "taplo format --check",
     "lint": "pnpm lint:md && pnpm lint:js",
     "lint:js": "eslint .",
-    "lint:md": "markdownlint-cli2 $(git ls-files '*.md')",
+    "lint:md": "markdownlint-cli2 \"**/*.md\"",
     "spellcheck": "git ls-files | cspell --no-progress --file-list stdin"
   },
   "devDependencies": {
