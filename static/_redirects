@@ -94,6 +94,11 @@
 
 # ══ Pattern rules, narrow to broad ══
 
+# ── Legacy image URLs ──
+
+/images/hotlink-ok/* /assets/images/hotlink-ok/:splat 301
+/images/social/* /assets/images/social/:splat 301
+
 # ── Hugo-era renames ──
 
 /categories/:section/* /posts/:section/:splat 301
