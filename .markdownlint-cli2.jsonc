@@ -2,56 +2,22 @@
   "config": {
     "default": true,
 
-    // Heading style: atx
-    "MD003": { "style": "atx" },
-
-    // Unordered list style: dash
-    "MD004": { "style": "dash" },
-
-    // Unordered list indent: 2 spaces
-    "MD007": { "indent": 2 },
-
-    // Allow hard tabs in code blocks
-    "MD010": { "code_blocks": false },
-
-    // Disable line length for Chinese content
-    "MD013": false,
-
-    // Repeated subsection titles are distinct under different parent headings.
-    "MD024": { "siblings_only": true },
-
-    // Heading trailing punctuation: only flag .,;:
-    "MD026": { "punctuation": ".,;:" },
-
-    // Ordered list style: incremental (1. 2. 3.)
-    "MD029": { "style": "ordered" },
-
-    // Disable no-inline-html — we use <!--more--> and cspell comments
-    "MD033": false,
-
-    // Disable bare URL check — false positives from TOML frontmatter URLs
-    "MD034": false,
-
-    // Disable first-line heading (frontmatter handles this)
-    "MD041": false,
-
-    // Code block style: fenced
-    "MD046": { "style": "fenced" },
-
-    // Code fence style: backtick
-    "MD048": { "style": "backtick" },
-
-    // Emphasis style: underscore for italic
-    "MD049": { "style": "underscore" },
-
-    // Strong style: asterisk for bold
-    "MD050": { "style": "asterisk" },
-
-    // Disable link-fragments — it derives anchors with GitHub's slugger, which
-    // drops the `.` `_` `~` `+` that kiln keeps, so it validates ids the site
-    // never emits.
-    "MD051": false,
+    "code-block-style": { "style": "fenced" },
+    "code-fence-style": { "style": "backtick" },
+    "emphasis-style": { "style": "underscore" },
+    "first-line-heading": false,
+    "heading-style": { "style": "atx" },
+    "line-length": false,
+    // kiln preserves punctuation that GitHub's heading slugger drops.
+    "link-fragments": false,
+    "no-duplicate-heading": { "siblings_only": true },
+    "no-hard-tabs": { "code_blocks": false },
+    "no-inline-html": false,
+    "ol-prefix": { "style": "ordered" },
+    "strong-style": { "style": "asterisk" },
+    "ul-style": { "style": "dash" },
   },
 
-  "ignores": [],
+  "gitignore": true,
+  "ignores": ["themes/**"],
 }

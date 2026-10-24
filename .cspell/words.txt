@@ -46,6 +46,7 @@ INTJ
 Iser
 Jauss
 Karpathy
+katex
 kaze
 Kiyotsugu
 kstack
@@ -115,6 +116,7 @@ strtol
 swapon
 SWAV
 Taki
+taplo
 tmin
 Togawa
 Tomori

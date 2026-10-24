@@ -19,9 +19,9 @@ Images (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are Git LFS objects per `
 
 ## Verification
 
-Use the commands in [README.md](README.md#usage) for site builds and previews. `nix flake check` runs the Nix-side hooks.
+Use the commands in [README.md](README.md#usage) for site builds and previews.
 
-Node-side pre-commit hooks no-op when `node_modules/` is absent, which is the case inside the Nix sandbox. Run `pnpm format`, `pnpm lint`, and `pnpm spellcheck` in the dev shell to cover them, as CI's `Site Check` job does, because a green `nix flake check` does not mean the Node hooks ran.
+Run `nix develop -c true` and `pnpm install --frozen-lockfile` in each new checkout before committing. Node-side commit hooks fail when `node_modules/` is absent. `nix flake check` runs the Nix-side hooks, while `pnpm format`, `pnpm lint`, and `pnpm spellcheck` cover the Node-side checks, as CI's `Site Check` job does.
 
 ## Conventions
 

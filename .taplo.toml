@@ -1,0 +1,4 @@
+exclude = ["themes/**"]
+
+[formatting]
+column_width = 100

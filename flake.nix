@@ -1,19 +1,13 @@
-# ==============================================================================
+# ==================================================================================================
 # hakula.xyz-kiln Site Development Flake
-# ==============================================================================
-#
-# Provides kiln and pre-commit hooks. kiln's package carries its CSS compiler
-# and Pagefind on its own PATH.
-#
-#   nix develop        # interactive shell (auto-installs hooks)
-#   nix flake check    # Nix-side hooks (Node-side run in CI's `check` job)
+# ==================================================================================================
 
 {
-  description = "hakula.xyz-kiln — site source for hakula.xyz (dev environment)";
+  description = "hakula.xyz site development environment";
 
-  # ----------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------
   # Inputs
-  # ----------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------
   inputs = {
     # Following kiln's nixpkgs keeps the kiln package identical to its Cachix build.
     nixpkgs.follows = "kiln/nixpkgs";
@@ -35,9 +29,9 @@
     };
   };
 
-  # ----------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------
   # Outputs
-  # ----------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------
   outputs =
     {
       nixpkgs,
@@ -51,115 +45,134 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
 
-        # ----------------------------------------------------------------------
-        # Node Hook Wrapper
-        # ----------------------------------------------------------------------
-        # Node hooks need the local dependencies, which the Nix sandbox excludes.
-        # CI runs the equivalent checks directly with pnpm.
+        # ------------------------------------------------------------------------------------------
+        # Pre-commit Hooks
+        # ------------------------------------------------------------------------------------------
+        hooks = {
+          check-added-large-files.enable = true;
+          check-yaml.enable = true;
+          end-of-file-fixer.enable = true;
+          # Preserve Markdown's two-trailing-space hard-break syntax.
+          trim-trailing-whitespace = {
+            enable = true;
+            args = [ "--markdown-linebreak-ext=md" ];
+          };
+
+          nixfmt.enable = true;
+          statix.enable = true;
+          deadnix.enable = true;
+        };
+
+        # These hooks run the tools pinned in node_modules, which the Nix sandbox lacks. The flake
+        # check leaves them to CI's Site Check job.
         nodeHook =
           name: cmd:
-          let
-            wrapper = pkgs.writeShellApplication {
+          pkgs.lib.getExe (
+            pkgs.writeShellApplication {
               inherit name;
-              runtimeInputs = [
-                pkgs.nodejs_24
-                pkgs.pnpm
+              runtimeInputs = with pkgs; [
+                nodejs_24
+                pnpm
               ];
               text = ''
                 if [ ! -d node_modules ]; then
-                  exit 0
+                  echo "node_modules is missing. Run pnpm install --frozen-lockfile, then commit again." >&2
+                  exit 1
                 fi
                 pnpm exec ${cmd} "$@"
               '';
-            };
-          in
-          "${wrapper}/bin/${name}";
+            }
+          );
 
-        # ----------------------------------------------------------------------
-        # Pre-commit Hooks
-        # ----------------------------------------------------------------------
-        preCommitCheck = git-hooks-nix.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            check-added-large-files.enable = true;
-            check-yaml.enable = true;
-            end-of-file-fixer.enable = true;
-            # Preserve Markdown's two-trailing-space hard-break syntax.
-            trim-trailing-whitespace = {
-              enable = true;
-              args = [ "--markdown-linebreak-ext=md" ];
-            };
+        nodeHooks = {
+          prettier-write = {
+            enable = true;
+            name = "prettier";
+            entry = nodeHook "prettier-write" "prettier --write --ignore-unknown";
+            types = [ "text" ];
+          };
+          taplo-write = {
+            enable = true;
+            name = "taplo";
+            entry = nodeHook "taplo-write" "taplo format";
+            files = "\\.toml$";
+          };
 
-            nixfmt.enable = true;
-            statix.enable = true;
-            deadnix.enable = true;
-
-            prettier-write = {
-              enable = true;
-              name = "prettier";
-              entry = nodeHook "prettier-write" "prettier --write --ignore-unknown";
-              types = [ "text" ];
-              pass_filenames = true;
-            };
-
-            eslint = {
-              enable = true;
-              package = null;
-              name = "eslint";
-              entry = nodeHook "eslint" "eslint --fix";
-              files = "\\.(js|mjs)$";
-              pass_filenames = true;
-            };
-
-            markdownlint = {
-              enable = true;
-              package = null;
-              name = "markdownlint-cli2";
-              entry = nodeHook "markdownlint" "markdownlint-cli2 --fix";
-              files = "\\.md$";
-              pass_filenames = true;
-            };
-
-            cspell = {
-              enable = true;
-              package = null;
-              entry = nodeHook "cspell" "cspell --no-must-find-files --no-progress";
-              types = [ "text" ];
-              pass_filenames = true;
-            };
+          cspell = {
+            enable = true;
+            package = null;
+            entry = nodeHook "cspell" "cspell --no-must-find-files --no-progress";
+            types = [ "text" ];
+          };
+          eslint = {
+            enable = true;
+            package = null;
+            entry = nodeHook "eslint" "eslint --fix";
+            files = "\\.(js|mjs)$";
+          };
+          markdownlint = {
+            enable = true;
+            package = null;
+            name = "markdownlint-cli2";
+            entry = nodeHook "markdownlint" "markdownlint-cli2 --fix";
+            files = "\\.md$";
           };
         };
+
+        preCommit = git-hooks-nix.lib.${system}.run {
+          src = ./.;
+          hooks = hooks // nodeHooks;
+        };
+
+        preCommitCheck = git-hooks-nix.lib.${system}.run {
+          inherit hooks;
+          src = ./.;
+        };
+
+        flock = pkgs.lib.getExe pkgs.flock;
+        git = pkgs.lib.getExe pkgs.git;
       in
       {
-        # ----------------------------------------------------------------------
+        # ------------------------------------------------------------------------------------------
         # Dev Shell
-        # ----------------------------------------------------------------------
+        # ------------------------------------------------------------------------------------------
         devShells.default = pkgs.mkShell {
           name = "hakula.xyz-kiln-dev";
 
-          packages =
-            preCommitCheck.enabledPackages
-            ++ [
-              kiln.packages.${system}.kiln
-            ]
-            ++ (with pkgs; [
-              nodejs_24
-              pnpm
-            ]);
+          packages = [
+            preCommit.config.package
+          ]
+          ++ preCommit.enabledPackages
+          ++ [
+            kiln.packages.${system}.kiln
+          ]
+          ++ (with pkgs; [
+            nodejs_24
+            pnpm
+          ]);
 
-          inherit (preCommitCheck) shellHook;
+          # git-hooks.nix stores a relative hooks path that linked worktrees can't resolve
+          # (cachix/git-hooks.nix#688). Unset it to use Git's shared hooks directory. The lock keeps
+          # another shell from setting it mid-install, which pre-commit refuses.
+          shellHook = ''
+            if common=$(${git} rev-parse --path-format=absolute --git-common-dir 2>/dev/null); then
+              (
+                ${flock} 9
+                ${preCommit.config.installationScript}
+                ${git} config --local --unset-all core.hooksPath || true
+              ) 9>"$common/git-hooks.lock"
+            fi
+          '';
         };
 
-        # ----------------------------------------------------------------------
-        # Checks (`nix flake check`)
-        # ----------------------------------------------------------------------
-        checks = {
-          pre-commit = preCommitCheck;
-        };
+        # ------------------------------------------------------------------------------------------
+        # Checks
+        # ------------------------------------------------------------------------------------------
+        checks.pre-commit = preCommitCheck;
 
-        # ----------------------------------------------------------------------
-        # Formatter (`nix fmt`)
-        # ----------------------------------------------------------------------
+        # ------------------------------------------------------------------------------------------
+        # Formatter
+        # ------------------------------------------------------------------------------------------
         formatter = pkgs.nixfmt-tree;
       }
     );
