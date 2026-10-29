@@ -7,17 +7,18 @@
 {%- set col_types = {
   "作品名称": "text",
   "年份": "number",
-  "剧本": "score",
+  "文本": "score",
   "系统": "score",
-  "画面": "score",
-  "音乐": "score",
+  "影像": "score",
+  "声音": "score",
   "总评": "score",
   "评级": "rating",
   "个人差": "heatmap",
   "分级": "age-rating",
   "EGS": "ext-score",
   "BGM": "ext-score",
-  "Δ": "delta",
+  "BGM 评": "ext-score",
+  "ΔBGM": "delta",
   "完成日期": "date",
   "初次完成日期": "date",
 } -%}
@@ -35,19 +36,27 @@
 } -%}
 {#- Score bar colors (header -> RGB) -#}
 {%- set col_colors = {
-  "剧本": "0,176,240",
+  "文本": "0,176,240",
   "系统": "255,182,40",
-  "画面": "99,195,132",
-  "音乐": "99,142,198",
+  "影像": "99,195,132",
+  "声音": "99,142,198",
   "总评": "255,85,90",
 } -%}
 {#- Find 总评 column index for rating cells -#}
 {%- set total_idx = namespace(value=-1) -%}
+{%- set completed_idx = namespace(value=-1) -%}
 {%- for h in headers -%}
   {%- if h == "总评" -%}
     {%- set total_idx.value = loop.index0 -%}
   {%- endif -%}
+  {%- if h == "完成日期" -%}
+    {%- set completed_idx.value = loop.index0 -%}
+  {%- endif -%}
 {%- endfor -%}
+{%- set latest_date = "" -%}
+{%- if completed_idx.value >= 0 -%}
+  {%- set latest_date = rows | map(attribute=completed_idx.value) | max | default("") -%}
+{%- endif -%}
 <div{{ directive.attrs(id, classes, "score-table-wrapper not-prose") }}>
   <table class="score-table">
     <thead>
@@ -55,7 +64,9 @@
         <th class="col-rownum">#</th>
 {%- for h in headers -%}
   {%- set type = col_types[h] | default("text") -%}
-        <th class="{{ col_classes[type] }}" data-col-type="{{ type }}"><button type="button">{{ h }}<span class="sort-indicator" aria-hidden="true"></span></button></th>
+        <th class="{{ col_classes[type] }}" data-col-type="{{ type }}">
+          <button type="button">{{ h }}<span class="sort-indicator" aria-hidden="true"></span></button>
+        </th>
 {%- endfor -%}
       </tr>
     </thead>
@@ -68,20 +79,38 @@
   {%- set type = col_types[h] | default("text") -%}
   {%- set cls = col_classes[type] -%}
   {%- if type == "text" -%}
-        <td class="{{ cls }}" title="{{ val }}" data-sort-value="{{ val }}">{{ val }}</td>
+        <td
+          class="{{ cls }}{% if h == '作品名称' and latest_date and row[completed_idx.value] == latest_date %} is-latest{% endif %}"
+          title="{{ val }}"
+          data-sort-value="{{ val }}"
+        >{{ val }}</td>
   {%- elif type == "score" -%}
     {%- set color = col_colors[h] -%}
     {%- set pct = val | float -%}
     {%- if pct > 100 %}{% set pct = 100 %}{% endif -%}
-        <td class="{{ cls }}" style="background: linear-gradient(to right, rgba({{ color }}, 0.4) {{ pct }}%, transparent {{ pct }}%)" data-sort-value="{{ val }}">{{ val }}</td>
+        <td
+          class="{{ cls }}"
+          style="background: linear-gradient(to right, rgba({{ color }}, 0.4) {{ pct }}%, transparent {{ pct }}%)"
+          data-sort-value="{{ val }}"
+        >{{ val }}</td>
   {%- elif type == "rating" -%}
     {%- set total_val = "" -%}
     {%- if total_idx.value >= 0 -%}
       {%- set total_val = row[total_idx.value] -%}
     {%- endif -%}
-        <td class="{{ cls }}" data-type="rating" data-score="{{ total_val }}" data-sort-value="{{ val }}">{{ val }}</td>
+        <td
+          class="{{ cls }}"
+          data-type="rating"
+          data-score="{{ total_val }}"
+          data-sort-value="{{ val }}"
+        >{{ val }}</td>
   {%- elif type == "heatmap" -%}
-        <td class="{{ cls }}" data-type="heatmap" data-score="{{ val }}" data-sort-value="{{ val }}">{{ val }}</td>
+        <td
+          class="{{ cls }}"
+          data-type="heatmap"
+          data-score="{{ val }}"
+          data-sort-value="{{ val }}"
+        >{{ val }}</td>
   {%- elif type == "age-rating" -%}
     {%- set display = val -%}
     {%- set tier = 0 -%}
@@ -109,20 +138,33 @@
       {%- set tier = 1 -%}
     {%- endif -%}
     {%- set sort_val = tier * 100 + age -%}
-        <td class="{{ cls }}" data-type="age-rating" data-tier="{{ tier }}" data-sort-value="{{ sort_val }}">{{ display }}</td>
+        <td
+          class="{{ cls }}"
+          data-type="age-rating"
+          data-tier="{{ tier }}"
+          data-sort-value="{{ sort_val }}"
+        >{{ display }}</td>
   {%- elif type == "ext-score" -%}
     {%- set is_approx = val is startingwith("~") -%}
     {%- set sort_val = val -%}
     {%- if is_approx -%}
       {%- set sort_val = val[1:] -%}
     {%- endif -%}
-        <td class="{{ cls }}{% if is_approx %} ext-score-approx{% endif %}" data-sort-value="{{ sort_val }}">{{ val }}</td>
+        <td
+          class="{{ cls }}{% if is_approx %} ext-score-approx{% endif %}"
+          data-sort-value="{{ sort_val }}"
+        >{{ val }}</td>
   {%- elif type == "delta" -%}
     {%- set sort_val = val -%}
     {%- if val is startingwith("+") -%}
       {%- set sort_val = val[1:] -%}
     {%- endif -%}
-        <td class="{{ cls }}" data-type="delta" data-score="{{ sort_val }}" data-sort-value="{{ sort_val }}">{{ val }}</td>
+        <td
+          class="{{ cls }}"
+          data-type="delta"
+          data-score="{{ sort_val }}"
+          data-sort-value="{{ sort_val }}"
+        >{{ val }}</td>
   {%- else -%}
         <td class="{{ cls }}" data-sort-value="{{ val }}">{{ val }}</td>
   {%- endif -%}
