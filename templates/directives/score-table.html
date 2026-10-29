@@ -53,13 +53,9 @@
     {%- set completed_idx.value = loop.index0 -%}
   {%- endif -%}
 {%- endfor -%}
-{%- set latest_date = namespace(value="") -%}
+{%- set latest_date = "" -%}
 {%- if completed_idx.value >= 0 -%}
-  {%- for row in rows -%}
-    {%- if row[completed_idx.value] > latest_date.value -%}
-      {%- set latest_date.value = row[completed_idx.value] -%}
-    {%- endif -%}
-  {%- endfor -%}
+  {%- set latest_date = rows | map(attribute=completed_idx.value) | max | default("") -%}
 {%- endif -%}
 <div{{ directive.attrs(id, classes, "score-table-wrapper not-prose") }}>
   <table class="score-table">
@@ -84,7 +80,7 @@
   {%- set cls = col_classes[type] -%}
   {%- if type == "text" -%}
         <td
-          class="{{ cls }}{% if h == '作品名称' and latest_date.value and row[completed_idx.value] == latest_date.value %} is-latest{% endif %}"
+          class="{{ cls }}{% if h == '作品名称' and latest_date and row[completed_idx.value] == latest_date %} is-latest{% endif %}"
           title="{{ val }}"
           data-sort-value="{{ val }}"
         >{{ val }}</td>
@@ -92,17 +88,11 @@
     {%- set color = col_colors[h] -%}
     {%- set pct = val | float -%}
     {%- if pct > 100 %}{% set pct = 100 %}{% endif -%}
-    {%- set display = val -%}
-    {%- if h == "总评" -%}
-      {#- Round integer hundredths to match Excel's half-up display. -#}
-      {%- set tenths = ((((val | float) * 100) | round | int) + 5) // 10 -%}
-      {%- set display = (tenths // 10) ~ "." ~ (tenths % 10) -%}
-    {%- endif -%}
         <td
           class="{{ cls }}"
           style="background: linear-gradient(to right, rgba({{ color }}, 0.4) {{ pct }}%, transparent {{ pct }}%)"
           data-sort-value="{{ val }}"
-        >{{ display }}</td>
+        >{{ val }}</td>
   {%- elif type == "rating" -%}
     {%- set total_val = "" -%}
     {%- if total_idx.value >= 0 -%}

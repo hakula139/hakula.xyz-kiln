@@ -93,6 +93,9 @@
       const thead = table.querySelector('thead');
       const tbody = table.querySelector('tbody');
       const ths = Array.from(thead.querySelectorAll('th'));
+      const scoreIndices = ['总评', '文本']
+        .map((header) => ths.findIndex((th) => th.textContent.trim() === header))
+        .filter((idx) => idx >= 0);
 
       for (const [domIdx, th] of ths.entries()) {
         if (th.classList.contains('col-rownum')) {
@@ -112,10 +115,13 @@
           const rows = Array.from(tbody.querySelectorAll('tr'));
           rows.sort((a, b) => {
             let cmp = compare(getCellValue(a, domIdx), getCellValue(b, domIdx));
-            if (cmp === 0) {
-              const sa = parseFloat(a.cells[domIdx].getAttribute('data-score')) || 0;
-              const sb = parseFloat(b.cells[domIdx].getAttribute('data-score')) || 0;
-              cmp = sa - sb;
+            if (colType === 'rating' || domIdx === scoreIndices[0]) {
+              for (const idx of scoreIndices) {
+                if (cmp !== 0) {
+                  break;
+                }
+                cmp = numericCmp(getCellValue(a, idx), getCellValue(b, idx));
+              }
             }
             return isAsc ? cmp : -cmp;
           });
