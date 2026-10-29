@@ -57,9 +57,6 @@ url = "https://www.pixiv.net/artworks/95120332"
 ::: link {name="HAKULA†CLOUD" url="https://files.hakula.xyz" desc="📦 文件库 - Cloudreve" logo="assets/94991375.webp"}
 :::
 
-::: link {name="HAKULA†METRICS (US-4)" url="https://metrics-us-4.hakula.xyz" desc="🇺🇸 服务器资源监控 - Netdata" logo="assets/98722302.webp"}
-:::
-
 ::: link {name="HAKULA†STATUS" url="https://status.hakula.xyz" desc="👀 服务可用性监控 - Better Stack" logo="assets/78435677.webp"}
 :::
 

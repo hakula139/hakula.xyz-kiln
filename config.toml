@@ -90,21 +90,14 @@ weight = 7
 name = "menu_status"
 url = "https://status.hakula.xyz"
 icon = "fas fa-heart-pulse"
-weight = 10
-external = true
-
-[[menu.main]]
-name = "menu_metrics"
-url = "https://metrics-us-4.hakula.xyz"
-icon = "fas fa-chart-bar"
-weight = 11
+weight = 8
 external = true
 
 [[menu.main]]
 name = "menu_github"
 url = "https://github.com/hakula139/hakula.xyz-kiln"
 icon = "fab fa-github"
-weight = 12
+weight = 9
 external = true
 
 # Social icons rendered under the home profile subtitle, in `weight` order.
