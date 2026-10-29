@@ -26,7 +26,7 @@ src = "/assets/images/article-covers/yuki.webp"
 ::: score-table {"scores.csv"}
 :::
 
-主观评价，仅供参考。已抛弃作品不会出现在表中。作品名的黄色底色标记最近完成的作品。
+主观评价，仅供参考。已抛弃作品不会出现在表中。黄色底色表示最近完成的作品。
 
 具体长评可参见我的 [B 站专栏][avg-bilibili]，偏吐槽性质的短评可关注我的 [B 站动态][posts-bilibili]。
 

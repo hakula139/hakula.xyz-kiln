@@ -18,10 +18,10 @@
   }
 
   tr:nth-child(5) > td:first-child {
-    @apply bg-[#fff3a0] text-red-600;
+    @apply bg-yellow-200 text-red-600;
 
     @variant dark {
-      @apply bg-[#443e00];
+      @apply bg-yellow-950;
     }
   }
 
@@ -30,7 +30,7 @@
   }
 
   tr:nth-child(7) > td:first-child {
-    @apply bg-[#1a1a1a] text-red-600;
+    @apply bg-neutral-900 text-red-600;
   }
 }
 
