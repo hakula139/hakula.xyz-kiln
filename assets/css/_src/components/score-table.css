@@ -12,7 +12,7 @@
     --st-hover: rgba(0, 0, 0, 0.1);
     --st-age-warning-bg: var(--color-yellow-200);
 
-    @apply table w-auto border-separate border-spacing-0 text-[0.8rem] leading-snug whitespace-nowrap;
+    @apply table w-auto border-separate border-spacing-0 text-sm leading-snug whitespace-nowrap;
     background: var(--st-bg);
     counter-reset: row-num;
 
