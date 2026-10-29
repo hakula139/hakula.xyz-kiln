@@ -71,7 +71,7 @@
             pkgs.writeShellApplication {
               inherit name;
               runtimeInputs = with pkgs; [
-                nodejs_24
+                nodejs_26
                 pnpm
               ];
               text = ''
@@ -147,7 +147,7 @@
             kiln.packages.${system}.kiln
           ]
           ++ (with pkgs; [
-            nodejs_24
+            nodejs_26
             pnpm
           ]);
 
