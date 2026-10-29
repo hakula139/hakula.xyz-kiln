@@ -1,49 +1,39 @@
-/*
- * Rating severity color scale — matches the score-table age-rating tiers.
- *
- *   Row 1 (All)    → tier 0: muted
- *   Row 2 (18+)    → tier 1: default
- *   Row 3 (18+!)   → tier 2: red
- *   Row 4 (18+!!)  → tier 3: bold red
- *   Row 5 (18G)    → tier 4: bold red on warning yellow
- *   Row 6 (18G!)   → tier 5: bold black on red
- *   Row 7 (18G!!)  → tier 6: bold red on dark
- */
+/* The legend's row order must match the score table's age-rating tiers. */
+.rating-levels {
+  tr > :first-child {
+    @apply px-[1em] text-center;
+  }
 
-.rating-levels tr > :first-child {
-  text-align: center;
-  padding-inline: 1em;
-}
+  tr:nth-child(n + 4) > td:first-child {
+    @apply font-bold;
+  }
 
-/* Tiers 3–6 share bold weight */
-.rating-levels tr:nth-child(n + 4) > td:first-child {
-  font-weight: 700;
-}
+  tr:first-child > td:first-child {
+    color: var(--color-text-secondary);
+  }
 
-.rating-levels tr:nth-child(1) > td:first-child {
-  color: var(--color-text-secondary);
-}
-.rating-levels tr:nth-child(3) > td:first-child,
-.rating-levels tr:nth-child(4) > td:first-child {
-  color: #dc2626;
-}
-.rating-levels tr:nth-child(5) > td:first-child {
-  color: #dc2626;
-  background: #fff3a0;
-}
-.rating-levels tr:nth-child(6) > td:first-child {
-  color: #000;
-  background: #dc2626;
-}
-.rating-levels tr:nth-child(7) > td:first-child {
-  color: #dc2626;
-  background: #1a1a1a;
-}
+  tr:nth-child(3) > td:first-child,
+  tr:nth-child(4) > td:first-child {
+    @apply text-red-600;
+  }
 
-[data-theme='dark'] .rating-levels tr:nth-child(5) > td:first-child {
-  background: #443e00;
+  tr:nth-child(5) > td:first-child {
+    @apply bg-[#fff3a0] text-red-600;
+
+    @variant dark {
+      @apply bg-[#443e00];
+    }
+  }
+
+  tr:nth-child(6) > td:first-child {
+    @apply bg-red-600 text-black;
+  }
+
+  tr:nth-child(7) > td:first-child {
+    @apply bg-[#1a1a1a] text-red-600;
+  }
 }
 
 .inline-rating {
-  color: #dc2626;
+  @apply text-red-600;
 }

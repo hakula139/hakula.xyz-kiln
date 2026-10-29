@@ -74,9 +74,16 @@
 
   /* ── Column Sizing ── */
 
-  .score-table
-    :where(.col-number, .col-rating, .col-heatmap, .col-age-rating, .col-ext-score, .col-delta) {
+  .score-table .col-number {
     @apply w-14 min-w-14;
+  }
+
+  .score-table :where(.col-heatmap, .col-age-rating, .col-ext-score, .col-delta) {
+    @apply w-16 min-w-16;
+  }
+
+  .score-table .col-rating {
+    @apply w-20 min-w-20;
   }
 
   .score-table .col-score {
@@ -100,6 +107,10 @@
     border-left-color: var(--st-border);
     background: var(--st-bg);
     box-shadow: 1px 0 0 var(--st-border);
+  }
+
+  .score-table .col-title.is-latest {
+    background: var(--st-age-warning-bg);
   }
 
   .score-table thead .col-rownum,

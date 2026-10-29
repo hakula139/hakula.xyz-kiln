@@ -17,11 +17,10 @@
     }
   };
 
-  // Grade rank: base letter * 3 + modifier (+/none/-)
   const GRADE_BASE = { F: 0, E: 1, D: 2, C: 3, B: 4, A: 5, S: 6, SS: 7 };
 
   const gradeRank = (input) => {
-    let base = input;
+    let base = input.trim();
     let mod = 1;
     if (base.endsWith('+')) {
       mod = 2;
@@ -33,29 +32,36 @@
     return (GRADE_BASE[base] || 0) * 3 + mod;
   };
 
+  const ratingParts = (input) => {
+    const [grade, tier = ''] = input.split('/').map((part) => part.trim());
+    return [
+      gradeRank(grade),
+      (parseInt(tier, 10) || 0) * 3 + (tier.endsWith('+') ? 2 : tier.endsWith('-') ? 0 : 1),
+    ];
+  };
+
   const COMPARATORS = {
     text: (a, b) => a.localeCompare(b, 'ja'),
     date: (a, b) => a.localeCompare(b),
-    rating: (a, b) => gradeRank(a) - gradeRank(b),
+    rating: (a, b) => {
+      const [gradeA, tierA] = ratingParts(a);
+      const [gradeB, tierB] = ratingParts(b);
+      return gradeA - gradeB || tierA - tierB;
+    },
   };
   const numericCmp = (a, b) => (parseFloat(a) || 0) - (parseFloat(b) || 0);
 
-  // Column types that sort ascending on first click
   const ASC_BY_DEFAULT = new Set(['text', 'age-rating', 'heatmap']);
 
   // ── Color Strategies ──
-  // Computed inline because these colors depend on each cell's score.
-
   const COLOR_STRATEGIES = {
-    // Rating: continuous HSL scale from total score (theme-adaptive lightness)
     rating(td, score, dark) {
-      const c = Math.max(0, Math.min(score, 100));
-      const hue = (1 - c / 100) * 240;
-      const l = dark ? 15 + (c / 100) * 20 : 85 - (c / 100) * 25;
+      const t = Math.max(0, Math.min(score / 100, 1));
+      const hue = (1 - t) * 240;
+      const l = dark ? 15 + t * 20 : 85 - t * 25;
       td.style.background = `hsl(${hue},70%,${l}%)`;
     },
 
-    // Heatmap: grayscale intensity (theme-adapted)
     heatmap(td, score, dark) {
       const t = Math.min(score / 5, 1);
       if (dark) {
@@ -68,7 +74,7 @@
       }
     },
 
-    // Delta: blue (positive) → neutral → orange (negative)
+    // Blue marks a stronger personal preference, orange a weaker one.
     delta(td, score) {
       if (score > 0) {
         const t = Math.min(score / 3, 1);
