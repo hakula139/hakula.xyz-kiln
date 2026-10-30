@@ -133,18 +133,6 @@
 
         flock = pkgs.lib.getExe pkgs.flock;
         git = pkgs.lib.getExe pkgs.git;
-        exportPython = pkgs.python3.withPackages (ps: [ ps.pillow ]);
-        exportFonts = pkgs.makeFontsConf {
-          fontDirectories = [ "${pkgs.sarasa-gothic}/share/fonts" ];
-        };
-        exportScoreTable = pkgs.writeShellApplication {
-          name = "export-score-table";
-          runtimeInputs = [ pkgs.fontconfig ];
-          text = ''
-            export FONTCONFIG_FILE=${pkgs.lib.escapeShellArg exportFonts}
-            exec ${exportPython}/bin/python ${./scripts/export_score_table.py} "$@"
-          '';
-        };
       in
       {
         # ------------------------------------------------------------------------------------------
@@ -158,13 +146,18 @@
           ]
           ++ preCommit.enabledPackages
           ++ [
-            exportScoreTable
             kiln.packages.${system}.kiln
           ]
           ++ (with pkgs; [
+            fontconfig
             nodejs_26
             pnpm
+            (python314.withPackages (ps: [ ps.pillow ]))
           ]);
+
+          FONTCONFIG_FILE = pkgs.makeFontsConf {
+            fontDirectories = [ "${pkgs.sarasa-gothic}/share/fonts" ];
+          };
 
           # git-hooks.nix stores a relative hooks path that linked worktrees can't resolve
           # (cachix/git-hooks.nix#688). Unset it to use Git's shared hooks directory. The lock keeps
@@ -184,15 +177,6 @@
         # Checks
         # ------------------------------------------------------------------------------------------
         checks.pre-commit = preCommitCheck;
-
-        # ------------------------------------------------------------------------------------------
-        # Packages and Apps
-        # ------------------------------------------------------------------------------------------
-        packages.export-score-table = exportScoreTable;
-        apps.export-score-table = {
-          type = "app";
-          program = pkgs.lib.getExe exportScoreTable;
-        };
 
         # ------------------------------------------------------------------------------------------
         # Formatter
