@@ -61,6 +61,8 @@
           nixfmt.enable = true;
           statix.enable = true;
           deadnix.enable = true;
+          ruff.enable = true;
+          ruff-format.enable = true;
         };
 
         # These hooks run the tools pinned in node_modules, which the Nix sandbox lacks. The flake
@@ -131,6 +133,10 @@
 
         flock = pkgs.lib.getExe pkgs.flock;
         git = pkgs.lib.getExe pkgs.git;
+
+        titleFonts = pkgs.google-fonts.override {
+          fonts = [ "Shippori Mincho" ];
+        };
       in
       {
         # ------------------------------------------------------------------------------------------
@@ -147,9 +153,18 @@
             kiln.packages.${system}.kiln
           ]
           ++ (with pkgs; [
+            fontconfig
             nodejs_26
             pnpm
+            (python314.withPackages (ps: [ ps.pillow ]))
           ]);
+
+          FONTCONFIG_FILE = pkgs.makeFontsConf {
+            fontDirectories = [
+              "${pkgs.sarasa-gothic}/share/fonts"
+              "${titleFonts}/share/fonts"
+            ];
+          };
 
           # git-hooks.nix stores a relative hooks path that linked worktrees can't resolve
           # (cachix/git-hooks.nix#688). Unset it to use Git's shared hooks directory. The lock keeps

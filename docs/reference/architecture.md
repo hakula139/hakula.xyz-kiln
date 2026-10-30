@@ -15,6 +15,7 @@ The site is built by [kiln](https://github.com/hakula139/kiln) with the [IgnIt](
 ├── config.toml               # Site configuration
 ├── content/                  # Markdown content and page-owned assets
 ├── i18n/                     # Site translations (menu labels)
+├── scripts/                  # Score-table PNG export
 ├── static/                   # Public files with fixed URLs
 │   └── assets/
 │       ├── images/

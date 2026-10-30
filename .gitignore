@@ -6,6 +6,10 @@
 .pnpm-store/
 node_modules/
 
+# Python
+__pycache__/
+.ruff_cache/
+
 # Nix
 .direnv/
 /.pre-commit-config.yaml

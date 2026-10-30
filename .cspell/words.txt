@@ -44,6 +44,7 @@ IIDX
 impls
 INTJ
 Iser
+isort
 Jauss
 Karpathy
 katex
@@ -65,6 +66,7 @@ MBTI
 mfcc
 Mihaly
 Mikezom
+Mincho
 mipt
 Misumi
 mkdocs
@@ -79,6 +81,7 @@ nixfmt
 nixpkgs
 noindex
 Nosctis
+numpy
 numtide
 NVLINK
 Nyamu
@@ -89,6 +92,8 @@ pixiv
 pkgs
 prml
 PTSD
+pycache
+pydocstyle
 rclone
 realmsd
 rgba
@@ -101,10 +106,12 @@ Rāna
 Sadaharu
 Sakiko
 sakura
+Sarasa
 Scely
 SCHECTER
 SCTLR
 Shiina
+Shippori
 Slavoj
 Soyo
 SPSR
@@ -118,6 +125,7 @@ SWAV
 Taki
 taplo
 tmin
+tnum
 Togawa
 Tomori
 Totypes

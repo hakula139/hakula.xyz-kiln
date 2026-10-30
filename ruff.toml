@@ -1,0 +1,21 @@
+target-version = "py314"
+line-length = 88
+
+[format]
+indent-style = "space"
+quote-style = "single"
+line-ending = "lf"
+skip-magic-trailing-comma = false
+
+[lint]
+select = ["B", "C4", "D", "E", "F", "I", "SIM", "UP", "W"]
+ignore = ["D1"]
+
+[lint.isort]
+lines-after-imports = 2
+split-on-trailing-comma = true
+combine-as-imports = true
+force-single-line = false
+
+[lint.pydocstyle]
+convention = "numpy"
