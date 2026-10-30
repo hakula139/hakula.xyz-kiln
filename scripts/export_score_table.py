@@ -314,23 +314,15 @@ def main() -> None:
         '-o', '--output', type=Path, required=True, help='output PNG path'
     )
     parser.add_argument(
-        '--font-family', default='Sarasa Gothic SC', help='fontconfig family'
-    )
-    parser.add_argument(
-        '--title-font-family',
-        default='Sarasa Gothic J',
-        help='fontconfig family for work titles',
-    )
-    parser.add_argument(
         '--scale', type=positive_int, default=2, help='raster scale (default: 2)'
     )
 
     args = parser.parse_args()
 
     headers, rows = load_table(args.csv)
-    regular = load_font(args.font_family, 'Regular', 28 * args.scale)
-    bold = load_font(args.font_family, 'Bold', 28 * args.scale)
-    title_font = load_font(args.title_font_family, 'Regular', 28 * args.scale)
+    regular = load_font('Sarasa Gothic SC', 'Regular', 28 * args.scale)
+    bold = load_font('Sarasa Gothic SC', 'Bold', 28 * args.scale)
+    title_font = load_font('Sarasa Gothic J', 'Regular', 28 * args.scale)
     image = render_table(headers, rows, regular, bold, title_font, args.scale)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
