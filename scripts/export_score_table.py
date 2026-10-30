@@ -328,7 +328,7 @@ def main() -> None:
     headers, rows = load_table(args.csv)
     body_font = load_font('Sarasa Gothic SC', 'Regular', 28 * args.scale)
     header_font = load_font('Sarasa Gothic SC', 'SemiBold', 28 * args.scale)
-    title_font = load_font('Shippori Mincho', 'Medium', 28 * args.scale)
+    title_font = load_font('Shippori Mincho', 'SemiBold', 28 * args.scale)
     image = render_table(headers, rows, body_font, header_font, title_font, args.scale)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
