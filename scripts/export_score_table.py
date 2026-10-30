@@ -40,7 +40,6 @@ class CellStyle:
     display: str
     background: Color = WHITE
     foreground: Color = TEXT
-    bold: bool = False
     align: Literal['left', 'center', 'right'] = 'center'
 
 
@@ -124,7 +123,6 @@ def cell_style(name: str, row: dict[str, str], latest: str) -> CellStyle:
                 if value.endswith(suffix):
                     cell.display = value[: -len(suffix)]
                     cell.foreground = RED
-                    cell.bold = suffix != '!'
 
                     match suffix:
                         case 'G':
@@ -156,8 +154,7 @@ def column_widths(
     headers: list[str],
     rows: list[dict[str, str]],
     body_font: ImageFont.FreeTypeFont,
-    bold: ImageFont.FreeTypeFont,
-    index_font: ImageFont.FreeTypeFont,
+    header_font: ImageFont.FreeTypeFont,
     title_font: ImageFont.FreeTypeFont,
     scale: int,
 ) -> dict[str, int]:
@@ -165,20 +162,13 @@ def column_widths(
     widths = {}
 
     for name in headers:
-        match name:
-            case '#':
-                font = index_font
-            case '作品名称':
-                font = title_font
-            case _:
-                font = body_font
-
+        font = title_font if name == '作品名称' else body_font
         features = [] if name == '作品名称' else ['tnum']
 
         widths[name] = (
             math.ceil(
                 max(
-                    bold.getlength(name, features=features),
+                    header_font.getlength(name, features=features),
                     *(font.getlength(row[name], features=features) for row in rows),
                 )
             )
@@ -222,16 +212,13 @@ def render_table(
     headers: list[str],
     rows: list[dict[str, str]],
     body_font: ImageFont.FreeTypeFont,
-    bold: ImageFont.FreeTypeFont,
-    index_font: ImageFont.FreeTypeFont,
+    header_font: ImageFont.FreeTypeFont,
     title_font: ImageFont.FreeTypeFont,
     scale: int,
 ) -> Image.Image:
     padding, margin = 14 * scale, 12 * scale
     row_height, header_height = 48 * scale, 52 * scale
-    widths = column_widths(
-        headers, rows, body_font, bold, index_font, title_font, scale
-    )
+    widths = column_widths(headers, rows, body_font, header_font, title_font, scale)
 
     positions = [margin]
 
@@ -280,8 +267,8 @@ def render_table(
             case _:
                 align = 'center'
 
-        cell = CellStyle(name, bold=True, align=align)
-        label(cell, col, margin, header_height, bold)
+        cell = CellStyle(name, align=align)
+        label(cell, col, margin, header_height, header_font)
 
     for index, row in enumerate(rows):
         top = margin + header_height + index * row_height
@@ -304,14 +291,7 @@ def render_table(
                     fill=blend(SCORE_COLORS[name], 0.4),
                 )
 
-            match name:
-                case '#':
-                    font = index_font
-                case '作品名称':
-                    font = title_font
-                case _:
-                    font = bold if cell.bold else body_font
-
+            font = title_font if name == '作品名称' else body_font
             label(cell, col, top, row_height, font)
 
     bottom = height - margin
@@ -347,12 +327,9 @@ def main() -> None:
 
     headers, rows = load_table(args.csv)
     body_font = load_font('Sarasa Gothic SC', 'Regular', 28 * args.scale)
-    bold = load_font('Sarasa Gothic SC', 'Bold', 28 * args.scale)
-    index_font = load_font('Sarasa Gothic SC', 'SemiBold', 28 * args.scale)
-    title_font = load_font('Sarasa Gothic J', 'SemiBold', 28 * args.scale)
-    image = render_table(
-        headers, rows, body_font, bold, index_font, title_font, args.scale
-    )
+    header_font = load_font('Sarasa Gothic SC', 'SemiBold', 28 * args.scale)
+    title_font = load_font('Sarasa Gothic J', 'Regular', 28 * args.scale)
+    image = render_table(headers, rows, body_font, header_font, title_font, args.scale)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     image.save(args.output, format='PNG', optimize=True, dpi=(96 * args.scale,) * 2)
