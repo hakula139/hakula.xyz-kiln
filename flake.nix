@@ -133,6 +133,10 @@
 
         flock = pkgs.lib.getExe pkgs.flock;
         git = pkgs.lib.getExe pkgs.git;
+
+        titleFonts = pkgs.google-fonts.override {
+          fonts = [ "Shippori Mincho" ];
+        };
       in
       {
         # ------------------------------------------------------------------------------------------
@@ -156,7 +160,10 @@
           ]);
 
           FONTCONFIG_FILE = pkgs.makeFontsConf {
-            fontDirectories = [ "${pkgs.sarasa-gothic}/share/fonts" ];
+            fontDirectories = [
+              "${pkgs.sarasa-gothic}/share/fonts"
+              "${titleFonts}/share/fonts"
+            ];
           };
 
           # git-hooks.nix stores a relative hooks path that linked worktrees can't resolve
