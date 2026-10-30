@@ -11,10 +11,16 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 Color = tuple[int, int, int]
-WHITE: Color = (255, 255, 255)
-TEXT: Color = (31, 41, 55)
+BLACK: Color = (0, 0, 0)
+BLUE: Color = (40, 133, 255)
+DARK: Color = (23, 23, 23)
+GRID: Color = (209, 213, 219)
+HEADER: Color = (229, 231, 235)
 MUTED: Color = (107, 114, 128)
+ORANGE: Color = (255, 113, 40)
 RED: Color = (231, 0, 11)
+TEXT: Color = (31, 41, 55)
+WHITE: Color = (255, 255, 255)
 YELLOW: Color = (255, 240, 133)
 SCORE_COLORS: dict[str, Color] = {
     '文本': (0, 176, 240),
@@ -104,7 +110,7 @@ def cell_style(name: str, row: dict[str, str], latest: str) -> CellStyle:
 
         case 'ΔBGM':
             score = float(value)
-            color: Color = (40, 133, 255) if score > 0 else (255, 113, 40)
+            color = BLUE if score > 0 else ORANGE
             cell.background = blend(color, min(abs(score) / 3, 1) * 0.6)
 
         case '分级':
@@ -116,10 +122,12 @@ def cell_style(name: str, row: dict[str, str], latest: str) -> CellStyle:
                     match suffix:
                         case 'G':
                             cell.background = YELLOW
+
                         case 'G!':
-                            cell.background, cell.foreground = RED, (0, 0, 0)
+                            cell.background, cell.foreground = RED, BLACK
+
                         case 'G!!':
-                            cell.background = (23, 23, 23)
+                            cell.background = DARK
 
                     break
             else:
@@ -132,6 +140,7 @@ def cell_style(name: str, row: dict[str, str], latest: str) -> CellStyle:
 
         case _ if name in SCORE_COLORS:
             cell.align = 'left'
+
         case _ if name in DATE_COLUMNS:
             cell.align = 'right'
 
@@ -181,8 +190,10 @@ def text_position(
     match align:
         case 'left':
             return left + padding
+
         case 'right':
             return left + width - padding - text_width
+
         case _:
             return left + (width - text_width) / 2
 
@@ -224,14 +235,16 @@ def render_table(
     for col, name in enumerate(headers):
         draw.rectangle(
             (positions[col], margin, positions[col + 1], margin + header_height),
-            fill=(229, 231, 235),
+            fill=HEADER,
         )
 
         match name:
             case '作品名称':
                 align = 'left'
+
             case _ if name in DATE_COLUMNS:
                 align = 'right'
+
             case _:
                 align = 'center'
 
@@ -260,15 +273,14 @@ def render_table(
             label(cell, col, top, row_height)
 
     bottom = height - margin
-    grid: Color = (209, 213, 219)
     for x in positions:
-        draw.line((x, margin, x, bottom), fill=grid, width=scale)
+        draw.line((x, margin, x, bottom), fill=GRID, width=scale)
 
     for y in [
         margin,
         *(margin + header_height + i * row_height for i in range(len(rows) + 1)),
     ]:
-        draw.line((margin, y, positions[-1], y), fill=grid, width=scale)
+        draw.line((margin, y, positions[-1], y), fill=GRID, width=scale)
 
     return image
 
