@@ -27,16 +27,6 @@ kiln serve --open  # Preview with live reload
 
 `pnpm build` and `pnpm dev` run `kiln build` and `kiln serve`.
 
-### Export a score table
-
-Export the complete AVG table as a PNG, using the CSV's row order:
-
-```bash
-nix run .#export-score-table -- content/posts/avg/impressions/scores.csv --output /tmp/avg.png
-```
-
-The command supplies Pillow, fontconfig and Sarasa Gothic SC. It also accepts the anime score CSV. Use `--font-family 'Sarasa Gothic J'` for Japanese glyph forms, or `--scale 1` for a smaller image. Run with `--help` for all options.
-
 ## Deploy
 
 Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz) in the `production` GitHub Environment, and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz) in the `development` environment. Each PR from this repository gets a preview URL in the `preview` environment, linked from a PR comment. The workflows and the secrets they need are described in [docs/reference/ci.md](docs/reference/ci.md#deploy).
