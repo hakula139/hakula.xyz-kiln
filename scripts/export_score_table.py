@@ -129,10 +129,8 @@ def cell_style(name: str, row: dict[str, str], latest: str) -> CellStyle:
                     match suffix:
                         case 'G':
                             cell.background = YELLOW
-
                         case 'G!':
                             cell.background, cell.foreground = RED, BLACK
-
                         case 'G!!':
                             cell.background = DARK
 
@@ -198,10 +196,8 @@ def text_position(
     match align:
         case 'left':
             return left + padding
-
         case 'right':
             return left + width - padding - text_width
-
         case _:
             return left + (width - text_width) / 2
 
@@ -251,10 +247,8 @@ def render_table(
         match name:
             case '作品名称':
                 align = 'left'
-
             case _ if name in DATE_COLUMNS:
                 align = 'right'
-
             case _:
                 align = 'center'
 
