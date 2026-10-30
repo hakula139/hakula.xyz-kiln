@@ -22,6 +22,7 @@ RED: Color = (231, 0, 11)
 TEXT: Color = (31, 41, 55)
 WHITE: Color = (255, 255, 255)
 YELLOW: Color = (255, 240, 133)
+
 SCORE_COLORS: dict[str, Color] = {
     '文本': (0, 176, 240),
     '系统': (255, 182, 40),
@@ -45,6 +46,7 @@ class CellStyle:
 
 def positive_int(value: str) -> int:
     number = int(value)
+
     if number <= 0:
         raise argparse.ArgumentTypeError('must be greater than zero')
 
@@ -72,6 +74,7 @@ def load_font(family: str, style: str, size: int) -> ImageFont.FreeTypeFont:
     )
 
     matched, path, index = result.stdout.splitlines()
+
     if family.casefold() not in {
         name.strip().casefold() for name in matched.split(',')
     }:
@@ -87,9 +90,11 @@ def blend(color: Color, alpha: float) -> Color:
 def cell_style(name: str, row: dict[str, str], latest: str) -> CellStyle:
     value = row[name]
     cell = CellStyle(value)
+
     match name:
         case '作品名称':
             cell.align = 'left'
+
             if latest and row.get('完成日期') == latest:
                 cell.background = YELLOW
 
@@ -105,6 +110,7 @@ def cell_style(name: str, row: dict[str, str], latest: str) -> CellStyle:
         case '个人差':
             t = max(0, min(float(value) / 5, 1))
             cell.background = (round(255 * (1 - t)),) * 3
+
             if t > 0.5:
                 cell.foreground = WHITE
 
@@ -119,6 +125,7 @@ def cell_style(name: str, row: dict[str, str], latest: str) -> CellStyle:
                     cell.display = value[: -len(suffix)]
                     cell.foreground = RED
                     cell.bold = suffix != '!'
+
                     match suffix:
                         case 'G':
                             cell.background = YELLOW
@@ -155,6 +162,7 @@ def column_widths(
     scale: int,
 ) -> dict[str, int]:
     padding = 14 * scale
+
     widths = {
         name: math.ceil(
             max(bold.getlength(name), *(regular.getlength(row[name]) for row in rows))
@@ -209,6 +217,7 @@ def render_table(
     row_height, header_height = 48 * scale, 52 * scale
     widths = column_widths(headers, rows, regular, bold, scale)
     positions = [margin]
+
     for name in headers:
         positions.append(positions[-1] + widths[name])
 
@@ -224,6 +233,7 @@ def render_table(
         x = text_position(positions[col], width, length, padding, cell.align)
         ascent, descent = font.getmetrics()
         baseline = top + (height - ascent - descent) / 2 + ascent
+
         draw.text(
             (round(x), round(baseline)),
             cell.display,
@@ -253,6 +263,7 @@ def render_table(
 
     for index, row in enumerate(rows):
         top = margin + header_height + index * row_height
+
         for col, name in enumerate(headers):
             left, right = positions[col], positions[col + 1]
             cell = cell_style(name, row, latest)
@@ -260,6 +271,7 @@ def render_table(
 
             if name in SCORE_COLORS:
                 fraction = max(0, min(float(row[name]) / 100, 1))
+
                 draw.rectangle(
                     (
                         left,
@@ -273,6 +285,7 @@ def render_table(
             label(cell, col, top, row_height)
 
     bottom = height - margin
+
     for x in positions:
         draw.line((x, margin, x, bottom), fill=GRID, width=scale)
 
