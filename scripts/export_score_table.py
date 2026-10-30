@@ -306,20 +306,18 @@ def main() -> None:
     parser.add_argument(
         'csv', type=Path, help='score-table CSV, in the desired row order'
     )
-
     parser.add_argument(
         '-o', '--output', type=Path, required=True, help='output PNG path'
     )
-
     parser.add_argument(
         '--font-family', default='Sarasa Gothic SC', help='fontconfig family'
     )
-
     parser.add_argument(
         '--scale', type=positive_int, default=2, help='raster scale (default: 2)'
     )
 
     args = parser.parse_args()
+
     headers, rows = load_table(args.csv)
     regular = load_font(args.font_family, 'Regular', 28 * args.scale)
     bold = load_font(args.font_family, 'Bold', 28 * args.scale)
