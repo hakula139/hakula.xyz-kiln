@@ -4,8 +4,6 @@
 
 [`ci.yml`](../../.github/workflows/ci.yml) runs on pushes and pull requests to `main` and `dev`. `Nix Flake Check` runs `nix flake check`, and `Site Check` runs the `pnpm` checks that [verification](../../AGENTS.md#verification) lists.
 
-The flake also tests the PNG exporter and renders both score tables with its packaged fonts.
-
 [`build.yml`](../../.github/workflows/build.yml) is a reusable `workflow_call` that enters the dev shell and runs `kiln build --minify`, including CSS compilation. `ci.yml`, `deploy.yml`, and `preview.yml` call into it, so the build path is single-sourced.
 
 ## Deploy
