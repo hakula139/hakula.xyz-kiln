@@ -80,6 +80,7 @@ nixfmt
 nixpkgs
 noindex
 Nosctis
+numpy
 numtide
 NVLINK
 Nyamu
@@ -91,6 +92,7 @@ pkgs
 prml
 PTSD
 pycache
+pydocstyle
 rclone
 realmsd
 rgba

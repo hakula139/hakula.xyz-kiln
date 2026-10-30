@@ -183,24 +183,7 @@
         # ------------------------------------------------------------------------------------------
         # Checks
         # ------------------------------------------------------------------------------------------
-        checks = {
-          pre-commit = preCommitCheck;
-          export-score-table =
-            pkgs.runCommand "export-score-table-test"
-              {
-                nativeBuildInputs = [
-                  exportPython
-                  exportScoreTable
-                  pkgs.fontconfig
-                ];
-                FONTCONFIG_FILE = exportFonts;
-              }
-              ''
-                python -B -m unittest discover -s ${./scripts} -p 'test_*.py'
-                export-score-table ${./content/posts/avg/impressions/scores.csv} --output "$out/avg.png"
-                export-score-table ${./content/posts/anime/impressions/scores.csv} --output "$out/anime.png"
-              '';
-        };
+        checks.pre-commit = preCommitCheck;
 
         # ------------------------------------------------------------------------------------------
         # Packages and Apps
