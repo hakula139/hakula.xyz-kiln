@@ -61,6 +61,8 @@
           nixfmt.enable = true;
           statix.enable = true;
           deadnix.enable = true;
+          ruff.enable = true;
+          ruff-format.enable = true;
         };
 
         # These hooks run the tools pinned in node_modules, which the Nix sandbox lacks. The flake
@@ -131,6 +133,18 @@
 
         flock = pkgs.lib.getExe pkgs.flock;
         git = pkgs.lib.getExe pkgs.git;
+        exportPython = pkgs.python3.withPackages (ps: [ ps.pillow ]);
+        exportFonts = pkgs.makeFontsConf {
+          fontDirectories = [ "${pkgs.sarasa-gothic}/share/fonts" ];
+        };
+        exportScoreTable = pkgs.writeShellApplication {
+          name = "export-score-table";
+          runtimeInputs = [ pkgs.fontconfig ];
+          text = ''
+            export FONTCONFIG_FILE=${pkgs.lib.escapeShellArg exportFonts}
+            exec ${exportPython}/bin/python ${./scripts/export_score_table.py} "$@"
+          '';
+        };
       in
       {
         # ------------------------------------------------------------------------------------------
@@ -144,6 +158,7 @@
           ]
           ++ preCommit.enabledPackages
           ++ [
+            exportScoreTable
             kiln.packages.${system}.kiln
           ]
           ++ (with pkgs; [
@@ -168,7 +183,33 @@
         # ------------------------------------------------------------------------------------------
         # Checks
         # ------------------------------------------------------------------------------------------
-        checks.pre-commit = preCommitCheck;
+        checks = {
+          pre-commit = preCommitCheck;
+          export-score-table =
+            pkgs.runCommand "export-score-table-test"
+              {
+                nativeBuildInputs = [
+                  exportPython
+                  exportScoreTable
+                  pkgs.fontconfig
+                ];
+                FONTCONFIG_FILE = exportFonts;
+              }
+              ''
+                python -B -m unittest discover -s ${./scripts} -p 'test_*.py'
+                export-score-table ${./content/posts/avg/impressions/scores.csv} --output "$out/avg.png"
+                export-score-table ${./content/posts/anime/impressions/scores.csv} --output "$out/anime.png"
+              '';
+        };
+
+        # ------------------------------------------------------------------------------------------
+        # Packages and Apps
+        # ------------------------------------------------------------------------------------------
+        packages.export-score-table = exportScoreTable;
+        apps.export-score-table = {
+          type = "app";
+          program = pkgs.lib.getExe exportScoreTable;
+        };
 
         # ------------------------------------------------------------------------------------------
         # Formatter

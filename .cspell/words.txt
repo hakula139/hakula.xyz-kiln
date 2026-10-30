@@ -44,6 +44,7 @@ IIDX
 impls
 INTJ
 Iser
+isort
 Jauss
 Karpathy
 katex
@@ -89,6 +90,7 @@ pixiv
 pkgs
 prml
 PTSD
+pycache
 rclone
 realmsd
 rgba
@@ -101,6 +103,7 @@ Rāna
 Sadaharu
 Sakiko
 sakura
+Sarasa
 Scely
 SCHECTER
 SCTLR
