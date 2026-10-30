@@ -165,9 +165,14 @@ def column_widths(
 
     for name in headers:
         font = title_font if name == '作品名称' else regular
+        features = [] if name == '作品名称' else ['tnum']
+
         widths[name] = (
             math.ceil(
-                max(bold.getlength(name), *(font.getlength(row[name]) for row in rows))
+                max(
+                    bold.getlength(name, features=features),
+                    *(font.getlength(row[name], features=features) for row in rows),
+                )
             )
             + 2 * padding
         )
@@ -234,7 +239,8 @@ def render_table(
         font: ImageFont.FreeTypeFont,
     ) -> None:
         width = widths[headers[col]]
-        length = font.getlength(cell.display)
+        features = [] if headers[col] == '作品名称' else ['tnum']
+        length = font.getlength(cell.display, features=features)
         x = text_position(positions[col], width, length, padding, cell.align)
         ascent, descent = font.getmetrics()
         baseline = top + (height - ascent - descent) / 2 + ascent
@@ -245,6 +251,7 @@ def render_table(
             font=font,
             fill=cell.foreground,
             anchor='ls',
+            features=features,
         )
 
     for col, name in enumerate(headers):
@@ -314,7 +321,7 @@ def main() -> None:
         '-o', '--output', type=Path, required=True, help='output PNG path'
     )
     parser.add_argument(
-        '--scale', type=positive_int, default=2, help='raster scale (default: 2)'
+        '--scale', type=positive_int, default=4, help='raster scale (default: 4)'
     )
 
     args = parser.parse_args()
