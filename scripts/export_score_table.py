@@ -3,7 +3,9 @@ import colorsys
 import csv
 import math
 import subprocess
+from collections.abc import Iterator
 from dataclasses import dataclass
+from itertools import accumulate, groupby
 from pathlib import Path
 from typing import Literal
 
@@ -86,7 +88,63 @@ def blend(color: Color, alpha: float) -> Color:
     return tuple(round(255 * (1 - alpha) + channel * alpha) for channel in color)
 
 
-def cell_style(name: str, row: dict[str, str], latest: str) -> CellStyle:
+class TitleFont:
+    def __init__(
+        self, primary: ImageFont.FreeTypeFont, fallback: ImageFont.FreeTypeFont
+    ) -> None:
+        self.primary = primary
+        self.fallback = fallback
+        result = subprocess.run(
+            [
+                'fc-query',
+                '--index',
+                str(primary.index),
+                '--format=%{charset}',
+                primary.path,
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+        self.charset = set()
+
+        for token in result.stdout.split():
+            start, _, end = token.partition('-')
+            self.charset.update(range(int(start, 16), int(end or start, 16) + 1))
+
+    def _runs(self, text: str) -> Iterator[tuple[ImageFont.FreeTypeFont, str]]:
+        for covered, characters in groupby(
+            text, key=lambda char: ord(char) in self.charset
+        ):
+            yield self.primary if covered else self.fallback, ''.join(characters)
+
+    def getlength(self, text: str, *, features: list[str]) -> float:
+        return sum(
+            font.getlength(run, features=features) for font, run in self._runs(text)
+        )
+
+    def getmetrics(self) -> tuple[int, int]:
+        return self.primary.getmetrics()
+
+    def draw(
+        self,
+        draw: ImageDraw.ImageDraw,
+        xy: tuple[float, float],
+        text: str,
+        fill: Color,
+    ) -> None:
+        x, baseline = xy
+
+        for font, run in self._runs(text):
+            draw.text(
+                (round(x), round(baseline)), run, font=font, fill=fill, anchor='ls'
+            )
+
+            x += font.getlength(run)
+
+
+def cell_style(name: str, row: dict[str, str], is_latest: bool) -> CellStyle:
     value = row[name]
     cell = CellStyle(value)
 
@@ -94,7 +152,7 @@ def cell_style(name: str, row: dict[str, str], latest: str) -> CellStyle:
         case '作品名称':
             cell.align = 'left'
 
-            if latest and row.get('完成日期') == latest:
+            if is_latest:
                 cell.background = YELLOW
 
         case '评级':
@@ -119,22 +177,22 @@ def cell_style(name: str, row: dict[str, str], latest: str) -> CellStyle:
             cell.background = blend(color, min(abs(score) / 3, 1) * 0.6)
 
         case '分级':
-            for suffix in ['G!!', 'G!', 'G', '!!', '!']:
-                if value.endswith(suffix):
-                    cell.display = value[: -len(suffix)]
+            suffix = next(
+                (s for s in ('G!!', 'G!', 'G', '!!', '!') if value.endswith(s)), ''
+            )
+
+            cell.display = value.removesuffix(suffix)
+
+            match suffix:
+                case 'G':
+                    cell.background, cell.foreground = YELLOW, RED
+                case 'G!':
+                    cell.background, cell.foreground = RED, BLACK
+                case 'G!!':
+                    cell.background, cell.foreground = DARK, RED
+                case '!' | '!!':
                     cell.foreground = RED
-
-                    match suffix:
-                        case 'G':
-                            cell.background = YELLOW
-                        case 'G!':
-                            cell.background, cell.foreground = RED, BLACK
-                        case 'G!!':
-                            cell.background = DARK
-
-                    break
-            else:
-                if value == 'All':
+                case _ if value == 'All':
                     cell.foreground = MUTED
 
         case 'EGS' | 'BGM':
@@ -155,7 +213,7 @@ def column_widths(
     rows: list[dict[str, str]],
     body_font: ImageFont.FreeTypeFont,
     header_font: ImageFont.FreeTypeFont,
-    title_font: ImageFont.FreeTypeFont,
+    title_font: TitleFont,
     scale: int,
 ) -> dict[str, int]:
     padding = 14 * scale
@@ -165,15 +223,17 @@ def column_widths(
         font = title_font if name == '作品名称' else body_font
         features = [] if name == '作品名称' else ['tnum']
 
-        widths[name] = (
-            math.ceil(
-                max(
-                    header_font.getlength(name, features=features),
-                    *(font.getlength(row[name], features=features) for row in rows),
-                )
-            )
-            + 2 * padding
+        length = max(
+            header_font.getlength(name, features=features),
+            *(font.getlength(row[name], features=features) for row in rows),
         )
+
+        widths[name] = math.ceil(length) + 2 * padding
+
+    widths['评级'] = max(
+        widths['评级'],
+        math.ceil(body_font.getlength('SS+ / 10+', features=['tnum'])) + 2 * padding,
+    )
 
     score_width = max(
         widths[name] for name in (SCORE_COLORS.keys() | {'评级'}) & widths.keys()
@@ -182,9 +242,7 @@ def column_widths(
     for name in SCORE_COLORS.keys() & widths.keys():
         widths[name] = score_width + 8 * scale
 
-    external_width = max(
-        (widths[h] for h in EXTERNAL_COLUMNS if h in widths), default=0
-    )
+    external_width = max(widths[h] for h in EXTERNAL_COLUMNS if h in widths)
 
     for name in EXTERNAL_COLUMNS & widths.keys():
         widths[name] = external_width
@@ -213,29 +271,26 @@ def render_table(
     rows: list[dict[str, str]],
     body_font: ImageFont.FreeTypeFont,
     header_font: ImageFont.FreeTypeFont,
-    title_font: ImageFont.FreeTypeFont,
+    title_font: TitleFont,
     scale: int,
 ) -> Image.Image:
     padding, margin = 14 * scale, 12 * scale
     row_height, header_height = 48 * scale, 52 * scale
     widths = column_widths(headers, rows, body_font, header_font, title_font, scale)
-
-    positions = [margin]
-
-    for name in headers:
-        positions.append(positions[-1] + widths[name])
+    positions = list(accumulate((widths[name] for name in headers), initial=margin))
 
     height = 2 * margin + header_height + len(rows) * row_height
     image = Image.new('RGB', (positions[-1] + margin, height), WHITE)
     draw = ImageDraw.Draw(image)
-    latest = max((row.get('完成日期', '') for row in rows), default='')
+    date_column = next(name for name in headers if name in DATE_COLUMNS)
+    latest = max(row[date_column] for row in rows)
 
     def label(
         cell: CellStyle,
         col: int,
         top: int,
         height: int,
-        font: ImageFont.FreeTypeFont,
+        font: ImageFont.FreeTypeFont | TitleFont,
     ) -> None:
         width = widths[headers[col]]
         features = [] if headers[col] == '作品名称' else ['tnum']
@@ -244,14 +299,17 @@ def render_table(
         ascent, descent = font.getmetrics()
         baseline = top + (height - ascent - descent) / 2 + ascent
 
-        draw.text(
-            (round(x), round(baseline)),
-            cell.display,
-            font=font,
-            fill=cell.foreground,
-            anchor='ls',
-            features=features,
-        )
+        if isinstance(font, TitleFont):
+            font.draw(draw, (x, baseline), cell.display, cell.foreground)
+        else:
+            draw.text(
+                (round(x), round(baseline)),
+                cell.display,
+                font=font,
+                fill=cell.foreground,
+                anchor='ls',
+                features=features,
+            )
 
     for col, name in enumerate(headers):
         draw.rectangle(
@@ -272,10 +330,11 @@ def render_table(
 
     for index, row in enumerate(rows):
         top = margin + header_height + index * row_height
+        is_latest = row[date_column] == latest
 
         for col, name in enumerate(headers):
             left, right = positions[col], positions[col + 1]
-            cell = cell_style(name, row, latest)
+            cell = cell_style(name, row, is_latest)
             draw.rectangle((left, top, right, top + row_height), fill=cell.background)
 
             if name in SCORE_COLORS:
@@ -328,7 +387,10 @@ def main() -> None:
     headers, rows = load_table(args.csv)
     body_font = load_font('Sarasa Gothic SC', 'Regular', 28 * args.scale)
     header_font = load_font('Sarasa Gothic SC', 'SemiBold', 28 * args.scale)
-    title_font = load_font('Shippori Mincho', 'SemiBold', 28 * args.scale)
+    title_font = TitleFont(
+        load_font('Shippori Mincho', 'SemiBold', 28 * args.scale), header_font
+    )
+
     image = render_table(headers, rows, body_font, header_font, title_font, args.scale)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
