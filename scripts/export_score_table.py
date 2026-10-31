@@ -175,6 +175,11 @@ def column_widths(
             + 2 * padding
         )
 
+    widths['评级'] = max(
+        widths['评级'],
+        math.ceil(body_font.getlength('SS+ / 10+', features=['tnum'])) + 2 * padding,
+    )
+
     score_width = max(
         widths[name] for name in (SCORE_COLORS.keys() | {'评级'}) & widths.keys()
     )
