@@ -4,6 +4,7 @@ import csv
 import math
 import subprocess
 from dataclasses import dataclass
+from itertools import groupby
 from pathlib import Path
 from typing import Literal
 
@@ -11,6 +12,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 Color = tuple[int, int, int]
+FontRun = tuple[ImageFont.FreeTypeFont, str]
 BLACK: Color = (0, 0, 0)
 BLUE: Color = (40, 133, 255)
 DARK: Color = (23, 23, 23)
@@ -86,6 +88,35 @@ def blend(color: Color, alpha: float) -> Color:
     return tuple(round(255 * (1 - alpha) + channel * alpha) for channel in color)
 
 
+def font_charset(font: ImageFont.FreeTypeFont) -> set[int]:
+    result = subprocess.run(
+        ['fc-query', '--index', str(font.index), '--format=%{charset}', font.path],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    charset = set()
+
+    for token in result.stdout.split():
+        start, _, end = token.partition('-')
+        charset.update(range(int(start, 16), int(end or start, 16) + 1))
+
+    return charset
+
+
+def title_runs(
+    text: str,
+    primary: ImageFont.FreeTypeFont,
+    fallback: ImageFont.FreeTypeFont,
+    charset: set[int],
+) -> list[FontRun]:
+    return [
+        (primary if covered else fallback, ''.join(characters))
+        for covered, characters in groupby(text, key=lambda char: ord(char) in charset)
+    ]
+
+
 def cell_style(name: str, row: dict[str, str], is_latest: bool) -> CellStyle:
     value = row[name]
     cell = CellStyle(value)
@@ -155,21 +186,31 @@ def column_widths(
     rows: list[dict[str, str]],
     body_font: ImageFont.FreeTypeFont,
     header_font: ImageFont.FreeTypeFont,
-    title_font: ImageFont.FreeTypeFont,
+    titles: dict[str, list[FontRun]],
     scale: int,
 ) -> dict[str, int]:
     padding = 14 * scale
     widths = {}
 
     for name in headers:
-        font = title_font if name == '作品名称' else body_font
         features = [] if name == '作品名称' else ['tnum']
+        runs = (
+            titles.values()
+            if name == '作品名称'
+            else [[(body_font, row[name])] for row in rows]
+        )
 
         widths[name] = (
             math.ceil(
                 max(
                     header_font.getlength(name, features=features),
-                    *(font.getlength(row[name], features=features) for row in rows),
+                    *(
+                        sum(
+                            font.getlength(text, features=features)
+                            for font, text in run
+                        )
+                        for run in runs
+                    ),
                 )
             )
             + 2 * padding
@@ -221,7 +262,13 @@ def render_table(
 ) -> Image.Image:
     padding, margin = 14 * scale, 12 * scale
     row_height, header_height = 48 * scale, 52 * scale
-    widths = column_widths(headers, rows, body_font, header_font, title_font, scale)
+    charset = font_charset(title_font)
+    titles = {
+        row['作品名称']: title_runs(row['作品名称'], title_font, header_font, charset)
+        for row in rows
+    }
+
+    widths = column_widths(headers, rows, body_font, header_font, titles, scale)
 
     positions = [margin]
 
@@ -240,22 +287,26 @@ def render_table(
         top: int,
         height: int,
         font: ImageFont.FreeTypeFont,
+        runs: list[FontRun],
     ) -> None:
         width = widths[headers[col]]
         features = [] if headers[col] == '作品名称' else ['tnum']
-        length = font.getlength(cell.display, features=features)
+        length = sum(font.getlength(text, features=features) for font, text in runs)
         x = text_position(positions[col], width, length, padding, cell.align)
         ascent, descent = font.getmetrics()
         baseline = top + (height - ascent - descent) / 2 + ascent
 
-        draw.text(
-            (round(x), round(baseline)),
-            cell.display,
-            font=font,
-            fill=cell.foreground,
-            anchor='ls',
-            features=features,
-        )
+        for run_font, text in runs:
+            draw.text(
+                (round(x), round(baseline)),
+                text,
+                font=run_font,
+                fill=cell.foreground,
+                anchor='ls',
+                features=features,
+            )
+
+            x += run_font.getlength(text, features=features)
 
     for col, name in enumerate(headers):
         draw.rectangle(
@@ -272,7 +323,7 @@ def render_table(
                 align = 'center'
 
         cell = CellStyle(name, align=align)
-        label(cell, col, margin, header_height, header_font)
+        label(cell, col, margin, header_height, header_font, [(header_font, name)])
 
     for index, row in enumerate(rows):
         top = margin + header_height + index * row_height
@@ -296,7 +347,10 @@ def render_table(
                 )
 
             font = title_font if name == '作品名称' else body_font
-            label(cell, col, top, row_height, font)
+            runs = (
+                titles[cell.display] if name == '作品名称' else [(font, cell.display)]
+            )
+            label(cell, col, top, row_height, font, runs)
 
     bottom = height - margin
 
