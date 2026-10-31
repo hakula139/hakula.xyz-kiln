@@ -86,7 +86,7 @@ def blend(color: Color, alpha: float) -> Color:
     return tuple(round(255 * (1 - alpha) + channel * alpha) for channel in color)
 
 
-def cell_style(name: str, row: dict[str, str], latest: str) -> CellStyle:
+def cell_style(name: str, row: dict[str, str], is_latest: bool) -> CellStyle:
     value = row[name]
     cell = CellStyle(value)
 
@@ -94,7 +94,7 @@ def cell_style(name: str, row: dict[str, str], latest: str) -> CellStyle:
         case '作品名称':
             cell.align = 'left'
 
-            if latest and row.get('完成日期') == latest:
+            if is_latest:
                 cell.background = YELLOW
 
         case '评级':
@@ -182,9 +182,7 @@ def column_widths(
     for name in SCORE_COLORS.keys() & widths.keys():
         widths[name] = score_width + 8 * scale
 
-    external_width = max(
-        (widths[h] for h in EXTERNAL_COLUMNS if h in widths), default=0
-    )
+    external_width = max(widths[h] for h in EXTERNAL_COLUMNS if h in widths)
 
     for name in EXTERNAL_COLUMNS & widths.keys():
         widths[name] = external_width
@@ -228,7 +226,8 @@ def render_table(
     height = 2 * margin + header_height + len(rows) * row_height
     image = Image.new('RGB', (positions[-1] + margin, height), WHITE)
     draw = ImageDraw.Draw(image)
-    latest = max((row.get('完成日期', '') for row in rows), default='')
+    date_column = next(name for name in headers if name in DATE_COLUMNS)
+    latest = max(row[date_column] for row in rows)
 
     def label(
         cell: CellStyle,
@@ -275,7 +274,7 @@ def render_table(
 
         for col, name in enumerate(headers):
             left, right = positions[col], positions[col + 1]
-            cell = cell_style(name, row, latest)
+            cell = cell_style(name, row, row[date_column] == latest)
             draw.rectangle((left, top, right, top + row_height), fill=cell.background)
 
             if name in SCORE_COLORS:
