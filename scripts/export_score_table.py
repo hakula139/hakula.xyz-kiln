@@ -269,6 +269,8 @@ def text_position(
 def render_table(
     headers: list[str],
     rows: list[dict[str, str]],
+    widths: dict[str, int],
+    latest: str,
     body_font: ImageFont.FreeTypeFont,
     header_font: ImageFont.FreeTypeFont,
     title_font: TitleFont,
@@ -276,14 +278,12 @@ def render_table(
 ) -> Image.Image:
     padding, margin = 14 * scale, 12 * scale
     row_height, header_height = 48 * scale, 52 * scale
-    widths = column_widths(headers, rows, body_font, header_font, title_font, scale)
     positions = list(accumulate((widths[name] for name in headers), initial=margin))
 
     height = 2 * margin + header_height + len(rows) * row_height
     image = Image.new('RGB', (positions[-1] + margin, height), WHITE)
     draw = ImageDraw.Draw(image)
     date_column = next(name for name in headers if name in DATE_COLUMNS)
-    latest = max(row[date_column] for row in rows)
 
     def label(
         cell: CellStyle,
@@ -369,7 +369,7 @@ def render_table(
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description='Export a score-table CSV as a full PNG.'
+        description='Export a score-table CSV as PNG images.'
     )
 
     parser.add_argument(
@@ -381,6 +381,9 @@ def main() -> None:
     parser.add_argument(
         '--scale', type=positive_int, default=4, help='raster scale (default: 4)'
     )
+    parser.add_argument(
+        '--page-size', type=positive_int, help='rows per PNG; number output pages'
+    )
 
     args = parser.parse_args()
 
@@ -391,11 +394,36 @@ def main() -> None:
         load_font('Shippori Mincho', 'SemiBold', 28 * args.scale), header_font
     )
 
-    image = render_table(headers, rows, body_font, header_font, title_font, args.scale)
+    widths = column_widths(
+        headers, rows, body_font, header_font, title_font, args.scale
+    )
+
+    date_column = next(name for name in headers if name in DATE_COLUMNS)
+    latest = max(row[date_column] for row in rows)
+    page_size = args.page_size or len(rows)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    image.save(args.output, format='PNG', optimize=True, dpi=(96 * args.scale,) * 2)
-    print(f'{args.output}: {image.width} × {image.height}, {len(rows)} rows')
+
+    for page, start in enumerate(range(0, len(rows), page_size), 1):
+        page_rows = rows[start : start + page_size]
+        output = args.output
+
+        if args.page_size:
+            output = output.with_stem(f'{output.stem}-{page}')
+
+        image = render_table(
+            headers,
+            page_rows,
+            widths,
+            latest,
+            body_font,
+            header_font,
+            title_font,
+            args.scale,
+        )
+
+        image.save(output, format='PNG', optimize=True, dpi=(96 * args.scale,) * 2)
+        print(f'{output}: {image.width} × {image.height}, {len(page_rows)} rows')
 
 
 if __name__ == '__main__':
