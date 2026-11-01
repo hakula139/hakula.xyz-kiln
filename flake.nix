@@ -15,7 +15,7 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     kiln = {
-      url = "github:hakula139/kiln/v0.5.1";
+      url = "github:hakula139/kiln/v0.5.2";
       inputs = {
         flake-utils.follows = "flake-utils";
         git-hooks-nix.follows = "git-hooks-nix";
@@ -166,9 +166,8 @@
             ];
           };
 
-          # git-hooks.nix stores a relative hooks path that linked worktrees can't resolve
-          # (cachix/git-hooks.nix#688). Unset it to use Git's shared hooks directory. The lock keeps
-          # another shell from setting it mid-install, which pre-commit refuses.
+          # Linked worktrees can't resolve git-hooks.nix's relative hooks path.
+          # Serialize installation and clearing the path, since pre-commit rejects concurrent changes.
           shellHook = ''
             if common=$(${git} rev-parse --path-format=absolute --git-common-dir 2>/dev/null); then
               (
