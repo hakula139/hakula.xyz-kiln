@@ -12,21 +12,21 @@
     "spellcheck": "git ls-files | cspell --no-progress --file-list stdin"
   },
   "devDependencies": {
-    "@cspell/dict-de-de": "^4.1.2",
+    "@cspell/dict-de-de": "^4.1.3",
     "@cspell/dict-fr-fr": "^2.3.2",
-    "@cspell/dict-grc": "^1.0.7",
-    "@cspell/dict-it-it": "^3.1.6",
-    "@cspell/dict-la": "^1.1.2",
+    "@cspell/dict-grc": "^1.0.9",
+    "@cspell/dict-it-it": "^3.1.7",
+    "@cspell/dict-la": "^1.1.4",
     "@eslint/js": "^10.0.1",
     "@tailwindcss/typography": "^0.5.20",
     "@taplo/cli": "^0.7.0",
-    "cspell": "^10.3.4",
-    "eslint": "^10.11.0",
-    "globals": "^17.12.0",
+    "cspell": "^10.4.0",
+    "eslint": "^10.14.0",
+    "globals": "^17.13.0",
     "markdownlint-cli2": "^0.24.0",
-    "prettier": "^3.9.9",
+    "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
-    "wrangler": "^4.140.0"
+    "wrangler": "^4.156.0"
   }
 }
