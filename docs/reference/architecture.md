@@ -19,7 +19,7 @@ The site is built by [kiln](https://github.com/hakula139/kiln) with the [IgnIt](
 ├── static/                   # Public files with fixed URLs
 │   └── assets/
 │       ├── images/
-│       │   ├── hotlink-ok/   # Avatar images (publicly linkable)
+│       │   ├── hotlink-ok/   # Publicly linkable images
 │       │   └── social/       # Social link targets
 │       └── owo/              # Comment emoji, listed by URL in index.json
 ├── templates/                # Site-level template overrides
