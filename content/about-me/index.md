@@ -57,6 +57,8 @@ url = "https://www.pixiv.net/artworks/64035231"
 [![Python](assets/icons/python.svg){.tech-icon width=50 height=50}](https://www.python.org)
 [![TypeScript](assets/icons/typescript.svg){.tech-icon width=50 height=50}](https://www.typescriptlang.org)
 [![Go](assets/icons/go.svg){.tech-icon width=50 height=50}](https://golang.org)
+[![Nix](assets/icons/nixos.svg){.tech-icon width=50 height=50}](https://nixos.org)
+[![Bash](assets/icons/bash.svg){.tech-icon .monochrome-icon width=50 height=50}](https://www.gnu.org/software/bash/)
 
 :::
 
