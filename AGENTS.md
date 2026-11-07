@@ -21,7 +21,7 @@ Images (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are Git LFS objects per `
 
 Use the commands in [README.md](README.md#usage) for site builds and previews.
 
-Run `nix develop -c true` and `pnpm install --frozen-lockfile` in each new checkout before committing. Node-side commit hooks fail when `node_modules/` is absent. `nix flake check` runs the Nix-side hooks, while `pnpm format`, `pnpm lint`, and `pnpm spellcheck` cover the Node-side checks, as CI's `Site Check` job does.
+Run `nix develop -c true` and `pnpm install --frozen-lockfile` in each new checkout before committing. `nix flake check` runs devkit's sandboxed hooks. Prettier, ESLint, and the multilingual spell dictionaries require `node_modules/`, so CI's `Site Check` job also runs `pnpm format`, `pnpm lint`, and `pnpm spellcheck`.
 
 ## Conventions
 
