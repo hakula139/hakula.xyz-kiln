@@ -24,7 +24,7 @@
     };
 
     devkit = {
-      url = "github:hakula139/devkit/v1.0.0-rc.3";
+      url = "github:hakula139/devkit/88f619538cc3a79bf223e538504251264e02b4e9";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
