@@ -74,9 +74,20 @@
         preCommit = dk.preCommit {
           src = ./.;
           hooks = {
+            actionlint.enable = true;
+            check-yaml.enable = true;
+            deadnix.enable = true;
             dprint.enable = false;
+            editorconfig-checker.enable = true;
+            markdownlint-cli2.enable = true;
+            nixfmt.enable = true;
             ruff.enable = true;
             ruff-format.enable = true;
+            shellcheck.enable = true;
+            shfmt.enable = true;
+            sort-file-contents.enable = true;
+            statix.enable = true;
+            taplo.enable = true;
           };
           devHooks = nodeHooks;
         };

@@ -111,6 +111,7 @@ Sarasa
 Scely
 SCHECTER
 SCTLR
+shfmt
 Shiina
 Shippori
 Slavoj
