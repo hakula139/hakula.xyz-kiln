@@ -11,9 +11,6 @@ concurrency:
 permissions:
   contents: read
 
-env:
-  CACHIX_NAME: hakula
-
 jobs:
   build:
     if: github.event.pull_request.head.repo.full_name == github.repository
@@ -41,10 +38,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Nix
-        uses: ./.github/actions/setup-nix
-        with:
-          cachix_name: ${{ env.CACHIX_NAME }}
-          cachix_skip_push: 'true'
+        uses: hakula139/devkit/actions/setup-nix@v1.0.0-rc.3
 
       - name: Install dependencies
         run: nix develop -c pnpm install --frozen-lockfile

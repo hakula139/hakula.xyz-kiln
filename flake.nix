@@ -18,13 +18,13 @@
       url = "github:hakula139/kiln/v0.5.2";
       inputs = {
         flake-utils.follows = "flake-utils";
-        git-hooks-nix.follows = "git-hooks-nix";
-        kiln-tailwindcss.inputs.git-hooks-nix.follows = "git-hooks-nix";
+        git-hooks-nix.follows = "devkit/git-hooks-nix";
+        kiln-tailwindcss.inputs.git-hooks-nix.follows = "devkit/git-hooks-nix";
       };
     };
 
-    git-hooks-nix = {
-      url = "github:cachix/git-hooks.nix";
+    devkit = {
+      url = "github:hakula139/devkit/v1.0.0-rc.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -37,34 +37,18 @@
       nixpkgs,
       flake-utils,
       kiln,
-      git-hooks-nix,
+      devkit,
       ...
     }:
     flake-utils.lib.eachSystem (builtins.attrNames kiln.packages) (
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        dk = devkit.lib.mkLib pkgs;
 
         # ------------------------------------------------------------------------------------------
         # Pre-commit Hooks
         # ------------------------------------------------------------------------------------------
-        hooks = {
-          check-added-large-files.enable = true;
-          check-yaml.enable = true;
-          end-of-file-fixer.enable = true;
-          # Preserve Markdown's two-trailing-space hard-break syntax.
-          trim-trailing-whitespace = {
-            enable = true;
-            args = [ "--markdown-linebreak-ext=md" ];
-          };
-
-          nixfmt.enable = true;
-          statix.enable = true;
-          deadnix.enable = true;
-          ruff.enable = true;
-          ruff-format.enable = true;
-        };
-
         # These hooks run the tools pinned in node_modules, which the Nix sandbox lacks. The flake
         # check leaves them to CI's Site Check job.
         nodeHook =
@@ -87,23 +71,17 @@
           );
 
         nodeHooks = {
-          prettier-write = {
-            enable = true;
-            name = "prettier";
-            entry = nodeHook "prettier-write" "prettier --write --ignore-unknown";
-            types = [ "text" ];
-          };
-          taplo-write = {
-            enable = true;
-            name = "taplo";
-            entry = nodeHook "taplo-write" "taplo format";
-            files = "\\.toml$";
-          };
-
           cspell = {
             enable = true;
             package = null;
             entry = nodeHook "cspell" "cspell --no-must-find-files --no-progress";
+            types = [ "text" ];
+          };
+          prettier = {
+            enable = true;
+            package = null;
+            entry = nodeHook "prettier" "prettier --write --ignore-unknown";
+            files = "\\.(css|js|mjs|json|jsonc|ya?ml|md)$";
             types = [ "text" ];
           };
           eslint = {
@@ -112,27 +90,17 @@
             entry = nodeHook "eslint" "eslint --fix";
             files = "\\.(js|mjs)$";
           };
-          markdownlint = {
-            enable = true;
-            package = null;
-            name = "markdownlint-cli2";
-            entry = nodeHook "markdownlint" "markdownlint-cli2 --fix";
-            files = "\\.md$";
+        };
+
+        preCommit = dk.preCommit {
+          src = ./.;
+          hooks = {
+            dprint.enable = false;
+            ruff.enable = true;
+            ruff-format.enable = true;
           };
+          devHooks = nodeHooks;
         };
-
-        preCommit = git-hooks-nix.lib.${system}.run {
-          src = ./.;
-          hooks = hooks // nodeHooks;
-        };
-
-        preCommitCheck = git-hooks-nix.lib.${system}.run {
-          inherit hooks;
-          src = ./.;
-        };
-
-        flock = pkgs.lib.getExe pkgs.flock;
-        git = pkgs.lib.getExe pkgs.git;
 
         titleFonts = pkgs.google-fonts.override {
           fonts = [ "Shippori Mincho" ];
@@ -145,11 +113,9 @@
         devShells.default = pkgs.mkShell {
           name = "hakula.xyz-kiln-dev";
 
+          inputsFrom = [ preCommit.shell ];
+
           packages = [
-            preCommit.config.package
-          ]
-          ++ preCommit.enabledPackages
-          ++ [
             kiln.packages.${system}.kiln
           ]
           ++ (with pkgs; [
@@ -165,24 +131,12 @@
               "${titleFonts}/share/fonts"
             ];
           };
-
-          # Linked worktrees can't resolve git-hooks.nix's relative hooks path.
-          # Serialize installation and clearing the path, since pre-commit rejects concurrent changes.
-          shellHook = ''
-            if common=$(${git} rev-parse --path-format=absolute --git-common-dir 2>/dev/null); then
-              (
-                ${flock} 9
-                ${preCommit.config.installationScript}
-                ${git} config --local --unset-all core.hooksPath || true
-              ) 9>"$common/git-hooks.lock"
-            fi
-          '';
         };
 
         # ------------------------------------------------------------------------------------------
         # Checks
         # ------------------------------------------------------------------------------------------
-        checks.pre-commit = preCommitCheck;
+        checks.pre-commit = preCommit.check;
 
         # ------------------------------------------------------------------------------------------
         # Formatter
