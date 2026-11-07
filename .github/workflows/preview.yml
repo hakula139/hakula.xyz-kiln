@@ -38,7 +38,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Nix
-        uses: hakula139/devkit/actions/setup-nix@d3958e313d1c13d44e3cebb75afb610e3c712d3d
+        uses: hakula139/devkit/actions/setup-nix@61682dd34d15732234bac835f3603de8de5b86f1
 
       - name: Install dependencies
         run: nix develop -c pnpm install --frozen-lockfile
