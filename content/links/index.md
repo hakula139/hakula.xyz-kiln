@@ -64,15 +64,3 @@ url = "https://www.pixiv.net/artworks/95120332"
 :::
 
 ::::
-
-## 其他
-
-:::: {.link-grid .not-prose}
-
-::: link {name="赞助本站" url="https://afdian.com/a/hakula" desc="如果本站对你有帮助的话 😙" logo="assets/100018857.webp"}
-:::
-
-::: link {name="提问的智慧" url="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md" desc="如果你还没看过，那提问前建议先看看" logo="assets/95578205.webp"}
-:::
-
-::::
