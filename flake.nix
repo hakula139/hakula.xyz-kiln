@@ -51,16 +51,16 @@
             package = dk.nodeTool "cspell";
             types = [ "text" ];
           };
+          eslint = {
+            enable = true;
+            package = dk.nodeTool "eslint";
+            files = "\\.(js|mjs)$";
+          };
           prettier = {
             enable = true;
             package = dk.nodeTool "prettier";
             files = "\\.(css|js|mjs|json|jsonc|ya?ml)$";
             types = [ "text" ];
-          };
-          eslint = {
-            enable = true;
-            package = dk.nodeTool "eslint";
-            files = "\\.(js|mjs)$";
           };
         };
 
@@ -71,7 +71,6 @@
             check-yaml.enable = true;
             deadnix.enable = true;
             dprint.enable = true;
-            editorconfig-checker.enable = true;
             markdownlint-cli2.enable = true;
             nixfmt.enable = true;
             ruff.enable = true;
