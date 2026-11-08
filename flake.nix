@@ -12,12 +12,9 @@
     # Following kiln's nixpkgs keeps the kiln package identical to its Cachix build.
     nixpkgs.follows = "kiln/nixpkgs";
 
-    flake-utils.url = "github:numtide/flake-utils";
-
     kiln = {
       url = "github:hakula139/kiln/v0.5.2";
       inputs = {
-        flake-utils.follows = "flake-utils";
         git-hooks-nix.follows = "devkit/git-hooks-nix";
         kiln-tailwindcss.inputs.git-hooks-nix.follows = "devkit/git-hooks-nix";
       };
@@ -35,12 +32,11 @@
   outputs =
     {
       nixpkgs,
-      flake-utils,
       kiln,
       devkit,
       ...
     }:
-    flake-utils.lib.eachSystem (builtins.attrNames kiln.packages) (
+    devkit.lib.eachSystem (builtins.attrNames kiln.packages) (
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -52,21 +48,18 @@
         nodeHooks = {
           cspell = {
             enable = true;
-            package = null;
-            entry = "${pkgs.lib.getExe (dk.nodeTool "cspell")} --no-must-find-files --no-progress";
+            package = dk.nodeTool "cspell";
             types = [ "text" ];
           };
           prettier = {
             enable = true;
-            package = null;
-            entry = "${pkgs.lib.getExe (dk.nodeTool "prettier")} --write --ignore-unknown";
-            files = "\\.(css|js|mjs|json|jsonc|ya?ml|md)$";
+            package = dk.nodeTool "prettier";
+            files = "\\.(css|js|mjs|json|jsonc|ya?ml)$";
             types = [ "text" ];
           };
           eslint = {
             enable = true;
-            package = null;
-            entry = "${pkgs.lib.getExe (dk.nodeTool "eslint")} --fix";
+            package = dk.nodeTool "eslint";
             files = "\\.(js|mjs)$";
           };
         };
@@ -77,7 +70,7 @@
             actionlint.enable = true;
             check-yaml.enable = true;
             deadnix.enable = true;
-            dprint.enable = false;
+            dprint.enable = true;
             editorconfig-checker.enable = true;
             markdownlint-cli2.enable = true;
             nixfmt.enable = true;
@@ -111,7 +104,7 @@
           ++ (with pkgs; [
             fontconfig
             nodejs_26
-            pnpm
+            pnpm_12
             (python314.withPackages (ps: [ ps.pillow ]))
           ]);
 

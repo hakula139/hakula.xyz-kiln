@@ -2,7 +2,7 @@
 
 ## Checks
 
-[`ci.yml`](../../.github/workflows/ci.yml) runs on pushes and pull requests to `main` and `dev`. `Nix Flake Check` runs `nix flake check`, and `Site Check` runs the `pnpm` checks that [verification](../../AGENTS.md#verification) lists.
+[`ci.yml`](../../.github/workflows/ci.yml) runs on pushes and pull requests to `main` and `dev`. Devkit's reusable Nix workflow runs the shared sandboxed checks, including Markdown and TOML formatting and Markdown linting. `Site Check` runs the project-dependent Tailwind-aware Prettier, ESLint, and multilingual CSpell commands listed in [verification](../../AGENTS.md#verification).
 
 [`build.yml`](../../.github/workflows/build.yml) is a reusable `workflow_call` that enters the dev shell and runs `kiln build --minify`, including CSS compilation. `ci.yml`, `deploy.yml`, and `preview.yml` call into it, so the build path is single-sourced.
 

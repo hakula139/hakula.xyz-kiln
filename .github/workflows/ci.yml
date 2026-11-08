@@ -16,17 +16,9 @@ permissions:
 
 jobs:
   flake-check:
-    name: Nix Flake Check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Setup Nix
-        uses: hakula139/devkit/.github/actions/setup-nix@v1
-
-      - name: Run flake check
-        run: nix flake check
+    uses: hakula139/devkit/.github/workflows/nix.yml@v1
+    with:
+      macos: false
 
   check:
     name: Site Check

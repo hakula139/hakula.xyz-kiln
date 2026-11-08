@@ -123,7 +123,6 @@ class TestSuite:
         ))
         n_clusters: int = len(params)
         return dataset, n_clusters
-
 ```
 
 对于一维的情形，我们使用 `numpy` 库提供的函数 `random.default_rng().normal` 和参数 `mean`, `scale`, `size` 从一维高斯分布中生成数据集。对于多维的情形，我们使用 `numpy` 库提供的函数 `random.default_rng().multivariate_normal` 和参数 `mean`, `cov`, `size` 从多维高斯分布中生成数据集。其中：

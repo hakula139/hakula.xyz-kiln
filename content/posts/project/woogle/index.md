@@ -114,10 +114,12 @@ hadoop jar woogle.jar <index_path>
 - `<token>`：表示一个短语 $t$。
 - `<filename>`：表示出现这个短语 $t$ 的文档 $d$ 的文件名。
 - `<token_count>`：表示这个短语 $t$ 在文档 $d$ 中出现的次数 $c_{t,d}$。
-- `<tf>`：表示这个短语 $t$ 在文档 $d$ 中的**词频 TF** (Term Frequency)，使用科学计数法表示。这里我们采用的算法是 $$\operatorname{TF}(t,d) = \frac{c_{t,d}}{C_d}$$ 其中 $C_d$ 表示文档 $d$ 中的短语总数。
+- `<tf>`：表示这个短语 $t$ 在文档 $d$ 中的**词频 TF** (Term Frequency)，使用科学计数法表示。这里我们采用的算法是 $$\operatorname{TF}(t,d) = \frac{c_{t,d}}{C_d}$$
+  其中 $C_d$ 表示文档 $d$ 中的短语总数。
 - `<position_i>`：表示这个短语 $t$ 在文档 $d$ 中出现的位置 $p_{t,d,i}$。这里我们取的是该短语首字符关于文档起始位置的**字节偏移量**。
 - `<file_count>`：表示出现这个短语 $t$ 的文档总数 $n_t$。
-- `<idf>`：表示这个短语 $t$ 在所有文档 $D$ 中的**逆向文件频率 IDF** (Inverse Document Frequency)。这里我们采用的算法是 $$\operatorname{IDF}(t) = \log_2{\frac{N}{n_t}}$$ 其中 $N$ 表示语料库中文档的总数 $|D|$。
+- `<idf>`：表示这个短语 $t$ 在所有文档 $D$ 中的**逆向文件频率 IDF** (Inverse Document Frequency)。这里我们采用的算法是 $$\operatorname{IDF}(t) = \log_2{\frac{N}{n_t}}$$
+  其中 $N$ 表示语料库中文档的总数 $|D|$。
 
 以一个小样例的索引结果为例（文件名：`part-r-00121`）：
 
@@ -156,7 +158,8 @@ Please input a keyword:
 
 其中：
 
-- `<tfidf>`：表示这个短语 $t$ 在文档 $d$ 中的 TF-IDF，使用科学计数法表示。这里我们采用的算法是 $$\operatorname{TFIDF}(t,d) = \operatorname{TF}(t,d) \cdot \operatorname{IDF}(t)$$ 通常，这个值可以作为这个文档在搜索结果中的权重。
+- `<tfidf>`：表示这个短语 $t$ 在文档 $d$ 中的 TF-IDF，使用科学计数法表示。这里我们采用的算法是 $$\operatorname{TFIDF}(t,d) = \operatorname{TF}(t,d) \cdot \operatorname{IDF}(t)$$
+  通常，这个值可以作为这个文档在搜索结果中的权重。
 
 例如：
 
@@ -530,7 +533,9 @@ public class TokenCount {
 
 Reducer 比较复杂，是整个项目最大的难点。困难的不是实现本身，而是选择这个方案的思考过程。
 
-我们的目标是得到 TF，现在我们有所有短语在各文件里出现的所有位置，因此我们就有所有短语在各文件里的出现次数。我们知道 $$\mathrm{TF}(t,d) = \frac{c_{t, d}}{\sum_{t'\in d} c_{t',d}}$$ 所以我们现在只需要各文件的短语总数，也就是将每个短语的出现次数求和。
+我们的目标是得到 TF，现在我们有所有短语在各文件里出现的所有位置，因此我们就有所有短语在各文件里的出现次数。我们知道 $$\mathrm{TF}(t,d) = \frac{c_{t, d}}{\sum_{t'\in d} c_{t',d}}$$
+
+所以我们现在只需要各文件的短语总数，也就是将每个短语的出现次数求和。
 
 听起来是不是很简单？我们已经有所有短语的出现次数了，直接遍历一下加起来不就行了？然而问题来了，现在我们不仅需要累加，而且还需要计算每个短语在各文件里的 TF。但问题是我们得先遍历一次，得到文件的短语总数，然后才能算出短语在这个文件里的 TF。
 

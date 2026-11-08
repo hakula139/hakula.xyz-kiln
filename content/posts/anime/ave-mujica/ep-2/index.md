@@ -27,12 +27,12 @@ src = "/assets/images/article-covers/ave-mujica.webp"
 
 色雷斯人从此鄙视菲利斯，因为她选了一个外邦人而弃绝了自己的子民。菲利斯在信中写到，身边的臣民已经开始这样劝她——
 
-> atque aliquis 'iam nunc doctas eat,' inquit, 'Athenas;  
-> armiferam Thracen qui regat, alter erit.  
-> **exitus acta probat.**' careat successibus, opto,  
+> atque aliquis 'iam nunc doctas eat,' inquit, 'Athenas;\
+> armiferam Thracen qui regat, alter erit.\
+> **exitus acta probat.**' careat successibus, opto,\
 > quisquis ab eventu facta notanda putat!
 >
-> 有人说：「让她去博学的雅典吧，武装的色雷斯自有他人来统治。结果已经证明了一切。」  
+> 有人说：「让她去博学的雅典吧，武装的色雷斯自有他人来统治。结果已经证明了一切。」\
 > ——我诅咒所有以结果论断行为的人，愿他们永无成功之日！
 
 「Exitus acta probat」在这里是旁人用来劝菲利斯认清现实的话：德摩丰一去不返这个「结果」已经充分「证明」了她当初的选择不过是愚行——你收留他、资助他、嫁给他，换来的不就是这个结果？菲利斯紧接着诅咒了这种逻辑。她并非不知道德摩丰已经不会回来，她无法接受的是这套说辞将她所有的付出追溯性地判定为毫无意义。如果只有结果才能为行为正名，那么这一切在德摩丰消失的那一刻便被一笔勾销。奥维德借此展示的恰恰是「结果正名行为」的逻辑对被牺牲者的暴力：成功者被追溯性地封圣，失败者被追溯性地抹消。而这句话在后世的流传中几乎总是被剥离了这层语境，仿佛它只是一句意气风发的格言。

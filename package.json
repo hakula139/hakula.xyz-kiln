@@ -3,12 +3,8 @@
   "scripts": {
     "build": "kiln build",
     "dev": "kiln serve",
-    "format": "pnpm format:prettier && pnpm format:toml",
-    "format:prettier": "prettier --check .",
-    "format:toml": "taplo format --check",
-    "lint": "pnpm lint:md && pnpm lint:js",
-    "lint:js": "eslint .",
-    "lint:md": "markdownlint-cli2 \"**/*.md\"",
+    "format": "prettier --check .",
+    "lint": "eslint .",
     "spellcheck": "git ls-files | cspell --no-progress --file-list stdin"
   },
   "devDependencies": {
@@ -19,11 +15,9 @@
     "@cspell/dict-la": "^1.1.4",
     "@eslint/js": "^10.0.1",
     "@tailwindcss/typography": "^0.5.20",
-    "@taplo/cli": "^0.7.0",
     "cspell": "^10.4.0",
     "eslint": "^10.14.0",
     "globals": "^17.13.0",
-    "markdownlint-cli2": "^0.24.0",
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
