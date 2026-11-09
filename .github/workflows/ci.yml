@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   flake-check:
-    uses: hakula139/devkit/.github/workflows/nix.yml@v1
+    uses: hakula139/devkit/.github/workflows/nix.yml@v2
     with:
       macos: false
 
@@ -30,7 +30,7 @@ jobs:
           submodules: true
 
       - name: Setup Nix
-        uses: hakula139/devkit/.github/actions/setup-nix@v1
+        uses: hakula139/devkit/.github/actions/setup-nix@v2
 
       - name: Install dependencies
         run: nix develop -c pnpm install --frozen-lockfile
@@ -56,4 +56,4 @@ jobs:
       actions: read
     timeout-minutes: 5
     steps:
-      - uses: hakula139/devkit/.github/actions/ci-result@v1
+      - uses: hakula139/devkit/.github/actions/ci-result@v2

@@ -28,7 +28,7 @@ jobs:
           lfs: true
 
       - name: Setup Nix
-        uses: hakula139/devkit/.github/actions/setup-nix@v1
+        uses: hakula139/devkit/.github/actions/setup-nix@v2
 
       - name: Build site
         env:
