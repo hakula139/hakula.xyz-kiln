@@ -512,7 +512,7 @@ num2_pos = start_pos + 2;           // num2_pos in %r8
 `%rdx` = `%rsi`\
 `%rcx` = `%rsi + 4`\
 `%r8` = `%rsi + 8`\
-`%r9` = `%rsi + 12`\
+`%r9` = `%rsi + 12`
 :::
 
 ::: callout {type=note title="栈状态"}
