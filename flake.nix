@@ -50,6 +50,7 @@
           hooks = {
             cspell.package = dk.nodeTool "cspell";
             eslint.enable = true;
+            markdownlint-cli2.settings.configPath = ".markdownlint-cli2.jsonc";
             prettier = {
               enable = true;
               package = dk.nodeTool "prettier";

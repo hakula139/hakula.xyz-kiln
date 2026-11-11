@@ -1,9 +1,22 @@
 {
   "config": {
+    "default": true,
+
+    "code-block-style": { "style": "fenced" },
+    "code-fence-style": { "style": "backtick" },
+    "emphasis-style": { "style": "underscore" },
+    "heading-style": { "style": "atx" },
+    "line-length": false,
     // kiln preserves punctuation that GitHub's heading slugger drops.
     "link-fragments": false,
+    "no-duplicate-heading": { "siblings_only": true },
     "no-hard-tabs": { "code_blocks": false },
     "no-inline-html": false,
-    "no-trailing-punctuation": { "punctuation": ".,;:!。，；：！、" },
+    "no-trailing-punctuation": false,
+    "ol-prefix": { "style": "ordered" },
+    "strong-style": { "style": "asterisk" },
+    "ul-style": { "style": "dash" },
   },
+
+  "gitignore": true,
 }
