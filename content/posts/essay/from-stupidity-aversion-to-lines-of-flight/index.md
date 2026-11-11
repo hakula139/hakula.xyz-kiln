@@ -27,8 +27,6 @@ url = "https://www.pixiv.net/artworks/91419407"
 
 <!--more-->
 
-<!-- markdownlint-disable MD024 -->
-
 ## 第一圈：潜入自我，「厌蠢症」心理解析
 
 ::: callout {type=quote title="提示词"}

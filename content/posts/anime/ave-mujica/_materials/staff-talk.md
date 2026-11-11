@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD024 -->
-
 # 真柿界 · 卒
 
 ## 第 1 集 - 幕后评论与制作细节
