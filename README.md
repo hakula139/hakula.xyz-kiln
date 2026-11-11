@@ -11,12 +11,15 @@ My personal website, built with [kiln](https://github.com/hakula139/kiln) and th
 
 Install [Git LFS](https://git-lfs.com/) and run `git lfs install` before cloning, since the images are stored in LFS.
 
+[Nix](https://nixos.org/download/) (with flakes) is the recommended path:
+
 ```bash
 git clone --recurse-submodules https://github.com/hakula139/hakula.xyz-kiln.git
 cd hakula.xyz-kiln
+nix develop
 ```
 
-[Nix](https://nixos.org/download/) (with flakes) is the recommended path. `nix develop` supplies kiln, whose package carries its CSS processor and Pagefind, along with the Node tools for linting and deployment. Prebuilt packages are available from the [`hakula` cachix cache](https://app.cachix.org/cache/hakula); add it as a substituter to use them. Without Nix, follow [kiln's installation instructions](https://github.com/hakula139/kiln#installation), set up its [CSS processor](https://github.com/hakula139/kiln/blob/main/docs/assets.md#processor-setup), and install [Pagefind](https://pagefind.app/docs/installation/).
+The dev shell supplies kiln, whose package carries its CSS processor and Pagefind, along with the Node tools for linting and deployment. Without Nix, follow [kiln's installation instructions](https://github.com/hakula139/kiln#installation), set up its [CSS processor](https://github.com/hakula139/kiln/blob/main/docs/assets.md#processor-setup), and install [Pagefind](https://pagefind.app/docs/installation/).
 
 ## Usage
 
@@ -25,11 +28,9 @@ kiln build         # Build to public/
 kiln serve --open  # Preview with live reload
 ```
 
-## Deploy
+## Deployment
 
-Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz) in the `production` GitHub Environment, and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz) in the `development` environment. Each PR from this repository gets a preview URL in the `preview` environment, linked from a PR comment. The workflows and the secrets they need are described in [docs/reference/ci.md](docs/reference/ci.md#deploy).
-
-For a manual deploy, run the workflow on the intended branch:
+Environments, previews, and secrets are covered in [docs/reference/ci.md](docs/reference/ci.md#deployment). For a manual deploy, run the workflow on the intended branch:
 
 ```bash
 gh workflow run deploy.yml --ref main

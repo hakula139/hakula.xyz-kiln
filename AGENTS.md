@@ -1,6 +1,6 @@
 # AGENTS.md: hakula.xyz-kiln
 
-This is the [kiln](https://github.com/hakula139/kiln) source for [hakula.xyz](https://hakula.xyz).
+This is the [hakula.xyz](https://hakula.xyz) blog, built with [kiln](https://github.com/hakula139/kiln).
 
 ## Read before you edit
 
@@ -9,7 +9,7 @@ This is the [kiln](https://github.com/hakula139/kiln) source for [hakula.xyz](ht
 | Frontmatter, typography, or Markdown | [Format and typography](content/AGENTS.md)     |
 | Prose in an article                  | [Writing style](content/posts/AGENTS.md)       |
 | Templates, assets, or the layout     | [Architecture](docs/reference/architecture.md) |
-| A deploy or a preview                | [Deploy and previews](docs/reference/ci.md)    |
+| A deploy or a preview                | [Deployment](docs/reference/ci.md)             |
 
 ## Source constraints
 

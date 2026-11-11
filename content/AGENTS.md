@@ -1,10 +1,10 @@
 # Format and Typography
 
-Format and typography for everything under `content/`. Writing style lives in [content/posts/AGENTS.md](posts/AGENTS.md).
+Writing style lives in [content/posts/AGENTS.md](posts/AGENTS.md).
 
 ## Frontmatter
 
-TOML with `+++` delimiters. `date` is a native TOML offset date-time in `+08:00`, and may be initialised to the current date and time.
+`date` is a native TOML offset date-time in `+08:00`, and may be initialised to the current date and time.
 
 ```toml
 +++
@@ -23,7 +23,7 @@ url = "https://www.pixiv.net/artworks/{pixiv_id}"
 +++
 ```
 
-`featured_image` is a TOML table holding `src`, an optional `position` (CSS `object-position`), and an optional `credit` subtable of `title`, `author`, and `url`. Article covers go in `assets/images/article-covers/`, while co-located assets such as diagrams and data files sit alongside `index.md` in the page bundle.
+An optional `position` sets the cover's CSS `object-position`. Article covers go in `assets/images/article-covers/`, while co-located assets such as diagrams and data files sit alongside `index.md` in the page bundle.
 
 ## Article structure
 
@@ -55,7 +55,7 @@ Internal documents in a directory whose name starts with `_` take an H1 heading 
 :::
 ```
 
-Types are `abstract`, `bug`, `danger`, `example`, `failure`, `info`, `note`, `question`, `quote`, `success`, `tip`, and `warning`. Omit `title` when the default title suits the type, such as 注意 for `warning`, 提示 for `tip`, or 说明 for `note`. Leave a blank line above and below. Quote titles that contain spaces. Prefer `callout quote` over Markdown `>`.
+Types are `abstract`, `bug`, `danger`, `example`, `failure`, `info`, `note`, `question`, `quote`, `success`, `tip`, and `warning`. Omit `title` when the default title suits the type, such as 注意 for `warning`, 提示 for `tip`, or 说明 for `note`. Prefer `callout quote` over Markdown `>`.
 
 ## Typography
 
@@ -95,6 +95,6 @@ Keep capitalisation and spelling correct, and spell a name out in full on first 
 
 ## Markdown
 
-dprint formats Markdown, and [markdownlint](https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md) lints it. A block's last line, including the line before a directive's closing `:::`, never ends in `\`.
+A block's last line, including the line before a directive's closing `:::`, never ends in `\`.
 
 In Chinese prose a foreign term is embedded directly. Italics mark only a foreign work title.

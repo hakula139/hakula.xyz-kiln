@@ -1,12 +1,16 @@
-# Deploy and previews
+# Deployment
 
-## Deploy
+## Branch deploys
 
-[`deploy.yml`](../../.github/workflows/deploy.yml) ships the build's `public/` to the Cloudflare Workers in [`wrangler.toml`](../../wrangler.toml), the top-level Worker from `main` and `[env.dev]` from `dev`. The `production` and `development` environments accept deploys only from those branches. Development builds keep links on the development origin, and [`static/_headers`](../../static/_headers) sends `X-Robots-Tag: noindex` on the development and preview hosts. [README.md](../../README.md#deploy) lists the manual deploy commands.
+Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz) in the `production` GitHub Environment, and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz) in the `development` environment. Each environment accepts deploys only from its branch. Development builds keep links on the development origin, and [`static/_headers`](../../static/_headers) sends `X-Robots-Tag: noindex` on the development and preview hosts. [README.md](../../README.md#deployment) has the manual commands.
 
-[`preview.yml`](../../.github/workflows/preview.yml) deploys each PR from this repository as a Worker Preview named `pr-<number>` and comments its stable and per-push URLs. When the PR closes, [`preview-cleanup.yml`](../../.github/workflows/preview-cleanup.yml) deletes the Preview, marks the PR's `preview` deployments inactive, and updates the comment. It runs on `pull_request_target`, which also fires for PRs with merge conflicts and runs `main`'s copy of the workflow, so a change to it takes effect only once merged. It holds the deploy secrets and a write token, so it must never check out or run PR code. Both workflows share the concurrency group `preview-<number>`, so closing a PR cancels its in-flight deploy. Previews serve a bare `Not found` for missing paths, because Worker Previews ignore `not_found_handling` ([workers-sdk#16047](https://github.com/cloudflare/workers-sdk/issues/16047)).
+## Pull request previews
 
-The deploy, preview, and preview cleanup workflows read two repository secrets:
+Each PR from this repository deploys a Worker Preview named `pr-<number>` and comments its stable and per-push URLs. Closing the PR deletes the Preview, marks its `preview` deployments inactive, and updates the comment. That cleanup runs on `pull_request_target`, so it holds the deploy secrets and a write token and must never check out or run PR code. Previews serve a bare `Not found` for missing paths, because Worker Previews ignore `not_found_handling` ([workers-sdk#16047](https://github.com/cloudflare/workers-sdk/issues/16047)).
+
+## Secrets
+
+The deploy and cleanup workflows read two repository secrets:
 
 - `CLOUDFLARE_API_TOKEN`, scoped to Account → Workers Scripts: Edit and Zone (`hakula.xyz`) → DNS: Edit + Workers Routes: Edit.
 - `CLOUDFLARE_ACCOUNT_ID`.
