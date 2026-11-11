@@ -1,6 +1,7 @@
 name: Preview cleanup
 
 on:
+  # Holds deploy secrets and a write token, so never check out or run PR code.
   pull_request_target:
     types: [closed]
 
