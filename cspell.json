@@ -40,6 +40,6 @@
       "pattern": "/<!--[\\s\\S]*?-->/gm"
     }
   ],
-  "ignorePaths": ["flake.lock", "pnpm-lock.yaml", "**/*.svg", "**/*.csv"],
+  "ignorePaths": ["content/posts/LICENSE", "flake.lock", "pnpm-lock.yaml", "**/*.svg", "**/*.csv"],
   "ignoreRegExpList": ["code_fenced", "code_inline", "math_inline", "math_display", "html_comments"]
 }
