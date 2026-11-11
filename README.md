@@ -25,8 +25,6 @@ kiln build         # Build to public/
 kiln serve --open  # Preview with live reload
 ```
 
-`pnpm build` and `pnpm dev` run `kiln build` and `kiln serve`.
-
 ## Deploy
 
 Pushes to `main` deploy to [hakula.xyz](https://hakula.xyz) in the `production` GitHub Environment, and pushes to `dev` deploy to [dev.hakula.xyz](https://dev.hakula.xyz) in the `development` environment. Each PR from this repository gets a preview URL in the `preview` environment, linked from a PR comment. The workflows and the secrets they need are described in [docs/reference/ci.md](docs/reference/ci.md#deploy).

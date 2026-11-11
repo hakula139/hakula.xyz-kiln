@@ -1,11 +1,5 @@
 # CI
 
-## Checks
-
-[`ci.yml`](../../.github/workflows/ci.yml) runs on pushes and pull requests to `main` and `dev`. Devkit's reusable Nix workflow runs the shared sandboxed checks, including Markdown and TOML formatting and Markdown linting. `Site Check` runs the project-dependent Tailwind-aware Prettier, ESLint, and multilingual CSpell commands listed in [verification](../../AGENTS.md#verification).
-
-[`build.yml`](../../.github/workflows/build.yml) is a reusable `workflow_call` that enters the dev shell and runs `kiln build --minify`, including CSS compilation. `ci.yml`, `deploy.yml`, and `preview.yml` call into it, so the build path is single-sourced.
-
 ## Deploy
 
 [`deploy.yml`](../../.github/workflows/deploy.yml) ships the build's `public/` to the Cloudflare Workers in [`wrangler.toml`](../../wrangler.toml), the top-level Worker from `main` and `[env.dev]` from `dev`. The `production` and `development` environments accept deploys only from those branches. Development builds keep links on the development origin, and [`static/_headers`](../../static/_headers) sends `X-Robots-Tag: noindex` on the development and preview hosts. [README.md](../../README.md#deploy) lists the manual deploy commands.

@@ -1,11 +1,8 @@
 {
   "config": {
-    "first-line-heading": false,
     // kiln preserves punctuation that GitHub's heading slugger drops.
     "link-fragments": false,
     "no-hard-tabs": { "code_blocks": false },
     "no-inline-html": false,
   },
-
-  "ignores": ["themes/**"],
 }

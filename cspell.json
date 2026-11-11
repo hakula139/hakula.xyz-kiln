@@ -2,6 +2,7 @@
   "version": "0.2",
   "language": "en,en-GB",
   "useGitignore": true,
+  "gitignoreRoot": ".",
   "allowCompoundWords": true,
   "import": [
     "@cspell/dict-de-de/cspell-ext.json",
@@ -40,6 +41,6 @@
       "pattern": "/<!--[\\s\\S]*?-->/gm"
     }
   ],
-  "ignorePaths": ["pnpm-lock.yaml", "**/*.svg", "**/*.csv"],
+  "ignorePaths": ["flake.lock", "pnpm-lock.yaml", "**/*.svg", "**/*.csv"],
   "ignoreRegExpList": ["code_fenced", "code_inline", "math_inline", "math_display", "html_comments"]
 }
