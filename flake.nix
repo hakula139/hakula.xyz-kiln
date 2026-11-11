@@ -54,7 +54,6 @@
             prettier = {
               enable = true;
               package = dk.nodeTool "prettier";
-              files = "\\.(css|js|mjs|json|jsonc|ya?ml)$";
             };
             ruff.enable = true;
             ruff-format.enable = true;
@@ -87,15 +86,6 @@
               fontconfig
               (python314.withPackages (ps: [ ps.pillow ]))
             ]);
-
-            # devkit's nix.yml checks out without submodules, and the Prettier
-            # Tailwind plugin needs the theme stylesheet that the site imports.
-            shellHook = ''
-              if [ ! -e themes/IgnIt/assets ] &&
-                git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-                git submodule update --init themes/IgnIt >&2
-              fi
-            '';
 
             FONTCONFIG_FILE = pkgs.makeFontsConf {
               fontDirectories = [
