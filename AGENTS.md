@@ -21,7 +21,7 @@ Run these before review:
 
 ```bash
 nix develop -c run-hooks
-nix develop -c kiln build
+nix develop -c pnpm build
 ```
 
 ## Conventions

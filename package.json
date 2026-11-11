@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "build": "kiln build",
+    "build": "kiln build --minify",
     "dev": "kiln serve"
   },
   "devEngines": {

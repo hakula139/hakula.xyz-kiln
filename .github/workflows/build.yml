@@ -35,7 +35,7 @@ jobs:
       - name: Build site
         env:
           KILN_BASE_URL: ${{ inputs.base-url }}
-        run: nix develop -c kiln build --minify
+        run: nix develop -c pnpm build
 
       - name: Upload artifact
         if: ${{ inputs.upload-artifact }}

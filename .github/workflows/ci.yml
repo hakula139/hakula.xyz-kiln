@@ -16,19 +16,18 @@ concurrency:
 jobs:
   nix:
     uses: hakula139/devkit/.github/workflows/nix.yml@v3
-    with:
-      macos: false
     secrets:
       CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-  build:
+  site:
+    name: Site Check
     uses: ./.github/workflows/build.yml
 
   result:
     name: CI Result
     # A skipped required check passes, so the gate must run after failures too.
     if: ${{ !cancelled() }}
-    needs: [nix, build]
+    needs: [nix, site]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
