@@ -4,12 +4,12 @@ This is the [kiln](https://github.com/hakula139/kiln) source for [hakula.xyz](ht
 
 ## Read before you edit
 
-| Touching                          | Read                                                             |
-| --------------------------------- | ---------------------------------------------------------------- |
-| Frontmatter, typography, Markdown | [content/AGENTS.md](content/AGENTS.md)                           |
-| Prose in an article               | [content/posts/AGENTS.md](content/posts/AGENTS.md)               |
-| Templates, assets, or the layout  | [docs/reference/architecture.md](docs/reference/architecture.md) |
-| A workflow or a deploy            | [docs/reference/ci.md](docs/reference/ci.md)                     |
+| When the change touches              | Read                                           |
+| ------------------------------------ | ---------------------------------------------- |
+| Frontmatter, typography, or Markdown | [Format and typography](content/AGENTS.md)     |
+| Prose in an article                  | [Writing style](content/posts/AGENTS.md)       |
+| Templates, assets, or the layout     | [Architecture](docs/reference/architecture.md) |
+| A deploy or a preview                | [Deploy and previews](docs/reference/ci.md)    |
 
 ## Source constraints
 

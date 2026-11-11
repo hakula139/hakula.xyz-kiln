@@ -1,4 +1,4 @@
-# CI
+# Deploy and previews
 
 ## Deploy
 

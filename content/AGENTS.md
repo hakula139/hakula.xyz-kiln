@@ -95,7 +95,6 @@ Keep capitalisation and spelling correct, and spell a name out in full on first 
 
 ## Markdown
 
-[markdownlint](https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md) enforces the rest of the Markdown style. It does not cover two conventions:
+dprint formats Markdown, and [markdownlint](https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md) lints it. A block's last line, including the line before a directive's closing `:::`, never ends in `\`.
 
-- In Chinese prose a foreign term is embedded directly. Italics mark only a foreign work title.
-- Headings do not end in `、`, which MD026 does not cover.
+In Chinese prose a foreign term is embedded directly. Italics mark only a foreign work title.
