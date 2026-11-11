@@ -1126,7 +1126,7 @@ So you got that one.  Try this one.
 4010f3:   c3                      retq
 ```
 
-这里的 `%fs:0x28` 是 FS 段寄存器（segment register）上偏移地址 `0x28` 上的数据。这是一个随机量，在这里起到 stack canary 的作用[^fs-so][^fs-se]。这部分代码即利用这个 stack canary 来确保 `0x18(%rsp)` 的数值（即栈底的 8 bytes）在函数前后没有发生改动，如果发生改动则执行 `4010e9`: `callq 400b30 <__stack_chk_fail@plt>` 调用系统函数 `__stack_chk_fail` 跳出，从而防止栈溢出（stack overflow）的问题。事实上，这段代码与本关的关系不大，这里就不做更多阐述了。
+这里的 `%fs:0x28` 是 FS 段寄存器（segment register）上偏移地址 `0x28` 上的数据。这是一个随机量，在这里起到 stack canary 的作用[^fs-so]、[^fs-se]。这部分代码即利用这个 stack canary 来确保 `0x18(%rsp)` 的数值（即栈底的 8 bytes）在函数前后没有发生改动，如果发生改动则执行 `4010e9`: `callq 400b30 <__stack_chk_fail@plt>` 调用系统函数 `__stack_chk_fail` 跳出，从而防止栈溢出（stack overflow）的问题。事实上，这段代码与本关的关系不大，这里就不做更多阐述了。
 
 ```text {title="bomb.asm"}
 401078:   31 c0                   xor    %eax,%eax
