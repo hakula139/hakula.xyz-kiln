@@ -4,56 +4,36 @@ on:
   push:
     branches: [main, dev]
   pull_request:
-    branches: [main, dev]
   workflow_dispatch:
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
-  flake-check:
-    uses: hakula139/devkit/.github/workflows/nix.yml@v2
+  nix:
+    uses: hakula139/devkit/.github/workflows/nix.yml@v3
+    secrets:
+      CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
     with:
       macos: false
-
-  check:
-    name: Site Check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-        with:
-          submodules: true
-
-      - name: Setup Nix
-        uses: hakula139/devkit/.github/actions/setup-nix@v2
-
-      - name: Install dependencies
-        run: nix develop -c pnpm install --frozen-lockfile
-
-      - name: Format
-        run: nix develop -c pnpm format
-
-      - name: Lint
-        run: nix develop -c pnpm lint
-
-      - name: Spell check
-        run: nix develop -c pnpm spellcheck
 
   build:
     uses: ./.github/workflows/build.yml
 
   result:
     name: CI Result
+    # A skipped required check passes, so the gate must run after failures too.
     if: ${{ !cancelled() }}
-    needs: [flake-check, check, build]
+    needs: [nix, build]
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       actions: read
-    timeout-minutes: 5
+
     steps:
-      - uses: hakula139/devkit/.github/actions/ci-result@v2
+      - name: Check results
+        uses: hakula139/devkit/.github/actions/ci-result@v3

@@ -2,7 +2,6 @@ name: Preview deploy
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
 
 concurrency:
   group: preview-${{ github.event.pull_request.number }}
@@ -38,7 +37,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Nix
-        uses: hakula139/devkit/.github/actions/setup-nix@v2
+        uses: hakula139/devkit/.github/actions/setup-nix@v3
 
       - name: Install dependencies
         run: nix develop -c pnpm install --frozen-lockfile

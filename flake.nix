@@ -21,7 +21,7 @@
     };
 
     devkit = {
-      url = "github:hakula139/devkit/v2";
+      url = "github:hakula139/devkit/v3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -45,43 +45,22 @@
         # ------------------------------------------------------------------------------------------
         # Pre-commit Hooks
         # ------------------------------------------------------------------------------------------
-        nodeHooks = {
-          cspell = {
-            enable = true;
-            package = dk.nodeTool "cspell";
-            types = [ "text" ];
-          };
-          eslint = {
-            enable = true;
-            package = dk.nodeTool "eslint";
-            files = "\\.(js|mjs)$";
-          };
-          prettier = {
-            enable = true;
-            package = dk.nodeTool "prettier";
-            files = "\\.(css|js|mjs|json|jsonc|ya?ml)$";
-            types = [ "text" ];
-          };
-        };
-
         preCommit = dk.preCommit {
           src = ./.;
           hooks = {
-            actionlint.enable = true;
-            check-yaml.enable = true;
-            deadnix.enable = true;
-            dprint.enable = true;
-            markdownlint-cli2.enable = true;
-            nixfmt.enable = true;
+            cspell.package = dk.nodeTool "cspell";
+            eslint.enable = true;
+            prettier = {
+              enable = true;
+              package = dk.nodeTool "prettier";
+              files = "\\.(css|js|mjs|json|jsonc|ya?ml)$";
+            };
             ruff.enable = true;
             ruff-format.enable = true;
             shellcheck.enable = true;
             shfmt.enable = true;
-            sort-file-contents.enable = true;
-            statix.enable = true;
             taplo.enable = true;
           };
-          devHooks = nodeHooks;
         };
 
         titleFonts = pkgs.google-fonts.override {
@@ -95,15 +74,14 @@
         devShells.default = pkgs.mkShell {
           name = "hakula.xyz-kiln-dev";
 
-          inputsFrom = [ preCommit.shell ];
+          inputsFrom = [ preCommit ];
 
           packages = [
             kiln.packages.${system}.kiln
           ]
+          ++ builtins.attrValues dk.nodeToolchain
           ++ (with pkgs; [
             fontconfig
-            nodejs_26
-            pnpm_12
             (python314.withPackages (ps: [ ps.pillow ]))
           ]);
 
@@ -114,11 +92,6 @@
             ];
           };
         };
-
-        # ------------------------------------------------------------------------------------------
-        # Checks
-        # ------------------------------------------------------------------------------------------
-        checks.pre-commit = preCommit.check;
 
         # ------------------------------------------------------------------------------------------
         # Formatter

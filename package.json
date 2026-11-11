@@ -2,10 +2,14 @@
   "private": true,
   "scripts": {
     "build": "kiln build",
-    "dev": "kiln serve",
-    "format": "prettier --check .",
-    "lint": "eslint .",
-    "spellcheck": "git ls-files | cspell --no-progress --file-list stdin"
+    "dev": "kiln serve"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^12.0.0",
+      "onFail": "error"
+    }
   },
   "devDependencies": {
     "@cspell/dict-de-de": "^4.1.3",
