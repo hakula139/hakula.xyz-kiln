@@ -16,10 +16,10 @@ concurrency:
 jobs:
   nix:
     uses: hakula139/devkit/.github/workflows/nix.yml@v3
-    secrets:
-      CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
     with:
       macos: false
+    secrets:
+      CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
   build:
     uses: ./.github/workflows/build.yml

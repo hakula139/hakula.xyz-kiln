@@ -15,19 +15,21 @@ jobs:
   cleanup:
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: read
       deployments: write
       pull-requests: write
     env:
       PR_NUMBER: ${{ github.event.pull_request.number }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v7
         with:
           persist-credentials: false
 
-      - name: Setup Nix
+      - name: Set up Nix
         uses: hakula139/devkit/.github/actions/setup-nix@v3
 
       - name: Install dependencies
