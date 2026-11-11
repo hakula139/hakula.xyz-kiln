@@ -62,45 +62,47 @@
             taplo.enable = true;
           };
         };
-
-        titleFonts = pkgs.google-fonts.override {
-          fonts = [ "Shippori Mincho" ];
-        };
       in
       {
         # ------------------------------------------------------------------------------------------
         # Dev Shell
         # ------------------------------------------------------------------------------------------
-        devShells.default = pkgs.mkShell {
-          name = "hakula.xyz-kiln-dev";
+        devShells.default =
+          let
+            titleFonts = pkgs.google-fonts.override {
+              fonts = [ "Shippori Mincho" ];
+            };
+          in
+          pkgs.mkShell {
+            name = "hakula.xyz-kiln-dev";
 
-          inputsFrom = [ preCommit ];
+            inputsFrom = [ preCommit ];
 
-          packages = [
-            kiln.packages.${system}.kiln
-          ]
-          ++ builtins.attrValues dk.nodeToolchain
-          ++ (with pkgs; [
-            fontconfig
-            (python314.withPackages (ps: [ ps.pillow ]))
-          ]);
+            packages = [
+              kiln.packages.${system}.kiln
+            ]
+            ++ builtins.attrValues dk.nodeToolchain
+            ++ (with pkgs; [
+              fontconfig
+              (python314.withPackages (ps: [ ps.pillow ]))
+            ]);
 
-          # devkit's nix.yml checks out without submodules, and the Prettier
-          # Tailwind plugin needs the theme stylesheet that the site imports.
-          shellHook = ''
-            if [ ! -e themes/IgnIt/assets ] &&
-              git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-              git submodule update --init themes/IgnIt >&2
-            fi
-          '';
+            # devkit's nix.yml checks out without submodules, and the Prettier
+            # Tailwind plugin needs the theme stylesheet that the site imports.
+            shellHook = ''
+              if [ ! -e themes/IgnIt/assets ] &&
+                git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+                git submodule update --init themes/IgnIt >&2
+              fi
+            '';
 
-          FONTCONFIG_FILE = pkgs.makeFontsConf {
-            fontDirectories = [
-              "${pkgs.sarasa-gothic}/share/fonts"
-              "${titleFonts}/share/fonts"
-            ];
+            FONTCONFIG_FILE = pkgs.makeFontsConf {
+              fontDirectories = [
+                "${pkgs.sarasa-gothic}/share/fonts"
+                "${titleFonts}/share/fonts"
+              ];
+            };
           };
-        };
 
         # ------------------------------------------------------------------------------------------
         # Formatter
