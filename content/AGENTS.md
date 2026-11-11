@@ -23,7 +23,7 @@ url = "https://www.pixiv.net/artworks/{pixiv_id}"
 +++
 ```
 
-An optional `position` sets the cover's CSS `object-position`. Article covers go in `assets/images/article-covers/`, while co-located assets such as diagrams and data files sit alongside `index.md` in the page bundle.
+`[featured_image]` takes an optional `position`, the cover's CSS `object-position`. Article covers go in `assets/images/article-covers/`, while co-located assets such as diagrams and data files sit alongside `index.md` in the page bundle.
 
 ## Article structure
 

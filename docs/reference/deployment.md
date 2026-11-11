@@ -10,7 +10,7 @@ Each PR from this repository deploys a Worker Preview named `pr-<number>` and co
 
 ## Secrets
 
-The deploy and cleanup workflows read two repository secrets:
+The deploy, preview, and cleanup workflows read two repository secrets:
 
 - `CLOUDFLARE_API_TOKEN`, scoped to Account → Workers Scripts: Edit and Zone (`hakula.xyz`) → DNS: Edit + Workers Routes: Edit.
 - `CLOUDFLARE_ACCOUNT_ID`.

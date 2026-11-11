@@ -19,7 +19,7 @@ cd hakula.xyz-kiln
 nix develop
 ```
 
-The dev shell supplies kiln, whose package carries its CSS processor and Pagefind, along with the Node tools for linting and deployment. Without Nix, follow [kiln's installation instructions](https://github.com/hakula139/kiln#installation), set up its [CSS processor](https://github.com/hakula139/kiln/blob/main/docs/assets.md#processor-setup), and install [Pagefind](https://pagefind.app/docs/installation/).
+The dev shell supplies kiln, whose package carries its CSS processor and Pagefind. Without Nix, follow [kiln's installation instructions](https://github.com/hakula139/kiln#installation), set up its [CSS processor](https://github.com/hakula139/kiln/blob/main/docs/assets.md#processor-setup), and install [Pagefind](https://pagefind.app/docs/installation/).
 
 ## Usage
 
@@ -30,7 +30,7 @@ kiln serve --open  # Preview with live reload
 
 ## Deployment
 
-Environments, previews, and secrets are covered in [docs/reference/ci.md](docs/reference/ci.md#deployment). For a manual deploy, run the workflow on the intended branch:
+Environments, previews, and secrets are covered in [docs/reference/deployment.md](docs/reference/deployment.md). For a manual deploy, run the workflow on the intended branch:
 
 ```bash
 gh workflow run deploy.yml --ref main

@@ -9,11 +9,11 @@ This is the [hakula.xyz](https://hakula.xyz) blog, built with [kiln](https://git
 | Frontmatter, typography, or Markdown | [Format and typography](content/AGENTS.md)     |
 | Prose in an article                  | [Writing style](content/posts/AGENTS.md)       |
 | Templates, assets, or the layout     | [Architecture](docs/reference/architecture.md) |
-| A deploy or a preview                | [Deployment](docs/reference/ci.md)             |
+| A deploy or a preview                | [Deployment](docs/reference/deployment.md)     |
 
 ## Source constraints
 
-Images (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are Git LFS objects per `.gitattributes`, so a text pointer where an image should be means LFS is missing. Install it as [README.md](README.md#setup) describes, then run `git lfs pull`.
+Images (`*.avif`, `*.gif`, `*.jpg`, `*.png`, `*.webp`) are Git LFS objects, so a text pointer where an image should be means LFS is missing. Install it as [README.md](README.md#setup) describes, then run `git lfs pull`.
 
 ## Verification
 
@@ -26,7 +26,7 @@ nix develop -c pnpm build
 
 ## Conventions
 
-Commit scope is the topic area: a content file name without its extension, `config`, or `template`.
+Commit scope is the topic area: a page bundle or content file name, `config`, `template`, or `deps`.
 
 ## Documentation maintenance
 
