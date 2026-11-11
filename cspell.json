@@ -1,9 +1,8 @@
 {
   "version": "0.2",
-  "language": "en,en-GB",
+  "language": "en",
   "useGitignore": true,
   "gitignoreRoot": ".",
-  "allowCompoundWords": true,
   "import": [
     "@cspell/dict-de-de/cspell-ext.json",
     "@cspell/dict-fr-fr/cspell-ext.json",

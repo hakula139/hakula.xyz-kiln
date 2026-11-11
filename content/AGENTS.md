@@ -4,7 +4,7 @@ Writing style lives in [content/posts/AGENTS.md](posts/AGENTS.md).
 
 ## Frontmatter
 
-`date` is a native TOML offset date-time in `+08:00`, and may be initialised to the current date and time.
+`date` is a native TOML offset date-time in `+08:00`, and may be initialized to the current date and time.
 
 ```toml
 +++
@@ -91,7 +91,7 @@ Half-width exceptions:
 
 ### Proper nouns
 
-Keep capitalisation and spelling correct, and spell a name out in full on first use.
+Keep capitalization and spelling correct, and spell a name out in full on first use.
 
 ## Markdown
 
