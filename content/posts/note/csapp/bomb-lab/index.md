@@ -171,7 +171,7 @@ gdb bomb
 `40133c`: `mov %rdi,%rbx` 和 `40133f`: `mov %rsi,%rbp` 将 `%rdi` 和 `%rsi` 寄存器保存的地址分别传给了 `%rbx` 和 `%rbp` 寄存器。
 
 ::: callout {type=note title="寄存器状态"}
-`%rbx` = `%rdi` = `input`  
+`%rbx` = `%rdi` = `input`\
 `%rbp` = `%rsi` = `0x402400`
 :::
 
@@ -364,7 +364,7 @@ return 0;
 由之前的分析，我们确定了函数 `strings_not_equal` 的具体作用。此时寄存器内保存的信息为：
 
 ::: callout {type=note title="寄存器状态"}
-`%rdi` = `input`  
+`%rdi` = `input`\
 `%esi` = `0x402400`
 :::
 
@@ -509,14 +509,14 @@ num2_pos = start_pos + 2;           // num2_pos in %r8
 于是得到各地址保存的位置：
 
 ::: callout {type=note title="寄存器状态"}
-`%rdx` = `%rsi`  
-`%rcx` = `%rsi + 4`  
-`%r8` = `%rsi + 8`  
-`%r9` = `%rsi + 12`  
+`%rdx` = `%rsi`\
+`%rcx` = `%rsi + 4`\
+`%r8` = `%rsi + 8`\
+`%r9` = `%rsi + 12`
 :::
 
 ::: callout {type=note title="栈状态"}
-`0x0(%rsp)` = `%rsi + 16`  
+`0x0(%rsp)` = `%rsi + 16`\
 `0x8(%rsp)` = `%rsi + 20`
 :::
 
@@ -571,11 +571,11 @@ num2_pos = start_pos + 2;           // num2_pos in %r8
 由之前的分析，我们确定了函数 `read_six_numbers` 的具体作用。此时栈内保存的信息为：
 
 ::: callout {type=note title="栈状态"}
-`0x0(%rsp)` = `nums[0]`  
-`0x4(%rsp)` = `nums[1]`  
-`0x8(%rsp)` = `nums[2]`  
-`0xc(%rsp)` = `nums[3]`  
-`0x10(%rsp)` = `nums[4]`  
+`0x0(%rsp)` = `nums[0]`\
+`0x4(%rsp)` = `nums[1]`\
+`0x8(%rsp)` = `nums[2]`\
+`0xc(%rsp)` = `nums[3]`\
+`0x10(%rsp)` = `nums[4]`\
 `0x14(%rsp)` = `nums[5]`
 :::
 
@@ -722,7 +722,7 @@ That's number 2.  Keep going!
 `400f43`: `sub $0x18,%rsp`, `400f47`: `lea 0xc(%rsp),%rcx` 和 `400f4c`: `lea 0x8(%rsp),%rdx` 分配了一块 24 bytes 大小的空间，并将 `%rsp + 0xc` 和 `%rsp + 0x8` 的地址分别传给了 `%rcx` 和 `%rdx` 寄存器。
 
 ::: callout {type=note title="寄存器状态"}
-`%rdx` = `%rsp + 8`  
+`%rdx` = `%rsp + 8`\
 `%rcx` = `%rsp + 12`
 :::
 
@@ -743,7 +743,7 @@ That's number 2.  Keep going!
 因此读取完毕后，栈内保存的信息为：
 
 ::: callout {type=note title="栈状态"}
-`0x8(%rsp)` = `nums[0]`  
+`0x8(%rsp)` = `nums[0]`\
 `0xc(%rsp)` = `nums[1]`
 :::
 
@@ -889,7 +889,7 @@ Halfway there!
 `40100c` ~ `401024` 与函数 `phase_3` 中的 `400f43` ~ `400f5b` 完全一致，这里不再赘述。
 
 ::: callout {type=note title="寄存器状态"}
-`%rdx` = `%rsp + 8`  
+`%rdx` = `%rsp + 8`\
 `%rcx` = `%rsp + 12`
 :::
 
@@ -898,7 +898,7 @@ Halfway there!
 因此读取完毕后，栈内保存的信息为：
 
 ::: callout {type=note title="栈状态"}
-`0x8(%rsp)` = `nums[0]`  
+`0x8(%rsp)` = `nums[0]`\
 `0xc(%rsp)` = `nums[1]`
 :::
 
@@ -913,8 +913,8 @@ Halfway there!
 `40103a`: `mov $0xe,%edx`, `40103f`: `mov $0x0,%esi` 和 `401044`: `mov 0x8(%rsp),%edi` 将 `%edx`, `%esi`, `%edi` 寄存器分别赋值为 `0xe`, `0x0`, `0x8(%rsp)`。
 
 ::: callout {type=note title="寄存器状态"}
-`%edi` = `0x8(%rsp)` = `nums[0]`  
-`%esi` = `0`  
+`%edi` = `0x8(%rsp)` = `nums[0]`\
+`%esi` = `0`\
 `%edx` = `14`
 :::
 
@@ -1126,7 +1126,7 @@ So you got that one.  Try this one.
   4010f3:   c3                      retq
 ```
 
-这里的 `%fs:0x28` 是 FS 段寄存器（segment register）上偏移地址 `0x28` 上的数据。这是一个随机量，在这里起到 stack canary 的作用[^fs-so] [^fs-se]。这部分代码即利用这个 stack canary 来确保 `0x18(%rsp)` 的数值（即栈底的 8 bytes）在函数前后没有发生改动，如果发生改动则执行 `4010e9`: `callq 400b30 <__stack_chk_fail@plt>` 调用系统函数 `__stack_chk_fail` 跳出，从而防止栈溢出（stack overflow）的问题。事实上，这段代码与本关的关系不大，这里就不做更多阐述了。
+这里的 `%fs:0x28` 是 FS 段寄存器（segment register）上偏移地址 `0x28` 上的数据。这是一个随机量，在这里起到 stack canary 的作用[^fs-so][^fs-se]。这部分代码即利用这个 stack canary 来确保 `0x18(%rsp)` 的数值（即栈底的 8 bytes）在函数前后没有发生改动，如果发生改动则执行 `4010e9`: `callq 400b30 <__stack_chk_fail@plt>` 调用系统函数 `__stack_chk_fail` 跳出，从而防止栈溢出（stack overflow）的问题。事实上，这段代码与本关的关系不大，这里就不做更多阐述了。
 
 ```text {title="bomb.asm"}
   401078:   31 c0                   xor    %eax,%eax
@@ -1390,11 +1390,11 @@ Good work!  On to the next...
 :::
 
 ::: callout {type=note title="栈状态"}
-`0x00(%rsp)` = `nums[0]`  
-`0x04(%rsp)` = `nums[1]`  
-`0x08(%rsp)` = `nums[2]`  
-`0x0c(%rsp)` = `nums[3]`  
-`0x10(%rsp)` = `nums[4]`  
+`0x00(%rsp)` = `nums[0]`\
+`0x04(%rsp)` = `nums[1]`\
+`0x08(%rsp)` = `nums[2]`\
+`0x0c(%rsp)` = `nums[3]`\
+`0x10(%rsp)` = `nums[4]`\
 `0x14(%rsp)` = `nums[5]`
 :::
 
@@ -1548,11 +1548,11 @@ for (i = 0; i != 6; ++i) {          // i in %rsi
 用同样的方式得到 6 个结点的地址：
 
 ::: callout {type=note title="结点地址"}
-`p_node1` = `0x6032d0`  
-`p_node2` = `0x6032e0`  
-`p_node3` = `0x6032f0`  
-`p_node4` = `0x603300`  
-`p_node5` = `0x603310`  
+`p_node1` = `0x6032d0`\
+`p_node2` = `0x6032e0`\
+`p_node3` = `0x6032f0`\
+`p_node4` = `0x603300`\
+`p_node5` = `0x603310`\
 `p_node6` = `0x603220`
 :::
 
@@ -1644,11 +1644,11 @@ return next_node;
 用同样的方式得到链表 6 个结点的数据：
 
 ::: callout {type=note title="结点数据"}
-`p_node1->val` = `332`  
-`p_node2->val` = `168`  
-`p_node3->val` = `924`  
-`p_node4->val` = `691`  
-`p_node5->val` = `477`  
+`p_node1->val` = `332`\
+`p_node2->val` = `168`\
+`p_node3->val` = `924`\
+`p_node4->val` = `691`\
+`p_node5->val` = `477`\
 `p_node6->val` = `443`
 :::
 
@@ -1836,8 +1836,8 @@ Breakpoint 3, 0x0000000000400efc in phase_2 ()
 读取完毕后，栈内保存的信息为：
 
 ::: callout {type=note title="栈状态"}
-`0x8(%rsp)` = `nums[0]`  
-`0xc(%rsp)` = `nums[1]`  
+`0x8(%rsp)` = `nums[0]`\
+`0xc(%rsp)` = `nums[1]`\
 `0x10(%rsp)` = `password`
 :::
 
@@ -1889,7 +1889,7 @@ Breakpoint 3, 0x0000000000400efc in phase_2 ()
 ```
 
 ::: callout {type=note title="寄存器状态"}
-`%rdi` = `0x10(%rsp)` = `password`  
+`%rdi` = `0x10(%rsp)` = `password`\
 `%esi` = `0x402622`
 :::
 
@@ -1991,7 +1991,7 @@ But finding it and solving it are quite different...
 `401248`: `mov $0xa,%edx` 和 `40124d`: `mov $0x0,%esi` 将 `%edx` 和 `%esi` 寄存器分别设置为 `10` 和 `0`。
 
 ::: callout {type=note title="寄存器状态"}
-`%esi` = `0`  
+`%esi` = `0`\
 `%edx` = `10`
 :::
 
@@ -2014,7 +2014,7 @@ But finding it and solving it are quite different...
 `400e37`: `mov %rax,%rbx` 和 `40125d`: `lea -0x1(%rax),%eax` 将 `%rax` 的值传给了 `%rbx` 寄存器，然后 `%rax` 的值减 1。
 
 ::: callout {type=note title="寄存器状态"}
-`%rbx` = `%rax` = `num`  
+`%rbx` = `%rax` = `num`\
 `%eax` = `%rax - 1` = `num - 1`
 :::
 
@@ -2025,7 +2025,7 @@ But finding it and solving it are quite different...
 `40126c`: `mov %ebx,%esi` 和 `40126e`: `mov $0x6030f0,%edi` 将 `%ebx` 的值传给了 `%esi` 寄存器，将地址 `0x6030f0` 传给了 `%edi` 寄存器。
 
 ::: callout {type=note title="寄存器状态"}
-`%edi` = `0x6030f0`  
+`%edi` = `0x6030f0`\
 `%esi` = `%ebx` = `num`
 :::
 

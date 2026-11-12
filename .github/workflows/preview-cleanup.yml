@@ -1,6 +1,7 @@
 name: Preview cleanup
 
 on:
+  # Holds deploy secrets and a write token, so never check out or run PR code.
   pull_request_target:
     types: [closed]
 
@@ -11,30 +12,26 @@ concurrency:
 permissions:
   contents: read
 
-env:
-  CACHIX_NAME: hakula
-
 jobs:
   cleanup:
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: read
       deployments: write
       pull-requests: write
     env:
       PR_NUMBER: ${{ github.event.pull_request.number }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v7
         with:
           persist-credentials: false
 
-      - name: Setup Nix
-        uses: ./.github/actions/setup-nix
-        with:
-          cachix_name: ${{ env.CACHIX_NAME }}
-          cachix_skip_push: 'true'
+      - name: Set up Nix
+        uses: hakula139/devkit/.github/actions/setup-nix@v3
 
       - name: Install dependencies
         run: nix develop -c pnpm install --frozen-lockfile

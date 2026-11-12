@@ -157,8 +157,8 @@ Here we'll demonstrate the usage of these RESTful APIs by example.
 
 ##### Request
 
-Method: `POST /login`  
-Content-Type: `multipart/form-data`  
+Method: `POST /login`\
+Content-Type: `multipart/form-data`\
 CLI command: `login`
 
 In realms:
@@ -180,7 +180,7 @@ On the server-side, the password will be hashed using [bcrypt] before save.
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -212,7 +212,7 @@ auth: failed to save session
 
 ##### Request
 
-Method: `GET /logout`  
+Method: `GET /logout`\
 CLI command: `logout`
 
 In realms:
@@ -223,7 +223,7 @@ In realms:
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -247,7 +247,7 @@ auth: failed to save session
 
 ##### Request
 
-Method: `GET /user/me`  
+Method: `GET /user/me`\
 CLI command: `me`
 
 In realms:
@@ -260,7 +260,7 @@ In realms:
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -283,7 +283,7 @@ auth: unauthorized
 
 ##### Request
 
-Method: `GET /status`  
+Method: `GET /status`\
 CLI command: `status`
 
 In realms:
@@ -294,7 +294,7 @@ In realms:
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -311,8 +311,8 @@ Online
 
 ##### Request
 
-Method: `POST /admin/books`  
-Content-Type: `application/json`  
+Method: `POST /admin/books`\
+Content-Type: `application/json`\
 CLI command: `add book`
 
 ```json
@@ -348,7 +348,7 @@ On the server-side, the following message will be written to log using [zap]. Th
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -379,8 +379,8 @@ auth: unauthorized
 
 ##### Request
 
-Method: `PATCH /admin/books/:id`  
-Content-Type: `application/json`  
+Method: `PATCH /admin/books/:id`\
+Content-Type: `application/json`\
 CLI command: `update book`
 
 ```json
@@ -415,7 +415,7 @@ The following message will be written to log.
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -447,8 +447,8 @@ database: book not found
 
 ##### Request
 
-Method: `DELETE /admin/books/:id`  
-Content-Type: `application/json`  
+Method: `DELETE /admin/books/:id`\
+Content-Type: `application/json`\
 CLI command: `remove book`
 
 ```json
@@ -485,7 +485,7 @@ Or if there's no explanation:
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -509,7 +509,7 @@ database: book not found
 
 ##### Request
 
-Method: `GET /books`  
+Method: `GET /books`\
 CLI command: `show books`
 
 In realms:
@@ -520,7 +520,7 @@ In realms:
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -598,7 +598,7 @@ func printBooks(books []interface{}) {
 
 ##### Request
 
-Method: `GET /books/:id`  
+Method: `GET /books/:id`\
 CLI command: `show book`
 
 In realms:
@@ -610,7 +610,7 @@ Book ID: 20
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -645,8 +645,8 @@ database: book not found
 
 ##### Request
 
-Method: `POST /books/find`  
-Content-Type: `application/json`  
+Method: `POST /books/find`\
+Content-Type: `application/json`\
 CLI command: `find books`
 
 To search by title (fuzzy, case-insensitive):
@@ -689,7 +689,7 @@ ISBN (optional):
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -732,8 +732,8 @@ No books found
 
 ##### Request
 
-Method: `POST /admin/users`  
-Content-Type: `application/json`  
+Method: `POST /admin/users`\
+Content-Type: `application/json`\
 CLI command: `add user`
 
 ```json
@@ -773,7 +773,7 @@ The following message will be written to log.
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -804,8 +804,8 @@ database: username already exists
 
 ##### Request
 
-Method: `PATCH /admin/users/:id`  
-Content-Type: `application/json`  
+Method: `PATCH /admin/users/:id`\
+Content-Type: `application/json`\
 CLI command: `update user`
 
 ```json
@@ -838,7 +838,7 @@ The following message will be written to log.
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -869,7 +869,7 @@ database: user not found
 
 ##### Request
 
-Method: `DELETE /admin/users/:id`  
+Method: `DELETE /admin/users/:id`\
 CLI command: `remove user`
 
 In realms:
@@ -889,7 +889,7 @@ The following message will be written to log.
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -913,7 +913,7 @@ database: user not found
 
 ##### Request
 
-Method: `GET /admin/users`  
+Method: `GET /admin/users`\
 CLI command: `show users`
 
 In realms:
@@ -926,7 +926,7 @@ In realms:
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -967,7 +967,7 @@ auth: unauthorized
 
 ##### Request
 
-Method: `GET /admin/users/:id`  
+Method: `GET /admin/users/:id`\
 CLI command: `show user`
 
 In realms:
@@ -981,7 +981,7 @@ User ID: 3
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -1014,8 +1014,8 @@ database: user not found
 
 ##### Request
 
-Method: `POST /user/books/:id`  
-Content-Type: `application/json`  
+Method: `POST /user/books/:id`\
+Content-Type: `application/json`\
 CLI command: `borrow book`
 
 ```json
@@ -1054,7 +1054,7 @@ The following message will be written to log.
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -1100,7 +1100,7 @@ database: book not found
 
 ##### Request
 
-Method: `DELETE /user/books/:id`  
+Method: `DELETE /user/books/:id`\
 CLI command: `return book`
 
 In realms:
@@ -1122,7 +1122,7 @@ The following message will be written to log.
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -1153,7 +1153,7 @@ Why there's not a `book not found` error here? It's to prevent the case that an 
 
 ##### Request
 
-Method: `GET /user/books/:id`  
+Method: `GET /user/books/:id`\
 CLI command: `check ddl`
 
 In realms:
@@ -1167,7 +1167,7 @@ Book ID: 22
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -1203,7 +1203,7 @@ library: book not borrowed
 
 ##### Request
 
-Method: `PATCH /user/books/:id`  
+Method: `PATCH /user/books/:id`\
 CLI command: `extend ddl`
 
 In realms:
@@ -1217,7 +1217,7 @@ Book ID: 22
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -1259,7 +1259,7 @@ library: book not borrowed
 
 ##### Request
 
-Method: `GET /user/books`  
+Method: `GET /user/books`\
 CLI command: `show list`
 
 In realms:
@@ -1272,7 +1272,7 @@ In realms:
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -1332,7 +1332,7 @@ auth: unauthorized
 
 ##### Request
 
-Method: `GET /user/overdue`  
+Method: `GET /user/overdue`\
 CLI command: `show overdue`
 
 In realms:
@@ -1345,7 +1345,7 @@ In realms:
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json
@@ -1390,7 +1390,7 @@ auth: unauthorized
 
 ##### Request
 
-Method: `GET /user/history`  
+Method: `GET /user/history`\
 CLI command: `show history`
 
 In realms:
@@ -1403,7 +1403,7 @@ In realms:
 
 ##### Response
 
-Status: `200 OK`  
+Status: `200 OK`\
 Content-Type: `application/json`
 
 ```json

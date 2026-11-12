@@ -1,8 +1,8 @@
 {
   "version": "0.2",
-  "language": "en,en-GB",
+  "language": "en",
   "useGitignore": true,
-  "allowCompoundWords": true,
+  "gitignoreRoot": ".",
   "import": [
     "@cspell/dict-de-de/cspell-ext.json",
     "@cspell/dict-fr-fr/cspell-ext.json",
@@ -40,6 +40,6 @@
       "pattern": "/<!--[\\s\\S]*?-->/gm"
     }
   ],
-  "ignorePaths": ["pnpm-lock.yaml", "**/*.svg", "**/*.csv"],
+  "ignorePaths": ["content/posts/LICENSE", "flake.lock", "pnpm-lock.yaml", "**/*.svg", "**/*.csv"],
   "ignoreRegExpList": ["code_fenced", "code_inline", "math_inline", "math_display", "html_comments"]
 }

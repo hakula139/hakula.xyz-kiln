@@ -4,62 +4,36 @@ on:
   push:
     branches: [main, dev]
   pull_request:
-    branches: [main, dev]
   workflow_dispatch:
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 permissions:
   contents: read
 
-env:
-  CACHIX_NAME: hakula
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
-  flake-check:
-    name: Nix Flake Check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
+  nix:
+    uses: hakula139/devkit/.github/workflows/nix.yml@v3
+    with:
+      submodules: true
+    secrets:
+      CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-      - name: Setup Nix
-        uses: ./.github/actions/setup-nix
-        with:
-          cachix_name: ${{ env.CACHIX_NAME }}
-          cachix_skip_push: 'true'
-
-      - name: Run flake check
-        run: nix flake check
-
-  check:
+  site:
     name: Site Check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-        with:
-          submodules: true
-
-      - name: Setup Nix
-        uses: ./.github/actions/setup-nix
-        with:
-          cachix_name: ${{ env.CACHIX_NAME }}
-          cachix_skip_push: 'true'
-
-      - name: Install dependencies
-        run: nix develop -c pnpm install --frozen-lockfile
-
-      - name: Format
-        run: nix develop -c pnpm format
-
-      - name: Lint
-        run: nix develop -c pnpm lint
-
-      - name: Spell check
-        run: nix develop -c pnpm spellcheck
-
-  build:
     uses: ./.github/workflows/build.yml
+
+  result:
+    name: CI Result
+    if: ${{ !cancelled() }}
+    needs: [nix, site]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: read
+
+    steps:
+      - name: Check results
+        uses: hakula139/devkit/.github/actions/ci-result@v3

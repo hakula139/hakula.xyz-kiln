@@ -12,9 +12,6 @@ concurrency:
 permissions:
   contents: read
 
-env:
-  CACHIX_NAME: hakula
-
 jobs:
   build:
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
@@ -26,18 +23,17 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     environment:
       name: ${{ github.ref_name == 'dev' && 'development' || 'production' }}
       url: ${{ github.ref_name == 'dev' && 'https://dev.hakula.xyz' || 'https://hakula.xyz' }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Setup Nix
-        uses: ./.github/actions/setup-nix
-        with:
-          cachix_name: ${{ env.CACHIX_NAME }}
-          cachix_skip_push: 'true'
+      - name: Set up Nix
+        uses: hakula139/devkit/.github/actions/setup-nix@v3
 
       - name: Install dependencies
         run: nix develop -c pnpm install --frozen-lockfile
