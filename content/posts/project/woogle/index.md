@@ -112,13 +112,21 @@ hadoop jar woogle.jar <index_path>
 其中：
 
 - `<token>`：表示一个短语 $t$。
+
 - `<filename>`：表示出现这个短语 $t$ 的文档 $d$ 的文件名。
+
 - `<token_count>`：表示这个短语 $t$ 在文档 $d$ 中出现的次数 $c_{t,d}$。
+
 - `<tf>`：表示这个短语 $t$ 在文档 $d$ 中的**词频 TF** (Term Frequency)，使用科学计数法表示。这里我们采用的算法是 $$\operatorname{TF}(t,d) = \frac{c_{t,d}}{C_d}$$
+
   其中 $C_d$ 表示文档 $d$ 中的短语总数。
+
 - `<position_i>`：表示这个短语 $t$ 在文档 $d$ 中出现的位置 $p_{t,d,i}$。这里我们取的是该短语首字符关于文档起始位置的**字节偏移量**。
+
 - `<file_count>`：表示出现这个短语 $t$ 的文档总数 $n_t$。
+
 - `<idf>`：表示这个短语 $t$ 在所有文档 $D$ 中的**逆向文件频率 IDF** (Inverse Document Frequency)。这里我们采用的算法是 $$\operatorname{IDF}(t) = \log_2{\frac{N}{n_t}}$$
+
   其中 $N$ 表示语料库中文档的总数 $|D|$。
 
 以一个小样例的索引结果为例（文件名：`part-r-00121`）：
@@ -159,6 +167,7 @@ Please input a keyword:
 其中：
 
 - `<tfidf>`：表示这个短语 $t$ 在文档 $d$ 中的 TF-IDF，使用科学计数法表示。这里我们采用的算法是 $$\operatorname{TFIDF}(t,d) = \operatorname{TF}(t,d) \cdot \operatorname{IDF}(t)$$
+
   通常，这个值可以作为这个文档在搜索结果中的权重。
 
 例如：
