@@ -13,7 +13,7 @@ Bangumi
 Beatmania
 beatoraja
 BEMANI
-bilibili
+Bilibili
 bioinformatics
 bmsid
 bomblab
@@ -50,7 +50,7 @@ DIGGY
 direnv
 DMIT
 dotenv
-douban
+Douban
 Dynaudio
 endingwith
 Ennea
@@ -72,7 +72,7 @@ getmetrics
 Gitee
 Goffman
 granularities
-hakula
+Hakula
 Hanaki
 Haraway
 Hatsune
@@ -102,14 +102,14 @@ kstack
 LANECOVER
 lavalse
 libc
-lightgallery
+lightGallery
 ListenBrainz
 llms
 llmstxt
 LLSIF
 LNMP
 lostdeer
-lqip
+LQIP
 LSTM
 lvalue
 Lyotard
@@ -136,7 +136,7 @@ Mythologia
 namecheap
 namesilo
 neko
-neodb
+NeoDB
 nixfmt
 nixpkgs
 noindex
@@ -226,7 +226,7 @@ vndb
 vsync
 VTuber
 Wakaba
-wakatime
+WakaTime
 WASAPI
 webp
 Winnicott
