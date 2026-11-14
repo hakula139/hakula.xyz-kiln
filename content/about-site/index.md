@@ -14,25 +14,25 @@ url = "https://www.pixiv.net/artworks/70180757"
 
 ## 技术选型
 
-| 项目   | 方案                             |
-| :----- | :------------------------------- |
-| 框架   | [kiln]                           |
-| 主题   | [IgnIt]                          |
-| 评论   | [Twikoo]                         |
-| VPS    | [DMIT]                           |
-| DNS    | [Cloudflare]                     |
-| CDN    | [Cloudflare]                     |
-| 部署   | [Cloudflare Workers]             |
-| 云存储 | [Cloudreve] & [Backblaze B2][B2] |
-| 图床   | [Cloudflare R2][R2]              |
-| 流媒体 | [PeerTube]                       |
-| 监控   | [Netdata] & [Better Stack]       |
+| 项目   | 方案                         |
+| :----- | :--------------------------- |
+| 框架   | [kiln]                       |
+| 主题   | [IgnIt]                      |
+| 评论   | [Twikoo]                     |
+| VPS    | [DMIT]                       |
+| DNS    | [Cloudflare]                 |
+| CDN    | [Cloudflare]                 |
+| 部署   | [Cloudflare Workers]         |
+| 云存储 | [Cloudreve] & [Backblaze B2] |
+| 图床   | [Cloudflare R2]              |
+| 流媒体 | [PeerTube]                   |
+| 监控   | [Netdata] & [Better Stack]   |
 
 ## 更新日志
 
 | 日期           | 更新内容                                                                                                                               |
 | :------------- | :------------------------------------------------------------------------------------------------------------------------------------- |
-| 2026-11-07     | 图床迁移至 [Cloudflare R2][R2]，弃用 [腾讯云 COS][COS] 和 [PicList]。                                                                  |
+| 2026-11-07     | 图床迁移至 [Cloudflare R2]，弃用 [PicList] 及 [腾讯云 COS][COS]。                                                                      |
 | **2026-09-06** | 新站迁移计划完成，总耗时约 160 小时。                                                                                                  |
 | 2026-05-08     | 新站接入 [Twikoo API Worker] 评论后端。                                                                                                |
 | 2026-05-06     | 开始开发基于 [Cloudflare Workers] 和 [D1] 的 [Twikoo API Worker]，迁移原站评论。                                                       |
@@ -42,17 +42,17 @@ url = "https://www.pixiv.net/artworks/70180757"
 | 2026-02-22     | 开始开发静态站点生成器 [kiln]。                                                                                                        |
 | 2026-02-02     | 服务器迁移完毕：[CloudCone :us:][CloudCone] → [DMIT :us:][DMIT] (Premium, CN2 GIA)，月付 \$ 15。                                       |
 | **2025‑12‑24** | 服务器迁移完毕：[腾讯云 :singapore:][Lighthouse] → [CloudCone :us:][CloudCone]、Ubuntu 22.04 → NixOS 25.11、CPU 2 → 3 核，年付 \$ 25。 |
-| 2025-12-24     | 改用 [Restic] 每日备份至 [Backblaze B2][B2]，弃用 [Rclone]。                                                                           |
-| 2025-12-23     | 图床迁移至 [PicList] 方案，弃用 [兰空图床][Lsky]。                                                                                     |
+| 2025-12-24     | 改用 [Restic] 每日备份至 [Backblaze B2]，弃用 [Rclone]。                                                                               |
+| 2025-12-23     | 图床迁移至 [PicList] 方案，弃用 [兰空图床]。                                                                                           |
 | 2025‑12‑19     | 服务可用性监控迁移至 [Better Stack] 方案，弃用 [UptimeRobot]。                                                                         |
-| **2025‑07‑28** | 私有云存储迁移至 [Cloudreve] 方案，底层使用 [Backblaze B2][B2] 对象存储。                                                              |
+| **2025‑07‑28** | 私有云存储迁移至 [Cloudreve] 方案，底层使用 [Backblaze B2] 对象存储。                                                                  |
 | 2025‑04‑07     | [LoveIt] 更新至 v0.3.0 版本，Hugo 更新至 v0.145.0 版本，解决各种兼容性问题。                                                           |
 | **2022‑11‑13** | [LoveIt] 主题魔改基本完毕。新站迁移计划完成，总耗时 346 小时。                                                                         |
-| 2022‑10‑28     | 使用 [兰空图床][Lsky] 自建图床，实现评论区图片上传功能。                                                                               |
+| 2022‑10‑28     | 使用 [兰空图床] 自建图床，实现评论区图片上传功能。                                                                                     |
 | 2022‑10‑24     | 原站所有评论迁移完毕。                                                                                                                 |
 | 2022‑10‑14     | 原站所有文章迁移并审校完毕。                                                                                                           |
 | 2022‑09‑29     | 使用 [Netdata] 实现服务器各项指标的实时监控。                                                                                          |
-| 2022‑09‑28     | 配置 [GitHub Webhooks][Webhooks] 实现网站自动化部署，作为 [Cloudflare Pages] 的替补方案。                                              |
+| 2022‑09‑28     | 配置 [GitHub Webhooks] 实现网站自动化部署，作为 [Cloudflare Pages] 的替补方案。                                                        |
 | 2022‑03‑03     | 服务器迁移完毕：[CloudCone :us:][CloudCone] → [腾讯云 :singapore:][Lighthouse]、内存 1 GB → 2 GB。                                     |
 | 2022‑02‑10     | 接入 [Twikoo] 评论系统，原站所有评论待迁移。                                                                                           |
 | 2022‑01‑25     | 接入 [Algolia] 实现站内搜索。                                                                                                          |
@@ -77,17 +77,19 @@ url = "https://www.pixiv.net/artworks/70180757"
 | **2018‑08‑20** | HAKULA†CHANNEL 诞生，域名：[hakula.xyz]，框架：[Typecho]，主题：[handsome]。                                                           |
 
 [Algolia]: https://www.algolia.com
-[B2]: https://www.backblaze.com/cloud-storage
+[Backblaze B2]: https://www.backblaze.com/cloud-storage
 [Better Stack]: https://betterstack.com
 [CloudCone]: /links/cloudcone-cn
 [Cloudflare]: https://www.cloudflare.com
 [Cloudflare Pages]: https://pages.cloudflare.com
+[Cloudflare R2]: https://www.cloudflare.com/products/r2/
 [Cloudflare Workers]: https://developers.cloudflare.com/workers/static-assets/
 [Cloudreve]: https://cloudreve.org
 [COS]: https://cloud.tencent.com/product/cos
 [D1]: https://developers.cloudflare.com/d1/
 [DMIT]: /links/dmit
 [Gdrive]: https://github.com/prasmussen/gdrive
+[GitHub Webhooks]: https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks
 [h5ai]: https://larsjung.de/h5ai
 [hakula.xyz]: https://www.whois.com/whois/hakula.xyz
 [handsome]: https://www.ihewro.com/archives/489
@@ -97,7 +99,6 @@ url = "https://www.pixiv.net/artworks/70180757"
 [Lighthouse]: https://cloud.tencent.com/product/lighthouse
 [LoveIt]: https://hugoloveit.com
 [LoveKKComment]: https://github.com/ylqjgm/LoveKKComment
-[Lsky]: https://www.lsky.pro
 [Netdata]: https://www.netdata.cloud
 [Nextcloud]: https://nextcloud.com
 [OneDrive]: https://www.microsoft.com/microsoft-365/onedrive/onedrive-for-business
@@ -105,11 +106,10 @@ url = "https://www.pixiv.net/artworks/70180757"
 [PeerTube]: https://joinpeertube.org
 [PicList]: https://piclist.cn
 [PyOne]: https://github.com/abbeyokgo/PyOne
-[R2]: https://www.cloudflare.com/products/r2/
 [Rclone]: https://rclone.org
 [Restic]: https://restic.net
 [Twikoo]: https://twikoo.js.org
 [Twikoo API Worker]: https://github.com/hakula139/twikoo-api-worker
 [Typecho]: https://typecho.org
 [UptimeRobot]: https://uptimerobot.com
-[Webhooks]: https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks
+[兰空图床]: https://www.lsky.pro
