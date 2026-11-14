@@ -43,12 +43,12 @@ url = "https://www.pixiv.net/artworks/70180757"
 | 2026-02-02     | 服务器迁移完毕：[CloudCone :us:][CloudCone] → [DMIT :us:][DMIT] (Premium, CN2 GIA)，月付 \$ 15。                                       |
 | **2025‑12‑24** | 服务器迁移完毕：[腾讯云 :singapore:][Lighthouse] → [CloudCone :us:][CloudCone]、Ubuntu 22.04 → NixOS 25.11、CPU 2 → 3 核，年付 \$ 25。 |
 | 2025-12-24     | 改用 [Restic] 每日备份至 [Backblaze B2]，弃用 [Rclone]。                                                                               |
-| 2025-12-23     | 图床迁移至 [PicList] 方案，弃用 [兰空图床]。                                                                                           |
+| 2025-12-23     | 图床迁移至 [PicList] 方案，弃用 [兰空图床][Lsky]。                                                                                     |
 | 2025‑12‑19     | 服务可用性监控迁移至 [Better Stack] 方案，弃用 [UptimeRobot]。                                                                         |
 | **2025‑07‑28** | 私有云存储迁移至 [Cloudreve] 方案，底层使用 [Backblaze B2] 对象存储。                                                                  |
 | 2025‑04‑07     | [LoveIt] 更新至 v0.3.0 版本，Hugo 更新至 v0.145.0 版本，解决各种兼容性问题。                                                           |
 | **2022‑11‑13** | [LoveIt] 主题魔改基本完毕。新站迁移计划完成，总耗时 346 小时。                                                                         |
-| 2022‑10‑28     | 使用 [兰空图床] 自建图床，实现评论区图片上传功能。                                                                                     |
+| 2022‑10‑28     | 使用 [兰空图床][Lsky] 自建图床，实现评论区图片上传功能。                                                                               |
 | 2022‑10‑24     | 原站所有评论迁移完毕。                                                                                                                 |
 | 2022‑10‑14     | 原站所有文章迁移并审校完毕。                                                                                                           |
 | 2022‑09‑29     | 使用 [Netdata] 实现服务器各项指标的实时监控。                                                                                          |
@@ -99,6 +99,7 @@ url = "https://www.pixiv.net/artworks/70180757"
 [Lighthouse]: https://cloud.tencent.com/product/lighthouse
 [LoveIt]: https://hugoloveit.com
 [LoveKKComment]: https://github.com/ylqjgm/LoveKKComment
+[Lsky]: https://www.lsky.pro
 [Netdata]: https://www.netdata.cloud
 [Nextcloud]: https://nextcloud.com
 [OneDrive]: https://www.microsoft.com/microsoft-365/onedrive/onedrive-for-business
@@ -112,4 +113,3 @@ url = "https://www.pixiv.net/artworks/70180757"
 [Twikoo API Worker]: https://github.com/hakula139/twikoo-api-worker
 [Typecho]: https://typecho.org
 [UptimeRobot]: https://uptimerobot.com
-[兰空图床]: https://www.lsky.pro
