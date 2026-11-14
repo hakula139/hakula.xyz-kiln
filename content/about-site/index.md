@@ -16,8 +16,8 @@ url = "https://www.pixiv.net/artworks/70180757"
 
 | 项目   | 方案                         |
 | :----- | :--------------------------- |
-| 框架   | [kiln]                       |
-| 主题   | [IgnIt]                      |
+| 框架   | [kiln]（自研）               |
+| 主题   | [IgnIt]（自研）              |
 | 评论   | [Twikoo]                     |
 | VPS    | [DMIT]                       |
 | DNS    | [Cloudflare]                 |
