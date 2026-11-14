@@ -36,6 +36,9 @@ url = "https://www.pixiv.net/artworks/95120332"
 ::: link {name="迷鹿屋" url="https://lostdeer.xyz" desc="一个思想中转站" logo="assets/lostdeer.webp"}
 :::
 
+::: link {name="NeverDiaIV" url="https://www.diaiv.xin" desc="略扫敝庐，漫录所好" logo="https://www.diaiv.xin/wp-content/uploads/2026/11/1794618454-b_f1d0fcb664a2dddebfd7eb5ba670d208.jpg"}
+:::
+
 ::::
 
 ## 本站链接
