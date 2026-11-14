@@ -6,8 +6,8 @@ importers:
   .:
     configDependencies:
       '@hakula139/pnpm-plugin-devkit':
-        specifier: 3.3.0
-        version: 3.3.0
+        specifier: 3.3.1
+        version: 3.3.1
     packageManagerDependencies:
       pnpm:
         specifier: ^12.0.0
@@ -15,8 +15,8 @@ importers:
 
 packages:
 
-  '@hakula139/pnpm-plugin-devkit@3.3.0':
-    resolution: {integrity: sha512-tO/bmIKOHUfekt7bMT16vq4HL63nsD/FfZn6RppAlPcdgjDuosVK0mX7eqHlB1iybJ9bc5W+apHFuoCFquuB8A==}
+  '@hakula139/pnpm-plugin-devkit@3.3.1':
+    resolution: {integrity: sha512-Hf7qqyOwyTr98U3WiOIHbxAf2apQ/ZHJxO2E0OMUvHu5shUoJE9TBG4DbGv13BCqsYjksEVVRbsJwNFh/t1PiQ==}
 
   '@pnpm/exe.android-arm64@12.18.0':
     resolution: {integrity: sha512-fOF6IwgvnUKEmVedGqiAsNPfN2Ry8GvaqzSQOiF3RJFbpBfPKO/6YT54s1GjToyYinRxw9preHHPe4y2N3SzhA==}
@@ -102,7 +102,7 @@ packages:
 
 snapshots:
 
-  '@hakula139/pnpm-plugin-devkit@3.3.0': {}
+  '@hakula139/pnpm-plugin-devkit@3.3.1': {}
 
   '@pnpm/exe.android-arm64@12.18.0':
     optional: true
