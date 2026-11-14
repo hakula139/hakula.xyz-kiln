@@ -177,7 +177,7 @@ url = "https://www.pixiv.net/artworks/64035231"
 
 ## :headphones: 音乐
 
-<!-- cspell:ignore pl.u-AkAmPlpf2YvL2d9 -->
+<!-- cspell:disable-next-line -->
 
 ::: music {server="apple" name="favorite-songs" id="pl.u-AkAmPlpf2YvL2d9" country="jp"}
 :::
