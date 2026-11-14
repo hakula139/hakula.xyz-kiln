@@ -7,7 +7,8 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
+  queue: max
 
 permissions:
   contents: read
@@ -46,7 +47,15 @@ jobs:
 
       - name: Deploy to Cloudflare Workers
         env:
+          GH_TOKEN: ${{ github.token }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           WRANGLER_ENV: ${{ github.ref_name == 'dev' && 'dev' || '' }}
-        run: nix develop -c pnpm exec wrangler deploy --env "$WRANGLER_ENV"
+        run: |
+          branch_head="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/${GITHUB_REF#refs/}" --jq '.object.sha')"
+          if [[ "$branch_head" != "$GITHUB_SHA" ]]; then
+            echo "::error::Refusing to deploy outdated commit $GITHUB_SHA. Current branch head is $branch_head."
+            exit 1
+          fi
+
+          nix develop -c pnpm exec wrangler deploy --env "$WRANGLER_ENV"
