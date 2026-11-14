@@ -4,7 +4,7 @@ allowBuilds:
   workerd: true
 
 configDependencies:
-  '@hakula139/pnpm-plugin-devkit': 3.3.0
+  '@hakula139/pnpm-plugin-devkit': 3.3.1
 
 overrides:
   '@eslint/config-array>minimatch': ^11.0.3
