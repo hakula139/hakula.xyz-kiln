@@ -6,7 +6,7 @@ line-ending = "lf"
 
 [lint]
 select = ["B", "C4", "D", "E", "F", "I", "S", "SIM", "UP", "W"]
-ignore = ["D1", "S101", "S603", "S607"]
+ignore = ["D1"]
 
 [lint.isort]
 lines-after-imports = 2
