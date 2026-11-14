@@ -62,9 +62,11 @@ def load_table(path: Path) -> tuple[list[str], list[dict[str, str]]]:
     return list(rows[0]), rows
 
 
+# Fontconfig commands resolve through the managed dev shell's PATH, and their
+# arguments come from internal font choices and Fontconfig metadata.
 def load_font(family: str, style: str, size: int) -> ImageFont.FreeTypeFont:
-    result = subprocess.run(
-        [
+    result = subprocess.run(  # noqa: S603
+        [  # noqa: S607
             'fc-match',
             '--format=%{family}\n%{file}\n%{index}',
             f'{family}:style={style}',
@@ -94,8 +96,8 @@ class TitleFont:
     ) -> None:
         self.primary = primary
         self.fallback = fallback
-        result = subprocess.run(
-            [
+        result = subprocess.run(  # noqa: S603
+            [  # noqa: S607
                 'fc-query',
                 '--index',
                 str(primary.index),

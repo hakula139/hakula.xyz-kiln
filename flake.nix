@@ -50,6 +50,7 @@
           hooks = {
             cspell.package = dk.nodeTool "cspell";
             eslint.enable = true;
+            nu-check.enable = true;
             prettier = {
               enable = true;
               package = dk.nodeTool "prettier";
@@ -79,6 +80,7 @@
 
             packages = [
               kiln.packages.${system}.kiln
+              dk.nushell
             ]
             ++ builtins.attrValues dk.nodeToolchain
             ++ (with pkgs; [

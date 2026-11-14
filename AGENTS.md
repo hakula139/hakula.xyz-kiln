@@ -30,4 +30,4 @@ Commit scope is the topic area: a page bundle or content file name, `config`, `t
 
 ## Documentation maintenance
 
-`README.md` is for a reader running or deploying the site, while `AGENTS.md`, `docs/`, and the nested `AGENTS.md` files are for whoever changes it. Give each fact one home and link to it from elsewhere.
+`README.md` is for a reader running or deploying the site, while `AGENTS.md`, `docs/`, and the nested `AGENTS.md` files are for whoever changes it.

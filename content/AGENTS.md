@@ -61,8 +61,6 @@ Types are `abstract`, `bug`, `danger`, `example`, `failure`, `info`, `note`, `qu
 
 Based on [中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-Hans.md).
 
-Paragraphs are not hard-wrapped. One paragraph is one line, and wrapping is the reader's job, so do not introduce 80-column breaks inside a paragraph.
-
 ### Spacing
 
 - A space between Han characters and half-width characters such as Latin or digits: `在 LeanCloud 上`, `花了 5000 元`.
@@ -95,6 +93,6 @@ Keep capitalization and spelling correct, and spell a name out in full on first 
 
 ## Markdown
 
-A block's last line, including the line before a directive's closing `:::`, never ends in `\`.
+Omit a hard-break backslash on the last line of a paragraph or directive body, where it renders literally.
 
 In Chinese prose a foreign term is embedded directly. Italics mark only a foreign work title.
