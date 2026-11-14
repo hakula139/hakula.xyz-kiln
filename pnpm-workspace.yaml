@@ -3,8 +3,8 @@ allowBuilds:
   sharp: true
   workerd: true
 
-minimumReleaseAgeExclude:
-  - '@hakula139/eslint-config@1.0.0'
+configDependencies:
+  '@hakula139/pnpm-plugin-devkit': 3.3.0
 
 overrides:
   '@eslint/config-array>minimatch': ^11.0.3
