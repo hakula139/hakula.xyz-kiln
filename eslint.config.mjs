@@ -1,8 +1,9 @@
-import js from '@eslint/js';
+import base from '@hakula139/eslint-config';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 
-export default [
-  js.configs.recommended,
+export default defineConfig([
+  base,
   {
     files: ['**/*.js'],
     languageOptions: {
@@ -12,14 +13,8 @@ export default [
         ...globals.browser,
       },
     },
-    rules: {
-      'curly': ['error', 'all'],
-      'eqeqeq': ['error', 'always'],
-      'no-throw-literal': 'error',
-      'prefer-const': 'error',
-    },
   },
   {
     ignores: ['.claude/', '.kiln-build-*/', '.wrangler/', 'public*/', 'themes/'],
   },
-];
+]);
