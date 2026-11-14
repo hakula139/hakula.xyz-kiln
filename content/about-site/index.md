@@ -24,7 +24,7 @@ url = "https://www.pixiv.net/artworks/70180757"
 | CDN    | [Cloudflare]                     |
 | 部署   | [Cloudflare Workers]             |
 | 云存储 | [Cloudreve] & [Backblaze B2][B2] |
-| 图床   | [PicList] & [腾讯云 COS][COS]    |
+| 图床   | [PicList] & [Cloudflare R2][R2]  |
 | 流媒体 | [PeerTube]                       |
 | 监控   | [Netdata] & [Better Stack]       |
 
@@ -104,6 +104,7 @@ url = "https://www.pixiv.net/artworks/70180757"
 [PeerTube]: https://joinpeertube.org
 [PicList]: https://piclist.cn
 [PyOne]: https://github.com/abbeyokgo/PyOne
+[R2]: https://www.cloudflare.com/products/r2/
 [Rclone]: https://rclone.org
 [Restic]: https://restic.net
 [Twikoo]: https://twikoo.js.org
