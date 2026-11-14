@@ -18,7 +18,7 @@ url = "https://www.pixiv.net/artworks/70180757"
 | :----- | :--------------------------- |
 | 框架   | [kiln]（自研）               |
 | 主题   | [IgnIt]（自研）              |
-| 评论   | [Twikoo]                     |
+| 评论   | [Twikoo] & [Cloudflare D1]   |
 | VPS    | [DMIT]                       |
 | DNS    | [Cloudflare]                 |
 | CDN    | [Cloudflare]                 |
@@ -35,7 +35,7 @@ url = "https://www.pixiv.net/artworks/70180757"
 | 2026-11-07     | 图床迁移至 [Cloudflare R2]，弃用 [PicList] 及 [腾讯云 COS][COS]。                                                                      |
 | **2026-09-06** | 新站迁移计划完成，总耗时约 160 小时。                                                                                                  |
 | 2026-05-08     | 新站接入 [Twikoo API Worker] 评论后端。                                                                                                |
-| 2026-05-06     | 开始开发基于 [Cloudflare Workers] 和 [D1] 的 [Twikoo API Worker]，迁移原站评论。                                                       |
+| 2026-05-06     | 开始开发基于 [Cloudflare Workers] 和 [Cloudflare D1] 的 [Twikoo API Worker]，迁移原站评论。                                            |
 | 2026-03-22     | 原站文章迁移至 [kiln] 格式。                                                                                                           |
 | **2026-03-08** | 新站迁移计划启动，改用 [kiln] 框架，并开始开发 [IgnIt] 主题。                                                                          |
 | 2026-03-07     | 基于 [PeerTube] 方案部署视频站。                                                                                                       |
@@ -81,12 +81,12 @@ url = "https://www.pixiv.net/artworks/70180757"
 [Better Stack]: https://betterstack.com
 [CloudCone]: /links/cloudcone-cn
 [Cloudflare]: https://www.cloudflare.com
+[Cloudflare D1]: https://developers.cloudflare.com/d1/
 [Cloudflare Pages]: https://pages.cloudflare.com
 [Cloudflare R2]: https://www.cloudflare.com/products/r2/
 [Cloudflare Workers]: https://developers.cloudflare.com/workers/static-assets/
 [Cloudreve]: https://cloudreve.org
 [COS]: https://cloud.tencent.com/product/cos
-[D1]: https://developers.cloudflare.com/d1/
 [DMIT]: /links/dmit
 [Gdrive]: https://github.com/prasmussen/gdrive
 [GitHub Webhooks]: https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks
