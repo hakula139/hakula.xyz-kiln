@@ -7,7 +7,7 @@ description: Download, compress, and inspect images for article covers and site 
 
 Run commands from the repository root.
 
-Run `.agents/skills/image-tools/image-tools.sh help` for commands, defaults, and prerequisites. Pixiv downloads require gallery-dl authentication.
+Run `.agents/skills/image-tools/image-tools.nu --help` for commands, defaults, and prerequisites. Pixiv downloads require gallery-dl authentication.
 
 ## Workflow
 
@@ -15,14 +15,14 @@ Run `.agents/skills/image-tools/image-tools.sh help` for commands, defaults, and
 
 1. Download the original from Pixiv:
 
-   ```bash
-   .agents/skills/image-tools/image-tools.sh download <PIXIV_ID>
+   ```nushell
+   .agents/skills/image-tools/image-tools.nu download <PIXIV_ID>
    ```
 
 2. Compress the downloaded first-page file, using its actual extension:
 
-   ```bash
-   .agents/skills/image-tools/image-tools.sh compress <PIXIV_ID>_p0.<EXTENSION>
+   ```nushell
+   .agents/skills/image-tools/image-tools.nu compress <PIXIV_ID>_p0.<EXTENSION>
    ```
 
    Output goes to `assets/images/article-covers/<PIXIV_ID>_p0.webp` by default.
@@ -36,8 +36,8 @@ Run `.agents/skills/image-tools/image-tools.sh help` for commands, defaults, and
 
 ### Upgrading the Background Image
 
-```bash
-.agents/skills/image-tools/image-tools.sh compress ~/path/to/source.png assets/images 3840 90
+```nushell
+.agents/skills/image-tools/image-tools.nu compress ~/path/to/source.png assets/images 3840 90
 ```
 
 Image locations and frontmatter follow [Format and typography](../../../content/AGENTS.md).
