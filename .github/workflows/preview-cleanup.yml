@@ -43,7 +43,8 @@ jobs:
           WRANGLER_OUTPUT_FILE_PATH: ${{ runner.temp }}/wrangler-output.ndjson
         run: |
           if nix develop -c pnpm exec wrangler preview delete \
-            --name "pr-$PR_NUMBER" --skip-confirmation; then
+            --name "pr-$PR_NUMBER" \
+            --skip-confirmation; then
             exit 0
           fi
           # Cloudflare API error 10025 is "Preview not found".
@@ -54,11 +55,17 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           HEAD_REF: ${{ github.head_ref }}
         run: |
-          ids=$(gh api --paginate -X GET "repos/$GITHUB_REPOSITORY/deployments" \
-            -f environment=preview -f ref="$HEAD_REF" --jq '.[].id')
+          ids=$(gh api "repos/$GITHUB_REPOSITORY/deployments" \
+            --paginate \
+            -X GET \
+            -f environment=preview \
+            -f ref="$HEAD_REF" \
+            --jq '.[].id')
           for id in $ids; do
-            gh api -X POST "repos/$GITHUB_REPOSITORY/deployments/$id/statuses" \
-              -f state=inactive --silent
+            gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses" \
+              -X POST \
+              -f state=inactive \
+              --silent
           done
 
       - name: Comment preview

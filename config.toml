@@ -19,7 +19,6 @@ position = "70% 50%"
 
 [params.comments]
 enabled = true
-provider = "twikoo"
 
 [params.comments.twikoo]
 api_url = "https://twikoo.hakula.xyz"
@@ -35,7 +34,6 @@ paginate = 8
 
 [params.home.profile]
 avatar = "/assets/images/hotlink-ok/avatar-lite.webp"
-title = "HAKULA†CHANNEL"
 subtitle = "让我们一直谈论变革，\n以确保事实上什么都没改变。"
 
 [params.lightgallery]

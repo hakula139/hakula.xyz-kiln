@@ -4,14 +4,6 @@ set -euo pipefail
 # ==============================================================================
 # Image Tools for hakula.xyz-kiln
 # ==============================================================================
-# Download, compress, and inspect images for article covers and site assets.
-#
-# Subcommands:
-#   download    Download a Pixiv artwork via gallery-dl
-#   compress    Convert / resize an image to WebP via ImageMagick 7
-#   info        Show image dimensions and file size
-#   batch       Compress all images in a directory
-# ==============================================================================
 
 # ------------------------------------------------------------------------------
 # Configuration
@@ -34,23 +26,6 @@ require_cmd() {
   command -v "$1" >/dev/null 2>&1 || die "required command not found: $1"
 }
 
-human_size() {
-  local bytes="$1"
-  if ((bytes >= 1048576)); then
-    printf '%.1fMB' "$(echo "scale=1; ${bytes}/1048576" | bc)"
-  else
-    printf '%dKB' "$((bytes / 1024))"
-  fi
-}
-
-file_size() {
-  if [[ "$(uname)" == "Darwin" ]]; then
-    stat -f%z "$1"
-  else
-    stat --format=%s "$1"
-  fi
-}
-
 # ------------------------------------------------------------------------------
 # Subcommands
 # ------------------------------------------------------------------------------
@@ -65,8 +40,8 @@ cmd_download() {
   local url="https://www.pixiv.net/artworks/${pixiv_id}"
   echo "Downloading Pixiv #${pixiv_id}..."
   gallery-dl "${url}" \
-    --dest "${output_dir}" \
-    --filename "{id}_{num}.{extension}" \
+    --directory "${output_dir}" \
+    --filename "{id}_p{num}.{extension}" \
     --filter "extension in ('png', 'jpg', 'jpeg', 'webp')"
 
   echo ""
@@ -88,12 +63,12 @@ cmd_compress() {
   local output="${output_dir}/${basename}.webp"
 
   mkdir -p "${output_dir}"
-  magick "${input}" -resize "${max_width}x>" -quality "${quality}" "${output}"
+  magick "${input}" \
+    -resize "${max_width}x>" \
+    -quality "${quality}" \
+    "${output}"
 
-  local size dims
-  size=$(file_size "${output}")
-  dims=$(magick identify -format "%wx%h" "${output}")
-  echo "${basename}.webp: ${dims}, $(human_size "${size}")"
+  cmd_info "${output}"
 }
 
 cmd_info() {
@@ -101,18 +76,12 @@ cmd_info() {
   require_cmd magick
 
   if [[ -d "${target}" ]]; then
-    for f in "${target}"/*.webp "${target}"/*.png "${target}"/*.jpg; do
+    for f in "${target}"/*.webp "${target}"/*.png "${target}"/*.jpg "${target}"/*.jpeg; do
       [[ -f "${f}" ]] || continue
-      local size dims
-      size=$(file_size "${f}")
-      dims=$(magick identify -format "%wx%h" "${f}")
-      printf '%-40s %10s  %s\n' "$(basename "${f}")" "${dims}" "$(human_size "${size}")"
+      cmd_info "${f}"
     done
   elif [[ -f "${target}" ]]; then
-    local size dims
-    size=$(file_size "${target}")
-    dims=$(magick identify -format "%wx%h" "${target}")
-    echo "$(basename "${target}"): ${dims}, $(human_size "${size}")"
+    magick identify -format '%f: %wx%h, %b\n' "${target}"
   else
     die "not found: ${target}"
   fi
@@ -130,7 +99,7 @@ cmd_batch() {
   for f in "${input_dir}"/*.png "${input_dir}"/*.jpg "${input_dir}"/*.jpeg "${input_dir}"/*.webp; do
     [[ -f "${f}" ]] || continue
     cmd_compress "${f}" "${output_dir}" "${max_width}" "${quality}"
-    ((count++))
+    ((count += 1))
   done
   echo ""
   echo "Compressed ${count} image(s) to ${output_dir}"
@@ -151,7 +120,7 @@ Commands:
   batch       <INPUT_DIR> [OUTPUT_DIR] [MAX_WIDTH] [QUALITY]
 
 Defaults:
-  OUTPUT_DIR   assets/images/article-covers
+  OUTPUT_DIR   . (download), assets/images/article-covers (compress, batch)
   MAX_WIDTH    1920   (no upscaling; images narrower than this are unchanged)
   QUALITY      85     (WebP quality 0-100)
 
@@ -169,7 +138,7 @@ EOF
 }
 
 main() {
-  [[ $# -ge 1 ]] || {
+  [[ "$#" -ge 1 ]] || {
     usage
     exit 1
   }
@@ -179,19 +148,19 @@ main() {
 
   case "${command}" in
     download)
-      [[ $# -ge 1 ]] || die "usage: download <PIXIV_ID> [OUTPUT_DIR]"
+      [[ "$#" -ge 1 ]] || die "usage: download <PIXIV_ID> [OUTPUT_DIR]"
       cmd_download "$@"
       ;;
     compress)
-      [[ $# -ge 1 ]] || die "usage: compress <INPUT_FILE> [OUTPUT_DIR] [MAX_WIDTH] [QUALITY]"
+      [[ "$#" -ge 1 ]] || die "usage: compress <INPUT_FILE> [OUTPUT_DIR] [MAX_WIDTH] [QUALITY]"
       cmd_compress "$@"
       ;;
     info)
-      [[ $# -ge 1 ]] || die "usage: info <FILE_OR_DIR>"
+      [[ "$#" -ge 1 ]] || die "usage: info <FILE_OR_DIR>"
       cmd_info "$@"
       ;;
     batch)
-      [[ $# -ge 1 ]] || die "usage: batch <INPUT_DIR> [OUTPUT_DIR] [MAX_WIDTH] [QUALITY]"
+      [[ "$#" -ge 1 ]] || die "usage: batch <INPUT_DIR> [OUTPUT_DIR] [MAX_WIDTH] [QUALITY]"
       cmd_batch "$@"
       ;;
     help | --help | -h)
