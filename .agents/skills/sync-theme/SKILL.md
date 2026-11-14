@@ -5,11 +5,7 @@ description: Update the IgnIt theme submodule and verify the site build. Use aft
 
 # Sync Theme
 
-Update the submodule to the latest commit on IgnIt's default branch:
-
-```bash
-git submodule update --init --remote themes/IgnIt
-```
+Update the `themes/IgnIt` submodule to the latest commit on IgnIt's default branch.
 
 To preview an unmerged IgnIt branch, fetch its refs in `themes/IgnIt` and select the remote branch's commit with a detached HEAD.
 
