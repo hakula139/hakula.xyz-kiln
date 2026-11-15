@@ -39,7 +39,7 @@ url = "https://www.pixiv.net/artworks/95120332"
 ::: link {name="NeverDiaIV" url="https://www.diaiv.xin" desc="记录所喜、收藏所爱，留住那些不想遗忘的瞬间。" logo="https://www.diaiv.xin/wp-content/uploads/2026/11/1794618454-b_f1d0fcb664a2dddebfd7eb5ba670d208.jpg"}
 :::
 
-::: link {name="褪色天空" url="https://r054eri.dpdns.org/" desc="R054 的个人站" logo="assets/r054.webp"}
+::: link {name="褪色天空" url="https://r054eri.dpdns.org" desc="R054 的个人站" logo="assets/r054.webp"}
 :::
 
 ::::
