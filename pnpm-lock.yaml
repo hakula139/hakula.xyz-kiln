@@ -4,19 +4,12 @@ lockfileVersion: '9.0'
 importers:
 
   .:
-    configDependencies:
-      '@hakula139/pnpm-plugin-devkit':
-        specifier: 3.3.1
-        version: 3.3.1
     packageManagerDependencies:
       pnpm:
         specifier: ^12.0.0
         version: 12.18.0
 
 packages:
-
-  '@hakula139/pnpm-plugin-devkit@3.3.1':
-    resolution: {integrity: sha512-Hf7qqyOwyTr98U3WiOIHbxAf2apQ/ZHJxO2E0OMUvHu5shUoJE9TBG4DbGv13BCqsYjksEVVRbsJwNFh/t1PiQ==}
 
   '@pnpm/exe.android-arm64@12.18.0':
     resolution: {integrity: sha512-fOF6IwgvnUKEmVedGqiAsNPfN2Ry8GvaqzSQOiF3RJFbpBfPKO/6YT54s1GjToyYinRxw9preHHPe4y2N3SzhA==}
@@ -102,8 +95,6 @@ packages:
 
 snapshots:
 
-  '@hakula139/pnpm-plugin-devkit@3.3.1': {}
-
   '@pnpm/exe.android-arm64@12.18.0':
     optional: true
 
@@ -174,8 +165,6 @@ overrides:
   '@eslint/config-array>minimatch': ^11.0.3
   '@tailwindcss/typography@0.5.20>postcss-selector-parser': ^7.1.7
   eslint>minimatch: ^11.0.3
-
-pnpmfileChecksum: sha256-7tdPmfVrbgL4gezhwmFY+MZAHe2hUNs8Axu1KxIAJF8=
 
 importers:
 

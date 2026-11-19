@@ -3,9 +3,6 @@ allowBuilds:
   sharp: true
   workerd: true
 
-configDependencies:
-  '@hakula139/pnpm-plugin-devkit': 3.3.1
-
 overrides:
   '@eslint/config-array>minimatch': ^11.0.3
   '@tailwindcss/typography@0.5.20>postcss-selector-parser': ^7.1.7
