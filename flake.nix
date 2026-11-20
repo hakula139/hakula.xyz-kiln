@@ -13,7 +13,7 @@
     nixpkgs.follows = "kiln/nixpkgs";
 
     kiln = {
-      url = "github:hakula139/kiln/v0.5.2";
+      url = "github:hakula139/kiln/v1.0.0";
       inputs = {
         git-hooks-nix.follows = "devkit/git-hooks-nix";
         kiln-tailwindcss.inputs.git-hooks-nix.follows = "devkit/git-hooks-nix";
