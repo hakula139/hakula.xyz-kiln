@@ -82,9 +82,8 @@ jobs:
           message: |
             ## ⚡ Cloudflare Workers preview
 
-            - **Preview** <${{ steps.workers.outputs.preview-url }}>
-            - **This commit** <${{ steps.workers.outputs.deployment-url }}>
-            - **Commit** `${{ steps.meta.outputs.short_sha }}`
-            - **Updated** ${{ steps.meta.outputs.deploy_time }}
+            - [Stable preview](${{ steps.workers.outputs.preview-url }})
+            - [Preview for commit `${{ steps.meta.outputs.short_sha }}`](${{ steps.workers.outputs.deployment-url }})
+            - Updated ${{ steps.meta.outputs.deploy_time }}
 
             [View deploy logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})

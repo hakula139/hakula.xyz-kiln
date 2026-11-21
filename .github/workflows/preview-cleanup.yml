@@ -43,39 +43,7 @@ jobs:
         if: steps.workers.outputs.applied == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: |
-          query=$(cat <<'GRAPHQL'
-          query($owner: String!, $repo: String!, $number: Int!, $endCursor: String) {
-            repository(owner: $owner, name: $repo) {
-              pullRequest(number: $number) {
-                timelineItems(first: 100, after: $endCursor, itemTypes: [DEPLOYED_EVENT]) {
-                  nodes {
-                    ... on DeployedEvent { deployment { databaseId environment } }
-                  }
-                  pageInfo { hasNextPage endCursor }
-                }
-              }
-            }
-          }
-          GRAPHQL
-          )
-
-          ids=$(gh api graphql \
-            --paginate \
-            -f owner="$GITHUB_REPOSITORY_OWNER" \
-            -f repo="${GITHUB_REPOSITORY#*/}" \
-            -F number="$PR_NUMBER" \
-            -f query="$query" \
-            --jq '.data.repository.pullRequest.timelineItems.nodes[].deployment
-              | select(.environment == "preview")
-              | .databaseId')
-
-          for id in $ids; do
-            gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses" \
-              -f state=inactive \
-              --silent
-          done
+        run: nix develop -c nu --no-config-file scripts/deactivate-preview-deployments.nu
 
       - name: Comment preview
         if: steps.workers.outputs.applied == 'true'
