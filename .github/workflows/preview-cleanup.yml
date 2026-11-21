@@ -5,24 +5,20 @@ on:
   pull_request_target:
     types: [closed]
 
-concurrency:
-  group: preview-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
-
-permissions:
-  contents: read
-
 jobs:
   cleanup:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.user.login != 'dependabot[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    concurrency:
+      group: preview-${{ github.event.pull_request.number }}
+      queue: max
     permissions:
       contents: read
       deployments: write
       pull-requests: write
-    env:
-      PR_NUMBER: ${{ github.event.pull_request.number }}
 
     steps:
       - name: Checkout
@@ -37,45 +33,27 @@ jobs:
         run: nix develop -c pnpm install --frozen-lockfile
 
       - name: Delete preview
+        id: workers
+        uses: hakula139/devkit/.github/actions/workers@v3
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          WRANGLER_OUTPUT_FILE_PATH: ${{ runner.temp }}/wrangler-output.ndjson
-        run: |
-          if nix develop -c pnpm exec wrangler preview delete \
-            --name "pr-$PR_NUMBER" \
-            --skip-confirmation; then
-            exit 0
-          fi
-          # Cloudflare API error 10025 is "Preview not found".
-          jq -e 'select(.type == "command-failed") | .code == 10025' "$WRANGLER_OUTPUT_FILE_PATH"
 
       - name: Deactivate deployments
+        if: steps.workers.outputs.applied == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          HEAD_REF: ${{ github.head_ref }}
-        run: |
-          ids=$(gh api "repos/$GITHUB_REPOSITORY/deployments" \
-            --paginate \
-            -X GET \
-            -f environment=preview \
-            -f ref="$HEAD_REF" \
-            --jq '.[].id')
-          for id in $ids; do
-            gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses" \
-              -X POST \
-              -f state=inactive \
-              --silent
-          done
+        run: nix develop -c nu --no-config-file scripts/deactivate-preview-deployments.nu
 
       - name: Comment preview
+        if: steps.workers.outputs.applied == 'true'
         uses: marocchino/sticky-pull-request-comment@v3
         with:
           header: preview-url
           only_update: true
           message: |
-            ## ⚡ Cloudflare Workers preview
+            ### Site preview
 
-            This PR's preview was deleted when it closed.
+            The preview was deleted when this pull request closed.
 
-            [View cleanup logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            [Cleanup logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
