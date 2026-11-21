@@ -3,16 +3,14 @@ name: Preview deploy
 on:
   pull_request:
 
-concurrency:
-  group: preview-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
-
 permissions:
   contents: read
 
 jobs:
   build:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.user.login != 'dependabot[bot]'
     uses: ./.github/workflows/build.yml
     with:
       upload-artifact: true
@@ -22,15 +20,15 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    concurrency:
+      group: preview-${{ github.event.pull_request.number }}
+      queue: max
     environment:
       name: preview
-      url: ${{ steps.meta.outputs.deployment_url }}
+      url: ${{ steps.workers.outputs.deployment-url }}
     permissions:
       contents: read
       pull-requests: write
-    env:
-      PR_NUMBER: ${{ github.event.pull_request.number }}
-      PR_SHA: ${{ github.event.pull_request.head.sha }}
 
     steps:
       - name: Checkout
@@ -50,32 +48,32 @@ jobs:
           name: site-public
           path: public/
 
+      - name: Verify the preview merge ref
+        run: |
+          current_ref=$(git ls-remote --exit-code origin "$GITHUB_REF")
+          if [[ "${current_ref%%$'\t'*}" != "$GITHUB_SHA" ]]; then
+            echo "::error::The pull request merge commit has changed."
+            exit 1
+          fi
+
       - name: Deploy preview
+        id: workers
+        uses: hakula139/devkit/.github/actions/workers@v3
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # Wrangler appends one JSON record per command to this file, including the Preview's URLs.
-          WRANGLER_OUTPUT_FILE_PATH: ${{ runner.temp }}/wrangler-output.ndjson
-        run: |
-          nix develop -c pnpm exec wrangler preview \
-            --name "pr-$PR_NUMBER" \
-            --message "PR #$PR_NUMBER @ $PR_SHA"
 
-      - name: Extract preview metadata
+      - name: Require a preview deployment
+        if: steps.workers.outputs.applied != 'true'
+        run: exit 1
+
+      - name: Format preview comment metadata
         id: meta
         env:
-          WRANGLER_OUTPUT_FILE_PATH: ${{ runner.temp }}/wrangler-output.ndjson
+          PR_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
-          record=$(jq -c 'select(.type == "preview")' "$WRANGLER_OUTPUT_FILE_PATH")
-          preview_url=$(jq -er '.preview_urls[0]' <<<"$record")
-          deployment_url=$(jq -er '.deployment_urls[0]' <<<"$record")
           deploy_time=$(date -u +'%Y-%m-%d %H:%M UTC')
-          cat >> "$GITHUB_OUTPUT" <<OUTPUT
-          short_sha=${PR_SHA:0:7}
-          preview_url=$preview_url
-          deployment_url=$deployment_url
-          deploy_time=$deploy_time
-          OUTPUT
+          printf 'short_sha=%s\ndeploy_time=%s\n' "${PR_SHA:0:7}" "$deploy_time" >>"$GITHUB_OUTPUT"
 
       - name: Comment preview
         uses: marocchino/sticky-pull-request-comment@v3
@@ -84,23 +82,9 @@ jobs:
           message: |
             ## ⚡ Cloudflare Workers preview
 
-            <table>
-              <tr>
-                <td><strong>Preview</strong></td>
-                <td><a href="${{ steps.meta.outputs.preview_url }}">${{ steps.meta.outputs.preview_url }}</a></td>
-              </tr>
-              <tr>
-                <td><strong>This commit</strong></td>
-                <td><a href="${{ steps.meta.outputs.deployment_url }}">${{ steps.meta.outputs.deployment_url }}</a></td>
-              </tr>
-              <tr>
-                <td><strong>Commit</strong></td>
-                <td><code>${{ steps.meta.outputs.short_sha }}</code></td>
-              </tr>
-              <tr>
-                <td><strong>Updated</strong></td>
-                <td>${{ steps.meta.outputs.deploy_time }}</td>
-              </tr>
-            </table>
+            - **Preview** <${{ steps.workers.outputs.preview-url }}>
+            - **This commit** <${{ steps.workers.outputs.deployment-url }}>
+            - **Commit** `${{ steps.meta.outputs.short_sha }}`
+            - **Updated** ${{ steps.meta.outputs.deploy_time }}
 
             [View deploy logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})

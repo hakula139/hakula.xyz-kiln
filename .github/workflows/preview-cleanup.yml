@@ -5,24 +5,20 @@ on:
   pull_request_target:
     types: [closed]
 
-concurrency:
-  group: preview-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
-
-permissions:
-  contents: read
-
 jobs:
   cleanup:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.user.login != 'dependabot[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    concurrency:
+      group: preview-${{ github.event.pull_request.number }}
+      queue: max
     permissions:
       contents: read
       deployments: write
       pull-requests: write
-    env:
-      PR_NUMBER: ${{ github.event.pull_request.number }}
 
     steps:
       - name: Checkout
@@ -37,38 +33,52 @@ jobs:
         run: nix develop -c pnpm install --frozen-lockfile
 
       - name: Delete preview
+        id: workers
+        uses: hakula139/devkit/.github/actions/workers@v3
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          WRANGLER_OUTPUT_FILE_PATH: ${{ runner.temp }}/wrangler-output.ndjson
-        run: |
-          if nix develop -c pnpm exec wrangler preview delete \
-            --name "pr-$PR_NUMBER" \
-            --skip-confirmation; then
-            exit 0
-          fi
-          # Cloudflare API error 10025 is "Preview not found".
-          jq -e 'select(.type == "command-failed") | .code == 10025' "$WRANGLER_OUTPUT_FILE_PATH"
 
       - name: Deactivate deployments
+        if: steps.workers.outputs.applied == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          HEAD_REF: ${{ github.head_ref }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          ids=$(gh api "repos/$GITHUB_REPOSITORY/deployments" \
+          query=$(cat <<'GRAPHQL'
+          query($owner: String!, $repo: String!, $number: Int!, $endCursor: String) {
+            repository(owner: $owner, name: $repo) {
+              pullRequest(number: $number) {
+                timelineItems(first: 100, after: $endCursor, itemTypes: [DEPLOYED_EVENT]) {
+                  nodes {
+                    ... on DeployedEvent { deployment { databaseId environment } }
+                  }
+                  pageInfo { hasNextPage endCursor }
+                }
+              }
+            }
+          }
+          GRAPHQL
+          )
+
+          ids=$(gh api graphql \
             --paginate \
-            -X GET \
-            -f environment=preview \
-            -f ref="$HEAD_REF" \
-            --jq '.[].id')
+            -f owner="$GITHUB_REPOSITORY_OWNER" \
+            -f repo="${GITHUB_REPOSITORY#*/}" \
+            -F number="$PR_NUMBER" \
+            -f query="$query" \
+            --jq '.data.repository.pullRequest.timelineItems.nodes[].deployment
+              | select(.environment == "preview")
+              | .databaseId')
+
           for id in $ids; do
             gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses" \
-              -X POST \
               -f state=inactive \
               --silent
           done
 
       - name: Comment preview
+        if: steps.workers.outputs.applied == 'true'
         uses: marocchino/sticky-pull-request-comment@v3
         with:
           header: preview-url
