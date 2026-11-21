@@ -52,8 +52,8 @@ jobs:
           header: preview-url
           only_update: true
           message: |
-            ## ⚡ Cloudflare Workers preview
+            ### Site preview
 
-            This PR's preview was deleted when it closed.
+            The preview was deleted when this pull request closed.
 
-            [View cleanup logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            [Cleanup logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
