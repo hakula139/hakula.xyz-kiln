@@ -73,6 +73,7 @@ Gitee
 Goffman
 granularities
 Hakula
+hakulab
 Hanaki
 Haraway
 Hatsune
