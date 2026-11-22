@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   nix:
-    uses: hakula139/devkit/.github/workflows/nix.yml@v3
+    uses: hakulab/devkit/.github/workflows/nix.yml@v3
     with:
       submodules: true
     secrets:
@@ -36,4 +36,4 @@ jobs:
 
     steps:
       - name: Check results
-        uses: hakula139/devkit/.github/actions/ci-result@v3
+        uses: hakulab/devkit/.github/actions/ci-result@v3
