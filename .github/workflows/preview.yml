@@ -58,7 +58,7 @@ jobs:
 
       - name: Deploy preview
         id: workers
-        uses: hakula139/devkit/.github/actions/workers@v3
+        uses: hakulab/devkit/.github/actions/workers@v3
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
