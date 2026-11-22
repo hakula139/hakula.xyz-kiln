@@ -48,7 +48,7 @@ jobs:
 
       - name: Deploy to Cloudflare Workers
         id: workers
-        uses: hakula139/devkit/.github/actions/workers@v3
+        uses: hakulab/devkit/.github/actions/workers@v3
         with:
           wrangler-environment: ${{ github.ref_name == 'dev' && 'dev' || '' }}
         env:
