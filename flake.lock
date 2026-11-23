@@ -134,13 +134,13 @@
       "locked": {
         "lastModified": 1795174123,
         "narHash": "sha256-klDIuq/Gz4ku/Djmatg14HCK2bMBCek+CxlNXCqDPqM=",
-        "owner": "hakula139",
+        "owner": "hakulab",
         "repo": "kiln",
         "rev": "1f61569620a204c086c452ec045b3ff7114583e6",
         "type": "github"
       },
       "original": {
-        "owner": "hakula139",
+        "owner": "hakulab",
         "ref": "v1.0.0",
         "repo": "kiln",
         "type": "github"
