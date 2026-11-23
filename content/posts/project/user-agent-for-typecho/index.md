@@ -21,7 +21,7 @@ url = "https://www.pixiv.net/artworks/39186698"
 <!--more-->
 
 ::: callout {type=success title="源码地址"}
-[:(fab fa-github): hakula139 / UserAgent-for-Typecho](https://github.com/hakula139/UserAgent-for-Typecho)
+[:(fab fa-github): hakula139 / UserAgent-for-Typecho](https://github.com/hakula139/UserAgent-for-Typecho)
 :::
 
 ## 使用说明
@@ -46,7 +46,7 @@ url = "https://www.pixiv.net/artworks/39186698"
 ### 原项目
 
 ::: callout {type=success title="源码地址"}
-[:(fab fa-github): ennnnny / typecho / UserAgent](https://github.com/ennnnny/typecho/tree/master/UserAgent)
+[:(fab fa-github): ennnnny / typecho / UserAgent](https://github.com/ennnnny/typecho/tree/master/UserAgent)
 :::
 
 本项目基于 @ennnnny 的项目改写，在此感谢。
