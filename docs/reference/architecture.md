@@ -1,6 +1,6 @@
 # Architecture
 
-The site is built by [kiln](https://github.com/hakula139/kiln) with the [IgnIt](https://github.com/hakula139/IgnIt) theme, checked out as a submodule at `themes/IgnIt/`.
+The site is built by [kiln](https://github.com/hakulab/kiln) with the [IgnIt](https://github.com/hakulab/IgnIt) theme, checked out as a submodule at `themes/IgnIt/`.
 
 ## Layout
 
@@ -20,8 +20,8 @@ The site is built by [kiln](https://github.com/hakula139/kiln) with the [IgnIt](
 
 ## Template overrides
 
-Template, directive, and icon overrides are covered by [kiln's override model](https://github.com/hakula139/kiln/blob/main/docs/themes.md#override-model) and [IgnIt's customization guide](https://github.com/hakula139/IgnIt/blob/main/docs/customization.md).
+Template, directive, and icon overrides are covered by [kiln's override model](https://github.com/hakulab/kiln/blob/main/docs/themes.md#override-model) and [IgnIt's customization guide](https://github.com/hakulab/IgnIt/blob/main/docs/customization.md).
 
 ## Assets
 
-[kiln's assets guide](https://github.com/hakula139/kiln/blob/main/docs/assets.md) documents CSS sources, asset publication rules, CSS contracts, and live reload.
+[kiln's assets guide](https://github.com/hakulab/kiln/blob/main/docs/assets.md) documents CSS sources, asset publication rules, CSS contracts, and live reload.

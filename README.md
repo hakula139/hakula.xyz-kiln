@@ -1,11 +1,11 @@
 # hakula.xyz
 
-[![CI](https://github.com/hakula139/hakula.xyz-kiln/actions/workflows/ci.yml/badge.svg)](https://github.com/hakula139/hakula.xyz-kiln/actions/workflows/ci.yml)
+[![CI](https://github.com/hakulab/hakula.xyz-kiln/actions/workflows/ci.yml/badge.svg)](https://github.com/hakulab/hakula.xyz-kiln/actions/workflows/ci.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-orange.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0)
 ![WakaTime coding time for hakula.xyz-kiln](https://wakatime.com/badge/user/f4a35a1f-0e29-4093-a647-e66aad164737/project/ab6e0cef-1d0d-4592-97cf-4948b9e1472c.svg)
 
-My personal website, built with [kiln](https://github.com/hakula139/kiln) and the [IgnIt](https://github.com/hakula139/IgnIt) theme.
+My personal website, built with [kiln](https://github.com/hakulab/kiln) and the [IgnIt](https://github.com/hakulab/IgnIt) theme.
 
 ## Setup
 
@@ -14,12 +14,12 @@ Install [Git LFS](https://git-lfs.com/) and run `git lfs install` before cloning
 [Nix](https://nixos.org/download/) (with flakes) is the recommended path:
 
 ```bash
-git clone --recurse-submodules https://github.com/hakula139/hakula.xyz-kiln.git
+git clone --recurse-submodules https://github.com/hakulab/hakula.xyz-kiln.git
 cd hakula.xyz-kiln
 nix develop
 ```
 
-The dev shell supplies kiln, whose package carries its CSS processor and Pagefind. Without Nix, follow [kiln's installation instructions](https://github.com/hakula139/kiln#installation), set up its [CSS processor](https://github.com/hakula139/kiln/blob/main/docs/assets.md#processor-setup), and install [Pagefind](https://pagefind.app/docs/installation/).
+The dev shell supplies kiln, whose package carries its CSS processor and Pagefind. Without Nix, follow [kiln's installation instructions](https://github.com/hakulab/kiln#installation), set up its [CSS processor](https://github.com/hakulab/kiln/blob/main/docs/assets.md#processor-setup), and install [Pagefind](https://pagefind.app/docs/installation/).
 
 ## Usage
 
