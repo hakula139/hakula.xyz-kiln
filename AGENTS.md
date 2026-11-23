@@ -1,6 +1,6 @@
 # AGENTS.md: hakula.xyz-kiln
 
-This is the [hakula.xyz](https://hakula.xyz) blog, built with [kiln](https://github.com/hakula139/kiln).
+This is the [hakula.xyz](https://hakula.xyz) blog, built with [kiln](https://github.com/hakulab/kiln).
 
 ## Read before you edit
 

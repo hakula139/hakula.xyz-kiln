@@ -94,8 +94,8 @@ url = "https://www.pixiv.net/artworks/70180757"
 [hakula.xyz]: https://www.whois.com/whois/hakula.xyz
 [handsome]: https://www.ihewro.com/archives/489
 [Hugo]: https://gohugo.io
-[IgnIt]: https://github.com/hakula139/IgnIt
-[kiln]: https://github.com/hakula139/kiln
+[IgnIt]: https://github.com/hakulab/IgnIt
+[kiln]: https://github.com/hakulab/kiln
 [Lighthouse]: https://cloud.tencent.com/product/lighthouse
 [LoveIt]: https://hugoloveit.com
 [LoveKKComment]: https://github.com/ylqjgm/LoveKKComment
@@ -110,6 +110,6 @@ url = "https://www.pixiv.net/artworks/70180757"
 [Rclone]: https://rclone.org
 [Restic]: https://restic.net
 [Twikoo]: https://twikoo.js.org
-[Twikoo API Worker]: https://github.com/hakula139/twikoo-api-worker
+[Twikoo API Worker]: https://github.com/hakulab/twikoo-api-worker
 [Typecho]: https://typecho.org
 [UptimeRobot]: https://uptimerobot.com
