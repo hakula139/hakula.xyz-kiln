@@ -33,15 +33,15 @@
         "nixpkgs-unstable": "nixpkgs-unstable_2"
       },
       "locked": {
-        "lastModified": 1794747950,
-        "narHash": "sha256-w2POCSdtcXnhvHzso+mu9fTdBtuctbY0MaHrQIalbpw=",
-        "owner": "hakula139",
+        "lastModified": 1795441529,
+        "narHash": "sha256-Gh1fTS/qRBR5mXsBDdrFomXl9dr4qMIDcayo9jLy7Po=",
+        "owner": "hakulab",
         "repo": "devkit",
-        "rev": "754afed786a8b082d21add29f507b6acd8cc6693",
+        "rev": "55aef646ce32b880a0fa770bed1b68179897fe44",
         "type": "github"
       },
       "original": {
-        "owner": "hakula139",
+        "owner": "hakulab",
         "ref": "v3",
         "repo": "devkit",
         "type": "github"
@@ -132,16 +132,16 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1795174123,
-        "narHash": "sha256-klDIuq/Gz4ku/Djmatg14HCK2bMBCek+CxlNXCqDPqM=",
+        "lastModified": 1795575515,
+        "narHash": "sha256-5SHI4Cc+MQHt6vGjYM/bTEmdGcMwrMf/8wTnGf8mQQE=",
         "owner": "hakulab",
         "repo": "kiln",
-        "rev": "1f61569620a204c086c452ec045b3ff7114583e6",
+        "rev": "6a89e34e8b92a5c230124a4ab3529cf7e02e147c",
         "type": "github"
       },
       "original": {
         "owner": "hakulab",
-        "ref": "v1.0.0",
+        "ref": "v1.0.1",
         "repo": "kiln",
         "type": "github"
       }
@@ -158,27 +158,27 @@
         ]
       },
       "locked": {
-        "lastModified": 1794656580,
-        "narHash": "sha256-tmymLV8/ssgJoJS5mvs04ZshzIT/fQjWdsH+gge7s5c=",
-        "owner": "hakula139",
+        "lastModified": 1795404718,
+        "narHash": "sha256-SlCoQVQW9VEWv4ixEK4q/B1ELaOqm58to1esTmD2Dhs=",
+        "owner": "hakulab",
         "repo": "kiln-tailwindcss",
-        "rev": "c59346139687e2ec5907886884f5c034d0383a22",
+        "rev": "55a4357f1c787e67eebddcf441010d80f1a977ab",
         "type": "github"
       },
       "original": {
-        "owner": "hakula139",
-        "ref": "v0.1.6",
+        "owner": "hakulab",
+        "ref": "v0.1.7",
         "repo": "kiln-tailwindcss",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1794552581,
-        "narHash": "sha256-qXFIqA6FCcx7XeDzw0ZNlkDT9UiCzrNDwK8RuU8RcHM=",
+        "lastModified": 1795370043,
+        "narHash": "sha256-s/0jq8usZtLVOolYBwmyUmd3JsfAu7w3FU+a0dgMqSY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f1e5c356f35d07e7b71a6b5e6c9338e0b029e0c0",
+        "rev": "0dc498bfe49baeb18b0f9891e800b53bb2603193",
         "type": "github"
       },
       "original": {
@@ -238,11 +238,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794733384,
-        "narHash": "sha256-VaXNWDU+9dXckN4BlZbrcYTTd9pIscLeiknbhHX4+lk=",
+        "lastModified": 1795522582,
+        "narHash": "sha256-2UgrrjTeYt4UMmsjdcUjhxSnCGYOlzMuGuk7dRB5Kq4=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "67f1944c7c99d8dbb57fa3d83043bc0a92cbcc56",
+        "rev": "639e209cc8eecd0c307fd95c8aabc011bf047c41",
         "type": "github"
       },
       "original": {
