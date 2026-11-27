@@ -42,4 +42,4 @@ gh workflow run deploy.yml --ref dev
 Copyright (c) 2026 [Hakula](https://hakula.xyz).
 
 - **Source code, templates, and configuration**: [GPL-3.0](LICENSE)
-- **Articles, blog posts, and original media**: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) ([full text](content/posts/LICENSE))
+- **Articles, blog posts, and original media**: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) ([full text](LICENSE-CONTENT))
